@@ -55,17 +55,13 @@
 \setcounter{cptApplication}{1}
 \setcounter{cptTD}{1}
 
-% Un identifiant propre à chaque exercice évite les doublons d'ancres hyperref.
+% Un identifiant propre à chaque fichier évite les doublons d'ancres hyperref.
 \providecommand{\td}{}
 \providecommand{\exer}[1]{}
-\newcounter{exerciseentry}
+\newcounter{exerciseentry}[chapter]
 \renewcommand{\theexerciseentry}{\thechapter.\arabic{exerciseentry}}
-\renewcommand{\theHquestion}{\arabic{exerciseentry}.\arabic{question}}
-\renewcommand{\exer}[1]{%
-  \refstepcounter{exerciseentry}%
-  \setcounter{question}{0}%
-  \phantomsection%
-  \addcontentsline{toc}{subsection}{\protect\numberline{\theexerciseentry}Exercice}%
+\renewcommand{\theHquestion}{\theHchapter.\arabic{exerciseentry}.\arabic{question}}
+\newcommand{\ExerciseTitle}[1]{%
   \par\medskip
   \begin{tcolorbox}[
     enhanced,
@@ -80,6 +76,7 @@
     {\bfseries #1}
   \end{tcolorbox}%
 }
+\renewcommand{\exer}[1]{\ExerciseTitle{#1}}
 
 % Ce fichier est régénéré automatiquement par tools/generate_all_exos.py.
 \input{inputs.tex}
