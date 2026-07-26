@@ -23,7 +23,6 @@
 \RequirePackage{etoolbox}
 \RequirePackage{xparse}
 \RequirePackage{ifthen}
-\RequirePackage{comment}
 \RequirePackage{imakeidx}
 \RequirePackage{hyperref}
 
@@ -121,13 +120,22 @@
 \NewDocumentCommand{\xpComp}{m m}{\fcolorbox{SIblue}{SIlightblue}{\scriptsize\bfseries #1--#2}}
 \NewDocumentCommand{\UPSTIcompetence}{O{} m}{\fcolorbox{SIblue}{SIlightblue}{\scriptsize\bfseries #2}}
 
-\ifprof
-  \newenvironment{corrige}{\begin{tcolorbox}[enhanced,breakable,colback=SIgreen!4,colframe=SIgreen,title=Corrigé,fonttitle=\bfseries]}{\end{tcolorbox}}
-  \newenvironment{solution}{\begin{tcolorbox}[enhanced,breakable,colback=SIgreen!4,colframe=SIgreen,title=Solution,fonttitle=\bfseries]}{\end{tcolorbox}}
-\else
-  \excludecomment{corrige}
-  \excludecomment{solution}
-\fi
+% Le corps est capturé par xparse : ces environnements fonctionnent donc aussi
+% lorsqu'ils sont placés dans l'argument d'une commande, par exemple \marginnote.
+\NewDocumentEnvironment{corrige}{+b}{%
+  \ifprof
+    \begin{tcolorbox}[enhanced,breakable,colback=SIgreen!4,colframe=SIgreen,title=Corrigé,fonttitle=\bfseries]
+      #1
+    \end{tcolorbox}%
+  \fi
+}{}
+\NewDocumentEnvironment{solution}{+b}{%
+  \ifprof
+    \begin{tcolorbox}[enhanced,breakable,colback=SIgreen!4,colframe=SIgreen,title=Solution,fonttitle=\bfseries]
+      #1
+    \end{tcolorbox}%
+  \fi
+}{}
 
 \newenvironment{obj}{\begin{tcolorbox}[enhanced,breakable,colback=SIlightblue,colframe=SIblue,title=Objectif,fonttitle=\bfseries]}{\end{tcolorbox}}
 \newenvironment{rem}{\begin{tcolorbox}[enhanced,breakable,colback=SIorange!6,colframe=SIorange,title=Remarque,fonttitle=\bfseries]}{\end{tcolorbox}}
