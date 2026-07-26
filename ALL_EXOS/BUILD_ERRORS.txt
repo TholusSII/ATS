@@ -1,0 +1,202 @@
+
+===== ./ALL_EXOS/ALL_EXOS.log =====
+2695-(pdftex.def)             Requested size: 313.4361pt x 279.643pt.
+2696-
+2697-Underfull \vbox (badness 10000) has occurred while \output is active []
+2698-
+2699- [90 <../CIN/CIN-03-Transmetteurs/92_Colossus/images/92_02.png>])
+2700:./inputs.tex:585: Undefined control sequence.
+2701-l.585 \ExerciseTitle
+2702-                    {93\_Lokomat}
+2703-The control sequence at the end of the top line
+2704-of your error message was never \def'ed. If you have
+2705-misspelled it (e.g., `\hobx'), type `I' and the correct
+--
+2713- 2303711 words of memory out of 5000000
+2714- 91024 multiletter control sequences out of 15000+600000
+2715- 725442 words of font info for 119 fonts, out of 8000000 for 9000
+2716- 1141 hyphenation exceptions out of 8191
+2717- 91i,32n,99p,5189b,1293s stack positions out of 10000i,1000n,20000p,200000b,200000s
+2718:./inputs.tex:585:  ==> Fatal error occurred, no output PDF file produced!
+
+----- fin du journal -----
+Package pdftex.def Info: ../CIN/CIN-03-Transmetteurs/29_TrainEpi/images/29_01.p
+ng  used on input line 25.
+(pdftex.def)             Requested size: 313.4361pt x 278.77774pt.
+)
+(../CIN/CIN-03-Transmetteurs/30_TrainEpi/30_TrainEpi.tex [78
+
+ <../CIN/CIN-03-Transmetteurs/29_TrainEpi/images/29_01.png>]
+<../CIN/CIN-03-Transmetteurs/30_TrainEpi/images/30_01.png, id=2620, 172.7253pt 
+x 114.9093pt>
+File: ../CIN/CIN-03-Transmetteurs/30_TrainEpi/images/30_01.png Graphic file (ty
+pe png)
+<use ../CIN/CIN-03-Transmetteurs/30_TrainEpi/images/30_01.png>
+Package pdftex.def Info: ../CIN/CIN-03-Transmetteurs/30_TrainEpi/images/30_01.p
+ng  used on input line 22.
+(pdftex.def)             Requested size: 313.4361pt x 208.52681pt.
+)
+(../CIN/CIN-03-Transmetteurs/31_Redex/31_Redex.tex [79
+
+ <../CIN/CIN-03-Transmetteurs/30_TrainEpi/images/30_01.png>]
+<../CIN/CIN-03-Transmetteurs/31_Redex/images/31_01.png, id=2629, 850.17625pt x 
+545.03625pt>
+File: ../CIN/CIN-03-Transmetteurs/31_Redex/images/31_01.png Graphic file (type 
+png)
+<use ../CIN/CIN-03-Transmetteurs/31_Redex/images/31_01.png>
+Package pdftex.def Info: ../CIN/CIN-03-Transmetteurs/31_Redex/images/31_01.png 
+ used on input line 27.
+(pdftex.def)             Requested size: 348.26306pt x 223.26671pt.
+)
+(../CIN/CIN-03-Transmetteurs/32_Broyeur/32_Broyeur.tex [80
+
+ <../CIN/CIN-03-Transmetteurs/31_Redex/images/31_01.png>]
+<../CIN/CIN-03-Transmetteurs/32_Broyeur/images/32_01.png, id=2637, 848.16875pt 
+x 674.52pt>
+File: ../CIN/CIN-03-Transmetteurs/32_Broyeur/images/32_01.png Graphic file (typ
+e png)
+<use ../CIN/CIN-03-Transmetteurs/32_Broyeur/images/32_01.png>
+Package pdftex.def Info: ../CIN/CIN-03-Transmetteurs/32_Broyeur/images/32_01.pn
+g  used on input line 22.
+(pdftex.def)             Requested size: 313.4361pt x 249.25972pt.
+)
+(../CIN/CIN-03-Transmetteurs/33_Centrifugeuse/33_Centrifugeuse.tex [81
+
+ <../CIN/CIN-03-Transmetteurs/32_Broyeur/images/32_01.png>]
+<../CIN/CIN-03-Transmetteurs/33_Centrifugeuse/images/33_01.png, id=2646, 855.19
+5pt x 534.99875pt>
+File: ../CIN/CIN-03-Transmetteurs/33_Centrifugeuse/images/33_01.png Graphic fil
+e (type png)
+<use ../CIN/CIN-03-Transmetteurs/33_Centrifugeuse/images/33_01.png>
+Package pdftex.def Info: ../CIN/CIN-03-Transmetteurs/33_Centrifugeuse/images/33
+_01.png  used on input line 23.
+(pdftex.def)             Requested size: 313.4361pt x 196.07701pt.
+)
+(../CIN/CIN-03-Transmetteurs/34_ControlX/34_ControlX.tex [82
+
+ <../CIN/CIN-03-Transmetteurs/33_Centrifugeuse/images/33_01.png>]
+<../CIN/CIN-03-Transmetteurs/34_ControlX/images/34_01.png, id=2655, 1116.17pt x
+ 589.20125pt>
+File: ../CIN/CIN-03-Transmetteurs/34_ControlX/images/34_01.png Graphic file (ty
+pe png)
+<use ../CIN/CIN-03-Transmetteurs/34_ControlX/images/34_01.png>
+Package pdftex.def Info: ../CIN/CIN-03-Transmetteurs/34_ControlX/images/34_01.p
+ng  used on input line 33.
+(pdftex.def)             Requested size: 313.4361pt x 165.4517pt.
+)
+(../CIN/CIN-03-Transmetteurs/35_Vario/35_Vario.tex [83
+
+ <../CIN/CIN-03-Transmetteurs/34_ControlX/images/34_01.png>]
+<../CIN/CIN-03-Transmetteurs/35_Vario/images/35_01.png, id=2665, 776.9025pt x 8
+53.1875pt>
+File: ../CIN/CIN-03-Transmetteurs/35_Vario/images/35_01.png Graphic file (type 
+png)
+<use ../CIN/CIN-03-Transmetteurs/35_Vario/images/35_01.png>
+Package pdftex.def Info: ../CIN/CIN-03-Transmetteurs/35_Vario/images/35_01.png 
+ used on input line 24.
+(pdftex.def)             Requested size: 313.4361pt x 344.21115pt.
+)
+(../CIN/CIN-03-Transmetteurs/36_VisEcrou/36_VisEcrou.tex [84
+
+ <../CIN/CIN-03-Transmetteurs/35_Vario/images/35_01.png>]
+<../CIN/CIN-03-Transmetteurs/36_VisEcrou/images/36_01.png, id=2674, 198.9834pt 
+x 116.1138pt>
+File: ../CIN/CIN-03-Transmetteurs/36_VisEcrou/images/36_01.png Graphic file (ty
+pe png)
+<use ../CIN/CIN-03-Transmetteurs/36_VisEcrou/images/36_01.png>
+Package pdftex.def Info: ../CIN/CIN-03-Transmetteurs/36_VisEcrou/images/36_01.p
+ng  used on input line 22.
+(pdftex.def)             Requested size: 313.4361pt x 182.91385pt.
+)
+(../CIN/CIN-03-Transmetteurs/37_VisEcrou/37_VisEcrou.tex [85
+
+ <../CIN/CIN-03-Transmetteurs/36_VisEcrou/images/36_01.png (PNG copy)>]
+<../CIN/CIN-03-Transmetteurs/37_VisEcrou/images/37_01.png, id=2682, 178.7478pt 
+x 165.7392pt>
+File: ../CIN/CIN-03-Transmetteurs/37_VisEcrou/images/37_01.png Graphic file (ty
+pe png)
+<use ../CIN/CIN-03-Transmetteurs/37_VisEcrou/images/37_01.png>
+Package pdftex.def Info: ../CIN/CIN-03-Transmetteurs/37_VisEcrou/images/37_01.p
+ng  used on input line 32.
+(pdftex.def)             Requested size: 313.4361pt x 290.67003pt.
+)
+(../CIN/CIN-03-Transmetteurs/38_Treuil/38_Treuil.tex [86
+
+ <../CIN/CIN-03-Transmetteurs/37_VisEcrou/images/37_01.png (PNG copy)>]
+<../CIN/CIN-03-Transmetteurs/38_Treuil/images/38_01.png, id=2690, 153.9351pt x 
+95.8782pt>
+File: ../CIN/CIN-03-Transmetteurs/38_Treuil/images/38_01.png Graphic file (type
+ png)
+<use ../CIN/CIN-03-Transmetteurs/38_Treuil/images/38_01.png>
+Package pdftex.def Info: ../CIN/CIN-03-Transmetteurs/38_Treuil/images/38_01.png
+  used on input line 22.
+(pdftex.def)             Requested size: 313.4361pt x 195.25826pt.
+)
+(../CIN/CIN-03-Transmetteurs/91_PorteAvion/91_PorteAvion.tex [87
+
+ <../CIN/CIN-03-Transmetteurs/38_Treuil/images/38_01.png (PNG copy)>]
+<../CIN/CIN-03-Transmetteurs/91_PorteAvion/images/91_01.png, id=2698, 197.0562p
+t x 180.1932pt>
+File: ../CIN/CIN-03-Transmetteurs/91_PorteAvion/images/91_01.png Graphic file (
+type png)
+<use ../CIN/CIN-03-Transmetteurs/91_PorteAvion/images/91_01.png>
+Package pdftex.def Info: ../CIN/CIN-03-Transmetteurs/91_PorteAvion/images/91_01
+.png  used on input line 24.
+(pdftex.def)             Requested size: 313.4361pt x 286.64877pt.
+)
+(../CIN/CIN-03-Transmetteurs/92_Colossus/92_Colossus.tex [88
+
+ <../CIN/CIN-03-Transmetteurs/91_PorteAvion/images/91_01.png>]
+<../CIN/CIN-03-Transmetteurs/92_Colossus/images/92_00.png, id=2707, 185.493pt x
+ 162.8484pt>
+File: ../CIN/CIN-03-Transmetteurs/92_Colossus/images/92_00.png Graphic file (ty
+pe png)
+<use ../CIN/CIN-03-Transmetteurs/92_Colossus/images/92_00.png>
+Package pdftex.def Info: ../CIN/CIN-03-Transmetteurs/92_Colossus/images/92_00.p
+ng  used on input line 27.
+(pdftex.def)             Requested size: 313.4361pt x 275.20607pt.
+<../CIN/CIN-03-Transmetteurs/92_Colossus/images/92_02.png, id=2708, 132.2541pt 
+x 286.1892pt>
+File: ../CIN/CIN-03-Transmetteurs/92_Colossus/images/92_02.png Graphic file (ty
+pe png)
+<use ../CIN/CIN-03-Transmetteurs/92_Colossus/images/92_02.png>
+Package pdftex.def Info: ../CIN/CIN-03-Transmetteurs/92_Colossus/images/92_02.p
+ng  used on input line 33.
+(pdftex.def)             Requested size: 313.4361pt x 678.27402pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [89
+
+ <../CIN/CIN-03-Transmetteurs/92_Colossus/images/92_00.png>]
+<../CIN/CIN-03-Transmetteurs/92_Colossus/images/92_01.png, id=2717, 187.6611pt 
+x 167.4255pt>
+File: ../CIN/CIN-03-Transmetteurs/92_Colossus/images/92_01.png Graphic file (ty
+pe png)
+<use ../CIN/CIN-03-Transmetteurs/92_Colossus/images/92_01.png>
+Package pdftex.def Info: ../CIN/CIN-03-Transmetteurs/92_Colossus/images/92_01.p
+ng  used on input line 37.
+(pdftex.def)             Requested size: 313.4361pt x 279.643pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [90 <../CIN/CIN-03-Transmetteurs/92_Colossus/images/92_02.png>])
+./inputs.tex:585: Undefined control sequence.
+l.585 \ExerciseTitle
+                    {93\_Lokomat}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+ 
+Here is how much of TeX's memory you used:
+ 64077 strings out of 467533
+ 1581903 string characters out of 5421580
+ 2303711 words of memory out of 5000000
+ 91024 multiletter control sequences out of 15000+600000
+ 725442 words of font info for 119 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 91i,32n,99p,5189b,1293s stack positions out of 10000i,1000n,20000p,200000b,200000s
+./inputs.tex:585:  ==> Fatal error occurred, no output PDF file produced!

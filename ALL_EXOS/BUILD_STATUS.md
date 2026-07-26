@@ -1,3 +1,3 @@
 # État de compilation
 
-✅ `ALL_EXOS/ALL_EXOS.tex` a été compilé avec succès.
+❌ La compilation a échoué. Le diagnostic est enregistré dans `ALL_EXOS/BUILD_ERRORS.txt`.
