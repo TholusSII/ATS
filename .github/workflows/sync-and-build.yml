@@ -15,12 +15,12 @@ permissions:
 
 concurrency:
   group: exercices-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 env:
   # Révision correspondant au lot DYN.zip fourni.
   EXERCISES_REF: bf8b5cb7d16db996022c1647f22b2203943a922b
-  # Framework officiel xpessoles, avec les mises à jour récentes.
+  # Framework officiel xpessoles/Style, avec sa correction TeX récente.
   STYLE_REF: dcc5a8ac942668b246087cfd624ecadc8e17af6f
 
 jobs:
@@ -30,7 +30,7 @@ jobs:
 
     steps:
       - name: Récupérer le dépôt Exercices
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -38,7 +38,6 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-
           rm -rf /tmp/PSI_ExercicesCompetences /tmp/Style
 
           git init -q /tmp/PSI_ExercicesCompetences
@@ -55,94 +54,80 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-
           source_dirs=(
             CIN COR DYN ELEC FULL_PDF GEO NUM PERF PPM RDM
             SEQ SLCI STAT SYS TEC scripts xx_Figures
           )
 
-          # Retire aussi CHS, ajouté par une synchronisation précédente sur la branche
-          # courante de xpessoles mais absent du ZIP fourni.
+          # CHS provenait d'une synchronisation ultérieure et n'appartient pas au ZIP fourni.
           rm -rf CHS "${source_dirs[@]}"
-
           for dir in "${source_dirs[@]}"; do
             test -d "/tmp/PSI_ExercicesCompetences/$dir"
             cp -a "/tmp/PSI_ExercicesCompetences/$dir" ./
           done
 
-          # Conserve notre couche de compatibilité, puis remplace le reste par le
-          # framework officiel xpessoles/Style.
+          # Conserve la couche de compatibilité du recueil et remplace le reste par
+          # le framework officiel issu du répertoire Style.
           cp Style/exercices_compat.tex /tmp/exercices_compat.tex
           rm -rf Style framework resources
           mkdir -p Style
           rsync -a --exclude='.git/' /tmp/Style/ Style/
           cp /tmp/exercices_compat.tex Style/exercices_compat.tex
 
+          cat > SOURCE_XPESSOLES.md <<EOF
+          # Sources figées
+
+          - Exercices : `xpessoles/PSI_ExercicesCompetences` — `$EXERCISES_REF`
+          - Framework : `xpessoles/Style` — `$STYLE_REF`
+          - La révision des exercices correspond au lot fourni dans `DYN.zip`.
+          EOF
+
       - name: Appliquer les correctifs minimaux des sources
         run: python3 tools/patch_exercises.py
 
       - name: Générer le fichier maître ALL_EXOS
-        run: python3 tools/generate_all_exos.py
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/generate_all_exos.py
+          grep -q '383 exercices' ALL_EXOS/inputs.tex
 
       - name: Compiler le recueil TeX
-        id: compile
-        continue-on-error: true
-        uses: xu-cheng/latex-action@v3
+        uses: xu-cheng/latex-action@v4
         with:
           working_directory: ALL_EXOS
           root_file: ALL_EXOS.tex
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
-          latexmk_shell_escape: true
           texlive_version: 2025
+          os: debian
 
-      - name: Conserver le diagnostic LaTeX
-        if: always()
+      - name: Vérifier et publier le PDF
         shell: bash
         run: |
-          mkdir -p ALL_EXOS
-          : > ALL_EXOS/BUILD_ERRORS.txt
-          while IFS= read -r log; do
-            printf '\n===== %s =====\n' "$log" >> ALL_EXOS/BUILD_ERRORS.txt
-            grep -n -E -C 4 '(^!|LaTeX Error|Package .* Error|Undefined control sequence|Emergency stop|Fatal error|not found|File .* not found)' "$log" >> ALL_EXOS/BUILD_ERRORS.txt || true
-            printf '\n----- fin du journal -----\n' >> ALL_EXOS/BUILD_ERRORS.txt
-            tail -n 160 "$log" >> ALL_EXOS/BUILD_ERRORS.txt || true
-          done < <(find . -type f -name '*.log' -print | sort)
-          if [ ! -s ALL_EXOS/BUILD_ERRORS.txt ]; then
-            printf 'Aucun fichier .log trouvé dans l’espace de travail.\n' > ALL_EXOS/BUILD_ERRORS.txt
-          fi
+          set -euo pipefail
+          test -s ALL_EXOS/ALL_EXOS.pdf
+          printf '# État de compilation\n\n✅ `ALL_EXOS/ALL_EXOS.tex` a été compilé avec succès.\n' > ALL_EXOS/BUILD_STATUS.md
+          rm -f ALL_EXOS/BUILD_ERRORS.txt
 
-      - name: Écrire l'état de compilation
-        if: always()
-        shell: bash
-        run: |
-          if [ "${{ steps.compile.outcome }}" = "success" ]; then
-            printf '# État de compilation\n\n✅ `ALL_EXOS/ALL_EXOS.tex` a été compilé avec succès.\n' > ALL_EXOS/BUILD_STATUS.md
-          else
-            printf '# État de compilation\n\n❌ La compilation a échoué. Le diagnostic est enregistré dans `ALL_EXOS/BUILD_ERRORS.txt`.\n' > ALL_EXOS/BUILD_STATUS.md
-          fi
+      - name: Publier le PDF comme artefact
+        uses: actions/upload-artifact@v6
+        with:
+          name: ALL_EXOS
+          path: |
+            ALL_EXOS/ALL_EXOS.pdf
+            ALL_EXOS/BUILD_STATUS.md
+          if-no-files-found: error
 
       - name: Enregistrer les exercices, le framework et le PDF
-        if: always()
         shell: bash
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           if git diff --cached --quiet; then
-            echo "Aucun changement à enregistrer."
-          else
-            git commit -m "Synchroniser DYN et compiler ALL_EXOS [skip ci]"
-            git push origin HEAD:main
+            echo "Aucune modification à enregistrer."
+            exit 0
           fi
-
-      - name: Publier le PDF et les journaux
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: all-exos
-          path: |
-            ALL_EXOS/ALL_EXOS.pdf
-            ALL_EXOS/BUILD_STATUS.md
-            ALL_EXOS/BUILD_ERRORS.txt
-            ALL_EXOS/*.log
-          if-no-files-found: ignore
+          git commit -m "Synchroniser DYN et compiler ALL_EXOS [skip ci]"
+          git push origin HEAD:main
