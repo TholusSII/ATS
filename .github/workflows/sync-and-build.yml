@@ -1,0 +1,79 @@
+name: Synchroniser et compiler les exercices
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/sync-and-build.yml
+
+permissions:
+  contents: write
+
+jobs:
+  sync-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - name: Récupérer le dépôt Exercices
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Récupérer la source xpessoles
+        run: |
+          rm -rf /tmp/PSI_ExercicesCompetences
+          git clone --depth 1 https://github.com/xpessoles/PSI_ExercicesCompetences.git /tmp/PSI_ExercicesCompetences
+
+      - name: Copier les dossiers d'exercices
+        run: |
+          rsync -a \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='ALL_EXOS/' \
+            /tmp/PSI_ExercicesCompetences/ ./
+
+      - name: Générer ALL_EXOS
+        run: python3 scripts/generate_all_exos.py
+
+      - name: Compiler le recueil TeX
+        id: compile
+        continue-on-error: true
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: ALL_EXOS/ALL_EXOS.tex
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+
+      - name: Écrire l'état de compilation
+        if: always()
+        run: |
+          if [ "${{ steps.compile.outcome }}" = "success" ]; then
+            printf '# État de compilation\n\n✅ `ALL_EXOS/ALL_EXOS.tex` a été compilé avec succès.\n' > ALL_EXOS/BUILD_STATUS.md
+          else
+            printf '# État de compilation\n\n❌ La première compilation a échoué. Consulter le journal GitHub Actions ; les sources et le framework ont néanmoins été synchronisés.\n' > ALL_EXOS/BUILD_STATUS.md
+          fi
+
+      - name: Enregistrer les dossiers, le framework et le recueil
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Aucun changement à enregistrer."
+          else
+            git commit -m "Synchroniser les exercices xpessoles et générer ALL_EXOS [skip ci]"
+            git push origin main
+          fi
+
+      - name: Publier les journaux de compilation
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: journaux-all-exos
+          path: |
+            ALL_EXOS/*.log
+            ALL_EXOS/*.fls
+            ALL_EXOS/*.fdb_latexmk
+          if-no-files-found: ignore
