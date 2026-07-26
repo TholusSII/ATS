@@ -561,6 +561,12 @@ INPUT /opt/texlive/texdir/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /opt/texlive/texdir/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /opt/texlive/texdir/texmf-dist/tex/latex/caption/ltcaption.sty
 INPUT /opt/texlive/texdir/texmf-dist/tex/latex/caption/ltcaption.sty
+INPUT ./ALL_EXOS.out
+INPUT ./ALL_EXOS.out
+INPUT ALL_EXOS.out
+INPUT ALL_EXOS.out
+INPUT ./ALL_EXOS.out
+INPUT ./ALL_EXOS.out
 OUTPUT ALL_EXOS.out
 INPUT /opt/texlive/texdir/texmf-dist/tex/latex/translations/translations-basic-dictionary-french.trsl
 INPUT /opt/texlive/texdir/texmf-dist/tex/latex/translations/translations-basic-dictionary-french.trsl
