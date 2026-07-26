@@ -1,0 +1,1 @@
+Relance du diagnostic LaTeX après synchronisation de la branche principale.
