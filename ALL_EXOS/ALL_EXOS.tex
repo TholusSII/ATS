@@ -1,72 +1,2862 @@
-\documentclass[11pt,a4paper,openany]{book}
-
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[french]{babel}
-\usepackage{lmodern}
-\usepackage{xcolor}
-\usepackage{graphicx}
-\usepackage{amsmath,amssymb,mathtools,stmaryrd}
-\usepackage{xparse,etoolbox}
-\usepackage{tikz,pgfplots}
-\usepackage{tabularx,array,booktabs,longtable}
-\usepackage{enumitem}
-\usepackage[most]{tcolorbox}
-\usepackage{hyperref}
-\usepackage{makeidx}
-
-\newcommand{\discipline}{Sciences Industrielles de l'Ingénieur}
+% Fichier généré automatiquement par scripts/generate_all_exos.py
+% Ne pas modifier manuellement : relancer le script après ajout d'exercices.
+\documentclass[10pt,a4paper,twoside,openany]{book}
+\usepackage{framework/SI_Exercices}
+\usepackage{framework/SI_Recueil}
+\renewcommand{\repStyle}{framework}
+\newcommand{\discipline}{Sciences industrielles de l'ingénieur}
 \newcommand{\auteur}{Thomas Lusseau}
-\newcommand{\repRel}{..}
-\newcommand{\repStyle}{\repRel/Style}
-\makeatletter
-\def\input@path{{../Style/}}
-\makeatother
-
-% Framework SI historique fourni dans le répertoire Style.
-\input{\repRel/Style/packages_v2}
-\input{\repRel/Style/macros_SII_v2}
-\input{\repRel/Style/environment_v2}
-\usepackage{UPSTI_Pedagogique}
-
-% Adaptations minimales pour compiler tous les exercices dans un seul ouvrage.
-\input{\repRel/Style/exercices_compat}
-
-\graphicspath{{images/}{./}}
-\makeindex
-
-\title{Recueil complet d'exercices\\de Sciences industrielles pour l'ingénieur}
+\title{Recueil complet d'exercices de Sciences industrielles de l'ingénieur}
 \author{Thomas Lusseau}
 \date{\today}
-
 \begin{document}
 \frontmatter
 \maketitle
 \tableofcontents
-
 \mainmatter
-\newcommand{\repExo}{ALL_EXOS}
-\newcommand{\nomExo}{ALL_EXOS}
-\AtBeginEnvironment{corrige}{\small}
+\proffalse
 \livrettrue
 \collefalse
-\normaltrue
-\setcounter{cptApplication}{1}
-\setcounter{cptTD}{1}
 
-% Un identifiant propre à chaque exercice évite les doublons d'ancres hyperref.
-\providecommand{\exer}[1]{}
-\newcounter{exerciseentry}
-\renewcommand{\theHquestion}{\arabic{exerciseentry}.\arabic{question}}
-\renewcommand{\exer}[1]{%
-  \refstepcounter{exerciseentry}%
-  \setcounter{question}{0}%
-  \subsection*{#1}%
-}
-\providecommand{\td}{}
+\part{Hyperstatisme et théorie des mécanismes}
 
-% Ce fichier est régénéré automatiquement par tools/generate_all_exos.py.
-\input{inputs.tex}
+\chapter{CHS -- 03 -- HS}
+
+% --- CHS/CHS-03-HS/64_EPAS/64_EPAS.tex
+\renewcommand{\repExo}{CHS/CHS-03-HS}
+\renewcommand{\td}{64_EPAS}
+\graphicspath{{CHS/CHS-03-HS/64_EPAS/images/}{framework/images/}}
+\proffalse
+\input{CHS/CHS-03-HS/64_EPAS/64_EPAS.tex}
+
+% --- CHS/CHS-03-HS/69_TrainA350/69_TrainA350.tex
+\renewcommand{\repExo}{CHS/CHS-03-HS}
+\renewcommand{\td}{69_TrainA350}
+\graphicspath{{CHS/CHS-03-HS/69_TrainA350/images/}{framework/images/}}
+\proffalse
+\input{CHS/CHS-03-HS/69_TrainA350/69_TrainA350.tex}
+
+% --- CHS/CHS-03-HS/71_Robovolc/71_Robovolc.tex
+\renewcommand{\repExo}{CHS/CHS-03-HS}
+\renewcommand{\td}{71_Robovolc}
+\graphicspath{{CHS/CHS-03-HS/71_Robovolc/images/}{framework/images/}}
+\proffalse
+\input{CHS/CHS-03-HS/71_Robovolc/71_Robovolc.tex}
+
+% --- CHS/CHS-03-HS/71_Robovolc_02/71_Robovolc_02.tex
+\renewcommand{\repExo}{CHS/CHS-03-HS}
+\renewcommand{\td}{71_Robovolc_02}
+\graphicspath{{CHS/CHS-03-HS/71_Robovolc_02/images/}{framework/images/}}
+\proffalse
+\input{CHS/CHS-03-HS/71_Robovolc_02/71_Robovolc_02.tex}
+
+% --- CHS/CHS-03-HS/72_Tripteor/72_Tripteor.tex
+\renewcommand{\repExo}{CHS/CHS-03-HS}
+\renewcommand{\td}{72_Tripteor}
+\graphicspath{{CHS/CHS-03-HS/72_Tripteor/images/}{framework/images/}}
+\proffalse
+\input{CHS/CHS-03-HS/72_Tripteor/72_Tripteor.tex}
+
+% --- CHS/CHS-03-HS/81_Piaggio/81_Piaggio.tex
+\renewcommand{\repExo}{CHS/CHS-03-HS}
+\renewcommand{\td}{81_Piaggio}
+\graphicspath{{CHS/CHS-03-HS/81_Piaggio/images/}{framework/images/}}
+\proffalse
+\input{CHS/CHS-03-HS/81_Piaggio/81_Piaggio.tex}
+
+% --- CHS/CHS-03-HS/82_MAV/82_MAV.tex
+\renewcommand{\repExo}{CHS/CHS-03-HS}
+\renewcommand{\td}{82_MAV}
+\graphicspath{{CHS/CHS-03-HS/82_MAV/images/}{framework/images/}}
+\proffalse
+\input{CHS/CHS-03-HS/82_MAV/82_MAV.tex}
+
+% --- CHS/CHS-03-HS/83_Roburoc/83_Roburoc.tex
+\renewcommand{\repExo}{CHS/CHS-03-HS}
+\renewcommand{\td}{83_Roburoc}
+\graphicspath{{CHS/CHS-03-HS/83_Roburoc/images/}{framework/images/}}
+\proffalse
+\input{CHS/CHS-03-HS/83_Roburoc/83_Roburoc.tex}
+
+% --- CHS/CHS-03-HS/84_Nacelle/84_Nacelle.tex
+\renewcommand{\repExo}{CHS/CHS-03-HS}
+\renewcommand{\td}{84_Nacelle}
+\graphicspath{{CHS/CHS-03-HS/84_Nacelle/images/}{framework/images/}}
+\proffalse
+\input{CHS/CHS-03-HS/84_Nacelle/84_Nacelle.tex}
+
+\part{Cinématique}
+
+\chapter{CIN -- 01 -- Parametrage}
+
+% --- CIN/CIN-01-Parametrage/01_T/01_T.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{01_T}
+\graphicspath{{CIN/CIN-01-Parametrage/01_T/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/01_T/01_T.tex}
+
+% --- CIN/CIN-01-Parametrage/01_T_02/01_T_02.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{01_T_02}
+\graphicspath{{CIN/CIN-01-Parametrage/01_T_02/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/01_T_02/01_T_02.tex}
+
+% --- CIN/CIN-01-Parametrage/02_R/02_R.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{02_R}
+\graphicspath{{CIN/CIN-01-Parametrage/02_R/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/02_R/02_R.tex}
+
+% --- CIN/CIN-01-Parametrage/02_R_02/02_R_02.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{02_R_02}
+\graphicspath{{CIN/CIN-01-Parametrage/02_R_02/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/02_R_02/02_R_02.tex}
+
+% --- CIN/CIN-01-Parametrage/03_TT/03_TT.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{03_TT}
+\graphicspath{{CIN/CIN-01-Parametrage/03_TT/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/03_TT/03_TT.tex}
+
+% --- CIN/CIN-01-Parametrage/03_TT_02/03_TT_02.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{03_TT_02}
+\graphicspath{{CIN/CIN-01-Parametrage/03_TT_02/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/03_TT_02/03_TT_02.tex}
+
+% --- CIN/CIN-01-Parametrage/04_RR/04_RR.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{04_RR}
+\graphicspath{{CIN/CIN-01-Parametrage/04_RR/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/04_RR/04_RR.tex}
+
+% --- CIN/CIN-01-Parametrage/04_RR_02/04_RR_02.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{04_RR_02}
+\graphicspath{{CIN/CIN-01-Parametrage/04_RR_02/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/04_RR_02/04_RR_02.tex}
+
+% --- CIN/CIN-01-Parametrage/05_RT/05_RT.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{05_RT}
+\graphicspath{{CIN/CIN-01-Parametrage/05_RT/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/05_RT/05_RT.tex}
+
+% --- CIN/CIN-01-Parametrage/05_RT_02/05_RT_02.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{05_RT_02}
+\graphicspath{{CIN/CIN-01-Parametrage/05_RT_02/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/05_RT_02/05_RT_02.tex}
+
+% --- CIN/CIN-01-Parametrage/06_TR/06_TR.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{06_TR}
+\graphicspath{{CIN/CIN-01-Parametrage/06_TR/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/06_TR/06_TR.tex}
+
+% --- CIN/CIN-01-Parametrage/06_TR_02/06_TR_02.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{06_TR_02}
+\graphicspath{{CIN/CIN-01-Parametrage/06_TR_02/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/06_TR_02/06_TR_02.tex}
+
+% --- CIN/CIN-01-Parametrage/07_RR3D/07_RR3D.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{07_RR3D}
+\graphicspath{{CIN/CIN-01-Parametrage/07_RR3D/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/07_RR3D/07_RR3D.tex}
+
+% --- CIN/CIN-01-Parametrage/07_RR3D_02/07_RR3D_02.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{07_RR3D_02}
+\graphicspath{{CIN/CIN-01-Parametrage/07_RR3D_02/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/07_RR3D_02/07_RR3D_02.tex}
+
+% --- CIN/CIN-01-Parametrage/08_RR3D/08_RR3D.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{08_RR3D}
+\graphicspath{{CIN/CIN-01-Parametrage/08_RR3D/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/08_RR3D/08_RR3D.tex}
+
+% --- CIN/CIN-01-Parametrage/08_RR3D_02/08_RR3D_02.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{08_RR3D_02}
+\graphicspath{{CIN/CIN-01-Parametrage/08_RR3D_02/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/08_RR3D_02/08_RR3D_02.tex}
+
+% --- CIN/CIN-01-Parametrage/09_RT_RSG/09_RT_RSG.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{09_RT_RSG}
+\graphicspath{{CIN/CIN-01-Parametrage/09_RT_RSG/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/09_RT_RSG/09_RT_RSG.tex}
+
+% --- CIN/CIN-01-Parametrage/1018_BorneReglable/1018_BorneReglable.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{1018_BorneReglable}
+\graphicspath{{CIN/CIN-01-Parametrage/1018_BorneReglable/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/1018_BorneReglable/1018_BorneReglable.tex}
+
+% --- CIN/CIN-01-Parametrage/1019_RobotPeinture/1019_RobotPeinture.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{1019_RobotPeinture}
+\graphicspath{{CIN/CIN-01-Parametrage/1019_RobotPeinture/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/1019_RobotPeinture/1019_RobotPeinture.tex}
+
+% --- CIN/CIN-01-Parametrage/1020_PompeEnsieta/1020_PompeEnsieta.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{1020_PompeEnsieta}
+\graphicspath{{CIN/CIN-01-Parametrage/1020_PompeEnsieta/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/1020_PompeEnsieta/1020_PompeEnsieta.tex}
+
+% --- CIN/CIN-01-Parametrage/1024_ProdVect/1024_ProdVect.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{1024_ProdVect}
+\graphicspath{{CIN/CIN-01-Parametrage/1024_ProdVect/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/1024_ProdVect/1024_ProdVect.tex}
+
+% --- CIN/CIN-01-Parametrage/10_PompePalette/10_PompePalette.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{10_PompePalette}
+\graphicspath{{CIN/CIN-01-Parametrage/10_PompePalette/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/10_PompePalette/10_PompePalette.tex}
+
+% --- CIN/CIN-01-Parametrage/11_PompePistonsRadiaux/11_PompePistonsRadiaux.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{11_PompePistonsRadiaux}
+\graphicspath{{CIN/CIN-01-Parametrage/11_PompePistonsRadiaux/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/11_PompePistonsRadiaux/11_PompePistonsRadiaux.tex}
+
+% --- CIN/CIN-01-Parametrage/12_BielleManivelle/12_BielleManivelle.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{12_BielleManivelle}
+\graphicspath{{CIN/CIN-01-Parametrage/12_BielleManivelle/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/12_BielleManivelle/12_BielleManivelle.tex}
+
+% --- CIN/CIN-01-Parametrage/13_TransfoMouvement/13_TransfoMouvement.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{13_TransfoMouvement}
+\graphicspath{{CIN/CIN-01-Parametrage/13_TransfoMouvement/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/13_TransfoMouvement/13_TransfoMouvement.tex}
+
+% --- CIN/CIN-01-Parametrage/14_Sympact/14_Sympact.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{14_Sympact}
+\graphicspath{{CIN/CIN-01-Parametrage/14_Sympact/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/14_Sympact/14_Sympact.tex}
+
+% --- CIN/CIN-01-Parametrage/15_SympactGalet/15_SympactGalet.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{15_SympactGalet}
+\graphicspath{{CIN/CIN-01-Parametrage/15_SympactGalet/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/15_SympactGalet/15_SympactGalet.tex}
+
+% --- CIN/CIN-01-Parametrage/16_Poussoir/16_Poussoir.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{16_Poussoir}
+\graphicspath{{CIN/CIN-01-Parametrage/16_Poussoir/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/16_Poussoir/16_Poussoir.tex}
+
+% --- CIN/CIN-01-Parametrage/17_4Barres/17_4Barres.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{17_4Barres}
+\graphicspath{{CIN/CIN-01-Parametrage/17_4Barres/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/17_4Barres/17_4Barres.tex}
+
+% --- CIN/CIN-01-Parametrage/18_Maxpid/18_Maxpid.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{18_Maxpid}
+\graphicspath{{CIN/CIN-01-Parametrage/18_Maxpid/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/18_Maxpid/18_Maxpid.tex}
+
+% --- CIN/CIN-01-Parametrage/46_RR_RSG/46_RR_RSG.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{46_RR_RSG}
+\graphicspath{{CIN/CIN-01-Parametrage/46_RR_RSG/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/46_RR_RSG/46_RR_RSG.tex}
+
+% --- CIN/CIN-01-Parametrage/513_Divers_Tabouret/513_Divers_Tabouret.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{513_Divers_Tabouret}
+\graphicspath{{CIN/CIN-01-Parametrage/513_Divers_Tabouret/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/513_Divers_Tabouret/513_Divers_Tabouret.tex}
+
+% --- CIN/CIN-01-Parametrage/514_Divers_Tabouret/514_Divers_Tabouret.tex
+\renewcommand{\repExo}{CIN/CIN-01-Parametrage}
+\renewcommand{\td}{514_Divers_Tabouret}
+\graphicspath{{CIN/CIN-01-Parametrage/514_Divers_Tabouret/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-01-Parametrage/514_Divers_Tabouret/514_Divers_Tabouret.tex}
+
+\chapter{CIN -- 02 -- Vitesse Acceleration}
+
+% --- CIN/CIN-02-VitesseAcceleration/01_T/01_T.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{01_T}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/01_T/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/01_T/01_T.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/01_T_02/01_T_02.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{01_T_02}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/01_T_02/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/01_T_02/01_T_02.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/02_R/02_R.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{02_R}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/02_R/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/02_R/02_R.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/02_R_02/02_R_02.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{02_R_02}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/02_R_02/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/02_R_02/02_R_02.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/03_TT/03_TT.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{03_TT}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/03_TT/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/03_TT/03_TT.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/03_TT_02/03_TT_02.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{03_TT_02}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/03_TT_02/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/03_TT_02/03_TT_02.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/04_RR/04_RR.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{04_RR}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/04_RR/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/04_RR/04_RR.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/04_RR_02/04_RR_02.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{04_RR_02}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/04_RR_02/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/04_RR_02/04_RR_02.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/05_RT/05_RT.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{05_RT}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/05_RT/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/05_RT/05_RT.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/05_RT_02/05_RT_02.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{05_RT_02}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/05_RT_02/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/05_RT_02/05_RT_02.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/06_TR/06_TR.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{06_TR}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/06_TR/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/06_TR/06_TR.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/06_TR_02/06_TR_02.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{06_TR_02}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/06_TR_02/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/06_TR_02/06_TR_02.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/07_RR3D/07_RR3D.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{07_RR3D}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/07_RR3D/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/07_RR3D/07_RR3D.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/07_RR3D_02/07_RR3D_02.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{07_RR3D_02}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/07_RR3D_02/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/07_RR3D_02/07_RR3D_02.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/08_RR3D/08_RR3D.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{08_RR3D}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/08_RR3D/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/08_RR3D/08_RR3D.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/08_RR3D_02/08_RR3D_02.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{08_RR3D_02}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/08_RR3D_02/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/08_RR3D_02/08_RR3D_02.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/09_RT_RSG/09_RT_RSG.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{09_RT_RSG}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/09_RT_RSG/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/09_RT_RSG/09_RT_RSG.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/1025_RTR/1025_RTR.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{1025_RTR}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/1025_RTR/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/1025_RTR/1025_RTR.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/10_PompePalette/10_PompePalette.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{10_PompePalette}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/10_PompePalette/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/10_PompePalette/10_PompePalette.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/11_PompePistonsRadiaux/11_PompePistonsRadiaux.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{11_PompePistonsRadiaux}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/11_PompePistonsRadiaux/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/11_PompePistonsRadiaux/11_PompePistonsRadiaux.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/12_BielleManivelle/12_BielleManivelle.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{12_BielleManivelle}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/12_BielleManivelle/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/12_BielleManivelle/12_BielleManivelle.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/13_TransfoMouvement/13_TransfoMouvement.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{13_TransfoMouvement}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/13_TransfoMouvement/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/13_TransfoMouvement/13_TransfoMouvement.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/14_Sympact/14_Sympact.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{14_Sympact}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/14_Sympact/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/14_Sympact/14_Sympact.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/15_SympactGalet/15_SympactGalet.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{15_SympactGalet}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/15_SympactGalet/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/15_SympactGalet/15_SympactGalet.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/16_Poussoir/16_Poussoir.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{16_Poussoir}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/16_Poussoir/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/16_Poussoir/16_Poussoir.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/17_4Barres/17_4Barres.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{17_4Barres}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/17_4Barres/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/17_4Barres/17_4Barres.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/18_Maxpid/18_Maxpid.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{18_Maxpid}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/18_Maxpid/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/18_Maxpid/18_Maxpid.tex}
+
+% --- CIN/CIN-02-VitesseAcceleration/46_RR_RSG/46_RR_RSG.tex
+\renewcommand{\repExo}{CIN/CIN-02-VitesseAcceleration}
+\renewcommand{\td}{46_RR_RSG}
+\graphicspath{{CIN/CIN-02-VitesseAcceleration/46_RR_RSG/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-02-VitesseAcceleration/46_RR_RSG/46_RR_RSG.tex}
+
+\chapter{CIN -- 03 -- Transmetteurs}
+
+% --- CIN/CIN-03-Transmetteurs/21_TrainSimple/21_TrainSimple.tex
+\renewcommand{\repExo}{CIN/CIN-03-Transmetteurs}
+\renewcommand{\td}{21_TrainSimple}
+\graphicspath{{CIN/CIN-03-Transmetteurs/21_TrainSimple/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-03-Transmetteurs/21_TrainSimple/21_TrainSimple.tex}
+
+% --- CIN/CIN-03-Transmetteurs/22_TrainSimple/22_TrainSimple.tex
+\renewcommand{\repExo}{CIN/CIN-03-Transmetteurs}
+\renewcommand{\td}{22_TrainSimple}
+\graphicspath{{CIN/CIN-03-Transmetteurs/22_TrainSimple/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-03-Transmetteurs/22_TrainSimple/22_TrainSimple.tex}
+
+% --- CIN/CIN-03-Transmetteurs/23_TrainSimple/23_TrainSimple.tex
+\renewcommand{\repExo}{CIN/CIN-03-Transmetteurs}
+\renewcommand{\td}{23_TrainSimple}
+\graphicspath{{CIN/CIN-03-Transmetteurs/23_TrainSimple/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-03-Transmetteurs/23_TrainSimple/23_TrainSimple.tex}
+
+% --- CIN/CIN-03-Transmetteurs/24_TrainSimple/24_TrainSimple.tex
+\renewcommand{\repExo}{CIN/CIN-03-Transmetteurs}
+\renewcommand{\td}{24_TrainSimple}
+\graphicspath{{CIN/CIN-03-Transmetteurs/24_TrainSimple/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-03-Transmetteurs/24_TrainSimple/24_TrainSimple.tex}
+
+% --- CIN/CIN-03-Transmetteurs/25_Cheville/25_Cheville.tex
+\renewcommand{\repExo}{CIN/CIN-03-Transmetteurs}
+\renewcommand{\td}{25_Cheville}
+\graphicspath{{CIN/CIN-03-Transmetteurs/25_Cheville/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-03-Transmetteurs/25_Cheville/25_Cheville.tex}
+
+% --- CIN/CIN-03-Transmetteurs/26_RoueMotrice/26_RoueMotrice.tex
+\renewcommand{\repExo}{CIN/CIN-03-Transmetteurs}
+\renewcommand{\td}{26_RoueMotrice}
+\graphicspath{{CIN/CIN-03-Transmetteurs/26_RoueMotrice/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-03-Transmetteurs/26_RoueMotrice/26_RoueMotrice.tex}
+
+% --- CIN/CIN-03-Transmetteurs/27_TrainEpi/27_TrainEpi.tex
+\renewcommand{\repExo}{CIN/CIN-03-Transmetteurs}
+\renewcommand{\td}{27_TrainEpi}
+\graphicspath{{CIN/CIN-03-Transmetteurs/27_TrainEpi/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-03-Transmetteurs/27_TrainEpi/27_TrainEpi.tex}
+
+% --- CIN/CIN-03-Transmetteurs/28_TrainEpi/28_TrainEpi.tex
+\renewcommand{\repExo}{CIN/CIN-03-Transmetteurs}
+\renewcommand{\td}{28_TrainEpi}
+\graphicspath{{CIN/CIN-03-Transmetteurs/28_TrainEpi/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-03-Transmetteurs/28_TrainEpi/28_TrainEpi.tex}
+
+% --- CIN/CIN-03-Transmetteurs/29_TrainEpi/29_TrainEpi.tex
+\renewcommand{\repExo}{CIN/CIN-03-Transmetteurs}
+\renewcommand{\td}{29_TrainEpi}
+\graphicspath{{CIN/CIN-03-Transmetteurs/29_TrainEpi/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-03-Transmetteurs/29_TrainEpi/29_TrainEpi.tex}
+
+% --- CIN/CIN-03-Transmetteurs/30_TrainEpi/30_TrainEpi.tex
+\renewcommand{\repExo}{CIN/CIN-03-Transmetteurs}
+\renewcommand{\td}{30_TrainEpi}
+\graphicspath{{CIN/CIN-03-Transmetteurs/30_TrainEpi/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-03-Transmetteurs/30_TrainEpi/30_TrainEpi.tex}
+
+% --- CIN/CIN-03-Transmetteurs/31_Redex/31_Redex.tex
+\renewcommand{\repExo}{CIN/CIN-03-Transmetteurs}
+\renewcommand{\td}{31_Redex}
+\graphicspath{{CIN/CIN-03-Transmetteurs/31_Redex/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-03-Transmetteurs/31_Redex/31_Redex.tex}
+
+% --- CIN/CIN-03-Transmetteurs/32_Broyeur/32_Broyeur.tex
+\renewcommand{\repExo}{CIN/CIN-03-Transmetteurs}
+\renewcommand{\td}{32_Broyeur}
+\graphicspath{{CIN/CIN-03-Transmetteurs/32_Broyeur/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-03-Transmetteurs/32_Broyeur/32_Broyeur.tex}
+
+% --- CIN/CIN-03-Transmetteurs/33_Centrifugeuse/33_Centrifugeuse.tex
+\renewcommand{\repExo}{CIN/CIN-03-Transmetteurs}
+\renewcommand{\td}{33_Centrifugeuse}
+\graphicspath{{CIN/CIN-03-Transmetteurs/33_Centrifugeuse/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-03-Transmetteurs/33_Centrifugeuse/33_Centrifugeuse.tex}
+
+% --- CIN/CIN-03-Transmetteurs/34_ControlX/34_ControlX.tex
+\renewcommand{\repExo}{CIN/CIN-03-Transmetteurs}
+\renewcommand{\td}{34_ControlX}
+\graphicspath{{CIN/CIN-03-Transmetteurs/34_ControlX/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-03-Transmetteurs/34_ControlX/34_ControlX.tex}
+
+% --- CIN/CIN-03-Transmetteurs/35_Vario/35_Vario.tex
+\renewcommand{\repExo}{CIN/CIN-03-Transmetteurs}
+\renewcommand{\td}{35_Vario}
+\graphicspath{{CIN/CIN-03-Transmetteurs/35_Vario/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-03-Transmetteurs/35_Vario/35_Vario.tex}
+
+% --- CIN/CIN-03-Transmetteurs/36_VisEcrou/36_VisEcrou.tex
+\renewcommand{\repExo}{CIN/CIN-03-Transmetteurs}
+\renewcommand{\td}{36_VisEcrou}
+\graphicspath{{CIN/CIN-03-Transmetteurs/36_VisEcrou/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-03-Transmetteurs/36_VisEcrou/36_VisEcrou.tex}
+
+% --- CIN/CIN-03-Transmetteurs/37_VisEcrou/37_VisEcrou.tex
+\renewcommand{\repExo}{CIN/CIN-03-Transmetteurs}
+\renewcommand{\td}{37_VisEcrou}
+\graphicspath{{CIN/CIN-03-Transmetteurs/37_VisEcrou/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-03-Transmetteurs/37_VisEcrou/37_VisEcrou.tex}
+
+% --- CIN/CIN-03-Transmetteurs/38_Treuil/38_Treuil.tex
+\renewcommand{\repExo}{CIN/CIN-03-Transmetteurs}
+\renewcommand{\td}{38_Treuil}
+\graphicspath{{CIN/CIN-03-Transmetteurs/38_Treuil/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-03-Transmetteurs/38_Treuil/38_Treuil.tex}
+
+% --- CIN/CIN-03-Transmetteurs/91_PorteAvion/91_PorteAvion.tex
+\renewcommand{\repExo}{CIN/CIN-03-Transmetteurs}
+\renewcommand{\td}{91_PorteAvion}
+\graphicspath{{CIN/CIN-03-Transmetteurs/91_PorteAvion/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-03-Transmetteurs/91_PorteAvion/91_PorteAvion.tex}
+
+% --- CIN/CIN-03-Transmetteurs/92_Colossus/92_Colossus.tex
+\renewcommand{\repExo}{CIN/CIN-03-Transmetteurs}
+\renewcommand{\td}{92_Colossus}
+\graphicspath{{CIN/CIN-03-Transmetteurs/92_Colossus/images/}{framework/images/}}
+\proffalse
+\input{CIN/CIN-03-Transmetteurs/92_Colossus/92_Colossus.tex}
+
+\part{Correction des systèmes asservis}
+
+\chapter{COR -- 02 -- P}
+
+% --- COR/COR-02-P/65_Eclipse/65_Eclipse.tex
+\renewcommand{\repExo}{COR/COR-02-P}
+\renewcommand{\td}{65_Eclipse}
+\graphicspath{{COR/COR-02-P/65_Eclipse/images/}{framework/images/}}
+\proffalse
+\input{COR/COR-02-P/65_Eclipse/65_Eclipse.tex}
+
+\chapter{COR -- 03 -- PI}
+
+% --- COR/COR-03-PI/64_EPAS/64_EPAS.tex
+\renewcommand{\repExo}{COR/COR-03-PI}
+\renewcommand{\td}{64_EPAS}
+\graphicspath{{COR/COR-03-PI/64_EPAS/images/}{framework/images/}}
+\proffalse
+\input{COR/COR-03-PI/64_EPAS/64_EPAS.tex}
+
+% --- COR/COR-03-PI/65_Eclipse_02/65_Eclipse_02.tex
+\renewcommand{\repExo}{COR/COR-03-PI}
+\renewcommand{\td}{65_Eclipse_02}
+\graphicspath{{COR/COR-03-PI/65_Eclipse_02/images/}{framework/images/}}
+\proffalse
+\input{COR/COR-03-PI/65_Eclipse_02/65_Eclipse_02.tex}
+
+% --- COR/COR-03-PI/66_Micromanipulateur/66_Micromanipulateur.tex
+\renewcommand{\repExo}{COR/COR-03-PI}
+\renewcommand{\td}{66_Micromanipulateur}
+\graphicspath{{COR/COR-03-PI/66_Micromanipulateur/images/}{framework/images/}}
+\proffalse
+\input{COR/COR-03-PI/66_Micromanipulateur/66_Micromanipulateur.tex}
+
+% --- COR/COR-03-PI/67_PompeTurbo/67_PompeTurbo.tex
+\renewcommand{\repExo}{COR/COR-03-PI}
+\renewcommand{\td}{67_PompeTurbo}
+\graphicspath{{COR/COR-03-PI/67_PompeTurbo/images/}{framework/images/}}
+\proffalse
+\input{COR/COR-03-PI/67_PompeTurbo/67_PompeTurbo.tex}
+
+% --- COR/COR-03-PI/68_Roburoc/68_Roburoc.tex
+\renewcommand{\repExo}{COR/COR-03-PI}
+\renewcommand{\td}{68_Roburoc}
+\graphicspath{{COR/COR-03-PI/68_Roburoc/images/}{framework/images/}}
+\proffalse
+\input{COR/COR-03-PI/68_Roburoc/68_Roburoc.tex}
+
+% --- COR/COR-03-PI/70_Hublex/70_Hublex.tex
+\renewcommand{\repExo}{COR/COR-03-PI}
+\renewcommand{\td}{70_Hublex}
+\graphicspath{{COR/COR-03-PI/70_Hublex/images/}{framework/images/}}
+\proffalse
+\input{COR/COR-03-PI/70_Hublex/70_Hublex.tex}
+
+\chapter{COR -- 04 -- AP}
+
+% --- COR/COR-04-AP/65_Eclipse_03/65_Eclipse_03.tex
+\renewcommand{\repExo}{COR/COR-04-AP}
+\renewcommand{\td}{65_Eclipse_03}
+\graphicspath{{COR/COR-04-AP/65_Eclipse_03/images/}{framework/images/}}
+\proffalse
+\input{COR/COR-04-AP/65_Eclipse_03/65_Eclipse_03.tex}
+
+\part{Dynamique}
+
+\chapter{DYN -- 01}
+
+% --- DYN/DYN-01/01_T/01_T.tex
+\renewcommand{\repExo}{DYN/DYN-01}
+\renewcommand{\td}{01_T}
+\graphicspath{{DYN/DYN-01/01_T/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-01/01_T/01_T.tex}
+
+% --- DYN/DYN-01/02_R/02_R.tex
+\renewcommand{\repExo}{DYN/DYN-01}
+\renewcommand{\td}{02_R}
+\graphicspath{{DYN/DYN-01/02_R/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-01/02_R/02_R.tex}
+
+% --- DYN/DYN-01/14_Sympact/14_Sympact.tex
+\renewcommand{\repExo}{DYN/DYN-01}
+\renewcommand{\td}{14_Sympact}
+\graphicspath{{DYN/DYN-01/14_Sympact/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-01/14_Sympact/14_Sympact.tex}
+
+% --- DYN/DYN-01/61_Hemostase/61_Hemostase.tex
+\renewcommand{\repExo}{DYN/DYN-01}
+\renewcommand{\td}{61_Hemostase}
+\graphicspath{{DYN/DYN-01/61_Hemostase/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-01/61_Hemostase/61_Hemostase.tex}
+
+% --- DYN/DYN-01/61_Hemostase_02/61_Hemostase_02.tex
+\renewcommand{\repExo}{DYN/DYN-01}
+\renewcommand{\td}{61_Hemostase_02}
+\graphicspath{{DYN/DYN-01/61_Hemostase_02/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-01/61_Hemostase_02/61_Hemostase_02.tex}
+
+% --- DYN/DYN-01/63_BancHydraulique/63_BancHydraulique.tex
+\renewcommand{\repExo}{DYN/DYN-01}
+\renewcommand{\td}{63_BancHydraulique}
+\graphicspath{{DYN/DYN-01/63_BancHydraulique/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-01/63_BancHydraulique/63_BancHydraulique.tex}
+
+\chapter{DYN -- 03 -- Inertie}
+
+% --- DYN/DYN-03-Inertie/1026_Pale/1026_Pale.tex
+\renewcommand{\repExo}{DYN/DYN-03-Inertie}
+\renewcommand{\td}{1026_Pale}
+\graphicspath{{DYN/DYN-03-Inertie/1026_Pale/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-03-Inertie/1026_Pale/1026_Pale.tex}
+
+% --- DYN/DYN-03-Inertie/40_Parallelepipede/40_Parallelepipede.tex
+\renewcommand{\repExo}{DYN/DYN-03-Inertie}
+\renewcommand{\td}{40_Parallelepipede}
+\graphicspath{{DYN/DYN-03-Inertie/40_Parallelepipede/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-03-Inertie/40_Parallelepipede/40_Parallelepipede.tex}
+
+% --- DYN/DYN-03-Inertie/41_Parallelepipede/41_Parallelepipede.tex
+\renewcommand{\repExo}{DYN/DYN-03-Inertie}
+\renewcommand{\td}{41_Parallelepipede}
+\graphicspath{{DYN/DYN-03-Inertie/41_Parallelepipede/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-03-Inertie/41_Parallelepipede/41_Parallelepipede.tex}
+
+% --- DYN/DYN-03-Inertie/42_Cylindre/42_Cylindre.tex
+\renewcommand{\repExo}{DYN/DYN-03-Inertie}
+\renewcommand{\td}{42_Cylindre}
+\graphicspath{{DYN/DYN-03-Inertie/42_Cylindre/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-03-Inertie/42_Cylindre/42_Cylindre.tex}
+
+% --- DYN/DYN-03-Inertie/43_Cylindre/43_Cylindre.tex
+\renewcommand{\repExo}{DYN/DYN-03-Inertie}
+\renewcommand{\td}{43_Cylindre}
+\graphicspath{{DYN/DYN-03-Inertie/43_Cylindre/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-03-Inertie/43_Cylindre/43_Cylindre.tex}
+
+% --- DYN/DYN-03-Inertie/44_Disque/44_Disque.tex
+\renewcommand{\repExo}{DYN/DYN-03-Inertie}
+\renewcommand{\td}{44_Disque}
+\graphicspath{{DYN/DYN-03-Inertie/44_Disque/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-03-Inertie/44_Disque/44_Disque.tex}
+
+% --- DYN/DYN-03-Inertie/45_Disque/45_Disque.tex
+\renewcommand{\repExo}{DYN/DYN-03-Inertie}
+\renewcommand{\td}{45_Disque}
+\graphicspath{{DYN/DYN-03-Inertie/45_Disque/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-03-Inertie/45_Disque/45_Disque.tex}
+
+% --- DYN/DYN-03-Inertie/50_BancBalafre/50_BancBalafre.tex
+\renewcommand{\repExo}{DYN/DYN-03-Inertie}
+\renewcommand{\td}{50_BancBalafre}
+\graphicspath{{DYN/DYN-03-Inertie/50_BancBalafre/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-03-Inertie/50_BancBalafre/50_BancBalafre.tex}
+
+% --- DYN/DYN-03-Inertie/64_EPAS/64_EPAS.tex
+\renewcommand{\repExo}{DYN/DYN-03-Inertie}
+\renewcommand{\td}{64_EPAS}
+\graphicspath{{DYN/DYN-03-Inertie/64_EPAS/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-03-Inertie/64_EPAS/64_EPAS.tex}
+
+% --- DYN/DYN-03-Inertie/65_Eclipse/65_Eclipse.tex
+\renewcommand{\repExo}{DYN/DYN-03-Inertie}
+\renewcommand{\td}{65_Eclipse}
+\graphicspath{{DYN/DYN-03-Inertie/65_Eclipse/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-03-Inertie/65_Eclipse/65_Eclipse.tex}
+
+\chapter{DYN -- 04 -- Torseur Dynamique}
+
+% --- DYN/DYN-04-TorseurDynamique/01_T/01_T.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique}
+\renewcommand{\td}{01_T}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/01_T/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/01_T/01_T.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/01_T_02/01_T_02.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique}
+\renewcommand{\td}{01_T_02}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/01_T_02/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/01_T_02/01_T_02.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/02_R/02_R.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique}
+\renewcommand{\td}{02_R}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/02_R/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/02_R/02_R.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/03_TT/03_TT.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique}
+\renewcommand{\td}{03_TT}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/03_TT/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/03_TT/03_TT.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/04_RR/04_RR.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique}
+\renewcommand{\td}{04_RR}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/04_RR/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/04_RR/04_RR.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/05_RT/05_RT.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique}
+\renewcommand{\td}{05_RT}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/05_RT/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/05_RT/05_RT.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/06_TR/06_TR.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique}
+\renewcommand{\td}{06_TR}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/06_TR/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/06_TR/06_TR.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/07_RR3D/07_RR3D.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique}
+\renewcommand{\td}{07_RR3D}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/07_RR3D/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/07_RR3D/07_RR3D.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/08_RR3D/08_RR3D.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique}
+\renewcommand{\td}{08_RR3D}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/08_RR3D/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/08_RR3D/08_RR3D.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/09_RT_RSG/09_RT_RSG.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique}
+\renewcommand{\td}{09_RT_RSG}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/09_RT_RSG/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/09_RT_RSG/09_RT_RSG.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/1025_RTR/1025_RTR.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique}
+\renewcommand{\td}{1025_RTR}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/1025_RTR/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/1025_RTR/1025_RTR.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/46_RR_RSG/46_RR_RSG.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique}
+\renewcommand{\td}{46_RR_RSG}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/46_RR_RSG/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/46_RR_RSG/46_RR_RSG.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/50_BancBalafre/50_BancBalafre.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique}
+\renewcommand{\td}{50_BancBalafre}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/50_BancBalafre/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/50_BancBalafre/50_BancBalafre.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/64_EPAS/64_EPAS.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique}
+\renewcommand{\td}{64_EPAS}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/64_EPAS/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/64_EPAS/64_EPAS.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/Cours/Cours.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique}
+\renewcommand{\td}{Cours}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/Cours/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/Cours/Cours.tex}
+
+\chapter{DYN -- 04 -- Torseur Dynamique / STOCK}
+
+% --- DYN/DYN-04-TorseurDynamique/STOCK/02_R_02/02_R_02.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique/STOCK}
+\renewcommand{\td}{02_R_02}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/STOCK/02_R_02/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/STOCK/02_R_02/02_R_02.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/STOCK/03_TT_02/03_TT_02.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique/STOCK}
+\renewcommand{\td}{03_TT_02}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/STOCK/03_TT_02/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/STOCK/03_TT_02/03_TT_02.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/STOCK/04_RR_02/04_RR_02.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique/STOCK}
+\renewcommand{\td}{04_RR_02}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/STOCK/04_RR_02/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/STOCK/04_RR_02/04_RR_02.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/STOCK/05_RT_02/05_RT_02.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique/STOCK}
+\renewcommand{\td}{05_RT_02}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/STOCK/05_RT_02/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/STOCK/05_RT_02/05_RT_02.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/STOCK/06_TR_02/06_TR_02.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique/STOCK}
+\renewcommand{\td}{06_TR_02}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/STOCK/06_TR_02/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/STOCK/06_TR_02/06_TR_02.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/STOCK/07_RR3D_02/07_RR3D_02.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique/STOCK}
+\renewcommand{\td}{07_RR3D_02}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/STOCK/07_RR3D_02/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/STOCK/07_RR3D_02/07_RR3D_02.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/STOCK/08_RR3D_02/08_RR3D_02.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique/STOCK}
+\renewcommand{\td}{08_RR3D_02}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/STOCK/08_RR3D_02/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/STOCK/08_RR3D_02/08_RR3D_02.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/STOCK/10_PompePalette/10_PompePalette.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique/STOCK}
+\renewcommand{\td}{10_PompePalette}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/STOCK/10_PompePalette/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/STOCK/10_PompePalette/10_PompePalette.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/STOCK/11_PompePistonsRadiaux/11_PompePistonsRadiaux.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique/STOCK}
+\renewcommand{\td}{11_PompePistonsRadiaux}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/STOCK/11_PompePistonsRadiaux/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/STOCK/11_PompePistonsRadiaux/11_PompePistonsRadiaux.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/STOCK/12_BielleManivelle/12_BielleManivelle.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique/STOCK}
+\renewcommand{\td}{12_BielleManivelle}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/STOCK/12_BielleManivelle/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/STOCK/12_BielleManivelle/12_BielleManivelle.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/STOCK/13_TransfoMouvement/13_TransfoMouvement.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique/STOCK}
+\renewcommand{\td}{13_TransfoMouvement}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/STOCK/13_TransfoMouvement/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/STOCK/13_TransfoMouvement/13_TransfoMouvement.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/STOCK/14_Sympact/14_Sympact.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique/STOCK}
+\renewcommand{\td}{14_Sympact}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/STOCK/14_Sympact/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/STOCK/14_Sympact/14_Sympact.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/STOCK/15_SympactGalet/15_SympactGalet.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique/STOCK}
+\renewcommand{\td}{15_SympactGalet}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/STOCK/15_SympactGalet/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/STOCK/15_SympactGalet/15_SympactGalet.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/STOCK/16_Poussoir/16_Poussoir.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique/STOCK}
+\renewcommand{\td}{16_Poussoir}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/STOCK/16_Poussoir/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/STOCK/16_Poussoir/16_Poussoir.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/STOCK/17_4Barres/17_4Barres.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique/STOCK}
+\renewcommand{\td}{17_4Barres}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/STOCK/17_4Barres/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/STOCK/17_4Barres/17_4Barres.tex}
+
+% --- DYN/DYN-04-TorseurDynamique/STOCK/18_Maxpid/18_Maxpid.tex
+\renewcommand{\repExo}{DYN/DYN-04-TorseurDynamique/STOCK}
+\renewcommand{\td}{18_Maxpid}
+\graphicspath{{DYN/DYN-04-TorseurDynamique/STOCK/18_Maxpid/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-04-TorseurDynamique/STOCK/18_Maxpid/18_Maxpid.tex}
+
+\chapter{DYN -- 05 -- Methode}
+
+% --- DYN/DYN-05-Methode/01_T/01_T.tex
+\renewcommand{\repExo}{DYN/DYN-05-Methode}
+\renewcommand{\td}{01_T}
+\graphicspath{{DYN/DYN-05-Methode/01_T/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-05-Methode/01_T/01_T.tex}
+
+% --- DYN/DYN-05-Methode/02_R/02_R.tex
+\renewcommand{\repExo}{DYN/DYN-05-Methode}
+\renewcommand{\td}{02_R}
+\graphicspath{{DYN/DYN-05-Methode/02_R/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-05-Methode/02_R/02_R.tex}
+
+% --- DYN/DYN-05-Methode/03_TT/03_TT.tex
+\renewcommand{\repExo}{DYN/DYN-05-Methode}
+\renewcommand{\td}{03_TT}
+\graphicspath{{DYN/DYN-05-Methode/03_TT/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-05-Methode/03_TT/03_TT.tex}
+
+% --- DYN/DYN-05-Methode/04_RR/04_RR.tex
+\renewcommand{\repExo}{DYN/DYN-05-Methode}
+\renewcommand{\td}{04_RR}
+\graphicspath{{DYN/DYN-05-Methode/04_RR/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-05-Methode/04_RR/04_RR.tex}
+
+% --- DYN/DYN-05-Methode/05_RT/05_RT.tex
+\renewcommand{\repExo}{DYN/DYN-05-Methode}
+\renewcommand{\td}{05_RT}
+\graphicspath{{DYN/DYN-05-Methode/05_RT/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-05-Methode/05_RT/05_RT.tex}
+
+% --- DYN/DYN-05-Methode/06_TR/06_TR.tex
+\renewcommand{\repExo}{DYN/DYN-05-Methode}
+\renewcommand{\td}{06_TR}
+\graphicspath{{DYN/DYN-05-Methode/06_TR/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-05-Methode/06_TR/06_TR.tex}
+
+% --- DYN/DYN-05-Methode/07_RR3D/07_RR3D.tex
+\renewcommand{\repExo}{DYN/DYN-05-Methode}
+\renewcommand{\td}{07_RR3D}
+\graphicspath{{DYN/DYN-05-Methode/07_RR3D/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-05-Methode/07_RR3D/07_RR3D.tex}
+
+% --- DYN/DYN-05-Methode/08_RR3D/08_RR3D.tex
+\renewcommand{\repExo}{DYN/DYN-05-Methode}
+\renewcommand{\td}{08_RR3D}
+\graphicspath{{DYN/DYN-05-Methode/08_RR3D/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-05-Methode/08_RR3D/08_RR3D.tex}
+
+% --- DYN/DYN-05-Methode/09_RT_RSG/09_RT_RSG.tex
+\renewcommand{\repExo}{DYN/DYN-05-Methode}
+\renewcommand{\td}{09_RT_RSG}
+\graphicspath{{DYN/DYN-05-Methode/09_RT_RSG/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-05-Methode/09_RT_RSG/09_RT_RSG.tex}
+
+% --- DYN/DYN-05-Methode/46_RR_RSG/46_RR_RSG.tex
+\renewcommand{\repExo}{DYN/DYN-05-Methode}
+\renewcommand{\td}{46_RR_RSG}
+\graphicspath{{DYN/DYN-05-Methode/46_RR_RSG/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-05-Methode/46_RR_RSG/46_RR_RSG.tex}
+
+\chapter{DYN -- 05 -- Methode / STOCK}
+
+% --- DYN/DYN-05-Methode/STOCK/01_T_02/01_T_02.tex
+\renewcommand{\repExo}{DYN/DYN-05-Methode/STOCK}
+\renewcommand{\td}{01_T_02}
+\graphicspath{{DYN/DYN-05-Methode/STOCK/01_T_02/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-05-Methode/STOCK/01_T_02/01_T_02.tex}
+
+% --- DYN/DYN-05-Methode/STOCK/02_R_02/02_R_02.tex
+\renewcommand{\repExo}{DYN/DYN-05-Methode/STOCK}
+\renewcommand{\td}{02_R_02}
+\graphicspath{{DYN/DYN-05-Methode/STOCK/02_R_02/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-05-Methode/STOCK/02_R_02/02_R_02.tex}
+
+% --- DYN/DYN-05-Methode/STOCK/03_TT_02/03_TT_02.tex
+\renewcommand{\repExo}{DYN/DYN-05-Methode/STOCK}
+\renewcommand{\td}{03_TT_02}
+\graphicspath{{DYN/DYN-05-Methode/STOCK/03_TT_02/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-05-Methode/STOCK/03_TT_02/03_TT_02.tex}
+
+% --- DYN/DYN-05-Methode/STOCK/04_RR_02/04_RR_02.tex
+\renewcommand{\repExo}{DYN/DYN-05-Methode/STOCK}
+\renewcommand{\td}{04_RR_02}
+\graphicspath{{DYN/DYN-05-Methode/STOCK/04_RR_02/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-05-Methode/STOCK/04_RR_02/04_RR_02.tex}
+
+% --- DYN/DYN-05-Methode/STOCK/05_RT_02/05_RT_02.tex
+\renewcommand{\repExo}{DYN/DYN-05-Methode/STOCK}
+\renewcommand{\td}{05_RT_02}
+\graphicspath{{DYN/DYN-05-Methode/STOCK/05_RT_02/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-05-Methode/STOCK/05_RT_02/05_RT_02.tex}
+
+% --- DYN/DYN-05-Methode/STOCK/06_TR_02/06_TR_02.tex
+\renewcommand{\repExo}{DYN/DYN-05-Methode/STOCK}
+\renewcommand{\td}{06_TR_02}
+\graphicspath{{DYN/DYN-05-Methode/STOCK/06_TR_02/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-05-Methode/STOCK/06_TR_02/06_TR_02.tex}
+
+% --- DYN/DYN-05-Methode/STOCK/07_RR3D_02/07_RR3D_02.tex
+\renewcommand{\repExo}{DYN/DYN-05-Methode/STOCK}
+\renewcommand{\td}{07_RR3D_02}
+\graphicspath{{DYN/DYN-05-Methode/STOCK/07_RR3D_02/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-05-Methode/STOCK/07_RR3D_02/07_RR3D_02.tex}
+
+% --- DYN/DYN-05-Methode/STOCK/08_RR3D_02/08_RR3D_02.tex
+\renewcommand{\repExo}{DYN/DYN-05-Methode/STOCK}
+\renewcommand{\td}{08_RR3D_02}
+\graphicspath{{DYN/DYN-05-Methode/STOCK/08_RR3D_02/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-05-Methode/STOCK/08_RR3D_02/08_RR3D_02.tex}
+
+\chapter{DYN -- 06 -- PFD}
+
+% --- DYN/DYN-06-PFD/01_T/01_T.tex
+\renewcommand{\repExo}{DYN/DYN-06-PFD}
+\renewcommand{\td}{01_T}
+\graphicspath{{DYN/DYN-06-PFD/01_T/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-06-PFD/01_T/01_T.tex}
+
+% --- DYN/DYN-06-PFD/02_R/02_R.tex
+\renewcommand{\repExo}{DYN/DYN-06-PFD}
+\renewcommand{\td}{02_R}
+\graphicspath{{DYN/DYN-06-PFD/02_R/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-06-PFD/02_R/02_R.tex}
+
+% --- DYN/DYN-06-PFD/03_TT/03_TT.tex
+\renewcommand{\repExo}{DYN/DYN-06-PFD}
+\renewcommand{\td}{03_TT}
+\graphicspath{{DYN/DYN-06-PFD/03_TT/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-06-PFD/03_TT/03_TT.tex}
+
+% --- DYN/DYN-06-PFD/04_RR/04_RR.tex
+\renewcommand{\repExo}{DYN/DYN-06-PFD}
+\renewcommand{\td}{04_RR}
+\graphicspath{{DYN/DYN-06-PFD/04_RR/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-06-PFD/04_RR/04_RR.tex}
+
+% --- DYN/DYN-06-PFD/05_RT/05_RT.tex
+\renewcommand{\repExo}{DYN/DYN-06-PFD}
+\renewcommand{\td}{05_RT}
+\graphicspath{{DYN/DYN-06-PFD/05_RT/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-06-PFD/05_RT/05_RT.tex}
+
+% --- DYN/DYN-06-PFD/06_TR/06_TR.tex
+\renewcommand{\repExo}{DYN/DYN-06-PFD}
+\renewcommand{\td}{06_TR}
+\graphicspath{{DYN/DYN-06-PFD/06_TR/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-06-PFD/06_TR/06_TR.tex}
+
+% --- DYN/DYN-06-PFD/07_RR3D/07_RR3D.tex
+\renewcommand{\repExo}{DYN/DYN-06-PFD}
+\renewcommand{\td}{07_RR3D}
+\graphicspath{{DYN/DYN-06-PFD/07_RR3D/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-06-PFD/07_RR3D/07_RR3D.tex}
+
+% --- DYN/DYN-06-PFD/08_RR3D/08_RR3D.tex
+\renewcommand{\repExo}{DYN/DYN-06-PFD}
+\renewcommand{\td}{08_RR3D}
+\graphicspath{{DYN/DYN-06-PFD/08_RR3D/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-06-PFD/08_RR3D/08_RR3D.tex}
+
+% --- DYN/DYN-06-PFD/09_RT_RSG/09_RT_RSG.tex
+\renewcommand{\repExo}{DYN/DYN-06-PFD}
+\renewcommand{\td}{09_RT_RSG}
+\graphicspath{{DYN/DYN-06-PFD/09_RT_RSG/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-06-PFD/09_RT_RSG/09_RT_RSG.tex}
+
+% --- DYN/DYN-06-PFD/46_RR_RSG/46_RR_RSG.tex
+\renewcommand{\repExo}{DYN/DYN-06-PFD}
+\renewcommand{\td}{46_RR_RSG}
+\graphicspath{{DYN/DYN-06-PFD/46_RR_RSG/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-06-PFD/46_RR_RSG/46_RR_RSG.tex}
+
+% --- DYN/DYN-06-PFD/50_BancBalafre/50_BancBalafre.tex
+\renewcommand{\repExo}{DYN/DYN-06-PFD}
+\renewcommand{\td}{50_BancBalafre}
+\graphicspath{{DYN/DYN-06-PFD/50_BancBalafre/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-06-PFD/50_BancBalafre/50_BancBalafre.tex}
+
+\chapter{DYN -- 06 -- PFD / STOCK}
+
+% --- DYN/DYN-06-PFD/STOCK/01_T_02/01_T_02.tex
+\renewcommand{\repExo}{DYN/DYN-06-PFD/STOCK}
+\renewcommand{\td}{01_T_02}
+\graphicspath{{DYN/DYN-06-PFD/STOCK/01_T_02/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-06-PFD/STOCK/01_T_02/01_T_02.tex}
+
+% --- DYN/DYN-06-PFD/STOCK/02_R_02/02_R_02.tex
+\renewcommand{\repExo}{DYN/DYN-06-PFD/STOCK}
+\renewcommand{\td}{02_R_02}
+\graphicspath{{DYN/DYN-06-PFD/STOCK/02_R_02/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-06-PFD/STOCK/02_R_02/02_R_02.tex}
+
+% --- DYN/DYN-06-PFD/STOCK/03_TT_02/03_TT_02.tex
+\renewcommand{\repExo}{DYN/DYN-06-PFD/STOCK}
+\renewcommand{\td}{03_TT_02}
+\graphicspath{{DYN/DYN-06-PFD/STOCK/03_TT_02/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-06-PFD/STOCK/03_TT_02/03_TT_02.tex}
+
+% --- DYN/DYN-06-PFD/STOCK/04_RR_02/04_RR_02.tex
+\renewcommand{\repExo}{DYN/DYN-06-PFD/STOCK}
+\renewcommand{\td}{04_RR_02}
+\graphicspath{{DYN/DYN-06-PFD/STOCK/04_RR_02/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-06-PFD/STOCK/04_RR_02/04_RR_02.tex}
+
+% --- DYN/DYN-06-PFD/STOCK/05_RT_02/05_RT_02.tex
+\renewcommand{\repExo}{DYN/DYN-06-PFD/STOCK}
+\renewcommand{\td}{05_RT_02}
+\graphicspath{{DYN/DYN-06-PFD/STOCK/05_RT_02/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-06-PFD/STOCK/05_RT_02/05_RT_02.tex}
+
+% --- DYN/DYN-06-PFD/STOCK/06_TR_02/06_TR_02.tex
+\renewcommand{\repExo}{DYN/DYN-06-PFD/STOCK}
+\renewcommand{\td}{06_TR_02}
+\graphicspath{{DYN/DYN-06-PFD/STOCK/06_TR_02/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-06-PFD/STOCK/06_TR_02/06_TR_02.tex}
+
+% --- DYN/DYN-06-PFD/STOCK/07_RR3D_02/07_RR3D_02.tex
+\renewcommand{\repExo}{DYN/DYN-06-PFD/STOCK}
+\renewcommand{\td}{07_RR3D_02}
+\graphicspath{{DYN/DYN-06-PFD/STOCK/07_RR3D_02/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-06-PFD/STOCK/07_RR3D_02/07_RR3D_02.tex}
+
+% --- DYN/DYN-06-PFD/STOCK/08_RR3D_02/08_RR3D_02.tex
+\renewcommand{\repExo}{DYN/DYN-06-PFD/STOCK}
+\renewcommand{\td}{08_RR3D_02}
+\graphicspath{{DYN/DYN-06-PFD/STOCK/08_RR3D_02/images/}{framework/images/}}
+\proffalse
+\input{DYN/DYN-06-PFD/STOCK/08_RR3D_02/08_RR3D_02.tex}
+
+\part{Électricité et électromécanique}
+
+\chapter{ELEC -- 01}
+
+% --- ELEC/ELEC-01/534_CircuitElec/534_CircuitElec.tex
+\renewcommand{\repExo}{ELEC/ELEC-01}
+\renewcommand{\td}{534_CircuitElec}
+\graphicspath{{ELEC/ELEC-01/534_CircuitElec/images/}{framework/images/}}
+\proffalse
+\input{ELEC/ELEC-01/534_CircuitElec/534_CircuitElec.tex}
+
+% --- ELEC/ELEC-01/535_CircuitElec/535_CircuitElec.tex
+\renewcommand{\repExo}{ELEC/ELEC-01}
+\renewcommand{\td}{535_CircuitElec}
+\graphicspath{{ELEC/ELEC-01/535_CircuitElec/images/}{framework/images/}}
+\proffalse
+\input{ELEC/ELEC-01/535_CircuitElec/535_CircuitElec.tex}
+
+% --- ELEC/ELEC-01/536_CircuitElec/536_CircuitElec.tex
+\renewcommand{\repExo}{ELEC/ELEC-01}
+\renewcommand{\td}{536_CircuitElec}
+\graphicspath{{ELEC/ELEC-01/536_CircuitElec/images/}{framework/images/}}
+\proffalse
+\input{ELEC/ELEC-01/536_CircuitElec/536_CircuitElec.tex}
+
+% --- ELEC/ELEC-01/537_CircuitElec/537_CircuitElec.tex
+\renewcommand{\repExo}{ELEC/ELEC-01}
+\renewcommand{\td}{537_CircuitElec}
+\graphicspath{{ELEC/ELEC-01/537_CircuitElec/images/}{framework/images/}}
+\proffalse
+\input{ELEC/ELEC-01/537_CircuitElec/537_CircuitElec.tex}
+
+% --- ELEC/ELEC-01/538_CircuitElec/538_CircuitElec.tex
+\renewcommand{\repExo}{ELEC/ELEC-01}
+\renewcommand{\td}{538_CircuitElec}
+\graphicspath{{ELEC/ELEC-01/538_CircuitElec/images/}{framework/images/}}
+\proffalse
+\input{ELEC/ELEC-01/538_CircuitElec/538_CircuitElec.tex}
+
+\chapter{ELEC -- 04 -- MCC}
+
+% --- ELEC/ELEC-04-MCC/1023_MCC/1023_MCC.tex
+\renewcommand{\repExo}{ELEC/ELEC-04-MCC}
+\renewcommand{\td}{1023_MCC}
+\graphicspath{{ELEC/ELEC-04-MCC/1023_MCC/images/}{framework/images/}}
+\proffalse
+\input{ELEC/ELEC-04-MCC/1023_MCC/1023_MCC.tex}
+
+\chapter{ELEC -- 05 -- MA}
+
+% --- ELEC/ELEC-05-MA/50_BancBalafre/50_BancBalafre.tex
+\renewcommand{\repExo}{ELEC/ELEC-05-MA}
+\renewcommand{\td}{50_BancBalafre}
+\graphicspath{{ELEC/ELEC-05-MA/50_BancBalafre/images/}{framework/images/}}
+\proffalse
+\input{ELEC/ELEC-05-MA/50_BancBalafre/50_BancBalafre.tex}
+
+\part{Géométrie des mécanismes}
+
+\chapter{GEO -- 01}
+
+% --- GEO/GEO-01/01_T/01_T.tex
+\renewcommand{\repExo}{GEO/GEO-01}
+\renewcommand{\td}{01_T}
+\graphicspath{{GEO/GEO-01/01_T/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-01/01_T/01_T.tex}
+
+% --- GEO/GEO-01/02_R/02_R.tex
+\renewcommand{\repExo}{GEO/GEO-01}
+\renewcommand{\td}{02_R}
+\graphicspath{{GEO/GEO-01/02_R/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-01/02_R/02_R.tex}
+
+% --- GEO/GEO-01/03_TT/03_TT.tex
+\renewcommand{\repExo}{GEO/GEO-01}
+\renewcommand{\td}{03_TT}
+\graphicspath{{GEO/GEO-01/03_TT/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-01/03_TT/03_TT.tex}
+
+% --- GEO/GEO-01/04_RR/04_RR.tex
+\renewcommand{\repExo}{GEO/GEO-01}
+\renewcommand{\td}{04_RR}
+\graphicspath{{GEO/GEO-01/04_RR/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-01/04_RR/04_RR.tex}
+
+% --- GEO/GEO-01/05_RT/05_RT.tex
+\renewcommand{\repExo}{GEO/GEO-01}
+\renewcommand{\td}{05_RT}
+\graphicspath{{GEO/GEO-01/05_RT/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-01/05_RT/05_RT.tex}
+
+% --- GEO/GEO-01/06_TR/06_TR.tex
+\renewcommand{\repExo}{GEO/GEO-01}
+\renewcommand{\td}{06_TR}
+\graphicspath{{GEO/GEO-01/06_TR/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-01/06_TR/06_TR.tex}
+
+% --- GEO/GEO-01/07_RR3D/07_RR3D.tex
+\renewcommand{\repExo}{GEO/GEO-01}
+\renewcommand{\td}{07_RR3D}
+\graphicspath{{GEO/GEO-01/07_RR3D/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-01/07_RR3D/07_RR3D.tex}
+
+% --- GEO/GEO-01/08_RR3D/08_RR3D.tex
+\renewcommand{\repExo}{GEO/GEO-01}
+\renewcommand{\td}{08_RR3D}
+\graphicspath{{GEO/GEO-01/08_RR3D/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-01/08_RR3D/08_RR3D.tex}
+
+% --- GEO/GEO-01/09_RT_RSG/09_RT_RSG.tex
+\renewcommand{\repExo}{GEO/GEO-01}
+\renewcommand{\td}{09_RT_RSG}
+\graphicspath{{GEO/GEO-01/09_RT_RSG/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-01/09_RT_RSG/09_RT_RSG.tex}
+
+% --- GEO/GEO-01/10_PompePalette/10_PompePalette.tex
+\renewcommand{\repExo}{GEO/GEO-01}
+\renewcommand{\td}{10_PompePalette}
+\graphicspath{{GEO/GEO-01/10_PompePalette/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-01/10_PompePalette/10_PompePalette.tex}
+
+% --- GEO/GEO-01/11_PompePistonsRadiaux/11_PompePistonsRadiaux.tex
+\renewcommand{\repExo}{GEO/GEO-01}
+\renewcommand{\td}{11_PompePistonsRadiaux}
+\graphicspath{{GEO/GEO-01/11_PompePistonsRadiaux/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-01/11_PompePistonsRadiaux/11_PompePistonsRadiaux.tex}
+
+% --- GEO/GEO-01/12_BielleManivelle/12_BielleManivelle.tex
+\renewcommand{\repExo}{GEO/GEO-01}
+\renewcommand{\td}{12_BielleManivelle}
+\graphicspath{{GEO/GEO-01/12_BielleManivelle/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-01/12_BielleManivelle/12_BielleManivelle.tex}
+
+% --- GEO/GEO-01/13_TransfoMouvement/13_TransfoMouvement.tex
+\renewcommand{\repExo}{GEO/GEO-01}
+\renewcommand{\td}{13_TransfoMouvement}
+\graphicspath{{GEO/GEO-01/13_TransfoMouvement/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-01/13_TransfoMouvement/13_TransfoMouvement.tex}
+
+% --- GEO/GEO-01/14_Sympact/14_Sympact.tex
+\renewcommand{\repExo}{GEO/GEO-01}
+\renewcommand{\td}{14_Sympact}
+\graphicspath{{GEO/GEO-01/14_Sympact/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-01/14_Sympact/14_Sympact.tex}
+
+% --- GEO/GEO-01/15_SympactGalet/15_SympactGalet.tex
+\renewcommand{\repExo}{GEO/GEO-01}
+\renewcommand{\td}{15_SympactGalet}
+\graphicspath{{GEO/GEO-01/15_SympactGalet/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-01/15_SympactGalet/15_SympactGalet.tex}
+
+% --- GEO/GEO-01/16_Poussoir/16_Poussoir.tex
+\renewcommand{\repExo}{GEO/GEO-01}
+\renewcommand{\td}{16_Poussoir}
+\graphicspath{{GEO/GEO-01/16_Poussoir/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-01/16_Poussoir/16_Poussoir.tex}
+
+% --- GEO/GEO-01/17_4Barres/17_4Barres.tex
+\renewcommand{\repExo}{GEO/GEO-01}
+\renewcommand{\td}{17_4Barres}
+\graphicspath{{GEO/GEO-01/17_4Barres/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-01/17_4Barres/17_4Barres.tex}
+
+% --- GEO/GEO-01/18_Maxpid/18_Maxpid.tex
+\renewcommand{\repExo}{GEO/GEO-01}
+\renewcommand{\td}{18_Maxpid}
+\graphicspath{{GEO/GEO-01/18_Maxpid/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-01/18_Maxpid/18_Maxpid.tex}
+
+% --- GEO/GEO-01/46_RR_RSG/46_RR_RSG.tex
+\renewcommand{\repExo}{GEO/GEO-01}
+\renewcommand{\td}{46_RR_RSG}
+\graphicspath{{GEO/GEO-01/46_RR_RSG/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-01/46_RR_RSG/46_RR_RSG.tex}
+
+\chapter{GEO -- 03}
+
+% --- GEO/GEO-03/10_PompePalette/10_PompePalette.tex
+\renewcommand{\repExo}{GEO/GEO-03}
+\renewcommand{\td}{10_PompePalette}
+\graphicspath{{GEO/GEO-03/10_PompePalette/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-03/10_PompePalette/10_PompePalette.tex}
+
+% --- GEO/GEO-03/11_PompePistonsRadiaux/11_PompePistonsRadiaux.tex
+\renewcommand{\repExo}{GEO/GEO-03}
+\renewcommand{\td}{11_PompePistonsRadiaux}
+\graphicspath{{GEO/GEO-03/11_PompePistonsRadiaux/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-03/11_PompePistonsRadiaux/11_PompePistonsRadiaux.tex}
+
+% --- GEO/GEO-03/12_BielleManivelle/12_BielleManivelle.tex
+\renewcommand{\repExo}{GEO/GEO-03}
+\renewcommand{\td}{12_BielleManivelle}
+\graphicspath{{GEO/GEO-03/12_BielleManivelle/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-03/12_BielleManivelle/12_BielleManivelle.tex}
+
+% --- GEO/GEO-03/13_TransfoMouvement/13_TransfoMouvement.tex
+\renewcommand{\repExo}{GEO/GEO-03}
+\renewcommand{\td}{13_TransfoMouvement}
+\graphicspath{{GEO/GEO-03/13_TransfoMouvement/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-03/13_TransfoMouvement/13_TransfoMouvement.tex}
+
+% --- GEO/GEO-03/14_Sympact/14_Sympact.tex
+\renewcommand{\repExo}{GEO/GEO-03}
+\renewcommand{\td}{14_Sympact}
+\graphicspath{{GEO/GEO-03/14_Sympact/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-03/14_Sympact/14_Sympact.tex}
+
+% --- GEO/GEO-03/15_SympactGalet/15_SympactGalet.tex
+\renewcommand{\repExo}{GEO/GEO-03}
+\renewcommand{\td}{15_SympactGalet}
+\graphicspath{{GEO/GEO-03/15_SympactGalet/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-03/15_SympactGalet/15_SympactGalet.tex}
+
+% --- GEO/GEO-03/16_Poussoir/16_Poussoir.tex
+\renewcommand{\repExo}{GEO/GEO-03}
+\renewcommand{\td}{16_Poussoir}
+\graphicspath{{GEO/GEO-03/16_Poussoir/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-03/16_Poussoir/16_Poussoir.tex}
+
+% --- GEO/GEO-03/17_4Barres/17_4Barres.tex
+\renewcommand{\repExo}{GEO/GEO-03}
+\renewcommand{\td}{17_4Barres}
+\graphicspath{{GEO/GEO-03/17_4Barres/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-03/17_4Barres/17_4Barres.tex}
+
+% --- GEO/GEO-03/18_Maxpid/18_Maxpid.tex
+\renewcommand{\repExo}{GEO/GEO-03}
+\renewcommand{\td}{18_Maxpid}
+\graphicspath{{GEO/GEO-03/18_Maxpid/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-03/18_Maxpid/18_Maxpid.tex}
+
+% --- GEO/GEO-03/19_Graham/19_Graham.tex
+\renewcommand{\repExo}{GEO/GEO-03}
+\renewcommand{\td}{19_Graham}
+\graphicspath{{GEO/GEO-03/19_Graham/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-03/19_Graham/19_Graham.tex}
+
+% --- GEO/GEO-03/20_VariateurBilles/20_VariateurBilles.tex
+\renewcommand{\repExo}{GEO/GEO-03}
+\renewcommand{\td}{20_VariateurBilles}
+\graphicspath{{GEO/GEO-03/20_VariateurBilles/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-03/20_VariateurBilles/20_VariateurBilles.tex}
+
+% --- GEO/GEO-03/54_FauteuilRoulant/54_FauteuilRoulant.tex
+\renewcommand{\repExo}{GEO/GEO-03}
+\renewcommand{\td}{54_FauteuilRoulant}
+\graphicspath{{GEO/GEO-03/54_FauteuilRoulant/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-03/54_FauteuilRoulant/54_FauteuilRoulant.tex}
+
+% --- GEO/GEO-03/64_EPAS/64_EPAS.tex
+\renewcommand{\repExo}{GEO/GEO-03}
+\renewcommand{\td}{64_EPAS}
+\graphicspath{{GEO/GEO-03/64_EPAS/images/}{framework/images/}}
+\proffalse
+\input{GEO/GEO-03/64_EPAS/64_EPAS.tex}
+
+\part{Méthodes numériques}
+
+\chapter{NUM -- 03}
+
+% --- NUM/NUM-03/1021_Euler/1021_Euler.tex
+\renewcommand{\repExo}{NUM/NUM-03}
+\renewcommand{\td}{1021_Euler}
+\graphicspath{{NUM/NUM-03/1021_Euler/images/}{framework/images/}}
+\proffalse
+\input{NUM/NUM-03/1021_Euler/1021_Euler.tex}
+
+% --- NUM/NUM-03/1022_Euler/1022_Euler.tex
+\renewcommand{\repExo}{NUM/NUM-03}
+\renewcommand{\td}{1022_Euler}
+\graphicspath{{NUM/NUM-03/1022_Euler/images/}{framework/images/}}
+\proffalse
+\input{NUM/NUM-03/1022_Euler/1022_Euler.tex}
+
+% --- NUM/NUM-03/1023_Euler/1023_Euler.tex
+\renewcommand{\repExo}{NUM/NUM-03}
+\renewcommand{\td}{1023_Euler}
+\graphicspath{{NUM/NUM-03/1023_Euler/images/}{framework/images/}}
+\proffalse
+\input{NUM/NUM-03/1023_Euler/1023_Euler.tex}
+
+\part{Performances des systèmes asservis}
+
+\chapter{PERF -- 02 -- Marges}
+
+% --- PERF/PERF-02-Marges/61_Hemostase/61_Hemostase.tex
+\renewcommand{\repExo}{PERF/PERF-02-Marges}
+\renewcommand{\td}{61_Hemostase}
+\graphicspath{{PERF/PERF-02-Marges/61_Hemostase/images/}{framework/images/}}
+\proffalse
+\input{PERF/PERF-02-Marges/61_Hemostase/61_Hemostase.tex}
+
+% --- PERF/PERF-02-Marges/62_Palettisation/62_Palettisation.tex
+\renewcommand{\repExo}{PERF/PERF-02-Marges}
+\renewcommand{\td}{62_Palettisation}
+\graphicspath{{PERF/PERF-02-Marges/62_Palettisation/images/}{framework/images/}}
+\proffalse
+\input{PERF/PERF-02-Marges/62_Palettisation/62_Palettisation.tex}
+
+% --- PERF/PERF-02-Marges/63_BancHydraulique/63_BancHydraulique.tex
+\renewcommand{\repExo}{PERF/PERF-02-Marges}
+\renewcommand{\td}{63_BancHydraulique}
+\graphicspath{{PERF/PERF-02-Marges/63_BancHydraulique/images/}{framework/images/}}
+\proffalse
+\input{PERF/PERF-02-Marges/63_BancHydraulique/63_BancHydraulique.tex}
+
+% --- PERF/PERF-02-Marges/64_EPAS/64_EPAS.tex
+\renewcommand{\repExo}{PERF/PERF-02-Marges}
+\renewcommand{\td}{64_EPAS}
+\graphicspath{{PERF/PERF-02-Marges/64_EPAS/images/}{framework/images/}}
+\proffalse
+\input{PERF/PERF-02-Marges/64_EPAS/64_EPAS.tex}
+
+\chapter{PERF -- 05 -- Precistion -- TVF}
+
+% --- PERF/PERF-05-Precistion-TVF/501_Divers/501_Divers.tex
+\renewcommand{\repExo}{PERF/PERF-05-Precistion-TVF}
+\renewcommand{\td}{501_Divers}
+\graphicspath{{PERF/PERF-05-Precistion-TVF/501_Divers/images/}{framework/images/}}
+\proffalse
+\input{PERF/PERF-05-Precistion-TVF/501_Divers/501_Divers.tex}
+
+% --- PERF/PERF-05-Precistion-TVF/509_Divers/509_Divers.tex
+\renewcommand{\repExo}{PERF/PERF-05-Precistion-TVF}
+\renewcommand{\td}{509_Divers}
+\graphicspath{{PERF/PERF-05-Precistion-TVF/509_Divers/images/}{framework/images/}}
+\proffalse
+\input{PERF/PERF-05-Precistion-TVF/509_Divers/509_Divers.tex}
+
+\chapter{PERF -- 06 -- Precision}
+
+% --- PERF/PERF-06-Precision/63_BancHydraulique/63_BancHydraulique.tex
+\renewcommand{\repExo}{PERF/PERF-06-Precision}
+\renewcommand{\td}{63_BancHydraulique}
+\graphicspath{{PERF/PERF-06-Precision/63_BancHydraulique/images/}{framework/images/}}
+\proffalse
+\input{PERF/PERF-06-Precision/63_BancHydraulique/63_BancHydraulique.tex}
+
+% --- PERF/PERF-06-Precision/64_EPAS/64_EPAS.tex
+\renewcommand{\repExo}{PERF/PERF-06-Precision}
+\renewcommand{\td}{64_EPAS}
+\graphicspath{{PERF/PERF-06-Precision/64_EPAS/images/}{framework/images/}}
+\proffalse
+\input{PERF/PERF-06-Precision/64_EPAS/64_EPAS.tex}
+
+% --- PERF/PERF-06-Precision/73_Bassin/73_Bassin.tex
+\renewcommand{\repExo}{PERF/PERF-06-Precision}
+\renewcommand{\td}{73_Bassin}
+\graphicspath{{PERF/PERF-06-Precision/73_Bassin/images/}{framework/images/}}
+\proffalse
+\input{PERF/PERF-06-Precision/73_Bassin/73_Bassin.tex}
+
+\part{Produit, procédés et matériaux}
+
+\chapter{PPM -- 01}
+
+% --- PPM/PPM-01/1000_Dessin2D/1000_Dessin2D.tex
+\renewcommand{\repExo}{PPM/PPM-01}
+\renewcommand{\td}{1000_Dessin2D}
+\graphicspath{{PPM/PPM-01/1000_Dessin2D/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-01/1000_Dessin2D/1000_Dessin2D.tex}
+
+% --- PPM/PPM-01/1001_Dessin2D/1001_Dessin2D.tex
+\renewcommand{\repExo}{PPM/PPM-01}
+\renewcommand{\td}{1001_Dessin2D}
+\graphicspath{{PPM/PPM-01/1001_Dessin2D/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-01/1001_Dessin2D/1001_Dessin2D.tex}
+
+% --- PPM/PPM-01/1002_Dessin2D/1002_Dessin2D.tex
+\renewcommand{\repExo}{PPM/PPM-01}
+\renewcommand{\td}{1002_Dessin2D}
+\graphicspath{{PPM/PPM-01/1002_Dessin2D/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-01/1002_Dessin2D/1002_Dessin2D.tex}
+
+% --- PPM/PPM-01/1003_Dessin2D/1003_Dessin2D.tex
+\renewcommand{\repExo}{PPM/PPM-01}
+\renewcommand{\td}{1003_Dessin2D}
+\graphicspath{{PPM/PPM-01/1003_Dessin2D/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-01/1003_Dessin2D/1003_Dessin2D.tex}
+
+% --- PPM/PPM-01/1004_Dessin2D/1004_Dessin2D.tex
+\renewcommand{\repExo}{PPM/PPM-01}
+\renewcommand{\td}{1004_Dessin2D}
+\graphicspath{{PPM/PPM-01/1004_Dessin2D/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-01/1004_Dessin2D/1004_Dessin2D.tex}
+
+% --- PPM/PPM-01/1005_Dessin2D/1005_Dessin2D.tex
+\renewcommand{\repExo}{PPM/PPM-01}
+\renewcommand{\td}{1005_Dessin2D}
+\graphicspath{{PPM/PPM-01/1005_Dessin2D/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-01/1005_Dessin2D/1005_Dessin2D.tex}
+
+% --- PPM/PPM-01/1006_Dessin2D/1006_Dessin2D.tex
+\renewcommand{\repExo}{PPM/PPM-01}
+\renewcommand{\td}{1006_Dessin2D}
+\graphicspath{{PPM/PPM-01/1006_Dessin2D/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-01/1006_Dessin2D/1006_Dessin2D.tex}
+
+% --- PPM/PPM-01/1007_Dessin2D/1007_Dessin2D.tex
+\renewcommand{\repExo}{PPM/PPM-01}
+\renewcommand{\td}{1007_Dessin2D}
+\graphicspath{{PPM/PPM-01/1007_Dessin2D/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-01/1007_Dessin2D/1007_Dessin2D.tex}
+
+% --- PPM/PPM-01/1008_Dessin2D/1008_Dessin2D.tex
+\renewcommand{\repExo}{PPM/PPM-01}
+\renewcommand{\td}{1008_Dessin2D}
+\graphicspath{{PPM/PPM-01/1008_Dessin2D/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-01/1008_Dessin2D/1008_Dessin2D.tex}
+
+% --- PPM/PPM-01/1009_Dessin2D/1009_Dessin2D.tex
+\renewcommand{\repExo}{PPM/PPM-01}
+\renewcommand{\td}{1009_Dessin2D}
+\graphicspath{{PPM/PPM-01/1009_Dessin2D/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-01/1009_Dessin2D/1009_Dessin2D.tex}
+
+% --- PPM/PPM-01/1010_Dessin2D/1010_Dessin2D.tex
+\renewcommand{\repExo}{PPM/PPM-01}
+\renewcommand{\td}{1010_Dessin2D}
+\graphicspath{{PPM/PPM-01/1010_Dessin2D/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-01/1010_Dessin2D/1010_Dessin2D.tex}
+
+% --- PPM/PPM-01/1011_Dessin2D/1011_Dessin2D.tex
+\renewcommand{\repExo}{PPM/PPM-01}
+\renewcommand{\td}{1011_Dessin2D}
+\graphicspath{{PPM/PPM-01/1011_Dessin2D/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-01/1011_Dessin2D/1011_Dessin2D.tex}
+
+% --- PPM/PPM-01/1012_Dessin2D/1012_Dessin2D.tex
+\renewcommand{\repExo}{PPM/PPM-01}
+\renewcommand{\td}{1012_Dessin2D}
+\graphicspath{{PPM/PPM-01/1012_Dessin2D/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-01/1012_Dessin2D/1012_Dessin2D.tex}
+
+% --- PPM/PPM-01/1013_Dessin2D/1013_Dessin2D.tex
+\renewcommand{\repExo}{PPM/PPM-01}
+\renewcommand{\td}{1013_Dessin2D}
+\graphicspath{{PPM/PPM-01/1013_Dessin2D/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-01/1013_Dessin2D/1013_Dessin2D.tex}
+
+% --- PPM/PPM-01/1014_Dessin2D/1014_Dessin2D.tex
+\renewcommand{\repExo}{PPM/PPM-01}
+\renewcommand{\td}{1014_Dessin2D}
+\graphicspath{{PPM/PPM-01/1014_Dessin2D/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-01/1014_Dessin2D/1014_Dessin2D.tex}
+
+% --- PPM/PPM-01/1015_Dessin2D/1015_Dessin2D.tex
+\renewcommand{\repExo}{PPM/PPM-01}
+\renewcommand{\td}{1015_Dessin2D}
+\graphicspath{{PPM/PPM-01/1015_Dessin2D/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-01/1015_Dessin2D/1015_Dessin2D.tex}
+
+% --- PPM/PPM-01/1016_Dessin2D/1016_Dessin2D.tex
+\renewcommand{\repExo}{PPM/PPM-01}
+\renewcommand{\td}{1016_Dessin2D}
+\graphicspath{{PPM/PPM-01/1016_Dessin2D/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-01/1016_Dessin2D/1016_Dessin2D.tex}
+
+% --- PPM/PPM-01/1017_Dessin2D/1017_Dessin2D.tex
+\renewcommand{\repExo}{PPM/PPM-01}
+\renewcommand{\td}{1017_Dessin2D}
+\graphicspath{{PPM/PPM-01/1017_Dessin2D/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-01/1017_Dessin2D/1017_Dessin2D.tex}
+
+% --- PPM/PPM-01/1020_PompeEnsieta/1020_PompeEnsieta.tex
+\renewcommand{\repExo}{PPM/PPM-01}
+\renewcommand{\td}{1020_PompeEnsieta}
+\graphicspath{{PPM/PPM-01/1020_PompeEnsieta/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-01/1020_PompeEnsieta/1020_PompeEnsieta.tex}
+
+\chapter{PPM -- 02}
+
+% --- PPM/PPM-02/1000_Dessin2D/1000_Dessin2D.tex
+\renewcommand{\repExo}{PPM/PPM-02}
+\renewcommand{\td}{1000_Dessin2D}
+\graphicspath{{PPM/PPM-02/1000_Dessin2D/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-02/1000_Dessin2D/1000_Dessin2D.tex}
+
+% --- PPM/PPM-02/2001_BoitierDifferentiel/2001_BoitierDifferentiel.tex
+\renewcommand{\repExo}{PPM/PPM-02}
+\renewcommand{\td}{2001_BoitierDifferentiel}
+\graphicspath{{PPM/PPM-02/2001_BoitierDifferentiel/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-02/2001_BoitierDifferentiel/2001_BoitierDifferentiel.tex}
+
+% --- PPM/PPM-02/2002_AxeCommande/2002_AxeCommande.tex
+\renewcommand{\repExo}{PPM/PPM-02}
+\renewcommand{\td}{2002_AxeCommande}
+\graphicspath{{PPM/PPM-02/2002_AxeCommande/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-02/2002_AxeCommande/2002_AxeCommande.tex}
+
+% --- PPM/PPM-02/2003_Fourchette/2003_Fourchette.tex
+\renewcommand{\repExo}{PPM/PPM-02}
+\renewcommand{\td}{2003_Fourchette}
+\graphicspath{{PPM/PPM-02/2003_Fourchette/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-02/2003_Fourchette/2003_Fourchette.tex}
+
+% --- PPM/PPM-02/2004_Secateur/2004_Secateur.tex
+\renewcommand{\repExo}{PPM/PPM-02}
+\renewcommand{\td}{2004_Secateur}
+\graphicspath{{PPM/PPM-02/2004_Secateur/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-02/2004_Secateur/2004_Secateur.tex}
+
+\chapter{PPM -- 03}
+
+% --- PPM/PPM-03/74_Chariot/74_Chariot.tex
+\renewcommand{\repExo}{PPM/PPM-03}
+\renewcommand{\td}{74_Chariot}
+\graphicspath{{PPM/PPM-03/74_Chariot/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-03/74_Chariot/74_Chariot.tex}
+
+% --- PPM/PPM-03/75_TrainA380/75_TrainA380.tex
+\renewcommand{\repExo}{PPM/PPM-03}
+\renewcommand{\td}{75_TrainA380}
+\graphicspath{{PPM/PPM-03/75_TrainA380/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-03/75_TrainA380/75_TrainA380.tex}
+
+% --- PPM/PPM-03/76_FixationSki/76_FixationSki.tex
+\renewcommand{\repExo}{PPM/PPM-03}
+\renewcommand{\td}{76_FixationSki}
+\graphicspath{{PPM/PPM-03/76_FixationSki/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-03/76_FixationSki/76_FixationSki.tex}
+
+% --- PPM/PPM-03/85_FauteuilBateau/85_FauteuilBateau.tex
+\renewcommand{\repExo}{PPM/PPM-03}
+\renewcommand{\td}{85_FauteuilBateau}
+\graphicspath{{PPM/PPM-03/85_FauteuilBateau/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-03/85_FauteuilBateau/85_FauteuilBateau.tex}
+
+% --- PPM/PPM-03/86_Moyeu/86_Moyeu.tex
+\renewcommand{\repExo}{PPM/PPM-03}
+\renewcommand{\td}{86_Moyeu}
+\graphicspath{{PPM/PPM-03/86_Moyeu/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-03/86_Moyeu/86_Moyeu.tex}
+
+% --- PPM/PPM-03/87_Nacelle/87_Nacelle.tex
+\renewcommand{\repExo}{PPM/PPM-03}
+\renewcommand{\td}{87_Nacelle}
+\graphicspath{{PPM/PPM-03/87_Nacelle/images/}{framework/images/}}
+\proffalse
+\input{PPM/PPM-03/87_Nacelle/87_Nacelle.tex}
+
+\part{Résistance des matériaux}
+
+\chapter{RDM -- 01 -- Cohesion}
+
+% --- RDM/RDM-01-Cohesion/522_RdM/522_RdM.tex
+\renewcommand{\repExo}{RDM/RDM-01-Cohesion}
+\renewcommand{\td}{522_RdM}
+\graphicspath{{RDM/RDM-01-Cohesion/522_RdM/images/}{framework/images/}}
+\proffalse
+\input{RDM/RDM-01-Cohesion/522_RdM/522_RdM.tex}
+
+% --- RDM/RDM-01-Cohesion/523_RdM/523_RdM.tex
+\renewcommand{\repExo}{RDM/RDM-01-Cohesion}
+\renewcommand{\td}{523_RdM}
+\graphicspath{{RDM/RDM-01-Cohesion/523_RdM/images/}{framework/images/}}
+\proffalse
+\input{RDM/RDM-01-Cohesion/523_RdM/523_RdM.tex}
+
+% --- RDM/RDM-01-Cohesion/524_RdM/524_RdM.tex
+\renewcommand{\repExo}{RDM/RDM-01-Cohesion}
+\renewcommand{\td}{524_RdM}
+\graphicspath{{RDM/RDM-01-Cohesion/524_RdM/images/}{framework/images/}}
+\proffalse
+\input{RDM/RDM-01-Cohesion/524_RdM/524_RdM.tex}
+
+% --- RDM/RDM-01-Cohesion/525_RdM/525_RdM.tex
+\renewcommand{\repExo}{RDM/RDM-01-Cohesion}
+\renewcommand{\td}{525_RdM}
+\graphicspath{{RDM/RDM-01-Cohesion/525_RdM/images/}{framework/images/}}
+\proffalse
+\input{RDM/RDM-01-Cohesion/525_RdM/525_RdM.tex}
+
+% --- RDM/RDM-01-Cohesion/526_RdM/526_RdM.tex
+\renewcommand{\repExo}{RDM/RDM-01-Cohesion}
+\renewcommand{\td}{526_RdM}
+\graphicspath{{RDM/RDM-01-Cohesion/526_RdM/images/}{framework/images/}}
+\proffalse
+\input{RDM/RDM-01-Cohesion/526_RdM/526_RdM.tex}
+
+% --- RDM/RDM-01-Cohesion/527_RdM/527_RdM.tex
+\renewcommand{\repExo}{RDM/RDM-01-Cohesion}
+\renewcommand{\td}{527_RdM}
+\graphicspath{{RDM/RDM-01-Cohesion/527_RdM/images/}{framework/images/}}
+\proffalse
+\input{RDM/RDM-01-Cohesion/527_RdM/527_RdM.tex}
+
+% --- RDM/RDM-01-Cohesion/528_BrocheFraisage/528_BrocheFraisage.tex
+\renewcommand{\repExo}{RDM/RDM-01-Cohesion}
+\renewcommand{\td}{528_BrocheFraisage}
+\graphicspath{{RDM/RDM-01-Cohesion/528_BrocheFraisage/images/}{framework/images/}}
+\proffalse
+\input{RDM/RDM-01-Cohesion/528_BrocheFraisage/528_BrocheFraisage.tex}
+
+% --- RDM/RDM-01-Cohesion/529_Passerelle/529_Passerelle.tex
+\renewcommand{\repExo}{RDM/RDM-01-Cohesion}
+\renewcommand{\td}{529_Passerelle}
+\graphicspath{{RDM/RDM-01-Cohesion/529_Passerelle/images/}{framework/images/}}
+\proffalse
+\input{RDM/RDM-01-Cohesion/529_Passerelle/529_Passerelle.tex}
+
+% --- RDM/RDM-01-Cohesion/530_BancHelico/530_BancHelico.tex
+\renewcommand{\repExo}{RDM/RDM-01-Cohesion}
+\renewcommand{\td}{530_BancHelico}
+\graphicspath{{RDM/RDM-01-Cohesion/530_BancHelico/images/}{framework/images/}}
+\proffalse
+\input{RDM/RDM-01-Cohesion/530_BancHelico/530_BancHelico.tex}
+
+\chapter{RDM -- 02 -- Traction}
+
+% --- RDM/RDM-02-Traction/539_Cours_RDM/539_Cours_RDM.tex
+\renewcommand{\repExo}{RDM/RDM-02-Traction}
+\renewcommand{\td}{539_Cours_RDM}
+\graphicspath{{RDM/RDM-02-Traction/539_Cours_RDM/images/}{framework/images/}}
+\proffalse
+\input{RDM/RDM-02-Traction/539_Cours_RDM/539_Cours_RDM.tex}
+
+\chapter{RDM -- 03 -- Torsion}
+
+% --- RDM/RDM-03-Torsion/539_Cours_RDM/539_Cours_RDM.tex
+\renewcommand{\repExo}{RDM/RDM-03-Torsion}
+\renewcommand{\td}{539_Cours_RDM}
+\graphicspath{{RDM/RDM-03-Torsion/539_Cours_RDM/images/}{framework/images/}}
+\proffalse
+\input{RDM/RDM-03-Torsion/539_Cours_RDM/539_Cours_RDM.tex}
+
+\chapter{RDM -- 04 -- Flexion}
+
+% --- RDM/RDM-04-Flexion/539_Cours_RDM/539_Cours_RDM.tex
+\renewcommand{\repExo}{RDM/RDM-04-Flexion}
+\renewcommand{\td}{539_Cours_RDM}
+\graphicspath{{RDM/RDM-04-Flexion/539_Cours_RDM/images/}{framework/images/}}
+\proffalse
+\input{RDM/RDM-04-Flexion/539_Cours_RDM/539_Cours_RDM.tex}
+
+\chapter{RDM -- 05 -- Deformation}
+
+% --- RDM/RDM-05-Deformation/531_RdM/531_RdM.tex
+\renewcommand{\repExo}{RDM/RDM-05-Deformation}
+\renewcommand{\td}{531_RdM}
+\graphicspath{{RDM/RDM-05-Deformation/531_RdM/images/}{framework/images/}}
+\proffalse
+\input{RDM/RDM-05-Deformation/531_RdM/531_RdM.tex}
+
+% --- RDM/RDM-05-Deformation/532_RdM/532_RdM.tex
+\renewcommand{\repExo}{RDM/RDM-05-Deformation}
+\renewcommand{\td}{532_RdM}
+\graphicspath{{RDM/RDM-05-Deformation/532_RdM/images/}{framework/images/}}
+\proffalse
+\input{RDM/RDM-05-Deformation/532_RdM/532_RdM.tex}
+
+% --- RDM/RDM-05-Deformation/540_RdM/540_RdM.tex
+\renewcommand{\repExo}{RDM/RDM-05-Deformation}
+\renewcommand{\td}{540_RdM}
+\graphicspath{{RDM/RDM-05-Deformation/540_RdM/images/}{framework/images/}}
+\proffalse
+\input{RDM/RDM-05-Deformation/540_RdM/540_RdM.tex}
+
+% --- RDM/RDM-05-Deformation/541_RdM/541_RdM.tex
+\renewcommand{\repExo}{RDM/RDM-05-Deformation}
+\renewcommand{\td}{541_RdM}
+\graphicspath{{RDM/RDM-05-Deformation/541_RdM/images/}{framework/images/}}
+\proffalse
+\input{RDM/RDM-05-Deformation/541_RdM/541_RdM.tex}
+
+% --- RDM/RDM-05-Deformation/542_RdM/542_RdM.tex
+\renewcommand{\repExo}{RDM/RDM-05-Deformation}
+\renewcommand{\td}{542_RdM}
+\graphicspath{{RDM/RDM-05-Deformation/542_RdM/images/}{framework/images/}}
+\proffalse
+\input{RDM/RDM-05-Deformation/542_RdM/542_RdM.tex}
+
+\part{Systèmes combinatoires et séquentiels}
+
+\chapter{SEQ -- 03}
+
+% --- SEQ/SEQ-03/50_BancBalafre/50_BancBalafre.tex
+\renewcommand{\repExo}{SEQ/SEQ-03}
+\renewcommand{\td}{50_BancBalafre}
+\graphicspath{{SEQ/SEQ-03/50_BancBalafre/images/}{framework/images/}}
+\proffalse
+\input{SEQ/SEQ-03/50_BancBalafre/50_BancBalafre.tex}
+
+\part{Systèmes linéaires continus invariants}
+
+\chapter{SLCI -- 02 -- FT}
+
+% --- SLCI/SLCI-02-FT/51_MCC/51_MCC.tex
+\renewcommand{\repExo}{SLCI/SLCI-02-FT}
+\renewcommand{\td}{51_MCC}
+\graphicspath{{SLCI/SLCI-02-FT/51_MCC/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-02-FT/51_MCC/51_MCC.tex}
+
+\chapter{SLCI -- 03 -- Schema Blocs}
+
+% --- SLCI/SLCI-03-SchemaBlocs/39_SeineMusicale/39_SeineMusicale.tex
+\renewcommand{\repExo}{SLCI/SLCI-03-SchemaBlocs}
+\renewcommand{\td}{39_SeineMusicale}
+\graphicspath{{SLCI/SLCI-03-SchemaBlocs/39_SeineMusicale/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-03-SchemaBlocs/39_SeineMusicale/39_SeineMusicale.tex}
+
+% --- SLCI/SLCI-03-SchemaBlocs/47_SysReeduc/47_SysReeduc.tex
+\renewcommand{\repExo}{SLCI/SLCI-03-SchemaBlocs}
+\renewcommand{\td}{47_SysReeduc}
+\graphicspath{{SLCI/SLCI-03-SchemaBlocs/47_SysReeduc/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-03-SchemaBlocs/47_SysReeduc/47_SysReeduc.tex}
+
+% --- SLCI/SLCI-03-SchemaBlocs/48_Quille/48_Quille.tex
+\renewcommand{\repExo}{SLCI/SLCI-03-SchemaBlocs}
+\renewcommand{\td}{48_Quille}
+\graphicspath{{SLCI/SLCI-03-SchemaBlocs/48_Quille/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-03-SchemaBlocs/48_Quille/48_Quille.tex}
+
+% --- SLCI/SLCI-03-SchemaBlocs/500_Divers/500_Divers.tex
+\renewcommand{\repExo}{SLCI/SLCI-03-SchemaBlocs}
+\renewcommand{\td}{500_Divers}
+\graphicspath{{SLCI/SLCI-03-SchemaBlocs/500_Divers/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-03-SchemaBlocs/500_Divers/500_Divers.tex}
+
+% --- SLCI/SLCI-03-SchemaBlocs/505_Divers/505_Divers.tex
+\renewcommand{\repExo}{SLCI/SLCI-03-SchemaBlocs}
+\renewcommand{\td}{505_Divers}
+\graphicspath{{SLCI/SLCI-03-SchemaBlocs/505_Divers/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-03-SchemaBlocs/505_Divers/505_Divers.tex}
+
+% --- SLCI/SLCI-03-SchemaBlocs/512_Divers/512_Divers.tex
+\renewcommand{\repExo}{SLCI/SLCI-03-SchemaBlocs}
+\renewcommand{\td}{512_Divers}
+\graphicspath{{SLCI/SLCI-03-SchemaBlocs/512_Divers/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-03-SchemaBlocs/512_Divers/512_Divers.tex}
+
+% --- SLCI/SLCI-03-SchemaBlocs/51_MCC/51_MCC.tex
+\renewcommand{\repExo}{SLCI/SLCI-03-SchemaBlocs}
+\renewcommand{\td}{51_MCC}
+\graphicspath{{SLCI/SLCI-03-SchemaBlocs/51_MCC/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-03-SchemaBlocs/51_MCC/51_MCC.tex}
+
+% --- SLCI/SLCI-03-SchemaBlocs/52_Verin/52_Verin.tex
+\renewcommand{\repExo}{SLCI/SLCI-03-SchemaBlocs}
+\renewcommand{\td}{52_Verin}
+\graphicspath{{SLCI/SLCI-03-SchemaBlocs/52_Verin/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-03-SchemaBlocs/52_Verin/52_Verin.tex}
+
+% --- SLCI/SLCI-03-SchemaBlocs/53_BancEpreuveHydraulique/53_BancEpreuveHydraulique.tex
+\renewcommand{\repExo}{SLCI/SLCI-03-SchemaBlocs}
+\renewcommand{\td}{53_BancEpreuveHydraulique}
+\graphicspath{{SLCI/SLCI-03-SchemaBlocs/53_BancEpreuveHydraulique/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-03-SchemaBlocs/53_BancEpreuveHydraulique/53_BancEpreuveHydraulique.tex}
+
+% --- SLCI/SLCI-03-SchemaBlocs/71_Robovolc/71_Robovolc.tex
+\renewcommand{\repExo}{SLCI/SLCI-03-SchemaBlocs}
+\renewcommand{\td}{71_Robovolc}
+\graphicspath{{SLCI/SLCI-03-SchemaBlocs/71_Robovolc/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-03-SchemaBlocs/71_Robovolc/71_Robovolc.tex}
+
+% --- SLCI/SLCI-03-SchemaBlocs/77_ProtheseTibia/77_ProtheseTibia.tex
+\renewcommand{\repExo}{SLCI/SLCI-03-SchemaBlocs}
+\renewcommand{\td}{77_ProtheseTibia}
+\graphicspath{{SLCI/SLCI-03-SchemaBlocs/77_ProtheseTibia/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-03-SchemaBlocs/77_ProtheseTibia/77_ProtheseTibia.tex}
+
+% --- SLCI/SLCI-03-SchemaBlocs/78_RobotDaVinci/78_RobotDaVinci.tex
+\renewcommand{\repExo}{SLCI/SLCI-03-SchemaBlocs}
+\renewcommand{\td}{78_RobotDaVinci}
+\graphicspath{{SLCI/SLCI-03-SchemaBlocs/78_RobotDaVinci/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-03-SchemaBlocs/78_RobotDaVinci/78_RobotDaVinci.tex}
+
+% --- SLCI/SLCI-03-SchemaBlocs/79_Tuyere/79_Tuyere.tex
+\renewcommand{\repExo}{SLCI/SLCI-03-SchemaBlocs}
+\renewcommand{\td}{79_Tuyere}
+\graphicspath{{SLCI/SLCI-03-SchemaBlocs/79_Tuyere/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-03-SchemaBlocs/79_Tuyere/79_Tuyere.tex}
+
+% --- SLCI/SLCI-03-SchemaBlocs/80_Clever/80_Clever.tex
+\renewcommand{\repExo}{SLCI/SLCI-03-SchemaBlocs}
+\renewcommand{\td}{80_Clever}
+\graphicspath{{SLCI/SLCI-03-SchemaBlocs/80_Clever/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-03-SchemaBlocs/80_Clever/80_Clever.tex}
+
+% --- SLCI/SLCI-03-SchemaBlocs/96_Stabilisateur/96_Stabilisateur.tex
+\renewcommand{\repExo}{SLCI/SLCI-03-SchemaBlocs}
+\renewcommand{\td}{96_Stabilisateur}
+\graphicspath{{SLCI/SLCI-03-SchemaBlocs/96_Stabilisateur/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-03-SchemaBlocs/96_Stabilisateur/96_Stabilisateur.tex}
+
+\chapter{SLCI -- 07 -- Ordre12}
+
+% --- SLCI/SLCI-07-Ordre12/502_Divers/502_Divers.tex
+\renewcommand{\repExo}{SLCI/SLCI-07-Ordre12}
+\renewcommand{\td}{502_Divers}
+\graphicspath{{SLCI/SLCI-07-Ordre12/502_Divers/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-07-Ordre12/502_Divers/502_Divers.tex}
+
+% --- SLCI/SLCI-07-Ordre12/503_Divers/503_Divers.tex
+\renewcommand{\repExo}{SLCI/SLCI-07-Ordre12}
+\renewcommand{\td}{503_Divers}
+\graphicspath{{SLCI/SLCI-07-Ordre12/503_Divers/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-07-Ordre12/503_Divers/503_Divers.tex}
+
+% --- SLCI/SLCI-07-Ordre12/504_Divers/504_Divers.tex
+\renewcommand{\repExo}{SLCI/SLCI-07-Ordre12}
+\renewcommand{\td}{504_Divers}
+\graphicspath{{SLCI/SLCI-07-Ordre12/504_Divers/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-07-Ordre12/504_Divers/504_Divers.tex}
+
+% --- SLCI/SLCI-07-Ordre12/506_Divers/506_Divers.tex
+\renewcommand{\repExo}{SLCI/SLCI-07-Ordre12}
+\renewcommand{\td}{506_Divers}
+\graphicspath{{SLCI/SLCI-07-Ordre12/506_Divers/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-07-Ordre12/506_Divers/506_Divers.tex}
+
+% --- SLCI/SLCI-07-Ordre12/541_Cours/541_Cours.tex
+\renewcommand{\repExo}{SLCI/SLCI-07-Ordre12}
+\renewcommand{\td}{541_Cours}
+\graphicspath{{SLCI/SLCI-07-Ordre12/541_Cours/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-07-Ordre12/541_Cours/541_Cours.tex}
+
+% --- SLCI/SLCI-07-Ordre12/542_Cours/542_Cours.tex
+\renewcommand{\repExo}{SLCI/SLCI-07-Ordre12}
+\renewcommand{\td}{542_Cours}
+\graphicspath{{SLCI/SLCI-07-Ordre12/542_Cours/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-07-Ordre12/542_Cours/542_Cours.tex}
+
+\chapter{SLCI -- 11 -- Diagramme Bode}
+
+% --- SLCI/SLCI-11-DiagrammeBode/510_01_Divers/510_01_Divers.tex
+\renewcommand{\repExo}{SLCI/SLCI-11-DiagrammeBode}
+\renewcommand{\td}{510_01_Divers}
+\graphicspath{{SLCI/SLCI-11-DiagrammeBode/510_01_Divers/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-11-DiagrammeBode/510_01_Divers/510_01_Divers.tex}
+
+% --- SLCI/SLCI-11-DiagrammeBode/510_02_Divers/510_02_Divers.tex
+\renewcommand{\repExo}{SLCI/SLCI-11-DiagrammeBode}
+\renewcommand{\td}{510_02_Divers}
+\graphicspath{{SLCI/SLCI-11-DiagrammeBode/510_02_Divers/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-11-DiagrammeBode/510_02_Divers/510_02_Divers.tex}
+
+% --- SLCI/SLCI-11-DiagrammeBode/510_03_Divers/510_03_Divers.tex
+\renewcommand{\repExo}{SLCI/SLCI-11-DiagrammeBode}
+\renewcommand{\td}{510_03_Divers}
+\graphicspath{{SLCI/SLCI-11-DiagrammeBode/510_03_Divers/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-11-DiagrammeBode/510_03_Divers/510_03_Divers.tex}
+
+% --- SLCI/SLCI-11-DiagrammeBode/510_04_Divers/510_04_Divers.tex
+\renewcommand{\repExo}{SLCI/SLCI-11-DiagrammeBode}
+\renewcommand{\td}{510_04_Divers}
+\graphicspath{{SLCI/SLCI-11-DiagrammeBode/510_04_Divers/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-11-DiagrammeBode/510_04_Divers/510_04_Divers.tex}
+
+% --- SLCI/SLCI-11-DiagrammeBode/510_05_Divers/510_05_Divers.tex
+\renewcommand{\repExo}{SLCI/SLCI-11-DiagrammeBode}
+\renewcommand{\td}{510_05_Divers}
+\graphicspath{{SLCI/SLCI-11-DiagrammeBode/510_05_Divers/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-11-DiagrammeBode/510_05_Divers/510_05_Divers.tex}
+
+% --- SLCI/SLCI-11-DiagrammeBode/511_Divers/511_Divers.tex
+\renewcommand{\repExo}{SLCI/SLCI-11-DiagrammeBode}
+\renewcommand{\td}{511_Divers}
+\graphicspath{{SLCI/SLCI-11-DiagrammeBode/511_Divers/images/}{framework/images/}}
+\proffalse
+\input{SLCI/SLCI-11-DiagrammeBode/511_Divers/511_Divers.tex}
+
+\part{Statique}
+
+\chapter{STAT -- 02 -- Frottement}
+
+% --- STAT/STAT-02-Frottement/532_MAM_Frottement_Cylindre/532_MAM_Frottement_Cylindre.tex
+\renewcommand{\repExo}{STAT/STAT-02-Frottement}
+\renewcommand{\td}{532_MAM_Frottement_Cylindre}
+\graphicspath{{STAT/STAT-02-Frottement/532_MAM_Frottement_Cylindre/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-02-Frottement/532_MAM_Frottement_Cylindre/532_MAM_Frottement_Cylindre.tex}
+
+% --- STAT/STAT-02-Frottement/533_MAM_Frottement_Cylindre/533_MAM_Frottement_Cylindre.tex
+\renewcommand{\repExo}{STAT/STAT-02-Frottement}
+\renewcommand{\td}{533_MAM_Frottement_Cylindre}
+\graphicspath{{STAT/STAT-02-Frottement/533_MAM_Frottement_Cylindre/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-02-Frottement/533_MAM_Frottement_Cylindre/533_MAM_Frottement_Cylindre.tex}
+
+\chapter{STAT -- 02 -- Global}
+
+% --- STAT/STAT-02-Global/516_MAM/516_MAM.tex
+\renewcommand{\repExo}{STAT/STAT-02-Global}
+\renewcommand{\td}{516_MAM}
+\graphicspath{{STAT/STAT-02-Global/516_MAM/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-02-Global/516_MAM/516_MAM.tex}
+
+% --- STAT/STAT-02-Global/517_MAM/517_MAM.tex
+\renewcommand{\repExo}{STAT/STAT-02-Global}
+\renewcommand{\td}{517_MAM}
+\graphicspath{{STAT/STAT-02-Global/517_MAM/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-02-Global/517_MAM/517_MAM.tex}
+
+% --- STAT/STAT-02-Global/518_MAM/518_MAM.tex
+\renewcommand{\repExo}{STAT/STAT-02-Global}
+\renewcommand{\td}{518_MAM}
+\graphicspath{{STAT/STAT-02-Global/518_MAM/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-02-Global/518_MAM/518_MAM.tex}
+
+% --- STAT/STAT-02-Global/519_MAM/519_MAM.tex
+\renewcommand{\repExo}{STAT/STAT-02-Global}
+\renewcommand{\td}{519_MAM}
+\graphicspath{{STAT/STAT-02-Global/519_MAM/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-02-Global/519_MAM/519_MAM.tex}
+
+% --- STAT/STAT-02-Global/520_MAM/520_MAM.tex
+\renewcommand{\repExo}{STAT/STAT-02-Global}
+\renewcommand{\td}{520_MAM}
+\graphicspath{{STAT/STAT-02-Global/520_MAM/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-02-Global/520_MAM/520_MAM.tex}
+
+% --- STAT/STAT-02-Global/521_MAM/521_MAM.tex
+\renewcommand{\repExo}{STAT/STAT-02-Global}
+\renewcommand{\td}{521_MAM}
+\graphicspath{{STAT/STAT-02-Global/521_MAM/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-02-Global/521_MAM/521_MAM.tex}
+
+\chapter{STAT -- 02 -- Local}
+
+% --- STAT/STAT-02-Local/1023_Vilebrequin/1023_Vilebrequin.tex
+\renewcommand{\repExo}{STAT/STAT-02-Local}
+\renewcommand{\td}{1023_Vilebrequin}
+\graphicspath{{STAT/STAT-02-Local/1023_Vilebrequin/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-02-Local/1023_Vilebrequin/1023_Vilebrequin.tex}
+
+% --- STAT/STAT-02-Local/1024_Balancier/1024_Balancier.tex
+\renewcommand{\repExo}{STAT/STAT-02-Local}
+\renewcommand{\td}{1024_Balancier}
+\graphicspath{{STAT/STAT-02-Local/1024_Balancier/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-02-Local/1024_Balancier/1024_Balancier.tex}
+
+% --- STAT/STAT-02-Local/1025_Palier/1025_Palier.tex
+\renewcommand{\repExo}{STAT/STAT-02-Local}
+\renewcommand{\td}{1025_Palier}
+\graphicspath{{STAT/STAT-02-Local/1025_Palier/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-02-Local/1025_Palier/1025_Palier.tex}
+
+% --- STAT/STAT-02-Local/39_SeineMusicale/39_SeineMusicale.tex
+\renewcommand{\repExo}{STAT/STAT-02-Local}
+\renewcommand{\td}{39_SeineMusicale}
+\graphicspath{{STAT/STAT-02-Local/39_SeineMusicale/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-02-Local/39_SeineMusicale/39_SeineMusicale.tex}
+
+% --- STAT/STAT-02-Local/50_BancBalafre/50_BancBalafre.tex
+\renewcommand{\repExo}{STAT/STAT-02-Local}
+\renewcommand{\td}{50_BancBalafre}
+\graphicspath{{STAT/STAT-02-Local/50_BancBalafre/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-02-Local/50_BancBalafre/50_BancBalafre.tex}
+
+\chapter{STAT -- 03 -- Demarche}
+
+% --- STAT/STAT-03-Demarche/01_T/01_T.tex
+\renewcommand{\repExo}{STAT/STAT-03-Demarche}
+\renewcommand{\td}{01_T}
+\graphicspath{{STAT/STAT-03-Demarche/01_T/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-03-Demarche/01_T/01_T.tex}
+
+% --- STAT/STAT-03-Demarche/02_R/02_R.tex
+\renewcommand{\repExo}{STAT/STAT-03-Demarche}
+\renewcommand{\td}{02_R}
+\graphicspath{{STAT/STAT-03-Demarche/02_R/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-03-Demarche/02_R/02_R.tex}
+
+% --- STAT/STAT-03-Demarche/03_TT/03_TT.tex
+\renewcommand{\repExo}{STAT/STAT-03-Demarche}
+\renewcommand{\td}{03_TT}
+\graphicspath{{STAT/STAT-03-Demarche/03_TT/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-03-Demarche/03_TT/03_TT.tex}
+
+% --- STAT/STAT-03-Demarche/04_RR/04_RR.tex
+\renewcommand{\repExo}{STAT/STAT-03-Demarche}
+\renewcommand{\td}{04_RR}
+\graphicspath{{STAT/STAT-03-Demarche/04_RR/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-03-Demarche/04_RR/04_RR.tex}
+
+% --- STAT/STAT-03-Demarche/05_RT/05_RT.tex
+\renewcommand{\repExo}{STAT/STAT-03-Demarche}
+\renewcommand{\td}{05_RT}
+\graphicspath{{STAT/STAT-03-Demarche/05_RT/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-03-Demarche/05_RT/05_RT.tex}
+
+% --- STAT/STAT-03-Demarche/06_TR/06_TR.tex
+\renewcommand{\repExo}{STAT/STAT-03-Demarche}
+\renewcommand{\td}{06_TR}
+\graphicspath{{STAT/STAT-03-Demarche/06_TR/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-03-Demarche/06_TR/06_TR.tex}
+
+% --- STAT/STAT-03-Demarche/07_RR3D/07_RR3D.tex
+\renewcommand{\repExo}{STAT/STAT-03-Demarche}
+\renewcommand{\td}{07_RR3D}
+\graphicspath{{STAT/STAT-03-Demarche/07_RR3D/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-03-Demarche/07_RR3D/07_RR3D.tex}
+
+% --- STAT/STAT-03-Demarche/08_RR3D/08_RR3D.tex
+\renewcommand{\repExo}{STAT/STAT-03-Demarche}
+\renewcommand{\td}{08_RR3D}
+\graphicspath{{STAT/STAT-03-Demarche/08_RR3D/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-03-Demarche/08_RR3D/08_RR3D.tex}
+
+% --- STAT/STAT-03-Demarche/14_Sympact/14_Sympact.tex
+\renewcommand{\repExo}{STAT/STAT-03-Demarche}
+\renewcommand{\td}{14_Sympact}
+\graphicspath{{STAT/STAT-03-Demarche/14_Sympact/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-03-Demarche/14_Sympact/14_Sympact.tex}
+
+% --- STAT/STAT-03-Demarche/55_Suspension/55_Suspension.tex
+\renewcommand{\repExo}{STAT/STAT-03-Demarche}
+\renewcommand{\td}{55_Suspension}
+\graphicspath{{STAT/STAT-03-Demarche/55_Suspension/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-03-Demarche/55_Suspension/55_Suspension.tex}
+
+% --- STAT/STAT-03-Demarche/57_PeseCamion/57_PeseCamion.tex
+\renewcommand{\repExo}{STAT/STAT-03-Demarche}
+\renewcommand{\td}{57_PeseCamion}
+\graphicspath{{STAT/STAT-03-Demarche/57_PeseCamion/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-03-Demarche/57_PeseCamion/57_PeseCamion.tex}
+
+% --- STAT/STAT-03-Demarche/95_ChasseNeige/95_ChasseNeige.tex
+\renewcommand{\repExo}{STAT/STAT-03-Demarche}
+\renewcommand{\td}{95_ChasseNeige}
+\graphicspath{{STAT/STAT-03-Demarche/95_ChasseNeige/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-03-Demarche/95_ChasseNeige/95_ChasseNeige.tex}
+
+\chapter{STAT -- 03 -- Demarche / STOCK}
+
+% --- STAT/STAT-03-Demarche/STOCK/01_T_02/01_T_02.tex
+\renewcommand{\repExo}{STAT/STAT-03-Demarche/STOCK}
+\renewcommand{\td}{01_T_02}
+\graphicspath{{STAT/STAT-03-Demarche/STOCK/01_T_02/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-03-Demarche/STOCK/01_T_02/01_T_02.tex}
+
+% --- STAT/STAT-03-Demarche/STOCK/02_R_02/02_R_02.tex
+\renewcommand{\repExo}{STAT/STAT-03-Demarche/STOCK}
+\renewcommand{\td}{02_R_02}
+\graphicspath{{STAT/STAT-03-Demarche/STOCK/02_R_02/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-03-Demarche/STOCK/02_R_02/02_R_02.tex}
+
+% --- STAT/STAT-03-Demarche/STOCK/03_TT_02/03_TT_02.tex
+\renewcommand{\repExo}{STAT/STAT-03-Demarche/STOCK}
+\renewcommand{\td}{03_TT_02}
+\graphicspath{{STAT/STAT-03-Demarche/STOCK/03_TT_02/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-03-Demarche/STOCK/03_TT_02/03_TT_02.tex}
+
+% --- STAT/STAT-03-Demarche/STOCK/04_RR_02/04_RR_02.tex
+\renewcommand{\repExo}{STAT/STAT-03-Demarche/STOCK}
+\renewcommand{\td}{04_RR_02}
+\graphicspath{{STAT/STAT-03-Demarche/STOCK/04_RR_02/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-03-Demarche/STOCK/04_RR_02/04_RR_02.tex}
+
+% --- STAT/STAT-03-Demarche/STOCK/05_RT_02/05_RT_02.tex
+\renewcommand{\repExo}{STAT/STAT-03-Demarche/STOCK}
+\renewcommand{\td}{05_RT_02}
+\graphicspath{{STAT/STAT-03-Demarche/STOCK/05_RT_02/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-03-Demarche/STOCK/05_RT_02/05_RT_02.tex}
+
+% --- STAT/STAT-03-Demarche/STOCK/06_TR_02/06_TR_02.tex
+\renewcommand{\repExo}{STAT/STAT-03-Demarche/STOCK}
+\renewcommand{\td}{06_TR_02}
+\graphicspath{{STAT/STAT-03-Demarche/STOCK/06_TR_02/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-03-Demarche/STOCK/06_TR_02/06_TR_02.tex}
+
+% --- STAT/STAT-03-Demarche/STOCK/07_RR3D_02/07_RR3D_02.tex
+\renewcommand{\repExo}{STAT/STAT-03-Demarche/STOCK}
+\renewcommand{\td}{07_RR3D_02}
+\graphicspath{{STAT/STAT-03-Demarche/STOCK/07_RR3D_02/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-03-Demarche/STOCK/07_RR3D_02/07_RR3D_02.tex}
+
+% --- STAT/STAT-03-Demarche/STOCK/08_RR3D_02/08_RR3D_02.tex
+\renewcommand{\repExo}{STAT/STAT-03-Demarche/STOCK}
+\renewcommand{\td}{08_RR3D_02}
+\graphicspath{{STAT/STAT-03-Demarche/STOCK/08_RR3D_02/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-03-Demarche/STOCK/08_RR3D_02/08_RR3D_02.tex}
+
+% --- STAT/STAT-03-Demarche/STOCK/09_RT_RSG/09_RT_RSG.tex
+\renewcommand{\repExo}{STAT/STAT-03-Demarche/STOCK}
+\renewcommand{\td}{09_RT_RSG}
+\graphicspath{{STAT/STAT-03-Demarche/STOCK/09_RT_RSG/images/}{framework/images/}}
+\proffalse
+\input{STAT/STAT-03-Demarche/STOCK/09_RT_RSG/09_RT_RSG.tex}
+
+\part{Analyse fonctionnelle et systèmes}
+
+\chapter{SYS -- 01 / SYS -- 01 -- Chaine Fonctionnelle}
+
+% --- SYS/SYS-01/SYS-01-ChaineFonctionnelle/58_Oz440/58_Oz440.tex
+\renewcommand{\repExo}{SYS/SYS-01/SYS-01-ChaineFonctionnelle}
+\renewcommand{\td}{58_Oz440}
+\graphicspath{{SYS/SYS-01/SYS-01-ChaineFonctionnelle/58_Oz440/images/}{framework/images/}}
+\proffalse
+\input{SYS/SYS-01/SYS-01-ChaineFonctionnelle/58_Oz440/58_Oz440.tex}
+
+% --- SYS/SYS-01/SYS-01-ChaineFonctionnelle/59_Levage/59_Levage.tex
+\renewcommand{\repExo}{SYS/SYS-01/SYS-01-ChaineFonctionnelle}
+\renewcommand{\td}{59_Levage}
+\graphicspath{{SYS/SYS-01/SYS-01-ChaineFonctionnelle/59_Levage/images/}{framework/images/}}
+\proffalse
+\input{SYS/SYS-01/SYS-01-ChaineFonctionnelle/59_Levage/59_Levage.tex}
+
+% --- SYS/SYS-01/SYS-01-ChaineFonctionnelle/60_Escalier/60_Escalier.tex
+\renewcommand{\repExo}{SYS/SYS-01/SYS-01-ChaineFonctionnelle}
+\renewcommand{\td}{60_Escalier}
+\graphicspath{{SYS/SYS-01/SYS-01-ChaineFonctionnelle/60_Escalier/images/}{framework/images/}}
+\proffalse
+\input{SYS/SYS-01/SYS-01-ChaineFonctionnelle/60_Escalier/60_Escalier.tex}
+
+\chapter{SYS -- 01 / SYS -- 01 -- Chaine Puissance}
+
+% --- SYS/SYS-01/SYS-01-ChainePuissance/1100_Pneumatique/1100_Pneumatique.tex
+\renewcommand{\repExo}{SYS/SYS-01/SYS-01-ChainePuissance}
+\renewcommand{\td}{1100_Pneumatique}
+\graphicspath{{SYS/SYS-01/SYS-01-ChainePuissance/1100_Pneumatique/images/}{framework/images/}}
+\proffalse
+\input{SYS/SYS-01/SYS-01-ChainePuissance/1100_Pneumatique/1100_Pneumatique.tex}
+
+% --- SYS/SYS-01/SYS-01-ChainePuissance/80_Clever/80_Clever.tex
+\renewcommand{\repExo}{SYS/SYS-01/SYS-01-ChainePuissance}
+\renewcommand{\td}{80_Clever}
+\graphicspath{{SYS/SYS-01/SYS-01-ChainePuissance/80_Clever/images/}{framework/images/}}
+\proffalse
+\input{SYS/SYS-01/SYS-01-ChainePuissance/80_Clever/80_Clever.tex}
+
+% --- SYS/SYS-01/SYS-01-ChainePuissance/88_Suspension/88_Suspension.tex
+\renewcommand{\repExo}{SYS/SYS-01/SYS-01-ChainePuissance}
+\renewcommand{\td}{88_Suspension}
+\graphicspath{{SYS/SYS-01/SYS-01-ChainePuissance/88_Suspension/images/}{framework/images/}}
+\proffalse
+\input{SYS/SYS-01/SYS-01-ChainePuissance/88_Suspension/88_Suspension.tex}
+
+% --- SYS/SYS-01/SYS-01-ChainePuissance/89_Bouee/89_Bouee.tex
+\renewcommand{\repExo}{SYS/SYS-01/SYS-01-ChainePuissance}
+\renewcommand{\td}{89_Bouee}
+\graphicspath{{SYS/SYS-01/SYS-01-ChainePuissance/89_Bouee/images/}{framework/images/}}
+\proffalse
+\input{SYS/SYS-01/SYS-01-ChainePuissance/89_Bouee/89_Bouee.tex}
+
+% --- SYS/SYS-01/SYS-01-ChainePuissance/90_Pilote/90_Pilote.tex
+\renewcommand{\repExo}{SYS/SYS-01/SYS-01-ChainePuissance}
+\renewcommand{\td}{90_Pilote}
+\graphicspath{{SYS/SYS-01/SYS-01-ChainePuissance/90_Pilote/images/}{framework/images/}}
+\proffalse
+\input{SYS/SYS-01/SYS-01-ChainePuissance/90_Pilote/90_Pilote.tex}
+
+\chapter{SYS -- 01 / SYS -- 01 Chaine Info}
+
+% --- SYS/SYS-01/SYS-01_ChaineInfo/507_Divers/507_Divers.tex
+\renewcommand{\repExo}{SYS/SYS-01/SYS-01_ChaineInfo}
+\renewcommand{\td}{507_Divers}
+\graphicspath{{SYS/SYS-01/SYS-01_ChaineInfo/507_Divers/images/}{framework/images/}}
+\proffalse
+\input{SYS/SYS-01/SYS-01_ChaineInfo/507_Divers/507_Divers.tex}
+
+% --- SYS/SYS-01/SYS-01_ChaineInfo/50_BancBalafre/50_BancBalafre.tex
+\renewcommand{\repExo}{SYS/SYS-01/SYS-01_ChaineInfo}
+\renewcommand{\td}{50_BancBalafre}
+\graphicspath{{SYS/SYS-01/SYS-01_ChaineInfo/50_BancBalafre/images/}{framework/images/}}
+\proffalse
+\input{SYS/SYS-01/SYS-01_ChaineInfo/50_BancBalafre/50_BancBalafre.tex}
+
+% --- SYS/SYS-01/SYS-01_ChaineInfo/538_Codeur/538_Codeur.tex
+\renewcommand{\repExo}{SYS/SYS-01/SYS-01_ChaineInfo}
+\renewcommand{\td}{538_Codeur}
+\graphicspath{{SYS/SYS-01/SYS-01_ChaineInfo/538_Codeur/images/}{framework/images/}}
+\proffalse
+\input{SYS/SYS-01/SYS-01_ChaineInfo/538_Codeur/538_Codeur.tex}
+
+\part{Énergétique}
+
+\chapter{TEC -- 04 -- Meq -- Jeq}
+
+% --- TEC/TEC-04-Meq-Jeq/21_TrainSimple/21_TrainSimple.tex
+\renewcommand{\repExo}{TEC/TEC-04-Meq-Jeq}
+\renewcommand{\td}{21_TrainSimple}
+\graphicspath{{TEC/TEC-04-Meq-Jeq/21_TrainSimple/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-04-Meq-Jeq/21_TrainSimple/21_TrainSimple.tex}
+
+% --- TEC/TEC-04-Meq-Jeq/22_TrainSimple/22_TrainSimple.tex
+\renewcommand{\repExo}{TEC/TEC-04-Meq-Jeq}
+\renewcommand{\td}{22_TrainSimple}
+\graphicspath{{TEC/TEC-04-Meq-Jeq/22_TrainSimple/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-04-Meq-Jeq/22_TrainSimple/22_TrainSimple.tex}
+
+% --- TEC/TEC-04-Meq-Jeq/23_TrainSimple/23_TrainSimple.tex
+\renewcommand{\repExo}{TEC/TEC-04-Meq-Jeq}
+\renewcommand{\td}{23_TrainSimple}
+\graphicspath{{TEC/TEC-04-Meq-Jeq/23_TrainSimple/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-04-Meq-Jeq/23_TrainSimple/23_TrainSimple.tex}
+
+% --- TEC/TEC-04-Meq-Jeq/24_TrainSimple/24_TrainSimple.tex
+\renewcommand{\repExo}{TEC/TEC-04-Meq-Jeq}
+\renewcommand{\td}{24_TrainSimple}
+\graphicspath{{TEC/TEC-04-Meq-Jeq/24_TrainSimple/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-04-Meq-Jeq/24_TrainSimple/24_TrainSimple.tex}
+
+% --- TEC/TEC-04-Meq-Jeq/25_Cheville/25_Cheville.tex
+\renewcommand{\repExo}{TEC/TEC-04-Meq-Jeq}
+\renewcommand{\td}{25_Cheville}
+\graphicspath{{TEC/TEC-04-Meq-Jeq/25_Cheville/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-04-Meq-Jeq/25_Cheville/25_Cheville.tex}
+
+% --- TEC/TEC-04-Meq-Jeq/26_RoueMotrice/26_RoueMotrice.tex
+\renewcommand{\repExo}{TEC/TEC-04-Meq-Jeq}
+\renewcommand{\td}{26_RoueMotrice}
+\graphicspath{{TEC/TEC-04-Meq-Jeq/26_RoueMotrice/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-04-Meq-Jeq/26_RoueMotrice/26_RoueMotrice.tex}
+
+% --- TEC/TEC-04-Meq-Jeq/27_TrainEpi/27_TrainEpi.tex
+\renewcommand{\repExo}{TEC/TEC-04-Meq-Jeq}
+\renewcommand{\td}{27_TrainEpi}
+\graphicspath{{TEC/TEC-04-Meq-Jeq/27_TrainEpi/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-04-Meq-Jeq/27_TrainEpi/27_TrainEpi.tex}
+
+% --- TEC/TEC-04-Meq-Jeq/28_TrainEpi/28_TrainEpi.tex
+\renewcommand{\repExo}{TEC/TEC-04-Meq-Jeq}
+\renewcommand{\td}{28_TrainEpi}
+\graphicspath{{TEC/TEC-04-Meq-Jeq/28_TrainEpi/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-04-Meq-Jeq/28_TrainEpi/28_TrainEpi.tex}
+
+% --- TEC/TEC-04-Meq-Jeq/29_TrainEpi/29_TrainEpi.tex
+\renewcommand{\repExo}{TEC/TEC-04-Meq-Jeq}
+\renewcommand{\td}{29_TrainEpi}
+\graphicspath{{TEC/TEC-04-Meq-Jeq/29_TrainEpi/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-04-Meq-Jeq/29_TrainEpi/29_TrainEpi.tex}
+
+% --- TEC/TEC-04-Meq-Jeq/30_TrainEpi/30_TrainEpi.tex
+\renewcommand{\repExo}{TEC/TEC-04-Meq-Jeq}
+\renewcommand{\td}{30_TrainEpi}
+\graphicspath{{TEC/TEC-04-Meq-Jeq/30_TrainEpi/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-04-Meq-Jeq/30_TrainEpi/30_TrainEpi.tex}
+
+% --- TEC/TEC-04-Meq-Jeq/31_Redex/31_Redex.tex
+\renewcommand{\repExo}{TEC/TEC-04-Meq-Jeq}
+\renewcommand{\td}{31_Redex}
+\graphicspath{{TEC/TEC-04-Meq-Jeq/31_Redex/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-04-Meq-Jeq/31_Redex/31_Redex.tex}
+
+% --- TEC/TEC-04-Meq-Jeq/32_Broyeur/32_Broyeur.tex
+\renewcommand{\repExo}{TEC/TEC-04-Meq-Jeq}
+\renewcommand{\td}{32_Broyeur}
+\graphicspath{{TEC/TEC-04-Meq-Jeq/32_Broyeur/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-04-Meq-Jeq/32_Broyeur/32_Broyeur.tex}
+
+% --- TEC/TEC-04-Meq-Jeq/33_Centrifugeuse/33_Centrifugeuse.tex
+\renewcommand{\repExo}{TEC/TEC-04-Meq-Jeq}
+\renewcommand{\td}{33_Centrifugeuse}
+\graphicspath{{TEC/TEC-04-Meq-Jeq/33_Centrifugeuse/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-04-Meq-Jeq/33_Centrifugeuse/33_Centrifugeuse.tex}
+
+% --- TEC/TEC-04-Meq-Jeq/34_ControlX/34_ControlX.tex
+\renewcommand{\repExo}{TEC/TEC-04-Meq-Jeq}
+\renewcommand{\td}{34_ControlX}
+\graphicspath{{TEC/TEC-04-Meq-Jeq/34_ControlX/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-04-Meq-Jeq/34_ControlX/34_ControlX.tex}
+
+% --- TEC/TEC-04-Meq-Jeq/35_Vario/35_Vario.tex
+\renewcommand{\repExo}{TEC/TEC-04-Meq-Jeq}
+\renewcommand{\td}{35_Vario}
+\graphicspath{{TEC/TEC-04-Meq-Jeq/35_Vario/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-04-Meq-Jeq/35_Vario/35_Vario.tex}
+
+% --- TEC/TEC-04-Meq-Jeq/36_VisEcrou/36_VisEcrou.tex
+\renewcommand{\repExo}{TEC/TEC-04-Meq-Jeq}
+\renewcommand{\td}{36_VisEcrou}
+\graphicspath{{TEC/TEC-04-Meq-Jeq/36_VisEcrou/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-04-Meq-Jeq/36_VisEcrou/36_VisEcrou.tex}
+
+% --- TEC/TEC-04-Meq-Jeq/37_VisEcrou/37_VisEcrou.tex
+\renewcommand{\repExo}{TEC/TEC-04-Meq-Jeq}
+\renewcommand{\td}{37_VisEcrou}
+\graphicspath{{TEC/TEC-04-Meq-Jeq/37_VisEcrou/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-04-Meq-Jeq/37_VisEcrou/37_VisEcrou.tex}
+
+% --- TEC/TEC-04-Meq-Jeq/38_Treuil/38_Treuil.tex
+\renewcommand{\repExo}{TEC/TEC-04-Meq-Jeq}
+\renewcommand{\td}{38_Treuil}
+\graphicspath{{TEC/TEC-04-Meq-Jeq/38_Treuil/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-04-Meq-Jeq/38_Treuil/38_Treuil.tex}
+
+% --- TEC/TEC-04-Meq-Jeq/91_PorteAvion/91_PorteAvion.tex
+\renewcommand{\repExo}{TEC/TEC-04-Meq-Jeq}
+\renewcommand{\td}{91_PorteAvion}
+\graphicspath{{TEC/TEC-04-Meq-Jeq/91_PorteAvion/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-04-Meq-Jeq/91_PorteAvion/91_PorteAvion.tex}
+
+% --- TEC/TEC-04-Meq-Jeq/92_Colossus/92_Colossus.tex
+\renewcommand{\repExo}{TEC/TEC-04-Meq-Jeq}
+\renewcommand{\td}{92_Colossus}
+\graphicspath{{TEC/TEC-04-Meq-Jeq/92_Colossus/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-04-Meq-Jeq/92_Colossus/92_Colossus.tex}
+
+\chapter{TEC -- 05}
+
+% --- TEC/TEC-05/10_PompePalette/10_PompePalette.tex
+\renewcommand{\repExo}{TEC/TEC-05}
+\renewcommand{\td}{10_PompePalette}
+\graphicspath{{TEC/TEC-05/10_PompePalette/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-05/10_PompePalette/10_PompePalette.tex}
+
+% --- TEC/TEC-05/11_PompePistonsRadiaux/11_PompePistonsRadiaux.tex
+\renewcommand{\repExo}{TEC/TEC-05}
+\renewcommand{\td}{11_PompePistonsRadiaux}
+\graphicspath{{TEC/TEC-05/11_PompePistonsRadiaux/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-05/11_PompePistonsRadiaux/11_PompePistonsRadiaux.tex}
+
+% --- TEC/TEC-05/12_BielleManivelle/12_BielleManivelle.tex
+\renewcommand{\repExo}{TEC/TEC-05}
+\renewcommand{\td}{12_BielleManivelle}
+\graphicspath{{TEC/TEC-05/12_BielleManivelle/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-05/12_BielleManivelle/12_BielleManivelle.tex}
+
+% --- TEC/TEC-05/13_TransfoMouvement/13_TransfoMouvement.tex
+\renewcommand{\repExo}{TEC/TEC-05}
+\renewcommand{\td}{13_TransfoMouvement}
+\graphicspath{{TEC/TEC-05/13_TransfoMouvement/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-05/13_TransfoMouvement/13_TransfoMouvement.tex}
+
+% --- TEC/TEC-05/14_Sympact/14_Sympact.tex
+\renewcommand{\repExo}{TEC/TEC-05}
+\renewcommand{\td}{14_Sympact}
+\graphicspath{{TEC/TEC-05/14_Sympact/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-05/14_Sympact/14_Sympact.tex}
+
+% --- TEC/TEC-05/15_SympactGalet/15_SympactGalet.tex
+\renewcommand{\repExo}{TEC/TEC-05}
+\renewcommand{\td}{15_SympactGalet}
+\graphicspath{{TEC/TEC-05/15_SympactGalet/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-05/15_SympactGalet/15_SympactGalet.tex}
+
+% --- TEC/TEC-05/16_Poussoir/16_Poussoir.tex
+\renewcommand{\repExo}{TEC/TEC-05}
+\renewcommand{\td}{16_Poussoir}
+\graphicspath{{TEC/TEC-05/16_Poussoir/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-05/16_Poussoir/16_Poussoir.tex}
+
+% --- TEC/TEC-05/17_4Barres/17_4Barres.tex
+\renewcommand{\repExo}{TEC/TEC-05}
+\renewcommand{\td}{17_4Barres}
+\graphicspath{{TEC/TEC-05/17_4Barres/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-05/17_4Barres/17_4Barres.tex}
+
+% --- TEC/TEC-05/18_Maxpid/18_Maxpid.tex
+\renewcommand{\repExo}{TEC/TEC-05}
+\renewcommand{\td}{18_Maxpid}
+\graphicspath{{TEC/TEC-05/18_Maxpid/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-05/18_Maxpid/18_Maxpid.tex}
+
+% --- TEC/TEC-05/19_Graham/19_Graham.tex
+\renewcommand{\repExo}{TEC/TEC-05}
+\renewcommand{\td}{19_Graham}
+\graphicspath{{TEC/TEC-05/19_Graham/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-05/19_Graham/19_Graham.tex}
+
+% --- TEC/TEC-05/20_VariateurBilles/20_VariateurBilles.tex
+\renewcommand{\repExo}{TEC/TEC-05}
+\renewcommand{\td}{20_VariateurBilles}
+\graphicspath{{TEC/TEC-05/20_VariateurBilles/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-05/20_VariateurBilles/20_VariateurBilles.tex}
+
+% --- TEC/TEC-05/49_ElevateurBateaux/49_ElevateurBateaux.tex
+\renewcommand{\repExo}{TEC/TEC-05}
+\renewcommand{\td}{49_ElevateurBateaux}
+\graphicspath{{TEC/TEC-05/49_ElevateurBateaux/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-05/49_ElevateurBateaux/49_ElevateurBateaux.tex}
+
+% --- TEC/TEC-05/50_BancBalafre/50_BancBalafre.tex
+\renewcommand{\repExo}{TEC/TEC-05}
+\renewcommand{\td}{50_BancBalafre}
+\graphicspath{{TEC/TEC-05/50_BancBalafre/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-05/50_BancBalafre/50_BancBalafre.tex}
+
+% --- TEC/TEC-05/64_EPAS/64_EPAS.tex
+\renewcommand{\repExo}{TEC/TEC-05}
+\renewcommand{\td}{64_EPAS}
+\graphicspath{{TEC/TEC-05/64_EPAS/images/}{framework/images/}}
+\proffalse
+\input{TEC/TEC-05/64_EPAS/64_EPAS.tex}
 
 \backmatter
 \printindex
