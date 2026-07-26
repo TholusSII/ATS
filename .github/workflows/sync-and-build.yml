@@ -7,7 +7,7 @@ on:
     paths:
       - .github/workflows/sync-and-build.yml
       - ALL_EXOS/ALL_EXOS.tex
-      - framework/**
+      - Style/exercices_compat.tex
       - tools/**
 
 permissions:
@@ -20,6 +20,8 @@ concurrency:
 env:
   # Révision correspondant au lot DYN.zip fourni.
   EXERCISES_REF: bf8b5cb7d16db996022c1647f22b2203943a922b
+  # Framework officiel xpessoles/Style, complété par exercices_compat.tex.
+  STYLE_REF: dcc5a8ac942668b246087cfd624ecadc8e17af6f
 
 jobs:
   sync-and-build:
@@ -32,17 +34,23 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Récupérer la révision xpessoles correspondant au ZIP
+      - name: Récupérer les révisions sources figées
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf /tmp/PSI_ExercicesCompetences
+          rm -rf /tmp/PSI_ExercicesCompetences /tmp/Style
+
           git init -q /tmp/PSI_ExercicesCompetences
           git -C /tmp/PSI_ExercicesCompetences remote add origin https://github.com/xpessoles/PSI_ExercicesCompetences.git
           git -C /tmp/PSI_ExercicesCompetences fetch --depth 1 origin "$EXERCISES_REF"
           git -C /tmp/PSI_ExercicesCompetences checkout -q --detach FETCH_HEAD
 
-      - name: Synchroniser les dossiers du ZIP
+          git init -q /tmp/Style
+          git -C /tmp/Style remote add origin https://github.com/xpessoles/Style.git
+          git -C /tmp/Style fetch --depth 1 origin "$STYLE_REF"
+          git -C /tmp/Style checkout -q --detach FETCH_HEAD
+
+      - name: Synchroniser les dossiers du ZIP et le framework Style
         shell: bash
         run: |
           set -euo pipefail
@@ -51,19 +59,27 @@ jobs:
             SEQ SLCI STAT SYS TEC scripts xx_Figures
           )
 
-          # CHS provenait d'une synchronisation plus récente et n'appartient pas au ZIP fourni.
+          # CHS provenait d'une synchronisation ultérieure et n'appartient pas au ZIP fourni.
           rm -rf CHS "${source_dirs[@]}"
           for dir in "${source_dirs[@]}"; do
             test -d "/tmp/PSI_ExercicesCompetences/$dir"
             cp -a "/tmp/PSI_ExercicesCompetences/$dir" ./
           done
 
+          # Conserve la couche de compatibilité du recueil et remplace le reste par
+          # le framework officiel issu du répertoire Style.
+          cp Style/exercices_compat.tex /tmp/exercices_compat.tex
+          rm -rf Style framework resources
+          mkdir -p Style
+          rsync -a --exclude='.git/' /tmp/Style/ Style/
+          cp /tmp/exercices_compat.tex Style/exercices_compat.tex
+
           printf '%s\n' \
             '# Sources figées' \
             '' \
-            "- Exercices : xpessoles/PSI_ExercicesCompetences — $EXERCISES_REF" \
-            '- Framework : version autonome dérivée du dossier Style fourni.' \
-            '- La révision des exercices correspond au lot DYN.zip.' \
+            "- Exercices : xpessoles/PSI_ExercicesCompetences - $EXERCISES_REF" \
+            "- Framework : xpessoles/Style - $STYLE_REF" \
+            '- La révision des exercices correspond au lot fourni dans DYN.zip.' \
             > SOURCE_XPESSOLES.md
 
       - name: Appliquer les correctifs minimaux des sources
@@ -124,7 +140,7 @@ jobs:
             ALL_EXOS/*.log
           if-no-files-found: ignore
 
-      - name: Enregistrer les exercices et le résultat
+      - name: Enregistrer les exercices, le framework et le résultat
         if: always()
         shell: bash
         run: |
