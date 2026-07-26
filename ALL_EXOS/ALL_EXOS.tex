@@ -48,6 +48,7 @@
 \newcommand{\repExo}{ALL_EXOS}
 \newcommand{\nomExo}{ALL_EXOS}
 \AtBeginEnvironment{corrige}{\small}
+\proffalse
 \livrettrue
 \collefalse
 \normaltrue
@@ -55,15 +56,30 @@
 \setcounter{cptTD}{1}
 
 % Un identifiant propre à chaque exercice évite les doublons d'ancres hyperref.
+\providecommand{\td}{}
 \providecommand{\exer}[1]{}
 \newcounter{exerciseentry}
+\renewcommand{\theexerciseentry}{\thechapter.\arabic{exerciseentry}}
 \renewcommand{\theHquestion}{\arabic{exerciseentry}.\arabic{question}}
 \renewcommand{\exer}[1]{%
   \refstepcounter{exerciseentry}%
   \setcounter{question}{0}%
-  \subsection*{#1}%
+  \phantomsection%
+  \addcontentsline{toc}{subsection}{\protect\numberline{\theexerciseentry}Exercice}%
+  \par\medskip
+  \begin{tcolorbox}[
+    enhanced,
+    breakable,
+    colback=SIlightblue,
+    colframe=SIblue,
+    boxrule=.8pt,
+    arc=1.5mm,
+    left=3mm,right=3mm,top=2mm,bottom=2mm
+  ]
+    {\large\bfseries\color{SIblue}Exercice \theexerciseentry}\par\smallskip
+    {\bfseries #1}
+  \end{tcolorbox}%
 }
-\providecommand{\td}{}
 
 % Ce fichier est régénéré automatiquement par tools/generate_all_exos.py.
 \input{inputs.tex}
