@@ -92,6 +92,7 @@ def build_master(grouped: dict[str, dict[str, list[Path]]]) -> str:
         "% Ne pas modifier manuellement : relancer le script après ajout d'exercices.",
         "\\documentclass[10pt,a4paper,twoside,openany]{book}",
         "\\usepackage{framework/SI_Exercices}",
+        "\\usepackage{framework/SI_Recueil}",
         "\\renewcommand{\\repStyle}{framework}",
         "\\newcommand{\\discipline}{Sciences industrielles de l'ingénieur}",
         "\\newcommand{\\auteur}{Thomas Lusseau}",
