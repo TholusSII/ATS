@@ -51,13 +51,28 @@ jobs:
           root_file: ALL_EXOS/ALL_EXOS.tex
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
 
+      - name: Conserver le diagnostic LaTeX
+        if: always()
+        run: |
+          mkdir -p ALL_EXOS
+          : > ALL_EXOS/BUILD_ERRORS.txt
+          while IFS= read -r log; do
+            printf '\n===== %s =====\n' "$log" >> ALL_EXOS/BUILD_ERRORS.txt
+            grep -n -E -C 4 '(^!|LaTeX Error|Package .* Error|Undefined control sequence|Emergency stop|Fatal error|not found|File .* not found)' "$log" >> ALL_EXOS/BUILD_ERRORS.txt || true
+            printf '\n----- fin du journal -----\n' >> ALL_EXOS/BUILD_ERRORS.txt
+            tail -n 120 "$log" >> ALL_EXOS/BUILD_ERRORS.txt || true
+          done < <(find . -type f -name '*.log' -print | sort)
+          if [ ! -s ALL_EXOS/BUILD_ERRORS.txt ]; then
+            printf 'Aucun fichier .log trouvé dans l’espace de travail.\n' > ALL_EXOS/BUILD_ERRORS.txt
+          fi
+
       - name: Écrire l'état de compilation
         if: always()
         run: |
           if [ "${{ steps.compile.outcome }}" = "success" ]; then
             printf '# État de compilation\n\n✅ `ALL_EXOS/ALL_EXOS.tex` a été compilé avec succès.\n' > ALL_EXOS/BUILD_STATUS.md
           else
-            printf '# État de compilation\n\n❌ La compilation a échoué. Consulter le journal GitHub Actions ; les sources et le framework ont néanmoins été synchronisés.\n' > ALL_EXOS/BUILD_STATUS.md
+            printf '# État de compilation\n\n❌ La compilation a échoué. Le diagnostic est enregistré dans `ALL_EXOS/BUILD_ERRORS.txt`.\n' > ALL_EXOS/BUILD_STATUS.md
           fi
 
       - name: Enregistrer les dossiers, le framework et le recueil
@@ -79,7 +94,8 @@ jobs:
         with:
           name: journaux-all-exos
           path: |
-            ALL_EXOS/*.log
-            ALL_EXOS/*.fls
-            ALL_EXOS/*.fdb_latexmk
+            **/*.log
+            **/*.fls
+            **/*.fdb_latexmk
+            ALL_EXOS/BUILD_ERRORS.txt
           if-no-files-found: ignore
