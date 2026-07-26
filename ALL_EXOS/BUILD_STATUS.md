@@ -1,3 +1,3 @@
 # État de compilation
 
-❌ La compilation a échoué. Consulter le journal GitHub Actions ; les sources et le framework ont néanmoins été synchronisés.
+❌ La compilation a échoué. Le diagnostic est enregistré dans `ALL_EXOS/BUILD_ERRORS.txt`.
