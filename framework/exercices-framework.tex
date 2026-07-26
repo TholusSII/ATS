@@ -1,0 +1,175 @@
+% Framework autonome pour le recueil ALL_EXOS
+% Compatibilité avec les anciens exercices de la banque SI.
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[french]{babel}
+\RequirePackage{lmodern}
+\RequirePackage[a4paper,inner=22mm,outer=35mm,top=20mm,bottom=20mm,marginparwidth=27mm,marginparsep=5mm]{geometry}
+\RequirePackage{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{grffile}
+\RequirePackage{amsmath,amssymb,mathtools}
+\RequirePackage{stmaryrd}
+\RequirePackage{siunitx}
+\sisetup{locale=FR,per-mode=symbol}
+\RequirePackage{tikz}
+\RequirePackage{circuitikz}
+\RequirePackage{schemabloc}
+\RequirePackage{bodegraph}
+\RequirePackage{tabularx,array,booktabs,longtable,multirow}
+\RequirePackage{multicol}
+\RequirePackage{enumitem}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{fancyhdr}
+\RequirePackage{hyperref}
+\RequirePackage{titlesec}
+\RequirePackage{import}
+\RequirePackage{marginnote}
+\RequirePackage{caption}
+\RequirePackage{float}
+\RequirePackage{makeidx}
+\RequirePackage{xparse}
+\RequirePackage{etoolbox}
+\RequirePackage{esvect}
+\RequirePackage{cancel}
+\RequirePackage{bm}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,chains,decorations.pathmorphing,decorations.markings,shapes,shapes.multipart,patterns,graphs,quotes,babel}
+\makeindex
+
+\definecolor{SIblue}{RGB}{31,78,121}
+\definecolor{SIlightblue}{RGB}{229,240,250}
+\definecolor{SIred}{RGB}{190,0,0}
+\definecolor{SIgray}{RGB}{235,235,235}
+\hypersetup{colorlinks=true,linkcolor=SIblue,urlcolor=SIblue,citecolor=SIblue}
+\pagestyle{fancy}
+\setlength{\headheight}{15pt}
+\fancyhf{}
+\lhead{Sciences industrielles pour l'ingénieur}
+\rhead{Recueil d'exercices}
+\cfoot{\thepage}
+\titleformat{\chapter}[display]{\normalfont\huge\bfseries\color{SIblue}}{\chaptertitlename\ \thechapter}{10pt}{\Huge}
+\titleformat{\section}{\Large\bfseries\color{SIblue}}{}{0pt}{}
+\titleformat{\subsection}{\large\bfseries\color{SIblue}}{}{0pt}{}
+\setlist[itemize]{leftmargin=*,itemsep=2pt,topsep=2pt}
+\setlist[enumerate]{leftmargin=*,itemsep=4pt,topsep=4pt}
+
+% Modes historiques : le recueil affiche les énoncés, sans développés professeur.
+\newif\ifprof \proffalse
+\newif\ifcorrection \correctionfalse
+\newif\ifcolle \collefalse
+\newif\ifnormal \normaltrue
+\newif\ifdifficile \difficilefalse
+\newif\iftdifficile \tdifficilefalse
+\newif\iflivret \livrettrue
+
+% Structure et compétences
+\newcounter{exerciseentry}
+\providecommand{\exer}[1]{\refstepcounter{exerciseentry}\subsection{#1}}
+\newcounter{question}
+\renewcommand{\theHquestion}{\theexerciseentry.\arabic{question}}
+\providecommand{\question}[1]{\stepcounter{question}\par\medskip\noindent\textbf{Question \thequestion.}\enspace #1\par\smallskip}
+\providecommand{\xpComp}[2]{\fcolorbox{SIblue}{SIlightblue}{\scriptsize\bfseries #1--#2}}
+\providecommand{\UPSTIcompetence}[2][]{\fcolorbox{SIblue}{white}{\scriptsize #2}}
+\providecommand{\UPSTIidClasse}{12}
+\providecommand{\repStyle}{framework}
+\providecommand{\rep}[1]{\mathcal R_{#1}}
+\providecommand{\bas}[1]{\mathcal{B}_{#1}}
+\providecommand{\indice}[1]{_{\mathrm{#1}}}
+\providecommand{\degres}{\ensuremath{^\circ}}
+\providecommand{\UniteDegre}{\ensuremath{^{\circ}}}
+\providecommand{\UnitedB}{\,\mathrm{dB}}
+\providecommand{\dd}{\mathop{}\!\mathrm d}
+
+% Figures autrefois en marge : rendues dans une boîte centrée, robuste en recueil.
+\newenvironment{marginfigure}{\begin{figure}[H]\centering\begin{minipage}{.72\linewidth}\centering}{\end{minipage}\end{figure}}
+\renewcommand*{\marginfont}{\footnotesize}
+\setlength{\marginparpush}{5pt}
+
+% Vecteurs, bases et dérivées
+\providecommand{\vect}[1]{\vv{#1}}
+\providecommand{\axe}[2]{\left(#1,\vect{#2}\right)}
+\providecommand{\couple}[2]{\left(#1,\vect{#2}\right)}
+\providecommand{\angl}[2]{\left(\vect{#1},\vect{#2}\right)}
+\providecommand{\quadruplet}[4]{\left(#1;#2,#3,#4\right)}
+\providecommand{\repere}[4]{\left(#1;\vect{#2},\vect{#3},\vect{#4}\right)}
+\providecommand{\base}[3]{\left(\vect{#1},\vect{#2},\vect{#3}\right)}
+\providecommand{\vi}[1]{\vec{\imath}_{#1}}
+\providecommand{\vj}[1]{\vec{\jmath}_{#1}}
+\providecommand{\vk}[1]{\vec{k}_{#1}}
+\providecommand{\vx}[1]{\vec{x}_{#1}}
+\providecommand{\vy}[1]{\vec{y}_{#1}}
+\providecommand{\vz}[1]{\vec{z}_{#1}}
+\providecommand{\vX}[1]{\vect{X_{#1}}}
+\providecommand{\vY}[1]{\vect{Y_{#1}}}
+\providecommand{\vZ}[1]{\vect{Z_{#1}}}
+\providecommand{\vAB}{\vect{AB}}
+\providecommand{\vBA}{\vect{BA}}
+\providecommand{\vBC}{\vect{BC}}
+\providecommand{\vCB}{\vect{CB}}
+\providecommand{\vCA}{\vect{CA}}
+\providecommand{\vAC}{\vect{AC}}
+\providecommand{\vectv}[3]{\vect{V\left(#1,#2/#3\right)}}
+\providecommand{\vectvp}[2]{\vect{V\left(#1/#2\right)}}
+\providecommand{\vectf}[2]{\vect{R\left(#1\rightarrow #2\right)}}
+\providecommand{\vectm}[3]{\vect{\mathcal{M}\left(#1,#2\rightarrow #3\right)}}
+\providecommand{\vectrc}[2]{\vect{R_c\left(#1/#2\right)}}
+\providecommand{\vectmc}[3]{\vect{\sigma\left(#1,#2/#3\right)}}
+\providecommand{\vectrd}[2]{\vect{R_d\left(#1/#2\right)}}
+\providecommand{\vectmd}[3]{\vect{\delta\left(#1,#2/#3\right)}}
+\providecommand{\vectg}[3]{\vect{\Gamma\left(#1,#2/#3\right)}}
+\providecommand{\vectgp}[2]{\vect{\Gamma\left(#1/#2\right)}}
+\providecommand{\vecto}[2]{\vect{\Omega\left(#1/#2\right)}}
+\providecommand{\deriv}[2]{\left.\dfrac{\dd #1}{\dd t}\right|_{#2}}
+\providecommand{\dderiv}[2]{\left.\dfrac{\dd^2 #1}{\dd t^2}\right|_{#2}}
+\providecommand{\thetap}{\dot\theta}
+\providecommand{\thetapp}{\ddot\theta}
+\providecommand{\varphip}{\dot\varphi}
+\providecommand{\varphipp}{\ddot\varphi}
+\providecommand{\lambdap}{\dot\lambda}
+\providecommand{\lambdapp}{\ddot\lambda}
+
+% Torseurs, inertie et puissances
+\providecommand{\torseur}[1]{\left\{#1\right\}}
+\providecommand{\torseurcin}[3]{\left\{\mathcal{#1}\left(#2/#3\right)\right\}}
+\providecommand{\torseurci}[2]{\left\{\mathcal{C}\left(#1/#2\right)\right\}}
+\providecommand{\torseurdyn}[2]{\left\{\mathcal{D}\left(#1/#2\right)\right\}}
+\providecommand{\torseurstat}[3]{\left\{\mathcal{#1}\left(#2\rightarrow #3\right)\right\}}
+\providecommand{\torseurc}[8]{\left\{#1\right\}=\left\{\begin{array}{cc}#2&#5\\#3&#6\\#4&#7\end{array}\right\}_{#8}}
+\providecommand{\torseurl}[3]{\left\{\begin{array}{c}#1\\#2\end{array}\right\}_{#3}}
+\providecommand{\torseurcol}[7]{\left\{\begin{array}{cc}#1&#4\\#2&#5\\#3&#6\end{array}\right\}_{#7}}
+\providecommand{\inertie}[2]{\mathbf I_{#1}(#2)}
+\providecommand{\matinertie}[7]{\left[\begin{array}{ccc}#1&#4&#6\\#4&#2&#5\\#6&#5&#3\end{array}\right]_{#7}}
+\providecommand{\ec}[2]{E_{c}(#1/#2)}
+\providecommand{\pext}[3]{\mathcal{P}\left(#1\rightarrow#2/#3\right)}
+\providecommand{\pint}[3]{\mathcal{P}\left(#1\stackrel{#3}{\leftrightarrow}#2\right)}
+
+% Environnements historiques usuels
+\newtcolorbox{donnees}[1][]{enhanced,breakable,colback=white,colframe=SIblue,title=Données,fonttitle=\bfseries,#1}
+\newtcolorbox{attention}[1][]{enhanced,breakable,colback=orange!8,colframe=orange!80!black,title=Attention,fonttitle=\bfseries,#1}
+\newtcolorbox{methode}[1][]{enhanced,breakable,colback=green!5,colframe=green!45!black,title=Méthode,fonttitle=\bfseries,#1}
+\newenvironment{obj}{\begin{tcolorbox}[enhanced,breakable,colback=SIlightblue,colframe=SIblue,title=Objectif,fonttitle=\bfseries]}{\end{tcolorbox}}
+\newenvironment{rem}{\begin{tcolorbox}[enhanced,breakable,colback=SIgray,colframe=gray,title=Remarque,fonttitle=\bfseries]}{\end{tcolorbox}}
+\newenvironment{corrige}{\par\begingroup\small\color{green!35!black}\textbf{Corrigé.}\ }{\par\endgroup}
+\newenvironment{solution}{\par\begingroup\footnotesize\color{green!35!black}}{\par\endgroup}
+
+% Compatibilité souple : symboles abrégés.
+\providecommand{\R}{\mathbb R}
+\providecommand{\N}{\mathbb N}
+\providecommand{\C}{\mathbb C}
+\providecommand{\e}{\mathrm e}
+\providecommand{\ii}{\mathrm i}
+\providecommand{\semilog}{\operatorname{semilog}}
+\providecommand{\babarv}[1]{\overline{#1}}
+\providecommand{\babard}[1]{\underline{#1}}
+\providecommand{\ier}{\textsuperscript{er}}
+\providecommand{\ieme}{\textsuperscript{e}}
+
+% Palette historique du répertoire Style.
+\definecolor{bleuxp}{RGB}{0,84,127}
+\definecolor{bleuxpc}{RGB}{234,243,245}
+\definecolor{orangexp}{RGB}{253,173,87}
+\definecolor{orangexpc}{RGB}{254,230,204}
+\definecolor{violetxp}{RGB}{128,0,128}
+\definecolor{violetxpc}{RGB}{242,230,242}
+\definecolor{rougexp}{RGB}{238,104,93}
+\definecolor{rougexpc}{RGB}{247,184,179}
