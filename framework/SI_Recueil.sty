@@ -1,0 +1,14 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{SI_Recueil}[2026/07/26 Adaptations pour le recueil global]
+\RequirePackage{xparse}
+
+% Les anciens exercices utilisent parfois des environnements et des conditionnels
+% à l'intérieur de \marginnote. Cette construction était tolérée par leur mise en
+% page kaobook, mais elle n'est pas robuste dans un assemblage de plusieurs centaines
+% de fichiers. Le recueil global masque donc les notes de marge ; les sources de chaque
+% exercice restent inchangées et continuent de les afficher lors d'une compilation isolée.
+\RenewDocumentCommand{\marginnote}{o m o}{}
+
+% Le compteur question est remis à zéro à chaque exercice. On rend l'ancre hyperref
+% unique en lui ajoutant le numéro de section afin d'éviter les destinations dupliquées.
+\renewcommand{\theHquestion}{\thesection.\arabic{question}}
