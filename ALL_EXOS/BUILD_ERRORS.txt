@@ -1,0 +1,130 @@
+
+===== ./ALL_EXOS.log =====
+1956- 103284 multiletter control sequences out of 15000+600000
+1957- 699843 words of font info for 135 fonts, out of 8000000 for 9000
+1958- 1141 hyphenation exceptions out of 8191
+1959- 99i,11n,131p,5130b,1076s stack positions out of 10000i,1000n,20000p,200000b,200000s
+1960:./CHS/CHS-03-HS/64_EPAS/64_EPAS.tex:121:  ==> Fatal error occurred, no output P
+1961-DF file produced!
+
+----- fin du journal -----
+Chapitre 1.
+(./CHS/CHS-03-HS/64_EPAS/64_EPAS.tex [2
+
+]
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 6
+.
+
+(/opt/texlive/texdir/texmf-dist/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 6
+.
+
+(/opt/texlive/texdir/texmf-dist/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
+6.
+
+(/opt/texlive/texdir/texmf-dist/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
+6.
+
+(/opt/texlive/texdir/texmf-dist/tex/latex/lm/omxlmex.fd
+File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <14.4> on input line 6.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 6.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 6.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 6.
+
+(/opt/texlive/texdir/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+(/opt/texlive/texdir/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 6.
+
+(/opt/texlive/texdir/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+(/opt/texlive/texdir/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 6.
+
+
+(/opt/texlive/texdir/texmf-dist/tex/latex/jknapltx/ursfs.fd
+File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
+)
+LaTeX Font Info:    Trying to load font information for U+esvect on input line 
+6.
+
+(/opt/texlive/texdir/texmf-dist/tex/latex/esvect/uesvect.fd
+File: uesvect.fd 
+)
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 6.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\star' on input line 6.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 6.
+
+Package marginnote Info: Suggest that margin note 5.1 will be on
+(marginnote)             absolute page 5.
+(marginnote)             This may be wrong on input line 9.
+Package marginnote Info: xpos seems to be \@mn@currxpos  on input line 9.
+<CHS/CHS-03-HS/64_EPAS/images/64_01.png, id=73, 242.1045pt x 176.5797pt>
+File: CHS/CHS-03-HS/64_EPAS/images/64_01.png Graphic file (type png)
+<use CHS/CHS-03-HS/64_EPAS/images/64_01.png>
+Package pdftex.def Info: CHS/CHS-03-HS/64_EPAS/images/64_01.png  used on input 
+line 27.
+(pdftex.def)             Requested size: 207.41919pt x 151.28703pt.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 28.
+<CHS/CHS-03-HS/64_EPAS/images/64_02.png, id=74, 155.6214pt x 178.7478pt>
+File: CHS/CHS-03-HS/64_EPAS/images/64_02.png Graphic file (type png)
+<use CHS/CHS-03-HS/64_EPAS/images/64_02.png>
+Package pdftex.def Info: CHS/CHS-03-HS/64_EPAS/images/64_02.png  used on input 
+line 32.
+(pdftex.def)             Requested size: 207.41919pt x 238.2607pt.
+Package marginnote Info: Suggest that margin note 5.2 will be on
+(marginnote)             absolute page 5.
+(marginnote)             This may be wrong on input line 121.
+Package marginnote Info: xpos seems to be \@mn@currxpos  on input line 121.
+Excluding 'solution' comment.
+./CHS/CHS-03-HS/64_EPAS/64_EPAS.tex:121: Argument of \xComment has an extra }.
+<inserted text> 
+                \par 
+l.121 \fi
+         
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+ 
+Here is how much of TeX's memory you used:
+ 75127 strings out of 467168
+ 1891858 string characters out of 5411585
+ 2778994 words of memory out of 5000000
+ 103284 multiletter control sequences out of 15000+600000
+ 699843 words of font info for 135 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 99i,11n,131p,5130b,1076s stack positions out of 10000i,1000n,20000p,200000b,200000s
+./CHS/CHS-03-HS/64_EPAS/64_EPAS.tex:121:  ==> Fatal error occurred, no output P
+DF file produced!
