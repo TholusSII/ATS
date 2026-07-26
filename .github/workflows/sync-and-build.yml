@@ -1,4 +1,5 @@
 name: Synchroniser et compiler les exercices
+# Exécution finale depuis la tête courante de main.
 
 on:
   workflow_dispatch:
