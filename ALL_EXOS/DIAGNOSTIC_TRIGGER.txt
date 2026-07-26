@@ -1,0 +1,1 @@
+Diagnostic complet du recueil ALL_EXOS avec conservation des erreurs LaTeX.
