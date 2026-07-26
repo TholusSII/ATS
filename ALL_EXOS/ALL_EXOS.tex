@@ -1,29 +1,39 @@
 \documentclass[11pt,a4paper,openany]{book}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,mathtools,stmaryrd}
+\usepackage{xparse,etoolbox}
+\usepackage{tikz,pgfplots}
+\usepackage{tabularx,array,booktabs,longtable}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{makeidx}
+
+\newcommand{\discipline}{Sciences Industrielles de l'Ingénieur}
+\newcommand{\auteur}{Thomas Lusseau}
 \newcommand{\repRel}{..}
-\input{../framework/exercices-framework.tex}
+\newcommand{\repStyle}{\repRel/Style}
+\makeatletter
+\def\input@path{{../Style/}}
+\makeatother
 
-% En recueil global, les anciennes notes de marge sont masquées : elles restent
-% disponibles lors de la compilation isolée de chaque exercice.
-\RenewDocumentCommand{\marginnote}{o m o}{}
+% Framework SI historique fourni dans le répertoire Style.
+\input{\repRel/Style/packages_v2}
+\input{\repRel/Style/macros_SII_v2}
+\input{\repRel/Style/environment_v2}
+\usepackage{UPSTI_Pedagogique}
 
-% Sous-titre robuste pour chaque exercice, même si le titre historique contient
-% des conditionnels ou des commandes non admises dans un argument mobile.
-\RenewDocumentCommand{\exer}{m}{%
-  \clearpage
-  \refstepcounter{section}%
-  \addcontentsline{toc}{section}{\protect\numberline{\thesection}Exercice}%
-  \markright{Exercice \thesection}%
-  \begin{tcolorbox}[
-    enhanced,breakable,
-    colback=SIlightblue,colframe=SIblue,
-    boxrule=.8pt,arc=1.5mm,
-    left=3mm,right=3mm,top=2mm,bottom=2mm]
-    {\Large\bfseries\color{SIblue}Exercice \thesection}\par\medskip
-    {\large\bfseries #1}
-  \end{tcolorbox}%
-  \setcounter{question}{0}%
-}
-\renewcommand{\theHquestion}{\theHsection.\arabic{question}}
+% Adaptations minimales pour compiler tous les exercices dans un seul ouvrage.
+\input{\repRel/Style/exercices_compat}
+
+\graphicspath{{images/}{./}}
+\makeindex
 
 \title{Recueil complet d'exercices\\de Sciences industrielles pour l'ingénieur}
 \author{Thomas Lusseau}
@@ -35,11 +45,40 @@
 \tableofcontents
 
 \mainmatter
-\providecommand{\repExo}{ALL_EXOS}
-\providecommand{\nomExo}{ALL_EXOS}
-\providecommand{\td}{}
+\newcommand{\repExo}{ALL_EXOS}
+\newcommand{\nomExo}{ALL_EXOS}
+\AtBeginEnvironment{corrige}{\small}
+\proffalse
+\livrettrue
+\collefalse
+\normaltrue
+\setcounter{cptApplication}{1}
+\setcounter{cptTD}{1}
 
-% Fichier généré automatiquement par tools/generate_all_exos.py.
+% Un identifiant propre à chaque fichier évite les doublons d'ancres hyperref.
+\providecommand{\td}{}
+\providecommand{\exer}[1]{}
+\newcounter{exerciseentry}[chapter]
+\renewcommand{\theexerciseentry}{\thechapter.\arabic{exerciseentry}}
+\renewcommand{\theHquestion}{\theHchapter.\arabic{exerciseentry}.\arabic{question}}
+\newcommand{\ExerciseTitle}[1]{%
+  \par\medskip
+  \begin{tcolorbox}[
+    enhanced,
+    breakable,
+    colback=SIlightblue,
+    colframe=SIblue,
+    boxrule=.8pt,
+    arc=1.5mm,
+    left=3mm,right=3mm,top=2mm,bottom=2mm
+  ]
+    {\large\bfseries\color{SIblue}Exercice \theexerciseentry}\par\smallskip
+    {\bfseries #1}
+  \end{tcolorbox}%
+}
+\renewcommand{\exer}[1]{\ExerciseTitle{#1}}
+
+% Ce fichier est régénéré automatiquement par tools/generate_all_exos.py.
 \input{inputs.tex}
 
 \backmatter
