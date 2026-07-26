@@ -1,0 +1,127 @@
+\normalfalse \difficiletrue \tdifficilefalse
+\correctiontrue
+%\UPSTIidClasse{12} % 11 sup, 12 spé
+%\newcommand{\UPSTIidClasse}{12}
+
+\exer{Mouvement RT -- RSG  $\star\star$ \label{C1:05:09}}
+\setcounter{question}{0}\marginnote{\xpComp{DYN}{05}}%\UPSTIcompetence{B2-14}
+%\UPSTIcompetence[2]{C1-05}
+\index{Compétence B2-14}
+\index{Compétence C1-05}
+\index{Principe fondamental de la dynamique}
+\index{PFD}
+\index{Mécanisme à 1 rotations, 1 translation et RSG}
+\index{Culbuto}
+\ifcorrection
+\else
+\marginnote{\textbf{Pas de corrigé pour cet exercice.}}
+\fi
+
+\ifprof
+\else
+Soit le mécanisme suivant. On a $\vect{IA}=R\vect{j_0}$ et $\vect{AB}=\ell_2\vect{i_1}$. De plus $R=\SI{15}{mm}$.
+On fait l'hypothèse de roulement sans glissement au point $I$. De plus :
+\begin{itemize}
+\item $G_1$ désigne le centre d'inertie de \textbf{1} tel que $\vect{AG_1}=-\ell\vect{i_1}$, on note $m_1$ la masse de \textbf{1};% et $\inertie{G_1}{1}=\matinertie{A_1}{B_1}{C_1}{0}{0}{0}{\bas{1}}$; 
+\item $G_2=B$ désigne le centre d'inertie de \textbf{2}, on note $m_2$ la masse de \textbf{2}.% et $\inertie{G_2}{2}=\matinertie{A_2}{B_2}{C_2}{0}{0}{0}{\bas{2}}$.
+\end{itemize}
+Un ressort exerce une action mécanique entre les points $A$ et $B$. 
+
+\fi
+
+
+\ifprof
+\begin{marginfigure}
+\includegraphics[width=\linewidth]{09_RT_RSG_01}
+\end{marginfigure}
+\else
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.7\linewidth]{09_RT_RSG_01}
+\end{figure}
+\fi
+
+
+\question{Réaliser le graphe d'analyse en faisant apparaître l'ensemble des actions mécaniques.}
+\ifprof
+\begin{marginfigure}
+\includegraphics[width=\linewidth]{09_RT_RSG_cor_01}
+\end{marginfigure}
+
+\else
+\fi
+
+\question{Proposer une démarche permettant de déterminer les loi de mouvement de \textbf{1} et de \textbf{2} par rapport à~$\rep{0}$.}
+\ifprof
+
+Le système posède deux mobilités : 
+\begin{itemize}
+\item translation de 1 par rapport à 2 ($\lambda$);
+\item rotation de l'ensemble \{1+2\} autour du point $I$ (le roulement sans glissement permet d'écrire une relation entre la rotation de paramètre $\theta$ et le déplacement suivant $\vi{0}$.
+\end{itemize}
+
+On en déduit la stratégie suivante : 
+\begin{itemize}
+\item Première loi de mouvement : 
+\begin{itemize}
+\item on isole 2,
+\item BAME : 
+\begin{itemize}
+\item $\torseurstat{T}{1}{2}$, 
+\item $\torseurstat{T}{1_{\text{ressort}}}{2}$ ($\vectf{1}{2}\cdot \vi{1}= 0$ et $\vectf{1_{\text{ressort}}}{2}\cdot \vi{1}= 0$)
+\item $\torseurstat{T}{\text{Pesanteur}}{2}$;
+\end{itemize}
+\item on réalise un théorème de la résultante dynamique en projection suivant $\vi{1}$. 
+\end{itemize}
+\item Seconde loi de mouvement : 
+\begin{itemize}
+\item on isole \{1+2\};
+\item BAME :
+\begin{itemize} 
+\item $\torseurstat{T}{0}{1}$ ($\vectm{I}{0}{1}\cdot \vk{0}= 0$), 
+\item $\torseurstat{T}{\text{Pesanteur}}{1}$,
+\item  $\torseurstat{T}{\text{Pesanteur}}{2}$.
+\end{itemize}
+\item on réalise un théorème du moment dynamique en $I$ en projection suivant $\vk{0}$. 
+\end{itemize}
+\end{itemize}
+\else
+\fi
+
+\ifcolle
+Les matrice d'inertie sont diagonales au centre d'inertie des solides.
+\question{Déterminer les lois de mouvement.}
+\ifprof
+On montre que :
+\begin{itemize}
+\item $\vectv{B}{2}{0} = \lambdap\vi{1} + \thetap\left(\lambda(t)\vj{1}-R\vi{0} \right)$
+\item $\vectg{B}{2}{0}  = \lambdapp(t)\vi{1} %+\lambdap(t)\thetap\vj{1} 
++ \thetapp(t)\left(\lambda(t)\vj{1}-R\vi{0} \right)
++ \thetap(t)\left(2\lambdap(t)\vj{1}-\lambda(t)\thetap\vi{1} \right)
+$
+\item $\vectrd{2}{0} =  m_2 \left( \lambdapp(t)\vi{1} +\lambdap(t)\thetap\vj{1} 
++ \thetapp(t)\left(\lambda(t)\vj{1}-R\vi{0} \right)
++ \thetap(t)\left(\lambdap(t)\vj{1}-\lambda(t)\thetap\vi{1} \right)\right)$
+\item $\vectmd{I}{2}{0} \cdot \vect{k_0} =     
+-m_2 R\lambdapp(t)\cos\theta 
++m_2 R\lambdap(t)\thetap\sin\theta 
+ +m_2 R^2\thetapp(t) 
++ m_2 R\thetap(t)\lambdap(t)\sin\theta
++m_2 R\thetap^2(t)\lambda(t)\cos\theta 
++ 2 m_2  \lambda(t)  \lambdap(t)\thetap
++  m_2  \thetapp(t) \lambda(t)^2 +C_2\thetapp$
+\end{itemize}
+\else
+\fi
+\else
+
+
+\fi
+
+\ifprof
+\else
+
+\marginnote{Corrigé voir \ref{C1:05:09}.}
+
+\fi

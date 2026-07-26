@@ -1,0 +1,65 @@
+Nombre total d'exercices : 388
+Nombre de domaines : 15
+
+CHS: 9 exercices
+  - CHS-03-HS: 9
+CIN: 81 exercices
+  - CIN-01-Parametrage: 33
+  - CIN-02-VitesseAcceleration: 28
+  - CIN-03-Transmetteurs: 20
+COR: 8 exercices
+  - COR-02-P: 1
+  - COR-03-PI: 6
+  - COR-04-AP: 1
+DYN: 84 exercices
+  - DYN-01: 6
+  - DYN-03-Inertie: 10
+  - DYN-04-TorseurDynamique: 15
+  - DYN-04-TorseurDynamique / STOCK: 16
+  - DYN-05-Methode: 10
+  - DYN-05-Methode / STOCK: 8
+  - DYN-06-PFD: 11
+  - DYN-06-PFD / STOCK: 8
+ELEC: 7 exercices
+  - ELEC-01: 5
+  - ELEC-04-MCC: 1
+  - ELEC-05-MA: 1
+GEO: 32 exercices
+  - GEO-01: 19
+  - GEO-03: 13
+NUM: 3 exercices
+  - NUM-03: 3
+PERF: 9 exercices
+  - PERF-02-Marges: 4
+  - PERF-05-Precistion-TVF: 2
+  - PERF-06-Precision: 3
+PPM: 30 exercices
+  - PPM-01: 19
+  - PPM-02: 5
+  - PPM-03: 6
+RDM: 17 exercices
+  - RDM-01-Cohesion: 9
+  - RDM-02-Traction: 1
+  - RDM-03-Torsion: 1
+  - RDM-04-Flexion: 1
+  - RDM-05-Deformation: 5
+SEQ: 1 exercices
+  - SEQ-03: 1
+SLCI: 28 exercices
+  - SLCI-02-FT: 1
+  - SLCI-03-SchemaBlocs: 15
+  - SLCI-07-Ordre12: 6
+  - SLCI-11-DiagrammeBode: 6
+STAT: 34 exercices
+  - STAT-02-Frottement: 2
+  - STAT-02-Global: 6
+  - STAT-02-Local: 5
+  - STAT-03-Demarche: 12
+  - STAT-03-Demarche / STOCK: 9
+SYS: 11 exercices
+  - SYS-01 / SYS-01-ChaineFonctionnelle: 3
+  - SYS-01 / SYS-01-ChainePuissance: 5
+  - SYS-01 / SYS-01_ChaineInfo: 3
+TEC: 34 exercices
+  - TEC-04-Meq-Jeq: 20
+  - TEC-05: 14
