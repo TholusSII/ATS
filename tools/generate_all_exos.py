@@ -35,22 +35,24 @@ def tex_escape(text: str) -> str:
     return "".join(replacements.get(char, char) for char in text)
 
 
-def is_exercise_fragment(path: Path) -> bool:
+def inspect_exercise(path: Path) -> bool | None:
+    """Retourne True si le fichier appelle \exer, False s'il faut un titre de repli."""
     relative = path.relative_to(ROOT)
     if len(relative.parts) < 4:
-        return False
+        return None
     if relative.parts[0] in EXCLUDED_TOP_LEVEL:
-        return False
+        return None
     if path.name.endswith("_old.tex") or "_Colle_" in path.name:
-        return False
+        return None
     try:
         content = path.read_text(encoding="utf-8", errors="ignore")
     except OSError:
-        return False
-    return (
-        r"\documentclass" not in content
-        and (r"\exer" in content or r"\subsection*" in content)
-    )
+        return None
+    if r"\documentclass" in content:
+        return None
+    if r"\exer" not in content and r"\subsection*" not in content:
+        return None
+    return r"\exer" in content
 
 
 def sort_key(path: Path) -> tuple[str, ...]:
@@ -58,10 +60,13 @@ def sort_key(path: Path) -> tuple[str, ...]:
 
 
 def main() -> None:
-    exercises = sorted(
-        (path for path in ROOT.rglob("*.tex") if is_exercise_fragment(path)),
-        key=sort_key,
-    )
+    exercises: list[tuple[Path, bool]] = []
+    for path in ROOT.rglob("*.tex"):
+        has_exer = inspect_exercise(path)
+        if has_exer is not None:
+            exercises.append((path, has_exer))
+    exercises.sort(key=lambda item: sort_key(item[0]))
+
     if len(exercises) != EXPECTED_EXERCISES:
         raise SystemExit(
             f"Nombre d'exercices inattendu : {len(exercises)} "
@@ -76,7 +81,7 @@ def main() -> None:
     current_chapter: str | None = None
     current_section: str | None = None
 
-    for source in exercises:
+    for source, has_exer in exercises:
         relative = source.relative_to(ROOT)
         chapter, section = relative.parts[0], relative.parts[1]
 
@@ -91,13 +96,19 @@ def main() -> None:
 
         parent = relative.parent.as_posix()
         source_path = relative.with_suffix("").as_posix()
+        fallback_title = tex_escape(relative.parent.name)
         lines.extend(
             [
+                r"\refstepcounter{exerciseentry}",
+                r"\setcounter{question}{0}",
+                r"\phantomsection",
+                rf"\addcontentsline{{toc}}{{subsection}}{{\protect\numberline{{\theexerciseentry}}{fallback_title}}}",
                 rf"\graphicspath{{{{../{parent}/images/}}{{../{parent}/}}{{../Style/png/}}}}",
-                rf"\input{{../{source_path}}}",
-                "",
             ]
         )
+        if not has_exer:
+            lines.append(rf"\ExerciseTitle{{{fallback_title}}}")
+        lines.extend([rf"\input{{../{source_path}}}", ""])
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text("\n".join(lines), encoding="utf-8")
