@@ -2,57 +2,102 @@ name: Synchroniser et compiler les exercices
 
 on:
   workflow_dispatch:
-  pull_request:
-    types: [opened, reopened, synchronize]
-    branches: [main]
   push:
     branches: [main]
     paths:
       - .github/workflows/sync-and-build.yml
+      - ALL_EXOS/ALL_EXOS.tex
+      - Style/exercices_compat.tex
+      - tools/**
 
 permissions:
   contents: write
 
+concurrency:
+  group: exercices-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  # Révision correspondant au lot DYN.zip fourni.
+  EXERCISES_REF: bf8b5cb7d16db996022c1647f22b2203943a922b
+  # Framework officiel xpessoles, avec les mises à jour récentes.
+  STYLE_REF: dcc5a8ac942668b246087cfd624ecadc8e17af6f
+
 jobs:
   sync-and-build:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
-    env:
-      TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
+    timeout-minutes: 180
 
     steps:
       - name: Récupérer le dépôt Exercices
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: ${{ env.TARGET_BRANCH }}
 
-      - name: Récupérer la source xpessoles
+      - name: Récupérer les révisions sources figées
+        shell: bash
         run: |
-          rm -rf /tmp/PSI_ExercicesCompetences
-          git clone --depth 1 https://github.com/xpessoles/PSI_ExercicesCompetences.git /tmp/PSI_ExercicesCompetences
+          set -euo pipefail
 
-      - name: Copier les dossiers d'exercices
+          rm -rf /tmp/PSI_ExercicesCompetences /tmp/Style
+
+          git init -q /tmp/PSI_ExercicesCompetences
+          git -C /tmp/PSI_ExercicesCompetences remote add origin https://github.com/xpessoles/PSI_ExercicesCompetences.git
+          git -C /tmp/PSI_ExercicesCompetences fetch --depth 1 origin "$EXERCISES_REF"
+          git -C /tmp/PSI_ExercicesCompetences checkout -q --detach FETCH_HEAD
+
+          git init -q /tmp/Style
+          git -C /tmp/Style remote add origin https://github.com/xpessoles/Style.git
+          git -C /tmp/Style fetch --depth 1 origin "$STYLE_REF"
+          git -C /tmp/Style checkout -q --detach FETCH_HEAD
+
+      - name: Synchroniser les dossiers du ZIP et le framework Style
+        shell: bash
         run: |
-          rsync -a \
-            --exclude='.git/' \
-            --exclude='.github/' \
-            --exclude='ALL_EXOS/' \
-            /tmp/PSI_ExercicesCompetences/ ./
+          set -euo pipefail
 
-      - name: Générer ALL_EXOS
-        run: python3 scripts/generate_all_exos.py
+          source_dirs=(
+            CIN COR DYN ELEC FULL_PDF GEO NUM PERF PPM RDM
+            SEQ SLCI STAT SYS TEC scripts xx_Figures
+          )
+
+          # Retire aussi CHS, ajouté par une synchronisation précédente sur la branche
+          # courante de xpessoles mais absent du ZIP fourni.
+          rm -rf CHS "${source_dirs[@]}"
+
+          for dir in "${source_dirs[@]}"; do
+            test -d "/tmp/PSI_ExercicesCompetences/$dir"
+            cp -a "/tmp/PSI_ExercicesCompetences/$dir" ./
+          done
+
+          # Conserve notre couche de compatibilité, puis remplace le reste par le
+          # framework officiel xpessoles/Style.
+          cp Style/exercices_compat.tex /tmp/exercices_compat.tex
+          rm -rf Style framework resources
+          mkdir -p Style
+          rsync -a --exclude='.git/' /tmp/Style/ Style/
+          cp /tmp/exercices_compat.tex Style/exercices_compat.tex
+
+      - name: Appliquer les correctifs minimaux des sources
+        run: python3 tools/patch_exercises.py
+
+      - name: Générer le fichier maître ALL_EXOS
+        run: python3 tools/generate_all_exos.py
 
       - name: Compiler le recueil TeX
         id: compile
         continue-on-error: true
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: ALL_EXOS/ALL_EXOS.tex
+          working_directory: ALL_EXOS
+          root_file: ALL_EXOS.tex
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+          latexmk_shell_escape: true
+          texlive_version: 2025
 
       - name: Conserver le diagnostic LaTeX
         if: always()
+        shell: bash
         run: |
           mkdir -p ALL_EXOS
           : > ALL_EXOS/BUILD_ERRORS.txt
@@ -60,7 +105,7 @@ jobs:
             printf '\n===== %s =====\n' "$log" >> ALL_EXOS/BUILD_ERRORS.txt
             grep -n -E -C 4 '(^!|LaTeX Error|Package .* Error|Undefined control sequence|Emergency stop|Fatal error|not found|File .* not found)' "$log" >> ALL_EXOS/BUILD_ERRORS.txt || true
             printf '\n----- fin du journal -----\n' >> ALL_EXOS/BUILD_ERRORS.txt
-            tail -n 120 "$log" >> ALL_EXOS/BUILD_ERRORS.txt || true
+            tail -n 160 "$log" >> ALL_EXOS/BUILD_ERRORS.txt || true
           done < <(find . -type f -name '*.log' -print | sort)
           if [ ! -s ALL_EXOS/BUILD_ERRORS.txt ]; then
             printf 'Aucun fichier .log trouvé dans l’espace de travail.\n' > ALL_EXOS/BUILD_ERRORS.txt
@@ -68,6 +113,7 @@ jobs:
 
       - name: Écrire l'état de compilation
         if: always()
+        shell: bash
         run: |
           if [ "${{ steps.compile.outcome }}" = "success" ]; then
             printf '# État de compilation\n\n✅ `ALL_EXOS/ALL_EXOS.tex` a été compilé avec succès.\n' > ALL_EXOS/BUILD_STATUS.md
@@ -75,8 +121,9 @@ jobs:
             printf '# État de compilation\n\n❌ La compilation a échoué. Le diagnostic est enregistré dans `ALL_EXOS/BUILD_ERRORS.txt`.\n' > ALL_EXOS/BUILD_STATUS.md
           fi
 
-      - name: Enregistrer les dossiers, le framework et le recueil
+      - name: Enregistrer les exercices, le framework et le PDF
         if: always()
+        shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -84,18 +131,18 @@ jobs:
           if git diff --cached --quiet; then
             echo "Aucun changement à enregistrer."
           else
-            git commit -m "Synchroniser les exercices xpessoles et générer ALL_EXOS [skip ci]"
-            git push origin "HEAD:${TARGET_BRANCH}"
+            git commit -m "Synchroniser DYN et compiler ALL_EXOS [skip ci]"
+            git push origin HEAD:main
           fi
 
-      - name: Publier les journaux de compilation
+      - name: Publier le PDF et les journaux
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: journaux-all-exos
+          name: all-exos
           path: |
-            **/*.log
-            **/*.fls
-            **/*.fdb_latexmk
+            ALL_EXOS/ALL_EXOS.pdf
+            ALL_EXOS/BUILD_STATUS.md
             ALL_EXOS/BUILD_ERRORS.txt
+            ALL_EXOS/*.log
           if-no-files-found: ignore
