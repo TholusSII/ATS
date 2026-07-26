@@ -2,6 +2,9 @@ name: Synchroniser et compiler les exercices
 
 on:
   workflow_dispatch:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches: [main]
   push:
     branches: [main]
     paths:
@@ -14,12 +17,15 @@ jobs:
   sync-and-build:
     runs-on: ubuntu-latest
     timeout-minutes: 120
+    env:
+      TARGET_BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
 
     steps:
       - name: Récupérer le dépôt Exercices
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ env.TARGET_BRANCH }}
 
       - name: Récupérer la source xpessoles
         run: |
@@ -51,7 +57,7 @@ jobs:
           if [ "${{ steps.compile.outcome }}" = "success" ]; then
             printf '# État de compilation\n\n✅ `ALL_EXOS/ALL_EXOS.tex` a été compilé avec succès.\n' > ALL_EXOS/BUILD_STATUS.md
           else
-            printf '# État de compilation\n\n❌ La première compilation a échoué. Consulter le journal GitHub Actions ; les sources et le framework ont néanmoins été synchronisés.\n' > ALL_EXOS/BUILD_STATUS.md
+            printf '# État de compilation\n\n❌ La compilation a échoué. Consulter le journal GitHub Actions ; les sources et le framework ont néanmoins été synchronisés.\n' > ALL_EXOS/BUILD_STATUS.md
           fi
 
       - name: Enregistrer les dossiers, le framework et le recueil
@@ -64,7 +70,7 @@ jobs:
             echo "Aucun changement à enregistrer."
           else
             git commit -m "Synchroniser les exercices xpessoles et générer ALL_EXOS [skip ci]"
-            git push origin main
+            git push origin "HEAD:${TARGET_BRANCH}"
           fi
 
       - name: Publier les journaux de compilation
