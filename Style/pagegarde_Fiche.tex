@@ -1,0 +1,76 @@
+\pagestyle{empty}
+
+
+%%%%%%%% PAGE DE GARDE FICHE
+
+\begin{tikzpicture}[remember picture,overlay]
+\node at (current page.north west)
+{\begin{tikzpicture}[remember picture,overlay]
+\draw[anchor=west] (-2cm,\xxYCartouche) node [line width=2pt,rounded corners=15pt,draw=bleuxp,fill=white,fill opacity=0.6,inner sep=40pt]{\strut\makebox[22cm]{}};
+\draw[anchor=west] (1cm,\xxYCartouche) node {\huge\sffamily\bfseries\color{black} %
+\begin{minipage}{1cm}
+\rotatebox{90}{\LARGE\sffamily\textsc{\color{bleuxp}\textbf{\xxnumpartie}}}
+\end{minipage} \hfill
+\begin{minipage}[c]{14cm}
+\begin{titrepartie}
+\begin{flushright}
+\renewcommand{\baselinestretch}{1.1} 
+\large\sffamily\textsc{\textbf{\xxpartie} \\} 
+
+\vspace{.2cm}
+
+\normalsize\sffamily\textsc{\textbf{\xxnumchapitre -- \xxchapitre}}
+\renewcommand{\baselinestretch}{1} 
+\end{flushright}
+\end{titrepartie}
+\end{minipage} \hfill
+\begin{minipage}[c]{3.5cm}
+{\large\sffamily\textsc{\textbf{\color{bleuxp} \discipline}}}
+\end{minipage} 
+ };
+\end{tikzpicture}};
+\end{tikzpicture}
+
+\iflivret % SI LIVRET
+\begin{tikzpicture}[overlay]
+\node[shape=rectangle, 
+      rounded corners = .25 cm,
+	  draw= bleuxp,
+	  line width=2pt, 
+	  fill = bleuxp!10,
+	  minimum width  = 2.5cm,
+	  minimum height = 2.5cm,] at (18.5cm,\xxYongletGarde) {};
+\node at (17.9cm,\xxYongletGarde) {\rotatebox{90}{\textsf{\textbf{\large\color{bleuxp}{\classe}}}}};
+%{};
+\end{tikzpicture}
+\else  % SI PAS LIVRET
+\iftd %% SI TD et PAS LIVRET
+\begin{tikzpicture}[overlay]
+\node[shape=rectangle, 
+      rounded corners = .25 cm,
+	  draw= bleuxp,
+	  line width=2pt, 
+	  fill = bleuxp!10,
+	  minimum width  = 2.5cm,
+	  minimum height = 2.5cm,] at (18.6cm,\xxYOnget) {}; %% 0.9 par défaut
+\node at (18cm,\xxYOnget) {\rotatebox{90}{\textsf{\textbf{\large\color{bleuxp}{\classe}}}}};
+%{};
+\end{tikzpicture}
+
+\else % FIN DU SI TD PAS LIVRET 
+\begin{tikzpicture}[overlay]
+\node[shape=rectangle, 
+      rounded corners = .25 cm,
+	  draw= bleuxp,
+	  line width=2pt, 
+	  fill = bleuxp!10,
+	  minimum width  = 2.5cm,
+%	  minimum height = 2.5cm,] at (18.5cm,1.1cm) {}; % \xxYOnget 0.5
+	  minimum height = 2.5cm,] at (18.6cm,.5cm) {};
+\node at (18cm,.5cm) {\rotatebox{90}{\textsf{\textbf{\large\color{bleuxp}{\classe}}}}};
+%{};
+\end{tikzpicture}
+\fi
+\fi
+
+

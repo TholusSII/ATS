@@ -1,130 +1,387 @@
 
-===== ./ALL_EXOS.log =====
-1956- 103284 multiletter control sequences out of 15000+600000
-1957- 699843 words of font info for 135 fonts, out of 8000000 for 9000
-1958- 1141 hyphenation exceptions out of 8191
-1959- 99i,11n,131p,5130b,1076s stack positions out of 10000i,1000n,20000p,200000b,200000s
-1960:./CHS/CHS-03-HS/64_EPAS/64_EPAS.tex:121:  ==> Fatal error occurred, no output P
-1961-DF file produced!
+===== ./ALL_EXOS/ALL_EXOS.log =====
+3725-Package pdftex.def Info: ../DYN/DYN-01/01_T/images/01_T_01.png  used on input l
+3726-ine 25.
+3727-(pdftex.def)             Requested size: 363.9709pt x 266.92656pt.
+3728-
+3729-
+3730:../DYN/DYN-01/01_T/01_T.tex:37: Package xcolor Error: Undefined color `White'.
+3731-
+3732-See the xcolor package documentation for explanation.
+3733-Type  H <return>  for immediate help.
+3734- ...                                              
+3735-                                                  
+--
+3746- 2998236 words of memory out of 5000000
+3747- 108600 multiletter control sequences out of 15000+600000
+3748- 753484 words of font info for 281 fonts, out of 8000000 for 9000
+3749- 1141 hyphenation exceptions out of 8191
+3750- 88i,31n,134p,5140b,1543s stack positions out of 10000i,1000n,20000p,200000b,200000s
+3751:../DYN/DYN-01/01_T/01_T.tex:37:  ==> Fatal error occurred, no output PDF file p
+3752-roduced!
 
 ----- fin du journal -----
-Chapitre 1.
-(./CHS/CHS-03-HS/64_EPAS/64_EPAS.tex [2
+<use ../COR/COR-03-PI/68_Roburoc/images/68_05.png>
+Package pdftex.def Info: ../COR/COR-03-PI/68_Roburoc/images/68_05.png  used on 
+input line 121.
+(pdftex.def)             Requested size: 363.9709pt x 258.61414pt.
+<../COR/COR-03-PI/68_Roburoc/images/68_06.png, id=1375, 163.3302pt x 88.4103pt>
 
-]
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 6
-.
+File: ../COR/COR-03-PI/68_Roburoc/images/68_06.png Graphic file (type png)
+<use ../COR/COR-03-PI/68_Roburoc/images/68_06.png>
+Package pdftex.def Info: ../COR/COR-03-PI/68_Roburoc/images/68_06.png  used on 
+input line 122.
+(pdftex.def)             Requested size: 363.9709pt x 197.0367pt.
 
-(/opt/texlive/texdir/texmf-dist/tex/latex/lm/ot1lmr.fd
-File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [92 <../COR/COR-03-PI/68_Roburoc/images/68_04.png (PNG copy)>]
+<../COR/COR-03-PI/68_Roburoc/images/68_07.png, id=1383, 169.3527pt x 209.8239pt
+>
+File: ../COR/COR-03-PI/68_Roburoc/images/68_07.png Graphic file (type png)
+<use ../COR/COR-03-PI/68_Roburoc/images/68_07.png>
+Package pdftex.def Info: ../COR/COR-03-PI/68_Roburoc/images/68_07.png  used on 
+input line 137.
+(pdftex.def)             Requested size: 363.9709pt x 450.9717pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [93 <../COR/COR-03-PI/68_Roburoc/images/68_05.png (PNG copy)> <../COR/COR-03-P
+I/68_Roburoc/images/68_06.png (PNG copy)>]
+
+LaTeX Warning: Reference `COR:03:68' on page 94 undefined on input line 150.
+
+) (../COR/COR-03-PI/70_Hublex/70_Hublex.tex
+
+LaTeX Warning: Reference `fig_13' on page 94 undefined on input line 26.
+
+[94 <../COR/COR-03-PI/68_Roburoc/images/68_07.png (PNG copy)>]
+<../COR/COR-03-PI/70_Hublex/images/fig_13.png, id=1398, 240.6591pt x 55.407pt>
+File: ../COR/COR-03-PI/70_Hublex/images/fig_13.png Graphic file (type png)
+<use ../COR/COR-03-PI/70_Hublex/images/fig_13.png>
+Package pdftex.def Info: ../COR/COR-03-PI/70_Hublex/images/fig_13.png  used on 
+input line 36.
+(pdftex.def)             Requested size: 363.9709pt x 83.7976pt.
+
+
+LaTeX Warning: Reference `fig_14' on page 95 undefined on input line 59.
+
+
+LaTeX Warning: Reference `fig_15' on page 95 undefined on input line 85.
+
+
+LaTeX Warning: Reference `fig_16' on page 95 undefined on input line 85.
+
+[95 <../COR/COR-03-PI/70_Hublex/images/fig_13.png>]
+
+LaTeX Warning: Reference `fig_17' on page 96 undefined on input line 93.
+
+<../COR/COR-03-PI/70_Hublex/images/fig_14.png, id=1416, 263.0628pt x 116.5956pt
+>
+File: ../COR/COR-03-PI/70_Hublex/images/fig_14.png Graphic file (type png)
+<use ../COR/COR-03-PI/70_Hublex/images/fig_14.png>
+Package pdftex.def Info: ../COR/COR-03-PI/70_Hublex/images/fig_14.png  used on 
+input line 103.
+(pdftex.def)             Requested size: 363.9709pt x 161.33797pt.
+<../COR/COR-03-PI/70_Hublex/images/fig_15.png, id=1417, 266.1945pt x 123.3408pt
+>
+File: ../COR/COR-03-PI/70_Hublex/images/fig_15.png Graphic file (type png)
+<use ../COR/COR-03-PI/70_Hublex/images/fig_15.png>
+Package pdftex.def Info: ../COR/COR-03-PI/70_Hublex/images/fig_15.png  used on 
+input line 109.
+(pdftex.def)             Requested size: 363.9709pt x 168.64838pt.
+<../COR/COR-03-PI/70_Hublex/images/fig_16.png, id=1418, 128.8815pt x 93.951pt>
+File: ../COR/COR-03-PI/70_Hublex/images/fig_16.png Graphic file (type png)
+<use ../COR/COR-03-PI/70_Hublex/images/fig_16.png>
+Package pdftex.def Info: ../COR/COR-03-PI/70_Hublex/images/fig_16.png  used on 
+input line 114.
+(pdftex.def)             Requested size: 345.77124pt x 252.06836pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [96 <../COR/COR-03-PI/70_Hublex/images/fig_14.png> <../COR/COR-03-PI/70_Hublex
+/images/fig_15.png>]
+<../COR/COR-03-PI/70_Hublex/images/fig_17.png, id=1429, 128.6406pt x 94.4328pt>
+
+File: ../COR/COR-03-PI/70_Hublex/images/fig_17.png Graphic file (type png)
+<use ../COR/COR-03-PI/70_Hublex/images/fig_17.png>
+Package pdftex.def Info: ../COR/COR-03-PI/70_Hublex/images/fig_17.png  used on 
+input line 120.
+(pdftex.def)             Requested size: 345.77124pt x 253.85378pt.
+
+
+LaTeX Warning: Reference `COR:03:70' on page 97 undefined on input line 128.
+
+) (../COR/COR-04-AP/65_Eclipse_03/65_Eclipse_03.tex
+LaTeX Font Info:    Trying to load font information for TS1+lmss on input line 
+9.
+
+(/opt/texlive/texdir/texmf-dist/tex/latex/lm/ts1lmss.fd
+File: ts1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 6
-.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmss' (encoding: TS1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+ [97 <../COR/COR-03-PI/70_Hublex/images/fig_16.png> <../COR/COR-03-PI/70_Hublex
+/images/fig_17.png>]
+<../COR/COR-04-AP/65_Eclipse_03/images/65_01.png, id=1442, 106.9596pt x 49.1436
+pt>
+File: ../COR/COR-04-AP/65_Eclipse_03/images/65_01.png Graphic file (type png)
+<use ../COR/COR-04-AP/65_Eclipse_03/images/65_01.png>
+Package pdftex.def Info: ../COR/COR-04-AP/65_Eclipse_03/images/65_01.png  used 
+on input line 29.
+(pdftex.def)             Requested size: 363.9709pt x 167.26369pt.
+<../COR/COR-04-AP/65_Eclipse_03/images/65_02.pdf, id=1443, 666.69077pt x 529.37
+778pt>
+File: ../COR/COR-04-AP/65_Eclipse_03/images/65_02.pdf Graphic file (type pdf)
+<use ../COR/COR-04-AP/65_Eclipse_03/images/65_02.pdf>
+Package pdftex.def Info: ../COR/COR-04-AP/65_Eclipse_03/images/65_02.pdf  used 
+on input line 61.
+(pdftex.def)             Requested size: 363.9709pt x 289.00194pt.
 
-(/opt/texlive/texdir/texmf-dist/tex/latex/lm/omllmm.fd
-File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-6.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-(/opt/texlive/texdir/texmf-dist/tex/latex/lm/omslmsy.fd
-File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-6.
+ [98 <../COR/COR-04-AP/65_Eclipse_03/images/65_01.png (PNG copy)>]
+<../COR/COR-04-AP/65_Eclipse_03/images/65_03.png, id=1450, 170.3163pt x 174.170
+7pt>
+File: ../COR/COR-04-AP/65_Eclipse_03/images/65_03.png Graphic file (type png)
+<use ../COR/COR-04-AP/65_Eclipse_03/images/65_03.png>
+Package pdftex.def Info: ../COR/COR-04-AP/65_Eclipse_03/images/65_03.png  used 
+on input line 103.
+(pdftex.def)             Requested size: 363.9709pt x 372.214pt.
 
-(/opt/texlive/texdir/texmf-dist/tex/latex/lm/omxlmex.fd
-File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 6.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 6.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 6.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 6.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-(/opt/texlive/texdir/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-(/opt/texlive/texdir/texmf-dist/tex/latex/microtype/mt-msa.cfg
-File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 6.
-
-(/opt/texlive/texdir/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-(/opt/texlive/texdir/texmf-dist/tex/latex/microtype/mt-msb.cfg
-File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-)
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 6.
-
-
-(/opt/texlive/texdir/texmf-dist/tex/latex/jknapltx/ursfs.fd
-File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
-)
-LaTeX Font Info:    Trying to load font information for U+esvect on input line 
-6.
-
-(/opt/texlive/texdir/texmf-dist/tex/latex/esvect/uesvect.fd
-File: uesvect.fd 
-)
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 6.
+ [99 <../COR/COR-04-AP/65_Eclipse_03/images/65_02.pdf>]
+<../COR/COR-04-AP/65_Eclipse_03/images/65_04.png, id=1499, 221.8689pt x 133.699
+5pt>
+File: ../COR/COR-04-AP/65_Eclipse_03/images/65_04.png Graphic file (type png)
+<use ../COR/COR-04-AP/65_Eclipse_03/images/65_04.png>
+Package pdftex.def Info: ../COR/COR-04-AP/65_Eclipse_03/images/65_04.png  used 
+on input line 118.
+(pdftex.def)             Requested size: 363.9709pt x 219.35425pt.
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\star' on input line 6.
+LaTeX Warning: Reference `COR:04:C2:04:65:02' on page 100 undefined on input li
+ne 131.
+
+) [100 <../COR/COR-04-AP/65_Eclipse_03/images/65_03.png (PNG copy)> <../COR/COR
+-04-AP/65_Eclipse_03/images/65_04.png (PNG copy)>]
+Chapitre 3.
+(../DYN/DYN-01/01_T/01_T.tex
+<../DYN/DYN-01/01_T/images/01_T_01.png, id=1508, 86.724pt x 63.5976pt>
+File: ../DYN/DYN-01/01_T/images/01_T_01.png Graphic file (type png)
+<use ../DYN/DYN-01/01_T/images/01_T_01.png>
+Package pdftex.def Info: ../DYN/DYN-01/01_T/images/01_T_01.png  used on input l
+ine 25.
+(pdftex.def)             Requested size: 363.9709pt x 266.92656pt.
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 6.
+../DYN/DYN-01/01_T/01_T.tex:37: Package xcolor Error: Undefined color `White'.
 
-Package marginnote Info: Suggest that margin note 5.1 will be on
-(marginnote)             absolute page 5.
-(marginnote)             This may be wrong on input line 9.
-Package marginnote Info: xpos seems to be \@mn@currxpos  on input line 9.
-<CHS/CHS-03-HS/64_EPAS/images/64_01.png, id=73, 242.1045pt x 176.5797pt>
-File: CHS/CHS-03-HS/64_EPAS/images/64_01.png Graphic file (type png)
-<use CHS/CHS-03-HS/64_EPAS/images/64_01.png>
-Package pdftex.def Info: CHS/CHS-03-HS/64_EPAS/images/64_01.png  used on input 
-line 27.
-(pdftex.def)             Requested size: 207.41919pt x 151.28703pt.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 28.
-<CHS/CHS-03-HS/64_EPAS/images/64_02.png, id=74, 155.6214pt x 178.7478pt>
-File: CHS/CHS-03-HS/64_EPAS/images/64_02.png Graphic file (type png)
-<use CHS/CHS-03-HS/64_EPAS/images/64_02.png>
-Package pdftex.def Info: CHS/CHS-03-HS/64_EPAS/images/64_02.png  used on input 
-line 32.
-(pdftex.def)             Requested size: 207.41919pt x 238.2607pt.
-Package marginnote Info: Suggest that margin note 5.2 will be on
-(marginnote)             absolute page 5.
-(marginnote)             This may be wrong on input line 121.
-Package marginnote Info: xpos seems to be \@mn@currxpos  on input line 121.
-Excluding 'solution' comment.
-./CHS/CHS-03-HS/64_EPAS/64_EPAS.tex:121: Argument of \xComment has an extra }.
-<inserted text> 
-                \par 
-l.121 \fi
-         
-I've run across a `}' that doesn't seem to match anything.
-For example, `\def\a#1{...}' and `\a}' would produce
-this error. If you simply proceed now, the `\par' that
-I've just inserted will cause me to report a runaway
-argument that might be the root of the problem. But if
-your `}' was spurious, just type `2' and it will go away.
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.37 L
+      'objectif de ce travail est de d√©terminer les caract√©ristiques du mo...
+
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
  
 Here is how much of TeX's memory you used:
- 75127 strings out of 467168
- 1891858 string characters out of 5411585
- 2778994 words of memory out of 5000000
- 103284 multiletter control sequences out of 15000+600000
- 699843 words of font info for 135 fonts, out of 8000000 for 9000
+ 82183 strings out of 467533
+ 2062626 string characters out of 5421580
+ 2998236 words of memory out of 5000000
+ 108600 multiletter control sequences out of 15000+600000
+ 753484 words of font info for 281 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,11n,131p,5130b,1076s stack positions out of 10000i,1000n,20000p,200000b,200000s
-./CHS/CHS-03-HS/64_EPAS/64_EPAS.tex:121:  ==> Fatal error occurred, no output P
-DF file produced!
+ 88i,31n,134p,5140b,1543s stack positions out of 10000i,1000n,20000p,200000b,200000s
+../DYN/DYN-01/01_T/01_T.tex:37:  ==> Fatal error occurred, no output PDF file p
+roduced!
+
+===== ./Style/ECM/ECM.log =====
+
+----- fin du journal -----
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+))
+Package scrhack Info: undefining \float@addtolists on input line 26.
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: twoside 
+* h-part:(L,W,R)=(42.10986pt, 361.3481pt, 194.04677pt)
+* v-part:(T,H,B)=(77.96011pt, 689.12218pt, 77.96011pt)
+* \paperwidth=597.50473pt
+* \paperheight=845.0424pt
+* \textwidth=361.3481pt
+* \textheight=689.12218pt
+* \oddsidemargin=-30.16013pt
+* \evensidemargin=121.77678pt
+* \topmargin=-40.60774pt
+* \headheight=15.0pt
+* \headsep=31.29787pt
+* \topskip=10.0pt
+* \footskip=42.0pt
+* \marginparwidth=135.71892pt
+* \marginparsep=17.6406pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidetrue
+* \@mparswitchtrue
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: twoside 
+* h-part:(L,W,R)=(42.10986pt, 361.3481pt, 194.04677pt)
+* v-part:(T,H,B)=(77.96011pt, 689.12218pt, 77.96011pt)
+* \paperwidth=597.50473pt
+* \paperheight=845.0424pt
+* \textwidth=361.3481pt
+* \textheight=689.12218pt
+* \oddsidemargin=-30.16013pt
+* \evensidemargin=121.77678pt
+* \topmargin=-40.60774pt
+* \headheight=15.0pt
+* \headsep=31.29787pt
+* \topskip=10.0pt
+* \footskip=42.0pt
+* \marginparwidth=135.71892pt
+* \marginparsep=17.6406pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidetrue
+* \@mparswitchtrue
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 3
+4.
+ (C:\Users\xpess\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
+File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+(C:\Users\xpess\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
+(RS)
+)
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 3
+4.
+
+(C:\Users\xpess\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
+File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
+34.
+
+(C:\Users\xpess\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
+File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
+34.
+
+(C:\Users\xpess\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
+File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 34.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7.3> on input line 34.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5.5> on input line 34.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 34.
+
+
+(C:\Users\xpess\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+(C:\Users\xpess\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 34.
+
+
+(C:\Users\xpess\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+(C:\Users\xpess\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+npxmia on input line 
+34.
+
+(C:\Users\xpess\AppData\Local\Programs\MiKTeX\tex/latex/newpx\unpxmia.fd
+File: unpxmia.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxmia.
+)
+LaTeX Font Info:    Trying to load font information for U+npxsym on input line 
+34.
+
+(C:\Users\xpess\AppData\Local\Programs\MiKTeX\tex/latex/newpx\unpxsym.fd
+File: unpxsym.fd 2023/08/16 Fontinst v1.933 font definitions for U/npxsym.
+)
+LaTeX Font Info:    Trying to load font information for U+npxsyc on input line 
+34.
+
+(C:\Users\xpess\AppData\Local\Programs\MiKTeX\tex/latex/newpx\unpxsyc.fd
+File: unpxsyc.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxsyc.
+)
+Missing character: There is no π in font lmsy10!
+Missing character: There is no œ in font lmsy10!
+LaTeX Font Info:    Font shape `T1/zpllf/m/sl' will be
+(Font)              scaled to size 9.70001pt on input line 40.
+\openout4 = `ECM.mw'.
+
+[1{C:/Users/xpess/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/xp
+ess/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ecth-tlf.enc}
+
+
+
+
+
+
+{C:/Users/xpess/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ec-lf.e
+nc}{C:/Users/xpess/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}]
+
+(ECM.mw)
+\openout4 = `ECM.mw'.
+
+ (ECM.aux)
+ ***********
+LaTeX2e <2023-11-01>
+L3 programming layer <2020/03/25>
+ ***********
+ ) 
+Here is how much of TeX's memory you used:
+ 56729 strings out of 474592
+ 1186620 string characters out of 5745799
+ 1932533 words of memory out of 5000000
+ 77926 multiletter control sequences out of 15000+600000
+ 581462 words of font info for 71 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 125i,19n,159p,10901b,495s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/xpess/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb
+><C:/Users/xpess/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/zplr.pf
+b><C:/Users/xpess/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/zplri.
+pfb>
+Output written on ECM.pdf (1 page, 63346 bytes).
+PDF statistics:
+ 68 PDF objects out of 1000 (max. 8388607)
+ 2 named destinations out of 1000 (max. 500000)
+ 5789 words of extra memory for PDF output out of 10000 (max. 10000000)
+
