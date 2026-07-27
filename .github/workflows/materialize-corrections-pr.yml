@@ -28,53 +28,36 @@ jobs:
           set -euo pipefail
           python3 - <<'PY'
           from pathlib import Path
-          from itertools import permutations
           import base64
           import gzip
-          import traceback
 
-          debug = []
           parts = sorted(Path('tools/vendor').glob('complete_missing_corrections.py.gz.b64.part-*'))
-          debug.append('Fragments :')
-          for part in parts:
-              text = part.read_text(encoding='utf-8-sig')
-              compact = ''.join(text.split())
-              debug.append(f'- {part.name}: fichier={part.stat().st_size}, compact={len(compact)}, debut={compact[:24]!r}, fin={compact[-24:]!r}')
+          if len(parts) != 6:
+              raise SystemExit(f'Nombre de fragments inattendu : {len(parts)}')
 
-          try:
-              if len(parts) != 6:
-                  raise RuntimeError(f'Nombre de fragments inattendu : {len(parts)}')
-              chunks = {p.name: ''.join(p.read_text(encoding='utf-8-sig').split()) for p in parts}
-              restored = None
-              selected = None
-              failures = []
-              for index, order in enumerate(permutations(parts), start=1):
-                  encoded = ''.join(chunks[p.name] for p in order)
-                  try:
-                      compressed = base64.b64decode(encoded, validate=False)
-                      script = gzip.decompress(compressed)
-                  except Exception as exc:
-                      if len(failures) < 12:
-                          failures.append(f'{[p.name for p in order]} -> {type(exc).__name__}: {exc}')
-                      continue
-                  if b'def main' in script or b'CorrigeQuestion' in script:
-                      restored = script
-                      selected = [p.name for p in order]
+          chunks = [''.join(p.read_text(encoding='utf-8-sig').split()) for p in parts]
+          encoded = chunks[0]
+          overlaps = []
+          for part, chunk in zip(parts[1:], chunks[1:]):
+              overlap = 0
+              for size in range(min(512, len(encoded), len(chunk)), 0, -1):
+                  if encoded.endswith(chunk[:size]):
+                      overlap = size
                       break
-              debug.append(f'Permutations testées : {index}')
-              debug.extend('Échec : ' + item for item in failures)
-              if restored is None:
-                  raise RuntimeError('Aucune permutation ne produit une archive gzip Python valide.')
-              output = Path('tools/complete_missing_corrections.py')
-              output.write_bytes(restored)
-              debug.append('Ordre retenu : ' + ', '.join(selected))
-              debug.append(f'Taille restaurée : {len(restored)} octets')
-              Path('tools/RESTORE_DEBUG.txt').write_text('\n'.join(debug) + '\n', encoding='utf-8')
-          except Exception:
-              debug.append('Exception finale :')
-              debug.append(traceback.format_exc())
-              Path('tools/RESTORE_DEBUG.txt').write_text('\n'.join(debug) + '\n', encoding='utf-8')
-              raise
+              overlaps.append((part.name, overlap))
+              encoded += chunk[overlap:]
+
+          # Une chaîne Base64 peut être stockée sans son bourrage final.
+          encoded += '=' * (-len(encoded) % 4)
+          compressed = base64.b64decode(encoded, validate=True)
+          script = gzip.decompress(compressed)
+          if b'def main' not in script and b'CorrigeQuestion' not in script:
+              raise SystemExit('Le contenu restauré ne ressemble pas au moteur Python attendu.')
+
+          output = Path('tools/complete_missing_corrections.py')
+          output.write_bytes(script)
+          print('Chevauchements supprimés :', overlaps)
+          print(f'{len(compressed)} octets compressés, {len(script)} octets restaurés')
           PY
           chmod +x tools/complete_missing_corrections.py
           python3 -m py_compile tools/complete_missing_corrections.py
@@ -108,21 +91,7 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -f tools/RESTORE_DEBUG.txt
           git add CIN COR DYN ELEC GEO NUM PERF PPM RDM SEQ SLCI STAT SYS TEC CORRECTIONS_REPORT.md tools/RESTORE_DEBUG.txt
           git commit -m 'Matérialiser les 383 fichiers corrige.tex complets [skip ci]'
           git push origin HEAD:"$TARGET_BRANCH"
-
-      - name: Publier le diagnostic de restauration
-        if: failure()
-        env:
-          TARGET_BRANCH: ${{ github.event.pull_request.head.ref }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          if [ -f tools/RESTORE_DEBUG.txt ]; then
-            git config user.name 'github-actions[bot]'
-            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git add tools/RESTORE_DEBUG.txt
-            git commit -m 'Enregistrer le diagnostic de restauration [skip ci]'
-            git push origin HEAD:"$TARGET_BRANCH"
-          fi
