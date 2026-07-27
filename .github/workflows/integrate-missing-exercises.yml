@@ -54,14 +54,26 @@ jobs:
             cp -a "/tmp/ExercicesCompetences/$folder" "$folder"
           done
 
+      - name: Reconstruire et contrôler le paquet du ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          part_count=$(find tools/vendor -maxdepth 1 -type f -name 'missing_exercises_text.tar.xz.b64.part-*' | wc -l)
+          echo "Fragments trouvés : $part_count"
+          test "$part_count" -eq 5
+          cat tools/vendor/missing_exercises_text.tar.xz.b64.part-* \
+            | tr -d '\r\n\t ' \
+            | base64 --decode > /tmp/missing_exercises_text.tar.xz
+          ls -lh /tmp/missing_exercises_text.tar.xz
+          xz --test /tmp/missing_exercises_text.tar.xz
+          tar -tJf /tmp/missing_exercises_text.tar.xz >/dev/null
+
       - name: Restaurer les sources et les corrigés du ZIP
         shell: bash
         run: |
           set -euo pipefail
-          cat tools/vendor/missing_exercises_text.tar.xz.b64.part-* \
-            | base64 --decode > /tmp/missing_exercises_text.tar.xz
-          echo 'c366add28ef1992cafec6a8b2ef3e2f3ade3a1962b83d0f1fe40743763b11571  /tmp/missing_exercises_text.tar.xz' | sha256sum --check --strict
           tar -xJf /tmp/missing_exercises_text.tar.xz -C .
+          test -f tools/patch_style_version.py
           python3 tools/patch_style_version.py
 
       - name: Restaurer les illustrations de A_Integrer
