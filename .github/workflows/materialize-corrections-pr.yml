@@ -28,18 +28,37 @@ jobs:
           set -euo pipefail
           python3 - <<'PY'
           from pathlib import Path
+          from itertools import permutations
           import base64
           import gzip
 
           parts = sorted(Path('tools/vendor').glob('complete_missing_corrections.py.gz.b64.part-*'))
+          print('Fragments trouvés :', [(p.name, p.stat().st_size) for p in parts])
           if len(parts) != 6:
               raise SystemExit(f'Nombre de fragments inattendu : {len(parts)}')
-          encoded = ''.join(''.join(part.read_text(encoding='utf-8').split()) for part in parts)
-          compressed = base64.b64decode(encoded, validate=True)
-          script = gzip.decompress(compressed)
+
+          chunks = {p.name: ''.join(p.read_text(encoding='utf-8-sig').split()) for p in parts}
+          restored = None
+          selected = None
+          for order in permutations(parts):
+              encoded = ''.join(chunks[p.name] for p in order)
+              try:
+                  compressed = base64.b64decode(encoded, validate=False)
+                  script = gzip.decompress(compressed)
+              except Exception:
+                  continue
+              if b'complete_missing_corrections' in script or b'def main' in script:
+                  restored = script
+                  selected = [p.name for p in order]
+                  break
+
+          if restored is None:
+              raise SystemExit('Impossible de reconstituer une archive gzip Python valide avec les six fragments.')
+
           output = Path('tools/complete_missing_corrections.py')
-          output.write_bytes(script)
-          print(f'{len(parts)} fragments, {len(compressed)} octets compressés, {len(script)} octets restaurés')
+          output.write_bytes(restored)
+          print('Ordre retenu :', selected)
+          print(f'{len(restored)} octets restaurés dans {output}')
           PY
           chmod +x tools/complete_missing_corrections.py
           python3 -m py_compile tools/complete_missing_corrections.py
