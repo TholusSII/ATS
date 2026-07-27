@@ -1,0 +1,127 @@
+name: Intégrer directement les exercices manquants
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  integrate-direct:
+    if: >-
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.actor != 'github-actions[bot]' &&
+      contains(github.event.pull_request.title, '85 exercices manquants')
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Récupérer la branche d’intégration
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Récupérer la banque publique complète
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/ExercicesCompetences
+          git clone --filter=blob:none --no-checkout https://github.com/xpessoles/ExercicesCompetences.git /tmp/ExercicesCompetences
+          git -C /tmp/ExercicesCompetences checkout 5cb4eced77ae479b10715249c87afbba183d26e4
+
+      - name: Copier les 76 dossiers A_Integrer
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          import shutil
+          from pathlib import Path
+
+          repo = Path.cwd()
+          upstream = Path('/tmp/ExercicesCompetences')
+          mapping = json.loads((repo / 'tools/a_integrer_candidate_map.json').read_text(encoding='utf-8'))
+          directories = sorted({Path(path).parent for path in mapping})
+          if len(directories) != 76:
+              raise SystemExit(f'Nombre de dossiers A_Integrer inattendu : {len(directories)}')
+          for relative in directories:
+              source = upstream / relative
+              destination = repo / relative
+              if not source.is_dir():
+                  raise FileNotFoundError(source)
+              destination.parent.mkdir(parents=True, exist_ok=True)
+              if destination.exists():
+                  shutil.rmtree(destination)
+              shutil.copytree(source, destination)
+          print(f'{len(directories)} dossiers A_Integrer copiés.')
+          PY
+
+      - name: Copier les neuf autres exercices complets
+        shell: bash
+        run: |
+          set -euo pipefail
+          folders=(
+            B2_ProposerModele/B2_16_Hyperstatisme/69_TrainA350
+            B2_ProposerModele/B2_16_Hyperstatisme/71_Robovolc_02
+            B2_ProposerModele/B2_16_Hyperstatisme/72_Tripteor
+            B2_ProposerModele/B2_16_Hyperstatisme/81_Piaggio
+            B2_ProposerModele/B2_16_Hyperstatisme/82_MAV
+            B2_ProposerModele/B2_16_Hyperstatisme/83_Roburoc
+            B2_ProposerModele/B2_16_Hyperstatisme/84_Nacelle
+            C2_MettreEnOeuvreDemarche/C2_07_PFS/515_Divers_Potence
+            C2_MettreEnOeuvreDemarche/C2_07_PFS/56_RobotAvion
+          )
+          for folder in "${folders[@]}"; do
+            source="/tmp/ExercicesCompetences/$folder"
+            test -d "$source"
+            mkdir -p "$(dirname "$folder")"
+            rm -rf "$folder"
+            cp -a "$source" "$folder"
+          done
+
+      - name: Adapter les sources au framework et créer les corrigés
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/patch_style_version.py
+          python3 tools/generate_corrections.py
+          python3 tools/complete_missing_corrections.py
+          python3 tools/generate_all_exos.py
+          python3 tools/generate_all_corriges.py
+
+      - name: Vérifier les 468 exercices et corrigés
+        shell: bash
+        run: |
+          set -euo pipefail
+          roots=(A_Integrer B2_ProposerModele C2_MettreEnOeuvreDemarche CIN COR DYN ELEC GEO NUM PERF PPM RDM SEQ SLCI STAT SYS TEC)
+          exercise_count=$(grep -RIl --include='*.tex' '\\InclureCorrige{corrige.tex}' "${roots[@]}" | wc -l)
+          correction_count=$(find "${roots[@]}" -type f -name corrige.tex | wc -l)
+          echo "Exercices avec inclusion : $exercise_count"
+          echo "Fichiers corrige.tex : $correction_count"
+          test "$exercise_count" -eq 468
+          test "$correction_count" -eq 468
+          ! grep -RIl --include='corrige.tex' '\\CorrigeACompleter' "${roots[@]}"
+          grep -q 'Exercices traités : \*\*468\*\*' CORRECTIONS_REPORT.md
+          grep -q 'Corrigés restant partiels : \*\*0\*\*' CORRECTIONS_REPORT.md
+          grep -q 'Questions restant marquées à compléter : \*\*0\*\*' CORRECTIONS_REPORT.md
+          grep -q '468 exercices' ALL_EXOS/inputs.tex
+          grep -q '468 corrigés' ALL_EXOS/corriges_inputs.tex
+
+      - name: Enregistrer les exercices sur la branche
+        env:
+          TARGET_BRANCH: ${{ github.event.pull_request.head.ref }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f tools/vendor/missing_exercises_text.tar.xz.b64 \
+            tools/vendor/missing_exercises_text.tar.xz.b64.part-* \
+            tools/a_integrer_candidate_map.json \
+            INTEGRATION_TRIGGER.md PACKAGE_DIAGNOSTIC.md
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Intégrer les 85 exercices manquants avec leurs corrigés [skip ci]'
+          git push origin HEAD:"$TARGET_BRANCH"
