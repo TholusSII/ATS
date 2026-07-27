@@ -1,0 +1,34 @@
+% Fichier généré automatiquement par tools/generate_corrections.py.
+% Source : SLCI/SLCI-11-DiagrammeBode/510_05_Divers/510_05_Divers.tex
+% Statut : complet (1/1 question(s) renseignée(s), 0 reprise(s)).
+\begin{corrigebox}[Corrigé extrait de la banque]
+\CorrigeQuestion{1}
+En factorisant, on obtient $F(p)=\dfrac{30}{p\left(p+0,4 \right)\left(p+50 \right)}=\dfrac{40}{20 p\left(\dfrac{p}{0,4}+1 \right)\left(\dfrac{p}{50}+1 \right)}$.
+
+\par\medskip\begin{center}\captionsetup{type=figure}
+ \begin{tikzpicture}[xscale=2]
+\tikzset{
+semilog lines/.style={thin, bleuxp}, 
+semilog lines 2/.style={semilog lines,bleuxpc},
+semilog half lines/.style={semilog lines 2,dotted },
+semilog label x/.style={semilog lines,below,font=\tiny,black},
+semilog label y/.style={semilog lines,right,font=\tiny,black}
+}
+\begin{scope}[yscale=1/50]
+\semilog{-2}{3}{-160}{50}
+\UnitedB
+\OrdBode{20}
+\BodeAmp[orangexp,thick]{-2:3}{\POAmpAsymp{1.}{2.5}+\POAmpAsymp{1.}{0.02}+\IntAmp{1.5}}
+\BodeAmp[orangexp,ultra thick]{-2:3}{\POAmp{1.}{2.5}+\POAmp{1.}{0.02}+\IntAmp{1.5}}
+
+\end{scope}
+\begin{scope}[yshift=-5.5cm,yscale=1/90]
+\UniteDegre
+\OrdBode{45}
+\semilog{-2}{3}{-270}{0}
+\BodeArg[orangexp,samples=200,thick]{-2:3}{\POArgAsymp{1.}{2.5}+\POArgAsymp{1.}{0.02}+\IntArg{1.5}}
+\BodeArg[orangexp,ultra thick]{-2:3}{\POArg{1.}{2.5}+\POArg{1.}{0.02}+\IntArg{1.5}}
+\end{scope}
+\end{tikzpicture}
+\end{center}\par\medskip
+\end{corrigebox}

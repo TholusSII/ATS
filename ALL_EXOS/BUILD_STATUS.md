@@ -1,8 +1,13 @@
 # État de compilation
 
-✅ Validation complète réussie avec le framework `Style` et TeX Live 2025.
+✅ Les deux recueils ont été compilés avec succès.
 
-- 383 exercices classés par répertoire ;
-- 401 pages produites ;
-- images et index inclus ;
-- compilation GitHub Actions relancée avec la configuration `Style` figée.
+- `ALL_EXOS/ALL_EXOS.pdf` : énoncés seuls ;
+- `ALL_EXOS/ALL_EXOS_CORRIGE.pdf` : énoncés et boxes de corrigé.
+
+- Exercices traités : **383**
+- Corrigés complets : **115**
+- Corrigés partiels : **95**
+- Corrigés absents et fichiers créés : **173**
+- Réponses reprises d'exercices homonymes : **79**
+

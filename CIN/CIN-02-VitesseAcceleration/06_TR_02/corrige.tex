@@ -1,0 +1,27 @@
+% Fichier généré automatiquement par tools/generate_corrections.py.
+% Source : CIN/CIN-02-VitesseAcceleration/06_TR_02/06_TR_02.tex
+% Statut : complet (3/3 question(s) renseignée(s), 0 reprise(s)).
+\begin{corrigebox}[Corrigé extrait de la banque]
+\CorrigeQuestion{1}
+\textbf{Méthode 1 -- Dérivation vectorielle} ~\\
+
+$\vectv{C}{2}{0} =$
+$\deriv{\vect{AC}}{\rep{0}}= \deriv{\vect{AB}}{\rep{0}}+\deriv{\vect{BC}}{\rep{0}}$
+$= \dot{\lambda}(t) \vect{i_0} + R \deriv{\vi{2}}{\rep{0}}$
+$= \dot{\lambda}(t) \vect{i_0} + R \dot{\theta} \vj{2}$
+
+\textbf{Méthode 2 -- Composition du torseur cinématique} ~\\
+$\vectv{C}{2}{0} =\vectv{C}{2}{1} +\vectv{C}{1}{0} $
+
+Pour tout point $P$, $\vectv{P}{1}{0}=\dot{\lambda}\vi{0}$.
+
+$\babarv{C}{B}{2}{1}=-R\vi{2}\wedge \dot{\theta}\vk{0}=R\dot{\theta}\vj{2}$.
+
+On a donc $\vectv{C}{2}{0}=\dot{\lambda}\vi{0}+R\dot{\theta}\vj{2}$.
+\CorrigeQuestion{2}
+$\torseurcin{V}{2}{0}=\torseurl{\vecto{2}{0}=\dot{\theta}\vk{0}}{\vectv{C}{2}{0}=\dot{\lambda}\vi{0}+R\dot{\theta}\vj{2}}{C}$.
+\CorrigeQuestion{3}
+$\vectg{C}{2}{0} =\deriv{\vectv{C}{2}{0}}{\rep{0}}$
+$= \ddot{\lambda}(t) \vect{i_0} + R \deriv{\dot{\theta} \vj{2}}{\rep0}$
+$= \ddot{\lambda}(t) \vect{i_0} + R \left(\ddot{\theta} \vj{2} - \dot{\theta}^2 \vi{2}\right) $.
+\end{corrigebox}

@@ -1,0 +1,81 @@
+% Fichier généré automatiquement par tools/generate_corrections.py.
+% Source : GEO/GEO-03/11_PompePistonsRadiaux/11_PompePistonsRadiaux.tex
+% Statut : complet (5/5 question(s) renseignée(s), 0 reprise(s)).
+\begin{corrigebox}[Corrigé extrait de la banque]
+\CorrigeQuestion{1}
+\begin{marginfigure}
+\includegraphics[width=\linewidth]{11_01_c}
+\end{marginfigure}
+\CorrigeQuestion{2}
+En écrivant la fermeture géométrique, on a $\vect{AB}+\vect{BI}+\vect{IC}+\vect{CA}=\vect{0}$.
+
+On a donc, $e\vi{1}+R\vj{0}+\mu\vi{0}-\lambda(t)\vj{0}=\vect{0}$. En projetant l'expression sur $\vj{0}$ (dans ce cas, l'expression suivant $\vi{0}$ n'est pas utile) :
+$ e\sin\theta +R - \lambda(t)=0$.
+
+On a donc, $\lambda(t)=e\sin\theta +R $.
+\CorrigeQuestion{3}
+En dérivant l'expression précédente, on a $\lambdap (t)=e\thetap(t) \cos\theta (t) $.
+\CorrigeQuestion{4}
+En notant $q(t)$ le débit instantané, $q(t)=eS\thetap(t) \cos\theta (t)$.
+\CorrigeQuestion{5}
+\noindent\hrule
+\begin{lstlisting}
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""11_PompePistonAxial.py"""
+
+__author__ = "Xavier Pessoles"
+__email__ = "xpessoles.ptsi@free.fr"
+
+import numpy as np
+import matplotlib.pyplot as plt
+import math as m
+from scipy.optimize import newton
+from scipy.optimize import fsolve
+
+R = 0.02 # m
+e = 0.01 # m
+
+def calc_lambda(theta):
+    res= e*np.sin(theta)+R
+    
+    return res
+
+def calc_lambdap(theta,w):
+   
+    res = e*w*np.cos(theta)
+    return res
+
+def plot_debit():
+    plt.cla()
+    w = 100 # rad/s 
+    les_t = np.linspace(0,0.1,1000)
+    les_theta = w*les_t
+    global e 
+    S = 1e-4
+    e = 20e-3
+    les_q = e*S*w*np.cos(les_theta)
+    plt.plot(les_t,les_q)
+    plt.xlabel("Temps (s)")
+    plt.ylabel("Débit (${m}^3s^{-1}$)")
+    plt.grid()
+    plt.savefig("11_02_c.png")
+    plt.show()
+    
+plot_debit()
+\end{lstlisting}
+\noindent\hrule
+
+\begin{marginfigure}
+\includegraphics[width=\linewidth]{11_02_c}
+\end{marginfigure}
+
+\begin{enumerate}
+\item .
+\item $ e\sin\theta +R - \lambda(t)=0$.
+\item $\lambdap (t)=e\thetap(t) \cos\theta (t) $.
+\item $q(t)=eS\thetap(t) \cos\theta (t)$.
+\item .
+\end{enumerate}
+\end{corrigebox}
