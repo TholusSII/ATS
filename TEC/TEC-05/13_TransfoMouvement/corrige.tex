@@ -1,0 +1,35 @@
+% Fichier complété par tools/complete_missing_corrections.py.
+% Source : TEC/TEC-05/13_TransfoMouvement/13_TransfoMouvement.tex
+% Statut : rédigé (5 question(s)).
+\begin{corrigebox}[Corrigé rédigé]
+\CorrigeQuestion{1}
+Le graphe d'analyse contient le bâti, tous les solides
+                mobiles et les liaisons du schéma. On y ajoute les poids, l'action motrice,
+                la charge résistante et les éventuels ressorts/frottements. Les actions de
+                liaison internes sont indiquées par des arêtes entre solides.
+\CorrigeQuestion{2}
+Les liaisons parfaites entre solides appartenant à
+                l'ensemble ont une puissance totale nulle. Seuls un frottement, un ressort,
+                un amortisseur ou un actionneur interne apportent une puissance non nulle,
+                calculée par le comoment des torseurs d'action et cinématique.
+\CorrigeQuestion{3}
+On somme les comoments des actions extérieures :
+                couples moteurs $C_m\dot q$, forces appliquées $\vec F\cdot\vec V(P)$,
+                poids $m\vec g\cdot\vec V_G$ et résistances avec un signe négatif. Les
+                réactions des liaisons parfaites avec le bâti ont une puissance nulle au
+                point de liaison.
+\CorrigeQuestion{4}
+L'énergie cinétique de l'ensemble est
+                \[E_c=\sum_i\left[\frac12m_iV_{G_i}^2+
+                \frac12\vec\Omega_i\cdot\mathbf I_{G_i}\vec\Omega_i\right].\]
+                En utilisant la loi entrée--sortie, toutes les vitesses sont exprimées en
+                fonction de la vitesse généralisée d'entrée, ce qui conduit à
+                $E_c=\tfrac12J_{eq}(q)\dot q^2$.
+\CorrigeQuestion{5}
+L'énergie cinétique de l'ensemble est
+                \[E_c=\sum_i\left[\frac12m_iV_{G_i}^2+
+                \frac12\vec\Omega_i\cdot\mathbf I_{G_i}\vec\Omega_i\right].\]
+                En utilisant la loi entrée--sortie, toutes les vitesses sont exprimées en
+                fonction de la vitesse généralisée d'entrée, ce qui conduit à
+                $E_c=\tfrac12J_{eq}(q)\dot q^2$.
+\end{corrigebox}

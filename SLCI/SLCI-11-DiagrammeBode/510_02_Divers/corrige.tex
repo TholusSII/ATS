@@ -1,0 +1,50 @@
+% Fichier généré automatiquement par tools/generate_corrections.py.
+% Source : SLCI/SLCI-11-DiagrammeBode/510_02_Divers/510_02_Divers.tex
+% Statut : complet (2/2 question(s) renseignée(s), 0 reprise(s)).
+\begin{corrigebox}[Corrigé extrait de la banque]
+\CorrigeQuestion{1}
+\textbf{Tracer asymptotique}
+
+$F_2(p)=\dfrac{1}{\left(1+10p\right)\left(1+\dfrac{p}{10}\right)}$
+
+\par\medskip\begin{center}\captionsetup{type=figure}
+\includegraphics[width=\linewidth]{tab_02}
+\end{center}\par\medskip
+
+\textbf{Positionnement du diagramme de gain}
+Lorsque que $\omega$ tend vers 0, le gain tend vers $20 \log 1 = \SI{0}{dB}$.
+
+\par\medskip\begin{center}\captionsetup{type=figure}
+ \begin{tikzpicture}[xscale=1.5]
+\tikzset{
+semilog lines/.style={thin, bleuxp}, 
+semilog lines 2/.style={semilog lines,bleuxpc},
+semilog half lines/.style={semilog lines 2,dotted },
+semilog label x/.style={semilog lines,below,font=\tiny,black},
+semilog label y/.style={semilog lines,right,font=\tiny,black}
+}
+\begin{scope}[yscale=1/40]
+\semilog{-3}{3}{-140}{20}
+\UnitedB
+\OrdBode{20}
+\BodeAmp[orangexp,thin,samples=100]{-3:3}{\POAmpAsymp{1}{10} + \POAmpAsymp{1}{10}}
+\BodeAmp[orangexp,ultra thick]{-3:3}{\POAmp{1}{10} + \POAmp{1}{0.1}}
+
+\end{scope}
+
+\begin{scope}[yshift=-5cm,yscale=1/90]
+\UniteDegre
+\OrdBode{45}
+\semilog{-3}{3}{-180}{90}
+\BodeArg[orangexp,samples=101,thin]{-3:3}{\POArgAsymp{1}{10} + \POArgAsymp{1}{0.1}}
+\BodeArg[orangexp,ultra thick]{-3:3}{\POArg{1}{10} + \POArg{1}{0.1}}
+\end{scope}
+\end{tikzpicture}
+\end{center}\par\medskip
+\CorrigeQuestion{2}
+Pour une période de \SI{60}{s}, la pulsation est de $\dfrac{2\pi}{T}$ soit $\omega = \SI{0,1}{rad.s^{-1}}$.
+Pour cette pulsation le gain est de \SI{-5}{dB} et le déphasage de $-\dfrac{\pi}{4}$.
+
+On a donc $20\log(S/E) = -5$ soit $S=E\times 10^{-5/20}=10\times 0,56 = 5,6$. Le signal d'entrée est donc $e(t) = 10 \sin (0,1 t)$ et le signal de sortie  
+$s(t) = 5,6 \sin\left(0,1 t - \dfrac{\pi}{4}\right)$.
+\end{corrigebox}

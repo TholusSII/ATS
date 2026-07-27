@@ -1,0 +1,37 @@
+% Fichier complété par tools/complete_missing_corrections.py.
+% Source : COR/COR-03-PI/70_Hublex/70_Hublex.tex
+% Statut : rédigé (9 question(s)).
+\begin{corrigebox}[Corrigé rédigé]
+\CorrigeQuestion{1}
+Pour conserver l'unité et obtenir une comparaison directe courant
+            consigne/courant mesuré, on choisit $K_{iu}=1$ dans les unités normalisées (ou
+            l'inverse du gain du capteur si les unités électriques ne sont pas normalisées).
+\CorrigeQuestion{2}
+Pour un échelon unitaire, la valeur finale donne
+            $\mu_s=1/[1+K_{iu}K_pK_m]$ pour une correction proportionnelle.
+\CorrigeQuestion{3}
+On compare cette expression aux tolérances de 1.7.1.1. Une erreur nulle ne
+            peut être obtenue avec un gain fini sans intégrateur.
+\CorrigeQuestion{4}
+Le PI augmente fortement le gain basse fréquence et annule l'erreur
+            statique, tandis que son zéro permet de préserver la phase autour de la
+            coupure. Il accroît toutefois la sensibilité au bruit et peut réduire la marge.
+\CorrigeQuestion{5}
+Pour $C(p)=K_p+K_i/p=K_p(1+\omega_i/p)$,
+            $\omega_i=K_i/K_p=100$ rad/s. Le gain haute fréquence vaut 20 dB et la phase
+            passe de $-90^\circ$ à $0^\circ$ autour de $100$ rad/s.
+\CorrigeQuestion{6}
+On place d'abord le zéro environ une décade sous la pulsation de coupure
+            visée, puis on translate le gain afin d'obtenir la marge imposée :
+            $K_p=1/|L_0(j\omega_c)C_0(j\omega_c)|$.
+\CorrigeQuestion{7}
+Une fois $K_p$ fixé, $K_i=K_p\omega_i$.
+\CorrigeQuestion{8}
+Le réglage peut satisfaire la précision mais conduire à une commande trop
+            forte ou à une bande passante incompatible avec l'actionneur et le bruit; il
+            faut donc saturation et anti-windup.
+\CorrigeQuestion{9}
+Le constructeur ajoute typiquement une limitation de courant/rampe et un
+            anti-windup de l'intégrateur, voire un préfiltre de consigne, afin de respecter
+            les contraintes physiques et le dépassement.
+\end{corrigebox}

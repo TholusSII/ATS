@@ -1,0 +1,22 @@
+% Fichier complété par tools/complete_missing_corrections.py.
+% Source : DYN/DYN-05-Methode/08_RR3D/08_RR3D.tex
+% Statut : rédigé (3 question(s)).
+\begin{corrigebox}[Corrigé rédigé]
+\CorrigeQuestion{1}
+Le graphe d'analyse relie 0--1 et 1--2 par les pivots du mécanisme.
+                On ajoute les poids de 1 et 2, les couples moteurs sur chaque pivot et les
+                réactions de liaison. Les actions internes 1/2 apparaissent sur les deux
+                solides avec des sens opposés.
+\CorrigeQuestion{2}
+On isole d'abord 2 et on projette le théorème du moment dynamique sur
+                l'axe du pivot 2/1 afin d'éliminer la réaction de liaison. Puis on isole
+                l'ensemble 1+2 et on projette au pivot 1/0 pour éliminer les actions
+                internes. Les deux équations fournissent les deux lois de mouvement.
+\CorrigeQuestion{3}
+Les équations s'écrivent sous la forme matricielle
+                $\mathbf M(q)\ddot q+\mathbf C(q,\dot q)+\mathbf G(q)=\tau$, avec
+                $q=(\theta,\varphi)^T$. Les termes de $\mathbf M$ proviennent des moments
+                d'inertie et de Huygens, $\mathbf C$ des produits de vitesses et
+                $\mathbf G$ des poids. La résolution donne $\ddot q=\mathbf M^{-1}
+                [\tau-\mathbf C-\mathbf G]$.
+\end{corrigebox}

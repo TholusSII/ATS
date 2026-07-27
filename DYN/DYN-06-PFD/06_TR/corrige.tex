@@ -1,0 +1,35 @@
+% Fichier généré automatiquement par tools/generate_corrections.py.
+% Source : DYN/DYN-06-PFD/06_TR/06_TR.tex
+% Statut : complet (2/2 question(s) renseignée(s), 0 reprise(s)).
+\begin{corrigebox}[Corrigé extrait de la banque]
+\CorrigeQuestion{1}
+\begin{itemize}
+\item \textbf{On isole 2.}
+\item \textbf{BAME :}
+\begin{itemize}
+\item actions de la liaison pivot $\torseurstat{T}{1}{2}$; 
+\item action de la pesanteur $\torseurstat{T}{\text{pes}}{2}$. On a $\vectm{B}{2}{0}\cdot \vect{k_0}=\vectm{G_2}{2}{0}\cdot \vect{k_0}+\left(\vect{BG_2}\wedge \left( -m_2 g \vj{0} \right) \right)\cdot \vect{k_0}$ $=\left(R\vi{2}\wedge \left( -m_2 g \vj{0} \right) \right)\cdot \vect{k_0}$
+$=-m_2 g R  \vi{0}\cdot \vi{2} $ $=-m_2 g R  \cos\theta(t) $.
+\end{itemize}
+\item \textbf{Théorème :} on applique le théorème du moment dynamique en $B$ au solide \textbf{2} en projection sur $\vk{0}$ : $C_m+\vectm{B}{\text{pes}}{2}\cdot \vk{0}  = \vectmd{B}{2}{0}\cdot \vk{0}$.
+On  a $ \vectmd{B}{2}{0}\cdot \vk{0}$ $=\left(C_1  \ddot{\theta} \vk{1} + R\left( -\sin \theta \ddot{\lambda}(t) \vk{0} 
++ R \ddot{\theta} \vk{2}\right) \right) \cdot \vk{0}$
+ $=C_1  \ddot{\theta} + R\left( -\sin \theta \ddot{\lambda}(t) + R \ddot{\theta} \right)  $. Au final, 
+ $ C_m-m_2 g R  \cos\theta(t) = C_1  \ddot{\theta} + R\left( -\sin \theta \ddot{\lambda}(t) + R \ddot{\theta} \right)$.
+\end{itemize}
+\CorrigeQuestion{2}
+\begin{itemize}
+\item \textbf{On isole 1+2.}
+\item \textbf{BAME :}
+\begin{itemize}
+\item actions de la liaison glissière $\torseurstat{T}{0}{1}$;
+\item action de la pesanteur $\torseurstat{T}{\text{pes}}{1}$;
+\item action de la pesanteur $\torseurstat{T}{\text{pes}}{2}$;
+\item action du vérin $\torseurstat{T}{\text{ver}}{1}$.
+\end{itemize}
+\item \textbf{Théorème :} on applique le théorème de la résultante dynamique à l'ensemble \textbf{1+2} en projection sur 
+$\vi{0}$ : 
+$\vectf{\text{ver}}{1}\cdot \vi{0}  = \vectrd{1+2}{0}\cdot \vi{0}$. Au final, 
+$F_{\text{ver}}=m_1\ddot{\lambda}(t)+m_2\left(\ddot{\lambda}(t)- R \left(\ddot{\theta} \sin\theta(t)  + \dot{\theta}^2 \cos\theta \right)\right)$.
+\end{itemize}
+\end{corrigebox}

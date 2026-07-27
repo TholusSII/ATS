@@ -1,0 +1,37 @@
+% Fichier généré automatiquement par tools/generate_corrections.py.
+% Source : CIN/CIN-02-VitesseAcceleration/46_RR_RSG/46_RR_RSG.tex
+% Statut : complété (4/4 question(s)).
+\begin{corrigebox}[Corrigé complété]
+\CorrigeQuestion{1}
+On construit un sommet par solide, puis une arête par liaison en
+        indiquant son type, son centre et son axe. Les actions extérieures (poids,
+        actionneur, charge) sont reliées au solide concerné. Le graphe doit retrouver le
+        nombre de mobilités et de boucles du mécanisme de l'énoncé.
+\CorrigeQuestion{2}
+En utilisant la décomposition du vecteur vitesse : 
+$\vectv{B}{2}{0} = \vectv{B}{2}{1} +  \vectv{B}{1}{0}$.
+
+\begin{itemize}
+\item \textbf{Calcul de $ \vectv{B}{2}{1}$ :}  $\babarv{B}{A}{2}{1}$. 2 et 1 étant en pivot d'axe $\axe{A}{k_0}$, on a $\vectv{B}{2}{1}=\vect{0}-L\vi{2}\wedge \varphip(t)\vk{0}$
+$=L\varphip(t)\vj{2}$.
+\item \textbf{Calcul de $ \vectv{B}{1}{0}$ :}  $\babarv{B}{I}{1}{0}$ 
+$=\vect{0}-L\vi{2}\wedge \varphip(t)\vk{0}$. En utilisant l'hypothèse de roulement sans glissement : $ \vectv{B}{1}{0}$  $=\left(-L\vi{2}-R\vj{0}\right)\wedge \thetap(t)\vk{0}$  $=\thetap(t)\left(L\vj{2}-R\vi{0}\right)$.
+\end{itemize}
+
+Au final, $\vectv{B}{2}{0} = L\varphip(t)\vj{2} +\thetap(t)\left(L\vj{2}-R\vi{0}\right) $.
+\CorrigeQuestion{3}
+$\torseurcin{V}{2}{0} = \torseurl{\vecto{2}{0}=\left( \varphip(t)+\thetap(t) \right) \vk{0} }{ L\varphip(t)\vj{2} +\thetap(t)\left(L\vj{2}-R\vi{0}\right)}{B}$.
+\CorrigeQuestion{4}
+$\vectg{B}{2}{0} = \deriv{\vectv{B}{2}{0}}{\rep{0}}$
+
+$ = \deriv{L\varphip(t)\vj{2}}{\rep{0}} + \deriv{\thetap(t)\left(L\vj{2}-R\vi{0}\right)}{\rep{0}}$
+
+$ = L\varphipp(t)\vj{2}-L\varphip(t)\left(\varphip(t)+\thetap(t) \right)\vi{2}  + \thetapp(t)\left(L\vj{2}-R\vi{0}\right) - L\thetap(t)\left(\varphip(t)+\thetap(t) \right)\vi{2}$.
+
+[A Vérifier...]
+\begin{enumerate}
+\item $\vectv{B}{2}{0} = L\varphip(t)\vj{2} +\thetap(t)\left(L\vj{2}-R\vi{0}\right) $.
+\item  $\torseurcin{V}{2}{0} = \torseurl{\vecto{2}{0}=\left( \varphip(t)+\thetap(t) \right) \vk{0} }{ L\varphip(t)\vj{2} +\thetap(t)\left(L\vj{é}-R\vi{0}\right)}{B}$.
+\item $\vectg{B}{2}{0} =  L\varphipp(t)\vj{2}-L\varphip(t)\left(\varphip(t)+\thetap(t) \right)\vi{2}  + \thetapp(t)\left(L\vj{2}-R\vi{0}\right) - L\thetap(t)\left(\varphip(t)+\thetap(t) \right)\vi{2}$.
+\end{enumerate}
+\end{corrigebox}

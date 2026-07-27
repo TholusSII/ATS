@@ -1,0 +1,61 @@
+% Fichier généré automatiquement par tools/generate_corrections.py.
+% Source : DYN/DYN-05-Methode/09_RT_RSG/09_RT_RSG.tex
+% Statut : complet (3/3 question(s) renseignée(s), 0 reprise(s)).
+\begin{corrigebox}[Corrigé extrait de la banque]
+\CorrigeQuestion{1}
+\begin{marginfigure}
+\includegraphics[width=\linewidth]{09_RT_RSG_cor_01}
+\end{marginfigure}
+\CorrigeQuestion{2}
+Le système posède deux mobilités : 
+\begin{itemize}
+\item translation de 1 par rapport à 2 ($\lambda$);
+\item rotation de l'ensemble \{1+2\} autour du point $I$ (le roulement sans glissement permet d'écrire une relation entre la rotation de paramètre $\theta$ et le déplacement suivant $\vi{0}$.
+\end{itemize}
+
+On en déduit la stratégie suivante : 
+\begin{itemize}
+\item Première loi de mouvement : 
+\begin{itemize}
+\item on isole 2,
+\item BAME : 
+\begin{itemize}
+\item $\torseurstat{T}{1}{2}$, 
+\item $\torseurstat{T}{1_{\text{ressort}}}{2}$ ($\vectf{1}{2}\cdot \vi{1}= 0$ et $\vectf{1_{\text{ressort}}}{2}\cdot \vi{1}= 0$)
+\item $\torseurstat{T}{\text{Pesanteur}}{2}$;
+\end{itemize}
+\item on réalise un théorème de la résultante dynamique en projection suivant $\vi{1}$. 
+\end{itemize}
+\item Seconde loi de mouvement : 
+\begin{itemize}
+\item on isole \{1+2\};
+\item BAME :
+\begin{itemize} 
+\item $\torseurstat{T}{0}{1}$ ($\vectm{I}{0}{1}\cdot \vk{0}= 0$), 
+\item $\torseurstat{T}{\text{Pesanteur}}{1}$,
+\item  $\torseurstat{T}{\text{Pesanteur}}{2}$.
+\end{itemize}
+\item on réalise un théorème du moment dynamique en $I$ en projection suivant $\vk{0}$. 
+\end{itemize}
+\end{itemize}
+\CorrigeQuestion{3}
+On montre que :
+\begin{itemize}
+\item $\vectv{B}{2}{0} = \lambdap\vi{1} + \thetap\left(\lambda(t)\vj{1}-R\vi{0} \right)$
+\item $\vectg{B}{2}{0}  = \lambdapp(t)\vi{1} 
++ \thetapp(t)\left(\lambda(t)\vj{1}-R\vi{0} \right)
++ \thetap(t)\left(2\lambdap(t)\vj{1}-\lambda(t)\thetap\vi{1} \right)
+$
+\item $\vectrd{2}{0} =  m_2 \left( \lambdapp(t)\vi{1} +\lambdap(t)\thetap\vj{1} 
++ \thetapp(t)\left(\lambda(t)\vj{1}-R\vi{0} \right)
++ \thetap(t)\left(\lambdap(t)\vj{1}-\lambda(t)\thetap\vi{1} \right)\right)$
+\item $\vectmd{I}{2}{0} \cdot \vect{k_0} =     
+-m_2 R\lambdapp(t)\cos\theta 
++m_2 R\lambdap(t)\thetap\sin\theta 
+ +m_2 R^2\thetapp(t) 
++ m_2 R\thetap(t)\lambdap(t)\sin\theta
++m_2 R\thetap^2(t)\lambda(t)\cos\theta 
++ 2 m_2  \lambda(t)  \lambdap(t)\thetap
++  m_2  \thetapp(t) \lambda(t)^2 +C_2\thetapp$
+\end{itemize}
+\end{corrigebox}

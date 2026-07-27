@@ -1,0 +1,48 @@
+% Fichier généré automatiquement par tools/generate_corrections.py.
+% Source : STAT/STAT-03-Demarche/14_Sympact/14_Sympact.tex
+% Statut : complet (3/3 question(s) renseignée(s), 0 reprise(s)).
+\begin{corrigebox}[Corrigé extrait de la banque]
+\CorrigeQuestion{1}
+\begin{marginfigure}
+\includegraphics[width=\linewidth]{14_cor_01}
+\end{marginfigure}
+\CorrigeQuestion{2}
+Exprimons le couple du ressort par $C_r(\varphi)=a\varphi + b$. On a d'une part, $C_r(\varphi_0)=0$. D'autre part, on a une raideur $k$ de \SI{45}{Nm} pour un angle de rotation 100\degres soit $k=\dfrac{45}{100 \dfrac{\pi}{180}} = \SI{26}{Nm.rad^{-1}}$. On a donc  $C_r(\varphi_f)=k \dfrac{\pi}{2}$.
+
+On a donc : 
+$\left\{\begin{array}{l} 
+a\varphi_0 + b = 0 \\
+a\varphi_f + b = k \dfrac{\pi}{2}
+\end{array}
+\right. $
+$\Leftrightarrow 
+\left\{\begin{array}{l} 
+ b = -a\varphi_0 \\
+a\varphi_f  -a\varphi_0= k \dfrac{\pi}{2}
+\end{array}
+\right. $
+$\Leftrightarrow 
+\left\{\begin{array}{l} 
+ b = -a\varphi_0 \\
+a\left(\varphi_f  -\varphi_0\right)= k \dfrac{\pi}{2}
+\end{array}
+\right. $
+$\Leftrightarrow 
+\left\{\begin{array}{l} 
+ b = -a\varphi_0 \\
+a= k \dfrac{\pi}{2 \left(\varphi_f  -\varphi_0\right)}
+\end{array}
+\right. $
+
+On a donc $C_r(\varphi)= k \dfrac{\pi}{2 \left(\varphi_f  -\varphi_0\right)}\varphi - k \dfrac{\pi \varphi_0}{2 \left(\varphi_f  -\varphi_0\right)} $.
+
+Avec $\varphi_0=\dfrac{\pi}{2}$ et $\varphi_f=0$, on a 
+
+$C_r(\varphi)= -k \varphi + k \dfrac{\pi}{2} $.
+\CorrigeQuestion{3}
+\begin{itemize}
+\item On isole 1, on réalise un TMS en $C$ en projection sur $\vect{k_0}$. On obtient une équation liant le couple moteur et l'action normale dans la liaison sphère plan. 
+\item On isole 2, on réalise un TMS en $A$ en projection sur $\vect{k_0}$. On obtient une équation liant le couple dans le ressort et l'action normale dans la liaison sphère plan. 
+\item En combinant les deux équations on élimine l'action normale dans la liaison sphère plan. On peut éliminer un des deux angles en utilisant la loi entrée sortie.
+\end{itemize}
+\end{corrigebox}

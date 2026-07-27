@@ -1,0 +1,36 @@
+% Fichier complété par tools/complete_missing_corrections.py.
+% Source : COR/COR-03-PI/68_Roburoc/68_Roburoc.tex
+% Statut : rédigé (8 question(s)).
+\begin{corrigebox}[Corrigé rédigé]
+\CorrigeQuestion{1}
+La stabilité théorique est vérifiée par Routh-Hurwitz sur le polynôme
+            caractéristique ou par les marges du Bode. Tous les coefficients doivent être
+            positifs et la première colonne de Routh sans changement de signe.
+\CorrigeQuestion{2}
+Pour une consigne échelon, $\varepsilon_s=V_{C0}/(1+K_p)$ où $K_p$ est le
+            gain statique de boucle; pour la perturbation, on applique la valeur finale à
+            la transmittance perturbation--sortie. Sans intégrateur, ces erreurs restent
+            non nulles.
+\CorrigeQuestion{3}
+Le correcteur est un PI : il annule l'erreur statique grâce à son
+            intégrateur et son zéro limite la dégradation de phase. Il améliore la
+            précision mais peut réduire les marges et augmenter le dépassement.
+\CorrigeQuestion{4}
+Pour $K_I=1$, le correcteur ajoute une pente $-20$ dB/décade avant son
+            zéro et une phase allant de $-90^\circ$ à $0^\circ$. La valeur maximale est
+            $K_{I,max}=1/|L_0(j\omega_*)|$ à la phase imposée par la marge minimale.
+\CorrigeQuestion{5}
+Le pôle dominant est celui de plus faible module. On conserve ce pôle et
+            le PI, puis on choisit $K_I$ pour un amortissement proche de 0,7. Le temps
+            minimal s'estime par $t_{5\%}\simeq3/(\xi\omega_0)$.
+\CorrigeQuestion{6}
+Parmi les courbes, on retient la valeur de $T_I$ donnant le premier
+            établissement définitif dans la bande $\pm5\%$ sans dépassement excessif.
+\CorrigeQuestion{7}
+On choisit $K_p$ par interpolation entre les courbes afin d'obtenir le
+            temps de réponse demandé tout en gardant les marges de stabilité.
+\CorrigeQuestion{8}
+Le réglage final est acceptable uniquement si précision, temps de réponse,
+            dépassement et marges sont simultanément conformes; sinon on adopte une avance
+            de phase ou une structure à deux boucles.
+\end{corrigebox}

@@ -1,0 +1,72 @@
+% Fichier généré automatiquement par tools/generate_corrections.py.
+% Source : DYN/DYN-05-Methode/06_TR/06_TR.tex
+% Statut : complet (3/3 question(s) renseignée(s), 0 reprise(s)).
+\begin{corrigebox}[Corrigé extrait de la banque]
+\CorrigeQuestion{1}
+\par\medskip\begin{center}\captionsetup{type=figure}
+\includegraphics[width=.7\linewidth]{06_TR_02_Cor}
+\end{center}\par\medskip
+\CorrigeQuestion{2}
+Ce mécanisme présente deux degrés de liberté indépendants : $\lambda(t)$ et $\theta(t)$. Il est donc nécessaire d'écrire, dans le meilleur des cas, deux équations :
+\begin{itemize}
+\item une équation traduisant la mobilité de 2 par rapport à 1, soit TMD appliqué à 2 en $B$ en projection sur $\vk{0}$;
+\item une équation traduisant la mobilité de 2+1 par rapport à 0, soit TRD appliqué à 1+2 en projection sur $\vi{0}$.
+\end{itemize}
+
+Stratégie : 
+
+\begin{itemize}
+\item \textbf{On isole 2.}
+
+\begin{itemize}
+\item \textbf{BAME :}
+\begin{itemize}
+\item actions de la liaison pivot $\torseurstat{T}{1}{2}$;
+\item action du moteur $\torseurstat{T}{\text{mot}}{2}$;
+\item action de la pesanteur $\torseurstat{T}{\text{pes}}{2}$.
+\end{itemize}
+\end{itemize}
+
+\begin{marginfigure}
+\includegraphics[width=\linewidth]{06_TR_03_Cor}
+\end{marginfigure}
+
+\begin{itemize}
+\item \textbf{Théorème :} on applique le théorème du moment dynamique en $B$ au solide \textbf{2} en projection sur $\vk{0}$ : $C_{\text{mot}}+\vectm{B}{\text{pes}}{2}\cdot \vk{0}  = \vectmd{B}{2}{0}\cdot \vk{0}$.
+\item \textbf{Calcul de la composante dynamique :} considérons le cas où la matrice d'inertie est donnée en $C$. On a donc 
+$\vectmd{C}{2}{0}= \deriv{\vectmc{C}{2}{0}}{\rep{0}}=\deriv{\inertie{C}{2}\vecto{2}{0}}{\rep{0}}$. Par suite, 
+$\babard{B}{C}{2}{0}$ avec $\vectrd{2}{0}=m_2 \vectg{C}{2}{0}$.
+\end{itemize}
+
+\item \textbf{On isole 1+2.}
+
+\begin{itemize}
+\item \textbf{BAME :}
+\begin{itemize}
+\item actions de la liaison glissière $\torseurstat{T}{0}{1}$;
+\item action de la pesanteur $\torseurstat{T}{\text{pes}}{1}$;
+\item action de la pesanteur $\torseurstat{T}{\text{pes}}{2}$;
+\item action du vérin $\torseurstat{T}{\text{ver}}{1}$.
+\end{itemize}
+\end{itemize}
+
+\begin{marginfigure}
+\includegraphics[width=\linewidth]{06_TR_04_Cor}
+\end{marginfigure}
+
+\begin{itemize}
+\item \textbf{Théorème :} on applique le théorème de la résultante dynamique à l'ensemble \textbf{1+2} en projection sur 
+$\vi{0}$ : 
+$\vectf{\text{ver}}{1}\cdot \vi{0}  = \vectrd{1+2}{0}\cdot \vi{0}$.
+\item \textbf{Calcul de la composante dynamique :} 
+$\vectrd{1+2}{0} = \vectrd{1}{0} +\vectrd{2}{0}$  $= m_1\vectg{G_1}{1}{0} +m_2 \vectg{G_2}{2}{0}$.
+\end{itemize}
+
+\end{itemize}
+\CorrigeQuestion{3}
+On montre que \sidenote{\url{http://xpessoles-cpge.fr/pdf/DYN-04_06_TR_Corrige.pdf}} $\torseurdyn{2}{0}=\torseurl{
+m_2\left(\ddot{\lambda}(t) \vect{i_0} + R \left(\ddot{\theta} \vj{2} - \dot{\theta}^2 \vi{2}\right)\right)
+}{
+C_2  \ddot{\theta} \vk{1} + Rm_2\left( -\sin \theta \ddot{\lambda}(t) \vk{0} + R \ddot{\theta} \vk{2}\right)
+}{B}$ et $\vectrd{1+2}{0}\cdot \vect{i_0} =m_1\ddot{\lambda}(t)+m_2\left(\ddot{\lambda}(t)-R \left(\ddot{\theta} \sin\theta(t)  + \dot{\theta}^2 \cos\theta \right)\right) $.
+\end{corrigebox}

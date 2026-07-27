@@ -1,0 +1,33 @@
+% Fichier complété par tools/complete_missing_corrections.py.
+% Source : PERF/PERF-06-Precision/73_Bassin/73_Bassin.tex
+% Statut : rédigé (6 question(s)).
+\begin{corrigebox}[Corrigé rédigé]
+\CorrigeQuestion{1}
+Pour une boucle ouverte $L_1(p)=C_1(p)G(p)$, le théorème de la valeur finale
+        donne $E_S=V_0\lim_{p\to0}1/(1+L_1(p))$ et
+        $E_T=\gamma_0\lim_{p\to0}1/[p(1+L_1(p))]$. En remplaçant
+        $C_1$, $K_N$, $C$ et $T_m$, on obtient directement les expressions littérales;
+        le nombre d'intégrateurs de $L_1$ fixe si ces erreurs sont nulles ou finies.
+\CorrigeQuestion{2}
+L'exigence impose $|E|\le E_{max}$. On isole donc $C$ dans l'expression
+        précédente : $C\ge C_\varepsilon$. Si l'erreur statique est nulle grâce à un
+        intégrateur, la condition provient de l'erreur de traînage.
+\CorrigeQuestion{3}
+En factorisant le numérateur et le dénominateur du correcteur, on identifie
+        $C_2(p)=K(1+Tp)^2/p$. L'identification coefficient par coefficient fournit
+        $T=T_e$ et $K=C/T_e$ (ou les expressions équivalentes selon la normalisation
+        exacte donnée dans l'énoncé).
+\CorrigeQuestion{4}
+La FTBO corrigée est le produit de tous les blocs de la chaîne directe :
+        $L_2(p)=C_2(p)K_NG_m(p)G_{proc}(p)$; on simplifie les facteurs communs et on
+        conserve explicitement le nombre d'intégrateurs.
+\CorrigeQuestion{5}
+Avec $L_2$, $E_S=V_0\lim_{p\to0}1/(1+L_2)$ et
+        $E_T=\gamma_0\lim_{p\to0}1/[p(1+L_2)]$. La présence de l'intégrateur annule
+        l'erreur d'échelon; le gain de vitesse $K_v=\lim_{p\to0}pL_2(p)$ donne
+        $E_T=\gamma_0/K_v$.
+\CorrigeQuestion{6}
+La condition est donc $K_v\ge\gamma_0/E_{T,max}$. En remplaçant $K_v$ par
+        son expression en fonction de $K$, on obtient la borne inférieure recherchée pour
+        le gain du correcteur.
+\end{corrigebox}

@@ -1,0 +1,19 @@
+% Fichier complété par tools/complete_missing_corrections.py.
+% Source : CIN/CIN-02-VitesseAcceleration/06_TR/06_TR.tex
+% Statut : rédigé (4 question(s)).
+\begin{corrigebox}[Corrigé rédigé]
+\CorrigeQuestion{1}
+Le point $B$ est l'origine du pivot 2/1 et appartient au coulisseau 1 : il reste donc sur la droite $(A,\vec i_0)$. L'ensemble accessible est le segment ou la droite correspondant au domaine de $\lambda$.
+\CorrigeQuestion{2}
+$\overrightarrow{AB}=\lambda(t)\vec i_0$, donc $x_B=\lambda(t)$, $y_B=z_B=0$. Si le point visé est l'extrémité $C$, alors $\overrightarrow{AC}=\lambda\vec i_0+R(\cos\theta\vec i_0+\sin\theta\vec j_0)$.
+\CorrigeQuestion{3}
+Pour imposer une trajectoire $C(t)=(x(t),y(t))$, on résout
+                $x=\lambda+R\cos\theta$, $y=R\sin\theta$. Ainsi
+                $\theta(t)=\arcsin(y(t)/R)$ (branche choisie selon la configuration) et
+                $\lambda(t)=x(t)-R\cos\theta(t)$. Pour un segment parcouru à vitesse $v$,
+                $x(t)=x_0+vt$ et $y(t)=y_0$.
+\CorrigeQuestion{4}
+Un tracé Python direct utilise un tableau de temps, calcule
+                `theta=np.arcsin(y/R)` puis `lam=x-R*np.cos(theta)`, et vérifie la
+                trajectoire avec `xc=lam+R*np.cos(theta)` et `yc=R*np.sin(theta)`.
+\end{corrigebox}
