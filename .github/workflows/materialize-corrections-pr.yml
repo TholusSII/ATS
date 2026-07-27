@@ -1,0 +1,67 @@
+name: Copier physiquement les 383 corrigés
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Récupérer la branche de travail
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Restaurer le moteur de complétion
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat tools/vendor/complete_missing_corrections.py.gz.b64.part-* \
+            | base64 --decode \
+            | gzip --decompress \
+            > tools/complete_missing_corrections.py
+          chmod +x tools/complete_missing_corrections.py
+          python3 -m py_compile tools/complete_missing_corrections.py
+
+      - name: Créer les corrigés dans chaque répertoire
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/patch_exercises.py
+          python3 tools/generate_corrections.py
+          python3 tools/complete_missing_corrections.py
+
+      - name: Vérifier la matérialisation
+        shell: bash
+        run: |
+          set -euo pipefail
+          source_dirs=(CIN COR DYN ELEC GEO NUM PERF PPM RDM SEQ SLCI STAT SYS TEC)
+          corrige_count=$(find "${source_dirs[@]}" -type f -name corrige.tex | wc -l)
+          include_count=$(grep -RIl --include='*.tex' '\\InclureCorrige{corrige.tex}' "${source_dirs[@]}" | wc -l)
+          echo "Fichiers corrige.tex : $corrige_count"
+          echo "Inclusions trouvées : $include_count"
+          test "$corrige_count" -eq 383
+          test "$include_count" -eq 383
+          ! grep -RIl --include='corrige.tex' '\\CorrigeACompleter' "${source_dirs[@]}"
+
+      - name: Enregistrer sur la branche de la pull request
+        env:
+          TARGET_BRANCH: ${{ github.event.pull_request.head.ref }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add CIN COR DYN ELEC GEO NUM PERF PPM RDM SEQ SLCI STAT SYS TEC CORRECTIONS_REPORT.md
+          git commit -m 'Matérialiser les 383 fichiers corrige.tex complets [skip ci]'
+          git push origin HEAD:"$TARGET_BRANCH"
