@@ -26,10 +26,21 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat tools/vendor/complete_missing_corrections.py.gz.b64.part-* \
-            | base64 --decode \
-            | gzip --decompress \
-            > tools/complete_missing_corrections.py
+          python3 - <<'PY'
+          from pathlib import Path
+          import base64
+          import gzip
+
+          parts = sorted(Path('tools/vendor').glob('complete_missing_corrections.py.gz.b64.part-*'))
+          if len(parts) != 6:
+              raise SystemExit(f'Nombre de fragments inattendu : {len(parts)}')
+          encoded = ''.join(''.join(part.read_text(encoding='utf-8').split()) for part in parts)
+          compressed = base64.b64decode(encoded, validate=True)
+          script = gzip.decompress(compressed)
+          output = Path('tools/complete_missing_corrections.py')
+          output.write_bytes(script)
+          print(f'{len(parts)} fragments, {len(compressed)} octets compressés, {len(script)} octets restaurés')
+          PY
           chmod +x tools/complete_missing_corrections.py
           python3 -m py_compile tools/complete_missing_corrections.py
 
