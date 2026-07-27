@@ -1,0 +1,41 @@
+% Fichier complété par tools/complete_missing_corrections.py.
+% Source : ELEC/ELEC-05-MA/50_BancBalafre/50_BancBalafre.tex
+% Statut : rédigé (10 question(s)).
+\begin{corrigebox}[Corrigé rédigé]
+\CorrigeQuestion{1}
+La vitesse synchrone est $n_s=60f/p$. La plaque donne une vitesse proche
+            de $3000$ tr/min à 50 Hz, donc $p=60f/n_s=1$ paire de pôles.
+\CorrigeQuestion{2}
+$g_N=(n_s-n_N)/n_s$ et $C_{uN}=P_{uN}/\Omega_N$ avec
+            $\Omega_N=2\pi n_N/60$.
+\CorrigeQuestion{3}
+Dans le modèle par phase,
+            $P_{EM}=3U_S^2\dfrac{R/g}{(R/g)^2+(L_c\omega)^2}$.
+\CorrigeQuestion{4}
+$P_{EM}=C_{EM}\Omega$.
+\CorrigeQuestion{5}
+$\Omega=(1-g)\Omega_s=(1-g)\omega/p$. Ainsi
+            $C_{EM}=\dfrac{3pU_S^2}{(1-g)\omega}\dfrac{R/g}{(R/g)^2+(L_c\omega)^2}$;
+            près du synchronisme, l'approximation $1-g\simeq1$ donne l'expression de
+            l'énoncé.
+\CorrigeQuestion{6}
+En négligeant les pertes mécaniques et les pertes supplémentaires,
+            $C_u\simeq C_{EM}$, ce qui conduit directement à l'expression proposée.
+\CorrigeQuestion{7}
+Démarrage : $g=1$; synchronisme : $g=0$ et couple nul; nominal : point
+            d'intersection avec le couple résistant près du synchronisme; la branche située
+            au-delà du couple maximal est instable.
+\CorrigeQuestion{8}
+Le couple maximal est atteint pour $R/g=L_c\omega$. On obtient
+            $C_M=3pU_S^2/(2L_c\omega^2)$, donc
+            $\boxed{L_c=3pU_S^2/(2C_M\omega^2)}$.
+\CorrigeQuestion{9}
+Au nominal, $R/g\gg L_c\omega$ si le point est proche du synchronisme.
+            Alors $C_N\simeq3pU_S^2g_N/(\omega R)$ et
+            $\boxed{R=3pU_S^2g_N/(\omega C_N)}$.
+\CorrigeQuestion{10}
+On résout $C_u(g,f)=300\,\mathrm{N\,m}$ avec
+            $g=1-p\Omega/\omega$, $\Omega=2\pi\,6000/60$ et $\omega=2\pi f$.
+            La racine physique $0<g<1$ donne la fréquence imposée; une résolution
+            numérique (Newton ou dichotomie) est adaptée.
+\end{corrigebox}

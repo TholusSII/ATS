@@ -1,0 +1,32 @@
+% Fichier complété par tools/complete_missing_corrections.py.
+% Source : COR/COR-04-AP/65_Eclipse_03/65_Eclipse_03.tex
+% Statut : rédigé (7 question(s)).
+\begin{corrigebox}[Corrigé rédigé]
+\CorrigeQuestion{1}
+$C_{V2}(p)=(1+k_f\tau_vp)/(1+\tau_vp)$ avec $k_f>1$ est une avance de
+            phase. Son zéro est placé avant son pôle; entre les deux, le gain monte de
+            $20$ dB/décade et la phase devient positive, ce qui augmente la marge.
+\CorrigeQuestion{2}
+On lit $\omega_{0dB}$ puis la phase de $W$. Si elle est inférieure à
+            $-180^\circ+M_{\varphi}$, la marge est insuffisante; l'avance de phase est
+            nécessaire pour remonter la phase autour de cette pulsation.
+\CorrigeQuestion{3}
+La phase
+            $\varphi=\arctan(k_f\tau_v\omega)-\arctan(\tau_v\omega)$ est maximale pour
+            $\boxed{\omega_m=1/(\tau_v\sqrt{k_f})}$.
+\CorrigeQuestion{4}
+On choisit $\omega_m$ égale à la pulsation lue pour la phase cible, donc
+            $\boxed{\tau_v=1/(\omega_m\sqrt{k_f})}$.
+\CorrigeQuestion{5}
+Sur le Black, on translate la courbe verticalement de
+            $20\log(K_V/75)$ jusqu'à obtenir la distance maximale au point critique
+            $(-180^\circ,0\,dB)$. La valeur correspondante maximise la marge de phase.
+\CorrigeQuestion{6}
+On mesure pour chaque courbe le premier instant d'entrée définitive dans
+            la bande $\pm5\%$. La valeur optimale de $K_V$ est la plus rapide qui respecte
+            également le dépassement et la stabilité.
+\CorrigeQuestion{7}
+L'intégrateur assure le rejet d'une perturbation constante, mais une rampe
+            laisse une erreur finie sauf si la boucle possède un intégrateur supplémentaire.
+            La robustesse aux rampes n'est donc que partielle.
+\end{corrigebox}

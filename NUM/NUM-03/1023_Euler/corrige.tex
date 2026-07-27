@@ -1,0 +1,15 @@
+% Fichier complété par tools/complete_missing_corrections.py.
+% Source : NUM/NUM-03/1023_Euler/1023_Euler.tex
+% Statut : rédigé (1 question(s)).
+\begin{corrigebox}[Corrigé rédigé]
+\CorrigeQuestion{1}
+Pour une équation $\dot y=f(t,y)$ et un pas $h$, le schéma d'Euler
+        explicite est $t_{n+1}=t_n+h$ et
+        \[\boxed{y_{n+1}=y_n+h f(t_n,y_n)}.\]
+        Pour un système d'ordre supérieur, on introduit les variables d'état
+        $x_1=y$, $x_2=\dot y$, etc., puis on applique cette formule à chaque composante.
+        Exemple pour $\ddot y=g(t,y,\dot y)$ :
+        $v_{n+1}=v_n+h g(t_n,y_n,v_n)$ et $y_{n+1}=y_n+h v_n$.
+        Les conditions initiales fixent $y_0$ et $v_0$; le pas est diminué jusqu'à
+        convergence des résultats.
+\end{corrigebox}

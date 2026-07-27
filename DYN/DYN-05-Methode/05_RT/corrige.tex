@@ -1,0 +1,36 @@
+% Fichier généré automatiquement par tools/generate_corrections.py.
+% Source : DYN/DYN-05-Methode/05_RT/05_RT.tex
+% Statut : complet (3/3 question(s) renseignée(s), 0 reprise(s)).
+\begin{corrigebox}[Corrigé extrait de la banque]
+\CorrigeQuestion{1}
+\begin{marginfigure}
+\includegraphics[width=\linewidth]{05_RT_01_cor}
+\end{marginfigure}
+\CorrigeQuestion{2}
+\begin{itemize}
+\item Première équation :
+\begin{itemize}
+\item On isole \textbf{\{2\}}. 
+\item BAME : $\torseurstat{T}{\text{pes}}{2}$, $\torseurstat{T}{\text{Vérin}}{2}$, $\torseurstat{T}{\text{1}}{2}$
+\item On réalise un théorème de la résultante dynamique en projection sur $\vect{i_1}$ :
+$$ \vectf{1}{2}\cdot \vect{i_1} + \vectf{F_v}{2}\cdot \vect{i_1} + \vectf{\text{Pes}}{2}\cdot \vect{i_1} = \vectrd{2}{0}\cdot \vect{i_1}$$
+\end{itemize}
+\item Seconde équation : 
+\begin{itemize}
+\item On isole \textbf{\{1+2\}}. 
+\item BAME : $\torseurstat{T}{\text{pes}}{1}$, $\torseurstat{T}{\text{pes}}{2}$, $\torseurstat{T}{\text{Moteur}}{1}$, $\torseurstat{T}{\text{0}}{1}$
+\item On réalise un théorème du moment dynamique en $A$ en projection sur $\vect{k_0}$ :
+$$ \vectm{A}{0}{1}\cdot \vect{k_0} 
++ \vectm{A}{\text{Mot}}{1}\cdot \vect{k_0} 
++ \vectm{A}{\text{Pes}}{2}\cdot \vect{k_0}
++ \vectm{A}{\text{Pes}}{1}\cdot \vect{k_0} = \vectmd{A}{2}{0}\cdot \vect{k_0}+\vectmd{A}{1}{0}\cdot \vect{k_0}$$
+\end{itemize}
+\end{itemize}
+\CorrigeQuestion{3}
+RESULTAT A VERIFIER!!!!!
+Par ailleurs, on donne $\torseurcin{V}{2}{0} =\torseurl{\dot{\theta}(t)\vk{0}}{\dot{\lambda}(t)\vi{1}+\lambda(t)\dot{\theta}(t)\vj{1}}{B}$ et $\vectg{B}{2}{0} =  \left( \ddot{\lambda}(t)-\lambda(t)\dot{\theta}(t)^2\right)\vi{1}  +  \left( \dot{\lambda}(t)\dot{\theta}(t) +\dot{\lambda}(t)\dot{\theta}(t)\right) \vj{1}$.
+
+\textbf{Calculons $\vectrd{1}{0}$.}
+
+$\vectrd{1}{0} =m_1L_1\left( \thetapp \vj{1} - \thetap^2 \vi{1} \right)$.
+\end{corrigebox}

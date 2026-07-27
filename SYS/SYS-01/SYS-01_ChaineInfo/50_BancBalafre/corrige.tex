@@ -1,0 +1,18 @@
+% Fichier complété par tools/complete_missing_corrections.py.
+% Source : SYS/SYS-01/SYS-01_ChaineInfo/50_BancBalafre/50_BancBalafre.tex
+% Statut : rédigé (3 question(s)).
+\begin{corrigebox}[Corrigé rédigé]
+\CorrigeQuestion{1}
+Multiplexé signifie qu'un seul convertisseur analogique-numérique est
+            partagé entre plusieurs voies. Un multiplexeur sélectionne successivement
+            chaque capteur; les mesures ne sont donc pas strictement simultanées.
+\CorrigeQuestion{2}
+La pleine échelle de l'amplificateur doit être immédiatement supérieure à
+            la charge maximale : $Q_{max}=S_qF_{max}$ avec $S_q$ la sensibilité en pC/N.
+            On choisit la gamme normalisée qui contient $\pm Q_{max}$ sans saturation.
+\CorrigeQuestion{3}
+Si la sortie varie sur $\Delta U$ et le CAN possède $N$ bits, le quantum
+            est $q_U=\Delta U/2^N$. La résolution en charge est $q_Q=q_U/G_q$, puis en
+            force $q_F=q_Q/S_q$. La résolution est conforme si $q_F$ est inférieure à
+            l'exigence, en gardant une marge pour le bruit et les erreurs de gain.
+\end{corrigebox}

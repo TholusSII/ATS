@@ -1,0 +1,37 @@
+% Fichier complété par tools/complete_missing_corrections.py.
+% Source : COR/COR-03-PI/65_Eclipse_02/65_Eclipse_02.tex
+% Statut : rédigé (9 question(s)).
+\begin{corrigebox}[Corrigé rédigé]
+\CorrigeQuestion{1}
+Le correcteur intégral ajoute un pôle à l'origine; le gain de boucle devient
+            infini à basse fréquence et l'erreur statique d'échelon est nulle.
+\CorrigeQuestion{2}
+Après réduction au second ordre dominant, le temps optimal est obtenu pour
+            $\xi\simeq0,69$, soit $t_{5\%}\simeq3/(\xi\omega_0)$. On détermine $K_i$ en
+            identifiant le polynôme caractéristique à cette forme; la valeur numérique est
+            celle qui place les pôles dominants sur cette condition.
+\CorrigeQuestion{3}
+Le Bode corrigé est celui du procédé auquel on ajoute $20\log K_i$ et
+            $-20$ dB/décade, avec une phase supplémentaire de $-90^\circ$ due à $1/p$.
+\CorrigeQuestion{4}
+La marge de phase est $180^\circ+\arg L(j\omega_c)$ à la pulsation où le
+            gain vaut 0 dB.
+\CorrigeQuestion{5}
+La valeur limite de $K_i$ translate le gain jusqu'à ce que la coupure se
+            produise à la pulsation où la phase vaut $-180^\circ+M_{\varphi,min}$. Ainsi
+            $K_{i,lim}=1/|L_0(j\omega_{lim})|$.
+\CorrigeQuestion{6}
+Sur le diagramme donné pour $K_i=7000$, on lit le gain à la pulsation de
+            phase cible puis on corrige proportionnellement :
+            $K_{i,lim}=7000\,10^{-G_{dB}(\omega_{lim})/20}$.
+\CorrigeQuestion{7}
+Une valeur beaucoup plus élevée que l'optimum de rapidité augmente la
+            bande passante, le dépassement et la sensibilité au bruit; elle n'est donc pas
+            retenue même si la stabilité limite est respectée.
+\CorrigeQuestion{8}
+Un double intégrateur rendrait nulles les erreurs d'échelon et de rampe,
+            donc améliorerait la précision basse fréquence.
+\CorrigeQuestion{9}
+Mais il ajoute $-180^\circ$ de phase : sans zéros compensateurs, la marge
+            devient négative ou très faible. Il ne permet donc pas d'assurer la stabilité.
+\end{corrigebox}
