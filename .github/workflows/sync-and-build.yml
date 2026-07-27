@@ -7,6 +7,7 @@ on:
     paths:
       - .github/workflows/sync-and-build.yml
       - ALL_EXOS/ALL_EXOS.tex
+      - ALL_EXOS/ALL_EXOS_CORRIGE.tex
       - Style/exercices_compat.tex
       - tools/**
 
@@ -26,7 +27,7 @@ env:
 jobs:
   sync-and-build:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 360
 
     steps:
       - name: Récupérer le dépôt Exercices
@@ -59,15 +60,12 @@ jobs:
             SEQ SLCI STAT SYS TEC scripts xx_Figures
           )
 
-          # CHS provenait d'une synchronisation ultérieure et n'appartient pas au ZIP fourni.
           rm -rf CHS "${source_dirs[@]}"
           for dir in "${source_dirs[@]}"; do
             test -d "/tmp/PSI_ExercicesCompetences/$dir"
             cp -a "/tmp/PSI_ExercicesCompetences/$dir" ./
           done
 
-          # Conserve la couche de compatibilité du recueil et remplace le reste par
-          # le framework officiel issu du répertoire Style.
           cp Style/exercices_compat.tex /tmp/exercices_compat.tex
           rm -rf Style framework resources
           mkdir -p Style
@@ -85,23 +83,39 @@ jobs:
       - name: Appliquer les correctifs minimaux des sources
         run: python3 tools/patch_exercises.py
 
+      - name: Générer les fichiers de corrigé séparés
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/generate_corrections.py
+          test "$(find . -type f -name corrige.tex | wc -l)" -eq 383
+          grep -q 'Exercices traités : \*\*383\*\*' CORRECTIONS_REPORT.md
+
       - name: Générer le fichier maître ALL_EXOS
         shell: bash
         run: |
           set -euo pipefail
           python3 tools/generate_all_exos.py
           grep -q '383 exercices' ALL_EXOS/inputs.tex
+          mkdir -p ALL_EXOS/gnuplot/ALL_EXOS ALL_EXOS/gnuplot/ALL_EXOS_CORRIGE
 
-      - name: Compiler le recueil TeX
+      - name: Compiler les recueils avec et sans corrigés
         id: compile
         continue-on-error: true
         uses: xu-cheng/latex-action@v4
         with:
           working_directory: ALL_EXOS
-          root_file: ALL_EXOS.tex
+          root_file: |
+            ALL_EXOS.tex
+            ALL_EXOS_CORRIGE.tex
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
           texlive_version: 2025
           os: debian
+          extra_system_packages: "gnuplot-nox"
+          latexmk_shell_escape: true
+          continue_on_error: true
+          pre_compile: |
+            mkdir -p gnuplot/ALL_EXOS gnuplot/ALL_EXOS_CORRIGE
 
       - name: Enregistrer le diagnostic et l'état de compilation
         if: always()
@@ -118,8 +132,16 @@ jobs:
             tail -n 180 "$log" >> ALL_EXOS/BUILD_ERRORS.txt || true
           done < <(find . -type f -name '*.log' -print | sort)
 
-          if [ "${{ steps.compile.outcome }}" = "success" ] && [ -s ALL_EXOS/ALL_EXOS.pdf ]; then
-            printf '# État de compilation\n\n✅ `ALL_EXOS/ALL_EXOS.tex` a été compilé avec succès.\n' > ALL_EXOS/BUILD_STATUS.md
+          if [ "${{ steps.compile.outcome }}" = "success" ] \
+             && [ -s ALL_EXOS/ALL_EXOS.pdf ] \
+             && [ -s ALL_EXOS/ALL_EXOS_CORRIGE.pdf ]; then
+            {
+              printf '# État de compilation\n\n'
+              printf '✅ Les deux recueils ont été compilés avec succès.\n\n'
+              printf -- '- `ALL_EXOS/ALL_EXOS.pdf` : énoncés seuls ;\n'
+              printf -- '- `ALL_EXOS/ALL_EXOS_CORRIGE.pdf` : énoncés et boxes de corrigé.\n\n'
+              sed -n '3,8p' CORRECTIONS_REPORT.md
+            } > ALL_EXOS/BUILD_STATUS.md
             rm -f ALL_EXOS/BUILD_ERRORS.txt
           else
             printf '# État de compilation\n\n❌ La compilation a échoué. Le diagnostic est enregistré dans `ALL_EXOS/BUILD_ERRORS.txt`.\n' > ALL_EXOS/BUILD_STATUS.md
@@ -128,19 +150,31 @@ jobs:
             fi
           fi
 
-      - name: Publier le PDF et les journaux comme artefact
+      - name: Publier les PDF et les journaux comme artefact
         if: always()
         uses: actions/upload-artifact@v6
         with:
           name: ALL_EXOS
           path: |
             ALL_EXOS/ALL_EXOS.pdf
+            ALL_EXOS/ALL_EXOS_CORRIGE.pdf
             ALL_EXOS/BUILD_STATUS.md
             ALL_EXOS/BUILD_ERRORS.txt
             ALL_EXOS/*.log
+            CORRECTIONS_REPORT.md
           if-no-files-found: ignore
 
-      - name: Enregistrer les exercices, le framework et le résultat
+      - name: Nettoyer les fichiers temporaires de compilation
+        if: always()
+        shell: bash
+        run: |
+          rm -rf ALL_EXOS/gnuplot
+          find ALL_EXOS -maxdepth 1 -type f \
+            \( -name '*.aux' -o -name '*.fdb_latexmk' -o -name '*.fls' \
+               -o -name '*.idx' -o -name '*.ilg' -o -name '*.ind' \
+               -o -name '*.log' -o -name '*.out' -o -name '*.toc' \) -delete
+
+      - name: Enregistrer les exercices, les corrigés et les PDF
         if: always()
         shell: bash
         run: |
@@ -151,7 +185,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "Aucune modification à enregistrer."
           else
-            git commit -m "Synchroniser DYN et compiler ALL_EXOS [skip ci]"
+            git commit -m "Générer les corrigés et compiler les recueils [skip ci]"
             git push origin HEAD:main
           fi
 
