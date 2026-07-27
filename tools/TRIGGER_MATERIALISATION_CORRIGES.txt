@@ -1,0 +1,2 @@
+Déclenchement explicite de la matérialisation des 383 fichiers corrige.tex.
+Date : 2026-07-27
