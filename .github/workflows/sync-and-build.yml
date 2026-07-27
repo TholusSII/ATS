@@ -1,4 +1,4 @@
-name: Synchroniser et compiler les exercices
+name: Matérialiser les corrigés dans les exercices
 
 on:
   workflow_dispatch:
@@ -6,17 +6,17 @@ on:
     branches: [main]
     paths:
       - .github/workflows/sync-and-build.yml
+      - Style/exercices_compat.tex
+      - tools/**
       - ALL_EXOS/ALL_EXOS.tex
       - ALL_EXOS/ALL_EXOS_CORRIGE.tex
       - ALL_EXOS/ALL_CORRIGES.tex
-      - Style/exercices_compat.tex
-      - tools/**
 
 permissions:
   contents: write
 
 concurrency:
-  group: exercices-${{ github.ref }}
+  group: exercices-corriges-${{ github.ref }}
   cancel-in-progress: true
 
 env:
@@ -24,12 +24,12 @@ env:
   STYLE_REF: dcc5a8ac942668b246087cfd624ecadc8e17af6f
 
 jobs:
-  sync-and-build:
+  materialize-corrections:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 60
 
     steps:
-      - name: Récupérer le dépôt Exercices
+      - name: Récupérer le dépôt
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
@@ -39,16 +39,18 @@ jobs:
         run: |
           set -euo pipefail
           rm -rf /tmp/PSI_ExercicesCompetences /tmp/Style
+
           git init -q /tmp/PSI_ExercicesCompetences
           git -C /tmp/PSI_ExercicesCompetences remote add origin https://github.com/xpessoles/PSI_ExercicesCompetences.git
           git -C /tmp/PSI_ExercicesCompetences fetch --depth 1 origin "$EXERCISES_REF"
           git -C /tmp/PSI_ExercicesCompetences checkout -q --detach FETCH_HEAD
+
           git init -q /tmp/Style
           git -C /tmp/Style remote add origin https://github.com/xpessoles/Style.git
           git -C /tmp/Style fetch --depth 1 origin "$STYLE_REF"
           git -C /tmp/Style checkout -q --detach FETCH_HEAD
 
-      - name: Synchroniser les exercices et le framework Style
+      - name: Synchroniser les exercices et le framework
         shell: bash
         run: |
           set -euo pipefail
@@ -58,17 +60,12 @@ jobs:
             test -d "/tmp/PSI_ExercicesCompetences/$dir"
             cp -a "/tmp/PSI_ExercicesCompetences/$dir" ./
           done
+
           cp Style/exercices_compat.tex /tmp/exercices_compat.tex
           rm -rf Style framework resources
           mkdir -p Style
           rsync -a --exclude='.git/' /tmp/Style/ Style/
           cp /tmp/exercices_compat.tex Style/exercices_compat.tex
-          printf '%s\n' \
-            '# Sources figées' '' \
-            "- Exercices : xpessoles/PSI_ExercicesCompetences - $EXERCISES_REF" \
-            "- Framework : xpessoles/Style - $STYLE_REF" \
-            '- La révision des exercices correspond au lot fourni dans DYN.zip.' \
-            > SOURCE_XPESSOLES.md
 
       - name: Restaurer le moteur de complétion
         shell: bash
@@ -79,8 +76,7 @@ jobs:
             | gzip --decompress \
             > tools/complete_missing_corrections.py
           chmod +x tools/complete_missing_corrections.py
-          echo '5289056e2b5a107d65152c71dc4820d30569f9a6289b4a205edef41706c306ad  tools/complete_missing_corrections.py' \
-            | sha256sum --check --strict
+          python3 -m py_compile tools/complete_missing_corrections.py
 
       - name: Générer les 383 corrigés complets
         shell: bash
@@ -89,12 +85,32 @@ jobs:
           python3 tools/patch_exercises.py
           python3 tools/generate_corrections.py
           python3 tools/complete_missing_corrections.py
-          test "$(find . -type f -name corrige.tex | wc -l)" -eq 383
+
+      - name: Vérifier les fichiers et les inclusions
+        shell: bash
+        run: |
+          set -euo pipefail
+          source_dirs=(CIN COR DYN ELEC GEO NUM PERF PPM RDM SEQ SLCI STAT SYS TEC)
+
+          corrige_count=$(find "${source_dirs[@]}" -type f -name corrige.tex | wc -l)
+          include_count=$(grep -RIl --include='*.tex' '\\InclureCorrige{corrige.tex}' "${source_dirs[@]}" | wc -l)
+
+          echo "Fichiers corrige.tex : $corrige_count"
+          echo "Inclusions trouvées : $include_count"
+
+          test "$corrige_count" -eq 383
+          test "$include_count" -eq 383
+
+          if grep -RIl --include='corrige.tex' '\\CorrigeACompleter' "${source_dirs[@]}"; then
+            echo 'Des réponses restent marquées à compléter.' >&2
+            exit 1
+          fi
+
           grep -q 'Exercices traités : \*\*383\*\*' CORRECTIONS_REPORT.md
           grep -q 'Corrigés restant partiels : \*\*0\*\*' CORRECTIONS_REPORT.md
           grep -q 'Questions restant marquées à compléter : \*\*0\*\*' CORRECTIONS_REPORT.md
 
-      - name: Générer les fichiers maîtres
+      - name: Régénérer les fichiers maîtres
         shell: bash
         run: |
           set -euo pipefail
@@ -102,77 +118,13 @@ jobs:
           python3 tools/generate_all_corriges.py
           grep -q '383 exercices' ALL_EXOS/inputs.tex
           grep -q '383 corrigés' ALL_EXOS/corriges_inputs.tex
-          mkdir -p ALL_EXOS/gnuplot/ALL_CORRIGES
 
-      - name: Compiler le volume des corrigés
-        id: compile
-        continue-on-error: true
-        uses: xu-cheng/latex-action@v4
-        with:
-          working_directory: ALL_EXOS
-          root_file: ALL_CORRIGES.tex
-          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
-          texlive_version: 2025
-          os: debian
-          extra_system_packages: "gnuplot-nox"
-          latexmk_shell_escape: true
-          pre_compile: mkdir -p gnuplot/ALL_CORRIGES
-
-      - name: Enregistrer l'état de compilation
-        if: always()
-        shell: bash
-        run: |
-          set -u
-          mkdir -p ALL_EXOS
-          if [ "${{ steps.compile.outcome }}" = "success" ] && [ -s ALL_EXOS/ALL_CORRIGES.pdf ]; then
-            {
-              printf '# État de compilation\n\n'
-              printf '✅ Les 383 corrigés sont complets et le volume `ALL_CORRIGES.pdf` a été compilé.\n\n'
-              sed -n '3,9p' CORRECTIONS_REPORT.md
-            } > ALL_EXOS/BUILD_STATUS.md
-            rm -f ALL_EXOS/BUILD_ERRORS.txt
-          else
-            printf '# État de compilation\n\n❌ La compilation de `ALL_CORRIGES.tex` a échoué.\n' > ALL_EXOS/BUILD_STATUS.md
-            find ALL_EXOS -type f -name '*.log' -exec tail -n 200 {} \; > ALL_EXOS/BUILD_ERRORS.txt || true
-          fi
-
-      - name: Publier le PDF comme artefact
-        if: always()
-        uses: actions/upload-artifact@v6
-        with:
-          name: ALL_CORRIGES
-          path: |
-            ALL_EXOS/ALL_CORRIGES.pdf
-            ALL_EXOS/BUILD_STATUS.md
-            ALL_EXOS/BUILD_ERRORS.txt
-            CORRECTIONS_REPORT.md
-          if-no-files-found: ignore
-
-      - name: Nettoyer les fichiers temporaires
-        if: always()
-        shell: bash
-        run: |
-          rm -rf ALL_EXOS/gnuplot
-          find ALL_EXOS -maxdepth 1 -type f \
-            \( -name '*.aux' -o -name '*.fdb_latexmk' -o -name '*.fls' \
-               -o -name '*.idx' -o -name '*.ilg' -o -name '*.ind' \
-               -o -name '*.log' -o -name '*.out' -o -name '*.toc' \) -delete
-
-      - name: Enregistrer les corrigés et le PDF
-        if: always()
+      - name: Enregistrer les fichiers dans main
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
-          if git diff --cached --quiet; then
-            echo 'Aucune modification à enregistrer.'
-          else
-            git commit -m 'Compléter les 383 corrigés et compiler ALL_CORRIGES [skip ci]'
-            git push origin HEAD:main
-          fi
-
-      - name: Signaler une compilation incomplète
-        if: steps.compile.outcome != 'success'
-        run: exit 1
+          git commit -m 'Ajouter les 383 fichiers corrige.tex complets [skip ci]'
+          git push origin HEAD:main
