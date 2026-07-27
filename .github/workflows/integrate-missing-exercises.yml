@@ -1,0 +1,64 @@
+name: Intégrer les exercices manquants
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    if: >-
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.actor != 'github-actions[bot]' &&
+      contains(github.event.pull_request.title, '85 exercices manquants')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Récupérer la branche d’intégration
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Restaurer le paquet d’exercices
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat tools/vendor/missing_exercises.tar.xz.b64.part-* \
+            | base64 --decode > /tmp/missing_exercises.tar.xz
+          echo '22e2f1a3b45fea174c581e6bf552e3db9d9ff59ddde22289a6f0eaa523cf5f02  /tmp/missing_exercises.tar.xz' \
+            | sha256sum --check --strict
+          tar -xJf /tmp/missing_exercises.tar.xz -C .
+          python3 tools/patch_style_version.py
+
+      - name: Vérifier les 468 exercices et leurs corrigés
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/generate_corrections.py
+          python3 tools/generate_all_exos.py
+          python3 tools/generate_all_corriges.py
+          test "$(find . -type f -name corrige.tex | wc -l)" -eq 468
+          test "$(grep -RIl --include='*.tex' '\\InclureCorrige{corrige.tex}' A_Integrer B2_ProposerModele C2_MettreEnOeuvreDemarche CIN COR DYN ELEC GEO NUM PERF PPM RDM SEQ SLCI STAT SYS TEC | wc -l)" -eq 468
+          ! grep -RIl --include='corrige.tex' '\\CorrigeACompleter' A_Integrer B2_ProposerModele C2_MettreEnOeuvreDemarche CIN COR DYN ELEC GEO NUM PERF PPM RDM SEQ SLCI STAT SYS TEC
+          grep -q 'Exercices traités : \*\*468\*\*' CORRECTIONS_REPORT.md
+          grep -q 'Corrigés restant partiels : \*\*0\*\*' CORRECTIONS_REPORT.md
+          grep -q '468 exercices' ALL_EXOS/inputs.tex
+          grep -q '468 corrigés' ALL_EXOS/corriges_inputs.tex
+
+      - name: Enregistrer les exercices sur la branche
+        env:
+          TARGET_BRANCH: ${{ github.event.pull_request.head.ref }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf tools/vendor/missing_exercises.tar.xz.b64.part-* INTEGRATION_TRIGGER.md
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Intégrer les 85 exercices manquants avec leurs corrigés [skip ci]'
+          git push origin HEAD:"$TARGET_BRANCH"
