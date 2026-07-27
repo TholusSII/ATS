@@ -1,3 +1,4 @@
+\providecommand{\ModeCorriges}{0}
 \documentclass[11pt,a4paper,openany]{book}
 
 \usepackage[T1]{fontenc}
@@ -23,18 +24,21 @@
 \def\input@path{{../Style/}}
 \makeatother
 
-% Framework SI historique fourni dans le répertoire Style.
 \input{\repRel/Style/packages_v2}
 \input{\repRel/Style/macros_SII_v2}
 \input{\repRel/Style/environment_v2}
 \usepackage{UPSTI_Pedagogique}
-
-% Adaptations minimales pour compiler tous les exercices dans un seul ouvrage.
 \input{\repRel/Style/exercices_compat}
+
+% Une seule commande suffit : \AfficherCorriges ou \MasquerCorriges.
+\ifnum\ModeCorriges=1\relax
+  \AfficherCorriges
+\else
+  \MasquerCorriges
+\fi
 
 \graphicspath{{images/}{./}}
 \makeindex
-
 \title{Recueil complet d'exercices\\de Sciences industrielles pour l'ingénieur}
 \author{Thomas Lusseau}
 \date{\today}
@@ -43,7 +47,6 @@
 \frontmatter
 \maketitle
 \tableofcontents
-
 \mainmatter
 \newcommand{\repExo}{ALL_EXOS}
 \newcommand{\nomExo}{ALL_EXOS}
@@ -55,7 +58,6 @@
 \setcounter{cptApplication}{1}
 \setcounter{cptTD}{1}
 
-% Un identifiant propre à chaque fichier évite les doublons d'ancres hyperref.
 \providecommand{\td}{}
 \providecommand{\exer}[1]{}
 \newcounter{exerciseentry}[chapter]
@@ -63,24 +65,13 @@
 \renewcommand{\theHquestion}{\theHchapter.\arabic{exerciseentry}.\arabic{question}}
 \newcommand{\ExerciseTitle}[1]{%
   \par\medskip
-  \begin{tcolorbox}[
-    enhanced,
-    breakable,
-    colback=SIlightblue,
-    colframe=SIblue,
-    boxrule=.8pt,
-    arc=1.5mm,
-    left=3mm,right=3mm,top=2mm,bottom=2mm
-  ]
+  \begin{tcolorbox}[enhanced,breakable,colback=SIlightblue,colframe=SIblue,boxrule=.8pt,arc=1.5mm,left=3mm,right=3mm,top=2mm,bottom=2mm]
     {\large\bfseries\color{SIblue}Exercice \theexerciseentry}\par\smallskip
     {\bfseries #1}
   \end{tcolorbox}%
 }
 \renewcommand{\exer}[1]{\ExerciseTitle{#1}}
-
-% Ce fichier est régénéré automatiquement par tools/generate_all_exos.py.
 \input{inputs.tex}
-
 \backmatter
 \printindex
 \end{document}
