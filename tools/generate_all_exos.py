@@ -1,48 +1,30 @@
 #!/usr/bin/env python3
 """Génère ALL_EXOS/inputs.tex à partir de l'arborescence des exercices."""
 from __future__ import annotations
-
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "ALL_EXOS" / "inputs.tex"
 EXPECTED_EXERCISES = 383
 EXCLUDED_TOP_LEVEL = {
-    ".git",
-    ".github",
-    "ALL_EXOS",
-    "FULL_PDF",
-    "Style",
-    "framework",
-    "resources",
-    "scripts",
-    "tools",
-    "xx_Figures",
+    ".git", ".github", "ALL_EXOS", "FULL_PDF", "Style", "framework",
+    "resources", "scripts", "tools", "xx_Figures",
 }
 
 
 def tex_escape(text: str) -> str:
     replacements = {
-        "\\": r"\textbackslash{}",
-        "_": r"\_",
-        "&": r"\&",
-        "%": r"\%",
-        "#": r"\#",
-        "$": r"\$",
-        "{": r"\{",
-        "}": r"\}",
+        "\\": r"\textbackslash{}", "_": r"\_", "&": r"\&", "%": r"\%",
+        "#": r"\#", "$": r"\$", "{": r"\{", "}": r"\}",
     }
     return "".join(replacements.get(char, char) for char in text)
 
 
 def inspect_exercise(path: Path) -> bool | None:
-    """Retourne True si le fichier appelle \exer, False s'il faut un titre de repli."""
     relative = path.relative_to(ROOT)
-    if len(relative.parts) < 4:
+    if len(relative.parts) < 4 or relative.parts[0] in EXCLUDED_TOP_LEVEL:
         return None
-    if relative.parts[0] in EXCLUDED_TOP_LEVEL:
-        return None
-    if path.name.endswith("_old.tex") or "_Colle_" in path.name:
+    if path.name.endswith("_old.tex") or "_Colle_" in path.name or path.name == "corrige.tex":
         return None
     try:
         content = path.read_text(encoding="utf-8", errors="ignore")
@@ -95,7 +77,6 @@ def main() -> None:
             current_section = section
 
         parent = relative.parent.as_posix()
-        source_path = relative.with_suffix("").as_posix()
         fallback_title = tex_escape(relative.parent.name)
         lines.extend(
             [
@@ -108,7 +89,7 @@ def main() -> None:
         )
         if not has_exer:
             lines.append(rf"\ExerciseTitle{{{fallback_title}}}")
-        lines.extend([rf"\input{{../{source_path}}}", ""])
+        lines.extend([rf"\subimport{{../{parent}/}}{{{relative.name}}}", ""])
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text("\n".join(lines), encoding="utf-8")
