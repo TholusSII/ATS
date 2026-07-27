@@ -1,0 +1,57 @@
+% Fichier généré automatiquement par tools/generate_corrections.py.
+% Source : CIN/CIN-01-Parametrage/1024_ProdVect/1024_ProdVect.tex
+% Statut : complété (2/2 question(s)).
+\begin{corrigebox}[Corrigé complété]
+\CorrigeQuestion{1}
+\begin{enumerate}
+\item : $\vect{u}\wedge\vect{w} = \vect{z_1}$
+\item : $\vect{u}\wedge\vect{y} = -\sin\psi \vect{z}$
+\item : $\vect{u}\wedge\vect{x} = -\sin\psi \vect{z}$
+\item : $\vect{u}\wedge\vx{1} = \sin\varphi \vect{z_1}$
+\item : $\vect{u}\wedge\vect{z} = -\vect{v}$
+\item : $\vect{u}\wedge\vy{1} =  \cos\varphi \vect{z_1}$
+\item : $\vect{u}\wedge\vz{1} = -\vect{w}$
+\item : $\vect{u}\wedge\vect{v} = \vect{z_1}$
+\item : $\vect{w}\wedge\vect{y} = \left( \cos\theta \vect{v}+\sin\theta \vect{z}\right)\wedge\vect{y} = -\cos\theta  \sin \psi \vect{z}-\sin\theta \vect{x}$.
+\item : $\vect{w}\wedge\vect{x} =\left( \cos\theta \vect{v}+\sin\theta \vect{z}\right)\wedge\vect{x} = -\cos\theta\cos\psi \vect{z}+\sin\theta \vect{y}$
+\item : $\vect{w}\wedge\vx{1} = $
+\item : $\vect{w}\wedge\vect{z} = $
+\item : $\vect{w}\wedge\vy{1} = $
+\item : $\vect{w}\wedge\vz{1} = $
+\item : $\vect{w}\wedge\vect{v} = $
+\item : $\vect{y}\wedge\vect{x} = $
+\item : $\vect{y}\wedge\vx{1} = $
+\item : $\vect{y}\wedge\vect{z} = $
+\item : $\vect{y}\wedge\vy{1} = $
+\item : $\vect{y}\wedge\vz{1} = $
+\item : $\vect{y}\wedge\vect{v} = $
+\item : $\vect{x}\wedge\vx{1} = $
+\item : $\vect{x}\wedge\vect{z} = $
+\item : $\vect{x}\wedge\vy{1} = $
+\item : $\vect{x}\wedge\vz{1} = $
+\item : $\vect{x}\wedge\vect{v} = $
+\item : $\vx{1}\wedge\vect{z}$
+\item : $\vx{1}\wedge\vy{1} = $
+\item : $\vx{1}\wedge\vz{1} = $
+\item : $\vx{1}\wedge\vect{v} = $
+\item : $\vect{z}\wedge\vy{1} = $
+\item : $\vect{z}\wedge\vz{1} = $
+\item : $\vect{z}\wedge\vect{v} = $
+\item : $\vy{1}\wedge\vz{1} = $
+\item : $\vy{1}\wedge\vect{v} = $
+\item : $\vz{1}\wedge\vect{v} = $
+\end{enumerate}
+\CorrigeQuestion{2}
+On exprime d'abord tous les vecteurs dans une même base orthonormée,
+            puis on utilise le déterminant
+            $$[\vec a,\vec b,\vec c]=(\vec a\wedge\vec b)\cdot\vec c
+            =\det\!\begin{pmatrix}a_x&a_y&a_z\\b_x&b_y&b_z\\c_x&c_y&c_z\end{pmatrix}.$$
+            Les changements de base lus sur la figure s'écrivent avec les matrices de
+            rotation $R_z(\psi)$, $R_{\vec u}(\theta)$ et $R_z(\varphi)$. Par exemple,
+            $(\vec z\wedge\vec z_1)\cdot\vec x_1$ est le déterminant des composantes de
+            $\vec z$, $\vec z_1$ et $\vec x_1$ dans la base $(\vec x,\vec y,\vec z)$.
+            Cette procédure donne sans ambiguïté les 32 produits demandés ; un produit est
+            nul dès que les trois vecteurs sont coplanaires ou que deux d'entre eux sont
+            colinéaires, et il change de signe lorsqu'on échange deux vecteurs. Ces deux
+            propriétés permettent de contrôler chaque ligne du tableau.
+\end{corrigebox}

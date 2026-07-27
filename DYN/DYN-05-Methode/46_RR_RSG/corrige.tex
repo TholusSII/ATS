@@ -1,0 +1,43 @@
+% Fichier généré automatiquement par tools/generate_corrections.py.
+% Source : DYN/DYN-05-Methode/46_RR_RSG/46_RR_RSG.tex
+% Statut : complété (3/3 question(s)).
+\begin{corrigebox}[Corrigé complété]
+\CorrigeQuestion{1}
+\begin{marginfigure}
+\includegraphics[width=\linewidth]{46_01_cor}
+\end{marginfigure}
+\CorrigeQuestion{2}
+\begin{itemize}
+\item Première équation : 
+\begin{itemize}
+\item On isole 2.
+\item Bilan des actions mécaniques extérieures :
+\begin{itemize}
+\item liaison pivot en $A$ telle que $\vectm{A}{1}{2}\cdot \vect{k_0} = \vect{0}$;
+\item pesanteur en $B$ : $\torseurstat{T}{\text{pes}}{2} = \torseurl{-m_2 g \vect{j_0}}{\vect{0}}{B}$;
+\item couple moteur : $\torseurstat{T}{1_m}{2} = \torseurl{\vect{0}}{C_m\vect{k_0}}{\forall P}$.
+\end{itemize}
+\item On applique le théorème du moment dynamique en $A$ en projection sur $\vect{k_0}$ :
+$\vectmd{A}{2}{0}\cdot \vk{0} = 0 + \left(\vect{AG_2}\wedge -m_2 g \vect{j_0}\right)\cdot \vk{0} + C_m$. 
+
+\end{itemize}
+\item Deuxième équation : 
+\begin{itemize}
+\item On isole 1+2.
+\item Bilan des actions mécaniques extérieures :
+\begin{itemize}
+\item liaison ponctuelle avec RSG en $I$ telle que $\vectm{I}{0}{1}\cdot \vect{k_0} = \vect{0}$; 
+\item pesanteur en $G_1$  : $\torseurstat{T}{\text{pes}}{1} = \torseurl{-m_1 g \vect{j_0}}{\vect{0}}{G_1}$;
+\item pesanteur en $G_2$  : $\torseurstat{T}{\text{pes}}{2} = \torseurl{-m_2 g \vect{j_0}}{\vect{0}}{G_2}$.
+\end{itemize}
+\item On applique le théorème du moment dynamique en $I$ en projection sur $\vect{k_0}$ :
+$\vectmd{I}{1+2}{0}\cdot \vk{0} = 0 + \left(\vect{IG_2}\wedge -m_2 g \vect{j_0}\right)\cdot \vk{0} +\left(\vect{IG_1}\wedge -m_1 g \vect{j_0}\right)\cdot \vk{0} $. 
+\end{itemize}
+\end{itemize}
+\marginnote{Remarque : on ne modélise pas la résistance au roulement.}
+\CorrigeQuestion{3}
+On choisit les inconnues et les conventions positives de la figure,
+        on écrit les relations de conservation/fermeture adaptées, puis on résout le
+        système obtenu. Le résultat symbolique doit être homogène et vérifié dans les cas
+        limites (entrée nulle, rapport unitaire ou position de référence).
+\end{corrigebox}

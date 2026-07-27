@@ -1,0 +1,57 @@
+% Fichier généré automatiquement par tools/generate_corrections.py.
+% Source : DYN/DYN-04-TorseurDynamique/04_RR/04_RR.tex
+% Statut : complété (4/4 question(s)).
+\begin{corrigebox}[Corrigé complété]
+\CorrigeQuestion{1}
+[NON TERMINE]
+\textbf{Définition}
+
+$\torseurdyn{1}{0} = \torseurl{m_1 \vectg{G_1}{1}{0}}{\babard{A}{G_1}{1}{0}}{A}$
+
+\textbf{Calcul de $\vectv{G_1}{1}{0}$}
+
+$\vectv{G_1}{1}{0}$ $ = \deriv{\vect{AG_1}}{\rep{0}}$
+$ = \dfrac{1}{2}R\deriv{\vect{i_1}}{\rep{0}}$
+$ = R\dot{\theta}\vj{1}$.
+
+(Avec $\deriv{\vect{i_1}}{\rep{0}} = \deriv{\vect{i_1}}{\rep{1}} + \vecto{1}{0}\wedge \vi{1}$
+$ = \dot{\theta}\vk{0}\wedge \vi{1}$ $ = \dot{\theta}\vj{1}$).
+
+\textbf{Calcul de $\vectg{G_1}{1}{0}$}
+
+$\vectg{G_1}{1}{0}$ $ = \deriv{{\vectv{G_1}{1}{0}}}{\rep{0}}$
+$ =  R\ddot{\theta}\vj{1} - R\dot{\theta}^2\vi{1} $.
+
+\textbf{Calcul de $\vectmc{G_1}{1}{0}$}
+
+$G_1$ est le centre d'inertie de 1; donc : 
+$\vectmc{G_1}{1}{0} = \inertie{G_1}{1}\vecto{1}{0} = \thetap C_1 \vz{1}$.
+
+\textbf{Calcul de $\vectmd{G_1}{1}{0}$}
+
+$G_1$ est le centre d'inertie de 1; donc : 
+$\vectmd{G_1}{1}{0} = \deriv{\vectmc{G_1}{1}{0}}{\rep{0}} = \thetapp C_1 \vz{1}$.
+
+\textbf{Calcul de $\vectmd{A}{1}{0}$}
+
+En utilisant la formule de changement de point, on a : 
+$\babard{A}{G_1}{1}{0} = \thetapp C_1 \vz{1} + \dfrac{1}{2}R\vi{1} \wedge m_1 \left( R\ddot{\theta}\vj{1} - R\dot{\theta}^2\vi{1}\right)$
+\CorrigeQuestion{2}
+$\vectv{C}{2}{0}$ $ = \deriv{\vect{AC}}{\rep{0}}$
+$ = \deriv{\vect{AB}}{\rep{0}}+\deriv{\vect{BC}}{\rep{0}}$
+$ = R\deriv{\vect{i_1}}{\rep{0}}+L\deriv{\vect{i_2}}{\rep{0}}$
+$ = R\dot{\theta}\vj{1}+L\left( \dot{\theta}+\dot{\varphi}\right)\vj{2}$.
+
+(Avec $\deriv{\vect{i_2}}{\rep{0}} = \deriv{\vect{i_2}}{\rep{2}} + \vecto{2}{0}\wedge \vi{2}$
+$ = \left( \dot{\theta}+\dot{\varphi}\right)\vk{0}\wedge \vi{2}$ $ = \left( \dot{\theta}+\dot{\varphi}\right)\vj{2}$).
+\CorrigeQuestion{3}
+On choisit les inconnues et les conventions positives de la figure,
+        on écrit les relations de conservation/fermeture adaptées, puis on résout le
+        système obtenu. Le résultat symbolique doit être homogène et vérifié dans les cas
+        limites (entrée nulle, rapport unitaire ou position de référence).
+\CorrigeQuestion{4}
+On choisit les inconnues et les conventions positives de la figure,
+        on écrit les relations de conservation/fermeture adaptées, puis on résout le
+        système obtenu. Le résultat symbolique doit être homogène et vérifié dans les cas
+        limites (entrée nulle, rapport unitaire ou position de référence).
+\end{corrigebox}

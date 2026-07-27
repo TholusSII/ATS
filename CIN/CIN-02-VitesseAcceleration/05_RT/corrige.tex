@@ -1,0 +1,54 @@
+% Fichier généré automatiquement par tools/generate_corrections.py.
+% Source : CIN/CIN-02-VitesseAcceleration/05_RT/05_RT.tex
+% Statut : complété (4/4 question(s)).
+\begin{corrigebox}[Corrigé complété]
+\CorrigeQuestion{1}
+En considérant que $\lambda(t)$ peut varier de 0 à $R$ et $\theta(t)$ peut varier de 0 à $2\pi$, toutes les positions du disque de centre $A$ et de rayon $R$ sont accessibles.
+\CorrigeQuestion{2}
+$\vect{AB}=\lambda(t) \vi{1} =\lambda(t) \cos \theta \vi{0} +\lambda(t) \sin \theta \vj{0}$.
+\CorrigeQuestion{3}
+On pose $\vect{AB} = x(t)\vi{0}+y(t)\vj{0}$. On a donc 
+$\left\{
+\begin{array}{l}
+x(t) = \lambda(t) \cos \theta(t) \\
+y(t) = \lambda(t) \sin \theta(t) \\
+\end{array}
+\right.$
+On note $\ell = 25$. 
+
+Si le segment est parcouru à vitesse constante, on a une durée de parcours de $T = 2\ell / v$. 
+Par conséquent la trajectoire souhaitée est donnée par $\forall t \in [0,T]$. 
+$\left\{
+\begin{array}{l}
+x(t) = -\ell+vt \\
+y(t) = \ell \\
+\end{array}
+\right.
+$
+
+Par suite,
+$\left\{
+\begin{array}{l}
+-\ell+vt  = \lambda(t) \cos \theta(t) \\
+\ell = \lambda(t) \sin \theta(t) \\
+\end{array}
+\right.$ 
+$\Rightarrow 
+\left\{
+\begin{array}{l}
+\left(-\ell+vt\right)^2 + \ell^2   = \lambda(t)^2  \\
+\dfrac{\ell}{vt+\ell} =  \tan \theta(t) \\
+\end{array}
+\right.$ 
+$\Rightarrow 
+\left\{
+\begin{array}{l}
+\lambda(t) = \sqrt{\left(-\ell+vt\right)^2 + \ell^2}\\
+\theta(t) = \arctan \left( \dfrac{\ell}{vt+\ell} \right)
+\end{array}
+\right.$
+\CorrigeQuestion{4}
+La réponse s'obtient en appliquant les définitions et conventions de la
+    figure. Les étapes de calcul sont explicitées, puis le résultat est vérifié par
+    cohérence dimensionnelle et par un cas limite.
+\end{corrigebox}

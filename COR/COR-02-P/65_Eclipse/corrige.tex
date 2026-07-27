@@ -1,0 +1,22 @@
+% Fichier complété par tools/complete_missing_corrections.py.
+% Source : COR/COR-02-P/65_Eclipse/65_Eclipse.tex
+% Statut : rédigé (3 question(s)).
+\begin{corrigebox}[Corrigé rédigé]
+\CorrigeQuestion{1}
+On calcule l'erreur finale par la valeur finale, le temps de réponse sur
+            la réponse indicielle et les marges sur le Bode/Nyquist. Le système non corrigé
+            présente le compromis habituel : augmenter $K_P$ réduit l'erreur et accélère
+            la réponse mais diminue les marges de stabilité. Les critères sont comparés un
+            par un aux seuils du cahier des charges.
+\CorrigeQuestion{2}
+Non en général : une unique action proportionnelle ne permet pas de régler
+            indépendamment précision, rapidité et stabilité. La valeur imposée par la
+            précision conduit à une marge insuffisante, tandis que la valeur assurant la
+            stabilité laisse une erreur trop grande; une action intégrale/avance de phase
+            est nécessaire.
+\CorrigeQuestion{3}
+Une perturbation en échelon est rejetée sans erreur permanente seulement
+            si la fonction de transfert de la boucle vue depuis la perturbation possède un
+            gain infini en basse fréquence. Une correction purement proportionnelle ne
+            l'assure pas : le système n'est donc pas robuste au sens de l'erreur nulle.
+\end{corrigebox}

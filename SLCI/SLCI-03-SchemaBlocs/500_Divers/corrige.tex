@@ -1,0 +1,48 @@
+% Fichier généré automatiquement par tools/generate_corrections.py.
+% Source : SLCI/SLCI-03-SchemaBlocs/500_Divers/500_Divers.tex
+% Statut : complet (4/4 question(s) renseignée(s), 0 reprise(s)).
+\begin{corrigebox}[Corrigé extrait de la banque]
+\CorrigeQuestion{1}
+On a $\text{FTBO}(p)=\dfrac{K^2}{\left(R+Lp\right)\left(f+Jp\right)}$
+$=\dfrac{K^2}{Rf+RJp+Lfp+LJp^2}$
+$=\dfrac{K^2}{Rf\left(1+p\dfrac{RJ+Lf}{Rf}+\dfrac{LJ}{Rf}p^2\right)}$.
+
+On a donc $K_{\text{BO}}=\dfrac{K^2}{Rf}$, 
+$\omega_{\text{BO}} = \sqrt{\dfrac{Rf}{LJ}}$,
+$\dfrac{2\xi_{\text{BO}} }{\omega_{\text{BO}}}=\dfrac{RJ+Lf}{Rf} \Leftrightarrow
+\xi_{\text{BO}} =\omega_{\text{BO}}\dfrac{RJ+Lf}{2Rf}
+=\sqrt{\dfrac{Rf}{LJ}}\dfrac{RJ+Lf}{2Rf}
+=\dfrac{RJ+Lf}{2\sqrt{LJRf}}$.
+\CorrigeQuestion{2}
+On a $\text{FTBF}(p)=\dfrac{\dfrac{K}{\left(R+Lp\right)\left(f+Jp\right)}}{1+\dfrac{K^2}{\left(R+Lp\right)\left(f+Jp\right)}}
+=\dfrac{K}{\left(R+Lp\right)\left(f+Jp\right)+K^2}
+=\dfrac{\dfrac{K}{K^2+Rf}}{\dfrac{RJ+Lf}{Rf+K^2}p+\dfrac{LJ}{Rf+K^2}p^2+1}$.
+
+On a donc $K_{\text{BF}}=\dfrac{K}{K^2+Rf}$, 
+$\omega_{\text{BF}} = \sqrt{\dfrac{Rf+K^2}{LJ}}$,
+$\dfrac{2\xi_{\text{BF}} }{\omega_{\text{BF}}}=\dfrac{RJ+Lf}{Rf+K^2} \Leftrightarrow
+\xi_{\text{BO}} =\omega_{\text{BF}}\dfrac{RJ+Lf}{2\left(Rf+K^2\right)}
+=\sqrt{\dfrac{Rf+K^2}{LJ}}\dfrac{RJ+Lf}{2\left(Rf+K^2\right)}$
+
+$\xi_{\text{BF}}=\dfrac{RJ+Lf}{2\sqrt{LJ}\sqrt{Rf+K^2}}$.
+\CorrigeQuestion{3}
+Si on note $R(p)$ la seconde entrée du \textbf{premier comparateur} et $\varepsilon(p)$ la sortie du premier comparateur,  
+
+$\text{FTBO(p)}=\dfrac{\varepsilon(p)}{R(p)} = A \times \dfrac{\dfrac{1}{p}}{1+\dfrac{B}{p}}\times C = \dfrac{AC}{B+p} = \dfrac{\dfrac{AC}{B}}{1+\dfrac{p}{B}}$.
+On a donc $K_{\text{BO}}=\dfrac{AC}{B}$ et $\tau_{\text{BO}}=\dfrac{1}{B}$.
+\CorrigeQuestion{4}
+On a
+$\text{FTBF(p)} = \dfrac{\dfrac{A}{B+p}}{1+\dfrac{AC}{B+p}}=\dfrac{A}{B+p+AC}=\dfrac{\dfrac{A}{B+AC}}{1+\dfrac{p}{B+AC}}$.
+
+On a donc $K_{\text{BF}}=\dfrac{A}{B+AC}$ et $\tau_{\text{BF}}=\dfrac{1}{B+AC}$.
+
+\begin{enumerate}
+\item $K_{\text{BO}}=\dfrac{K^2}{Rf}$, 
+$\omega_{\text{BO}} = \sqrt{\dfrac{Rf}{LJ}}$,
+$\xi_{\text{BO}} =\dfrac{RJ+Lf}{2\sqrt{LJRf}}$.
+\item $K_{\text{BF}}=\dfrac{K}{K^2+Rf}$, 
+$\xi_{\text{BF}}=\dfrac{RJ+Lf}{2\sqrt{LJ}\sqrt{Rf+K^2}}$.
+\item $K_{\text{BO}}=\dfrac{AC}{B}$ et $\tau_{\text{BO}}=\dfrac{1}{B}$.
+\item $K_{\text{BF}}=\dfrac{A}{B+AC}$ et $\tau_{\text{BF}}=\dfrac{1}{B+AC}$.
+\end{enumerate}
+\end{corrigebox}

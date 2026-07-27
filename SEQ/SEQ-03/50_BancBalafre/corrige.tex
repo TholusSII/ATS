@@ -1,0 +1,22 @@
+% Fichier complété par tools/complete_missing_corrections.py.
+% Source : SEQ/SEQ-03/50_BancBalafre/50_BancBalafre.tex
+% Statut : rédigé (2 question(s)).
+\begin{corrigebox}[Corrigé rédigé]
+\CorrigeQuestion{1}
+La validation de l'opérateur déclenche d'abord la mise en vitesse du
+            moteur. Celui-ci atteint sa consigne au bout de $5\,\mathrm{s}$. Le contrôle
+            dure ensuite $1\,\mathrm{s}$. Comme il conclut à l'absence d'anomalie, la
+            rafale démarre à $t=6\,\mathrm{s}$ et reste active pendant huit secondes,
+            jusqu'à $t=14\,\mathrm{s}$. Le retour à l'arrêt du moteur dure encore
+            $5\,\mathrm{s}$. Ainsi : \texttt{Moteur}=1 sur $[5,14]$,
+            \texttt{Controle}=1 à partir de $t=6\,\mathrm{s}$ et
+            \texttt{Rafale}=1 sur $[6,14]$. Aucune pause supplémentaire n'est nécessaire
+            puisque huit secondes est inférieur au seuil de dix secondes.
+\CorrigeQuestion{2}
+On ajoute une transition prioritaire $[\texttt{Controle}=2]$ depuis
+            l'état de contrôle vers un état « Arrêt moteur ». Son action d'entrée impose
+            \texttt{Rafale:=0} et commande l'arrêt. L'état est maintenu jusqu'à
+            \texttt{Moteur}=0, puis le retour à l'état initial nécessite l'acquittement de
+            l'anomalie. Seule la garde $[\texttt{Controle}=1]$ autorise le lancement de la
+            rafale.
+\end{corrigebox}

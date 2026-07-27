@@ -1,0 +1,27 @@
+% Fichier complété par tools/complete_missing_corrections.py.
+% Source : RDM/RDM-01-Cohesion/530_BancHelico/530_BancHelico.tex
+% Statut : rédigé (4 question(s)).
+\begin{corrigebox}[Corrigé rédigé]
+\CorrigeQuestion{1}
+La coupure de l'arbre conduit à un effort axial $N$, un moment de torsion
+            $M_t$ et éventuellement un moment fléchissant $M_f$ selon les charges. Le
+            torseur de cohésion s'écrit
+            $\{N\vec x+T_y\vec y+T_z\vec z;M_t\vec x+M_{fy}\vec y+M_{fz}\vec z\}$.
+            L'arbre est donc soumis à traction/compression, torsion et flexion combinées.
+\CorrigeQuestion{2}
+On calcule la contrainte équivalente de von Mises. Pour un arbre plein :
+            $\sigma=32M_f/(\pi d^3)$, $\tau=16M_t/(\pi d^3)$ et
+            $\sigma_{VM}=\sqrt{\sigma^2+3\tau^2}\le R_e/s$.
+            Ainsi
+            \[d_{min}=\left[\frac{s}{\pi R_e}
+            \sqrt{(32M_f)^2+3(16M_t)^2}\right]^{1/3}.\]
+\CorrigeQuestion{3}
+Dans l'annexe, on retient les matériaux situés sur l'enveloppe de mérite
+            maximisant $R_e$/prix, puis on élimine ceux incompatibles avec l'usinage, la
+            soudabilité, la fatigue ou la corrosion. Les aciers carbone et faiblement
+            alliés traités sont généralement les meilleurs candidats.
+\CorrigeQuestion{4}
+Avec $R_e=1000\,\mathrm{MPa}$ et $s=1,2$, on substitue les moments
+            maximaux de la question 1 dans la formule précédente, puis on choisit le
+            diamètre normalisé immédiatement supérieur.
+\end{corrigebox}

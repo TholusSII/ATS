@@ -1,0 +1,48 @@
+% Fichier généré automatiquement par tools/generate_corrections.py.
+% Source : STAT/STAT-03-Demarche/STOCK/08_RR3D_02/08_RR3D_02.tex
+% Statut : complété (3/3 question(s)).
+\begin{corrigebox}[Corrigé complété]
+\CorrigeQuestion{1}
+On choisit les inconnues et les conventions positives de la figure,
+        on écrit les relations de conservation/fermeture adaptées, puis on résout le
+        système obtenu. Le résultat symbolique doit être homogène et vérifié dans les cas
+        limites (entrée nulle, rapport unitaire ou position de référence).
+\CorrigeQuestion{2}
+\CorrigeSource{Réponse reprise d'un exercice homonyme de la banque ; la provenance exacte est indiquée dans le commentaire du fichier.}
+% Réponse reprise de : CIN/CIN-02-VitesseAcceleration/08_RR3D_02/08_RR3D_02.tex
+$\torseurcin{V}{2}{0}=\torseurl{\dot{\varphi}\vk{2}+\thetap\vj{0}}{ L\dot{\varphi}\vj{2}-\thetap\left( R\vk{1}+L\cos\varphi\vk{1}\right)}{C}$.
+\CorrigeQuestion{3}
+\CorrigeSource{Réponse reprise d'un exercice homonyme de la banque ; la provenance exacte est indiquée dans le commentaire du fichier.}
+% Réponse reprise de : CIN/CIN-02-VitesseAcceleration/08_RR3D_02/08_RR3D_02.tex
+$\vectg{C}{2}{0} =\deriv{\vectv{C}{2}{0}}{\rep{0}}$
+
+$ =\deriv{ L\dot{\varphi}\vj{2}-\thetap\left( R\vk{1}+L\cos\varphi\vk{1}\right)}{\rep{0}} $.
+
+Calculons :
+\begin{itemize}
+\item $\deriv{\vj{2}}{\rep{0}}=\vecto{2}{0}\wedge\vj{2}$ 
+$=\left(\thetap\vj{1}+\thetap\vk{1} \right)\wedge\vj{2}$ 
+$=\thetap\vj{1}\wedge\vj{2}+\thetap\vk{1} \wedge\vj{2}$
+$=\thetap\sin\varphi\vk{1}-\thetap\vi{2} $.
+\item $\deriv{\vk{1}}{\rep{0}} = \thetap\vi{1}$.
+\end{itemize}
+
+$\vectg{C}{2}{0} $
+$ =
+L\ddot{\varphi}\vj{2}+L\dot{\varphi}\left(\thetap\sin\varphi\vk{1}-\thetap\vi{2}\right)
+-\thetapp\left( R\vk{1} +L\cos\varphi\vk{1}\right)
+-\thetap\left( R \thetap\vi{1} +L\cos\varphi \thetap\vi{1}
+-L\varphip\sin\varphi\vk{1}\right)
+$.
+
+\begin{enumerate}
+\item $\vectv{C}{2}{0}= -R\dot{\theta}\vk{1}+L\left(-\dot{\theta}\cos\varphi\vk{1} + \dot{\varphi}\vj{2}\right)$.
+\item $\vectv{C}{2}{0}= L\dot{\varphi}\vj{2}-\thetap\left( R\vk{1}+L\cos\varphi\vk{1}\right)$.
+\item $\torseurcin{V}{2}{0}=\torseurl{\dot{\varphi}\vk{2}+\thetap\vj{0}}{ L\dot{\varphi}\vj{2}-\thetap\left( R\vk{1}+L\cos\varphi\vk{1}\right)}{C}$.
+\item $\vectg{C}{2}{0} =
+L\ddot{\varphi}\vj{2}+L\dot{\varphi}\left(\thetap\sin\varphi\vk{1}-\thetap\vi{2}\right)
+-\thetapp\left( R\vk{1} +L\cos\varphi\vk{1}\right)
+-\thetap\left( R \thetap\vi{1} +L\cos\varphi \thetap\vi{1}
+-L\varphip\sin\varphi\vk{1}\right)$.
+\end{enumerate}
+\end{corrigebox}
