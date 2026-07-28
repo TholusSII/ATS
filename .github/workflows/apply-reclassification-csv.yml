@@ -28,12 +28,17 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
 
-      - name: Installer l’outil validé
+      - name: Installer les outils validés
         shell: bash
         run: |
           set -euo pipefail
           git show origin/main:tools/apply_reclassification_csv.py > tools/apply_reclassification_csv.py
-          python3 -m py_compile tools/apply_reclassification_csv.py
+          git show origin/main:tools/generate_all_exos.py > tools/generate_all_exos.py
+          git show origin/main:tools/generate_all_corriges.py > tools/generate_all_corriges.py
+          python3 -m py_compile \
+            tools/apply_reclassification_csv.py \
+            tools/generate_all_exos.py \
+            tools/generate_all_corriges.py
 
       - name: Appliquer le CSV
         id: execution
