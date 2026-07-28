@@ -1,14 +1,14 @@
 # Proposition de reclassement des exercices
 
 - Exercices analysés : **468**
-- Exercices classés automatiquement : **438**
-- Exercices à arbitrer : **30**
+- Exercices classés automatiquement : **468**
+- Exercices à arbitrer : **0**
 - Déplacements appliqués : **oui**
 
 ## Répartition proposée
 
 - `1-Ingénierie système` : **12** exercices
-- `2-Modélisation des mécanismes` : **84** exercices
+- `2-Modélisation des mécanismes` : **114** exercices
 - `3-Lois entrée sortie` : **22** exercices
 - `4-Cinématique` : **38** exercices
 - `5-Modélisation Systèmes Asservis` : **49** exercices
@@ -25,36 +25,7 @@
 
 ## Exercices à arbitrer
 
-- `PPM/PPM-01/1000_Dessin2D` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-01/1001_Dessin2D` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-01/1002_Dessin2D` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-01/1003_Dessin2D` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-01/1004_Dessin2D` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-01/1005_Dessin2D` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-01/1006_Dessin2D` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-01/1007_Dessin2D` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-01/1008_Dessin2D` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-01/1009_Dessin2D` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-01/1010_Dessin2D` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-01/1011_Dessin2D` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-01/1012_Dessin2D` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-01/1013_Dessin2D` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-01/1014_Dessin2D` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-01/1015_Dessin2D` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-01/1016_Dessin2D` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-01/1017_Dessin2D` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-01/1020_PompeEnsieta` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-02/1000_Dessin2D` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-02/2001_BoitierDifferentiel` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-02/2002_AxeCommande` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-02/2003_Fourchette` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-02/2004_Secateur` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-03/74_Chariot` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-03/75_TrainA380` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-03/76_FixationSki` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-03/85_FauteuilBateau` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-03/86_Moyeu` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `PPM/PPM-03/87_Nacelle` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
+Aucun.
 
 ## Détail des classements automatiques
 
@@ -348,6 +319,36 @@
 - `2-Modélisation des mécanismes/GEO/GEO-03/20_VariateurBilles` → `2-Modélisation des mécanismes/GEO/GEO-03/20_VariateurBilles` (score 1000, écart 1000; règle de classement explicite)
 - `2-Modélisation des mécanismes/GEO/GEO-03/54_FauteuilRoulant` → `2-Modélisation des mécanismes/GEO/GEO-03/54_FauteuilRoulant` (score 1000, écart 1000; règle de classement explicite)
 - `2-Modélisation des mécanismes/GEO/GEO-03/64_EPAS` → `2-Modélisation des mécanismes/GEO/GEO-03/64_EPAS` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-01/1000_Dessin2D` → `2-Modélisation des mécanismes/PPM/PPM-01/1000_Dessin2D` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-01/1001_Dessin2D` → `2-Modélisation des mécanismes/PPM/PPM-01/1001_Dessin2D` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-01/1002_Dessin2D` → `2-Modélisation des mécanismes/PPM/PPM-01/1002_Dessin2D` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-01/1003_Dessin2D` → `2-Modélisation des mécanismes/PPM/PPM-01/1003_Dessin2D` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-01/1004_Dessin2D` → `2-Modélisation des mécanismes/PPM/PPM-01/1004_Dessin2D` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-01/1005_Dessin2D` → `2-Modélisation des mécanismes/PPM/PPM-01/1005_Dessin2D` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-01/1006_Dessin2D` → `2-Modélisation des mécanismes/PPM/PPM-01/1006_Dessin2D` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-01/1007_Dessin2D` → `2-Modélisation des mécanismes/PPM/PPM-01/1007_Dessin2D` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-01/1008_Dessin2D` → `2-Modélisation des mécanismes/PPM/PPM-01/1008_Dessin2D` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-01/1009_Dessin2D` → `2-Modélisation des mécanismes/PPM/PPM-01/1009_Dessin2D` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-01/1010_Dessin2D` → `2-Modélisation des mécanismes/PPM/PPM-01/1010_Dessin2D` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-01/1011_Dessin2D` → `2-Modélisation des mécanismes/PPM/PPM-01/1011_Dessin2D` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-01/1012_Dessin2D` → `2-Modélisation des mécanismes/PPM/PPM-01/1012_Dessin2D` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-01/1013_Dessin2D` → `2-Modélisation des mécanismes/PPM/PPM-01/1013_Dessin2D` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-01/1014_Dessin2D` → `2-Modélisation des mécanismes/PPM/PPM-01/1014_Dessin2D` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-01/1015_Dessin2D` → `2-Modélisation des mécanismes/PPM/PPM-01/1015_Dessin2D` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-01/1016_Dessin2D` → `2-Modélisation des mécanismes/PPM/PPM-01/1016_Dessin2D` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-01/1017_Dessin2D` → `2-Modélisation des mécanismes/PPM/PPM-01/1017_Dessin2D` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-01/1020_PompeEnsieta` → `2-Modélisation des mécanismes/PPM/PPM-01/1020_PompeEnsieta` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-02/1000_Dessin2D` → `2-Modélisation des mécanismes/PPM/PPM-02/1000_Dessin2D` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-02/2001_BoitierDifferentiel` → `2-Modélisation des mécanismes/PPM/PPM-02/2001_BoitierDifferentiel` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-02/2002_AxeCommande` → `2-Modélisation des mécanismes/PPM/PPM-02/2002_AxeCommande` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-02/2003_Fourchette` → `2-Modélisation des mécanismes/PPM/PPM-02/2003_Fourchette` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-02/2004_Secateur` → `2-Modélisation des mécanismes/PPM/PPM-02/2004_Secateur` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-03/74_Chariot` → `2-Modélisation des mécanismes/PPM/PPM-03/74_Chariot` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-03/75_TrainA380` → `2-Modélisation des mécanismes/PPM/PPM-03/75_TrainA380` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-03/76_FixationSki` → `2-Modélisation des mécanismes/PPM/PPM-03/76_FixationSki` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-03/85_FauteuilBateau` → `2-Modélisation des mécanismes/PPM/PPM-03/85_FauteuilBateau` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-03/86_Moyeu` → `2-Modélisation des mécanismes/PPM/PPM-03/86_Moyeu` (score 1000, écart 1000; règle de classement explicite)
+- `2-Modélisation des mécanismes/PPM/PPM-03/87_Nacelle` → `2-Modélisation des mécanismes/PPM/PPM-03/87_Nacelle` (score 1000, écart 1000; règle de classement explicite)
 - `3-Lois entrée sortie/CIN/CIN-03-Transmetteurs/21_TrainSimple` → `3-Lois entrée sortie/CIN/CIN-03-Transmetteurs/21_TrainSimple` (score 1000, écart 1000; règle de classement explicite)
 - `3-Lois entrée sortie/CIN/CIN-03-Transmetteurs/22_TrainSimple` → `3-Lois entrée sortie/CIN/CIN-03-Transmetteurs/22_TrainSimple` (score 1000, écart 1000; règle de classement explicite)
 - `3-Lois entrée sortie/CIN/CIN-03-Transmetteurs/23_TrainSimple` → `3-Lois entrée sortie/CIN/CIN-03-Transmetteurs/23_TrainSimple` (score 1000, écart 1000; règle de classement explicite)
