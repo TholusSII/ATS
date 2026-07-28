@@ -13,7 +13,7 @@ ROOT = base.ROOT
 
 def main() -> None:
     source = ROOT / "PPM"
-    destination = ROOT / "2-Modélisation des mécanismes" / "PPM"
+    destination = ROOT / "02-Modélisation des mécanismes" / "PPM"
 
     if source.exists():
         if destination.exists():
@@ -60,7 +60,7 @@ def main() -> None:
 
     print(
         "Reclassement complet validé : les 30 exercices PPM ont été déplacés dans "
-        "2-Modélisation des mécanismes ; 468 exercices, 468 corrigés et 468 inclusions contrôlés."
+        "02-Modélisation des mécanismes ; 468 exercices, 468 corrigés et 468 inclusions contrôlés."
     )
 
 
