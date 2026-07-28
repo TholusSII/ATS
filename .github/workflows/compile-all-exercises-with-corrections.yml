@@ -77,7 +77,7 @@ jobs:
           \input{ALL_EXOS.tex}
           EOF
 
-      - name: Compiler le recueil complet
+      - name: Compiler le recueil complet avec LuaLaTeX
         id: latex
         continue-on-error: true
         uses: xu-cheng/latex-action@v4
@@ -85,18 +85,9 @@ jobs:
           root_file: ALL_EXOS_CORRIGES.tex
           working_directory: ALL_EXOS
           latexmk_shell_escape: true
+          latexmk_use_lualatex: true
           extra_system_packages: "gnuplot"
-          pre_compile: |
-            mkdir -p /tmp/texmf-memory
-            cat > /tmp/texmf-memory/texmf.cnf <<'EOF'
-            main_memory = 20000000
-            extra_mem_top = 10000000
-            extra_mem_bot = 10000000
-            EOF
-            export TEXMFCNF="/tmp/texmf-memory:"
-            fmtutil-sys --byfmt pdflatex
-            echo "main_memory=$(kpsewhich -var-value=main_memory)"
-          args: -pdf -interaction=nonstopmode -file-line-error
+          args: -interaction=nonstopmode -file-line-error
 
       - name: Publier le journal de compilation
         if: always()
