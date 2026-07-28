@@ -86,6 +86,16 @@ jobs:
           working_directory: ALL_EXOS
           latexmk_shell_escape: true
           extra_system_packages: "gnuplot"
+          pre_compile: |
+            mkdir -p /tmp/texmf-memory
+            cat > /tmp/texmf-memory/texmf.cnf <<'EOF'
+            main_memory = 20000000
+            extra_mem_top = 10000000
+            extra_mem_bot = 10000000
+            EOF
+            export TEXMFCNF="/tmp/texmf-memory:"
+            fmtutil-sys --byfmt pdflatex
+            echo "main_memory=$(kpsewhich -var-value=main_memory)"
           args: -pdf -interaction=nonstopmode -file-line-error
 
       - name: Publier le journal de compilation
