@@ -28,15 +28,17 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
 
-      - name: Récupérer la banque publique
+      - name: Récupérer les deux banques publiques
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf /tmp/ExercicesCompetences
+          rm -rf /tmp/ExercicesCompetences /tmp/DevoirDuSoir
           git clone --filter=blob:none --no-checkout https://github.com/xpessoles/ExercicesCompetences.git /tmp/ExercicesCompetences
           git -C /tmp/ExercicesCompetences checkout 5cb4eced77ae479b10715249c87afbba183d26e4
+          git clone --filter=blob:none --no-checkout https://github.com/xpessoles/DevoirDuSoir.git /tmp/DevoirDuSoir
+          git -C /tmp/DevoirDuSoir checkout d2ac417d1bbb6e02e507e6e475bb16bb81517f34
 
-      - name: Copier les neuf exercices complets
+      - name: Copier les neuf exercices de la banque de compétences
         shell: bash
         run: |
           set -euo pipefail
@@ -58,42 +60,112 @@ jobs:
             cp -a "/tmp/ExercicesCompetences/$folder" "$folder"
           done
 
-      - name: Restaurer les 76 exercices du ZIP
+      - name: Copier les 76 exercices DevoirDuSoir
         shell: bash
         run: |
           set -euo pipefail
-          parts=(
-            tools/vendor/missing_exercises_text.tar.xz.b64.part-000a
-            tools/vendor/missing_exercises_text.tar.xz.b64.part-000b
-            tools/vendor/missing_exercises_text.tar.xz.b64.part-001
-            tools/vendor/missing_exercises_text.tar.xz.b64.part-002
-            tools/vendor/missing_exercises_text.tar.xz.b64.part-003
-            tools/vendor/missing_exercises_text.tar.xz.b64.part-004
+          folders=(
+            A_Integrer/DDS_01/002_FTBF_Canonique
+            A_Integrer/DDS_01/003_ValeurFinale
+            A_Integrer/DDS_01/004_IdentificationTemporelle
+            A_Integrer/DDS_01/007_FTBO
+            A_Integrer/DDS_01/008_Bode
+            A_Integrer/DDS_01/009_IdentificationBode
+            A_Integrer/DDS_01/011_IS
+            A_Integrer/DDS_01/012_Bode
+            A_Integrer/DDS_01/013_FTBO
+            A_Integrer/DDS_01/016_PFS
+            A_Integrer/DDS_01/020_QCM_Liaisons
+            A_Integrer/DDS_01/021_QCM_PFS
+            A_Integrer/DDS_02/022_Stabilite
+            A_Integrer/DDS_02/023_Calcul_Complexes
+            A_Integrer/DDS_02/024_ProduitVectoriel
+            A_Integrer/DDS_02/025_MargesGraphiques
+            A_Integrer/DDS_02/026_QCM_PerfSLCI
+            A_Integrer/DDS_02/027_Cinematique
+            A_Integrer/DDS_02/029_SLCI_Stabilite
+            A_Integrer/DDS_02/030_Correcteur_PI
+            A_Integrer/DDS_02/031_Correcteur_P
+            A_Integrer/DDS_02/032_Statiques_AM
+            A_Integrer/DDS_02/033_Cinematique
+            A_Integrer/DDS_02/034_SLCI_Rapidite
+            A_Integrer/DDS_02/035_SLCI_Rapidite
+            A_Integrer/DDS_02/036_Cinematique_Schema
+            A_Integrer/DDS_02/041_Statique_PFS
+            A_Integrer/DDS_02/042_Chs_Leq
+            A_Integrer/DDS_03/043_Geometrie
+            A_Integrer/DDS_03/044_SLCI_Calculs
+            A_Integrer/DDS_03/045_DerivationVectorielle
+            A_Integrer/DDS_03/046_SLCI_Blocs
+            A_Integrer/DDS_03/048_PFS
+            A_Integrer/DDS_03/049_SLCI_Bode_Retard
+            A_Integrer/DDS_03/050_Geometrie
+            A_Integrer/DDS_03/051_Cinematique
+            A_Integrer/DDS_03/052_SLCI_Demo
+            A_Integrer/DDS_03/053_SchemaCinematique
+            A_Integrer/DDS_03/055_SchemaCinematique
+            A_Integrer/DDS_03/056_SchemaCinematique
+            A_Integrer/DDS_03/057_Geometrie
+            A_Integrer/DDS_03/058_PFS
+            A_Integrer/DDS_03/059_STM
+            A_Integrer/DDS_03/060_Bode
+            A_Integrer/DDS_04/065_SLCI_Modelisation
+            A_Integrer/DDS_04/066_Modelisation_Geometrie
+            A_Integrer/DDS_04/067_Modelisation_SchemaBlocs
+            A_Integrer/DDS_04/068_Modelisation
+            A_Integrer/DDS_04/069_SLCI_Calcul
+            A_Integrer/DDS_04/070_Cinematique
+            A_Integrer/DDS_04/071_PFS
+            A_Integrer/DDS_04/072_SLCI_PI
+            A_Integrer/DDS_04/073_SLCI_Retard
+            A_Integrer/DDS_04/075_SLCI_SchemaBlocs
+            A_Integrer/DDS_04/076_Geometrie
+            A_Integrer/DDS_04/077_SLCI_PI
+            A_Integrer/DDS_04/078_Modelisation
+            A_Integrer/DDS_04/079_Geometrie_Verin
+            A_Integrer/DDS_04/080_CorrecteurP
+            A_Integrer/DDS_04/081_SLCI_Numerique
+            A_Integrer/DDS_04/082_Cinematique_TrainEpi
+            A_Integrer/DDS_04/083_SchemaBlocs_FT
+            A_Integrer/DDS_04/084_SLCI_P
+            A_Integrer/DDS_05/085_SchemasCinematique
+            A_Integrer/DDS_05/086_Correcteur_Clever
+            A_Integrer/DDS_05/087_SchemasCinematique
+            A_Integrer/DDS_05/088_Geometrie
+            A_Integrer/DDS_05/089_PFD_RobotChirurgical
+            A_Integrer/DDS_05/090_Inertie
+            A_Integrer/DDS_05/092_TorseursDyn_Orthese
+            A_Integrer/DDS_05/093_PFD
+            A_Integrer/DDS_05/095_Stat
+            A_Integrer/DDS_05/096_Stat
+            A_Integrer/DDS_Reserve/982_TEC
+            A_Integrer/DDS_Reserve/985_Hyperstatisme
+            A_Integrer/DDS_Reserve/999_TEC_Clever
           )
-          for part in "${parts[@]}"; do test -s "$part"; done
-          cat "${parts[@]}" | tr -d '\r\n\t ' | base64 --decode > /tmp/missing_exercises_text.tar.xz
-          xz --test /tmp/missing_exercises_text.tar.xz
-          tar -tJf /tmp/missing_exercises_text.tar.xz >/dev/null
-          tar -xJf /tmp/missing_exercises_text.tar.xz -C .
+          for folder in "${folders[@]}"; do
+            source_rel="${folder#A_Integrer/}"
+            test -d "/tmp/DevoirDuSoir/$source_rel"
+            mkdir -p "$(dirname "$folder")"
+            rm -rf "$folder"
+            cp -a "/tmp/DevoirDuSoir/$source_rel" "$folder"
+          done
           python3 tools/patch_style_version.py
 
-      - name: Restaurer les illustrations
-        shell: bash
-        run: |
-          set -euo pipefail
-          git show origin/main:tools/restore_a_integrer_images.py > /tmp/restore_a_integrer_images.py
-          python3 /tmp/restore_a_integrer_images.py
-
-      - name: Vérifier 468 exercices et 468 corrigés
+      - name: Générer les corrigés et les recueils
         shell: bash
         run: |
           set -euo pipefail
           python3 tools/generate_corrections.py
           python3 tools/generate_all_exos.py
           python3 tools/generate_all_corriges.py
+
+      - name: Vérifier 468 exercices et 468 corrigés
+        shell: bash
+        run: |
+          set -euo pipefail
           test "$(find . -type f -name corrige.tex | wc -l)" -eq 468
-          test "$(grep -RIl --include='*.tex' '\\InclureCorrige{corrige.tex}' A_Integrer B2_ProposerModele C2_MettreEnOeuvreDemarche CIN COR DYN ELEC GEO NUM PERF PPM RDM SEQ SLCI STAT SYS TEC | wc -l)" -eq 468
-          ! grep -RIl --include='corrige.tex' '\\CorrigeACompleter' A_Integrer B2_ProposerModele C2_MettreEnOeuvreDemarche CIN COR DYN ELEC GEO NUM PERF PPM RDM SEQ SLCI STAT SYS TEC
+          test "$(grep -RIlF --include='*.tex' '\InclureCorrige{corrige.tex}' A_Integrer B2_ProposerModele C2_MettreEnOeuvreDemarche CIN COR DYN ELEC GEO NUM PERF PPM RDM SEQ SLCI STAT SYS TEC | wc -l)" -eq 468
+          ! grep -RIlF --include='corrige.tex' '\CorrigeACompleter' A_Integrer B2_ProposerModele C2_MettreEnOeuvreDemarche CIN COR DYN ELEC GEO NUM PERF PPM RDM SEQ SLCI STAT SYS TEC
           grep -q 'Exercices traités : \*\*468\*\*' CORRECTIONS_REPORT.md
           grep -q 'Corrigés restant partiels : \*\*0\*\*' CORRECTIONS_REPORT.md
           grep -q '468 exercices' ALL_EXOS/inputs.tex
@@ -105,7 +177,16 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rm -f tools/vendor/missing_exercises_text.tar.xz.b64* tools/vendor/missing_text.tar.xz.b64* tools/a_integrer_candidate_map.json INTEGRATION_TRIGGER.md PACKAGE_DIAGNOSTIC.md
+          rm -f tools/vendor/missing_exercises_text.tar.xz.b64* \
+            tools/vendor/missing_text.tar.xz.b64* \
+            tools/a_integrer_candidate_map.json \
+            INTEGRATION_TRIGGER.md PACKAGE_DIAGNOSTIC.md
+          cat > REPRISE_INTEGRATION_85.md <<'EOF'
+          # Intégration des 85 exercices terminée
+
+          Les 85 exercices manquants ont été matérialisés avec leurs ressources et leurs corrigés.
+          Les contrôles automatiques ont validé 468 exercices, 468 fichiers `corrige.tex`, 468 inclusions et aucun marqueur `\CorrigeACompleter`.
+          EOF
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
