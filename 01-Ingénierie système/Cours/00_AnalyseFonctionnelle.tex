@@ -1,9 +1,9 @@
 % Load the kaobook class
 \documentclass[
-	fontsize=10pt, % Base font size
-	twoside=true, % Use different layouts for even and odd pages (in particular, if twoside=true, the margin column will be always on the outside)
-	%open=any, % If twoside=true, uncomment this to force new chapters to start on any page, not only on right (odd) pages
-%%	secnumdepth=1, % How deep to number headings. Defaults to 1 (sections)
+	fontsize=10pt,
+	twoside=true,
+	%open=any,
+%%	secnumdepth=1,
 ]{kaobook}
 
 % -----------------------------------------------------------------------------
@@ -111,11 +111,8 @@
 
 \frenchsetup{StandardItemLabels=true}
 
-% Load the bibliography package
 \usepackage{kaobiblio}
 \addbibresource{Cy_01_ModelisationSystemes.bib}
-
-% Load mathematical packages for theorems and related environments
 \usepackage{kaotheorems}
 \usepackage{kaorefs}
 \usepackage[normalem]{ulem}
@@ -129,9 +126,8 @@
 \pretocmd{\subsection}{\Needspace{5\baselineskip}}{}{}
 \pretocmd{\subsubsection}{\Needspace{4\baselineskip}}{}{}
 
-% Pendant la phase d'association des images, une illustration absente est
-% remplacée par un cadre neutre afin de pouvoir valider tous les textes et
-% toutes les équations sans interrompre la compilation.
+% Définition de secours, remplacée ensuite par la correspondance des images
+% réellement présentes dans le dossier images.
 \newcommand{\AFfigure}[2][0.96\linewidth]{%
   \begin{center}%
     \IfFileExists{images/#2}{%
@@ -167,6 +163,7 @@
 \collefalse
 
 \input{01_AnalyseFonctionnelle2022}
+\input{01_AnalyseFonctionnelle_Exercices_Images}
 \input{01_AnalyseFonctionnelle_Exercices}
 
 \end{document}
