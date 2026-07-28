@@ -1,0 +1,120 @@
+name: Construire le PDF 468 corrigé
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, edited]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pdf-468-v2-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  compile:
+    if: contains(github.event.pull_request.title, 'Construire PDF 468')
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - name: Récupérer exactement la version PC demandée
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 1
+
+      - name: Charger le préparateur depuis main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main --depth=1
+          git show origin/main:.github/scripts/prepare_split_compilation.py > /tmp/prepare_split_compilation.py
+          python3 -m py_compile /tmp/prepare_split_compilation.py
+
+      - name: Vérifier les 468 exercices et préparer les familles
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/generate_all_exos.py
+          python3 tools/generate_all_corriges.py
+          grep -q '468 exercices' ALL_EXOS/inputs.tex
+          grep -q '468 corrigés' ALL_EXOS/corriges_inputs.tex
+          python3 /tmp/prepare_split_compilation.py
+          test "$(grep -c '^PART_' ALL_EXOS/PDF_PARTS_ORDER.txt)" -ge 14
+
+      - name: Compiler les familles
+        id: latex
+        continue-on-error: true
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: |
+            FRONTMATTER.tex
+            PART_*.tex
+          working_directory: ALL_EXOS
+          latexmk_shell_escape: true
+          continue_on_error: true
+          extra_system_packages: "gnuplot"
+          args: -pdf -interaction=nonstopmode -file-line-error
+
+      - name: Installer les outils de contrôle PDF
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! command -v pdfunite >/dev/null || ! command -v pdfinfo >/dev/null; then
+            sudo apt-get update -y
+            sudo apt-get install -y poppler-utils
+          fi
+
+      - name: Fusionner et valider le PDF complet
+        id: merge
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd ALL_EXOS
+          mapfile -t parts < PDF_PARTS_ORDER.txt
+          for part in "${parts[@]}"; do
+            test -s "$part"
+            pdfinfo "$part" >/dev/null
+          done
+          pdfunite "${parts[@]}" ../PDF_COMPLET_EXERCICES_CORRIGES_468.pdf
+          cd ..
+          pdfinfo PDF_COMPLET_EXERCICES_CORRIGES_468.pdf > PDF_COMPLET_EXERCICES_CORRIGES_468_INFO.txt
+          pages=$(awk '/^Pages:/ {print $2}' PDF_COMPLET_EXERCICES_CORRIGES_468_INFO.txt)
+          size=$(stat -c%s PDF_COMPLET_EXERCICES_CORRIGES_468.pdf)
+          pdftotext PDF_COMPLET_EXERCICES_CORRIGES_468.pdf /tmp/pdf-complet.txt
+          corrections=$(grep -c 'Corrigé' /tmp/pdf-complet.txt || true)
+          grep -q 'Ingénierie système' /tmp/pdf-complet.txt
+          grep -q 'Outils numériques' /tmp/pdf-complet.txt
+          test "$pages" -gt 700
+          test "$size" -gt 1000000
+          test "$corrections" -gt 400
+          echo "PDF validé : $pages pages, $size octets, $corrections encadrés détectés."
+          echo 'ready=true' >> "$GITHUB_OUTPUT"
+
+      - name: Publier le PDF complet
+        if: steps.merge.outputs.ready == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: PDF-complet-exercices-corriges-468
+          path: |
+            PDF_COMPLET_EXERCICES_CORRIGES_468.pdf
+            PDF_COMPLET_EXERCICES_CORRIGES_468_INFO.txt
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+
+      - name: Publier les journaux
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: journaux-PDF-468-v2
+          path: |
+            ALL_EXOS/FRONTMATTER.log
+            ALL_EXOS/PART_*.log
+            ALL_EXOS/PDF_PARTS_ORDER.txt
+          if-no-files-found: warn
+          retention-days: 30
