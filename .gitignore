@@ -6,6 +6,8 @@
 *.xml
 *.gz
 *.toc
+*.pyc
+__pycache__/
 /xx
 FULL_PDF/gnuplot/FULL_PDF_ExercicesCompetences/9.table
 FULL_PDF/gnuplot/FULL_PDF_ExercicesCompetences/9.gnuplot
