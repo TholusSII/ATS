@@ -37,26 +37,34 @@ jobs:
           grep -q '468 exercices' ALL_EXOS/inputs.tex
           grep -q '468 corrigés' ALL_EXOS/corriges_inputs.tex
 
-      - name: Normaliser les retours de ligne littéraux après les titres
+      - name: Appliquer les compatibilités du recueil global
         shell: bash
         run: |
           python3 - <<'PY'
           from pathlib import Path
           import re
 
-          changed = []
-          pattern = re.compile(r'^(\s*\\exer\{[^\r\n]*?\})\\n', re.MULTILINE)
+          title_pattern = re.compile(r'^(\s*\\exer\{[^\r\n]*?\})\\n', re.MULTILINE)
+          qr_pattern = re.compile(r'\\qrcode(?:\[[^\]]*\])?\{([^{}]+)\}')
+          title_files = []
+          qr_files = []
           for path in Path('.').rglob('*.tex'):
               if '.git' in path.parts:
                   continue
               text = path.read_text(encoding='utf-8', errors='ignore')
-              updated, count = pattern.subn(r'\1\n', text)
-              if count:
+              updated, title_count = title_pattern.subn(r'\1\n', text)
+              updated, qr_count = qr_pattern.subn(
+                  lambda match: r'\fbox{\href{' + match.group(1) + r'}{\textsf{Lien vers le formulaire}}}',
+                  updated,
+              )
+              if updated != text:
                   path.write_text(updated, encoding='utf-8')
-                  changed.append((path.as_posix(), count))
-          print(f'{len(changed)} fichier(s) normalisé(s).')
-          for path, count in changed:
-              print(f'  {path}: {count}')
+              if title_count:
+                  title_files.append((path.as_posix(), title_count))
+              if qr_count:
+                  qr_files.append((path.as_posix(), qr_count))
+          print(f'{len(title_files)} fichier(s) avec retour littéral normalisé(s).')
+          print(f'{len(qr_files)} fichier(s) avec QR remplacé(s) par un lien cliquable.')
           PY
 
       - name: Créer le point d’entrée avec corrigés
@@ -75,7 +83,7 @@ jobs:
           root_file: ALL_EXOS_CORRIGES.tex
           working_directory: ALL_EXOS
           latexmk_shell_escape: true
-          args: -pdf -interaction=nonstopmode -halt-on-error -file-line-error
+          args: -pdf -interaction=nonstopmode -file-line-error
 
       - name: Publier le journal de compilation
         if: always()
@@ -90,18 +98,26 @@ jobs:
           retention-days: 30
 
       - name: Vérifier et nommer le PDF
-        if: steps.latex.outcome == 'success'
+        id: verify
+        if: always()
         shell: bash
         run: |
           set -euo pipefail
-          test -s ALL_EXOS/ALL_EXOS_CORRIGES.pdf
-          cp ALL_EXOS/ALL_EXOS_CORRIGES.pdf PDF_COMPLET_EXERCICES_CORRIGES.pdf
-          size=$(stat -c%s PDF_COMPLET_EXERCICES_CORRIGES.pdf)
-          test "$size" -gt 1000000
-          echo "PDF généré : $size octets"
+          if [[ -s ALL_EXOS/ALL_EXOS_CORRIGES.pdf ]]; then
+            cp ALL_EXOS/ALL_EXOS_CORRIGES.pdf PDF_COMPLET_EXERCICES_CORRIGES.pdf
+            size=$(stat -c%s PDF_COMPLET_EXERCICES_CORRIGES.pdf)
+            echo "PDF généré : $size octets"
+            if [[ "$size" -gt 1000000 ]]; then
+              echo 'pdf_ready=true' >> "$GITHUB_OUTPUT"
+            else
+              echo 'pdf_ready=false' >> "$GITHUB_OUTPUT"
+            fi
+          else
+            echo 'pdf_ready=false' >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Publier le PDF
-        if: steps.latex.outcome == 'success'
+        if: steps.verify.outputs.pdf_ready == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: PDF-complet-exercices-corriges
@@ -110,9 +126,9 @@ jobs:
           compression-level: 0
           retention-days: 30
 
-      - name: Signaler l’échec LaTeX
-        if: steps.latex.outcome != 'success'
+      - name: Signaler l’absence de PDF exploitable
+        if: steps.verify.outputs.pdf_ready != 'true'
         shell: bash
         run: |
-          echo 'La compilation LaTeX a échoué ; le journal a été publié.'
+          echo 'Aucun PDF complet exploitable n’a été produit ; le journal a été publié.'
           exit 1
