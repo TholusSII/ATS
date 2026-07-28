@@ -46,7 +46,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p ALL_EXOS/gnuplot
+          mkdir -p ALL_EXOS/gnuplot/ALL_EXOS_CORRIGES
           python3 - <<'PY'
           from pathlib import Path
           import re
