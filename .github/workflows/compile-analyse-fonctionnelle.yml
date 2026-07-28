@@ -36,7 +36,7 @@ jobs:
           working_directory: 01-Ingénierie système/Cours
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
         env:
-          TEXINPUTS: "${{ github.workspace }}/Style//:"
+          TEXINPUTS: "${{ github.workspace }}/Style:${{ github.workspace }}/Style//:"
 
       - name: Comparer au PDF de référence
         shell: bash
