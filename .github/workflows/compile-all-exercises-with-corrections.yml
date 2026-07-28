@@ -37,6 +37,28 @@ jobs:
           grep -q '468 exercices' ALL_EXOS/inputs.tex
           grep -q '468 corrigés' ALL_EXOS/corriges_inputs.tex
 
+      - name: Normaliser les retours de ligne littéraux après les titres
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          changed = []
+          pattern = re.compile(r'^(\s*\\exer\{[^\r\n]*?\})\\n', re.MULTILINE)
+          for path in Path('.').rglob('*.tex'):
+              if '.git' in path.parts:
+                  continue
+              text = path.read_text(encoding='utf-8', errors='ignore')
+              updated, count = pattern.subn(r'\1\n', text)
+              if count:
+                  path.write_text(updated, encoding='utf-8')
+                  changed.append((path.as_posix(), count))
+          print(f'{len(changed)} fichier(s) normalisé(s).')
+          for path, count in changed:
+              print(f'  {path}: {count}')
+          PY
+
       - name: Créer le point d’entrée avec corrigés
         shell: bash
         run: |
