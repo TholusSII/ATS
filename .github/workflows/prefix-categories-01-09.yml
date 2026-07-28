@@ -36,12 +36,17 @@ jobs:
           python3 -m py_compile tools/prefix_top_level_categories.py
 
       - name: Renommer et vérifier
+        id: execution
         shell: bash
         run: |
-          set -euo pipefail
-          python3 tools/prefix_top_level_categories.py
+          set +e
+          python3 tools/prefix_top_level_categories.py > PREFIX_RENAME_EXECUTION.txt 2>&1
+          status=$?
+          cat PREFIX_RENAME_EXECUTION.txt
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          exit 0
 
-      - name: Enregistrer sur la branche
+      - name: Enregistrer le résultat ou le diagnostic
         env:
           TARGET_BRANCH: ${{ github.event.pull_request.head.ref }}
         shell: bash
@@ -51,5 +56,16 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
-          git commit -m 'Préfixer les catégories 01 à 09 [skip ci]'
-          git push origin HEAD:"$TARGET_BRANCH"
+          if git diff --cached --quiet; then
+            echo 'Aucune modification à enregistrer.'
+          else
+            git commit -m 'Préfixer les catégories 01 à 09 ou enregistrer le diagnostic [skip ci]'
+            git push origin HEAD:"$TARGET_BRANCH"
+          fi
+
+      - name: Signaler un échec après sauvegarde
+        if: steps.execution.outputs.status != '0'
+        shell: bash
+        run: |
+          echo 'Le diagnostic a été enregistré dans PREFIX_RENAME_EXECUTION.txt.'
+          exit 1
