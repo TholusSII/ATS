@@ -22,7 +22,7 @@ def tex_escape(text: str) -> str:
 
 def inspect_exercise(path: Path) -> bool | None:
     relative = path.relative_to(ROOT)
-    if len(relative.parts) < 4 or relative.parts[0] in EXCLUDED_TOP_LEVEL:
+    if len(relative.parts) < 3 or relative.parts[0] in EXCLUDED_TOP_LEVEL:
         return None
     if path.name.endswith("_old.tex") or "_Colle_" in path.name or path.name == "corrige.tex":
         return None

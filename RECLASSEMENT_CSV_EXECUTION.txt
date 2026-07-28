@@ -1,9 +1,0 @@
-Nombre d'exercices inattendu : 436 (attendu : 468).
-Traceback (most recent call last):
-  File "/home/runner/work/Exercices/Exercices/tools/apply_reclassification_csv.py", line 257, in <module>
-    main()
-  File "/home/runner/work/Exercices/Exercices/tools/apply_reclassification_csv.py", line 249, in main
-    subprocess.run(["python3", "tools/generate_all_exos.py"], cwd=ROOT, check=True)
-  File "/usr/lib/python3.12/subprocess.py", line 571, in run
-    raise CalledProcessError(retcode, process.args,
-subprocess.CalledProcessError: Command '['python3', 'tools/generate_all_exos.py']' returned non-zero exit status 1.
