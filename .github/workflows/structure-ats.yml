@@ -1,0 +1,72 @@
+name: Structurer le dépôt ATS
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: structure-ats-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  structure:
+    if: >-
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.actor != 'github-actions[bot]' &&
+      contains(github.event.pull_request.title, 'Structurer le dépôt ATS')
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Récupérer la branche
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Installer les outils validés
+        shell: bash
+        run: |
+          set -euo pipefail
+          git show origin/main:tools/organize_ats.py > tools/organize_ats.py
+          git show origin/main:tools/generate_all_exos.py > tools/generate_all_exos.py
+          git show origin/main:tools/generate_all_corriges.py > tools/generate_all_corriges.py
+          python3 -m py_compile tools/organize_ats.py tools/generate_all_exos.py tools/generate_all_corriges.py
+
+      - name: Créer les dossiers Cours et TD
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/organize_ats.py
+
+      - name: Vérifier la structure complète
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(find . -maxdepth 1 -type d -regex './\(0[1-9]\|1[0-5]\)-.*' | wc -l)" -eq 15
+          test "$(find . -maxdepth 2 -type d -name TD | wc -l)" -eq 15
+          test "$(find . -maxdepth 2 -type d -name Cours | wc -l)" -eq 15
+          test "$(find . -maxdepth 2 -type f -name TD.tex | wc -l)" -eq 15
+          test "$(find . -path '*/TD/*' -type f -name corrige.tex | wc -l)" -eq 468
+          test "$(grep -RIlF --include='*.tex' '\InclureCorrige{corrige.tex}' 0?-* 1?-* | wc -l)" -eq 468
+          grep -q '468 exercices' ALL_EXOS/inputs.tex
+          grep -q '468 corrigés' ALL_EXOS/corriges_inputs.tex
+          grep -q '468 exercices, 468 corrigés, 468 inclusions' STRUCTURE_ATS.md
+
+      - name: Enregistrer la restructuration
+        env:
+          TARGET_BRANCH: ${{ github.event.pull_request.head.ref }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          find tools -type d -name __pycache__ -prune -exec rm -rf {} +
+          rm -f STRUCTURE_ATS_TRIGGER.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Structurer les 468 exercices en dossiers Cours et TD [skip ci]'
+          git push origin HEAD:"$TARGET_BRANCH"
