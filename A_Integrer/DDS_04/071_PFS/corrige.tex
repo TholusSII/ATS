@@ -2,18 +2,41 @@
 % Source : A_Integrer/DDS_04/071_PFS/071_PFS.tex
 \begin{corrigebox}[Corrigé]
 \CorrigeQuestion{1}
-$P_B = \rho_v \pi \left(R^2 - R_M^2 \right)Lg$.
+En considérant le poids de la bobine de papier seul, on a directement 
+$P_B (R)= \rho_v L \pi \left(R^2 - R_M^2 \right) g$
 \CorrigeQuestion{2}
 $P_B = \SI{101764}{N}$.
 \CorrigeQuestion{3}
-$\vect{F}+\vect{R_A}+\vect{R_B}+\vect{P_B}+\vect{T}=\vect{0}$.
+On isole la bobine.
+
+BAME : poids de la bobine $\vect{P_B}$, efforts presseurs des rouleaux en $A$ et en $B$, tension $\vect{T}$ de la feuille en $A$, effort du rouleau presseur.
+
+TRS : $\vect{F(t)} + \vect{R_A} + \vect{R_B} + \vect{P_B} + \vect{T} = \vect{0}$
 \CorrigeQuestion{4}
-On isole le solide ou l'ensemble indiqué, on dresse le bilan complet des actions mécaniques extérieures et on choisit un point de réduction qui élimine le maximum d'inconnues. Le PFS donne $\sum\vec F=\vec0$ et $\sum\vec M_A=\vec0$ ; les projections utiles fournissent les inconnues, puis leur signe permet de vérifier le sens supposé.
+Les efforts des rouleaux porteurs se décomposent en un effort tangentiel et un effort normal, orienté vers $C_B$.
+
+\begin{center}
+\includegraphics[width=.35\linewidth]{988_03}%
+\end{center}
 \CorrigeQuestion{5}
-$C_m = rR_B$.
+On isole le rouleau porteur arrière.
+
+BAME : action de la bobine fille en $B$, action de la pesanteur sur la bobine fille en $C_2$, couple moteur en $C_2$. 
+
+Si on néglige l'inertie de la bobine arrière, on peut appliquer le théorème du moment statique en $C_2$ en projection sur $\vect{z}$ :
+\begin{itemize}
+\item $\vectm{C_2}{\text{fille}}{\text{porteur ar}} = \vect{C_2 B} \wedge \vect{R_B} = \pm r T_B$; 
+\item $\vectm{C_2}{\text{pes}}{\text{porteur ar}} = \vect{0}$; 
+\item $C_m$.
+\end{itemize}
+Au final $C_m = \pm r T_B$.
 \CorrigeQuestion{6}
-$T =\left(R_B  -R_A\right) \dfrac{\sin \left(\theta+\varphi\right)}{\cos\theta } $.
-%$T = \dfrac{R_B \sin \left( \varphi+ \theta \right)- R_A \sin\theta }{\cos \theta }$
+On projette l'expression de la question 4 sur $\vect{x}$ et on a 
+
+$R_A \sin \left(\theta+\varphi\right) - R_B\sin \left(\theta+\varphi\right) + T \cos\theta = 0$
+
+soit
+$T =\left(R_B  -R_A\right) \dfrac{\sin \left(\theta+\varphi\right)}{\cos\theta } $
 \CorrigeQuestion{7}
 On projette l'expression de la question 4 sur $\vect{y}$ et on a 
 

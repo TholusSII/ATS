@@ -1,3 +1,5 @@
-# Intégration des 85 exercices — contrôle qualitatif final
+# Intégration des 85 exercices terminée
 
-Les totaux 468/468 sont validés. Cette relance affine les 85 nouveaux corrigés afin de reprendre prioritairement les réponses détaillées présentes dans les branches professeur, et rejette les réponses-placeholder telles qu’un simple point.
+Les 85 exercices manquants ont été matérialisés avec leurs ressources et leurs corrigés.
+Les contrôles automatiques ont validé 468 exercices, 468 fichiers `corrige.tex`, 468 inclusions et aucun marqueur `\CorrigeACompleter`.
+Les réponses détaillées présentes dans les sources sont prioritaires sur les résumés finaux.

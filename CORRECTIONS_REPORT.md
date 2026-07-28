@@ -5,6 +5,7 @@
 - Questions restant marquées à compléter : **0**
 - Nouveaux exercices intégrés : **85**
 - Questions détectées dans les nouveaux exercices : **305**
-- Réponses directement extraites des sources nouvelles : **93**
+- Réponses détaillées reprises des sources : **116**
+- Compléments méthodologiques rédigés : **189**
 
-Les 383 corrigés déjà validés sont conservés. Pour les nouvelles questions sans réponse explicite dans la source, un corrigé méthodologique est fourni sans inventer de valeur numérique absente des documents.
+Les 383 corrigés déjà validés sont conservés. Les réponses détaillées présentes dans les branches professeur ou les listes finales sont prioritaires. Lorsqu'aucune valeur numérique exploitable n'est fournie par la source, le corrigé expose la démarche sans inventer de donnée absente.

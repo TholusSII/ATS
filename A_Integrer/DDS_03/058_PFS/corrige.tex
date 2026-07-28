@@ -2,11 +2,34 @@
 % Source : A_Integrer/DDS_03/058_PFS/058_PFS.tex
 \begin{corrigebox}[Corrigé]
 \CorrigeQuestion{1}
-La résolution consiste à identifier les données et l'inconnue, choisir la loi du cours adaptée, écrire l'équation symbolique avant toute application numérique, puis vérifier l'homogénéité, le signe et l'ordre de grandeur du résultat. Les hypothèses utilisées doivent être explicitement contrôlées à la fin.
+~\\
+\begin{center}
+\includegraphics[width=.8\linewidth]{cor_01}
+%\textit{}
+\end{center}
+D'une part, $x = d\sin 42 \simeq \SI{0,67}{m}$. D'autre part, $\sin\alpha = \dfrac{1,8-0,7-x}{d}=0,43$. Au final $\alpha = 25,5\degres$. 
+
+L'angle d'ouverture est donc de $67,5\degres$.
 \CorrigeQuestion{2}
-La résolution consiste à identifier les données et l'inconnue, choisir la loi du cours adaptée, écrire l'équation symbolique avant toute application numérique, puis vérifier l'homogénéité, le signe et l'ordre de grandeur du résultat. Les hypothèses utilisées doivent être explicitement contrôlées à la fin.
+~\\
+La longueur du vérin est donnée par la valeur de $L$. En réalisant la fermeture géométrique, on a $\vect{AB}+\vect{BC}+\vect{CA}=\vect{0} \Leftrightarrow 
+-a\vect{x_0}+b\vect{y_0} + c\vect{x_p} -L\vect{x_v} =\vect{0}$.
+
+En projetant l'équation vectorielle dans $\rep{0}$, on a : 
+$$
+\left\{ 
+\begin{array}{l}
+-a + c\cos\theta -L\cos\alpha ={0} \\
+b + c\sin\theta -L\sin\alpha ={0}
+\end{array}
+\right.
+$$
+On a donc $L^2 =\left(-a + c\cos\theta \right)^2 + \left(b + c\sin\theta \right)^2  $.
+%= a^2 +c^2 \cos ^2 \theta - 2 ac \cos \theta + b^2 + c^2\sin^2\theta + 2b c\sin\theta
+%= a^2 +c^2 - 2 ac \cos \theta + b^2 +  2b c\sin\theta$
 \CorrigeQuestion{3}
-La résolution consiste à identifier les données et l'inconnue, choisir la loi du cours adaptée, écrire l'équation symbolique avant toute application numérique, puis vérifier l'homogénéité, le signe et l'ordre de grandeur du résultat. Les hypothèses utilisées doivent être explicitement contrôlées à la fin.
+~\\
+La longueur du vérin varie de \SI{43,3}{cm} à \SI{56,5}{cm} soit une course de \SI{13,2}{cm}.
 \CorrigeQuestion{4}
 ~\\
 On isole le corps et le piston du vérin. L'ensemble est soumis à deux actions mécaniques (liaisons sphériques en $A$ et $C$). D'après le PFS, cette action mécanique est donc suivant Ces deux actions mécaniques sont donc de même direction (le vecteur $\vect{x_v}$), de même norme et de sens opposé. 
@@ -41,15 +64,31 @@ Dans le cas où on considère les deux vérins, on aura $F_1=F_2=F_v/2$.
 
 \end{center}
 \CorrigeQuestion{5}
-On isole le solide ou l'ensemble indiqué, on dresse le bilan complet des actions mécaniques extérieures et on choisit un point de réduction qui élimine le maximum d'inconnues. Le PFS donne $\sum\vec F=\vec0$ et $\sum\vec M_A=\vec0$ ; les projections utiles fournissent les inconnues, puis leur signe permet de vérifier le sens supposé.
+~\\
+
+\begin{center}
+\includegraphics[width=\linewidth]{cor_04}
+%\textit{}
+\end{center}
+
+Si on isole la tige du vérin :
+\begin{itemize}
+\item en phase d'ouverture, le TRS s'exprime par : $F_m + F_r - F_f - F_h =0\Leftrightarrow F_r = F_f + F_h - F_m$; 
+\item en phase de fermeture, le TRS s'exprime par : $-F_m + F_r + F_f - F_h =0 \Leftrightarrow F_r = -F_f + F_h + F_m$;
+\end{itemize}
+
+La plage de fonctionnement la plus large est située entre $\SI{0,5}{m}$ et $\SI{0,56}{m}$. La pente est la même pour les 3 courbes. Elle est d'environ $k=\dfrac{100}{0,06}\simeq \SI{1667}{N.m^{-1}}$.
+
+En phase de fermeture, lorsque le vérin est déployé, la précharge permettant d'assurer l'équilibre est d'environ \SI{500}{N}.  L'écrasement est donc  de \SI{300}{mm} environ.
+
+\begin{center}
+\includegraphics[width=\linewidth]{cor_05}
+%\textit{}
+\end{center}
 \CorrigeQuestion{6}
 ~\\
 En phase d'ouverture, le couple maximal est de \SI{4e-3}{Nm}. En phase de fermeture il est de \SI{3,5e-3}{Nm}.
 \CorrigeQuestion{7}
-On définit les variables, le pas de calcul et les conditions initiales, puis on traduit l'équation par une relation de récurrence. L'algorithme est vérifié sur les premiers pas et la stabilité numérique est contrôlée en comparant le pas aux constantes de temps du système.
-\CorrigeQuestion{8}
-On définit les variables, le pas de calcul et les conditions initiales, puis on traduit l'équation par une relation de récurrence. L'algorithme est vérifié sur les premiers pas et la stabilité numérique est contrôlée en comparant le pas aux constantes de temps du système.
-\CorrigeQuestion{9}
 ~\\
 On isole le hayon et on réalise le BAME. Le théorème du moment statique en $B$ en projection sur $\vect{z_0}$ : 
 
@@ -70,4 +109,15 @@ $\Rightarrow
 Pour $\theta=0$, $ \tan \alpha = \dfrac{b}{-a+c}=\dfrac{0,14}{-0,55+0,14}=-0,34 \Rightarrow \alpha \simeq -18,8 \degres$.
 $\Rightarrow  
 \Delta F  = \dfrac{40}{2\cdot 0,14  \sin \alpha} = \SI{-443}{N} $.
+\CorrigeQuestion{8}
+~\\
+On a $\left|\Delta C_m\right|=\rho \left|\Delta F \right|$ avec $\rho=\SI{7,89e-5}{m}$. En conséquence : $\left|\Delta C_m\right|=443 \cdot 7,89 \cdot 10^{-5} = \SI{35}{mNm}$.
+
+En fin de fermeture, $C_m=\SI{2,5e-3}{Nm}$.
+En conséquence $I_{\text{max}}=\dfrac{C_{\text{max}}}{K_t}=\dfrac{C_{m}+\Delta C_m}{K_t}=\dfrac{2,5\cdot 10^{-3}+35\cdot 10^{-3}}{9,5\cdot 10^{-3}}=\SI{3,95}{A}$.
+\CorrigeQuestion{9}
+%~\\
+%
+%
+%
 \end{corrigebox}
