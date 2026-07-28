@@ -1,0 +1,351 @@
+% Exercices du chapitre d'analyse fonctionnelle
+% Reprise du document de référence 1-AnalyseFonctionnelle.pdf.
+% Les textes, questions et équations sont composés en LaTeX ; les diagrammes
+% SysML et documents-réponses complexes sont conservés sous forme d'images.
+
+\providecommand{\AFquestion}[2]{%
+  \par\medskip\noindent\textbf{Q#1.}~#2\par
+}
+\providecommand{\AFsource}[1]{%
+  \begin{center}\emph{Source : #1}\end{center}
+}
+\providecommand{\AFfigure}[2][0.96\linewidth]{%
+  \begin{center}%
+    \IfFileExists{images/#2}{%
+      \includegraphics[width=#1]{images/#2}%
+    }{%
+      \fbox{\parbox[c][35mm][c]{0.88\linewidth}{\centering Illustration absente}}%
+    }%
+  \end{center}%
+}
+\providecommand{\AFexotitle}[1]{%
+  \clearpage
+  \phantomsection
+  \addcontentsline{toc}{subsection}{#1}
+  \begin{tcolorbox}[
+    enhanced,
+    colback=white,
+    colframe=bleuxp,
+    boxrule=0.8pt,
+    arc=1mm,
+    left=4mm,right=4mm,top=2mm,bottom=2mm,
+    fontupper=\bfseries\Large,
+    halign=center
+  ]
+    #1
+  \end{tcolorbox}
+}
+\newtcolorbox{AFexerciseinfo}[1]{
+  enhanced,
+  breakable,
+  colback=bleuxpc,
+  colframe=bleuxp,
+  boxrule=0.7pt,
+  arc=1mm,
+  title=#1,
+  colbacktitle=bleuxp,
+  coltitle=white,
+  fonttitle=\bfseries,
+  left=3mm,right=3mm,top=2mm,bottom=2mm
+}
+
+\clearpage
+\pagelayout{wide}
+\section{Exercices du chapitre}\label{exercices-du-chapitre}
+
+\begin{center}
+  \includegraphics[width=0.42\linewidth]{images/image52.png}
+\end{center}
+
+% -----------------------------------------------------------------------------
+\AFexotitle{Étude d'un toit ouvrant}
+\AFsource{E3A PSI 2006}
+
+\subsubsection*{Mise en situation}
+
+Le toit ouvrant est un sous-système du véhicule automobile qui permet une
+meilleure ventilation de l'habitacle et procure aux passagers des sensations de
+liberté et une meilleure luminosité. Il s'intègre parfaitement dans les nouveaux
+concepts d'adaptation de l'environnement du véhicule aux besoins du conducteur
+et des passagers. Les fabricants proposent des gammes de produits qui se
+déclinent majoritairement en modèles à énergie électrique, intégrant des
+possibilités de commande de plus en plus sophistiquées.
+
+Le modèle étudié se compose d'une glace de sécurité teintée et appartient à la
+classe des toits coulissants. Sa cinématique d'ouverture permet un mode
+entrebâillant. Il existe en deux modèles : le modèle Medium
+($782\times412~\mathrm{mm}$, avec une ouverture entrebâillée de
+$43~\mathrm{mm}$) et le modèle Large ($842\times503~\mathrm{mm}$, avec une
+ouverture entrebâillée de $48~\mathrm{mm}$). Ils sont équipés d'un déflecteur et
+d'un pare-soleil. Le système de commande possède cinq positions stables :
+fermeture, entrebâillement et trois niveaux d'ouverture.
+
+Un système de fermeture automatique se met en route trois secondes après la
+coupure du contact. Ce modèle est également doté d'une protection garantissant
+l'anti-pincement lors des mouvements de la glace ainsi que d'un réglage
+programmable en fonction des préférences personnelles des utilisateurs.
+L'ensemble est alimenté par la batterie du véhicule, dont la tension est
+\[
+  U_b=13~\mathrm{V}.
+\]
+
+\AFfigure{af_exo_toit_overview.jpg}
+
+\subsubsection*{Analyse fonctionnelle du besoin}
+\AFquestion{1}{Définir le besoin satisfait par le toit ouvrant électrique.}
+
+\subsubsection*{Analyse de la chaîne d'énergie}
+
+La chaîne d'énergie comprend, comme composant principal, un moto-réducteur
+constitué d'un moteur à courant continu à aimants permanents et d'un réducteur
+mécanique à roue et vis sans fin. Ses caractéristiques sont :
+\[
+  Z_v=2,\qquad Z_r=55,\qquad D=16~\mathrm{mm},
+\]
+où $Z_v$ est le nombre de filets de la vis, $Z_r$ le nombre de dents de la
+roue et $D$ le diamètre primitif du pignon de sortie.
+
+Le pignon engrène sur deux crémaillères souples, droite et gauche, auxquelles
+sont fixés deux chariots permettant de mettre le toit ouvrant en mouvement. Le
+boîtier de commande, situé au-dessus du rétroviseur central et accessible au
+conducteur et au passager avant, gère l'ensemble du fonctionnement.
+
+\AFquestion{2}{Indiquer sur le document réponse les items correspondant aux
+différents éléments du graphe de la chaîne d'énergie. Les items $a$, $b$, $c$,
+$d$ et $e$ décrivent les différents types d'énergie ; les items A, B, C et D
+décrivent les solutions techniques associées aux fonctions.}
+
+\AFquestion{3}{Le système de transmission mécanique est irréversible. Justifier
+l'intérêt de cette configuration puis indiquer le composant de la chaîne
+d'énergie qui réalise prioritairement cette irréversibilité.}
+
+\subsubsection*{Document réponse}
+\AFfigure[0.90\linewidth]{af_exo_toit_dr.jpg}
+
+% -----------------------------------------------------------------------------
+\AFexotitle{Lyre de projecteur}
+\AFsource{Mines-Ponts}
+
+\subsubsection*{Mise en situation}
+
+La lyre VIPS XS est une lyre de spectacle commercialisée par la société ZAP
+Technology et utilisée dans l'événementiel : spectacles, concerts, plateaux de
+télévision, etc.
+
+Une lyre est constituée d'un système de vidéo-projection ou d'éclairage, d'une
+masse d'une dizaine de kilogrammes, et d'un \emph{yoke}, système articulé
+permettant l'orientation spatiale du vidéoprojecteur. La direction de projection
+du média peut ainsi évoluer selon les besoins du spectacle.
+
+Le yoke étudié est composé d'une base, d'un bras articulé par rapport à la base
+et d'une plateforme mobile. Il est connecté à une console et à un ordinateur
+équipé d'un logiciel de gestion du comportement des lyres. Son pilotage peut
+être manuel ou programmé. Il utilise le protocole DMX, signal de commande
+numérique à plusieurs canaux, chaque canal correspondant à une fonction du
+yoke.
+
+\AFfigure{af_exo_lyre_overview.jpg}
+
+\subsubsection*{Analyse fonctionnelle}
+\AFquestion{1}{Après consultation des diagrammes SysML, présenter et identifier
+les exigences principale et fonctionnelles auxquelles répond le système.}
+\AFquestion{2}{Recenser les éléments extérieurs qui interagissent avec le
+système étudié.}
+\AFquestion{3}{Présenter les blocs principaux composant le yoke et apparaissant
+sur le diagramme de définition de blocs.}
+\AFquestion{4}{Déterminer les chaînes fonctionnelles du système à partir des
+informations données.}
+
+\AFfigure[0.74\linewidth]{af_exo_lyre_req.jpg}
+\AFfigure{af_exo_lyre_bdd.jpg}
+
+% -----------------------------------------------------------------------------
+\AFexotitle{Égreneur de vignes}
+\AFsource{Mines-Ponts}
+
+\subsubsection*{Mise en situation}
+
+La société PELLENC, spécialisée dans la mécanisation en viticulture, développe
+depuis une vingtaine d'années du matériel pour les travaux de la vigne.
+
+Une grappe de raisin est constituée de sa rafle et de ses grains, ou baies. Dans
+le processus d'élaboration du vin, l'égrenage constitue la première étape juste
+après la récolte. Il consiste à séparer les baies de la rafle et à ne conserver
+que les plus saines. Les baies vertes ou gâtées sont éliminées pour ne pas nuire
+à la qualité du vin. La rafle peut également être éliminée.
+
+L'opération est réalisée par une machine appelée \emph{égreneur}, installée au
+chai au début de la chaîne d'élaboration du vin. Dans le cas d'une vendange
+mécanique, cette machine peut être embarquée directement sur la machine à
+vendanger, supprimant cette étape au niveau du chai.
+
+\AFfigure[0.78\linewidth]{af_exo_egreneur_overview.jpg}
+
+\subsubsection*{Analyse fonctionnelle}
+\AFquestion{1}{Après consultation des diagrammes SysML, présenter et identifier
+les exigences principale et fonctionnelles auxquelles répond le système.}
+\AFquestion{2}{Recenser les éléments extérieurs qui interagissent avec le
+système étudié.}
+\AFquestion{3}{Présenter les blocs principaux composant l'égreneur et
+apparaissant sur le diagramme de définition de blocs.}
+\AFquestion{4}{À partir du diagramme de blocs internes, décrire le flux d'énergie
+permettant la mise en mouvement des peignes.}
+
+\AFfigure{af_exo_egreneur_bdd.jpg}
+\AFfigure{af_exo_egreneur_req_ibd.jpg}
+
+% -----------------------------------------------------------------------------
+\AFexotitle{Segway}
+\AFsource{CentraleSupélec}
+
+\subsubsection*{Mise en situation}
+
+Le Segway est un véhicule individuel à la conduite intuitive : la direction est
+commandée à la poignée et l'avancement dépend de la position du corps. De type
+pendule inversé, il est naturellement instable ; son équilibre est assuré par
+la commande du système.
+
+\AFfigure{af_exo_segway_overview.jpg}
+
+Un diagramme partiel des exigences est proposé ci-dessous.
+\AFfigure{af_exo_segway_req.jpg}
+
+\AFquestion{1}{Sur les exigences d'identifiants 1.2, 1.7.1, 1.7.2 et 1.7.3,
+souligner ou surligner en rouge les critères et en vert les niveaux associés.}
+\AFquestion{2}{Proposer un critère et un niveau associé à l'exigence
+d'identifiant 1.5.}
+\AFquestion{3}{Les documents commerciaux indiquent un temps de recharge de
+$8~\mathrm{h}$ pour une charge complète. L'exigence associée est-elle vérifiée ?}
+
+% -----------------------------------------------------------------------------
+\AFexotitle{Table de radiologie D\textsuperscript{2}RS}
+\AFsource{ATS 2018}
+
+La radiologie dite « conventionnelle » permet l'exploration des structures
+anatomiques internes à l'aide d'images fournies par un faisceau de rayons X
+traversant le sujet. Elle a un intérêt diagnostique de premier plan dans de
+nombreux domaines de la médecine malgré l'apparition de nouvelles techniques
+non invasives.
+
+Elle nécessite une table télécommandée, un pupitre de commande, une source de
+rayons X et un détecteur. Le patient est placé entre le tube à rayons X et un
+capteur plan numérique. Selon la nature des tissus traversés, les rayons sont
+plus ou moins atténués et fournissent une image radiologique contrastée pouvant
+comporter plus de 4 000 niveaux de gris.
+
+\AFfigure[0.80\linewidth]{af_exo_radiologie_overview.jpg}
+
+\begin{AFexerciseinfo}{Problématique}
+Afin d'appréhender convenablement le système avant de traiter les différents
+problèmes techniques rencontrés, il est nécessaire d'avoir une vision globale
+et précise de l'architecture de la table de radiologie.
+\end{AFexerciseinfo}
+
+\begin{AFexerciseinfo}{Objectif}
+Étudier l'architecture des deux principaux sous-systèmes de la table en
+utilisant des outils descriptifs adaptés.
+\end{AFexerciseinfo}
+
+\AFquestion{1}{À partir du diagramme, indiquer par les lettres $I$, $E$ et $M$
+les flux de type information, électrique et mécanique entre tous les blocs de
+l'IBD du mouvement d'incidence.}
+
+Dans une chaîne d'énergie, la puissance est le produit d'une variable de flux
+par une variable de potentiel. Pour les domaines considérés :
+\[
+  P=U I,\qquad P=C\,\Omega,\qquad P=F V,
+\]
+où $I$ est le courant, $C$ le couple, $F$ la force, $U$ la tension,
+$\Omega$ la vitesse angulaire et $V$ la vitesse linéaire.
+
+\AFquestion{2}{En utilisant les lettres $I$, $C$, $F$, $U$, $\Omega$ et $V$,
+indiquer sur le document réponse le type des variables présentes entre les
+blocs de la chaîne d'énergie du mouvement de chariotage.}
+
+\subsubsection*{Document réponse DR1}
+\AFfigure{af_exo_radiologie_ibd.jpg}
+
+% -----------------------------------------------------------------------------
+\AFexotitle{Sécateur Pellenc}
+\AFsource{Lycée Châteaubriand}
+
+La période de taille de la vigne dure environ deux mois. Les viticulteurs
+coupent pendant huit à dix heures par jour. Pour réduire la fatigue de la main
+et du bras, la société PELLENC commercialise un sécateur électrique. Ce système
+se compose d'une batterie portée à l'aide d'un harnais et alimentant le sécateur
+par un câble.
+
+\AFfigure{af_exo_secateur_overview.jpg}
+
+Le mécanisme à lames est composé d'une lame mobile, liée à l'écrou par
+l'intermédiaire d'une biellette, et articulée par rapport à une contre-lame
+fixe.
+
+\AFfigure{af_exo_secateur_ibd.jpg}
+
+\AFquestion{1}{Élaborer la chaîne d'information et la chaîne de puissance de
+l'activité « sectionner une branche ». Indiquer les grandeurs d'effort et de
+flux de chacune des puissances transmises.}
+
+\subsubsection*{Document réponse}
+\AFfigure[0.75\linewidth]{af_exo_secateur_dr.jpg}
+
+% -----------------------------------------------------------------------------
+\AFexotitle{Prothèse transtibiale active}
+\AFsource{Mines-Ponts MP 2013}
+
+La majorité des prothèses transtibiales utilisées aujourd'hui est passive :
+leurs propriétés mécaniques restent fixes pendant la marche. Elles sont
+généralement constituées de semelles-ressorts en fibre de carbone qui
+emmagasinent et restituent l'énergie mécanique par déformation.
+
+On s'intéresse ici à un prototype mis au point par des ingénieurs du MIT. Cette
+prothèse active est capable de proposer un comportement similaire à celui d'un
+membre non amputé.
+
+L'actionneur est un moteur à courant continu alimenté par une batterie
+rechargeable de $16~\mathrm{V}$ au travers d'un hacheur. La puissance mécanique
+est transmise par un réducteur poulies-courroie puis par un dispositif
+vis-écrou. Des ressorts permettent d'accumuler de l'énergie et d'ajuster la
+souplesse du pied artificiel.
+
+\AFfigure[0.90\linewidth]{af_exo_prothese_overview.jpg}
+
+Les informations délivrées par les capteurs sont traitées par un calculateur
+qui élabore la commande du moteur. Le système comporte un potentiomètre linéaire
+mesurant l'allongement ou l'écrasement des ressorts, un codeur incrémental placé
+au niveau de l'articulation pied-tibia et plusieurs capteurs capacitifs disposés
+sous la semelle : deux au talon et quatre à l'avant du pied.
+
+\AFquestion{1}{Lister les composants de la chaîne d'information et ceux de la
+chaîne d'énergie.}
+\AFquestion{2}{Déterminer la matière d'œuvre modifiée ainsi que l'effecteur.}
+\AFquestion{3}{Identifier le composant qui transmet un ordre à la chaîne
+d'énergie et celui qui reçoit cet ordre. Préciser leur fonction.}
+\AFquestion{4}{Compléter le diagramme chaîne d'information / chaîne d'énergie
+ci-dessous.}
+
+\AFfigure[0.75\linewidth]{af_exo_prothese_dr.jpg}
+
+% -----------------------------------------------------------------------------
+\AFexotitle{Base mobile TC200 Tecdron}
+\AFsource{CCS TSI 2021}
+
+Dans l'industrie, il est désormais possible d'associer des tâches robotisées et
+des tâches manuelles. Après l'essor des robots collaboratifs, Tecdron,
+entreprise française basée à La Rochelle, propose une base mobile nommée TC200.
+Elle peut recevoir différents types de bras robotisés, dont des bras
+collaboratifs, et se déplacer de manière autonome dans un environnement
+industriel complexe composé de robots et d'humains.
+
+Le diagramme de définition de blocs de la base TC200 est donné ci-dessous.
+\AFfigure{af_exo_tc200_overview.jpg}
+
+\AFquestion{1}{À l'aide du diagramme de définition de blocs, compléter les
+chaînes fonctionnelles qui détaillent l'organisation structurelle d'une des
+motorisations.}
+
+\subsubsection*{Document réponse}
+\AFfigure[0.72\linewidth]{af_exo_tc200_dr.jpg}
+
+\pagelayout{margin}

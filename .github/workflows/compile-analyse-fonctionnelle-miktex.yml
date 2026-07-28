@@ -39,6 +39,7 @@ jobs:
             -e 'TEXINPUTS=/data/Style:/data/Style//:' \
             mfisherman/miktex:25.12 \
             sh -lc '
+              mpm --install=xkeyval
               pdflatex --version
               pdflatex --enable-installer -file-line-error -halt-on-error -interaction=nonstopmode 00_AnalyseFonctionnelle.tex
               pdflatex --enable-installer -file-line-error -halt-on-error -interaction=nonstopmode 00_AnalyseFonctionnelle.tex

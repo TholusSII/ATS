@@ -1,0 +1,14 @@
+%% Compatibilité kaorefs / framework UPSTI sous TeX Live 2025+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{kaorefs}[2026/07/28 Compatibilité avec les références UPSTI]
+% Le cours d'analyse fonctionnelle n'utilise pas les commandes avancées de
+% kaorefs. Le framework UPSTI fournit déjà les références et symboles requis.
+% Ne pas charger ECM/kaorefs.sty évite un second chargement d'amsthm et la
+% redéfinition de \openbox avec TeX Live 2025.
+\providecommand{\labfig}[1]{\label{fig:#1}}
+\providecommand{\labtab}[1]{\label{tab:#1}}
+\providecommand{\labsec}[1]{\label{sec:#1}}
+\providecommand{\reffig}[1]{figure~\ref{fig:#1}}
+\providecommand{\reftab}[1]{tableau~\ref{tab:#1}}
+\providecommand{\refsec}[1]{section~\ref{sec:#1}}
+\endinput

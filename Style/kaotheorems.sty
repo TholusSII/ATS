@@ -1,0 +1,8 @@
+%% Compatibilité kaotheorems / framework UPSTI sous TeX Live 2025+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{kaotheorems}[2026/07/28 Désactivation des doublons avec UPSTI]
+% Le framework UPSTI chargé par le cours fournit déjà les environnements de
+% théorèmes utilisés dans les documents SI. Charger la version kaobook en plus
+% redéfinirait notamment proposition sous TeX Live 2025.
+\PackageInfo{kaotheorems}{Déclarations kaobook ignorées: environnements fournis par UPSTI}
+\endinput

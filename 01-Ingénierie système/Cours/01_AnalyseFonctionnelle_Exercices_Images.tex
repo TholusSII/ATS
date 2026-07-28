@@ -1,0 +1,145 @@
+% Association des illustrations extraites du document Word d'origine.
+% Les textes et équations restent composés en LaTeX dans le fichier d'exercices.
+
+\newcommand{\AFoneimage}[2][0.96\linewidth]{%
+  \begin{center}\includegraphics[width=#1]{images/#2}\end{center}%
+}
+
+\newcommand{\AFtoitDR}{%
+\begin{center}
+\resizebox{0.98\linewidth}{!}{%
+\begin{tikzpicture}[
+  x=1cm,y=1cm,
+  bloc/.style={draw=bleuxp,fill=bleuxpc,minimum width=2.45cm,
+    minimum height=1cm,align=center,font=\bfseries\small},
+  rep/.style={draw=gray!70,fill=white,minimum width=2.45cm,
+    minimum height=.65cm,align=center,font=\small},
+  flux/.style={->,thick,bleuxp}
+]
+\node[bloc] (alim) at (0,0) {ALIMENTER};
+\node[bloc] (dist) at (3,0) {DISTRIBUER};
+\node[bloc] (conv) at (6,0) {CONVERTIR};
+\node[bloc] (trans) at (9,0) {TRANSMETTRE};
+\node[bloc] (agir) at (12,0) {AGIR};
+\draw[flux] (alim)--node[above,font=\small]{b : \ldots}(dist);
+\draw[flux] (dist)--node[above,font=\small]{c : \ldots}(conv);
+\draw[flux] (conv)--node[above,font=\small]{d : \ldots}(trans);
+\draw[flux] (trans)--node[above,font=\small]{e : \ldots}(agir);
+\node[rep] at (0,-1.25) {A : \ldots};
+\node[rep] at (3,-1.25) {B : \ldots};
+\node[rep] at (6,-1.25) {C : \ldots};
+\node[rep] at (9,-1.25) {D : \ldots};
+\node[above,font=\small] at (-1.55,0) {a : \ldots};
+\end{tikzpicture}}
+\end{center}
+}
+
+% Chaque macro ci-dessous reçoit la largeur demandée comme argument. Pour les
+% planches composées, la largeur sert seulement de convention d'interface.
+\newcommand{\AFimgToitOverview}[1]{%
+  \begin{center}
+  \noindent\makebox[.94\linewidth][c]{%
+    \includegraphics[width=.30\linewidth]{images/image86.jpeg}\hfill
+    \includegraphics[width=.30\linewidth]{images/image87.jpeg}\hfill
+    \includegraphics[width=.30\linewidth]{images/image88.jpeg}}\par\smallskip
+  \noindent\makebox[.94\linewidth][c]{%
+    \includegraphics[width=.30\linewidth]{images/image89.jpeg}\hfill
+    \includegraphics[width=.20\linewidth]{images/image90.jpeg}\hfill
+    \includegraphics[width=.30\linewidth]{images/image91.jpeg}}
+  \end{center}%
+}
+\newcommand{\AFimgToitDR}[1]{\AFtoitDR}
+
+\newcommand{\AFimgLyreOverview}[1]{%
+  \begin{center}
+  \includegraphics[width=.42\linewidth]{images/image95.png}\hfill
+  \includegraphics[width=.33\linewidth]{images/image100.png}\par\medskip
+  \includegraphics[width=.78\linewidth]{images/image97.png}
+  \end{center}%
+}
+\newcommand{\AFimgLyreReq}[1]{\AFoneimage[.85\linewidth]{image98.png}}
+\newcommand{\AFimgLyreBdd}[1]{\AFoneimage[.92\linewidth]{image99.png}}
+
+\newcommand{\AFimgEgreneurOverview}[1]{%
+  \begin{center}
+  \includegraphics[width=.34\linewidth]{images/image104.png}\hfill
+  \includegraphics[width=.58\linewidth]{images/image105.png}
+  \end{center}%
+}
+\newcommand{\AFimgEgreneurBdd}[1]{\AFoneimage[.87\linewidth]{image106.jpeg}}
+\newcommand{\AFimgEgreneurReqIbd}[1]{%
+  \begin{center}
+  \includegraphics[width=.48\linewidth]{images/image108.png}\hfill
+  \includegraphics[width=.48\linewidth]{images/image107.jpeg}
+  \end{center}%
+}
+
+\newcommand{\AFimgSegwayOverview}[1]{\AFoneimage[.55\linewidth]{image109.png}}
+\newcommand{\AFimgSegwayReq}[1]{\AFoneimage[.90\linewidth]{image111.png}}
+
+\newcommand{\AFimgRadiologieOverview}[1]{\AFoneimage[.78\linewidth]{image112.png}}
+\newcommand{\AFimgRadiologieIbd}[1]{\AFoneimage[.86\linewidth]{image114.png}}
+
+\newcommand{\AFimgSecateurOverview}[1]{%
+  \begin{center}
+  \includegraphics[width=.43\linewidth]{images/image115.jpeg}\hfill
+  \includegraphics[width=.52\linewidth]{images/image116.jpeg}
+  \end{center}%
+}
+\newcommand{\AFimgSecateurIbd}[1]{%
+  \begin{center}
+  \includegraphics[width=.54\linewidth]{images/image117.png}\hfill
+  \includegraphics[width=.37\linewidth]{images/image118.png}
+  \end{center}%
+}
+\newcommand{\AFimgSecateurDR}[1]{\AFoneimage[.66\linewidth]{image119.png}}
+
+\newcommand{\AFimgProtheseOverview}[1]{%
+  \begin{center}
+  \includegraphics[width=.28\linewidth]{images/image120.png}\hfill
+  \includegraphics[width=.31\linewidth]{images/image121.png}\hfill
+  \includegraphics[width=.29\linewidth]{images/image122.png}
+  \end{center}%
+}
+\newcommand{\AFimgProtheseDR}[1]{\AFoneimage[.84\linewidth]{image123.png}}
+
+\newcommand{\AFimgTCOverview}[1]{%
+  \begin{center}
+  \includegraphics[width=.39\linewidth]{images/image124.png}\hfill
+  \includegraphics[width=.55\linewidth]{images/image125.png}
+  \end{center}%
+}
+\newcommand{\AFimgTCDR}[1]{\AFoneimage[.90\linewidth]{image126.png}}
+
+% Table de dispatch robuste : les noms de fichiers contiennent des caractères
+% « _ » et « . », placés ici dans des noms de contrôle construits avec \csname.
+\expandafter\let\csname AFimg@af_exo_toit_overview.jpg\endcsname\AFimgToitOverview
+\expandafter\let\csname AFimg@af_exo_toit_dr.jpg\endcsname\AFimgToitDR
+\expandafter\let\csname AFimg@af_exo_lyre_overview.jpg\endcsname\AFimgLyreOverview
+\expandafter\let\csname AFimg@af_exo_lyre_req.jpg\endcsname\AFimgLyreReq
+\expandafter\let\csname AFimg@af_exo_lyre_bdd.jpg\endcsname\AFimgLyreBdd
+\expandafter\let\csname AFimg@af_exo_egreneur_overview.jpg\endcsname\AFimgEgreneurOverview
+\expandafter\let\csname AFimg@af_exo_egreneur_bdd.jpg\endcsname\AFimgEgreneurBdd
+\expandafter\let\csname AFimg@af_exo_egreneur_req_ibd.jpg\endcsname\AFimgEgreneurReqIbd
+\expandafter\let\csname AFimg@af_exo_segway_overview.jpg\endcsname\AFimgSegwayOverview
+\expandafter\let\csname AFimg@af_exo_segway_req.jpg\endcsname\AFimgSegwayReq
+\expandafter\let\csname AFimg@af_exo_radiologie_overview.jpg\endcsname\AFimgRadiologieOverview
+\expandafter\let\csname AFimg@af_exo_radiologie_ibd.jpg\endcsname\AFimgRadiologieIbd
+\expandafter\let\csname AFimg@af_exo_secateur_overview.jpg\endcsname\AFimgSecateurOverview
+\expandafter\let\csname AFimg@af_exo_secateur_ibd.jpg\endcsname\AFimgSecateurIbd
+\expandafter\let\csname AFimg@af_exo_secateur_dr.jpg\endcsname\AFimgSecateurDR
+\expandafter\let\csname AFimg@af_exo_prothese_overview.jpg\endcsname\AFimgProtheseOverview
+\expandafter\let\csname AFimg@af_exo_prothese_dr.jpg\endcsname\AFimgProtheseDR
+\expandafter\let\csname AFimg@af_exo_tc200_overview.jpg\endcsname\AFimgTCOverview
+\expandafter\let\csname AFimg@af_exo_tc200_dr.jpg\endcsname\AFimgTCDR
+
+\renewcommand{\AFfigure}[2][0.96\linewidth]{%
+  \ifcsname AFimg@\detokenize{#2}\endcsname
+    \csname AFimg@\detokenize{#2}\endcsname{#1}%
+  \else
+    \begin{center}
+      \IfFileExists{images/#2}{\includegraphics[width=#1]{images/#2}}{%
+        \fbox{\parbox[c][35mm][c]{.88\linewidth}{\centering Illustration absente}}}%
+    \end{center}%
+  \fi
+}

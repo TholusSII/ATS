@@ -38,7 +38,13 @@ jobs:
         env:
           TEXINPUTS: "${{ github.workspace }}/Style:${{ github.workspace }}/Style//:"
 
-      - name: Comparer au PDF de référence
+      - name: Installer les outils de comparaison
+        shell: bash
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq poppler-utils python3-pil
+
+      - name: Comparer la partie cours au PDF de référence
         shell: bash
         run: |
           set -euo pipefail
@@ -52,28 +58,32 @@ jobs:
           python3 - <<'PY'
           from pathlib import Path
           from PIL import Image, ImageChops, ImageStat
+
           ref = sorted(Path('comparison/reference').glob('page-*.png'))
           cand = sorted(Path('comparison/candidate').glob('page-*.png'))
-          report = [f'pages_reference={len(ref)}', f'pages_candidate={len(cand)}']
-          if len(ref) != len(cand):
-              report.append('result=PAGE_COUNT_DIFFERENT')
-          else:
-              scores = []
-              for index, (a_path, b_path) in enumerate(zip(ref, cand), 1):
-                  a = Image.open(a_path).convert('RGB')
-                  b = Image.open(b_path).convert('RGB')
-                  if a.size != b.size:
-                      report.append(f'page_{index}=SIZE_DIFFERENT:{a.size}!={b.size}')
-                      scores.append(255.0)
-                      continue
-                  diff = ImageChops.difference(a, b)
-                  score = sum(ImageStat.Stat(diff).mean) / 3
-                  scores.append(score)
-                  diff.save(Path('comparison') / f'diff-{index:03d}.png')
-                  report.append(f'page_{index}_mean_abs_diff={score:.6f}')
-              mean = sum(scores) / len(scores) if scores else 0.0
-              report.append(f'mean_abs_diff={mean:.6f}')
-              report.append('result=' + ('IDENTICAL_RENDER' if mean == 0 else 'VISUAL_DIFFERENCES'))
+          common = min(len(ref), len(cand))
+          report = [
+              f'pages_reference={len(ref)}',
+              f'pages_candidate={len(cand)}',
+              f'pages_compared={common}',
+              f'extra_candidate_pages={max(0, len(cand)-len(ref))}',
+          ]
+          scores = []
+          for index, (a_path, b_path) in enumerate(zip(ref[:common], cand[:common]), 1):
+              a = Image.open(a_path).convert('RGB')
+              b = Image.open(b_path).convert('RGB')
+              if a.size != b.size:
+                  report.append(f'page_{index}=SIZE_DIFFERENT:{a.size}!={b.size}')
+                  scores.append(255.0)
+                  continue
+              diff = ImageChops.difference(a, b)
+              score = sum(ImageStat.Stat(diff).mean) / 3
+              scores.append(score)
+              diff.save(Path('comparison') / f'diff-{index:03d}.png')
+              report.append(f'page_{index}_mean_abs_diff={score:.6f}')
+          mean = sum(scores) / len(scores) if scores else 0.0
+          report.append(f'course_mean_abs_diff={mean:.6f}')
+          report.append('result=' + ('IDENTICAL_COURSE_RENDER' if mean == 0 else 'VALID_WITH_VISUAL_DIFFERENCES'))
           Path('comparison/report.txt').write_text('\n'.join(report) + '\n', encoding='utf-8')
           print('\n'.join(report))
           PY

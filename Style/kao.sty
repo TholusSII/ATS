@@ -1,0 +1,40 @@
+%% Point d'entrée kaobook compatible TeX Live 2025
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{kao}[2026/07/28 Couche kaobook ATS compatible TeX Live 2025]
+% Le socle ECM contient toutes les commandes historiques de kaobook.
+\InputIfFileExists{ECM/kao.sty}{}{%
+  \PackageError{kao}{ECM/kao.sty introuvable}{Le socle kaobook du framework est incomplet.}%
+}
+
+% Géométrie du framework utilisé pour produire le PDF de référence : colonne de
+% texte de 107 mm et marge extérieure dédiée aux notes.
+\renewcommand{\marginlayout}{%
+  \newgeometry{%
+    top=27.4\vscale,
+    bottom=27.4\vscale,
+    inner=24.8\hscale,
+    textwidth=107\hscale,
+    marginparsep=6.2\hscale,
+    marginparwidth=47.7\hscale,
+  }%
+  \recalchead%
+  \widelayoutfalse%
+}
+
+% Le PDF validé ne présente pas de sommaire marginal sur la première page du
+% chapitre. La table des matières générale reste inchangée.
+\providecommand{\margintoc}{}
+\renewcommand{\margintoc}{}
+
+% Les titres de section du document de référence sont noirs ; le titre de
+% chapitre conserve la couleur bleue du thème.
+\AtBeginDocument{\addtokomafont{section}{\color{black}}}
+
+% varioref et les versions récentes de babel peuvent construire une définition
+% autoréférente de \extrasenglish lorsque seul le français est demandé. Le cours
+% est intégralement en français : neutraliser ce crochet anglais évite la
+% récursion à \begin{document} sans modifier le rendu français.
+\makeatletter
+\@ifundefined{extrasenglish}{}{\def\extrasenglish{}}
+\makeatother
+\endinput
