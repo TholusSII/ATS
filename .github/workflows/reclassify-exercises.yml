@@ -35,10 +35,12 @@ jobs:
           git show origin/main:tools/reclassify_exercises.py > tools/reclassify_exercises.py
           git show origin/main:tools/reclassify_exercises_v2.py > tools/reclassify_exercises_v2.py
           git show origin/main:tools/reclassify_exercises_v3.py > tools/reclassify_exercises_v3.py
+          git show origin/main:tools/reclassify_exercises_v4.py > tools/reclassify_exercises_v4.py
           python3 -m py_compile \
             tools/reclassify_exercises.py \
             tools/reclassify_exercises_v2.py \
-            tools/reclassify_exercises_v3.py
+            tools/reclassify_exercises_v3.py \
+            tools/reclassify_exercises_v4.py
 
       - name: Produire le classement ou appliquer les déplacements
         shell: bash
@@ -46,6 +48,8 @@ jobs:
           set -euo pipefail
           if grep -q '^APPLY=1$' RECLASSEMENT_TRIGGER.txt 2>/dev/null; then
             python3 tools/reclassify_exercises_v3.py --apply
+          elif grep -q '^APPLY=KNOWN$' RECLASSEMENT_TRIGGER.txt 2>/dev/null; then
+            python3 tools/reclassify_exercises_v4.py
           else
             python3 tools/reclassify_exercises_v3.py
           fi
@@ -62,6 +66,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'Aucune modification à enregistrer.'
           else
-            git commit -m 'Préparer le reclassement pédagogique des exercices [skip ci]'
+            git commit -m 'Reclasser les exercices par familles pédagogiques [skip ci]'
             git push origin HEAD:"$TARGET_BRANCH"
           fi
