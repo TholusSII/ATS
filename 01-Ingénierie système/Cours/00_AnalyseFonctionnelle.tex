@@ -1,0 +1,257 @@
+% Load the kaobook class
+\documentclass[
+	fontsize=10pt, % Base font size
+	twoside=true, % Use different layouts for even and odd pages (in particular, if twoside=true, the margin column will be always on the outside)
+	%open=any, % If twoside=true, uncomment this to force new chapters to start on any page, not only on right (odd) pages
+%%	secnumdepth=1, % How deep to number headings. Defaults to 1 (sections)
+]{kaobook}
+
+% -----------------------------------------------------------------------------
+% Optimisation de la mise en page : limitation des grands blancs
+% -----------------------------------------------------------------------------
+% kaobook/KOMA cherche parfois à équilibrer verticalement les pages. Avec des
+% images, flottants et boîtes tcolorbox, cela peut créer de grands espaces.
+% \raggedbottom évite l'étirement vertical artificiel des pages.
+\raggedbottom
+
+% Réglages des flottants : on autorise LaTeX à placer plus facilement les images
+% sur la page courante, ce qui évite de repousser des blocs entiers à la page
+% suivante.
+\setcounter{topnumber}{5}
+\setcounter{bottomnumber}{5}
+\setcounter{totalnumber}{8}
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.90}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.80}
+
+% Réduit les espacements verticaux automatiques autour des figures.
+\setlength{\floatsep}{8pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{10pt plus 2pt minus 2pt}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+
+
+\newcommand{\discipline}{Sciences Industrielles de l'Ingénieur }
+\newcommand{\auteur}{Thomas Lusseau}
+\newcommand{\repRel}{../}
+
+
+\input{\repRel/Style/packages_v2}
+\newcommand{\repStyle}{\repRel/Style}
+\input{\repRel/Style/macros_SII_v2}
+\input{\repRel/Style/environment_v2}
+\usepackage{\repStyle/UPSTI_pedagogique}
+
+%Bob
+\usepackage[most]{tcolorbox}
+\usepackage{graphicx}
+\usepackage{xparse}
+\usepackage{needspace}
+\usepackage{etoolbox}
+
+
+% Préambule
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+\definecolor{bleuexercice}{RGB}{43,112,176}
+
+\newcommand{\boxreflexion}[1]{%
+\noindent
+\begin{minipage}[t]{0.12\linewidth}
+  \vspace{0pt}
+  \includegraphics[width=\linewidth]{images/tete_engrenages.png}
+\end{minipage}%
+\hspace{0.015\linewidth}%
+\begin{minipage}[t]{0.02\linewidth}
+  \vspace{0pt}
+  \color{bleuexercice}\rule{6pt}{7cm}
+\end{minipage}%
+\hspace{0.02\linewidth}%
+\begin{minipage}[t]{0.80\linewidth}
+  \vspace{0pt}
+  #1
+\end{minipage}
+}
+
+
+\definecolor{exoBlue}{RGB}{35,85,160}
+
+
+\newtcolorbox{exercice}[2][]{
+    enhanced,
+    breakable,
+    colback=white,
+    colframe=exoBlue,
+    boxrule=1pt,
+    arc=1mm,
+    title={#2},
+    colbacktitle=exoBlue,
+    coltitle=white,
+    fonttitle=\bfseries\Large,
+    attach boxed title to top left={
+        xshift=0mm,
+        yshift=-2mm
+    },
+    boxed title style={
+        sharp corners,
+        boxrule=0pt
+    },
+    left=4mm,
+    right=4mm,
+    top=4mm,
+    bottom=4mm,
+    before skip=6pt plus 2pt minus 2pt,
+    after skip=6pt plus 2pt minus 2pt,
+    #1
+}
+
+\newtcolorbox{bobbox}[1][]{
+    enhanced,
+    breakable,
+    colback=orange!10,
+    colframe=orange!90!black,
+    boxrule=0.8pt,
+    arc=1mm,
+    left=4mm,
+    right=4mm,
+    top=3mm,
+    bottom=3mm,
+    before skip=6pt plus 2pt minus 2pt,
+    after skip=6pt plus 2pt minus 2pt,
+    parbox=false,
+    %fontupper=\bfseries,
+    halign=center,
+overlay unbroken={
+  \node[
+    anchor=south east,
+    inner sep=0pt,
+    xshift=10mm
+  ] at (frame.south east)
+  {
+ \includegraphics[height=3.2cm]{images/bob.png}
+%    \includegraphics[
+%height=\tcbtextheight\relax
+%    ]{images/bob.png}
+  };
+},
+overlay last={
+  \node[
+    anchor=south east,
+    inner sep=0pt,
+    xshift=10mm
+  ] at (frame.south east)
+  {
+ \includegraphics[height=3.2cm]{images/bob.png}
+  };
+},
+    #1
+}
+
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing}
+
+\definecolor{bobblue}{RGB}{45,78,120}
+
+
+
+\NewDocumentEnvironment{bob}{O{}}
+{\begin{bobbox}[#1]}
+{\end{bobbox}}
+
+% Choose the language
+%\usepackage[english]{babel} % Load characters and hyphenation
+%\usepackage[francais]{babel} % Load characters and hyphenation
+\frenchsetup{StandardItemLabels=true}
+%% \usepackage[english=british]{csquotes}	% English quotes
+
+% Load packages for testing
+%\usepackage{blindtext}
+%\usepackage{showframe} % Uncomment to show boxes around the text area, margin, header and footer
+%\usepackage{showlabels} % Uncomment to output the content of \label commands to the document where they are used
+
+% Load the bibliography package
+\usepackage{kaobiblio}
+\addbibresource{Cy_01_ModelisationSystemes.bib} % Bibliography file
+
+% Load mathematical packages for theorems and related environments
+\usepackage{kaotheorems}
+
+% Load the package for hyperreferences
+\usepackage{kaorefs}
+
+\usepackage[normalem]{ulem}
+\providecommand{\ul}[1]{\uline{#1}}
+
+\graphicspath{{images/}{./}} % Paths where images are looked for
+
+\makeindex[columns=3, title=Alphabetical Index, intoc] % Make LaTeX produce the files required to compile the index
+
+
+\usetikzlibrary{decorations.text,backgrounds,shadings}
+
+
+% Évite de placer un titre seul en bas de page : si l'espace restant est trop
+% faible, le titre part à la page suivante proprement, sans étirement excessif.
+\pretocmd{\section}{\Needspace{6\baselineskip}}{}{}
+\pretocmd{\subsection}{\Needspace{5\baselineskip}}{}{}
+\pretocmd{\subsubsection}{\Needspace{4\baselineskip}}{}{}
+
+\begin{document}
+
+%%----------------------------------------------------------------------------------------
+%%	BOOK INFORMATION
+%%----------------------------------------------------------------------------------------
+
+\titlehead{Thomas Lusseau - SII en ATS}
+\title[Thomas Lusseau - SII en ATS]{Thomas Lusseau - SII en ATS}
+\author[TL]{Thomas Lusseau}
+\date{\today}
+
+
+\begingroup % Local scope for the following commands
+\setstretch{1} % Uncomment to modify line spacing in the ToC
+%\tableofcontents % Output the table of contents
+\endgroup
+
+%%----------------------------------------------------------------------------------------
+%%	MAIN BODY
+%%----------------------------------------------------------------------------------------
+%
+\mainmatter % Denotes the start of the main document content, resets page numbering and uses arabic numbers
+%\setchapterstyle{kao} % Choose the default chapter heading style
+%
+%\chapter{First Chapter}
+%
+%\blindtext
+%
+%\pagelayout{wide} % No margins
+%\addpart{Title of the Part}
+%\pagelayout{margin} % Restore margins
+%
+%\chapter{Second Chapter}
+
+\setchapterstyle{kao}
+
+\setcounter{margintocdepth}{\sectiontocdepth}
+\marginlayout
+\graphicspath{{\repStyle/png}}
+
+\pagestyle{scrheadings}
+
+\AtBeginEnvironment{corrige}{\small}
+
+\livrettrue % Livrettrue :  eleve sans les corrections
+%\livretfalse
+\collefalse
+%%%%%
+
+
+\input{01_AnalyseFonctionnelle2022}
+
+
+
+\end{document}
