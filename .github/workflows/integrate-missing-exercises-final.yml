@@ -144,10 +144,33 @@ jobs:
           )
           for folder in "${folders[@]}"; do
             source_rel="${folder#A_Integrer/}"
-            test -d "/tmp/DevoirDuSoir/$source_rel"
+            source_dir="/tmp/DevoirDuSoir/$source_rel"
+            if [[ ! -d "$source_dir" ]]; then
+              parent_rel="$(dirname "$source_rel")"
+              base_name="$(basename "$source_rel")"
+              number="${base_name%%_*}"
+              mapfile -t candidates < <(
+                find "/tmp/DevoirDuSoir/$parent_rel" -mindepth 1 -maxdepth 1 -type d -name "${number}_*" 2>/dev/null | sort
+              )
+              if [[ "${#candidates[@]}" -eq 1 ]]; then
+                source_dir="${candidates[0]}"
+              else
+                mapfile -t candidates < <(
+                  find /tmp/DevoirDuSoir -type f -name "${base_name}.tex" -printf '%h\n' | sort -u
+                )
+                if [[ "${#candidates[@]}" -eq 1 ]]; then
+                  source_dir="${candidates[0]}"
+                else
+                  echo "Impossible de résoudre $folder" >&2
+                  printf 'Candidats : %s\n' "${candidates[@]:-aucun}" >&2
+                  exit 1
+                fi
+              fi
+            fi
+            echo "$source_dir -> $folder"
             mkdir -p "$(dirname "$folder")"
             rm -rf "$folder"
-            cp -a "/tmp/DevoirDuSoir/$source_rel" "$folder"
+            cp -a "$source_dir" "$folder"
           done
           python3 tools/patch_style_version.py
 
