@@ -4,7 +4,6 @@ from __future__ import annotations
 from pathlib import Path
 import os
 import re
-import shutil
 
 ROOT = Path('.').resolve()
 ALL_DIR = ROOT / 'ALL_EXOS'
@@ -61,7 +60,10 @@ def apply_transient_compatibility() -> None:
             lambda match: r'\fbox{\href{' + match.group(1) + r'}{\textsf{Lien vers le formulaire}}}',
             updated,
         )
-        updated, count = BAD_RAD_PATTERN.subn(r'\SI{\1}{rad.s^{-1}}', updated)
+        updated, count = BAD_RAD_PATTERN.subn(
+            lambda match: r'\SI{' + match.group(1) + r'}{rad.s^{-1}}',
+            updated,
+        )
         malformed_si += count
         updated = updated.replace(r'\proftrue', r'\proffalse')
         updated = updated.replace(r'\correctiontrue', r'\correctionfalse')
