@@ -37,19 +37,23 @@ jobs:
           git show origin/main:tools/reclassify_exercises_v3.py > tools/reclassify_exercises_v3.py
           git show origin/main:tools/reclassify_exercises_v4.py > tools/reclassify_exercises_v4.py
           git show origin/main:tools/reclassify_exercises_v5.py > tools/reclassify_exercises_v5.py
+          git show origin/main:tools/reclassify_exercises_v6.py > tools/reclassify_exercises_v6.py
           python3 -m py_compile \
             tools/reclassify_exercises.py \
             tools/reclassify_exercises_v2.py \
             tools/reclassify_exercises_v3.py \
             tools/reclassify_exercises_v4.py \
-            tools/reclassify_exercises_v5.py
+            tools/reclassify_exercises_v5.py \
+            tools/reclassify_exercises_v6.py
 
       - name: Produire le classement ou appliquer les déplacements
         id: execution
         shell: bash
         run: |
           set +e
-          if grep -q '^APPLY=FINALIZE$' RECLASSEMENT_TRIGGER.txt 2>/dev/null; then
+          if grep -q '^APPLY=PPM$' RECLASSEMENT_TRIGGER.txt 2>/dev/null; then
+            python3 tools/reclassify_exercises_v6.py > RECLASSEMENT_EXECUTION.txt 2>&1
+          elif grep -q '^APPLY=FINALIZE$' RECLASSEMENT_TRIGGER.txt 2>/dev/null; then
             python3 tools/reclassify_exercises_v5.py > RECLASSEMENT_EXECUTION.txt 2>&1
           elif grep -q '^APPLY=1$' RECLASSEMENT_TRIGGER.txt 2>/dev/null; then
             python3 tools/reclassify_exercises_v3.py --apply > RECLASSEMENT_EXECUTION.txt 2>&1
