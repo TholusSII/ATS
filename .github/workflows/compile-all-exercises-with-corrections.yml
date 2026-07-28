@@ -48,17 +48,13 @@ jobs:
 
           root = Path('.')
           all_dir = root / 'ALL_EXOS'
-
-          # Compatibilités appliquées uniquement dans le checkout éphémère.
           title_pattern = re.compile(r'^(\s*\\exer\{[^\r\n]*?\})\\n', re.MULTILINE)
           qr_pattern = re.compile(r'\\qrcode(?:\[[^\]]*\])?\{([^{}]+)\}')
           graphics_pattern = re.compile(r'(\\includegraphics(?:\[[^\]]*\])?\{)([^{}]+)(\})')
           extensions = ('', '.pdf', '.png', '.jpg', '.jpeg', '.PDF', '.PNG', '.JPG', '.JPEG')
 
           def existing_path(base: Path, reference: str):
-              candidate = Path(reference)
-              roots = [base, root, all_dir]
-              for parent in roots:
+              for parent in (base, root, all_dir):
                   for ext in extensions:
                       path = (parent / (reference + ext)).resolve()
                       if path.is_file():
@@ -123,9 +119,11 @@ jobs:
           manifest = []
           summary_rows = []
           total_exercises = 0
+          reset_modes = r'\proffalse' + '\n' + r'\ifdefined\correctionfalse\correctionfalse\fi' + '\n'
           for index, match in enumerate(matches, 1):
               end = matches[index].start() if index < len(matches) else len(inputs)
               block = inputs[match.start():end].rstrip() + '\n'
+              block = block.replace(r'\subimport', reset_modes + r'\subimport')
               title = match.group(1)
               exercise_count = block.count(r'\subimport')
               total_exercises += exercise_count
@@ -146,9 +144,7 @@ jobs:
           if total_exercises != 468:
               raise SystemExit(f'Découpage incomplet : {total_exercises} exercices au lieu de 468')
 
-          rows = '\n'.join(
-              f'{tex_escape(title)} & {count} exercices \\\\' for title, count in summary_rows
-          )
+          rows = '\n'.join(f'{tex_escape(title)} & {count} exercices \\\\' for title, count in summary_rows)
           front = (
               r'\def\ModeCorriges{1}' + '\n' + preamble + r'\begin{document}' + '\n' +
               r'\frontmatter' + '\n' + r'\maketitle' + '\n' +
