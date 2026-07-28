@@ -1,0 +1,57 @@
+name: Générer l’arborescence de reclassement
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: manifeste-reclassement-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  generate:
+    if: >-
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.actor != 'github-actions[bot]' &&
+      contains(github.event.pull_request.title, 'Générer l’arborescence des exercices')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupérer la branche
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Installer le générateur validé
+        shell: bash
+        run: |
+          set -euo pipefail
+          git show origin/main:tools/generate_reclassification_manifest.py > tools/generate_reclassification_manifest.py
+          python3 -m py_compile tools/generate_reclassification_manifest.py
+
+      - name: Générer les deux fichiers
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/generate_reclassification_manifest.py
+
+      - name: Enregistrer sur la branche
+        env:
+          TARGET_BRANCH: ${{ github.event.pull_request.head.ref }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add ARBORESCENCE_EXERCICES.md RECLASSEMENT_EXERCICES.csv
+          if git diff --cached --quiet; then
+            echo 'Les fichiers sont déjà à jour.'
+          else
+            git commit -m 'Générer l’arborescence de reclassement [skip ci]'
+            git push origin HEAD:"$TARGET_BRANCH"
+          fi
