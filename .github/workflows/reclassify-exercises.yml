@@ -1,0 +1,62 @@
+name: Reclasser les 468 exercices
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reclassement-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  reclassify:
+    if: >-
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.actor != 'github-actions[bot]' &&
+      contains(github.event.pull_request.title, 'Reclasser les 468 exercices')
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Récupérer la branche
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Installer le moteur validé
+        shell: bash
+        run: |
+          set -euo pipefail
+          git show origin/main:tools/reclassify_exercises.py > tools/reclassify_exercises.py
+          python3 -m py_compile tools/reclassify_exercises.py
+
+      - name: Produire le classement ou appliquer les déplacements
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -q '^APPLY=1$' RECLASSEMENT_TRIGGER.txt 2>/dev/null; then
+            python3 tools/reclassify_exercises.py --apply
+          else
+            python3 tools/reclassify_exercises.py
+          fi
+
+      - name: Enregistrer le résultat sur la branche
+        env:
+          TARGET_BRANCH: ${{ github.event.pull_request.head.ref }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'Aucune modification à enregistrer.'
+          else
+            git commit -m 'Préparer le reclassement pédagogique des exercices [skip ci]'
+            git push origin HEAD:"$TARGET_BRANCH"
+          fi
