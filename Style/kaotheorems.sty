@@ -1,0 +1,13 @@
+%% Compatibilité kaotheorems / framework UPSTI sous TeX Live 2025+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{kaotheorems}[2026/07/28 Compatibilité avec les environnements UPSTI]
+\makeatletter
+\@ifundefined{c@proposition}{%
+  \InputIfFileExists{ECM/kaotheorems.sty}{}{
+    \PackageWarning{kaotheorems}{ECM/kaotheorems.sty introuvable}%
+  }%
+}{%
+  \PackageInfo{kaotheorems}{Environnements de théorèmes déjà fournis par UPSTI; déclarations kaobook ignorées}%
+}%
+\makeatother
+\endinput
