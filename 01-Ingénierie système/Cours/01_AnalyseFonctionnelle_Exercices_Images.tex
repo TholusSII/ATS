@@ -1,0 +1,105 @@
+% Association des illustrations extraites du document Word d'origine.
+% Les textes et équations restent composés en LaTeX dans le fichier d'exercices.
+
+\newcommand{\AFoneimage}[2][0.96\linewidth]{%
+  \begin{center}\includegraphics[width=#1]{images/#2}\end{center}%
+}
+
+\newcommand{\AFtoitDR}{%
+\begin{center}
+\begin{tikzpicture}[
+  x=1cm,y=1cm,
+  bloc/.style={draw=bleuxp,fill=bleuxpc,minimum width=2.45cm,
+    minimum height=1cm,align=center,font=\bfseries\small},
+  rep/.style={draw=gray!70,fill=white,minimum width=2.45cm,
+    minimum height=.65cm,align=center,font=\small},
+  flux/.style={-Latex,thick,bleuxp}
+]
+\node[bloc] (alim) at (0,0) {ALIMENTER};
+\node[bloc] (dist) at (3,0) {DISTRIBUER};
+\node[bloc] (conv) at (6,0) {CONVERTIR};
+\node[bloc] (trans) at (9,0) {TRANSMETTRE};
+\node[bloc] (agir) at (12,0) {AGIR};
+\draw[flux] (alim)--node[above,font=\small]{b : \ldots}(dist);
+\draw[flux] (dist)--node[above,font=\small]{c : \ldots}(conv);
+\draw[flux] (conv)--node[above,font=\small]{d : \ldots}(trans);
+\draw[flux] (trans)--node[above,font=\small]{e : \ldots}(agir);
+\node[rep] at (0,-1.25) {A : \ldots};
+\node[rep] at (3,-1.25) {B : \ldots};
+\node[rep] at (6,-1.25) {C : \ldots};
+\node[rep] at (9,-1.25) {D : \ldots};
+\node[above,font=\small] at (-1.55,0) {a : \ldots};
+\end{tikzpicture}
+\end{center}
+}
+
+\renewcommand{\AFfigure}[2][0.96\linewidth]{%
+\IfStrEqCase{#2}{%
+  {af_exo_toit_overview.jpg}{%
+    \begin{center}\setlength{\tabcolsep}{2pt}
+    \begin{tabular}{ccc}
+    \includegraphics[width=.285\textwidth]{images/image86.jpeg}&
+    \includegraphics[width=.285\textwidth]{images/image87.jpeg}&
+    \includegraphics[width=.285\textwidth]{images/image88.jpeg}\\[2mm]
+    \includegraphics[width=.285\textwidth]{images/image89.jpeg}&
+    \includegraphics[width=.20\textwidth]{images/image90.jpeg}&
+    \includegraphics[width=.285\textwidth]{images/image91.jpeg}
+    \end{tabular}\end{center}%
+  }%
+  {af_exo_toit_dr.jpg}{\AFtoitDR}%
+  {af_exo_lyre_overview.jpg}{%
+    \begin{center}
+    \includegraphics[width=.42\linewidth]{images/image95.png}\hfill
+    \includegraphics[width=.33\linewidth]{images/image100.png}\par\medskip
+    \includegraphics[width=.78\linewidth]{images/image97.png}
+    \end{center}%
+  }%
+  {af_exo_lyre_req.jpg}{\AFoneimage[.85\linewidth]{image98.png}}%
+  {af_exo_lyre_bdd.jpg}{\AFoneimage[.92\linewidth]{image99.png}}%
+  {af_exo_egreneur_overview.jpg}{%
+    \begin{center}
+    \includegraphics[width=.34\linewidth]{images/image104.png}\hfill
+    \includegraphics[width=.58\linewidth]{images/image105.png}
+    \end{center}%
+  }%
+  {af_exo_egreneur_bdd.jpg}{\AFoneimage[.87\linewidth]{image106.jpeg}}%
+  {af_exo_egreneur_req_ibd.jpg}{%
+    \begin{center}
+    \includegraphics[width=.48\linewidth]{images/image108.png}\hfill
+    \includegraphics[width=.48\linewidth]{images/image107.jpeg}
+    \end{center}%
+  }%
+  {af_exo_segway_overview.jpg}{\AFoneimage[.55\linewidth]{image109.png}}%
+  {af_exo_segway_req.jpg}{\AFoneimage[.90\linewidth]{image111.png}}%
+  {af_exo_radiologie_overview.jpg}{\AFoneimage[.78\linewidth]{image112.png}}%
+  {af_exo_radiologie_ibd.jpg}{\AFoneimage[.86\linewidth]{image114.png}}%
+  {af_exo_secateur_overview.jpg}{%
+    \begin{center}
+    \includegraphics[width=.43\linewidth]{images/image115.jpeg}\hfill
+    \includegraphics[width=.52\linewidth]{images/image116.jpeg}
+    \end{center}%
+  }%
+  {af_exo_secateur_ibd.jpg}{%
+    \begin{center}
+    \includegraphics[width=.54\linewidth]{images/image117.png}\hfill
+    \includegraphics[width=.37\linewidth]{images/image118.png}
+    \end{center}%
+  }%
+  {af_exo_secateur_dr.jpg}{\AFoneimage[.66\linewidth]{image119.png}}%
+  {af_exo_prothese_overview.jpg}{%
+    \begin{center}
+    \includegraphics[width=.28\linewidth]{images/image120.png}\hfill
+    \includegraphics[width=.31\linewidth]{images/image121.png}\hfill
+    \includegraphics[width=.29\linewidth]{images/image122.png}
+    \end{center}%
+  }%
+  {af_exo_prothese_dr.jpg}{\AFoneimage[.84\linewidth]{image123.png}}%
+  {af_exo_tc200_overview.jpg}{%
+    \begin{center}
+    \includegraphics[width=.39\linewidth]{images/image124.png}\hfill
+    \includegraphics[width=.55\linewidth]{images/image125.png}
+    \end{center}%
+  }%
+  {af_exo_tc200_dr.jpg}{\AFoneimage[.90\linewidth]{image126.png}}%
+}[\AFoneimage[#1]{#2}]%
+}
