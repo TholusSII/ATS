@@ -1,0 +1,90 @@
+name: Compiler Analyse Fonctionnelle
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'Style/**'
+      - '01-Ingénierie système/Cours/**'
+      - '.github/workflows/compile-analyse-fonctionnelle.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Préparer la compilation
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp '01-Ingénierie système/Cours/00_AnalyseFonctionnelle.pdf' /tmp/00_AnalyseFonctionnelle_reference.pdf
+          ln -sfn ../Style '01-Ingénierie système/Style'
+          test -f '01-Ingénierie système/Cours/Cy_01_ModelisationSystemes.bib' || : > '01-Ingénierie système/Cours/Cy_01_ModelisationSystemes.bib'
+
+      - name: Compiler avec le framework du dépôt
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: 00_AnalyseFonctionnelle.tex
+          working_directory: 01-Ingénierie système/Cours
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+        env:
+          TEXINPUTS: ${{ github.workspace }}/Style//:
+
+      - name: Comparer au PDF de référence
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p comparison/reference comparison/candidate
+          cp /tmp/00_AnalyseFonctionnelle_reference.pdf comparison/reference.pdf
+          cp '01-Ingénierie système/Cours/00_AnalyseFonctionnelle.pdf' comparison/candidate.pdf
+          pdfinfo comparison/reference.pdf > comparison/reference-info.txt
+          pdfinfo comparison/candidate.pdf > comparison/candidate-info.txt
+          pdftoppm -png -r 96 comparison/reference.pdf comparison/reference/page >/dev/null 2>&1
+          pdftoppm -png -r 96 comparison/candidate.pdf comparison/candidate/page >/dev/null 2>&1
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageChops, ImageStat
+          ref = sorted(Path('comparison/reference').glob('page-*.png'))
+          cand = sorted(Path('comparison/candidate').glob('page-*.png'))
+          report = [f'pages_reference={len(ref)}', f'pages_candidate={len(cand)}']
+          if len(ref) != len(cand):
+              report.append('result=PAGE_COUNT_DIFFERENT')
+          else:
+              scores = []
+              for index, (a_path, b_path) in enumerate(zip(ref, cand), 1):
+                  a = Image.open(a_path).convert('RGB')
+                  b = Image.open(b_path).convert('RGB')
+                  if a.size != b.size:
+                      report.append(f'page_{index}=SIZE_DIFFERENT:{a.size}!={b.size}')
+                      scores.append(255.0)
+                      continue
+                  diff = ImageChops.difference(a, b)
+                  score = sum(ImageStat.Stat(diff).mean) / 3
+                  scores.append(score)
+                  diff.save(Path('comparison') / f'diff-{index:03d}.png')
+                  report.append(f'page_{index}_mean_abs_diff={score:.6f}')
+              mean = sum(scores) / len(scores) if scores else 0.0
+              report.append(f'mean_abs_diff={mean:.6f}')
+              report.append('result=' + ('IDENTICAL_RENDER' if mean == 0 else 'VISUAL_DIFFERENCES'))
+          Path('comparison/report.txt').write_text('\n'.join(report) + '\n', encoding='utf-8')
+          print('\n'.join(report))
+          PY
+
+      - name: Publier le PDF compilé et les différences
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: analyse-fonctionnelle-comparaison
+          path: |
+            01-Ingénierie système/Cours/00_AnalyseFonctionnelle.log
+            01-Ingénierie système/Cours/00_AnalyseFonctionnelle.pdf
+            comparison/
+          if-no-files-found: warn
