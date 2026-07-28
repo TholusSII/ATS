@@ -1,0 +1,73 @@
+name: Compiler le PDF complet avec corrigés
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pdf-complet-corriges-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compile:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      contains(github.event.pull_request.title, 'Compiler le PDF complet corrigé')
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref }}
+          fetch-depth: 1
+
+      - name: Régénérer les deux index
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/generate_all_exos.py
+          python3 tools/generate_all_corriges.py
+          grep -q '468 exercices' ALL_EXOS/inputs.tex
+          grep -q '468 corrigés' ALL_EXOS/corriges_inputs.tex
+
+      - name: Créer le point d’entrée avec corrigés
+        shell: bash
+        run: |
+          cat > ALL_EXOS/ALL_EXOS_CORRIGES.tex <<'EOF'
+          \def\ModeCorriges{1}
+          \input{ALL_EXOS.tex}
+          EOF
+
+      - name: Compiler le recueil complet
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: ALL_EXOS_CORRIGES.tex
+          working_directory: ALL_EXOS
+          latexmk_shell_escape: true
+          args: -pdf -interaction=nonstopmode -halt-on-error -file-line-error
+
+      - name: Vérifier et nommer le PDF
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s ALL_EXOS/ALL_EXOS_CORRIGES.pdf
+          cp ALL_EXOS/ALL_EXOS_CORRIGES.pdf PDF_COMPLET_EXERCICES_CORRIGES.pdf
+          size=$(stat -c%s PDF_COMPLET_EXERCICES_CORRIGES.pdf)
+          test "$size" -gt 1000000
+          echo "PDF généré : $size octets"
+
+      - name: Publier le PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: PDF-complet-exercices-corriges
+          path: PDF_COMPLET_EXERCICES_CORRIGES.pdf
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
