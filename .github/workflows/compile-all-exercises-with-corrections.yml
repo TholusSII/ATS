@@ -1,6 +1,10 @@
 name: Compiler le PDF complet avec corrigés
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/compile-all-exercises-with-corrections.yml
   pull_request:
     branches: [main]
     types: [opened, synchronize, reopened]
@@ -16,6 +20,7 @@ concurrency:
 jobs:
   compile:
     if: >-
+      github.event_name == 'push' ||
       github.event_name == 'workflow_dispatch' ||
       contains(github.event.pull_request.title, 'Compiler le PDF complet corrigé')
     runs-on: ubuntu-latest
