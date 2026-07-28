@@ -235,7 +235,7 @@ def write_report(rows: list[tuple[int, str, str]], moved: int, updated_files: in
         "## Collision résolue",
         "",
         "Le second exercice `PPM-02/1000_Dessin2D` est classé sous le nom "
-        "`02-Modélisation des mécanismes/Dessin2D/1000_Dessin2D_PPM02` afin de préserver les deux dossiers.",
+        "`02-Modélisation des mécanismes/TD/Dessin2D/1000_Dessin2D_PPM02` afin de préserver les deux dossiers.",
         "",
     ])
     (ROOT / "RECLASSEMENT_APPLIQUE.md").write_text("\n".join(lines), encoding="utf-8")

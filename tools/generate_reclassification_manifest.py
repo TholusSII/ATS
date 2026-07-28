@@ -63,7 +63,7 @@ def write_markdown(paths: list[Path]) -> None:
         "Tu peux me renvoyer une ou plusieurs lignes sous cette forme :",
         "",
         "```text",
-        '"02-Modélisation des mécanismes/CIN/CIN-01/.../NomExercice" -> "03-Lois entrée sortie/Transmetteurs/NomExercice"',
+        '"02-Modélisation des mécanismes/TD/CIN/CIN-01/.../NomExercice" -> "03-Lois entrée sortie/TD/Transmetteurs/NomExercice"',
         "```",
         "",
         "Cette syntaxe permet à la fois de déplacer et de renommer un dossier. Le chemin à droite est toujours le chemin final souhaité.",
