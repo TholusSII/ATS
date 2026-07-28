@@ -37,15 +37,16 @@
 % Chaque macro ci-dessous reçoit la largeur demandée comme argument. Pour les
 % planches composées, la largeur sert seulement de convention d'interface.
 \newcommand{\AFimgToitOverview}[1]{%
-  \begin{center}\setlength{\tabcolsep}{2pt}
-  \begin{tabular}{ccc}
-  \includegraphics[width=.285\textwidth]{images/image86.jpeg}&
-  \includegraphics[width=.285\textwidth]{images/image87.jpeg}&
-  \includegraphics[width=.285\textwidth]{images/image88.jpeg}\\[2mm]
-  \includegraphics[width=.285\textwidth]{images/image89.jpeg}&
-  \includegraphics[width=.20\textwidth]{images/image90.jpeg}&
-  \includegraphics[width=.285\textwidth]{images/image91.jpeg}
-  \end{tabular}\end{center}%
+  \begin{center}
+  \noindent\makebox[.94\linewidth][c]{%
+    \includegraphics[width=.30\linewidth]{images/image86.jpeg}\hfill
+    \includegraphics[width=.30\linewidth]{images/image87.jpeg}\hfill
+    \includegraphics[width=.30\linewidth]{images/image88.jpeg}}\par\smallskip
+  \noindent\makebox[.94\linewidth][c]{%
+    \includegraphics[width=.30\linewidth]{images/image89.jpeg}\hfill
+    \includegraphics[width=.20\linewidth]{images/image90.jpeg}\hfill
+    \includegraphics[width=.30\linewidth]{images/image91.jpeg}}
+  \end{center}%
 }
 \newcommand{\AFimgToitDR}[1]{\AFtoitDR}
 
