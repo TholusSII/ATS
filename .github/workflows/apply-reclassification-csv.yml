@@ -1,0 +1,80 @@
+name: Appliquer le reclassement CSV
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reclassement-csv-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  apply:
+    if: >-
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.actor != 'github-actions[bot]' &&
+      contains(github.event.pull_request.title, 'Appliquer le reclassement CSV')
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Récupérer la branche
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Installer l’outil validé
+        shell: bash
+        run: |
+          set -euo pipefail
+          git show origin/main:tools/apply_reclassification_csv.py > tools/apply_reclassification_csv.py
+          python3 -m py_compile tools/apply_reclassification_csv.py
+
+      - name: Appliquer le CSV
+        id: execution
+        shell: bash
+        run: |
+          set +e
+          python3 tools/apply_reclassification_csv.py > /tmp/reclassement-csv.log 2>&1
+          status=$?
+          cat /tmp/reclassement-csv.log
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Enregistrer le résultat ou le diagnostic
+        env:
+          TARGET_BRANCH: ${{ github.event.pull_request.head.ref }}
+          STATUS: ${{ steps.execution.outputs.status }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$STATUS" != "0" ]]; then
+            git reset --hard HEAD
+            git clean -fd
+            cp /tmp/reclassement-csv.log RECLASSEMENT_CSV_EXECUTION.txt
+          else
+            rm -f RECLASSEMENT_CSV_EXECUTION.txt RECLASSEMENT_CSV_TRIGGER.txt
+            rm -f tools/vendor/reclassement_exercices.csv.xz.b64
+          fi
+          find tools -type d -name __pycache__ -prune -exec rm -rf {} +
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'Aucune modification à enregistrer.'
+          else
+            git commit -m 'Appliquer le reclassement CSV des 468 exercices [skip ci]'
+            git push origin HEAD:"$TARGET_BRANCH"
+          fi
+
+      - name: Signaler un échec après sauvegarde
+        if: steps.execution.outputs.status != '0'
+        shell: bash
+        run: |
+          echo 'Le diagnostic a été enregistré dans RECLASSEMENT_CSV_EXECUTION.txt.'
+          exit 1
