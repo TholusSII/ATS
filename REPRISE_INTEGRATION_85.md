@@ -1,16 +1,10 @@
 # Reprise de l’intégration des 85 exercices
 
-## Relance du 28 juillet 2026
+## Relance finale du 28 juillet 2026
 
-La source publique du bloc `A_Integrer` a été identifiée : `xpessoles/DevoirDuSoir`.
-Le workflow copie directement les 76 dossiers `DDS_*` depuis ce dépôt et les 9 autres exercices depuis `xpessoles/ExercicesCompetences`.
+Le workflow utilise maintenant deux scripts autonomes :
 
-La seconde relance accepte automatiquement les éventuels renommages de dossiers en recherchant leur numéro et leur fichier `.tex`.
+- matérialisation directe des 76 dossiers depuis `xpessoles/DevoirDuSoir` et des 9 autres depuis `xpessoles/ExercicesCompetences` ;
+- création des 85 nouveaux `corrige.tex` sans modifier les 383 corrigés déjà validés.
 
-La branche reste en brouillon jusqu’à validation des contrôles suivants :
-
-- 468 exercices ;
-- 468 fichiers `corrige.tex` ;
-- 468 inclusions `\InclureCorrige{corrige.tex}` ;
-- aucun marqueur `\CorrigeACompleter` ;
-- recueils maîtres régénérés pour 468 exercices et 468 corrigés.
+La branche reste en brouillon jusqu’à validation automatique des totaux 468/468 et de l’absence de marqueur `\CorrigeACompleter`.
