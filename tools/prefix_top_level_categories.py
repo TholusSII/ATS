@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import re
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -47,6 +48,13 @@ def rename_roots() -> None:
             raise SystemExit(f"Dossier attendu absent : {old}")
 
 
+def replace_category_names(text: str) -> str:
+    updated = text
+    for old, new in MAPPING.items():
+        updated = re.sub(rf"(?<!\d){re.escape(old)}", new, updated)
+    return updated
+
+
 def update_text_references() -> int:
     changed = 0
     for path in tracked_files():
@@ -62,9 +70,7 @@ def update_text_references() -> int:
             text = raw.decode("utf-8")
         except UnicodeDecodeError:
             continue
-        updated = text
-        for old, new in MAPPING.items():
-            updated = updated.replace(old, new)
+        updated = replace_category_names(text)
         if updated != text:
             path.write_text(updated, encoding="utf-8")
             changed += 1
@@ -114,10 +120,12 @@ def validate() -> None:
     for generated in (ROOT / "ALL_EXOS/inputs.tex", ROOT / "ALL_EXOS/corriges_inputs.tex"):
         text = generated.read_text(encoding="utf-8")
         for old in MAPPING:
-            if old in text:
+            forbidden = (f"../{old}/", rf"\chapter{{{old}}}")
+            if any(token in text for token in forbidden):
                 raise SystemExit(f"Ancienne référence dans {generated.relative_to(ROOT)} : {old}")
         for new in MAPPING.values():
-            if new not in text:
+            required = (f"../{new}/", rf"\chapter{{{new}}}")
+            if not all(token in text for token in required):
                 raise SystemExit(f"Nouvelle référence absente de {generated.relative_to(ROOT)} : {new}")
 
 
@@ -127,6 +135,9 @@ def main() -> None:
     run("python3", "tools/generate_all_exos.py")
     run("python3", "tools/generate_all_corriges.py")
     validate()
+    diagnostic = ROOT / "PREFIX_RENAME_EXECUTION.txt"
+    if diagnostic.exists():
+        diagnostic.unlink()
     print(
         "Renommage validé : 01 à 09, 468 exercices, 468 corrigés, "
         f"468 inclusions ; {changed} fichiers texte mis à jour."
