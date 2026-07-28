@@ -1,0 +1,15 @@
+%% Point d'entrée kaobook compatible TeX Live 2025
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{kao}[2026/07/28 Couche kaobook ATS compatible TeX Live 2025]
+% On conserve la mise en page personnalisée historique du framework ATS.
+\InputIfFileExists{ECM/kao.sty}{}{%
+  \PackageError{kao}{ECM/kao.sty introuvable}{Le socle kaobook du framework est incomplet.}%
+}
+% varioref et les versions récentes de babel peuvent construire une définition
+% autoréférente de \extrasenglish lorsque seul le français est demandé. Le cours
+% est intégralement en français : neutraliser ce crochet anglais évite la
+% récursion à \begin{document} sans modifier le rendu français.
+\makeatletter
+\@ifundefined{extrasenglish}{}{\def\extrasenglish{}}
+\makeatother
+\endinput
