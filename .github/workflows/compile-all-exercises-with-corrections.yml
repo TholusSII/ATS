@@ -28,7 +28,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref || github.ref }}
           fetch-depth: 1
 
-      - name: Régénérer les deux index
+      - name: Vérifier la banque de 468 exercices
         shell: bash
         run: |
           set -euo pipefail
@@ -37,34 +37,36 @@ jobs:
           grep -q '468 exercices' ALL_EXOS/inputs.tex
           grep -q '468 corrigés' ALL_EXOS/corriges_inputs.tex
 
-      - name: Appliquer les compatibilités du recueil global
+      - name: Préparer uniquement l’environnement de compilation
         shell: bash
         run: |
+          set -euo pipefail
+          mkdir -p ALL_EXOS/gnuplot
           python3 - <<'PY'
           from pathlib import Path
           import re
 
           title_pattern = re.compile(r'^(\s*\\exer\{[^\r\n]*?\})\\n', re.MULTILINE)
           qr_pattern = re.compile(r'\\qrcode(?:\[[^\]]*\])?\{([^{}]+)\}')
-          title_files = []
-          qr_files = []
           for path in Path('.').rglob('*.tex'):
               if '.git' in path.parts:
                   continue
               text = path.read_text(encoding='utf-8', errors='ignore')
-              updated, title_count = title_pattern.subn(r'\1\n', text)
-              updated, qr_count = qr_pattern.subn(
+              updated = title_pattern.sub(r'\1\n', text)
+              updated = qr_pattern.sub(
                   lambda match: r'\fbox{\href{' + match.group(1) + r'}{\textsf{Lien vers le formulaire}}}',
                   updated,
               )
               if updated != text:
                   path.write_text(updated, encoding='utf-8')
-              if title_count:
-                  title_files.append((path.as_posix(), title_count))
-              if qr_count:
-                  qr_files.append((path.as_posix(), qr_count))
-          print(f'{len(title_files)} fichier(s) avec retour littéral normalisé(s).')
-          print(f'{len(qr_files)} fichier(s) avec QR remplacé(s) par un lien cliquable.')
+
+          compat = Path('Style/exercices_compat.tex')
+          text = compat.read_text(encoding='utf-8')
+          marker = r'\@ifundefined{c@question}{\newcounter{question}}{}'
+          addition = marker + '\n' + r'\@ifundefined{c@exo}{\newcounter{exo}}{}'
+          if r'\@ifundefined{c@exo}' not in text:
+              text = text.replace(marker, addition)
+              compat.write_text(text, encoding='utf-8')
           PY
 
       - name: Créer le point d’entrée avec corrigés
@@ -83,6 +85,7 @@ jobs:
           root_file: ALL_EXOS_CORRIGES.tex
           working_directory: ALL_EXOS
           latexmk_shell_escape: true
+          extra_system_packages: "gnuplot"
           args: -pdf -interaction=nonstopmode -file-line-error
 
       - name: Publier le journal de compilation
