@@ -3,7 +3,9 @@
 ## Relance du 28 juillet 2026
 
 La source publique du bloc `A_Integrer` a été identifiée : `xpessoles/DevoirDuSoir`.
-Le workflow ne reconstruit plus d’archive Base64 : il copie directement les 76 dossiers `DDS_*` depuis ce dépôt et les 9 autres exercices depuis `xpessoles/ExercicesCompetences`.
+Le workflow copie directement les 76 dossiers `DDS_*` depuis ce dépôt et les 9 autres exercices depuis `xpessoles/ExercicesCompetences`.
+
+La seconde relance accepte automatiquement les éventuels renommages de dossiers en recherchant leur numéro et leur fichier `.tex`.
 
 La branche reste en brouillon jusqu’à validation des contrôles suivants :
 
