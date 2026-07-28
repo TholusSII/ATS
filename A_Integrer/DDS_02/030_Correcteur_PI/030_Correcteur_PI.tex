@@ -1,0 +1,63 @@
+\exer{Correcteur PI}
+\setcounter{exo}{0}
+
+\textit{Exercices de Marc Derumaux}
+
+On considère une FTBO de fonction de transfert $\text{FTBO}(p)= \dfrac{2}{p^2+2p+1}$. L'asservissement (en
+boucle fermée) n'étant pas précis, on adopte une correction PI (proportionnelle intégrale) de la
+forme $C( p)=K\dfrac{1+\tau p}{p}$.
+
+\question{Montrer que le correcteur choisi revient à un correcteur PI du type $K_P + \dfrac{K_I}{p}$ 
+et identifier $K_P$ et $K_I$ en fonction de $K$ et $\tau$.}
+\ifprof
+\begin{corrige}
+$C(p)=K\dfrac{1+\tau p}{p} = K\tau + \dfrac{K}{p}$ d'où $K_P = K\tau$ et $K_I = K$.
+\end{corrige}
+\else
+\fi
+
+
+\question{Tracer le diagramme de Bode du correcteur seul en précisant les caractéristiques en fonction de
+$K$ et $\tau$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\question{Tracer le diagramme de Bode asymptotique ainsi que l'allure du diagramme de Bode réel de la
+FTBO.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+
+
+\question{Pour éviter de dégrader les marges de stabilité, la pulsation de cassure du correcteur est placée une
+décade avant la pulsation propre de la FTBO. En déduire la constante de temps $\tau$.}
+\ifprof
+\begin{corrige}
+La pulsation de cassure du correcteur est $\dfrac{1}{\tau}$. Elle est placée une décade avant $\omega_0$
+pour $\tau=\SI{10}{s}$.
+\end{corrige}
+\else
+\fi
+
+\question{On souhaite une bande passante de \SI{3}{rad/s}. Déterminer la valeur de $K$ assurant cette bande passante
+et en déduire les marges de gain et de phase.}
+\ifprof
+\begin{corrige}
+Pour $K=1$, le gain de la FTBO en $\omega=\SI{3rad}{s}$ vaut $\left| \dfrac{1+\tau j \omega }{j \omega } \times \dfrac{2}{1+2j\omega + \left(j\omega\right)^2}\right|=2$. Il
+faut donc $K=0,5$ pour que la FTBO soit unitaire en $\omega =\SI{3}{rad/s}$. La marge de phase vaut
+alors -145\degres (argument de la FTBO en $\omega=\SI{3}{rad/s}$ ), soit 35\degres de marge de phase. La marge
+de gain est infinie car la phase ne coupe jamais la valeur -180\degres.
+\end{corrige}
+\else
+\fi
+
+% BEGIN AUTO CORRIGE INCLUDE
+\InclureCorrige{corrige.tex}
+% END AUTO CORRIGE INCLUDE

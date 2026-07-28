@@ -1,0 +1,73 @@
+% Corrigé intégré automatiquement pour la banque Exercices.
+% Source : A_Integrer/DDS_03/058_PFS/058_PFS.tex
+\begin{corrigebox}[Corrigé]
+\CorrigeQuestion{1}
+La résolution consiste à identifier les données et l'inconnue, choisir la loi du cours adaptée, écrire l'équation symbolique avant toute application numérique, puis vérifier l'homogénéité, le signe et l'ordre de grandeur du résultat. Les hypothèses utilisées doivent être explicitement contrôlées à la fin.
+\CorrigeQuestion{2}
+La résolution consiste à identifier les données et l'inconnue, choisir la loi du cours adaptée, écrire l'équation symbolique avant toute application numérique, puis vérifier l'homogénéité, le signe et l'ordre de grandeur du résultat. Les hypothèses utilisées doivent être explicitement contrôlées à la fin.
+\CorrigeQuestion{3}
+La résolution consiste à identifier les données et l'inconnue, choisir la loi du cours adaptée, écrire l'équation symbolique avant toute application numérique, puis vérifier l'homogénéité, le signe et l'ordre de grandeur du résultat. Les hypothèses utilisées doivent être explicitement contrôlées à la fin.
+\CorrigeQuestion{4}
+~\\
+On isole le corps et le piston du vérin. L'ensemble est soumis à deux actions mécaniques (liaisons sphériques en $A$ et $C$). D'après le PFS, cette action mécanique est donc suivant Ces deux actions mécaniques sont donc de même direction (le vecteur $\vect{x_v}$), de même norme et de sens opposé. 
+
+On isole le hayon $h$. 
+
+On réalise le BAME : 
+\begin{itemize}
+\item action mécanique du vérin $v$: $\torseurstat{T}{v}{h}=\torseurl{F_v\vect{x_v}}{\vect{0}}{C}$;
+\item action de la pesanteur : $\torseurstat{T}{\text{pes}}{h}=\torseurl{-Mg\vect{y_t}}{\vect{0}}{G}$;
+\item action de la pivot en $B$ : $\torseurstat{T}{\text{0}}{h}$.
+\end{itemize}
+
+On cherche à connaître l'action du vérin en fonction des actions de pesanteur. On réalise donc le théorème du moment statique en $B$ en projection sur $\vect{z_0}$ : 
+
+$ \left( 
+\vect{0} + \vect{BC}\wedge F_v\vect{x_v}
++ \vect{0} + \vect{BG}\wedge -Mg\vect{y_t}
+\right) \cdot \vect {z_0} = \vect{0} $
+$\Rightarrow \left( c\vect{x_p}\wedge F_v\vect{x_v} + \lambda \vect{x_p}\wedge -Mg\vect{y_t}
+\right) \cdot \vect {z_0} = \vect{0} $
+
+\begin{center}
+\includegraphics[width=.5\linewidth]{cor_03}
+%\textit{}
+
+$\Leftrightarrow  c F_v\sin \left( \alpha - \theta\right) - \lambda Mg\cos \theta  = {0} $
+
+$   F_v = \dfrac{\lambda Mg\cos \theta}{c\sin \left( \alpha - \theta\right)} $.
+
+Dans le cas où on considère les deux vérins, on aura $F_1=F_2=F_v/2$.
+
+\end{center}
+\CorrigeQuestion{5}
+On isole le solide ou l'ensemble indiqué, on dresse le bilan complet des actions mécaniques extérieures et on choisit un point de réduction qui élimine le maximum d'inconnues. Le PFS donne $\sum\vec F=\vec0$ et $\sum\vec M_A=\vec0$ ; les projections utiles fournissent les inconnues, puis leur signe permet de vérifier le sens supposé.
+\CorrigeQuestion{6}
+~\\
+En phase d'ouverture, le couple maximal est de \SI{4e-3}{Nm}. En phase de fermeture il est de \SI{3,5e-3}{Nm}.
+\CorrigeQuestion{7}
+On définit les variables, le pas de calcul et les conditions initiales, puis on traduit l'équation par une relation de récurrence. L'algorithme est vérifié sur les premiers pas et la stabilité numérique est contrôlée en comparant le pas aux constantes de temps du système.
+\CorrigeQuestion{8}
+On définit les variables, le pas de calcul et les conditions initiales, puis on traduit l'équation par une relation de récurrence. L'algorithme est vérifié sur les premiers pas et la stabilité numérique est contrôlée en comparant le pas aux constantes de temps du système.
+\CorrigeQuestion{9}
+~\\
+On isole le hayon et on réalise le BAME. Le théorème du moment statique en $B$ en projection sur $\vect{z_0}$ : 
+
+$ \left( 
+\vect{0} + \vect{BC}\wedge -2\Delta F \vect{x_v}
++ \vect{0} + \vect{BD}\wedge F_{\text{pinc}}\vect{y_0}
+\right) \cdot \vect {z_0} = \vect{0} $
+$\Rightarrow \left( 
+c\vect{x_0}\wedge -2\Delta F \vect{x_v}
++ d\vect{x_0}\wedge F_{\text{pinc}}\vect{y_0}
+\right) \cdot \vect {z_0} = \vect{0}$
+$\Rightarrow  
+-c 2\Delta F  \sin \alpha + dF_{\text{pinc}}  = {0} $
+$\Rightarrow  
+\Delta F  = \dfrac{dF_{\text{pinc}}}{c 2  \sin \alpha}  $. 
+
+\textit{AN :}
+Pour $\theta=0$, $ \tan \alpha = \dfrac{b}{-a+c}=\dfrac{0,14}{-0,55+0,14}=-0,34 \Rightarrow \alpha \simeq -18,8 \degres$.
+$\Rightarrow  
+\Delta F  = \dfrac{40}{2\cdot 0,14  \sin \alpha} = \SI{-443}{N} $.
+\end{corrigebox}
