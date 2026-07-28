@@ -1,0 +1,101 @@
+name: Compiler Analyse Fonctionnelle avec MiKTeX 25.4
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'Style/**'
+      - '01-Ingénierie système/Cours/**'
+      - '.github/workflows/compile-analyse-fonctionnelle-miktex.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compile-miktex:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Préparer la compilation
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp '01-Ingénierie système/Cours/00_AnalyseFonctionnelle.pdf' /tmp/00_AnalyseFonctionnelle_reference.pdf
+          ln -sfn ../Style '01-Ingénierie système/Style'
+          test -f '01-Ingénierie système/Cours/Cy_01_ModelisationSystemes.bib' || : > '01-Ingénierie système/Cours/Cy_01_ModelisationSystemes.bib'
+
+      - name: Compiler avec MiKTeX 25.4
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker run --rm \
+            -v "$PWD:/data" \
+            -w '/data/01-Ingénierie système/Cours' \
+            -e 'TEXINPUTS=/data/Style:/data/Style//:' \
+            mfisherman/miktex:25.4 \
+            sh -lc '
+              pdflatex --version
+              pdflatex --enable-installer -file-line-error -halt-on-error -interaction=nonstopmode 00_AnalyseFonctionnelle.tex
+              pdflatex --enable-installer -file-line-error -halt-on-error -interaction=nonstopmode 00_AnalyseFonctionnelle.tex
+              pdflatex --enable-installer -file-line-error -halt-on-error -interaction=nonstopmode 00_AnalyseFonctionnelle.tex
+            '
+
+      - name: Installer les outils de comparaison
+        shell: bash
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq poppler-utils python3-pil
+
+      - name: Comparer au PDF de référence
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p comparison-miktex/reference comparison-miktex/candidate
+          cp /tmp/00_AnalyseFonctionnelle_reference.pdf comparison-miktex/reference.pdf
+          cp '01-Ingénierie système/Cours/00_AnalyseFonctionnelle.pdf' comparison-miktex/candidate.pdf
+          pdfinfo comparison-miktex/reference.pdf > comparison-miktex/reference-info.txt
+          pdfinfo comparison-miktex/candidate.pdf > comparison-miktex/candidate-info.txt
+          pdftoppm -png -r 96 comparison-miktex/reference.pdf comparison-miktex/reference/page >/dev/null 2>&1
+          pdftoppm -png -r 96 comparison-miktex/candidate.pdf comparison-miktex/candidate/page >/dev/null 2>&1
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageChops, ImageStat
+          ref = sorted(Path('comparison-miktex/reference').glob('page-*.png'))
+          cand = sorted(Path('comparison-miktex/candidate').glob('page-*.png'))
+          report = [f'pages_reference={len(ref)}', f'pages_candidate={len(cand)}']
+          if len(ref) != len(cand):
+              report.append('result=PAGE_COUNT_DIFFERENT')
+          else:
+              scores = []
+              for index, (a_path, b_path) in enumerate(zip(ref, cand), 1):
+                  a = Image.open(a_path).convert('RGB')
+                  b = Image.open(b_path).convert('RGB')
+                  if a.size != b.size:
+                      report.append(f'page_{index}=SIZE_DIFFERENT:{a.size}!={b.size}')
+                      scores.append(255.0)
+                      continue
+                  score = sum(ImageStat.Stat(ImageChops.difference(a, b)).mean) / 3
+                  scores.append(score)
+                  report.append(f'page_{index}_mean_abs_diff={score:.6f}')
+              mean = sum(scores) / len(scores) if scores else 0.0
+              report.append(f'mean_abs_diff={mean:.6f}')
+              report.append('result=' + ('IDENTICAL_RENDER' if mean == 0 else 'VISUAL_DIFFERENCES'))
+          Path('comparison-miktex/report.txt').write_text('\n'.join(report) + '\n', encoding='utf-8')
+          print('\n'.join(report))
+          PY
+
+      - name: Publier le résultat MiKTeX
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: analyse-fonctionnelle-miktex-25-4
+          path: |
+            01-Ingénierie système/Cours/00_AnalyseFonctionnelle.log
+            01-Ingénierie système/Cours/00_AnalyseFonctionnelle.pdf
+            comparison-miktex/
+          if-no-files-found: warn
