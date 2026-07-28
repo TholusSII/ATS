@@ -46,6 +46,8 @@ jobs:
           EOF
 
       - name: Compiler le recueil complet
+        id: latex
+        continue-on-error: true
         uses: xu-cheng/latex-action@v4
         with:
           root_file: ALL_EXOS_CORRIGES.tex
@@ -53,7 +55,20 @@ jobs:
           latexmk_shell_escape: true
           args: -pdf -interaction=nonstopmode -halt-on-error -file-line-error
 
+      - name: Publier le journal de compilation
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: journal-compilation-pdf-complet
+          path: |
+            ALL_EXOS/ALL_EXOS_CORRIGES.log
+            ALL_EXOS/ALL_EXOS_CORRIGES.fls
+            ALL_EXOS/ALL_EXOS_CORRIGES.fdb_latexmk
+          if-no-files-found: warn
+          retention-days: 30
+
       - name: Vérifier et nommer le PDF
+        if: steps.latex.outcome == 'success'
         shell: bash
         run: |
           set -euo pipefail
@@ -64,6 +79,7 @@ jobs:
           echo "PDF généré : $size octets"
 
       - name: Publier le PDF
+        if: steps.latex.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
           name: PDF-complet-exercices-corriges
@@ -71,3 +87,10 @@ jobs:
           if-no-files-found: error
           compression-level: 0
           retention-days: 30
+
+      - name: Signaler l’échec LaTeX
+        if: steps.latex.outcome != 'success'
+        shell: bash
+        run: |
+          echo 'La compilation LaTeX a échoué ; le journal a été publié.'
+          exit 1
