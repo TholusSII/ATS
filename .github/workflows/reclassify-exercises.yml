@@ -48,14 +48,14 @@ jobs:
         run: |
           set +e
           if grep -q '^APPLY=1$' RECLASSEMENT_TRIGGER.txt 2>/dev/null; then
-            python3 tools/reclassify_exercises_v3.py --apply > RECLASSEMENT_EXECUTION.log 2>&1
+            python3 tools/reclassify_exercises_v3.py --apply > RECLASSEMENT_EXECUTION.txt 2>&1
           elif grep -q '^APPLY=KNOWN$' RECLASSEMENT_TRIGGER.txt 2>/dev/null; then
-            python3 tools/reclassify_exercises_v4.py > RECLASSEMENT_EXECUTION.log 2>&1
+            python3 tools/reclassify_exercises_v4.py > RECLASSEMENT_EXECUTION.txt 2>&1
           else
-            python3 tools/reclassify_exercises_v3.py > RECLASSEMENT_EXECUTION.log 2>&1
+            python3 tools/reclassify_exercises_v3.py > RECLASSEMENT_EXECUTION.txt 2>&1
           fi
           status=$?
-          cat RECLASSEMENT_EXECUTION.log
+          cat RECLASSEMENT_EXECUTION.txt
           echo "status=$status" >> "$GITHUB_OUTPUT"
           exit 0
 
@@ -79,5 +79,5 @@ jobs:
         if: steps.execution.outputs.status != '0'
         shell: bash
         run: |
-          echo 'Le diagnostic a été enregistré dans RECLASSEMENT_EXECUTION.log.'
+          echo 'Le diagnostic a été enregistré dans RECLASSEMENT_EXECUTION.txt.'
           exit 1
