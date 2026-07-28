@@ -120,6 +120,14 @@ jobs:
           summary_rows = []
           total_exercises = 0
           reset_modes = r'\proffalse' + '\n' + r'\ifdefined\correctionfalse\correctionfalse\fi' + '\n'
+          lock_modes = (
+              r'\proffalse' + '\n' +
+              r'\let\proftrue\proffalse' + '\n' +
+              r'\ifdefined\correctionfalse' + '\n' +
+              r'  \correctionfalse' + '\n' +
+              r'  \let\correctiontrue\correctionfalse' + '\n' +
+              r'\fi' + '\n'
+          )
           for index, match in enumerate(matches, 1):
               end = matches[index].start() if index < len(matches) else len(inputs)
               block = inputs[match.start():end].rstrip() + '\n'
@@ -133,7 +141,7 @@ jobs:
               (all_dir / f'inputs_{stem}.tex').write_text(block, encoding='utf-8')
               part = (
                   r'\def\ModeCorriges{1}' + '\n' + preamble + r'\begin{document}' + '\n' +
-                  setup + f'\\setcounter{{chapter}}{{{chapter_number - 1}}}\n' +
+                  setup + lock_modes + f'\\setcounter{{chapter}}{{{chapter_number - 1}}}\n' +
                   f'\\input{{inputs_{stem}.tex}}\n' + r'\end{document}' + '\n'
               )
               (all_dir / f'{stem}.tex').write_text(part, encoding='utf-8')
