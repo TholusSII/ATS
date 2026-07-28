@@ -34,16 +34,20 @@ jobs:
           set -euo pipefail
           git show origin/main:tools/reclassify_exercises.py > tools/reclassify_exercises.py
           git show origin/main:tools/reclassify_exercises_v2.py > tools/reclassify_exercises_v2.py
-          python3 -m py_compile tools/reclassify_exercises.py tools/reclassify_exercises_v2.py
+          git show origin/main:tools/reclassify_exercises_v3.py > tools/reclassify_exercises_v3.py
+          python3 -m py_compile \
+            tools/reclassify_exercises.py \
+            tools/reclassify_exercises_v2.py \
+            tools/reclassify_exercises_v3.py
 
       - name: Produire le classement ou appliquer les déplacements
         shell: bash
         run: |
           set -euo pipefail
           if grep -q '^APPLY=1$' RECLASSEMENT_TRIGGER.txt 2>/dev/null; then
-            python3 tools/reclassify_exercises_v2.py --apply
+            python3 tools/reclassify_exercises_v3.py --apply
           else
-            python3 tools/reclassify_exercises_v2.py
+            python3 tools/reclassify_exercises_v3.py
           fi
 
       - name: Enregistrer le résultat sur la branche
