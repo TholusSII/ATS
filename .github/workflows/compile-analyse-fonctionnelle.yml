@@ -36,7 +36,7 @@ jobs:
           working_directory: 01-Ingénierie système/Cours
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
         env:
-          TEXINPUTS: ${{ github.workspace }}/Style//:
+          TEXINPUTS: "${{ github.workspace }}/Style//:"
 
       - name: Comparer au PDF de référence
         shell: bash
@@ -52,7 +52,6 @@ jobs:
           python3 - <<'PY'
           from pathlib import Path
           from PIL import Image, ImageChops, ImageStat
-
           ref = sorted(Path('comparison/reference').glob('page-*.png'))
           cand = sorted(Path('comparison/candidate').glob('page-*.png'))
           report = [f'pages_reference={len(ref)}', f'pages_candidate={len(cand)}']
