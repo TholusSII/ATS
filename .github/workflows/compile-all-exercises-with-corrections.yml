@@ -91,6 +91,11 @@ jobs:
           working_directory: ALL_EXOS
           latexmk_shell_escape: true
           extra_system_packages: "gnuplot"
+          pre_compile: |
+            cnf="$(kpsewhich texmf.cnf)"
+            printf '\nextra_mem_top = 12000000\nextra_mem_bot = 12000000\n' >> "$cnf"
+            kpsewhich -var-value=extra_mem_top
+            kpsewhich -var-value=extra_mem_bot
           args: -pdf -interaction=nonstopmode -file-line-error
 
       - name: Publier le journal de compilation
