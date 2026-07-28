@@ -1,0 +1,3 @@
+ALL_EXOS/inputs.tex généré avec 468 exercices.
+/home/runner/work/Exercices/Exercices/ALL_EXOS/corriges_inputs.tex: 468 corrigés
+Anciennes racines encore présentes : ['RDM']
