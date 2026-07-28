@@ -38,6 +38,12 @@ jobs:
         env:
           TEXINPUTS: "${{ github.workspace }}/Style:${{ github.workspace }}/Style//:"
 
+      - name: Installer les outils de comparaison
+        shell: bash
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq poppler-utils python3-pil
+
       - name: Comparer au PDF de référence
         shell: bash
         run: |
