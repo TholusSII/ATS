@@ -43,7 +43,6 @@
 
 \makeatletter
 \@ifundefined{c@question}{\newcounter{question}}{}
-\@ifundefined{c@exo}{\newcounter{exo}}{}
 \makeatother
 \providecommand{\question}[1]{\refstepcounter{question}\par\medskip\noindent\textbf{Question \thequestion.}~#1\par\medskip}
 \providecommand{\sidenote}[2][]{\marginnote{\footnotesize #2}}
