@@ -1,0 +1,26 @@
+\exer{Stabilité}
+
+% EXO Vuibert PAge 88
+
+Soit $F(p)=\dfrac{K_mK_1}{\dfrac{p^2}{\omega^2}-1+K_m K_1 \left(k_p +k_v p\right)} $ la FTBO d'un système asservi.
+%\question{Déterminer la Fonction de Transfert en Boucle Ouverte du système $\textrm{FTBO}(p)=\frac{\Psi(p)}{\varepsilon(p)} = C(p)F(p)$ où l'on précisera $F(p)$ en fonction des paramètres $K_m$, $K_1$, $\omega_1$, $k_v$ et $k_p$.}
+
+\question{Pour pouvoir appliquer le critère du revers, il faut que la FTBO ne possède que des pôles à partie réelle négative. Quelle condition doit-on avoir sur les coefficients de $F(p)$ ? Y a-t-il d'autres conditions à respecter pour que le système ainsi asservi soit stable de façon absolue (sans vérifier si les valeurs des marges sont suffisantes) si on prend $C(p)=1$ ?}
+
+Les paramètres $k_v$ et $k_p$ sont choisis de manière à assurer, non seulement la stabilité du système, mais aussi sa rapidité.
+
+\question{\`A partir de l'expression de $F(p)$, déterminer les paramètres $k_v$ et $k_p$ permettant d'assurer une rapidité optimale en boucle ouverte en prenant une pulsation $\omega_0=\num{1.5} \omega_1$.}
+
+
+Dans la suite, la fonction $F(p)$ utilisée sera la suivante $F(p)=\frac{\num{0.12}}{1+\num{0.23} p + \num{0.026} p^2}$.
+
+On choisit un correcteur proportionnel $C(p)=K_c$.
+
+
+\question{Déterminer analytiquement la pulsation et le gain correspondant à une phase de \SI{-135}{\degree}. Que dire de la marge de gain en fonction de la valeur de $K_c$.}
+
+\question{En déduire la valeur à prendre pour $K_c$ de manière à respecter une marge de phase de 45\degres.}
+
+% BEGIN AUTO CORRIGE INCLUDE
+\InclureCorrige{corrige.tex}
+% END AUTO CORRIGE INCLUDE

@@ -14,8 +14,8 @@ for c in ROOT.rglob('corrige.tex'):
     src=c.with_name(c.parent.name+'.tex')
     if src.exists(): items.append((rel,src.relative_to(ROOT)))
 items.sort(key=lambda x:tuple(p.casefold() for p in x[0].parts))
-if len(items)!=383: raise SystemExit(f'{len(items)} corrigés trouvés au lieu de 383')
-lines=['% Généré par tools/generate_all_corriges.py','% 383 corrigés classés par répertoire.','']
+if len(items)!=468: raise SystemExit(f'{len(items)} corrigés trouvés au lieu de 468')
+lines=['% Généré par tools/generate_all_corriges.py','% 468 corrigés classés par répertoire.','']
 ch=sec=None
 for corr,src in items:
     if corr.parts[0]!=ch:

@@ -1,0 +1,58 @@
+\exer{SLCI Retard}
+% CCS PSI 2018
+
+\setcounter{exo}{0}
+
+Soient les modèles suivants. L'effort est donné par $f_c(t)=bK_f q(t)$. 
+La quantité de matière enlevée est donnée par $q(t)=q_c(t)-z_2(t)+z_2(t-\tau)$ où $\tau$ est la durée nécessaire à la roue pour effectuer un tour complet.
+D’un point de vue numérique, $K_f = \SI{1.5e9}{N.m^{-1}}$ 
+et $\tau = \SI{1}{s}$. Le modèle de la chaîne d’asservissement est représenté par le schéma suivant.
+
+ 
+\begin{center}
+\includegraphics[width=1.0\linewidth]{049_01.png}
+\end{center}
+
+
+\question{Déterminer $H_r(p)$ en fonction de $\tau$.}
+
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+En prenant $Z_c(p)=0$, le modèle précédent peut se mettre sous la forme du modèle équivalent suivant.
+
+\begin{center}
+\includegraphics[width=1.0\linewidth]{049_02.png}
+\end{center}
+
+La figure suivante représente le diagramme de Bode de la fonction de transfert en boucle ouverte du système modélisé
+figure précédemment, avec $b=\dfrac{1}{\pi}\SI{5e-2}{{mm rad}^{-1}}$. 
+
+\begin{center}
+\includegraphics[width=1.0\linewidth]{049_03.png}
+\end{center}
+Les « zéros de transmission » d’une fonction de transfert $H(p)$ correspondent aux pulsations $\omega$ pour lesquelles $H(j\omega)$ est nul.
+\question{Préciser l’expression de la fonction de transfert en boucle ouverte puis vérifier la
+cohérence du diagramme de Bode en analysant les « zéros de transmission ».}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+
+\question{Déterminer un ordre de grandeur du paramètre $b$ permettant de conserver la stabilité du système en
+boucle fermée.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+% BEGIN AUTO CORRIGE INCLUDE
+\InclureCorrige{corrige.tex}
+% END AUTO CORRIGE INCLUDE

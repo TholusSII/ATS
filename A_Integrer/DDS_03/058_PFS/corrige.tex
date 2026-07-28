@@ -1,0 +1,123 @@
+% Corrigé intégré automatiquement pour la banque Exercices.
+% Source : A_Integrer/DDS_03/058_PFS/058_PFS.tex
+\begin{corrigebox}[Corrigé]
+\CorrigeQuestion{1}
+~\\
+\begin{center}
+\includegraphics[width=.8\linewidth]{cor_01}
+%\textit{}
+\end{center}
+D'une part, $x = d\sin 42 \simeq \SI{0,67}{m}$. D'autre part, $\sin\alpha = \dfrac{1,8-0,7-x}{d}=0,43$. Au final $\alpha = 25,5\degres$. 
+
+L'angle d'ouverture est donc de $67,5\degres$.
+\CorrigeQuestion{2}
+~\\
+La longueur du vérin est donnée par la valeur de $L$. En réalisant la fermeture géométrique, on a $\vect{AB}+\vect{BC}+\vect{CA}=\vect{0} \Leftrightarrow 
+-a\vect{x_0}+b\vect{y_0} + c\vect{x_p} -L\vect{x_v} =\vect{0}$.
+
+En projetant l'équation vectorielle dans $\rep{0}$, on a : 
+$$
+\left\{ 
+\begin{array}{l}
+-a + c\cos\theta -L\cos\alpha ={0} \\
+b + c\sin\theta -L\sin\alpha ={0}
+\end{array}
+\right.
+$$
+On a donc $L^2 =\left(-a + c\cos\theta \right)^2 + \left(b + c\sin\theta \right)^2  $.
+%= a^2 +c^2 \cos ^2 \theta - 2 ac \cos \theta + b^2 + c^2\sin^2\theta + 2b c\sin\theta
+%= a^2 +c^2 - 2 ac \cos \theta + b^2 +  2b c\sin\theta$
+\CorrigeQuestion{3}
+~\\
+La longueur du vérin varie de \SI{43,3}{cm} à \SI{56,5}{cm} soit une course de \SI{13,2}{cm}.
+\CorrigeQuestion{4}
+~\\
+On isole le corps et le piston du vérin. L'ensemble est soumis à deux actions mécaniques (liaisons sphériques en $A$ et $C$). D'après le PFS, cette action mécanique est donc suivant Ces deux actions mécaniques sont donc de même direction (le vecteur $\vect{x_v}$), de même norme et de sens opposé. 
+
+On isole le hayon $h$. 
+
+On réalise le BAME : 
+\begin{itemize}
+\item action mécanique du vérin $v$: $\torseurstat{T}{v}{h}=\torseurl{F_v\vect{x_v}}{\vect{0}}{C}$;
+\item action de la pesanteur : $\torseurstat{T}{\text{pes}}{h}=\torseurl{-Mg\vect{y_t}}{\vect{0}}{G}$;
+\item action de la pivot en $B$ : $\torseurstat{T}{\text{0}}{h}$.
+\end{itemize}
+
+On cherche à connaître l'action du vérin en fonction des actions de pesanteur. On réalise donc le théorème du moment statique en $B$ en projection sur $\vect{z_0}$ : 
+
+$ \left( 
+\vect{0} + \vect{BC}\wedge F_v\vect{x_v}
++ \vect{0} + \vect{BG}\wedge -Mg\vect{y_t}
+\right) \cdot \vect {z_0} = \vect{0} $
+$\Rightarrow \left( c\vect{x_p}\wedge F_v\vect{x_v} + \lambda \vect{x_p}\wedge -Mg\vect{y_t}
+\right) \cdot \vect {z_0} = \vect{0} $
+
+\begin{center}
+\includegraphics[width=.5\linewidth]{cor_03}
+%\textit{}
+
+$\Leftrightarrow  c F_v\sin \left( \alpha - \theta\right) - \lambda Mg\cos \theta  = {0} $
+
+$   F_v = \dfrac{\lambda Mg\cos \theta}{c\sin \left( \alpha - \theta\right)} $.
+
+Dans le cas où on considère les deux vérins, on aura $F_1=F_2=F_v/2$.
+
+\end{center}
+\CorrigeQuestion{5}
+~\\
+
+\begin{center}
+\includegraphics[width=\linewidth]{cor_04}
+%\textit{}
+\end{center}
+
+Si on isole la tige du vérin :
+\begin{itemize}
+\item en phase d'ouverture, le TRS s'exprime par : $F_m + F_r - F_f - F_h =0\Leftrightarrow F_r = F_f + F_h - F_m$; 
+\item en phase de fermeture, le TRS s'exprime par : $-F_m + F_r + F_f - F_h =0 \Leftrightarrow F_r = -F_f + F_h + F_m$;
+\end{itemize}
+
+La plage de fonctionnement la plus large est située entre $\SI{0,5}{m}$ et $\SI{0,56}{m}$. La pente est la même pour les 3 courbes. Elle est d'environ $k=\dfrac{100}{0,06}\simeq \SI{1667}{N.m^{-1}}$.
+
+En phase de fermeture, lorsque le vérin est déployé, la précharge permettant d'assurer l'équilibre est d'environ \SI{500}{N}.  L'écrasement est donc  de \SI{300}{mm} environ.
+
+\begin{center}
+\includegraphics[width=\linewidth]{cor_05}
+%\textit{}
+\end{center}
+\CorrigeQuestion{6}
+~\\
+En phase d'ouverture, le couple maximal est de \SI{4e-3}{Nm}. En phase de fermeture il est de \SI{3,5e-3}{Nm}.
+\CorrigeQuestion{7}
+~\\
+On isole le hayon et on réalise le BAME. Le théorème du moment statique en $B$ en projection sur $\vect{z_0}$ : 
+
+$ \left( 
+\vect{0} + \vect{BC}\wedge -2\Delta F \vect{x_v}
++ \vect{0} + \vect{BD}\wedge F_{\text{pinc}}\vect{y_0}
+\right) \cdot \vect {z_0} = \vect{0} $
+$\Rightarrow \left( 
+c\vect{x_0}\wedge -2\Delta F \vect{x_v}
++ d\vect{x_0}\wedge F_{\text{pinc}}\vect{y_0}
+\right) \cdot \vect {z_0} = \vect{0}$
+$\Rightarrow  
+-c 2\Delta F  \sin \alpha + dF_{\text{pinc}}  = {0} $
+$\Rightarrow  
+\Delta F  = \dfrac{dF_{\text{pinc}}}{c 2  \sin \alpha}  $. 
+
+\textit{AN :}
+Pour $\theta=0$, $ \tan \alpha = \dfrac{b}{-a+c}=\dfrac{0,14}{-0,55+0,14}=-0,34 \Rightarrow \alpha \simeq -18,8 \degres$.
+$\Rightarrow  
+\Delta F  = \dfrac{40}{2\cdot 0,14  \sin \alpha} = \SI{-443}{N} $.
+\CorrigeQuestion{8}
+~\\
+On a $\left|\Delta C_m\right|=\rho \left|\Delta F \right|$ avec $\rho=\SI{7,89e-5}{m}$. En conséquence : $\left|\Delta C_m\right|=443 \cdot 7,89 \cdot 10^{-5} = \SI{35}{mNm}$.
+
+En fin de fermeture, $C_m=\SI{2,5e-3}{Nm}$.
+En conséquence $I_{\text{max}}=\dfrac{C_{\text{max}}}{K_t}=\dfrac{C_{m}+\Delta C_m}{K_t}=\dfrac{2,5\cdot 10^{-3}+35\cdot 10^{-3}}{9,5\cdot 10^{-3}}=\SI{3,95}{A}$.
+\CorrigeQuestion{9}
+%~\\
+%
+%
+%
+\end{corrigebox}

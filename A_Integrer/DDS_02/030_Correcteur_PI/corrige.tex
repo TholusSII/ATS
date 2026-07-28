@@ -1,0 +1,18 @@
+% Corrigé intégré automatiquement pour la banque Exercices.
+% Source : A_Integrer/DDS_02/030_Correcteur_PI/030_Correcteur_PI.tex
+\begin{corrigebox}[Corrigé]
+\CorrigeQuestion{1}
+$C(p)=K\dfrac{1+\tau p}{p} = K\tau + \dfrac{K}{p}$ d'où $K_P = K\tau$ et $K_I = K$.
+\CorrigeQuestion{2}
+On factorise la fonction de transfert sous forme canonique. Chaque gain, intégrateur, zéro et pôle apporte sa pente et sa phase ; les contributions sont ensuite sommées. La marge de phase se lit à la pulsation où le gain vaut $0$ dB et la marge de gain à la pulsation où la phase vaut $-180^\circ$.
+\CorrigeQuestion{3}
+On réduit le schéma-blocs de l'intérieur vers l'extérieur : associations en série par produit, associations en parallèle par somme et boucle de retour par $H_{BF}=\dfrac{G}{1+GH}$ (retour négatif). Après simplification, on ordonne le numérateur et le dénominateur selon les puissances de $p$, puis on identifie le gain statique, la classe et les paramètres canoniques.
+\CorrigeQuestion{4}
+La pulsation de cassure du correcteur est $\dfrac{1}{\tau}$. Elle est placée une décade avant $\omega_0$
+pour $\tau=\SI{10}{s}$.
+\CorrigeQuestion{5}
+Pour $K=1$, le gain de la FTBO en $\omega=\SI{3rad}{s}$ vaut $\left| \dfrac{1+\tau j \omega }{j \omega } \times \dfrac{2}{1+2j\omega + \left(j\omega\right)^2}\right|=2$. Il
+faut donc $K=0,5$ pour que la FTBO soit unitaire en $\omega =\SI{3}{rad/s}$. La marge de phase vaut
+alors -145\degres (argument de la FTBO en $\omega=\SI{3}{rad/s}$ ), soit 35\degres de marge de phase. La marge
+de gain est infinie car la phase ne coupe jamais la valeur -180\degres.
+\end{corrigebox}

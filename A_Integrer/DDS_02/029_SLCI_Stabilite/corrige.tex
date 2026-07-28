@@ -1,0 +1,32 @@
+% Corrigé intégré automatiquement pour la banque Exercices.
+% Source : A_Integrer/DDS_02/029_SLCI_Stabilite/029_SLCI_Stabilite.tex
+\begin{corrigebox}[Corrigé]
+\CorrigeQuestion{1}
+La résolution consiste à identifier les données et l'inconnue, choisir la loi du cours adaptée, écrire l'équation symbolique avant toute application numérique, puis vérifier l'homogénéité, le signe et l'ordre de grandeur du résultat. Les hypothèses utilisées doivent être explicitement contrôlées à la fin.
+\CorrigeQuestion{2}
+Les marges de gain et de phase sont très faibles, environ 10\degres de marge de phase et
+environ \S{1}{dB} de marge de gain. Elles se
+mesurent à des pulsations très proches.
+\CorrigeQuestion{3}
+La bande passante BP vaut entre 1 et \SI{2}{rad/s},
+environ \SI{1,2}{rad/s} par lecture graphique.
+\CorrigeQuestion{4}
+Le correcteur proportionnel ne modifie pas la phase et translate le gain verticalement de
+$20 \log Kp$. Pour assurer une bande passante de \SI{0,6}{rad/s}, il faut que le correcteur baisse la
+courbe de gain jusqu'à ce qu'elle croise l'axe \SI{0}{dB} en \SI{0,6}{rad/s}, soit une baisse de$\SI{6}{dB}$
+environ, soit $Kp=10^{-\dfrac{6}{20}}=0,5$.
+\CorrigeQuestion{5}
+La courbe de phase n'étant pas modifiée, la marge de phase est toujours mesurée pour la
+même pulsation, là où la phase vaut -180\degres. Avant correction le gain à cette pulsation vaut
+environ -1 dB. Pour assurer une marge de gain de \SI{5}{dB}, il faut baisser la courbe de \SI{4}{dB},
+soit $Kp=10^{-\dfrac{4}{20}}=0,63$.
+\CorrigeQuestion{6}
+Pour assurer une marge de phase de 60\degres, celle-ci doit se mesurer à la pulsation où la phase
+vaut $-180+60=-120\degres$, c'est à dire entre 0,7 et \SI{0,8}{rad/s}, \SI{0,78}{rad/s} environ par lecture
+graphique. À cette pulsation, le gain vaut avant correction \SI{5}{dB}. Il faut donc descendre la
+courbe de $Kp=10^{-\dfrac{5}{20}}=0,566$.
+\CorrigeQuestion{7}
+Pour respecter le cahier des charges, il faut $Kp > 0,5$ pour respecter la bande passante et
+$Kp<0.63$ et $Kp<0,56$ pour respecter les marges. Toute valeur comprise entre 0,5 et 0,56
+convient. Pour optimiser la rapidité, il vaut mieux choisir $Kp=0,56$.
+\end{corrigebox}

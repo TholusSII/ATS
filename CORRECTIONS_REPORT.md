@@ -1,11 +1,11 @@
 # État des corrigés
 
-- Exercices traités : **383**
-- Corrigés extraits intégralement de la banque : **115**
-- Corrigés historiques complétés question par question : **95**
-- Corrigés entièrement rédigés car absents de la banque : **173**
+- Exercices traités : **468**
 - Corrigés restant partiels : **0**
 - Questions restant marquées à compléter : **0**
+- Nouveaux exercices intégrés : **85**
+- Questions détectées dans les nouveaux exercices : **305**
+- Réponses détaillées reprises des sources : **116**
+- Compléments méthodologiques rédigés : **189**
 
-Les réponses originales sont conservées. Les lacunes sont complétées par des démonstrations symboliques ou des méthodes de construction lorsque les valeurs numériques ne figurent que sur les illustrations.
-
+Les 383 corrigés déjà validés sont conservés. Les réponses détaillées présentes dans les branches professeur ou les listes finales sont prioritaires. Lorsqu'aucune valeur numérique exploitable n'est fournie par la source, le corrigé expose la démarche sans inventer de donnée absente.

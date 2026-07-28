@@ -5,7 +5,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "ALL_EXOS" / "inputs.tex"
-EXPECTED_EXERCISES = 383
+EXPECTED_EXERCISES = 468
 EXCLUDED_TOP_LEVEL = {
     ".git", ".github", "ALL_EXOS", "FULL_PDF", "Style", "framework",
     "resources", "scripts", "tools", "xx_Figures",
