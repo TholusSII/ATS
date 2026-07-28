@@ -22,10 +22,10 @@ jobs:
     timeout-minutes: 120
 
     steps:
-      - name: Récupérer le dépôt
+      - name: Récupérer exactement le commit demandé
         uses: actions/checkout@v6
         with:
-          ref: ${{ github.event.pull_request.head.ref || github.ref }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 1
 
       - name: Vérifier la banque de 468 exercices
