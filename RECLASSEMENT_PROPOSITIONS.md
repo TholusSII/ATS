@@ -1,23 +1,23 @@
 # Proposition de reclassement des exercices
 
 - Exercices analysés : **468**
-- Exercices classés automatiquement : **434**
-- Exercices à arbitrer : **34**
+- Exercices classés automatiquement : **438**
+- Exercices à arbitrer : **30**
 - Déplacements appliqués : **non (classement à blanc)**
 
 ## Répartition proposée
 
-- `1-Ingénierie système` : **11** exercices
-- `2-Modélisation des mécanismes` : **82** exercices
+- `1-Ingénierie système` : **12** exercices
+- `2-Modélisation des mécanismes` : **84** exercices
 - `3-Lois entrée sortie` : **22** exercices
 - `4-Cinématique` : **38** exercices
-- `5-Modélisation Systèmes Asservis` : **52** exercices
-- `6-Correction des Systèmes asservis` : **26** exercices
+- `5-Modélisation Systèmes Asservis` : **49** exercices
+- `6-Correction des Systèmes asservis` : **30** exercices
 - `7-Électronique` : **6** exercices
-- `8-Électromécanique` : **0** exercices
+- `8-Électromécanique` : **1** exercices
 - `9-MCC` : **2** exercices
 - `10-Électronique de Puissance` : **0** exercices
-- `11-Actions Mécaniques` : **173** exercices
+- `11-Actions Mécaniques` : **172** exercices
 - `12-RDM` : **17** exercices
 - `13-MAS-MS` : **0** exercices
 - `14-Logique` : **2** exercices
@@ -25,10 +25,6 @@
 
 ## Exercices à arbitrer
 
-- `A_Integrer/DDS_01/011_IS` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `A_Integrer/DDS_02/024_ProduitVectoriel` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `A_Integrer/DDS_03/045_DerivationVectorielle` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
-- `A_Integrer/DDS_04/068_Modelisation` — propositions : 5-Modélisation Systèmes Asservis (90), 15-Outils numériques (80), 1-Ingénierie système (0)
 - `PPM/PPM-01/1000_Dessin2D` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
 - `PPM/PPM-01/1001_Dessin2D` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
 - `PPM/PPM-01/1002_Dessin2D` — propositions : 1-Ingénierie système (0), 2-Modélisation des mécanismes (0), 3-Lois entrée sortie (0)
@@ -68,6 +64,7 @@
 - `A_Integrer/DDS_01/007_FTBO` → `5-Modélisation Systèmes Asservis/A_Integrer/DDS_01/007_FTBO` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_01/008_Bode` → `5-Modélisation Systèmes Asservis/A_Integrer/DDS_01/008_Bode` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_01/009_IdentificationBode` → `5-Modélisation Systèmes Asservis/A_Integrer/DDS_01/009_IdentificationBode` (score 90, écart 90; +90 modélisation asservie)
+- `A_Integrer/DDS_01/011_IS` → `1-Ingénierie système/A_Integrer/DDS_01/011_IS` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_01/012_Bode` → `5-Modélisation Systèmes Asservis/A_Integrer/DDS_01/012_Bode` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_01/013_FTBO` → `5-Modélisation Systèmes Asservis/A_Integrer/DDS_01/013_FTBO` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_01/016_PFS` → `11-Actions Mécaniques/A_Integrer/DDS_01/016_PFS` (score 1000, écart 1000; règle de classement explicite)
@@ -75,21 +72,23 @@
 - `A_Integrer/DDS_01/021_QCM_PFS` → `11-Actions Mécaniques/A_Integrer/DDS_01/021_QCM_PFS` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_02/022_Stabilite` → `6-Correction des Systèmes asservis/A_Integrer/DDS_02/022_Stabilite` (score 285, écart 150; +125 correcteur; +95 marges/précision; +65 performances asservies)
 - `A_Integrer/DDS_02/023_Calcul_Complexes` → `5-Modélisation Systèmes Asservis/A_Integrer/DDS_02/023_Calcul_Complexes` (score 1000, écart 1000; règle de classement explicite)
-- `A_Integrer/DDS_02/025_MargesGraphiques` → `5-Modélisation Systèmes Asservis/A_Integrer/DDS_02/025_MargesGraphiques` (score 160, écart 160; +90 modélisation asservie; +70 analyse des systèmes asservis)
-- `A_Integrer/DDS_02/026_QCM_PerfSLCI` → `5-Modélisation Systèmes Asservis/A_Integrer/DDS_02/026_QCM_PerfSLCI` (score 90, écart 90; +90 modélisation asservie)
+- `A_Integrer/DDS_02/024_ProduitVectoriel` → `2-Modélisation des mécanismes/A_Integrer/DDS_02/024_ProduitVectoriel` (score 1000, écart 1000; règle de classement explicite)
+- `A_Integrer/DDS_02/025_MargesGraphiques` → `6-Correction des Systèmes asservis/A_Integrer/DDS_02/025_MargesGraphiques` (score 1000, écart 1000; règle de classement explicite)
+- `A_Integrer/DDS_02/026_QCM_PerfSLCI` → `6-Correction des Systèmes asservis/A_Integrer/DDS_02/026_QCM_PerfSLCI` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_02/027_Cinematique` → `4-Cinématique/A_Integrer/DDS_02/027_Cinematique` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_02/029_SLCI_Stabilite` → `5-Modélisation Systèmes Asservis/A_Integrer/DDS_02/029_SLCI_Stabilite` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_02/030_Correcteur_PI` → `6-Correction des Systèmes asservis/A_Integrer/DDS_02/030_Correcteur_PI` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_02/031_Correcteur_P` → `6-Correction des Systèmes asservis/A_Integrer/DDS_02/031_Correcteur_P` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_02/032_Statiques_AM` → `11-Actions Mécaniques/A_Integrer/DDS_02/032_Statiques_AM` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_02/033_Cinematique` → `4-Cinématique/A_Integrer/DDS_02/033_Cinematique` (score 1000, écart 1000; règle de classement explicite)
-- `A_Integrer/DDS_02/034_SLCI_Rapidite` → `5-Modélisation Systèmes Asservis/A_Integrer/DDS_02/034_SLCI_Rapidite` (score 1000, écart 1000; règle de classement explicite)
-- `A_Integrer/DDS_02/035_SLCI_Rapidite` → `5-Modélisation Systèmes Asservis/A_Integrer/DDS_02/035_SLCI_Rapidite` (score 1000, écart 1000; règle de classement explicite)
+- `A_Integrer/DDS_02/034_SLCI_Rapidite` → `6-Correction des Systèmes asservis/A_Integrer/DDS_02/034_SLCI_Rapidite` (score 1000, écart 1000; règle de classement explicite)
+- `A_Integrer/DDS_02/035_SLCI_Rapidite` → `6-Correction des Systèmes asservis/A_Integrer/DDS_02/035_SLCI_Rapidite` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_02/036_Cinematique_Schema` → `2-Modélisation des mécanismes/A_Integrer/DDS_02/036_Cinematique_Schema` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_02/041_Statique_PFS` → `11-Actions Mécaniques/A_Integrer/DDS_02/041_Statique_PFS` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_02/042_Chs_Leq` → `2-Modélisation des mécanismes/A_Integrer/DDS_02/042_Chs_Leq` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_03/043_Geometrie` → `2-Modélisation des mécanismes/A_Integrer/DDS_03/043_Geometrie` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_03/044_SLCI_Calculs` → `5-Modélisation Systèmes Asservis/A_Integrer/DDS_03/044_SLCI_Calculs` (score 1000, écart 1000; règle de classement explicite)
+- `A_Integrer/DDS_03/045_DerivationVectorielle` → `2-Modélisation des mécanismes/A_Integrer/DDS_03/045_DerivationVectorielle` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_03/046_SLCI_Blocs` → `5-Modélisation Systèmes Asservis/A_Integrer/DDS_03/046_SLCI_Blocs` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_03/048_PFS` → `11-Actions Mécaniques/A_Integrer/DDS_03/048_PFS` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_03/049_SLCI_Bode_Retard` → `5-Modélisation Systèmes Asservis/A_Integrer/DDS_03/049_SLCI_Bode_Retard` (score 1000, écart 1000; règle de classement explicite)
@@ -106,6 +105,7 @@
 - `A_Integrer/DDS_04/065_SLCI_Modelisation` → `5-Modélisation Systèmes Asservis/A_Integrer/DDS_04/065_SLCI_Modelisation` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_04/066_Modelisation_Geometrie` → `2-Modélisation des mécanismes/A_Integrer/DDS_04/066_Modelisation_Geometrie` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_04/067_Modelisation_SchemaBlocs` → `9-MCC/A_Integrer/DDS_04/067_Modelisation_SchemaBlocs` (score 145, écart 55; +145 MCC)
+- `A_Integrer/DDS_04/068_Modelisation` → `5-Modélisation Systèmes Asservis/A_Integrer/DDS_04/068_Modelisation` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_04/069_SLCI_Calcul` → `5-Modélisation Systèmes Asservis/A_Integrer/DDS_04/069_SLCI_Calcul` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_04/070_Cinematique` → `4-Cinématique/A_Integrer/DDS_04/070_Cinematique` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_04/071_PFS` → `11-Actions Mécaniques/A_Integrer/DDS_04/071_PFS` (score 1000, écart 1000; règle de classement explicite)
@@ -114,7 +114,7 @@
 - `A_Integrer/DDS_04/075_SLCI_SchemaBlocs` → `5-Modélisation Systèmes Asservis/A_Integrer/DDS_04/075_SLCI_SchemaBlocs` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_04/076_Geometrie` → `2-Modélisation des mécanismes/A_Integrer/DDS_04/076_Geometrie` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_04/077_SLCI_PI` → `6-Correction des Systèmes asservis/A_Integrer/DDS_04/077_SLCI_PI` (score 1000, écart 1000; règle de classement explicite)
-- `A_Integrer/DDS_04/078_Modelisation` → `11-Actions Mécaniques/A_Integrer/DDS_04/078_Modelisation` (score 190, écart 100; +115 actions mécaniques; +75 statique/dynamique)
+- `A_Integrer/DDS_04/078_Modelisation` → `8-Électromécanique/A_Integrer/DDS_04/078_Modelisation` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_04/079_Geometrie_Verin` → `2-Modélisation des mécanismes/A_Integrer/DDS_04/079_Geometrie_Verin` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_04/080_CorrecteurP` → `6-Correction des Systèmes asservis/A_Integrer/DDS_04/080_CorrecteurP` (score 1000, écart 1000; règle de classement explicite)
 - `A_Integrer/DDS_04/081_SLCI_Numerique` → `5-Modélisation Systèmes Asservis/A_Integrer/DDS_04/081_SLCI_Numerique` (score 1000, écart 1000; règle de classement explicite)
