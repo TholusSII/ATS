@@ -34,7 +34,11 @@ jobs:
           set -euo pipefail
           git show origin/main:tools/integrate_new_exercises.py > tools/integrate_new_exercises.py
           git show origin/main:tools/materialize_new_sources.py > tools/materialize_new_sources.py
-          python3 -m py_compile tools/integrate_new_exercises.py tools/materialize_new_sources.py
+          git show origin/main:tools/enhance_new_corrections.py > tools/enhance_new_corrections.py
+          python3 -m py_compile \
+            tools/integrate_new_exercises.py \
+            tools/materialize_new_sources.py \
+            tools/enhance_new_corrections.py
 
       - name: Matérialiser les 85 exercices et leurs ressources
         shell: bash
@@ -42,11 +46,12 @@ jobs:
           set -euo pipefail
           python3 tools/materialize_new_sources.py
 
-      - name: Créer les 85 corrigés et régénérer les recueils
+      - name: Créer et affiner les 85 corrigés
         shell: bash
         run: |
           set -euo pipefail
           python3 tools/integrate_new_exercises.py
+          python3 tools/enhance_new_corrections.py
           python3 tools/generate_all_exos.py
           python3 tools/generate_all_corriges.py
 
@@ -57,6 +62,7 @@ jobs:
           test "$(find . -type f -name corrige.tex | wc -l)" -eq 468
           test "$(grep -RIlF --include='*.tex' '\InclureCorrige{corrige.tex}' A_Integrer B2_ProposerModele C2_MettreEnOeuvreDemarche CIN COR DYN ELEC GEO NUM PERF PPM RDM SEQ SLCI STAT SYS TEC | wc -l)" -eq 468
           ! grep -RIlF --include='corrige.tex' '\CorrigeACompleter' A_Integrer B2_ProposerModele C2_MettreEnOeuvreDemarche CIN COR DYN ELEC GEO NUM PERF PPM RDM SEQ SLCI STAT SYS TEC
+          ! grep -RIlx --include='corrige.tex' '[[:space:]]*\.[[:space:]]*' A_Integrer B2_ProposerModele C2_MettreEnOeuvreDemarche
           grep -q 'Exercices traités : \*\*468\*\*' CORRECTIONS_REPORT.md
           grep -q 'Corrigés restant partiels : \*\*0\*\*' CORRECTIONS_REPORT.md
           grep -q 'Questions restant marquées à compléter : \*\*0\*\*' CORRECTIONS_REPORT.md
@@ -78,6 +84,7 @@ jobs:
 
           Les 85 exercices manquants ont été matérialisés avec leurs ressources et leurs corrigés.
           Les contrôles automatiques ont validé 468 exercices, 468 fichiers `corrige.tex`, 468 inclusions et aucun marqueur `\CorrigeACompleter`.
+          Les réponses détaillées présentes dans les sources sont prioritaires sur les résumés finaux.
           EOF
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
