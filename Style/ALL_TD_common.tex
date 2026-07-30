@@ -103,8 +103,11 @@
 \renewcommand{\exer}[1]{\ExerciseTitle{#1}}
 
 % Certaines sources générées contiennent la chaîne littérale \n à la place
-% d'un véritable retour de ligne. On la traite comme un nouveau paragraphe.
+% d'un véritable retour de ligne. TeX lit alors \nsetcounter ou \nRessources
+% comme une commande unique : on traite explicitement les deux formes observées.
 \providecommand{\n}{\par}
+\providecommand{\nsetcounter}{\par\setcounter}
+\providecommand{\nRessources}{\par Ressources}
 
 % Compatibilités nécessaires aux anciennes sources.
 \providecommand{\xpComp}[2]{}
