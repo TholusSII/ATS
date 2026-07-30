@@ -102,6 +102,11 @@
 \providecommand{\degres}{}
 \renewcommand{\degres}{\ensuremath{^{\circ}}}
 
+% Font Awesome n'est pas fiable avec l'encodage T1 de certaines anciennes sources.
+% On remplace l'icône d'horloge par un libellé textuel robuste.
+\providecommand{\faClock}{}
+\renewcommand{\faClock}{\textnormal{Durée :}}
+
 % BEGIN AUTO TD INCLUDES
 \subimport{../01-Ingénierie système/}{TD.tex}
 \subimport{../02-Modélisation des mécanismes/}{TD.tex}
