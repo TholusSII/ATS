@@ -89,6 +89,11 @@
 % Le compteur exerciseentry est incrémenté dans les fichiers TD.tex.
 \renewcommand{\exer}[1]{\ExerciseTitle{#1}}
 
+% La version UPSTI de \xpComp utilise un glyphe indisponible en encodage T1.
+% Pour le recueil global, on conserve l'information sous une forme textuelle robuste.
+\providecommand{\xpComp}[2]{}
+\renewcommand{\xpComp}[2]{\textbf{#1--#2}}
+
 % BEGIN AUTO TD INCLUDES
 \subimport{../01-Ingénierie système/}{TD.tex}
 \subimport{../02-Modélisation des mécanismes/}{TD.tex}
