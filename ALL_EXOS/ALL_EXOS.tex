@@ -96,6 +96,10 @@
 % Le compteur exerciseentry est incrémenté dans les fichiers TD.tex.
 \renewcommand{\exer}[1]{\ExerciseTitle{#1}}
 
+% Certaines sources générées contiennent la chaîne littérale \n à la place
+% d'un véritable retour de ligne. On la traite comme un nouveau paragraphe.
+\providecommand{\n}{\par}
+
 % La version UPSTI de \xpComp utilise un glyphe indisponible en encodage T1.
 % Pour le recueil global, on conserve l'information sous une forme textuelle robuste.
 \providecommand{\xpComp}[2]{}
