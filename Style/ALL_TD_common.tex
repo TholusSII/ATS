@@ -107,6 +107,10 @@
 \providecommand{\faClock}{}
 \renewcommand{\faClock}{\textnormal{Durée :}}
 
+% Les URL brutes de certaines anciennes sources provoquent une erreur avec T1.
+% Tous les liens restent cliquables, avec un libellé textuel robuste.
+\renewcommand{\url}[1]{\href{#1}{Accéder au lien en ligne}}
+
 % Chaque ALL_TD.tex est placé au même niveau que le TD.tex correspondant.
 \input{TD.tex}
 
