@@ -7,6 +7,7 @@
 \usepackage{lmodern}
 \usepackage{xcolor}
 \usepackage{graphicx}
+\usepackage{import}
 \usepackage{amsmath,amssymb,mathtools,stmaryrd}
 \usepackage{xparse,etoolbox}
 \usepackage{tikz,pgfplots}
@@ -58,19 +59,36 @@
 \setcounter{cptApplication}{1}
 \setcounter{cptTD}{1}
 
+% Compatibilité avec les fichiers TD de la banque.
 \providecommand{\td}{}
 \providecommand{\exer}[1]{}
 \newcounter{exerciseentry}[chapter]
 \renewcommand{\theexerciseentry}{\thechapter.\arabic{exerciseentry}}
+\providecommand{\theHquestion}{}
 \renewcommand{\theHquestion}{\theHchapter.\arabic{exerciseentry}.\arabic{question}}
+
 \newcommand{\ExerciseTitle}[1]{%
   \par\medskip
-  \begin{tcolorbox}[enhanced,breakable,colback=SIlightblue,colframe=SIblue,boxrule=.8pt,arc=1.5mm,left=3mm,right=3mm,top=2mm,bottom=2mm]
+  \begin{tcolorbox}[
+    enhanced,
+    breakable,
+    colback=SIlightblue,
+    colframe=SIblue,
+    boxrule=.8pt,
+    arc=1.5mm,
+    left=3mm,
+    right=3mm,
+    top=2mm,
+    bottom=2mm
+  ]
     {\large\bfseries\color{SIblue}Exercice \theexerciseentry}\par\smallskip
     {\bfseries #1}
   \end{tcolorbox}%
 }
+
+% Le compteur exerciseentry est incrémenté dans les fichiers TD.tex.
 \renewcommand{\exer}[1]{\ExerciseTitle{#1}}
+
 % BEGIN AUTO TD INCLUDES
 \subimport{../01-Ingénierie système/}{TD.tex}
 \subimport{../02-Modélisation des mécanismes/}{TD.tex}
@@ -88,6 +106,7 @@
 \subimport{../14-Logique/}{TD.tex}
 \subimport{../15-Outils numériques/}{TD.tex}
 % END AUTO TD INCLUDES
+
 \backmatter
 \printindex
 \end{document}
