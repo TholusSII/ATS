@@ -62,6 +62,9 @@
 % Compatibilité avec les fichiers TD de la banque.
 \providecommand{\td}{}
 \providecommand{\exer}[1]{}
+\makeatletter
+\@ifundefined{c@exo}{\newcounter{exo}}{}
+\makeatother
 \newcounter{exerciseentry}[chapter]
 \renewcommand{\theexerciseentry}{\thechapter.\arabic{exerciseentry}}
 \providecommand{\theHquestion}{}
