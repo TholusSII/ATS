@@ -1,0 +1,113 @@
+% Socle commun des recueils ALL_TD.tex.
+% Ce fichier est appelé depuis chacun des grands répertoires du dépôt.
+
+\providecommand{\ModeCorriges}{0}
+\providecommand{\TitreChapitreTD}{Recueil de TD}
+
+\documentclass[11pt,a4paper,openany]{book}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{import}
+\usepackage{amsmath,amssymb,mathtools,stmaryrd}
+\usepackage{xparse,etoolbox}
+\usepackage{tikz,pgfplots}
+\usepackage{tabularx,array,booktabs,longtable}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{makeidx}
+
+\newcommand{\discipline}{Sciences Industrielles de l'Ingénieur}
+\newcommand{\auteur}{Thomas Lusseau}
+\newcommand{\repRel}{..}
+\newcommand{\repStyle}{\repRel/Style}
+\makeatletter
+\def\input@path{{../Style/}}
+\makeatother
+
+\input{\repRel/Style/packages_v2}
+\input{\repRel/Style/macros_SII_v2}
+\input{\repRel/Style/environment_v2}
+\usepackage{UPSTI_Pedagogique}
+\input{\repRel/Style/exercices_compat}
+
+% 0 : énoncés seuls ; 1 : énoncés et corrigés.
+\ifnum\ModeCorriges=1\relax
+  \AfficherCorriges
+\else
+  \MasquerCorriges
+\fi
+
+\graphicspath{{images/}{./}}
+\makeindex
+\title{Recueil d'exercices\\\TitreChapitreTD}
+\author{Thomas Lusseau}
+\date{\today}
+
+\begin{document}
+\frontmatter
+\maketitle
+\tableofcontents
+\mainmatter
+
+\newcommand{\repExo}{ALL_TD}
+\newcommand{\nomExo}{ALL_TD}
+\AtBeginEnvironment{corrige}{\small}
+\proffalse
+\livrettrue
+\collefalse
+\normaltrue
+\setcounter{cptApplication}{1}
+\setcounter{cptTD}{1}
+
+% Compatibilité avec les fichiers historiques de la banque d'exercices.
+\providecommand{\td}{}
+\providecommand{\exer}[1]{}
+\makeatletter
+\@ifundefined{c@exo}{\newcounter{exo}}{}
+\makeatother
+\newcounter{exerciseentry}[chapter]
+\renewcommand{\theexerciseentry}{\thechapter.\arabic{exerciseentry}}
+\providecommand{\theHquestion}{}
+\renewcommand{\theHquestion}{\theHchapter.\arabic{exerciseentry}.\arabic{question}}
+
+\newcommand{\ExerciseTitle}[1]{%
+  \par\medskip
+  \begin{tcolorbox}[
+    enhanced,
+    breakable,
+    colback=SIlightblue,
+    colframe=SIblue,
+    boxrule=.8pt,
+    arc=1.5mm,
+    left=3mm,
+    right=3mm,
+    top=2mm,
+    bottom=2mm
+  ]
+    {\large\bfseries\color{SIblue}Exercice \theexerciseentry}\par\smallskip
+    {\bfseries #1}
+  \end{tcolorbox}%
+}
+
+% Le compteur exerciseentry est incrémenté dans le fichier TD.tex du chapitre.
+\renewcommand{\exer}[1]{\ExerciseTitle{#1}}
+
+% Compatibilités nécessaires aux anciennes sources.
+\providecommand{\xpComp}[2]{}
+\renewcommand{\xpComp}[2]{\textbf{#1--#2}}
+\providecommand{\degres}{}
+\renewcommand{\degres}{\ensuremath{^{\circ}}}
+
+% Chaque ALL_TD.tex est placé au même niveau que le TD.tex correspondant.
+\input{TD.tex}
+
+\backmatter
+\printindex
+\end{document}
