@@ -5,6 +5,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
 \usepackage{lmodern}
+\usepackage{textcomp}
 \usepackage{xcolor}
 \usepackage{graphicx}
 \usepackage{import}
@@ -96,6 +97,10 @@
 % Pour le recueil global, on conserve l'information sous une forme textuelle robuste.
 \providecommand{\xpComp}[2]{}
 \renewcommand{\xpComp}[2]{\textbf{#1--#2}}
+
+% Compatibilité des anciennes sources utilisant \degres.
+\providecommand{\degres}{}
+\renewcommand{\degres}{\ensuremath{^{\circ}}}
 
 % BEGIN AUTO TD INCLUDES
 \subimport{../01-Ingénierie système/}{TD.tex}
