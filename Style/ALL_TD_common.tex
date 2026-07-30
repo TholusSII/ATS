@@ -102,6 +102,10 @@
 % Le compteur exerciseentry est incrémenté dans le fichier TD.tex du chapitre.
 \renewcommand{\exer}[1]{\ExerciseTitle{#1}}
 
+% Certaines sources générées contiennent la chaîne littérale \n à la place
+% d'un véritable retour de ligne. On la traite comme un nouveau paragraphe.
+\providecommand{\n}{\par}
+
 % Compatibilités nécessaires aux anciennes sources.
 \providecommand{\xpComp}[2]{}
 \renewcommand{\xpComp}[2]{\textbf{#1--#2}}
