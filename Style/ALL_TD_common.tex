@@ -8,6 +8,9 @@
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+% Certaines anciennes sources contiennent le symbole Unicode ®,
+% non disponible avec plusieurs polices T1 utilisées par la banque.
+\DeclareUnicodeCharacter{00AE}{}
 \usepackage[french]{babel}
 \usepackage{lmodern}
 \usepackage{textcomp}
