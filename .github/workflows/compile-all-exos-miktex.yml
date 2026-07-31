@@ -4,14 +4,34 @@ on:
   pull_request:
   workflow_dispatch:
 
+concurrency:
+  group: compile-all-exos-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
+  source-snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Upload complete source snapshot
+        uses: actions/upload-artifact@v7
+        with:
+          name: ats-source-snapshot
+          include-hidden-files: false
+          if-no-files-found: error
+          compression-level: 6
+          path: .
+
   compile-miktex:
     runs-on: windows-latest
     timeout-minutes: 120
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install MiKTeX and Perl
         shell: powershell
@@ -31,7 +51,6 @@ jobs:
           initexmf --admin --set-config-value=[MPM]AutoInstall=1
           initexmf --set-config-value=[MPM]AutoInstall=1
           initexmf --admin --update-fndb
-          mpm --admin --update-db
           pdflatex --version
 
       - name: Compile ALL_EXOS
@@ -83,7 +102,7 @@ jobs:
 
       - name: Upload build logs and PDF
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: all-exos-miktex-build
           if-no-files-found: warn
