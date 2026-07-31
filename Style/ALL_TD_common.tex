@@ -42,6 +42,7 @@
 \input{\repRel/Style/exercices_compat}
 
 % 0 : énoncés seuls ; 1 : énoncés et corrigés.
+% Cette variable pilote à la fois les blocs \ifprof et les fichiers corrige.tex.
 \ifnum\ModeCorriges=1\relax
   \AfficherCorriges
 \else
@@ -63,7 +64,11 @@
 \newcommand{\repExo}{ALL_TD}
 \newcommand{\nomExo}{ALL_TD}
 \AtBeginEnvironment{corrige}{\small}
-\proffalse
+\ifnum\ModeCorriges=1\relax
+  \proftrue
+\else
+  \proffalse
+\fi
 \livrettrue
 \collefalse
 \normaltrue
