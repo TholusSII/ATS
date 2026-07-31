@@ -41,6 +41,10 @@
 \usepackage{UPSTI_Pedagogique}
 \input{\repRel/Style/exercices_compat}
 
+% L'option upquote des listings demande des glyphes absents de certaines
+% polices T1 de la banque. Les apostrophes restent lisibles sans cette option.
+\lstset{upquote=false}
+
 % 0 : énoncés seuls ; 1 : énoncés et corrigés.
 % Cette variable pilote à la fois les blocs \ifprof et les fichiers corrige.tex.
 \ifnum\ModeCorriges=1\relax
