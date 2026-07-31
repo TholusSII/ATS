@@ -2,59 +2,82 @@
 % Source : GEO/GEO-03/18_Maxpid/18_Maxpid.tex
 % Statut : rédigé (5 question(s)).
 \begin{corrigebox}[Corrigé rédigé]
+
 \CorrigeQuestion{1}
 Le graphe des liaisons est
-                $0\xleftrightarrow[\text{pivot}]{D}4\xleftrightarrow[\text{pivot}]{C}3$,
-                avec $3\xleftrightarrow[\text{glissière}]{\vec x_1}1$,
-                $1\xleftrightarrow[\text{pivot}]{B}0$ et la liaison hélicoïdale
-                $2/3$ de pas $p=4\,\mathrm{mm}$. Le rotor 2 est guidé en pivot dans le
-                stator 1. La chaîne géométrique utile est donc le triangle fixe-mobile
-                $BCD$, dont $BC=\lambda$ et $DC=r$ (longueur portée par le levier 4).
+$0\xleftrightarrow[\text{pivot}]{D}4\xleftrightarrow[\text{pivot}]{C}3$,
+avec $3\xleftrightarrow[\text{glissière}]{\vec x_1}1$,
+$1\xleftrightarrow[\text{pivot}]{B}0$ et la liaison hélicoïdale
+$2/3$ de pas $p=4\,\mathrm{mm}$. Le rotor 2 est guidé en pivot dans le
+stator 1. La chaîne géométrique utile est donc le triangle $BCD$, dont
+$BC=\lambda$ et $DC=r$.
+
 \CorrigeQuestion{2}
 En notant $L=BD$, $r=DC$ et $\theta_0$ l'angle fixe de
-                $\overrightarrow{BD}$ avec $\vec x_0$, la fermeture du triangle $BCD$
-                donne
-                $$\lambda^2=L^2+r^2-2Lr\cos(\theta-\theta_0).$$
-                Sur la branche correspondant à la configuration dessinée,
-                $$\boxed{\theta(\lambda)=\theta_0+
-                \arccos\!\left(\frac{L^2+r^2-\lambda^2}{2Lr}\right)}.$$
-                Les constantes $L$, $r$ et $\theta_0$ se calculent une fois pour toutes
-                avec les dimensions $a,b,c,d$ du schéma.
+$\overrightarrow{BD}$ avec $\vec x_0$, la fermeture du triangle $BCD$
+donne
+\[
+\lambda^2=L^2+r^2-2Lr\cos(\theta-\theta_0).
+\]
+Sur la branche correspondant à la configuration dessinée,
+\[
+\boxed{
+\theta(\lambda)=\theta_0+
+\arccos\!\left(\frac{L^2+r^2-\lambda^2}{2Lr}\right)
+}.
+\]
+
 \CorrigeQuestion{3}
 La dérivation de la fermeture fournit
-                $2\lambda\dot\lambda=2Lr\sin(\theta-\theta_0)\dot\theta$.
-                Ainsi, hors position singulière,
-                $$\boxed{\dot\theta=
-                \frac{\lambda}{Lr\sin(\theta-\theta_0)}\,\dot\lambda}.$$
-                Le signe est automatiquement celui de la branche géométrique choisie.
+\[
+2\lambda\dot\lambda
+=2Lr\sin(\theta-\theta_0)\dot\theta.
+\]
+Ainsi, hors position singulière,
+\[
+\boxed{
+\dot\theta=
+\frac{\lambda}{Lr\sin(\theta-\theta_0)}\dot\lambda
+}.
+\]
+
 \CorrigeQuestion{4}
 Pour une vis de pas $p$, un tour du rotor produit une translation $p$ :
-                $$\dot\lambda=\frac{p}{2\pi}\,\omega.$$
-                Par conséquent
-                $$\boxed{\dot\theta=
-                \frac{p\lambda}{2\pi Lr\sin(\theta-\theta_0)}\,\omega}.$$
-                Cette expression met en évidence l'amplification de vitesse à proximité
-                des alignements, qui sont des configurations singulières.
+\[
+\dot\lambda=\frac{p}{2\pi}\omega.
+\]
+Par conséquent,
+\[
+\boxed{
+\dot\theta=
+\frac{p\lambda}{2\pi Lr\sin(\theta-\theta_0)}\omega
+}.
+\]
+
 \CorrigeQuestion{5}
-À $n=500\,\mathrm{tr\,min^{-1}}$, la vitesse moteur vaut
-                $\omega=2\pi n/60=52{,}36\,\mathrm{rad\,s^{-1}}$ et
-                $\dot\lambda=pn/60=33{,}3\,\mathrm{mm\,s^{-1}}$ pour $p=4\,\mathrm{mm}$.
-                Un tracé Python robuste est obtenu en balayant les valeurs admissibles de
-                $\lambda$, puis en calculant $\theta$ et $\dot\theta$ :
-                \begin{verbatim}
-import numpy as np
-import matplotlib.pyplot as plt
-p = 4e-3
-n = 500/60
-omega = 2*np.pi*n
-# L, r, theta0 : valeurs déduites des cotes a, b, c, d
-lam = np.linspace(abs(L-r)+1e-5, L+r-1e-5, 1000)
-alpha = np.arccos((L**2+r**2-lam**2)/(2*L*r))
-theta = theta0 + alpha
-theta_dot = (p/(2*np.pi))*omega*lam/(L*r*np.sin(alpha))
-plt.plot(theta, theta_dot)
-plt.xlabel(r'$\theta$ (rad)'); plt.ylabel(r'$\dot\theta$ (rad/s)')
-plt.grid(); plt.show()
-                \end{verbatim}
-                On écarte volontairement les extrémités, où $\sin(\theta-\theta_0)=0$.
+À $n=500\,\mathrm{tr\,min^{-1}}$,
+\[
+\omega=\frac{2\pi n}{60}=\SI{52.36}{rad.s^{-1}}
+\]
+et, pour $p=\SI{4}{mm}$,
+\[
+\dot\lambda=\frac{pn}{60}=\SI{33.3}{mm.s^{-1}}.
+\]
+Le tracé numérique consiste à balayer les valeurs admissibles de
+$\lambda$, puis à calculer successivement
+\[
+\alpha(\lambda)=
+\arccos\!\left(\frac{L^2+r^2-\lambda^2}{2Lr}\right),
+\qquad
+\theta=\theta_0+\alpha,
+\]
+et
+\[
+\dot\theta=
+\frac{p\omega}{2\pi}
+\frac{\lambda}{Lr\sin\alpha}.
+\]
+Les deux extrémités du domaine sont écartées, car
+$\sin\alpha=0$ dans les configurations singulières.
+
 \end{corrigebox}
