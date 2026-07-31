@@ -50,58 +50,39 @@ $\Rightarrow    \lambda(t) = \pm\sqrt{L^2 - R^2\cos^2\theta(t)} + R\sin\theta(t)
 \CorrigeQuestion{3}
 $\lambdap(t) = \pm\left( \dfrac{R^2 \thetap(t) \cos\theta(t)\sin\theta(t)}{\sqrt{L^2 - R^2\cos^2\theta(t)}}\right) + \thetap(t)R\cos\theta(t) $
 \CorrigeQuestion{4}
-\noindent\hrule
-\begin{lstlisting}
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-"""12_BielleManivelle.py"""
-__author__ = "Xavier Pessoles"
-__email__ = "xpessoles.ptsi@free.fr"
-
-import numpy as np
-import matplotlib.pyplot as plt
-import math as m
-from scipy.optimize import newton
-from scipy.optimize import fsolve
-
-R = 0.01 # m
-L = 0.03 # m
-w = 100
-def calc_lambda(theta):
-    #res = R*np.sin(theta)
-    #print(L*L-R*R*np.cos(theta)*np.cos(theta))
-    #res = res + np.sqrt(L*L-R*R*np.cos(theta)*np.cos(theta))
-    res = np.sqrt(L*L-R*R*np.cos(theta)*np.cos(theta))+R*np.sin(theta)
-    return res
-
-def plot_lambda():
-    les_theta=np.linspace(-2*np.pi,2*np.pi,1000)
-    les_l = [calc_lambda(x) for x in les_theta]
-    plt.grid()
-    plt.xlabel("Temps (s)")
-    plt.ylabel("Vitesse (${m}s^{-1}$)")
-    plt.plot(les_theta,les_l,label=str("R=")+str(R)+" mm,"+str("L=")+str(L)+" mm")
-    plt.legend()
-    plt.show()
-    
-plot_lambda()
-\end{lstlisting}
-\noindent\hrule
+On retient la branche positive de la position :
+\[
+\lambda(t)=\sqrt{L^2-R^2\cos^2\!\theta(t)}+R\sin\theta(t).
+\]
+Avec $\theta(t)=\omega t$ et $\omega=\SI{100}{rad.s^{-1}}$, on obtient
+\[
+\dot\lambda(t)=\omega\left(
+\frac{R^2\cos(\omega t)\sin(\omega t)}
+{\sqrt{L^2-R^2\cos^2(\omega t)}}
++R\cos(\omega t)
+\right).
+\]
+La courbe est calculée pour $R=\SI{10}{mm}$, puis pour
+$L=\SI{20}{mm}$ et $L=\SI{30}{mm}$.
 
 \begin{marginfigure}
 \includegraphics[width=\linewidth]{12_02_c}
 \end{marginfigure}
 \CorrigeQuestion{5}
+L'accélération peut être calculée par différence centrée à partir de la vitesse :
+\[
+\ddot\lambda(t_i)\simeq
+\frac{\dot\lambda(t_{i+1})-\dot\lambda(t_{i-1})}{2\,\Delta t}.
+\]
 \begin{marginfigure}
 \includegraphics[width=\linewidth]{12_03_c}
 \end{marginfigure}
 
 \begin{enumerate}
-\item .
-\item $\lambda(t) = \pm\sqrt{L^2 - R^2\cos^2\theta(t)} + R\sin\theta(t) $.
+\item Tracer le graphe des liaisons.
+\item $\lambda(t) = \pm\sqrt{L^2 - R^2\cos^2\theta(t)} + R\sin\theta(t)$.
 \item $\lambdap(t) = \pm\left( \dfrac{R^2 \thetap(t) \cos\theta(t)\sin\theta(t)}{\sqrt{L^2 - R^2\cos^2\theta(t)}}\right) + \thetap(t)R\cos\theta(t)$.
-\item .
-\item .
+\item Évaluer la vitesse pour les deux valeurs de $L$.
+\item Dériver numériquement la vitesse pour obtenir l'accélération.
 \end{enumerate}
 \end{corrigebox}
