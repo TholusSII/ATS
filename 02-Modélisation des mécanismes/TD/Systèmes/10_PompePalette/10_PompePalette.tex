@@ -124,21 +124,24 @@ Le débit instantané de la pompe est donné par $q(t)=S\dot{\lambda}(t)$.
 
 \question{En utilisant Python, tracer le débit instantané de la pompe pour un tour de pompe pour $e=\SI{10}{mm}$ pour une pompe à 5 pistons (5 branches \textbf{1+2}). }
 \ifprof
-\begin{lstlisting}
+% Le bloc listings historique provoque sous certaines versions de MiKTeX
+% une erreur T1 au moment de \begin{lstlisting}. Un verbatim standard
+% suffit ici, puisque le code doit seulement être affiché.
+\begin{verbatim}
 def plot_debit5p():
     plt.cla()
     w = 2*m.pi # rad/s (1tr/s)
     les_t = np.linspace(0,6,6000)
     les_theta = w*les_t
    
-    # Calcul de la vitesse instantanée des pistons.
+    # Calcul de la vitesse instantanee des pistons.
     les_lambda = calc_lambda(les_theta)
     les_lambdap = calc_lambdap_bis(les_t,les_lambda)
     les_lambdap = np.array(les_lambdap)
     
     S= 1e-4 # Surface en m2
     
-    # 5 courbes de débit décalées d'un cinquième de tour
+    # 5 courbes de debit decalees d'un cinquieme de tour
     les_q1 = S*les_lambdap
     les_q2 = S*les_lambdap[200:]
     les_q3 = S*les_lambdap[400:]
@@ -157,9 +160,9 @@ def plot_debit5p():
     les_theta = les_theta[:1000]
   
     plt.xlabel("$\\theta$ (deg)")
-    plt.ylabel("Débit instantané $m^3s^{-1}$")
+    plt.ylabel("Debit instantane $m^3s^{-1}$")
     
-    # On conserve que les valeurs positives (débit)
+    # On conserve que les valeurs positives (debit)
     for i in range(len(les_q1)):
         if les_q1[i]<0:
             les_q1[i]=0
@@ -178,11 +181,11 @@ def plot_debit5p():
     plt.plot(np.degrees(les_theta),les_q4)
     plt.plot(np.degrees(les_theta),les_q5)
     
-    # Le débit instantané est la sommme des contributions
+    # Le debit instantane est la somme des contributions
     plt.plot(np.degrees(les_theta),les_q1+les_q2+les_q3+les_q4+les_q5)
     #plt.show() 
     #plt.savefig("10_05_c.pdf")
-\end{lstlisting}
+\end{verbatim}
 
 \begin{marginfigure}
 \includegraphics[width=\linewidth]{10_05_c}
