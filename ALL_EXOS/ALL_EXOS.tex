@@ -1,4 +1,4 @@
-\providecommand{\ModeCorriges}{0}
+\providecommand{\ModeCorriges}{1}
 \documentclass[11pt,a4paper,openany]{book}
 
 \usepackage[T1]{fontenc}
@@ -36,7 +36,8 @@
 \usepackage{UPSTI_Pedagogique}
 \input{\repRel/Style/exercices_compat}
 
-% Une seule commande suffit : \AfficherCorriges ou \MasquerCorriges.
+% Une seule variable pilote les deux systèmes historiques de corrigés :
+% les blocs \ifprof ... \fi et les fichiers séparés corrige.tex.
 \ifnum\ModeCorriges=1\relax
   \AfficherCorriges
 \else
@@ -57,7 +58,11 @@
 \newcommand{\repExo}{ALL_EXOS}
 \newcommand{\nomExo}{ALL_EXOS}
 \AtBeginEnvironment{corrige}{\small}
-\proffalse
+\ifnum\ModeCorriges=1\relax
+  \proftrue
+\else
+  \proffalse
+\fi
 \livrettrue
 \collefalse
 \normaltrue
