@@ -1,32 +1,64 @@
-% Fichier généré automatiquement par tools/generate_corrections.py.
-% Source : GEO/GEO-01/12_BielleManivelle/12_BielleManivelle.tex
-% Statut : complété (4/4 question(s)).
+% Corrigé de l'exercice 12_BielleManivelle.
+% La correction est autonome : elle ne dépend d'aucune image extérieure.
 \begin{corrigebox}[Corrigé complété]
+
 \CorrigeQuestion{1}
-\CorrigeSource{Réponse reprise d'un exercice homonyme de la banque ; la provenance exacte est indiquée dans le commentaire du fichier.}
-% Réponse reprise de : GEO/GEO-03/12_BielleManivelle/12_BielleManivelle.tex
-\begin{marginfigure}
-\includegraphics[width=\linewidth]{../../GEO-03/12_BielleManivelle/images/12_01_c}
-\end{marginfigure}
+Le graphe des liaisons est une chaîne fermée constituée des quatre solides
+$0$, $1$, $2$ et $3$ :
+\begin{center}
+\begin{tikzpicture}[>=latex,node distance=2.4cm]
+  \node[draw,circle] (S0) {$0$};
+  \node[draw,circle,right of=S0] (S1) {$1$};
+  \node[draw,circle,right of=S1] (S2) {$2$};
+  \node[draw,circle,right of=S2] (S3) {$3$};
+  \draw[-] (S0) -- node[above]{pivot en $A$} (S1);
+  \draw[-] (S1) -- node[above]{pivot en $B$} (S2);
+  \draw[-] (S2) -- node[above]{pivot en $C$} (S3);
+  \draw[-] (S3) to[bend left=35] node[below]{glissière} (S0);
+\end{tikzpicture}
+\end{center}
+
 \CorrigeQuestion{2}
-On reconstruit la configuration en appliquant les
-                rotations dans l'ordre de la chaîne cinématique puis les translations le
-                long de leurs axes. Les longueurs des barres restent constantes. Les
-                coordonnées finales se calculent avec
-                $\vec i'=\cos q\,\vec i+\sin q\,\vec j$; le tracé doit conserver les
-                liaisons et le contact sans pénétration.
+On choisit $A$ comme origine et l'axe de translation de la pièce $3$ comme
+axe horizontal. Pour $\theta=\dfrac{\pi}{2}$, on a
+\[
+B=(0,R),\qquad C=(x_C,0).
+\]
+La longueur $BC=L$ impose
+\[
+x_C^2+R^2=L^2,
+\qquad
+x_C=\sqrt{L^2-R^2}.
+\]
+Avec $R=10\,\mathrm{mm}$ et $L=20\,\mathrm{mm}$ :
+\[
+x_C=10\sqrt{3}\,\mathrm{mm}\simeq17{,}3\,\mathrm{mm}.
+\]
+
 \CorrigeQuestion{3}
-On reconstruit la configuration en appliquant les
-                rotations dans l'ordre de la chaîne cinématique puis les translations le
-                long de leurs axes. Les longueurs des barres restent constantes. Les
-                coordonnées finales se calculent avec
-                $\vec i'=\cos q\,\vec i+\sin q\,\vec j$; le tracé doit conserver les
-                liaisons et le contact sans pénétration.
+Pour $\theta=-\dfrac{\pi}{2}$, le point $B$ est situé en $(0,-R)$.
+La configuration est symétrique de la précédente par rapport à l'axe de
+translation et l'on obtient encore
+\[
+x_C=\sqrt{L^2-R^2}=10\sqrt{3}\,\mathrm{mm}.
+\]
+
 \CorrigeQuestion{4}
-On reconstruit la configuration en appliquant les
-                rotations dans l'ordre de la chaîne cinématique puis les translations le
-                long de leurs axes. Les longueurs des barres restent constantes. Les
-                coordonnées finales se calculent avec
-                $\vec i'=\cos q\,\vec i+\sin q\,\vec j$; le tracé doit conserver les
-                liaisons et le contact sans pénétration.
+Pour une position quelconque de la manivelle, la position du coulisseau est
+\[
+x_C(\theta)=R\cos\theta+
+\sqrt{L^2-R^2\sin^2\theta}.
+\]
+Les positions extrêmes sont obtenues lorsque la manivelle est alignée avec
+l'axe de translation :
+\[
+x_{\max}=L+R,
+\qquad
+x_{\min}=L-R.
+\]
+La course de la pièce $3$ vaut donc
+\[
+\mathcal{C}=x_{\max}-x_{\min}=2R=20\,\mathrm{mm}.
+\]
+
 \end{corrigebox}
