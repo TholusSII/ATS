@@ -1,143 +1,92 @@
-% Fichier généré automatiquement par tools/generate_corrections.py.
-% Source : GEO/GEO-03/10_PompePalette/10_PompePalette.tex
-% Statut : complet (7/7 question(s) renseignée(s), 0 reprise(s)).
-\begin{corrigebox}[Corrigé extrait de la banque]
+% Corrigé de l'exercice 10_PompePalette.
+% Version robuste pour MiKTeX : aucun environnement listings ou verbatim.
+\begin{corrigebox}[Corrigé complété]
+
 \CorrigeQuestion{1}
+Le graphe des liaisons comporte le bâti \textbf{0}, le rotor \textbf{1} et la
+palette \textbf{2}. Le rotor est en liaison pivot avec le bâti, la palette est
+en liaison glissière avec le rotor et son extrémité reste en contact avec le
+stator.
 \begin{marginfigure}
 \includegraphics[width=\linewidth]{10_01_c}
 \end{marginfigure}
+
 \CorrigeQuestion{2}
-On a $\vect{OA}+\vect{AB}+\vect{BO}=\vect{0}$
-soit $-e\vi{0}+\lambda\vi{1}-R\vect{u}=\vect{0}$
-$\Leftrightarrow -e\vi{0}+\lambda(t)\cos\theta(t)\vi{0}+\lambda(t)\sin\theta(t)\vj{0}-R\cos\varphi(t)\vi{0}-R\sin\varphi(t)\vj{0} = \vect{0}$.
+La fermeture géométrique s'écrit
+\[
+\overrightarrow{OA}+\overrightarrow{AB}+\overrightarrow{BO}=\vec 0.
+\]
+Avec $\overrightarrow{AO}=e\,\vec i_0$,
+$\overrightarrow{AB}=\lambda\,\vec i_1$ et
+$\overrightarrow{OB}=R\,\vec u$, on obtient, après projection,
+\[
+\left\{
+\begin{aligned}
+-e+\lambda\cos\theta&=R\cos\varphi,\\
+\lambda\sin\theta&=R\sin\varphi.
+\end{aligned}
+\right.
+\]
+En élevant au carré puis en additionnant les deux relations :
+\[
+R^2=e^2-2e\lambda\cos\theta+\lambda^2.
+\]
+La solution correspondant au contact avec le stator est
+\[
+\boxed{\lambda(\theta)=e\cos\theta+
+\sqrt{R^2-e^2\sin^2\theta}}.
+\]
 
-En projetant les expressions sur $\vi{0}$ et $\vj{0}$, on a :
-$\left\{
-\begin{array}{l}
--e+\lambda(t)\cos\theta(t)-R\cos\varphi(t) = 0 \\
-\lambda(t)\sin\theta(t)-R\sin\varphi(t) = 0 \\
-\end{array}\right.
-$
-
-On cherche à supprimer $\varphi(t)$; donc 
-
-$\left\{
-\begin{array}{l}
--e+\lambda(t)\cos\theta(t)=R\cos\varphi(t)  \\
-\lambda(t)\sin\theta(t)  = R\sin\varphi(t) \\
-\end{array}\right.
-$.
-
-En élevant au carré les expressions et en sommant, on obtient 
-$R^2 =\left(-e+\lambda(t)\cos\theta(t)\right)^2+\lambda(t)^2\sin^2\theta(t)$
-$\Rightarrow R^2 =\left(-e+\lambda(t)\cos\theta(t)\right)^2+\lambda(t)^2\sin^2\theta(t)$
-
-$\Rightarrow R^2 =e^2 -2e\lambda(t)\cos\theta(t)+\lambda(t)^2$.
-
-Résolution de l'équation :
-$\lambda(t)^2-2e\lambda(t)\cos\theta(t)+e^2 -R^2=0$.
-
-On  a $\Delta = \left(-2e\cos\theta(t)\right)^2-4\left(e^2 -R^2\right)$
-$ =4e^2\cos^2\theta(t)-4e^2+4R^2$.
-
-On a donc 
-
-$ \lambda(t)= \dfrac{2e\cos\theta(t)\pm \sqrt{4e^2\cos^2\theta(t)-4e^2+4R^2}}{2}$
-
-$  =e\cos\theta(t)\pm \sqrt{e^2\cos^2\theta(t)-e^2+R^2}$
 \CorrigeQuestion{3}
-On garde la solution positive et obtient la courbe suivante.
-
+La fonction précédente est évaluée sur un tour, pour
+$0\leq\theta\leq2\pi$. La branche positive est retenue afin d'obtenir une
+longueur de palette positive.
 \begin{marginfigure}
 \includegraphics[width=\linewidth]{10_02_c}
 \end{marginfigure}
+
 \CorrigeQuestion{4}
-En dérivant l'expression précédente, on a 
-$ \dot{\lambda}_{+}(t)= -e\dot{\theta}(t)\sin\theta(t)+  \dfrac{1}{2}\left( e^2\cos^2\theta(t)\right)'\left( e^2\cos^2\theta(t)-e^2+R^2\right)^{-\dfrac{1}{2}} $
-
-$= -e\dot{\theta}(t)\sin\theta(t)-  \dfrac{ e^2\dot{\theta}(t)\cos\theta(t)\sin\theta(t)}{ \sqrt{e^2\cos^2\theta(t)-e^2+R^2}}$.
-
- \textbf{À revoir}
+En dérivant par rapport au temps :
+\[
+\boxed{
+\dot\lambda=
+-e\dot\theta\sin\theta
+-\frac{e^2\dot\theta\sin\theta\cos\theta}
+{\sqrt{R^2-e^2\sin^2\theta}}
+}.
+\]
 \begin{marginfigure}
 \includegraphics[width=\linewidth]{10_03_c}
 \end{marginfigure}
+
 \CorrigeQuestion{5}
-Le débit instantané de la pompe est donné par $q(t)=S\dot{\lambda}(t)$.
+Pour une palette de section $S$, le débit algébrique instantané vaut
+\[
+\boxed{q(t)=S\,\dot\lambda(t)}.
+\]
+Le débit fourni est obtenu en ne conservant que la phase de refoulement.
+
 \CorrigeQuestion{6}
+Pour chaque valeur de l'excentration $e$, on calcule $\lambda(\theta)$, puis
+$\dot\lambda(\theta)$ et enfin $q(\theta)=S\dot\lambda(\theta)$. Une
+excentration plus importante augmente l'amplitude des variations de débit.
 \begin{marginfigure}
 \includegraphics[width=\linewidth]{10_04_c}
 \end{marginfigure}
+
 \CorrigeQuestion{7}
-\begin{lstlisting}
-def plot_debit5p():
-    plt.cla()
-    w = 2*m.pi # rad/s (1tr/s)
-    les_t = np.linspace(0,6,6000)
-    les_theta = w*les_t
-   
-    # Calcul de la vitesse instantanée des pistons.
-    les_lambda = calc_lambda(les_theta)
-    les_lambdap = calc_lambdap_bis(les_t,les_lambda)
-    les_lambdap = np.array(les_lambdap)
-    
-    S= 1e-4 # Surface en m2
-    
-    # 5 courbes de débit décalées d'un cinquième de tour
-    les_q1 = S*les_lambdap
-    les_q2 = S*les_lambdap[200:]
-    les_q3 = S*les_lambdap[400:]
-    les_q4 = S*les_lambdap[600:]
-    les_q5 = S*les_lambdap[800:]
-    
-    # On conserve que les valeurs que sur un tour
-    les_q1 = les_q1[:1000]
-    les_q2 = les_q2[:1000]
-    les_q3 = les_q3[:1000]
-    les_q4 = les_q4[:1000]
-    les_q5 = les_q5[:1000]
-    plt.grid()
-    
-    les_t = les_t[:1000]
-    les_theta = les_theta[:1000]
-  
-    plt.xlabel("$\\theta$ (deg)")
-    plt.ylabel("Débit instantané $m^3s^{-1}$")
-    
-    # On conserve que les valeurs positives (débit)
-    for i in range(len(les_q1)):
-        if les_q1[i]<0:
-            les_q1[i]=0
-        if les_q2[i]<0:
-            les_q2[i]=0
-        if les_q3[i]<0:
-            les_q3[i]=0
-        if les_q4[i]<0:
-            les_q4[i]=0
-        if les_q5[i]<0:
-            les_q5[i]=0
-
-    plt.plot(np.degrees(les_theta),les_q1)
-    plt.plot(np.degrees(les_theta),les_q2)
-    plt.plot(np.degrees(les_theta),les_q3)
-    plt.plot(np.degrees(les_theta),les_q4)
-    plt.plot(np.degrees(les_theta),les_q5)
-    
-    # Le débit instantané est la sommme des contributions
-    plt.plot(np.degrees(les_theta),les_q1+les_q2+les_q3+les_q4+les_q5)
-    #plt.show() 
-    #plt.savefig("10_05_c.pdf")
-\end{lstlisting}
-
+Pour cinq palettes régulièrement réparties, les contributions sont décalées
+de $2\pi/5$. En ne conservant que les débits positifs, le débit total s'écrit
+\[
+\boxed{
+q_{\mathrm{tot}}(\theta)=
+\sum_{k=0}^{4}
+\max\!\left(0,\,q\!\left(\theta-\frac{2k\pi}{5}\right)\right)
+}.
+\]
+La somme des cinq contributions réduit fortement l'ondulation du débit.
 \begin{marginfigure}
 \includegraphics[width=\linewidth]{10_05_c}
 \end{marginfigure}
 
-Indications (à vérifier...):
-\begin{enumerate}
-\item .
-\item $ \lambda(t)= e\cos\theta(t)\pm \sqrt{e^2\cos^2\theta(t)-e^2+R^2}$.
-\item .
-\item $q(t)=S\dot{\lambda}(t)$.
-\item .
-\end{enumerate}
 \end{corrigebox}
