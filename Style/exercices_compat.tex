@@ -14,7 +14,6 @@
 \RequirePackage{titlesec}
 \RequirePackage{marginnote}
 \RequirePackage{caption}
-\RequirePackage{comment}
 \pgfplotsset{compat=1.18}
 
 % Alias de couleurs historiques employés dans les environnements xpessoles.
@@ -119,9 +118,3 @@
   \def\verbatim@font{\normalfont\fontencoding{OT1}\ttfamily\selectfont}%
 }{}
 \makeatother
-
-% Les anciennes sources contiennent encore de nombreux blocs lstlisting dont
-% l'initialisation échoue avec certaines installations MiKTeX/T1 avant même la
-% lecture du code. Dans les recueils globaux, on ignore donc seulement ces blocs ;
-% les sources Python restent présentes dans les fichiers individuels du dépôt.
-\excludecomment{lstlisting}
