@@ -47,25 +47,44 @@
 \providecommand{\question}[1]{\refstepcounter{question}\par\medskip\noindent\textbf{Question \thequestion.}~#1\par\medskip}
 \providecommand{\sidenote}[2][]{\marginnote{\footnotesize #2}}
 
+% Compatibilité avec les anciennes annotations UPSTI de compétence.
+% Le premier argument optionnel correspondait au niveau d'affichage ;
+% le recueil conserve simplement le code de compétence.
+\ProvideDocumentCommand{\UPSTIcompetence}{O{} m}{\textbf{#2}}
+
 % Notes marginales compactes et robustes pour plusieurs centaines d'exercices.
 \renewcommand*{\marginfont}{\footnotesize}
 \renewcommand{\marginnote}[2][]{\par\smallskip\noindent{\footnotesize\color{gray!70!black}#2}\par\smallskip}
-\newenvironment{marginfigure}{\par\medskip\noindent\begin{minipage}{.82\linewidth}\centering\captionsetup{type=figure}}{\end{minipage}\par\medskip}
+
+\makeatletter
+% Les anciennes marginfigure de la banque sont transformées en blocs centrés
+% non flottants. On définit directement \@captype au lieu d'appeler
+% \captionsetup : avec certaines versions MiKTeX/caption/babel-french,
+% \captionsetup déclenche une commande d'accent T1 à la fermeture de la minipage.
+\newenvironment{marginfigure}{%
+  \par\medskip\noindent
+  \begin{minipage}{.82\linewidth}%
+  \centering
+  \def\@captype{figure}%
+}{%
+  \end{minipage}\par\medskip%
+}
 
 % Dans un recueil de plusieurs centaines de fichiers, les flottants historiques
-% s'accumulent, changent automatiquement de placement et peuvent être appelés
-% à l'intérieur d'une boîte breakable. Ils sont donc rendus non flottants tout
-% en conservant captions et labels.
+% sont rendus non flottants tout en conservant \caption et \label.
 \RenewDocumentEnvironment{figure}{O{}}{%
-  \par\medskip\noindent\begin{center}\captionsetup{type=figure}%
+  \par\medskip\noindent\begin{center}%
+  \def\@captype{figure}%
 }{%
   \end{center}\par\medskip%
 }
 \RenewDocumentEnvironment{table}{O{}}{%
-  \par\medskip\noindent\begin{center}\captionsetup{type=table}%
+  \par\medskip\noindent\begin{center}%
+  \def\@captype{table}%
 }{%
   \end{center}\par\medskip%
 }
+\makeatother
 
 % Les QR codes historiques déclenchent des glyphes incompatibles avec certaines
 % installations MiKTeX/T1. Dans les recueils, ils sont remplacés par des liens
