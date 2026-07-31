@@ -1,64 +1,62 @@
-% Fichier généré automatiquement par tools/generate_corrections.py.
-% Source : CIN/CIN-02-VitesseAcceleration/03_TT/03_TT.tex
-% Statut : complet (5/5 question(s) renseignée(s), 0 reprise(s)).
+% Corrigé rendu compatible avec les recueils MiKTeX/T1.
 \begin{corrigebox}[Corrigé extrait de la banque]
+
 \CorrigeQuestion{1}
 Le point $C$ a un mouvement quelconque dans le plan $\left(A,\vi{0},\vj{0}\right)$.
+
 \CorrigeQuestion{2}
-On  a $\vect{AC}=\lambda(t)\vect{i_0}+\mu(t)\vect{j_0}$ et donc, on a directement 
-$\left\{
-\begin{array}{l}
-x_C(t)= \lambda(t) \\
-y_C(t)= \mu(t)\\
-z_C(t)= 0\\
-\end{array}
+On a
+\[
+\vect{AC}=\lambda(t)\vect{i_0}+\mu(t)\vect{j_0}.
+\]
+Ainsi, dans le repère $\repere{A}{i_0}{j_0}{k_0}$,
+\[
+\left\{
+\begin{aligned}
+x_C(t)&=\lambda(t),\\
+y_C(t)&=\mu(t),\\
+z_C(t)&=0.
+\end{aligned}
 \right.
-$ dans le repère $\repere{A}{i_0}{j_0}{k_0}$.
+\]
+
 \CorrigeQuestion{3}
-On a $v=R\dot{\theta}(t)$. Par intégration, $ \theta(t)=\dfrac{v}{R}t$ (avec $\theta(t)=\SI{0}{rad}$ pour $t=\SI{0}{s}$).
+La norme de la vitesse vaut
+\[
+v=R\dot{\theta}(t).
+\]
+Par intégration, avec $\theta(0)=0$,
+\[
+\theta(t)=\frac{v}{R}t.
+\]
+
 \CorrigeQuestion{4}
-Exprimons la trajectoire du point $C$ : $\vect{AC}=R\vect{e_r} = R\cos\theta(t) \vi{0}+ R\sin\theta(t)  \vj{0}$. Par identification 
-$ \lambda(t) = R\cos\theta(t)$ et $\mu(t) = R\sin\theta(t)$.
+La trajectoire circulaire s'écrit
+\[
+\vect{AC}=R\vect{e_r}
+=R\cos\theta(t)\vi{0}+R\sin\theta(t)\vj{0}.
+\]
+Par identification,
+\[
+\boxed{
+\lambda(t)=R\cos\left(\frac{v}{R}t\right),
+\qquad
+\mu(t)=R\sin\left(\frac{v}{R}t\right)
+}.
+\]
 
-Au final, 
-$\left\{
-\begin{array}{l}
-\lambda(t) = R\cos\left( \dfrac{v}{R}t\right)\\
-\mu(t) = R\sin\left( \dfrac{v}{R}t\right)\\
-\end{array}
-\right.
-$.
 \CorrigeQuestion{5}
-\begin{lstlisting}
-import numpy as np
-import matplotlib.pyplot as plt
-import math as m
-R = 0.1 # m
-v = 0.01 # m.s-1 
-
-# Temps pour faire un tour 
-T = 2*m.pi*R/v
-
-les_t = np.linspace(0,T,200)
-les_lambda = R*np.cos(v/R*les_t)
-les_mu = R*np.sin(v/R*les_t)
-plt.grid()
-plt.plot(les_t,les_lambda,label="$\\lambda(t)$")
-plt.plot(les_t,les_mu,label="$\\mu(t)$")
-plt.xlabel("Temps ($s$)")
-plt.ylabel("Position ($m$)")
-plt.legend()
-#plt.show()
-plt.savefig("03_TT_01_c.pdf")
-plt.cla()
-
-plt.grid()
-plt.axis("equal")
-plt.plot(les_lambda,les_mu,label="Trajectoire de $C$")
-plt.legend()
-#plt.show()
-plt.savefig("03_TT_02_c.pdf")
-\end{lstlisting}
+La durée d'un tour complet est
+\[
+T=\frac{2\pi R}{v}.
+\]
+On calcule ensuite les valeurs de $\lambda(t)$ et $\mu(t)$ sur
+$t\in[0,T]$, puis on trace d'une part ces deux fonctions en fonction du
+temps et d'autre part la courbe paramétrée
+\[
+\bigl(\lambda(t),\mu(t)\bigr).
+\]
+Cette dernière est un cercle de rayon $R$ centré en $A$.
 
 \begin{marginfigure}
 \includegraphics[width=\linewidth]{03_TT_01_c}
@@ -67,4 +65,5 @@ plt.savefig("03_TT_02_c.pdf")
 \begin{marginfigure}
 \includegraphics[width=\linewidth]{03_TT_02_c}
 \end{marginfigure}
+
 \end{corrigebox}
