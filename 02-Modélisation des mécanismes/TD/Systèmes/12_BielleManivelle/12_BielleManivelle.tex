@@ -89,44 +89,20 @@ $\lambdap(t) = \pm\left( \dfrac{R^2 \thetap(t) \cos\theta(t)\sin\theta(t)}{\sqrt
 \question{En utilisant Python, tracer la vitesse du piston en fonction du temps. La fréquence de rotation est $\dot{\theta}(t)=\SI{100}{rad.s^{-1}}$, on prendra $R=\SI{10}{mm}$ et $L=\SI{20}{mm}$ puis $L=\SI{30}{mm}$.}
 
 \ifprof
-\noindent\hrule
-\begin{lstlisting}
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-"""12_BielleManivelle.py"""
-__author__ = "Xavier Pessoles"
-__email__ = "xpessoles.ptsi@free.fr"
-
-import numpy as np
-import matplotlib.pyplot as plt
-import math as m
-from scipy.optimize import newton
-from scipy.optimize import fsolve
-
-R = 0.01 # m
-L = 0.03 # m
-w = 100
-def calc_lambda(theta):
-    #res = R*np.sin(theta)
-    #print(L*L-R*R*np.cos(theta)*np.cos(theta))
-    #res = res + np.sqrt(L*L-R*R*np.cos(theta)*np.cos(theta))
-    res = np.sqrt(L*L-R*R*np.cos(theta)*np.cos(theta))+R*np.sin(theta)
-    return res
-
-def plot_lambda():
-    les_theta=np.linspace(-2*np.pi,2*np.pi,1000)
-    les_l = [calc_lambda(x) for x in les_theta]
-    plt.grid()
-    plt.xlabel("Temps (s)")
-    plt.ylabel("Vitesse (${m}s^{-1}$)")
-    plt.plot(les_theta,les_l,label=str("R=")+str(R)+" mm,"+str("L=")+str(L)+" mm")
-    plt.legend()
-    plt.show()
-    
-plot_lambda()
-\end{lstlisting}
-\noindent\hrule
+On retient la branche positive de la position :
+\[
+\lambda(t)=\sqrt{L^2-R^2\cos^2\!\theta(t)}+R\sin\theta(t).
+\]
+Avec $\theta(t)=\omega t$ et $\omega=\SI{100}{rad.s^{-1}}$, la vitesse s'écrit
+\[
+\dot\lambda(t)=\omega\left(
+\frac{R^2\cos(\omega t)\sin(\omega t)}
+{\sqrt{L^2-R^2\cos^2(\omega t)}}
++R\cos(\omega t)
+\right).
+\]
+Cette expression est évaluée pour $R=\SI{10}{mm}$ avec successivement
+$L=\SI{20}{mm}$ et $L=\SI{30}{mm}$.
 
 \begin{marginfigure}
 \includegraphics[width=\linewidth]{12_02_c}
@@ -137,13 +113,16 @@ plot_lambda()
 \question{En utilisant Python, tracer l'accélération du piston en fonction du temps en utilisant les mêmes valeurs que dans la question précédente. On utilisera une dérivation numérique.}
 
 \ifprof
+L'accélération peut être obtenue par dérivation numérique de la vitesse, par exemple avec une différence centrée :
+\[
+\ddot\lambda(t_i)\simeq
+\frac{\dot\lambda(t_{i+1})-\dot\lambda(t_{i-1})}{2\,\Delta t}.
+\]
 \begin{marginfigure}
 \includegraphics[width=\linewidth]{12_03_c}
 \end{marginfigure}
 \else
 \fi
-
-
 
 \ifprof
 \else
