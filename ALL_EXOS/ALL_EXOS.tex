@@ -136,6 +136,16 @@
 % Tous les liens restent cliquables, avec un libellé textuel robuste.
 \renewcommand{\url}[1]{\href{#1}{Accéder au lien en ligne}}
 
+% Les moteurs qrcode/fancyqr sont coûteux et certains anciens appels laissent
+% des commandes de caractères incompatibles avec T1. Dans le recueil global,
+% on conserve le lien cliquable sans calculer la matrice graphique du QR code.
+\RenewDocumentCommand{\qrcode}{O{} m}{%
+  \par\smallskip\noindent\href{#2}{\fbox{Accéder au questionnaire en ligne}}\par\smallskip
+}
+\RenewDocumentCommand{\fancyqr}{O{} m}{%
+  \par\smallskip\noindent\href{#2}{\fbox{Accéder au questionnaire en ligne}}\par\smallskip
+}
+
 % BEGIN AUTO TD INCLUDES
 \subimport{../01-Ingénierie système/}{TD.tex}
 \subimport{../02-Modélisation des mécanismes/}{TD.tex}
