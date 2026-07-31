@@ -36,9 +36,27 @@
 \usepackage{UPSTI_Pedagogique}
 \input{\repRel/Style/exercices_compat}
 
-% L'option upquote des listings demande des glyphes absents de certaines
-% polices T1 de la banque. Les apostrophes restent lisibles sans cette option.
-\lstset{upquote=false}
+% Les anciens réglages de listings convertissaient les lettres accentuées
+% en commandes d'accent (\'e, \`a, etc.), indisponibles avec certaines
+% polices T1 de MiKTeX. Dans les listings, on translittère donc uniquement
+% les commentaires et chaînes accentués vers de l'ASCII robuste.
+\lstset{
+  inputencoding=utf8,
+  upquote=false,
+  literate=
+    {é}{{e}}1 {è}{{e}}1 {ê}{{e}}1 {ë}{{e}}1
+    {à}{{a}}1 {â}{{a}}1 {ä}{{a}}1
+    {î}{{i}}1 {ï}{{i}}1
+    {ô}{{o}}1 {ö}{{o}}1
+    {ù}{{u}}1 {û}{{u}}1 {ü}{{u}}1
+    {ç}{{c}}1
+    {É}{{E}}1 {È}{{E}}1 {Ê}{{E}}1 {Ë}{{E}}1
+    {À}{{A}}1 {Â}{{A}}1 {Ä}{{A}}1
+    {Î}{{I}}1 {Ï}{{I}}1
+    {Ô}{{O}}1 {Ö}{{O}}1
+    {Ù}{{U}}1 {Û}{{U}}1 {Ü}{{U}}1
+    {Ç}{{C}}1
+}
 
 % Une seule variable pilote les deux systèmes historiques de corrigés :
 % les blocs \ifprof ... \fi et les fichiers séparés corrige.tex.
