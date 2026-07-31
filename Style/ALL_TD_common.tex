@@ -41,27 +41,14 @@
 \usepackage{UPSTI_Pedagogique}
 \input{\repRel/Style/exercices_compat}
 
-% Les anciens réglages de listings convertissaient les lettres accentuées
-% en commandes d'accent (\'e, \`a, etc.), indisponibles avec certaines
-% polices T1 de MiKTeX. Dans les listings, on translittère donc uniquement
-% les commentaires et chaînes accentués vers de l'ASCII robuste.
-\lstset{
-  inputencoding=utf8,
-  upquote=false,
-  literate=
-    {é}{{e}}1 {è}{{e}}1 {ê}{{e}}1 {ë}{{e}}1
-    {à}{{a}}1 {â}{{a}}1 {ä}{{a}}1
-    {î}{{i}}1 {ï}{{i}}1
-    {ô}{{o}}1 {ö}{{o}}1
-    {ù}{{u}}1 {û}{{u}}1 {ü}{{u}}1
-    {ç}{{c}}1
-    {É}{{E}}1 {È}{{E}}1 {Ê}{{E}}1 {Ë}{{E}}1
-    {À}{{A}}1 {Â}{{A}}1 {Ä}{{A}}1
-    {Î}{{I}}1 {Ï}{{I}}1
-    {Ô}{{O}}1 {Ö}{{O}}1
-    {Ù}{{U}}1 {Û}{{U}}1 {Ü}{{U}}1
-    {Ç}{{C}}1
-}
+% environment_v2 contient une ancienne table "literate" utilisant les commandes
+% d'accent \` et \'. MiKTeX les évalue dès \begin{lstlisting} et peut échouer en T1.
+% On vide directement la table interne, puis on laisse listingsutf8 convertir
+% le texte UTF-8 vers latin1 sans commandes d'accent LaTeX.
+\makeatletter
+\let\lst@literate\@empty
+\makeatother
+\lstset{inputencoding=utf8/latin1,upquote=false}
 
 % 0 : énoncés seuls ; 1 : énoncés et corrigés.
 % Cette variable pilote à la fois les blocs \ifprof et les fichiers corrige.tex.
