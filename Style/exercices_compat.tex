@@ -97,3 +97,24 @@
     }%
   \fi
 }
+
+% -----------------------------------------------------------------------------
+% Compatibilité des blocs de code avec MiKTeX et l'encodage T1.
+%
+% environment_v2 contient une ancienne table listings « literate » qui remplace
+% les caractères accentués par des commandes d'accent LaTeX. Certaines polices
+% T1 de MiKTeX refusent ces commandes dès l'ouverture de lstlisting. On réinitialise
+% réellement cette option (et non seulement sa valeur interne temporaire), puis on
+% utilise une police machine à écrire en OT1, y compris pour verbatim.
+% -----------------------------------------------------------------------------
+\makeatletter
+\@ifpackageloaded{listings}{%
+  \lstset{
+    literate={},
+    inputencoding=utf8/latin1,
+    upquote=false,
+    basicstyle=\fontencoding{OT1}\ttfamily\small\selectfont
+  }%
+  \def\verbatim@font{\normalfont\fontencoding{OT1}\ttfamily\selectfont}%
+}{}
+\makeatother
