@@ -131,78 +131,75 @@
 % -----------------------------------------------------------------------------
 % Couverture
 % -----------------------------------------------------------------------------
-% La couverture est entièrement positionnée en coordonnées absolues et n'appelle
-% jamais \tableofcontents. Elle est explicitement imposée comme page 1 ; le
-% document reprend ensuite en page 2, indépendamment des choix recto-verso de
-% kaobook.
+% On n'utilise volontairement pas l'environnement titlepage de scrbook/kaobook :
+% suivant les options recto-verso, celui-ci peut insérer ou réserver une page.
+% La couverture est une page normale, explicitement numérotée 1, puis expédiée
+% par \clearpage. Le contenu suivant commence donc sans ambiguïté en page 2.
 \newcommand{\TLCourseCover}{%
-  \clearpage
   \setcounter{page}{1}%
-  \begin{titlepage}
-    \thispagestyle{empty}%
-    \begin{tikzpicture}[remember picture,overlay]
+  \thispagestyle{empty}%
+  \begin{tikzpicture}[remember picture,overlay]
 
-      \node[anchor=north west,inner sep=0pt,xshift=4mm,yshift=-4mm]
-        at (current page.north west)
-        {\includegraphics[
-          width=\dimexpr\paperwidth-8mm\relax,
-          height=62mm
-        ]{\TLHeroImage}};
+    \node[anchor=north west,inner sep=0pt,xshift=4mm,yshift=-4mm]
+      at (current page.north west)
+      {\includegraphics[
+        width=\dimexpr\paperwidth-8mm\relax,
+        height=62mm
+      ]{\TLHeroImage}};
 
-      \fill[white,opacity=.86]
-        ([xshift=4mm,yshift=-51mm]current page.north west)
-        rectangle
-        ([xshift=-16mm,yshift=-67mm]current page.north east);
+    \fill[white,opacity=.86]
+      ([xshift=4mm,yshift=-51mm]current page.north west)
+      rectangle
+      ([xshift=-16mm,yshift=-67mm]current page.north east);
 
-      \node[
-        anchor=west,
-        xshift=14mm,
-        yshift=-59mm,
-        text=TLCoverBlue,
-        align=left,
-        text width=.80\paperwidth,
-        font=\sffamily\bfseries\fontsize{15}{18}\selectfont
-      ] at (current page.north west) {\TLCourseTitle};
+    \node[
+      anchor=west,
+      xshift=14mm,
+      yshift=-59mm,
+      text=TLCoverBlue,
+      align=left,
+      text width=.80\paperwidth,
+      font=\sffamily\bfseries\fontsize{15}{18}\selectfont
+    ] at (current page.north west) {\TLCourseTitle};
 
-      \node[anchor=north,inner sep=0pt,xshift=-38mm,yshift=-82mm]
-        at (current page.north)
-        {\IfFileExists{\TLPreviewImage}{%
-          \includegraphics[width=66mm,height=43mm,keepaspectratio]{\TLPreviewImage}%
-        }{}};
+    \node[anchor=north,inner sep=0pt,xshift=-38mm,yshift=-82mm]
+      at (current page.north)
+      {\IfFileExists{\TLPreviewImage}{%
+        \includegraphics[width=66mm,height=43mm,keepaspectratio]{\TLPreviewImage}%
+      }{}};
 
-      \node[
-        anchor=north west,
-        inner sep=0pt,
-        xshift=136mm,
-        yshift=-84mm,
-        text width=56mm,
-        align=left,
-        text=TLCoverBlue,
-        font=\sffamily\fontsize{6.7}{8.2}\selectfont
-      ] at (current page.north west)
-        {\begin{minipage}[t]{56mm}\TLCoverContentsBody\end{minipage}};
+    \node[
+      anchor=north west,
+      inner sep=0pt,
+      xshift=136mm,
+      yshift=-84mm,
+      text width=56mm,
+      align=left,
+      text=TLCoverBlue,
+      font=\sffamily\fontsize{6.7}{8.2}\selectfont
+    ] at (current page.north west)
+      {\begin{minipage}[t]{56mm}\TLCoverContentsBody\end{minipage}};
 
-      \node[
-        anchor=north,
-        yshift=-153mm,
-        text=TLCoverOrange,
-        align=center,
-        text width=130mm,
-        font=\rmfamily\fontsize{15}{20}\selectfont
-      ] at (current page.north) {\TLCycleText};
+    \node[
+      anchor=north,
+      yshift=-153mm,
+      text=TLCoverOrange,
+      align=center,
+      text width=130mm,
+      font=\rmfamily\fontsize{15}{20}\selectfont
+    ] at (current page.north) {\TLCycleText};
 
-      \node[
-        anchor=north,
-        yshift=-205mm,
-        text=TLCoverGreen,
-        align=center,
-        text width=150mm,
-        font=\sffamily\bfseries\fontsize{15}{19}\selectfont
-      ] at (current page.north) {\TLCourseTitle};
+    \node[
+      anchor=north,
+      yshift=-205mm,
+      text=TLCoverGreen,
+      align=center,
+      text width=150mm,
+      font=\sffamily\bfseries\fontsize{15}{19}\selectfont
+    ] at (current page.north) {\TLCourseTitle};
 
-    \end{tikzpicture}%
-    \null\vfill
-  \end{titlepage}%
+  \end{tikzpicture}%
+  \null\vfill
   \clearpage
   \setcounter{page}{2}%
 }
