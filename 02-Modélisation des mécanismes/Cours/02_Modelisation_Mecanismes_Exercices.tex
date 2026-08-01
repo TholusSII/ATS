@@ -4,6 +4,31 @@
 % On n'exécute que la partie à partir de \section{Exercices du chapitre}.
 % ============================================================================
 
+\begingroup
+\small
+\sloppy
+\setlength{\tabcolsep}{3pt}
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{0pt}
+\setlength{\extrarowheight}{1pt}
+
+% La conversion Word contient parfois plusieurs images consécutives dimensionnées
+% chacune à \linewidth. On conserve les tailles explicites, on limite les images
+% sans taille et on autorise une coupure entre deux illustrations.
+\NewCommandCopy\TLLegacyIncludeGraphics\includegraphics
+\RenewDocumentCommand{\includegraphics}{s O{} m}{%
+  \ifstrempty{#2}{%
+    \IfBooleanTF{#1}
+      {\TLLegacyIncludeGraphics*[width=\linewidth,height=.82\textheight,keepaspectratio]{#3}}
+      {\TLLegacyIncludeGraphics[width=\linewidth,height=.82\textheight,keepaspectratio]{#3}}%
+  }{%
+    \IfBooleanTF{#1}
+      {\TLLegacyIncludeGraphics*[#2]{#3}}
+      {\TLLegacyIncludeGraphics[#2]{#3}}%
+  }%
+  \ifinner\hspace{0pt}\allowbreak\else\par\noindent\fi
+}
+
 \makeatletter
 \CatchFileDef{\TLLegacyModelisationFile}
   {02_ModelisationMecanismes_cours.tex}
@@ -23,3 +48,4 @@
   \TLLegacyModelisationFile
   \TLModelisationStop
 \makeatother
+\endgroup
