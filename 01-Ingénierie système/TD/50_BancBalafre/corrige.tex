@@ -3,16 +3,11 @@
 % Statut : rédigé (3 question(s)).
 \begin{corrigebox}[Corrigé rédigé]
 \CorrigeQuestion{1}
-Multiplexé signifie qu'un seul convertisseur analogique-numérique est
-            partagé entre plusieurs voies. Un multiplexeur sélectionne successivement
-            chaque capteur; les mesures ne sont donc pas strictement simultanées.
+Multiplexé signifie qu'un seul convertisseur analogique-numérique est partagé entre plusieurs voies. Un multiplexeur sélectionne successivement chaque capteur ; les mesures ne sont donc pas strictement simultanées.
+
 \CorrigeQuestion{2}
-La pleine échelle de l'amplificateur doit être immédiatement supérieure à
-            la charge maximale : $Q_{max}=S_qF_{max}$ avec $S_q$ la sensibilité en pC/N.
-            On choisit la gamme normalisée qui contient $\pm Q_{max}$ sans saturation.
+La pleine échelle de l'amplificateur doit être immédiatement supérieure à la charge maximale. Celle-ci est obtenue en multipliant la sensibilité du capteur, exprimée en picocoulombs par newton, par l'effort maximal. On choisit ensuite la gamme normalisée qui contient les deux valeurs extrêmes sans saturation.
+
 \CorrigeQuestion{3}
-Si la sortie varie sur $\Delta U$ et le CAN possède $N$ bits, le quantum
-            est $q_U=\Delta U/2^N$. La résolution en charge est $q_Q=q_U/G_q$, puis en
-            force $q_F=q_Q/S_q$. La résolution est conforme si $q_F$ est inférieure à
-            l'exigence, en gardant une marge pour le bruit et les erreurs de gain.
+Le quantum en tension est égal à l'étendue totale de tension divisée par le nombre de niveaux du convertisseur. Pour un convertisseur sur douze bits, ce nombre de niveaux vaut 4096. La résolution en charge se déduit du gain de l'amplificateur, puis la résolution en force se déduit de la sensibilité du capteur. Elle est conforme si elle reste inférieure à dix newtons, avec une marge pour le bruit et les erreurs de gain.
 \end{corrigebox}
