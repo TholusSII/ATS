@@ -13,11 +13,19 @@
 \input{environment_v2}
 
 % Commandes personnalisées TL et couverture des cours.
-\RequirePackage{CouvertureCours}
-\RequirePackage{TL}
+% L'utilisation de \input évite les avertissements produits par LaTeX lorsque
+% les fichiers sont trouvés via \input@path dans ../../Style/.
+\makeatletter
+\@ifpackageloaded{CouvertureCours}{}{\input{CouvertureCours.sty}}
+\@ifpackageloaded{TL}{}{\input{TL.sty}}
+\makeatother
 
 % Version explicite de PGFPlots, chargé par environment_v2.
-\pgfplotsset{compat=1.18}
+% Le second réglage retire la notification proposant une version plus récente.
+\pgfplotsset{
+  compat=1.18,
+  compat/show suggested version=false
+}
 
 % -----------------------------------------------------------------------------
 % Valeurs communes et compatibilité avec les anciens fichiers
