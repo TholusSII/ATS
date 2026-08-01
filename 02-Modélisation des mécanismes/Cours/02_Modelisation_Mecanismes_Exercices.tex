@@ -16,6 +16,7 @@
 % Images de l'ancienne conversion Word
 % -----------------------------------------------------------------------------
 \NewCommandCopy\TLLegacyIncludeGraphics\includegraphics
+\newif\ifTLLegacyVectorGraphic
 
 \NewDocumentCommand{\TLLegacyRawGraphic}{s O{} m}{%
   \ifstrempty{#2}{%
@@ -46,7 +47,7 @@
 
 \newcommand{\TLLegacyPlaceGraphic}[1]{%
   \ifinner
-    \adjustbox{max width=.92\linewidth,max totalheight=.72\textheight}{#1}%
+    \adjustbox{max width=.90\linewidth,max totalheight=.72\textheight}{#1}%
     \hspace{0pt}\allowbreak
   \else
     \par\noindent
@@ -63,76 +64,56 @@
   \filename@parse{#3}%
   \edef\TLLegacyGraphicExtension{\filename@ext}%
   \edef\TLLegacyGraphicStem{\filename@area\filename@base}%
+  \edef\TLLegacyGraphicBase{\filename@base}%
 
-  \ifboolexpr{
-    test {\ifstrequal{\TLLegacyGraphicExtension}{emf}}
-    or test {\ifstrequal{\TLLegacyGraphicExtension}{EMF}}
-    or test {\ifstrequal{\TLLegacyGraphicExtension}{wmf}}
-    or test {\ifstrequal{\TLLegacyGraphicExtension}{WMF}}
-  }{%
+  % \ifstrequal ne développe pas ses arguments : c'était la cause du passage
+  % résiduel des fichiers .emf vers graphicx. \ifdefstring compare bien le
+  % contenu développé de la macro d'extension.
+  \TLLegacyVectorGraphicfalse
+  \ifdefstring{\TLLegacyGraphicExtension}{emf}{\TLLegacyVectorGraphictrue}{}
+  \ifdefstring{\TLLegacyGraphicExtension}{EMF}{\TLLegacyVectorGraphictrue}{}
+  \ifdefstring{\TLLegacyGraphicExtension}{wmf}{\TLLegacyVectorGraphictrue}{}
+  \ifdefstring{\TLLegacyGraphicExtension}{WMF}{\TLLegacyVectorGraphictrue}{}
+
+  \ifTLLegacyVectorGraphic
     \IfFileExists{\TLLegacyGraphicStem.png}{%
-      \IfBooleanTF{#1}
-        {\TLLegacyPlaceGraphic{\TLLegacyRawGraphic*[#2]{\TLLegacyGraphicStem.png}}}
-        {\TLLegacyPlaceGraphic{\TLLegacyRawGraphic[#2]{\TLLegacyGraphicStem.png}}}%
+      \TLLegacyPlaceGraphic{\TLLegacyIncludeGraphics[width=.90\linewidth,height=.72\textheight,keepaspectratio]{\TLLegacyGraphicStem.png}}%
     }{%
       \IfFileExists{\TLLegacyGraphicStem.pdf}{%
-        \IfBooleanTF{#1}
-          {\TLLegacyPlaceGraphic{\TLLegacyRawGraphic*[#2]{\TLLegacyGraphicStem.pdf}}}
-          {\TLLegacyPlaceGraphic{\TLLegacyRawGraphic[#2]{\TLLegacyGraphicStem.pdf}}}%
+        \TLLegacyPlaceGraphic{\TLLegacyIncludeGraphics[width=.90\linewidth,height=.72\textheight,keepaspectratio]{\TLLegacyGraphicStem.pdf}}%
       }{%
         \IfFileExists{\TLLegacyGraphicStem.jpeg}{%
-          \IfBooleanTF{#1}
-            {\TLLegacyPlaceGraphic{\TLLegacyRawGraphic*[#2]{\TLLegacyGraphicStem.jpeg}}}
-            {\TLLegacyPlaceGraphic{\TLLegacyRawGraphic[#2]{\TLLegacyGraphicStem.jpeg}}}%
+          \TLLegacyPlaceGraphic{\TLLegacyIncludeGraphics[width=.90\linewidth,height=.72\textheight,keepaspectratio]{\TLLegacyGraphicStem.jpeg}}%
         }{%
           \IfFileExists{\TLLegacyGraphicStem.jpg}{%
-            \IfBooleanTF{#1}
-              {\TLLegacyPlaceGraphic{\TLLegacyRawGraphic*[#2]{\TLLegacyGraphicStem.jpg}}}
-              {\TLLegacyPlaceGraphic{\TLLegacyRawGraphic[#2]{\TLLegacyGraphicStem.jpg}}}%
+            \TLLegacyPlaceGraphic{\TLLegacyIncludeGraphics[width=.90\linewidth,height=.72\textheight,keepaspectratio]{\TLLegacyGraphicStem.jpg}}%
           }{%
             \TLLegacyPlaceGraphic{\TLLegacyMissingGraphic{\filename@base}}%
           }%
         }%
       }%
     }%
-  }{%
-    \IfBooleanTF{#1}
-      {\TLLegacyPlaceGraphic{\TLLegacyRawGraphic*[#2]{#3}}}
-      {\TLLegacyPlaceGraphic{\TLLegacyRawGraphic[#2]{#3}}}%
-  }%
+  \else
+    % Les images 158 et 159 étaient exportées chacune à \linewidth sur une
+    % même ligne. Elles sont traitées explicitement pour éviter tout débordement.
+    \ifdefstring{\TLLegacyGraphicBase}{image158}{%
+      \TLLegacyIncludeGraphics[width=.46\linewidth,height=.32\textheight,keepaspectratio]{#3}\hfill
+    }{%
+      \ifdefstring{\TLLegacyGraphicBase}{image159}{%
+        \TLLegacyIncludeGraphics[width=.46\linewidth,height=.32\textheight,keepaspectratio]{#3}\par\noindent
+      }{%
+        \IfBooleanTF{#1}
+          {\TLLegacyPlaceGraphic{\TLLegacyRawGraphic*[#2]{#3}}}
+          {\TLLegacyPlaceGraphic{\TLLegacyRawGraphic[#2]{#3}}}%
+      }%
+    }%
+  \fi
   \endgroup
 }
 
 \CatchFileDef{\TLLegacyModelisationFile}
   {02_ModelisationMecanismes_cours.tex}
   {}
-
-% Les trois EMF ci-dessous se trouvent réellement dans la partie exercices.
-% On les neutralise avant exécution du fichier capturé : pdfLaTeX ne voit donc
-% jamais leur extension. image174 est une petite puce décorative ; les deux
-% autres emplacements restent matérialisés par un repère discret.
-\patchcmd{\TLLegacyModelisationFile}
-  {\includegraphics[width=\linewidth]{images/image174.emf}}
-  {}
-  {}{}
-\patchcmd{\TLLegacyModelisationFile}
-  {\protect\includegraphics{images/image194.emf}}
-  {\TLLegacyMissingGraphic{image194}}
-  {}{}
-\patchcmd{\TLLegacyModelisationFile}
-  {\includegraphics[width=\linewidth]{images/image220.emf}}
-  {\TLLegacyMissingGraphic{image220}}
-  {}{}
-
-% Les images 158 et 159 étaient chacune demandées à \linewidth sur la même
-% ligne. On les compose explicitement à 46 % de la largeur.
-\patchcmd{\TLLegacyModelisationFile}
-  {\includegraphics[width=\linewidth]{images/image158.png}\includegraphics[width=\linewidth]{images/image159.png}}
-  {\begin{center}%
-   \TLLegacyIncludeGraphics[width=.46\linewidth]{images/image158.png}\hfill
-   \TLLegacyIncludeGraphics[width=.46\linewidth]{images/image159.png}%
-   \end{center}}
-  {}{}
 
 % Parcours récursif des commandes section du fichier capturé.
 \long\def\TLExtractModelisationExercises#1\section#2#3\TLModelisationStop{%
