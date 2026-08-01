@@ -58,6 +58,7 @@
 % même lorsque kaobook change le style de page pour un chapitre, une page paire
 % ou une page impaire.
 \newsavebox{\TLDoisneauPhotoBox}
+\newsavebox{\TLFooterCompositeBox}
 \newif\ifTLCourseFooterInstalled
 \TLCourseFooterInstalledfalse
 
@@ -96,6 +97,7 @@
   \else
     \global\TLCourseFooterInstalledtrue
     \sbox{\TLDoisneauPhotoBox}{\TLRobertDoisneauPhoto}%
+    \sbox{\TLFooterCompositeBox}{\TLFooterPhoto}%
     \AddToShipoutPictureBG{%
       \begin{tikzpicture}[remember picture,overlay]
         \fill[TLCoverFooterBackground]
@@ -108,7 +110,7 @@
           inner sep=0pt,
           xshift=4mm,
           yshift=2.6mm
-        ] at (current page.south west) {\TLFooterPhoto};
+        ] at (current page.south west) {\usebox{\TLFooterCompositeBox}};
 
         \node[
           anchor=south east,
