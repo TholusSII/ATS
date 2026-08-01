@@ -7,7 +7,7 @@
 \RequirePackage{etoolbox}
 \RequirePackage{eso-pic}
 
-\usetikzlibrary{calc}
+\usetikzlibrary{calc,shadows.blur}
 \input{TLDoisneauPhoto.tex}
 
 \definecolor{TLCoverBlue}{RGB}{0,74,146}
@@ -51,12 +51,45 @@
   \vspace{1.1mm}%
 }
 
-% Le pied de page est ajouté au calque de fond de chaque page. Il reste donc
-% présent même lorsque kaobook change le style de page pour un chapitre, une
-% page paire ou une page impaire.
+% -----------------------------------------------------------------------------
+% Pied de page commun
+% -----------------------------------------------------------------------------
+% Le pied de page est ajouté au calque de fond de chaque page. Il reste présent
+% même lorsque kaobook change le style de page pour un chapitre, une page paire
+% ou une page impaire.
 \newsavebox{\TLDoisneauPhotoBox}
 \newif\ifTLCourseFooterInstalled
 \TLCourseFooterInstalledfalse
+
+\newcommand{\TLFooterPhoto}{%
+  \begin{tikzpicture}[baseline=(current bounding box.south)]
+    % Ombre très légère derrière la photographie.
+    \path[
+      rounded corners=2mm,
+      fill=white,
+      blur shadow={shadow blur steps=5,shadow opacity=.18,shadow xshift=.4mm,shadow yshift=-.4mm}
+    ] (0,0) rectangle (27mm,12mm);
+
+    % Découpe arrondie de la photo.
+    \begin{scope}
+      \clip[rounded corners=2mm] (0,0) rectangle (27mm,12mm);
+      \node[anchor=south west,inner sep=0pt] at (1mm,.3mm)
+        {\usebox{\TLDoisneauPhotoBox}};
+
+      % Fondu progressif sur les bords, obtenu par plusieurs voiles de fond.
+      \fill[TLCoverFooterBackground,opacity=.58] (0,0) rectangle (1.0mm,12mm);
+      \fill[TLCoverFooterBackground,opacity=.34] (1.0mm,0) rectangle (2.0mm,12mm);
+      \fill[TLCoverFooterBackground,opacity=.16] (2.0mm,0) rectangle (3.0mm,12mm);
+      \fill[TLCoverFooterBackground,opacity=.16] (24mm,0) rectangle (25mm,12mm);
+      \fill[TLCoverFooterBackground,opacity=.34] (25mm,0) rectangle (26mm,12mm);
+      \fill[TLCoverFooterBackground,opacity=.58] (26mm,0) rectangle (27mm,12mm);
+    \end{scope}
+
+    % Filet blanc discret pour fondre l'image dans le bandeau.
+    \draw[white,opacity=.82,line width=.35pt,rounded corners=2mm]
+      (0,0) rectangle (27mm,12mm);
+  \end{tikzpicture}%
+}
 
 \newcommand{\TLCourseFooter}{%
   \ifTLCourseFooterInstalled
@@ -68,32 +101,41 @@
         \fill[TLCoverFooterBackground]
           (current page.south west)
           rectangle
-          ([yshift=15mm]current page.south east);
+          ([yshift=18mm]current page.south east);
 
         \node[
           anchor=south west,
           inner sep=0pt,
           xshift=4mm,
-          yshift=1.5mm
-        ] at (current page.south west) {\usebox{\TLDoisneauPhotoBox}};
+          yshift=2.6mm
+        ] at (current page.south west) {\TLFooterPhoto};
 
         \node[
           anchor=south east,
-          xshift=-8mm,
-          yshift=5mm,
+          xshift=-9mm,
+          yshift=4.4mm,
           text=TLCoverBlue,
-          font=\sffamily\scriptsize
-        ] at (current page.south east) {\TLFooterText};
+          align=right
+        ] at (current page.south east) {%
+          {\sffamily\bfseries\fontsize{10.5}{11.5}\selectfont
+            Lycée Robert Doisneau}\[-.5mm]
+          {\sffamily\fontsize{7.8}{8.5}\selectfont ATS}%
+        };
       \end{tikzpicture}%
     }%
   \fi
 }
 
-% Couverture entièrement positionnée en coordonnées absolues. Elle occupe une
-% seule page et n'appelle jamais \tableofcontents : aucun feuillet supplémentaire
-% n'est créé. Le pied de page est fourni par \TLCourseFooter comme sur toutes les
-% autres pages.
+% -----------------------------------------------------------------------------
+% Couverture
+% -----------------------------------------------------------------------------
+% La couverture est entièrement positionnée en coordonnées absolues et n'appelle
+% jamais \tableofcontents. Elle est explicitement imposée comme page 1 ; le
+% document reprend ensuite en page 2, indépendamment des choix recto-verso de
+% kaobook.
 \newcommand{\TLCourseCover}{%
+  \clearpage
+  \setcounter{page}{1}%
   \begin{titlepage}
     \thispagestyle{empty}%
     \begin{tikzpicture}[remember picture,overlay]
@@ -159,4 +201,6 @@
     \end{tikzpicture}%
     \null\vfill
   \end{titlepage}%
+  \clearpage
+  \setcounter{page}{2}%
 }
