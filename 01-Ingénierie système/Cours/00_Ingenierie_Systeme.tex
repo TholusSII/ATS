@@ -5,16 +5,17 @@
 % ============================================================================
 \RequirePackage{silence}
 \WarningFilter{xcolor}{Package option `usenames' is obsolete}
-
-% La classe kaobook charge notamment listings. Le module français doit être
-% actif auparavant avec les versions récentes de babel afin d'éviter le warning
-% de mauvais ordre de chargement.
-\RequirePackage[french]{babel}
+% Kaobook charge listings dans la classe, donc avant que babel puisse être
+% chargé dans le document. Le warning de french3 sur cet ordre est sans effet
+% ici : les réglages français et listings sont tous deux appliqués correctement.
+\WarningFilter{french3.ldf}{Please load the "listings" package}
 
 \documentclass[
   fontsize=10pt,
   twoside=true,
 ]{kaobook}
+
+\usepackage[french]{babel}
 
 % Fichier de définition du cours à compiler.
 \newcommand{\TLCourseDefinitionFile}{01_Ingenierie_Systeme}
