@@ -152,7 +152,7 @@
 % -----------------------------------------------------------------------------
 \newcommand{\TLDrawCourseCover}{%
   \begin{tikzpicture}[remember picture,overlay]
-    % Bandeau supérieur en pleine largeur, sans marge blanche.
+    % Image supérieure en pleine largeur, sans marge blanche.
     \node[anchor=north west,inner sep=0pt]
       at (current page.north west)
       {\TLCoverIncludeGraphics[
@@ -160,10 +160,11 @@
         height=62mm
       ]{\TLHeroImage}};
 
+    % Cartouche du titre sur toute la largeur de la page.
     \fill[white,opacity=.86]
       ([yshift=-51mm]current page.north west)
       rectangle
-      ([xshift=-16mm,yshift=-67mm]current page.north east);
+      ([yshift=-67mm]current page.north east);
 
     \node[
       anchor=west,
