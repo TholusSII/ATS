@@ -6,6 +6,8 @@
 \RequirePackage{tikz}
 \RequirePackage{etoolbox}
 
+\usetikzlibrary{calc}
+
 \definecolor{UPSTIcoverblue}{RGB}{0,74,146}
 \definecolor{UPSTIcovergreen}{RGB}{151,183,63}
 \definecolor{UPSTIcoverorange}{RGB}{235,104,0}
@@ -18,6 +20,12 @@
 \newcommand{\UPSTIcoverfooterlogo}{}
 \newcommand{\UPSTIcoverfootertext}{}
 
+% #1 : image du bandeau supérieur
+% #2 : illustration centrale
+% #3 : texte du cycle
+% #4 : titre du cours
+% #5 : logo de pied de page
+% #6 : texte de pied de page
 \newcommand{\UPSTIsetupcoursecover}[6]{%
   \gdef\UPSTIcoverheroimage{#1}%
   \gdef\UPSTIcoverpreviewimage{#2}%
@@ -27,9 +35,12 @@
   \gdef\UPSTIcoverfootertext{#6}%
 }
 
+% Pied de page commun aux pages du poly.
 \newcommand{\UPSTIapplycoursefooter}{%
   \def\UPSTIfooterlogo{%
-    \IfFileExists{\UPSTIcoverfooterlogo}{\includegraphics[height=7mm]{\UPSTIcoverfooterlogo}}{}%
+    \IfFileExists{\UPSTIcoverfooterlogo}{%
+      \includegraphics[height=7mm]{\UPSTIcoverfooterlogo}%
+    }{}%
   }%
   \def\UPSTIfootertext{%
     \textcolor{UPSTIcoverblue}{\sffamily\small \UPSTIcoverfootertext}%
@@ -40,77 +51,109 @@
   \rofoot[\UPSTIfootertext]{\UPSTIfootertext}%
 }
 
+% Table des matières compacte, sans titre et sans création d'une page dédiée.
 \makeatletter
 \newcommand{\UPSTIcovertoc}{%
   \begingroup
-    \parindent0pt\parskip0pt
-    \color{UPSTIcoverblue}\sffamily\footnotesize
+    \parindent=0pt
+    \parskip=0pt
+    \color{UPSTIcoverblue}%
+    \sffamily\fontsize{6.7}{8.2}\selectfont
     \setcounter{tocdepth}{2}%
+    \renewcommand*\l@section{\@dottedtocline{1}{0pt}{2.3em}}%
+    \renewcommand*\l@subsection{\@dottedtocline{2}{1.0em}{3.1em}}%
+    \renewcommand*\l@subsubsection{\@dottedtocline{3}{2.0em}{4.0em}}%
     \@starttoc{toc}%
   \endgroup
 }
 \makeatother
 
+% La totalité de la couverture est positionnée en coordonnées absolues. Aucun
+% élément ne participe au flux vertical : la couverture tient donc toujours sur
+% une seule page, table des matières comprise.
 \newcommand{\UPSTImakecoursecover}{%
   \begin{titlepage}
     \thispagestyle{empty}%
     \begin{tikzpicture}[remember picture,overlay]
-      \node[anchor=north west,inner sep=0pt]
-        at (current page.north west)
-        {\includegraphics[width=\paperwidth,height=48mm]{\UPSTIcoverheroimage}};
 
-      \fill[white,opacity=.88]
-        ([yshift=-48mm]current page.north west)
+      % Bandeau illustré supérieur, avec une petite marge blanche périphérique.
+      \node[anchor=north west,inner sep=0pt,
+            xshift=4mm,yshift=-4mm]
+        at (current page.north west)
+        {\includegraphics[
+          width=\dimexpr\paperwidth-8mm\relax,
+          height=62mm
+        ]{\UPSTIcoverheroimage}};
+
+      % Bande translucide portant le titre du cours.
+      \fill[white,opacity=.86]
+        ([xshift=4mm,yshift=-51mm]current page.north west)
         rectangle
-        ([yshift=-61mm]current page.north east);
+        ([xshift=-16mm,yshift=-67mm]current page.north east);
 
       \node[
         anchor=west,
         xshift=14mm,
-        yshift=-54.5mm,
+        yshift=-59mm,
         text=UPSTIcoverblue,
         align=left,
-        text width=.84\paperwidth,
-        font=\sffamily\bfseries\fontsize{17}{19}\selectfont
+        text width=.80\paperwidth,
+        font=\sffamily\bfseries\fontsize{15}{18}\selectfont
       ] at (current page.north west) {\UPSTIcovertitle};
 
+      % Illustration centrale à gauche.
+      \node[anchor=north,inner sep=0pt,
+            xshift=-38mm,yshift=-82mm]
+        at (current page.north)
+        {\IfFileExists{\UPSTIcoverpreviewimage}{%
+          \includegraphics[width=66mm,height=43mm,keepaspectratio]{\UPSTIcoverpreviewimage}%
+        }{}};
+
+      % Sommaire directement intégré à la couverture, à droite.
+      \node[anchor=north west,inner sep=0pt,
+            xshift=136mm,yshift=-84mm,
+            text width=56mm,align=left]
+        at (current page.north west)
+        {\begin{minipage}[t]{56mm}\UPSTIcovertoc\end{minipage}};
+
+      % Intitulé du cycle.
+      \node[
+        anchor=north,
+        yshift=-153mm,
+        text=UPSTIcoverorange,
+        align=center,
+        text width=130mm,
+        font=\rmfamily\fontsize{15}{20}\selectfont
+      ] at (current page.north) {\UPSTIcovercycle};
+
+      % Titre principal vert.
+      \node[
+        anchor=north,
+        yshift=-205mm,
+        text=UPSTIcovergreen,
+        align=center,
+        text width=150mm,
+        font=\sffamily\bfseries\fontsize{15}{19}\selectfont
+      ] at (current page.north) {\UPSTIcovertitle};
+
+      % Bandeau de pied de page.
       \fill[UPSTIcoverfooterbg]
-        ([yshift=0mm]current page.south west)
+        (current page.south west)
         rectangle
-        ([yshift=12mm]current page.south east);
+        ([yshift=15mm]current page.south east);
 
       \node[anchor=south west,inner sep=0pt,xshift=4mm,yshift=1mm]
         at (current page.south west)
-        {\IfFileExists{\UPSTIcoverfooterlogo}{\includegraphics[height=10mm]{\UPSTIcoverfooterlogo}}{}};
+        {\IfFileExists{\UPSTIcoverfooterlogo}{%
+          \includegraphics[height=12mm]{\UPSTIcoverfooterlogo}%
+        }{}};
 
-      \node[anchor=south east,xshift=-7mm,yshift=3mm,
-        text=UPSTIcoverblue,font=\sffamily\scriptsize]
+      \node[anchor=south east,xshift=-8mm,yshift=5mm,
+            text=UPSTIcoverblue,font=\sffamily\scriptsize]
         at (current page.south east)
         {\UPSTIcoverfootertext};
-    \end{tikzpicture}
 
-    \vspace*{74mm}
-    \noindent\begin{minipage}[t]{0.58\textwidth}
-      \vspace{0pt}
-      \centering
-      \IfFileExists{\UPSTIcoverpreviewimage}{%
-        \includegraphics[width=.94\linewidth]{\UPSTIcoverpreviewimage}%
-      }{}
-    \end{minipage}\hfill
-    \begin{minipage}[t]{0.34\textwidth}
-      \vspace{0pt}
-      \UPSTIcovertoc
-    \end{minipage}
-
-    \vspace{20mm}
-    \begin{center}
-      {\color{UPSTIcoverorange}\fontsize{18}{24}\selectfont
-        \UPSTIcovercycle\par}
-      \vspace{16mm}
-      {\color{UPSTIcovergreen}\sffamily\bfseries\fontsize{18}{22}\selectfont
-        \UPSTIcovertitle\par}
-    \end{center}
-
-    \vfill
+    \end{tikzpicture}%
+    \null\vfill
   \end{titlepage}%
 }
