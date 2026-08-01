@@ -152,13 +152,19 @@
 % -----------------------------------------------------------------------------
 \newcommand{\TLDrawCourseCover}{%
   \begin{tikzpicture}[remember picture,overlay]
-    % Image supérieure en pleine largeur, sans marge blanche.
-    \node[anchor=north west,inner sep=0pt]
-      at (current page.north west)
-      {\TLCoverIncludeGraphics[
-        width=\paperwidth,
-        height=62mm
-      ]{\TLHeroImage}};
+    % Le framework applique un maintien global des proportions aux images.
+    % On impose donc la largeur seule, puis on recadre verticalement dans une
+    % fenêtre de 62 mm : le bandeau couvre réellement toute la page sans être
+    % déformé ni limité à sa largeur naturelle.
+    \begin{scope}
+      \clip
+        (current page.north west)
+        rectangle
+        ([yshift=-62mm]current page.north east);
+      \node[anchor=center,inner sep=0pt]
+        at ([yshift=-31mm]current page.north)
+        {\TLCoverIncludeGraphics[width=\paperwidth]{\TLHeroImage}};
+    \end{scope}
 
     % Cartouche du titre sur toute la largeur de la page.
     \fill[white,opacity=.86]
