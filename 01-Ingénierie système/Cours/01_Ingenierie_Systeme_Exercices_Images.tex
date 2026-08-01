@@ -133,7 +133,9 @@
 \expandafter\let\csname AFimg@af_exo_tc200_overview.jpg\endcsname\AFimgTCOverview
 \expandafter\let\csname AFimg@af_exo_tc200_dr.jpg\endcsname\AFimgTCDR
 
-\renewcommand{\AFfigure}[2][0.96\linewidth]{%
+% La commande est créée ici : ce fichier de ressources est chargé avant le
+% fichier d'exercices, qui ne fait ensuite que l'utiliser.
+\newcommand{\AFfigure}[2][0.96\linewidth]{%
   \ifcsname AFimg@\detokenize{#2}\endcsname
     \csname AFimg@\detokenize{#2}\endcsname{#1}%
   \else
