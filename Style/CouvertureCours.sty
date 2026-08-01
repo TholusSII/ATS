@@ -5,8 +5,10 @@
 \RequirePackage{xcolor}
 \RequirePackage{tikz}
 \RequirePackage{etoolbox}
+\RequirePackage{eso-pic}
 
 \usetikzlibrary{calc}
+\input{TLDoisneauPhoto.tex}
 
 \definecolor{TLCoverBlue}{RGB}{0,74,146}
 \definecolor{TLCoverGreen}{RGB}{151,183,63}
@@ -17,23 +19,20 @@
 \newcommand{\TLPreviewImage}{}
 \newcommand{\TLCycleText}{}
 \newcommand{\TLCourseTitle}{}
-\newcommand{\TLFooterLogo}{}
-\newcommand{\TLFooterText}{}
+\newcommand{\TLFooterText}{Lycée Robert Doisneau - ATS}
 \newcommand{\TLCoverContentsBody}{}
 
 % #1 : image du bandeau supérieur
 % #2 : illustration centrale
 % #3 : texte du cycle
 % #4 : titre du cours
-% #5 : logo du pied de page
-% #6 : texte du pied de page
-\newcommand{\TLCourseCoverSetup}[6]{%
+% #5 : texte du pied de page
+\newcommand{\TLCourseCoverSetup}[5]{%
   \gdef\TLHeroImage{#1}%
   \gdef\TLPreviewImage{#2}%
   \gdef\TLCycleText{#3}%
   \gdef\TLCourseTitle{#4}%
-  \gdef\TLFooterLogo{#5}%
-  \gdef\TLFooterText{#6}%
+  \gdef\TLFooterText{#5}%
 }
 
 \newcommand{\TLCourseCoverContents}[1]{%
@@ -52,25 +51,48 @@
   \vspace{1.1mm}%
 }
 
-% Pied de page commun à toutes les pages du poly.
+% Le pied de page est ajouté au calque de fond de chaque page. Il reste donc
+% présent même lorsque kaobook change le style de page pour un chapitre, une
+% page paire ou une page impaire.
+\newsavebox{\TLDoisneauPhotoBox}
+\newif\ifTLCourseFooterInstalled
+\TLCourseFooterInstalledfalse
+
 \newcommand{\TLCourseFooter}{%
-  \def\TLCurrentFooterLogo{%
-    \IfFileExists{\TLFooterLogo}{%
-      \includegraphics[height=7mm]{\TLFooterLogo}%
-    }{}%
-  }%
-  \def\TLCurrentFooterText{%
-    \textcolor{TLCoverBlue}{\sffamily\small \TLFooterText}%
-  }%
-  \lefoot[\TLCurrentFooterLogo]{\TLCurrentFooterLogo}%
-  \lofoot[\TLCurrentFooterLogo]{\TLCurrentFooterLogo}%
-  \refoot[\TLCurrentFooterText]{\TLCurrentFooterText}%
-  \rofoot[\TLCurrentFooterText]{\TLCurrentFooterText}%
+  \ifTLCourseFooterInstalled
+  \else
+    \global\TLCourseFooterInstalledtrue
+    \sbox{\TLDoisneauPhotoBox}{\TLRobertDoisneauPhoto}%
+    \AddToShipoutPictureBG{%
+      \begin{tikzpicture}[remember picture,overlay]
+        \fill[TLCoverFooterBackground]
+          (current page.south west)
+          rectangle
+          ([yshift=15mm]current page.south east);
+
+        \node[
+          anchor=south west,
+          inner sep=0pt,
+          xshift=4mm,
+          yshift=1.5mm
+        ] at (current page.south west) {\usebox{\TLDoisneauPhotoBox}};
+
+        \node[
+          anchor=south east,
+          xshift=-8mm,
+          yshift=5mm,
+          text=TLCoverBlue,
+          font=\sffamily\scriptsize
+        ] at (current page.south east) {\TLFooterText};
+      \end{tikzpicture}%
+    }%
+  \fi
 }
 
 % Couverture entièrement positionnée en coordonnées absolues. Elle occupe une
 % seule page et n'appelle jamais \tableofcontents : aucun feuillet supplémentaire
-% n'est créé.
+% n'est créé. Le pied de page est fourni par \TLCourseFooter comme sur toutes les
+% autres pages.
 \newcommand{\TLCourseCover}{%
   \begin{titlepage}
     \thispagestyle{empty}%
@@ -133,25 +155,6 @@
         text width=150mm,
         font=\sffamily\bfseries\fontsize{15}{19}\selectfont
       ] at (current page.north) {\TLCourseTitle};
-
-      \fill[TLCoverFooterBackground]
-        (current page.south west)
-        rectangle
-        ([yshift=15mm]current page.south east);
-
-      \node[anchor=south west,inner sep=0pt,xshift=4mm,yshift=1mm]
-        at (current page.south west)
-        {\IfFileExists{\TLFooterLogo}{%
-          \includegraphics[height=12mm]{\TLFooterLogo}%
-        }{}};
-
-      \node[
-        anchor=south east,
-        xshift=-8mm,
-        yshift=5mm,
-        text=TLCoverBlue,
-        font=\sffamily\scriptsize
-      ] at (current page.south east) {\TLFooterText};
 
     \end{tikzpicture}%
     \null\vfill
