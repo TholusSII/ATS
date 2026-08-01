@@ -12,10 +12,18 @@
 %%	secnumdepth=1,
 ]{kaobook}
 
+% Le document est intégralement en français. Le chargement explicite de babel
+% évite que siunitx, translations, KOMA-Script et les tables utilisent l'anglais
+% par défaut avec les versions récentes de MiKTeX.
+\usepackage[french]{babel}
+
 % -----------------------------------------------------------------------------
-% Optimisation de la mise en page : limitation des grands blancs
+% Optimisation de la mise en page : limitation des grands blancs et des débords
+% dus aux images pleine largeur issues de la conversion Word.
 % -----------------------------------------------------------------------------
 \raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{2em}
 \setcounter{topnumber}{5}
 \setcounter{bottomnumber}{5}
 \setcounter{totalnumber}{8}
@@ -40,6 +48,7 @@
 \input{\repRel/Style/packages_v2}
 \input{\repRel/Style/macros_SII_v2}
 \input{\repRel/Style/environment_v2}
+\pgfplotsset{compat=1.18}
 \usepackage{UPSTI_Pedagogique}
 
 % Bob
@@ -120,24 +129,19 @@
 {\begin{bobbox}[#1]}
 {\end{bobbox}}
 
-% La commande \frenchsetup n'est disponible que si le module français de
-% babel est chargé. Le test évite une erreur bloquante avec certaines versions
-% de MiKTeX/babel tout en conservant le réglage lorsqu'il est disponible.
 \ifdefined\frenchsetup
   \frenchsetup{StandardItemLabels=true}
 \fi
 
-\usepackage{kaobiblio}
-\addbibresource{Cy_01_ModelisationSystemes.bib}
+% Ce cours ne contient aucune citation ni bibliographie : ne pas charger
+% kaobiblio évite une demande inutile d'exécution de Biber.
 \usepackage{kaotheorems}
-% kaorefs n'est pas utilisé dans ce cours. Ne pas le charger évite d'importer
-% ses anciennes traductions multilingues et cleveref sous MiKTeX 2026.
 
 \usepackage[normalem]{ulem}
 \providecommand{\ul}[1]{\uline{#1}}
 
 \graphicspath{{images/}{./}}
-\makeindex[columns=3, title=Alphabetical Index, intoc]
+\makeindex[columns=3, title=Index alphabétique, intoc]
 \usetikzlibrary{decorations.text,backgrounds,shadings}
 
 \pretocmd{\section}{\Needspace{6\baselineskip}}{}{}
@@ -156,13 +160,38 @@
   \end{center}%
 }
 
-% Sécurité locale complémentaire : les hooks anglais de varioref ne sont pas
-% utilisés dans ce cours français et peuvent devenir autoréférents avec certaines
-% combinaisons récentes de babel/varioref.
+% Les liens de retour du vieux package footnotebackref provoquent, avec les
+% longtable et hyperref récents, des destinations dupliquées et des références
+% bhfn non définies. Les notes restent numérotées, mais sans lien de retour.
+\hypersetup{hyperfootnotes=false}
 \makeatletter
-\@ifundefined{extrasenglish}{}{\let\extrasenglish\@empty}
-\@ifundefined{noextrasenglish}{}{\let\noextrasenglish\@empty}
+\def\@footnotemark{%
+  \leavevmode
+  \ifhmode\edef\@x@sf{\the\spacefactor}\nobreak\fi
+  \@makefnmark
+  \ifhmode\spacefactor\@x@sf\fi
+  \relax
+}
+\renewcommand\@makefntext[1]{%
+  \renewcommand\@makefnmark{%
+    \mbox{\textsuperscript{\normalfont\@thefnmark}\,}%
+  }%
+  \BHFN@OldMakefntext{#1}%
+}
 \makeatother
+
+% Table des matières compacte, affichée après l'image d'ouverture. Le fichier
+% source converti contient déjà un \clearpage à cet endroit ; on l'utilise pour
+% insérer la table sans modifier le chapitre importé.
+\newcommand{\AFtableofcontents}{%
+  \par\medskip
+  \begingroup
+    \setstretch{1}%
+    \etocsettocstyle{\section*{\contentsname}}{}%
+    \etocsetnexttocdepth{\subsectiontocdepth}%
+    \tableofcontents
+  \endgroup
+}
 
 \begin{document}
 
@@ -170,11 +199,6 @@
 \title[Thomas Lusseau - SII en ATS]{Thomas Lusseau - SII en ATS}
 \author[TL]{Thomas Lusseau}
 \date{\today}
-
-\begingroup
-\setstretch{1}
-%\tableofcontents
-\endgroup
 
 \mainmatter
 \setchapterstyle{kao}
@@ -188,7 +212,34 @@
 %\livretfalse
 \collefalse
 
+% Repérer l'image d'ouverture image3.png, puis insérer la table des matières au
+% premier \clearpage qui la suit. Les commandes originales sont restaurées dès
+% la fin du cours principal.
+\newif\ifAFtocpending
+\newif\ifAFtocprinted
+\let\AForiginalincludegraphics\includegraphics
+\let\AForiginalclearpage\clearpage
+\RenewDocumentCommand{\includegraphics}{s O{} m}{%
+  \IfBooleanTF{#1}{%
+    \AForiginalincludegraphics*[#2]{#3}%
+  }{%
+    \AForiginalincludegraphics[#2]{#3}%
+  }%
+  \ifstrequal{#3}{images/image3.png}{\global\AFtocpendingtrue}{}%
+}
+\renewcommand{\clearpage}{%
+  \ifAFtocpending
+    \ifAFtocprinted\else
+      \global\AFtocprintedtrue
+      \AFtableofcontents
+    \fi
+  \fi
+  \AForiginalclearpage
+}
 \input{01_AnalyseFonctionnelle2022}
+\let\includegraphics\AForiginalincludegraphics
+\let\clearpage\AForiginalclearpage
+
 \input{01_AnalyseFonctionnelle_Exercices_Images}
 \input{01_AnalyseFonctionnelle_Exercices}
 
