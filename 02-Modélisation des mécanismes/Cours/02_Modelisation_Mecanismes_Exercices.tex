@@ -12,11 +12,20 @@
 \setlength{\LTright}{0pt}
 \setlength{\extrarowheight}{1pt}
 
-% La conversion Word contient parfois plusieurs images consécutives dimensionnées
-% chacune à \linewidth. On conserve les tailles explicites, on limite les images
-% sans taille et on autorise une coupure entre deux illustrations.
+% -----------------------------------------------------------------------------
+% Images de l'ancienne conversion Word
+% -----------------------------------------------------------------------------
+% Certaines illustrations sont encore au format EMF/WMF, non lisible par
+% pdfLaTeX. On cherche automatiquement une version PNG, PDF, JPEG ou JPG portant
+% le même nom. Lorsqu'aucune conversion n'est disponible, un repère discret est
+% inséré à la place : la compilation continue sans perdre la position du schéma.
+%
+% Toutes les images historiques sont en outre limitées à 96 % de la largeur
+% disponible. Cela corrige les Overfull hbox produits par des images successives
+% exportées chacune avec width=\linewidth.
 \NewCommandCopy\TLLegacyIncludeGraphics\includegraphics
-\RenewDocumentCommand{\includegraphics}{s O{} m}{%
+
+\NewDocumentCommand{\TLLegacyRawGraphic}{s O{} m}{%
   \ifstrempty{#2}{%
     \IfBooleanTF{#1}
       {\TLLegacyIncludeGraphics*[width=\linewidth,height=.82\textheight,keepaspectratio]{#3}}
@@ -26,10 +35,82 @@
       {\TLLegacyIncludeGraphics*[#2]{#3}}
       {\TLLegacyIncludeGraphics[#2]{#3}}%
   }%
-  \ifinner\hspace{0pt}\allowbreak\else\par\noindent\fi
+}
+
+\newcommand{\TLLegacyMissingGraphic}[1]{%
+  \begin{tikzpicture}[baseline=(current bounding box.center)]
+    \node[
+      draw=TLCoverBlue!55,
+      rounded corners=1mm,
+      fill=TLCoverBlue!4,
+      text=TLCoverBlue!80!black,
+      align=center,
+      font=\sffamily\scriptsize,
+      inner sep=2mm,
+      text width=24mm
+    ] {Illustration vectorielle\\non convertie\\\ttfamily #1};
+  \end{tikzpicture}%
+}
+
+\newcommand{\TLLegacyPlaceGraphic}[1]{%
+  \ifinner
+    \adjustbox{max width=.94\linewidth,max totalheight=.72\textheight}{#1}%
+    \hspace{0pt}\allowbreak
+  \else
+    \par\noindent
+    \makebox[\linewidth][c]{%
+      \adjustbox{max width=.96\linewidth,max totalheight=.82\textheight}{#1}%
+    }%
+    \par\noindent
+  \fi
 }
 
 \makeatletter
+\RenewDocumentCommand{\includegraphics}{s O{} m}{%
+  \begingroup
+  \filename@parse{#3}%
+  \edef\TLLegacyGraphicExtension{\filename@ext}%
+  \edef\TLLegacyGraphicStem{\filename@area\filename@base}%
+
+  \ifboolexpr{
+    test {\ifstrequal{\TLLegacyGraphicExtension}{emf}}
+    or test {\ifstrequal{\TLLegacyGraphicExtension}{EMF}}
+    or test {\ifstrequal{\TLLegacyGraphicExtension}{wmf}}
+    or test {\ifstrequal{\TLLegacyGraphicExtension}{WMF}}
+  }{%
+    \IfFileExists{\TLLegacyGraphicStem.png}{%
+      \IfBooleanTF{#1}
+        {\TLLegacyPlaceGraphic{\TLLegacyRawGraphic*[#2]{\TLLegacyGraphicStem.png}}}
+        {\TLLegacyPlaceGraphic{\TLLegacyRawGraphic[#2]{\TLLegacyGraphicStem.png}}}%
+    }{%
+      \IfFileExists{\TLLegacyGraphicStem.pdf}{%
+        \IfBooleanTF{#1}
+          {\TLLegacyPlaceGraphic{\TLLegacyRawGraphic*[#2]{\TLLegacyGraphicStem.pdf}}}
+          {\TLLegacyPlaceGraphic{\TLLegacyRawGraphic[#2]{\TLLegacyGraphicStem.pdf}}}%
+      }{%
+        \IfFileExists{\TLLegacyGraphicStem.jpeg}{%
+          \IfBooleanTF{#1}
+            {\TLLegacyPlaceGraphic{\TLLegacyRawGraphic*[#2]{\TLLegacyGraphicStem.jpeg}}}
+            {\TLLegacyPlaceGraphic{\TLLegacyRawGraphic[#2]{\TLLegacyGraphicStem.jpeg}}}%
+        }{%
+          \IfFileExists{\TLLegacyGraphicStem.jpg}{%
+            \IfBooleanTF{#1}
+              {\TLLegacyPlaceGraphic{\TLLegacyRawGraphic*[#2]{\TLLegacyGraphicStem.jpg}}}
+              {\TLLegacyPlaceGraphic{\TLLegacyRawGraphic[#2]{\TLLegacyGraphicStem.jpg}}}%
+          }{%
+            \TLLegacyPlaceGraphic{\TLLegacyMissingGraphic{\filename@base}}%
+          }%
+        }%
+      }%
+    }%
+  }{%
+    \IfBooleanTF{#1}
+      {\TLLegacyPlaceGraphic{\TLLegacyRawGraphic*[#2]{#3}}}
+      {\TLLegacyPlaceGraphic{\TLLegacyRawGraphic[#2]{#3}}}%
+  }%
+  \endgroup
+}
+
 \CatchFileDef{\TLLegacyModelisationFile}
   {02_ModelisationMecanismes_cours.tex}
   {}
