@@ -5,9 +5,8 @@
 % ============================================================================
 \RequirePackage{silence}
 \WarningFilter{xcolor}{Package option `usenames' is obsolete}
-% Kaobook charge listings dans la classe, donc avant que babel puisse être
-% chargé dans le document. Le warning de french3 sur cet ordre est sans effet
-% ici : les réglages français et listings sont tous deux appliqués correctement.
+% Kaobook charge listings avant babel. Les deux paquets restent correctement
+% configurés malgré cet avertissement sans conséquence.
 \WarningFilter{french3.ldf}{Please load the "listings" package}
 
 \documentclass[
@@ -19,6 +18,13 @@
 
 % Fichier de définition du cours à compiler.
 \newcommand{\TLCourseDefinitionFile}{01_Ingenierie_Systeme}
+
+% Le seul chemin local nécessaire : TLCours charge ensuite le framework,
+% les macros SI, les environnements, les boîtes TL et la couverture.
+\makeatletter
+\def\input@path{{../../Style/}}
+\makeatother
+\usepackage{TLCours}
 
 % -----------------------------------------------------------------------------
 % Mise en page commune à tous les cours
@@ -37,47 +43,7 @@
 \setlength{\textfloatsep}{10pt plus 2pt minus 2pt}
 \setlength{\intextsep}{8pt plus 2pt minus 2pt}
 
-\newcommand{\discipline}{Sciences Industrielles de l'Ingénieur}
-\newcommand{\auteur}{Thomas Lusseau}
-\newcommand{\repRel}{../../}
-\newcommand{\repStyle}{\repRel/Style}
-
-% Charger en priorité les packages locaux du framework.
-\makeatletter
-\def\input@path{{../../Style/}}
-\makeatother
-
-\input{\repStyle/packages_v2}
-\input{\repStyle/macros_SII_v2}
-\input{\repStyle/environment_v2}
-\pgfplotsset{compat=1.18}
-
-\usepackage{UPSTI_Pedagogique}
-\usepackage{CouvertureCours}
-\usepackage{TL}
-\usepackage{needspace}
-\usepackage{etoolbox}
-\usepackage{kaotheorems}
-\usepackage[normalem]{ulem}
-
-\providecommand{\ul}[1]{\uline{#1}}
-
-\ifdefined\frenchsetup
-  \frenchsetup{StandardItemLabels=true}
-\fi
-
-\graphicspath{{images/}{./}}
 \makeindex[columns=3, title=Index alphabétique, intoc]
-
-\pretocmd{\section}{\Needspace{6\baselineskip}}{}{}
-\pretocmd{\subsection}{\Needspace{5\baselineskip}}{}{}
-\pretocmd{\subsubsection}{\Needspace{4\baselineskip}}{}{}
-
-% Les hooks anglais de varioref ne sont pas utilisés dans les cours français.
-\makeatletter
-\@ifundefined{extrasenglish}{}{\let\extrasenglish\@empty}
-\@ifundefined{noextrasenglish}{}{\let\noextrasenglish\@empty}
-\makeatother
 
 \begin{document}
 
