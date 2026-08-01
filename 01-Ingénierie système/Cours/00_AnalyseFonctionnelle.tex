@@ -29,7 +29,7 @@
 \newcommand{\repStyle}{\repRel/Style}
 \input{\repRel/Style/macros_SII_v2}
 \input{\repRel/Style/environment_v2}
-\usepackage{\repStyle/UPSTI_pedagogique}
+\usepackage{\repStyle/UPSTI_Pedagogique}
 
 % Bob
 \usepackage[most]{tcolorbox}
@@ -109,7 +109,12 @@
 {\begin{bobbox}[#1]}
 {\end{bobbox}}
 
-\frenchsetup{StandardItemLabels=true}
+% La commande \frenchsetup n'est disponible que si le module français de
+% babel est chargé. Le test évite une erreur bloquante avec certaines versions
+% de MiKTeX/babel tout en conservant le réglage lorsqu'il est disponible.
+\ifdefined\frenchsetup
+  \frenchsetup{StandardItemLabels=true}
+\fi
 
 \usepackage{kaobiblio}
 \addbibresource{Cy_01_ModelisationSystemes.bib}
