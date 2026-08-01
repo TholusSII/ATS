@@ -15,14 +15,6 @@
 % -----------------------------------------------------------------------------
 % Images de l'ancienne conversion Word
 % -----------------------------------------------------------------------------
-% Certaines illustrations sont encore au format EMF/WMF, non lisible par
-% pdfLaTeX. On cherche automatiquement une version PNG, PDF, JPEG ou JPG portant
-% le même nom. Lorsqu'aucune conversion n'est disponible, un repère discret est
-% inséré à la place : la compilation continue sans perdre la position du schéma.
-%
-% Toutes les images historiques sont en outre limitées à 96 % de la largeur
-% disponible. Cela corrige les Overfull hbox produits par des images successives
-% exportées chacune avec width=\linewidth.
 \NewCommandCopy\TLLegacyIncludeGraphics\includegraphics
 
 \NewDocumentCommand{\TLLegacyRawGraphic}{s O{} m}{%
@@ -54,7 +46,7 @@
 
 \newcommand{\TLLegacyPlaceGraphic}[1]{%
   \ifinner
-    \adjustbox{max width=.94\linewidth,max totalheight=.72\textheight}{#1}%
+    \adjustbox{max width=.92\linewidth,max totalheight=.72\textheight}{#1}%
     \hspace{0pt}\allowbreak
   \else
     \par\noindent
@@ -115,8 +107,34 @@
   {02_ModelisationMecanismes_cours.tex}
   {}
 
+% Les trois EMF ci-dessous se trouvent réellement dans la partie exercices.
+% On les neutralise avant exécution du fichier capturé : pdfLaTeX ne voit donc
+% jamais leur extension. image174 est une petite puce décorative ; les deux
+% autres emplacements restent matérialisés par un repère discret.
+\patchcmd{\TLLegacyModelisationFile}
+  {\includegraphics[width=\linewidth]{images/image174.emf}}
+  {}
+  {}{}
+\patchcmd{\TLLegacyModelisationFile}
+  {\protect\includegraphics{images/image194.emf}}
+  {\TLLegacyMissingGraphic{image194}}
+  {}{}
+\patchcmd{\TLLegacyModelisationFile}
+  {\includegraphics[width=\linewidth]{images/image220.emf}}
+  {\TLLegacyMissingGraphic{image220}}
+  {}{}
+
+% Les images 158 et 159 étaient chacune demandées à \linewidth sur la même
+% ligne. On les compose explicitement à 46 % de la largeur.
+\patchcmd{\TLLegacyModelisationFile}
+  {\includegraphics[width=\linewidth]{images/image158.png}\includegraphics[width=\linewidth]{images/image159.png}}
+  {\begin{center}%
+   \TLLegacyIncludeGraphics[width=.46\linewidth]{images/image158.png}\hfill
+   \TLLegacyIncludeGraphics[width=.46\linewidth]{images/image159.png}%
+   \end{center}}
+  {}{}
+
 % Parcours récursif des commandes section du fichier capturé.
-% L'argument #2 est le titre de la section ; #3 contient la suite du fichier.
 \long\def\TLExtractModelisationExercises#1\section#2#3\TLModelisationStop{%
   \ifstrequal{#2}{Exercices du chapitre}{%
     \section{#2}#3%
