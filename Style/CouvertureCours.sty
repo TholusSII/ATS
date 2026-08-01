@@ -7,7 +7,7 @@
 \RequirePackage{etoolbox}
 \RequirePackage{eso-pic}
 
-\usetikzlibrary{calc,shadows.blur}
+\usetikzlibrary{calc}
 \input{TLDoisneauPhoto.tex}
 
 \definecolor{TLCoverBlue}{RGB}{0,74,146}
@@ -54,9 +54,6 @@
 % -----------------------------------------------------------------------------
 % Pied de page commun
 % -----------------------------------------------------------------------------
-% Le pied de page est ajouté au calque de fond de chaque page. Il reste présent
-% même lorsque kaobook change le style de page pour un chapitre, une page paire
-% ou une page impaire.
 \newsavebox{\TLDoisneauPhotoBox}
 \newsavebox{\TLFooterCompositeBox}
 \newif\ifTLCourseFooterInstalled
@@ -64,31 +61,60 @@
 
 \newcommand{\TLFooterPhoto}{%
   \begin{tikzpicture}[baseline=(current bounding box.south)]
-    % Ombre très légère derrière la photographie.
-    \path[
-      rounded corners=2mm,
-      fill=white,
-      blur shadow={shadow blur steps=5,shadow opacity=.18,shadow xshift=.4mm,shadow yshift=-.4mm}
-    ] (0,0) rectangle (27mm,12mm);
+    \path[rounded corners=2mm,fill=white,opacity=.75]
+      (0,0) rectangle (27mm,12mm);
 
-    % Découpe arrondie de la photo.
     \begin{scope}
       \clip[rounded corners=2mm] (0,0) rectangle (27mm,12mm);
       \node[anchor=south west,inner sep=0pt] at (1mm,.3mm)
         {\usebox{\TLDoisneauPhotoBox}};
 
-      % Fondu progressif sur les bords, obtenu par plusieurs voiles de fond.
-      \fill[TLCoverFooterBackground,opacity=.58] (0,0) rectangle (1.0mm,12mm);
-      \fill[TLCoverFooterBackground,opacity=.34] (1.0mm,0) rectangle (2.0mm,12mm);
-      \fill[TLCoverFooterBackground,opacity=.16] (2.0mm,0) rectangle (3.0mm,12mm);
-      \fill[TLCoverFooterBackground,opacity=.16] (24mm,0) rectangle (25mm,12mm);
-      \fill[TLCoverFooterBackground,opacity=.34] (25mm,0) rectangle (26mm,12mm);
-      \fill[TLCoverFooterBackground,opacity=.58] (26mm,0) rectangle (27mm,12mm);
+      % Fondu latéral pour intégrer la photographie au bandeau.
+      \fill[TLCoverFooterBackground,opacity=.62] (0,0) rectangle (1mm,12mm);
+      \fill[TLCoverFooterBackground,opacity=.38] (1mm,0) rectangle (2mm,12mm);
+      \fill[TLCoverFooterBackground,opacity=.18] (2mm,0) rectangle (3mm,12mm);
+      \fill[TLCoverFooterBackground,opacity=.18] (24mm,0) rectangle (25mm,12mm);
+      \fill[TLCoverFooterBackground,opacity=.38] (25mm,0) rectangle (26mm,12mm);
+      \fill[TLCoverFooterBackground,opacity=.62] (26mm,0) rectangle (27mm,12mm);
     \end{scope}
 
-    % Filet blanc discret pour fondre l'image dans le bandeau.
-    \draw[white,opacity=.82,line width=.35pt,rounded corners=2mm]
+    \draw[white,opacity=.88,line width=.35pt,rounded corners=2mm]
       (0,0) rectangle (27mm,12mm);
+  \end{tikzpicture}%
+}
+
+% Le dessin est placé dans une macro autonome. Cela évite de stocker dans le
+% hook eso-pic un nœud TikZ contenant un saut de ligne, à l'origine de l'erreur
+% « Extra }, or forgotten \endgroup ».
+\newcommand{\TLDrawCourseFooter}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[TLCoverFooterBackground]
+      (current page.south west)
+      rectangle
+      ([yshift=18mm]current page.south east);
+
+    \node[
+      anchor=south west,
+      inner sep=0pt,
+      xshift=4mm,
+      yshift=2.6mm
+    ] at (current page.south west) {\usebox{\TLFooterCompositeBox}};
+
+    \node[
+      anchor=south east,
+      xshift=-9mm,
+      yshift=7.2mm,
+      text=TLCoverBlue,
+      font=\sffamily\bfseries\fontsize{10.5}{11.5}\selectfont
+    ] at (current page.south east) {Lycée Robert Doisneau};
+
+    \node[
+      anchor=south east,
+      xshift=-9mm,
+      yshift=3.5mm,
+      text=TLCoverBlue,
+      font=\sffamily\fontsize{7.8}{8.5}\selectfont
+    ] at (current page.south east) {ATS};
   \end{tikzpicture}%
 }
 
@@ -98,43 +124,15 @@
     \global\TLCourseFooterInstalledtrue
     \sbox{\TLDoisneauPhotoBox}{\TLRobertDoisneauPhoto}%
     \sbox{\TLFooterCompositeBox}{\TLFooterPhoto}%
-    \AddToShipoutPictureBG{%
-      \begin{tikzpicture}[remember picture,overlay]
-        \fill[TLCoverFooterBackground]
-          (current page.south west)
-          rectangle
-          ([yshift=18mm]current page.south east);
-
-        \node[
-          anchor=south west,
-          inner sep=0pt,
-          xshift=4mm,
-          yshift=2.6mm
-        ] at (current page.south west) {\usebox{\TLFooterCompositeBox}};
-
-        \node[
-          anchor=south east,
-          xshift=-9mm,
-          yshift=4.4mm,
-          text=TLCoverBlue,
-          align=right
-        ] at (current page.south east) {%
-          {\sffamily\bfseries\fontsize{10.5}{11.5}\selectfont
-            Lycée Robert Doisneau}\[-.5mm]
-          {\sffamily\fontsize{7.8}{8.5}\selectfont ATS}%
-        };
-      \end{tikzpicture}%
-    }%
+    \AddToShipoutPictureBG{\TLDrawCourseFooter}%
   \fi
 }
 
 % -----------------------------------------------------------------------------
 % Couverture
 % -----------------------------------------------------------------------------
-% On n'utilise volontairement pas l'environnement titlepage de scrbook/kaobook :
-% suivant les options recto-verso, celui-ci peut insérer ou réserver une page.
-% La couverture est une page normale, explicitement numérotée 1, puis expédiée
-% par \clearpage. Le contenu suivant commence donc sans ambiguïté en page 2.
+% La couverture est une page normale explicitement expédiée par \clearpage.
+% Le contenu suivant commence donc sans ambiguïté en page 2.
 \newcommand{\TLCourseCover}{%
   \setcounter{page}{1}%
   \thispagestyle{empty}%
