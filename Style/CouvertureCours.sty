@@ -1,0 +1,116 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{CouvertureCours}[2026/08/01 Couverture standard des polys de cours]
+
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
+\RequirePackage{tikz}
+\RequirePackage{etoolbox}
+
+\definecolor{UPSTIcoverblue}{RGB}{0,74,146}
+\definecolor{UPSTIcovergreen}{RGB}{151,183,63}
+\definecolor{UPSTIcoverorange}{RGB}{235,104,0}
+\definecolor{UPSTIcoverfooterbg}{RGB}{232,239,242}
+
+\newcommand{\UPSTIcoverheroimage}{}
+\newcommand{\UPSTIcoverpreviewimage}{}
+\newcommand{\UPSTIcovercycle}{}
+\newcommand{\UPSTIcovertitle}{}
+\newcommand{\UPSTIcoverfooterlogo}{}
+\newcommand{\UPSTIcoverfootertext}{}
+
+\newcommand{\UPSTIsetupcoursecover}[6]{%
+  \gdef\UPSTIcoverheroimage{#1}%
+  \gdef\UPSTIcoverpreviewimage{#2}%
+  \gdef\UPSTIcovercycle{#3}%
+  \gdef\UPSTIcovertitle{#4}%
+  \gdef\UPSTIcoverfooterlogo{#5}%
+  \gdef\UPSTIcoverfootertext{#6}%
+}
+
+\newcommand{\UPSTIapplycoursefooter}{%
+  \def\UPSTIfooterlogo{%
+    \IfFileExists{\UPSTIcoverfooterlogo}{\includegraphics[height=7mm]{\UPSTIcoverfooterlogo}}{}%
+  }%
+  \def\UPSTIfootertext{%
+    \textcolor{UPSTIcoverblue}{\sffamily\small \UPSTIcoverfootertext}%
+  }%
+  \lefoot[\UPSTIfooterlogo]{\UPSTIfooterlogo}%
+  \lofoot[\UPSTIfooterlogo]{\UPSTIfooterlogo}%
+  \refoot[\UPSTIfootertext]{\UPSTIfootertext}%
+  \rofoot[\UPSTIfootertext]{\UPSTIfootertext}%
+}
+
+\makeatletter
+\newcommand{\UPSTIcovertoc}{%
+  \begingroup
+    \parindent0pt\parskip0pt
+    \color{UPSTIcoverblue}\sffamily\footnotesize
+    \setcounter{tocdepth}{2}%
+    \@starttoc{toc}%
+  \endgroup
+}
+\makeatother
+
+\newcommand{\UPSTImakecoursecover}{%
+  \begin{titlepage}
+    \thispagestyle{empty}%
+    \begin{tikzpicture}[remember picture,overlay]
+      \node[anchor=north west,inner sep=0pt]
+        at (current page.north west)
+        {\includegraphics[width=\paperwidth,height=48mm]{\UPSTIcoverheroimage}};
+
+      \fill[white,opacity=.88]
+        ([yshift=-48mm]current page.north west)
+        rectangle
+        ([yshift=-61mm]current page.north east);
+
+      \node[
+        anchor=west,
+        xshift=14mm,
+        yshift=-54.5mm,
+        text=UPSTIcoverblue,
+        align=left,
+        text width=.84\paperwidth,
+        font=\sffamily\bfseries\fontsize{17}{19}\selectfont
+      ] at (current page.north west) {\UPSTIcovertitle};
+
+      \fill[UPSTIcoverfooterbg]
+        ([yshift=0mm]current page.south west)
+        rectangle
+        ([yshift=12mm]current page.south east);
+
+      \node[anchor=south west,inner sep=0pt,xshift=4mm,yshift=1mm]
+        at (current page.south west)
+        {\IfFileExists{\UPSTIcoverfooterlogo}{\includegraphics[height=10mm]{\UPSTIcoverfooterlogo}}{}};
+
+      \node[anchor=south east,xshift=-7mm,yshift=3mm,
+        text=UPSTIcoverblue,font=\sffamily\scriptsize]
+        at (current page.south east)
+        {\UPSTIcoverfootertext};
+    \end{tikzpicture}
+
+    \vspace*{74mm}
+    \noindent\begin{minipage}[t]{0.58\textwidth}
+      \vspace{0pt}
+      \centering
+      \IfFileExists{\UPSTIcoverpreviewimage}{%
+        \includegraphics[width=.94\linewidth]{\UPSTIcoverpreviewimage}%
+      }{}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.34\textwidth}
+      \vspace{0pt}
+      \UPSTIcovertoc
+    \end{minipage}
+
+    \vspace{20mm}
+    \begin{center}
+      {\color{UPSTIcoverorange}\fontsize{18}{24}\selectfont
+        \UPSTIcovercycle\par}
+      \vspace{16mm}
+      {\color{UPSTIcovergreen}\sffamily\bfseries\fontsize{18}{22}\selectfont
+        \UPSTIcovertitle\par}
+    \end{center}
+
+    \vfill
+  \end{titlepage}%
+}
