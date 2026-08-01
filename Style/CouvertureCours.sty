@@ -25,20 +25,23 @@
 \newcommand{\TLPreviewImage}{}
 \newcommand{\TLCycleText}{}
 \newcommand{\TLCourseTitle}{}
-\newcommand{\TLFooterText}{Lycée Robert Doisneau}
+\newcommand{\TLFooterText}{Lycée Robert Doisneau - ATS}
+\newcommand{\TLFooterAuthor}{Thomas Lusseau}
 \newcommand{\TLCoverContentsBody}{}
 
 % #1 : image du bandeau supérieur
 % #2 : illustration centrale
 % #3 : texte du cycle
 % #4 : titre du cours
-% #5 : nom de l'établissement affiché dans le pied de page
-\newcommand{\TLCourseCoverSetup}[5]{%
+% #5 : établissement et formation affichés dans le pied de page
+% #6 : auteur affiché sous l'établissement
+\newcommand{\TLCourseCoverSetup}[6]{%
   \gdef\TLHeroImage{#1}%
   \gdef\TLPreviewImage{#2}%
   \gdef\TLCycleText{#3}%
   \gdef\TLCourseTitle{#4}%
   \gdef\TLFooterText{#5}%
+  \gdef\TLFooterAuthor{#6}%
 }
 
 \newcommand{\TLCourseCoverContents}[1]{%
@@ -127,10 +130,10 @@
     \node[
       anchor=south east,
       xshift=-9mm,
-      yshift=3.2mm,
+      yshift=3.1mm,
       text=TLCoverBlue,
       font=\sffamily\fontsize{8.2}{9}\selectfont
-    ] at (current page.south east) {ATS};
+    ] at (current page.south east) {\TLFooterAuthor};
   \end{tikzpicture}%
 }
 
@@ -149,15 +152,16 @@
 % -----------------------------------------------------------------------------
 \newcommand{\TLDrawCourseCover}{%
   \begin{tikzpicture}[remember picture,overlay]
-    \node[anchor=north west,inner sep=0pt,xshift=4mm,yshift=-4mm]
+    % Bandeau supérieur en pleine largeur, sans marge blanche.
+    \node[anchor=north west,inner sep=0pt]
       at (current page.north west)
       {\TLCoverIncludeGraphics[
-        width=\dimexpr\paperwidth-8mm\relax,
+        width=\paperwidth,
         height=62mm
       ]{\TLHeroImage}};
 
     \fill[white,opacity=.86]
-      ([xshift=4mm,yshift=-51mm]current page.north west)
+      ([yshift=-51mm]current page.north west)
       rectangle
       ([xshift=-16mm,yshift=-67mm]current page.north east);
 
@@ -171,10 +175,11 @@
       font=\sffamily\bfseries\fontsize{15}{18}\selectfont
     ] at (current page.north west) {\TLCourseTitle};
 
-    \node[anchor=north,inner sep=0pt,xshift=-38mm,yshift=-82mm]
+    % Illustration centrale légèrement agrandie.
+    \node[anchor=north,inner sep=0pt,xshift=-38mm,yshift=-81mm]
       at (current page.north)
       {\IfFileExists{\TLPreviewImage}{%
-        \TLCoverIncludeGraphics[width=66mm,height=43mm,keepaspectratio]{\TLPreviewImage}%
+        \TLCoverIncludeGraphics[width=80mm,height=52mm,keepaspectratio]{\TLPreviewImage}%
       }{}};
 
     \node[
