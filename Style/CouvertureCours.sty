@@ -8,84 +8,81 @@
 
 \usetikzlibrary{calc}
 
-\definecolor{UPSTIcoverblue}{RGB}{0,74,146}
-\definecolor{UPSTIcovergreen}{RGB}{151,183,63}
-\definecolor{UPSTIcoverorange}{RGB}{235,104,0}
-\definecolor{UPSTIcoverfooterbg}{RGB}{232,239,242}
+\definecolor{TLCoverBlue}{RGB}{0,74,146}
+\definecolor{TLCoverGreen}{RGB}{151,183,63}
+\definecolor{TLCoverOrange}{RGB}{235,104,0}
+\definecolor{TLCoverFooterBackground}{RGB}{232,239,242}
 
-\newcommand{\UPSTIcoverheroimage}{}
-\newcommand{\UPSTIcoverpreviewimage}{}
-\newcommand{\UPSTIcovercycle}{}
-\newcommand{\UPSTIcovertitle}{}
-\newcommand{\UPSTIcoverfooterlogo}{}
-\newcommand{\UPSTIcoverfootertext}{}
+\newcommand{\TLHeroImage}{}
+\newcommand{\TLPreviewImage}{}
+\newcommand{\TLCycleText}{}
+\newcommand{\TLCourseTitle}{}
+\newcommand{\TLFooterLogo}{}
+\newcommand{\TLFooterText}{}
+\newcommand{\TLCoverContentsBody}{}
 
 % #1 : image du bandeau supérieur
 % #2 : illustration centrale
 % #3 : texte du cycle
 % #4 : titre du cours
-% #5 : logo de pied de page
-% #6 : texte de pied de page
-\newcommand{\UPSTIsetupcoursecover}[6]{%
-  \gdef\UPSTIcoverheroimage{#1}%
-  \gdef\UPSTIcoverpreviewimage{#2}%
-  \gdef\UPSTIcovercycle{#3}%
-  \gdef\UPSTIcovertitle{#4}%
-  \gdef\UPSTIcoverfooterlogo{#5}%
-  \gdef\UPSTIcoverfootertext{#6}%
+% #5 : logo du pied de page
+% #6 : texte du pied de page
+\newcommand{\TLCourseCoverSetup}[6]{%
+  \gdef\TLHeroImage{#1}%
+  \gdef\TLPreviewImage{#2}%
+  \gdef\TLCycleText{#3}%
+  \gdef\TLCourseTitle{#4}%
+  \gdef\TLFooterLogo{#5}%
+  \gdef\TLFooterText{#6}%
 }
 
-% Pied de page commun aux pages du poly.
-\newcommand{\UPSTIapplycoursefooter}{%
-  \def\UPSTIfooterlogo{%
-    \IfFileExists{\UPSTIcoverfooterlogo}{%
-      \includegraphics[height=7mm]{\UPSTIcoverfooterlogo}%
+\newcommand{\TLCourseCoverContents}[1]{%
+  \gdef\TLCoverContentsBody{#1}%
+}
+
+\newcommand{\TLCourseContentsLine}[3]{%
+  \par\noindent
+  \begin{minipage}[t]{8mm}
+    \raggedright\bfseries #1
+  \end{minipage}%
+  \begin{minipage}[t]{39mm}
+    \raggedright\bfseries #2
+  \end{minipage}%
+  \hfill\textbf{\pageref{#3}}\par
+  \vspace{1.1mm}%
+}
+
+% Pied de page commun à toutes les pages du poly.
+\newcommand{\TLCourseFooter}{%
+  \def\TLCurrentFooterLogo{%
+    \IfFileExists{\TLFooterLogo}{%
+      \includegraphics[height=7mm]{\TLFooterLogo}%
     }{}%
   }%
-  \def\UPSTIfootertext{%
-    \textcolor{UPSTIcoverblue}{\sffamily\small \UPSTIcoverfootertext}%
+  \def\TLCurrentFooterText{%
+    \textcolor{TLCoverBlue}{\sffamily\small \TLFooterText}%
   }%
-  \lefoot[\UPSTIfooterlogo]{\UPSTIfooterlogo}%
-  \lofoot[\UPSTIfooterlogo]{\UPSTIfooterlogo}%
-  \refoot[\UPSTIfootertext]{\UPSTIfootertext}%
-  \rofoot[\UPSTIfootertext]{\UPSTIfootertext}%
+  \lefoot[\TLCurrentFooterLogo]{\TLCurrentFooterLogo}%
+  \lofoot[\TLCurrentFooterLogo]{\TLCurrentFooterLogo}%
+  \refoot[\TLCurrentFooterText]{\TLCurrentFooterText}%
+  \rofoot[\TLCurrentFooterText]{\TLCurrentFooterText}%
 }
 
-% Table des matières compacte, sans titre et sans création d'une page dédiée.
-\makeatletter
-\newcommand{\UPSTIcovertoc}{%
-  \begingroup
-    \parindent=0pt
-    \parskip=0pt
-    \color{UPSTIcoverblue}%
-    \sffamily\fontsize{6.7}{8.2}\selectfont
-    \setcounter{tocdepth}{2}%
-    \renewcommand*\l@section{\@dottedtocline{1}{0pt}{2.3em}}%
-    \renewcommand*\l@subsection{\@dottedtocline{2}{1.0em}{3.1em}}%
-    \renewcommand*\l@subsubsection{\@dottedtocline{3}{2.0em}{4.0em}}%
-    \@starttoc{toc}%
-  \endgroup
-}
-\makeatother
-
-% La totalité de la couverture est positionnée en coordonnées absolues. Aucun
-% élément ne participe au flux vertical : la couverture tient donc toujours sur
-% une seule page, table des matières comprise.
-\newcommand{\UPSTImakecoursecover}{%
+% Couverture entièrement positionnée en coordonnées absolues. Elle occupe une
+% seule page et n'appelle jamais \tableofcontents : aucun feuillet supplémentaire
+% n'est créé.
+\newcommand{\TLCourseCover}{%
   \begin{titlepage}
     \thispagestyle{empty}%
     \begin{tikzpicture}[remember picture,overlay]
 
-      % Bandeau illustré supérieur, avec une petite marge blanche périphérique.
-      \node[anchor=north west,inner sep=0pt,
-            xshift=4mm,yshift=-4mm]
+      \node[anchor=north west,inner sep=0pt,xshift=4mm,yshift=-4mm]
         at (current page.north west)
         {\includegraphics[
           width=\dimexpr\paperwidth-8mm\relax,
           height=62mm
-        ]{\UPSTIcoverheroimage}};
+        ]{\TLHeroImage}};
 
-      % Bande translucide portant le titre du cours.
       \fill[white,opacity=.86]
         ([xshift=4mm,yshift=-51mm]current page.north west)
         rectangle
@@ -95,63 +92,66 @@
         anchor=west,
         xshift=14mm,
         yshift=-59mm,
-        text=UPSTIcoverblue,
+        text=TLCoverBlue,
         align=left,
         text width=.80\paperwidth,
         font=\sffamily\bfseries\fontsize{15}{18}\selectfont
-      ] at (current page.north west) {\UPSTIcovertitle};
+      ] at (current page.north west) {\TLCourseTitle};
 
-      % Illustration centrale à gauche.
-      \node[anchor=north,inner sep=0pt,
-            xshift=-38mm,yshift=-82mm]
+      \node[anchor=north,inner sep=0pt,xshift=-38mm,yshift=-82mm]
         at (current page.north)
-        {\IfFileExists{\UPSTIcoverpreviewimage}{%
-          \includegraphics[width=66mm,height=43mm,keepaspectratio]{\UPSTIcoverpreviewimage}%
+        {\IfFileExists{\TLPreviewImage}{%
+          \includegraphics[width=66mm,height=43mm,keepaspectratio]{\TLPreviewImage}%
         }{}};
 
-      % Sommaire directement intégré à la couverture, à droite.
-      \node[anchor=north west,inner sep=0pt,
-            xshift=136mm,yshift=-84mm,
-            text width=56mm,align=left]
-        at (current page.north west)
-        {\begin{minipage}[t]{56mm}\UPSTIcovertoc\end{minipage}};
+      \node[
+        anchor=north west,
+        inner sep=0pt,
+        xshift=136mm,
+        yshift=-84mm,
+        text width=56mm,
+        align=left,
+        text=TLCoverBlue,
+        font=\sffamily\fontsize{6.7}{8.2}\selectfont
+      ] at (current page.north west)
+        {\begin{minipage}[t]{56mm}\TLCoverContentsBody\end{minipage}};
 
-      % Intitulé du cycle.
       \node[
         anchor=north,
         yshift=-153mm,
-        text=UPSTIcoverorange,
+        text=TLCoverOrange,
         align=center,
         text width=130mm,
         font=\rmfamily\fontsize{15}{20}\selectfont
-      ] at (current page.north) {\UPSTIcovercycle};
+      ] at (current page.north) {\TLCycleText};
 
-      % Titre principal vert.
       \node[
         anchor=north,
         yshift=-205mm,
-        text=UPSTIcovergreen,
+        text=TLCoverGreen,
         align=center,
         text width=150mm,
         font=\sffamily\bfseries\fontsize{15}{19}\selectfont
-      ] at (current page.north) {\UPSTIcovertitle};
+      ] at (current page.north) {\TLCourseTitle};
 
-      % Bandeau de pied de page.
-      \fill[UPSTIcoverfooterbg]
+      \fill[TLCoverFooterBackground]
         (current page.south west)
         rectangle
         ([yshift=15mm]current page.south east);
 
       \node[anchor=south west,inner sep=0pt,xshift=4mm,yshift=1mm]
         at (current page.south west)
-        {\IfFileExists{\UPSTIcoverfooterlogo}{%
-          \includegraphics[height=12mm]{\UPSTIcoverfooterlogo}%
+        {\IfFileExists{\TLFooterLogo}{%
+          \includegraphics[height=12mm]{\TLFooterLogo}%
         }{}};
 
-      \node[anchor=south east,xshift=-8mm,yshift=5mm,
-            text=UPSTIcoverblue,font=\sffamily\scriptsize]
-        at (current page.south east)
-        {\UPSTIcoverfootertext};
+      \node[
+        anchor=south east,
+        xshift=-8mm,
+        yshift=5mm,
+        text=TLCoverBlue,
+        font=\sffamily\scriptsize
+      ] at (current page.south east) {\TLFooterText};
 
     \end{tikzpicture}%
     \null\vfill
