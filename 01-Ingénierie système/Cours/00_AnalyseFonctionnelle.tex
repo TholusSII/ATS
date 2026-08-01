@@ -32,10 +32,9 @@
 \newcommand{\repRel}{../../}
 \newcommand{\repStyle}{\repRel/Style}
 
-% Ajouter le dossier Style au chemin de recherche permet de charger les
-% packages locaux par leur nom normal, sans avertissement ProvidesPackage.
+% Charger en priorité les packages locaux du framework.
 \makeatletter
-\def\input@path{{../../Style/}{../../Style/ECM/}}
+\def\input@path{{../../Style/}}
 \makeatother
 
 \input{\repRel/Style/packages_v2}
@@ -131,16 +130,8 @@
 \usepackage{kaobiblio}
 \addbibresource{Cy_01_ModelisationSystemes.bib}
 \usepackage{kaotheorems}
-
-% L'ancienne version de kaorefs enregistre les légendes de toutes les langues,
-% même lorsqu'elles ne sont pas chargées par babel. Créer les crochets absents
-% rend ces enregistrements inoffensifs sous MiKTeX 2026.
-\providecommand{\captionsgerman}{}
-\providecommand{\captionsdanish}{}
-\providecommand{\captionsenglish}{}
-\providecommand{\captionsitalian}{}
-\providecommand{\captionsrussian}{}
-\usepackage{kaorefs}
+% kaorefs n'est pas utilisé dans ce cours. Ne pas le charger évite d'importer
+% ses anciennes traductions multilingues et cleveref sous MiKTeX 2026.
 
 \usepackage[normalem]{ulem}
 \providecommand{\ul}[1]{\uline{#1}}
