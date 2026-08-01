@@ -8,6 +8,9 @@
 \setcounter{chapter}{2}
 \setcounter{section}{0}
 
+% -----------------------------------------------------------------------------
+% Outils locaux de mise en page
+% -----------------------------------------------------------------------------
 \definecolor{TLCycleBlue}{RGB}{78,139,199}
 \definecolor{TLSectionBlue}{RGB}{35,146,166}
 \definecolor{TLSubsectionOrange}{RGB}{203,118,0}
@@ -25,6 +28,17 @@
 \newcommand{\TLImageSmall}[2][0.58\linewidth]{%
   \begin{center}
     \includegraphics[width=#1,height=.25\textheight,keepaspectratio]{#2}
+  \end{center}
+}
+\newcommand{\TLTwoImages}[4][0.46\linewidth]{%
+  \begin{center}
+    \begin{minipage}[t]{#1}\centering
+      \includegraphics[width=\linewidth,height=.25\textheight,keepaspectratio]{#2}\\[-1mm]
+      \small #3
+    \end{minipage}\hfill
+    \begin{minipage}[t]{#1}\centering
+      \includegraphics[width=\linewidth,height=.25\textheight,keepaspectratio]{#4}
+    \end{minipage}
   \end{center}
 }
 \newcommand{\TLSectionLabel}[1]{\label{TL-course-section-#1}}
@@ -108,6 +122,9 @@
 }
 \AddToShipoutPictureFG{\TLModelisationHeader}
 
+% -----------------------------------------------------------------------------
+% Objectifs
+% -----------------------------------------------------------------------------
 \section*{Objectifs du cours}
 \addcontentsline{toc}{section}{Objectifs du cours}
 
@@ -146,6 +163,7 @@ et/ou un \textbf{graphe de liaisons}.
 \end{itemize}
 \end{minipage}
 
+% -----------------------------------------------------------------------------
 \section{MISE EN SITUATION}\TLSectionLabel{1}
 
 \subsection{Cas n\textsuperscript{o}1 : lenteur d'un robot de chirurgie}
@@ -191,6 +209,7 @@ Pour maîtriser les positions et les vitesses, il faut pouvoir
 \end{minipage}
 \end{center}
 
+% -----------------------------------------------------------------------------
 \section{INTRODUCTION À LA MODÉLISATION CINÉMATIQUE}\TLSectionLabel{2}
 
 \subsection{Définitions et hypothèses}
@@ -290,11 +309,14 @@ Il contient néanmoins la même information cinématique que le schéma associé
 \hline
 \rowcolor{TLTableHeader}
 \textbf{Chaîne ouverte} & \textbf{Chaîne fermée} & \textbf{Chaîne complexe}\\ \hline
+\multicolumn{3}{|c|}{\includegraphics[width=.78\linewidth,height=.18\textheight,keepaspectratio]{images/image15.png}}\\ \hline
 Les solides extrêmes sont différents. &
 Le solide initial est aussi le solide final. &
 Plusieurs chaînes ouvertes ou fermées sont associées.\\
-\includegraphics[width=.32\linewidth]{images/image15.png} &
-\includegraphics[width=.32\linewidth]{images/image15.png} &
-\includegraphics[width=.32\linewidth]{images/image15.png}\\
+\includegraphics[width=.58\linewidth,height=.20\textheight,keepaspectratio]{images/image16.jpeg} &
+\includegraphics[width=.58\linewidth,height=.20\textheight,keepaspectratio]{images/image17.jpeg} &
+\includegraphics[width=.58\linewidth,height=.20\textheight,keepaspectratio]{images/image18.jpeg}\\
 Exemple : robot & Exemple : antenne radar & Exemple : simulateur de vol\\ \hline
 \end{tabularx}
+
+% -----------------------------------------------------------------------------
