@@ -19,14 +19,14 @@
 \newcommand{\TLPreviewImage}{}
 \newcommand{\TLCycleText}{}
 \newcommand{\TLCourseTitle}{}
-\newcommand{\TLFooterText}{Lycée Robert Doisneau - ATS}
+\newcommand{\TLFooterText}{Lycée Robert Doisneau}
 \newcommand{\TLCoverContentsBody}{}
 
 % #1 : image du bandeau supérieur
 % #2 : illustration centrale
 % #3 : texte du cycle
 % #4 : titre du cours
-% #5 : texte du pied de page
+% #5 : nom de l'établissement affiché dans le pied de page
 \newcommand{\TLCourseCoverSetup}[5]{%
   \gdef\TLHeroImage{#1}%
   \gdef\TLPreviewImage{#2}%
@@ -61,31 +61,32 @@
 
 \newcommand{\TLFooterPhoto}{%
   \begin{tikzpicture}[baseline=(current bounding box.south)]
-    \path[rounded corners=2mm,fill=white,opacity=.75]
-      (0,0) rectangle (27mm,12mm);
+    \path[rounded corners=2.2mm,fill=white,opacity=.78]
+      (0,0) rectangle (30mm,13mm);
 
     \begin{scope}
-      \clip[rounded corners=2mm] (0,0) rectangle (27mm,12mm);
-      \node[anchor=south west,inner sep=0pt] at (1mm,.3mm)
+      \clip[rounded corners=2.2mm] (0,0) rectangle (30mm,13mm);
+      \node[anchor=south west,inner sep=0pt] at (1.2mm,.5mm)
         {\usebox{\TLDoisneauPhotoBox}};
 
-      % Fondu latéral pour intégrer la photographie au bandeau.
-      \fill[TLCoverFooterBackground,opacity=.62] (0,0) rectangle (1mm,12mm);
-      \fill[TLCoverFooterBackground,opacity=.38] (1mm,0) rectangle (2mm,12mm);
-      \fill[TLCoverFooterBackground,opacity=.18] (2mm,0) rectangle (3mm,12mm);
-      \fill[TLCoverFooterBackground,opacity=.18] (24mm,0) rectangle (25mm,12mm);
-      \fill[TLCoverFooterBackground,opacity=.38] (25mm,0) rectangle (26mm,12mm);
-      \fill[TLCoverFooterBackground,opacity=.62] (26mm,0) rectangle (27mm,12mm);
+      % Fondu progressif sur les quatre bords.
+      \fill[TLCoverFooterBackground,opacity=.68] (0,0) rectangle (1.0mm,13mm);
+      \fill[TLCoverFooterBackground,opacity=.42] (1.0mm,0) rectangle (2.1mm,13mm);
+      \fill[TLCoverFooterBackground,opacity=.20] (2.1mm,0) rectangle (3.2mm,13mm);
+      \fill[TLCoverFooterBackground,opacity=.20] (26.8mm,0) rectangle (27.9mm,13mm);
+      \fill[TLCoverFooterBackground,opacity=.42] (27.9mm,0) rectangle (29.0mm,13mm);
+      \fill[TLCoverFooterBackground,opacity=.68] (29.0mm,0) rectangle (30mm,13mm);
+      \fill[TLCoverFooterBackground,opacity=.38] (0,0) rectangle (30mm,.8mm);
+      \fill[TLCoverFooterBackground,opacity=.22] (0,.8mm) rectangle (30mm,1.6mm);
+      \fill[TLCoverFooterBackground,opacity=.22] (0,11.4mm) rectangle (30mm,12.2mm);
+      \fill[TLCoverFooterBackground,opacity=.38] (0,12.2mm) rectangle (30mm,13mm);
     \end{scope}
 
-    \draw[white,opacity=.88,line width=.35pt,rounded corners=2mm]
-      (0,0) rectangle (27mm,12mm);
+    \draw[white,opacity=.90,line width=.4pt,rounded corners=2.2mm]
+      (0,0) rectangle (30mm,13mm);
   \end{tikzpicture}%
 }
 
-% Le dessin est placé dans une macro autonome. Cela évite de stocker dans le
-% hook eso-pic un nœud TikZ contenant un saut de ligne, à l'origine de l'erreur
-% « Extra }, or forgotten \endgroup ».
 \newcommand{\TLDrawCourseFooter}{%
   \begin{tikzpicture}[remember picture,overlay]
     \fill[TLCoverFooterBackground]
@@ -97,23 +98,23 @@
       anchor=south west,
       inner sep=0pt,
       xshift=4mm,
-      yshift=2.6mm
+      yshift=2.3mm
     ] at (current page.south west) {\usebox{\TLFooterCompositeBox}};
 
     \node[
       anchor=south east,
       xshift=-9mm,
-      yshift=7.2mm,
+      yshift=7.0mm,
       text=TLCoverBlue,
-      font=\sffamily\bfseries\fontsize{10.5}{11.5}\selectfont
-    ] at (current page.south east) {Lycée Robert Doisneau};
+      font=\sffamily\bfseries\fontsize{11.5}{12.5}\selectfont
+    ] at (current page.south east) {\TLFooterText};
 
     \node[
       anchor=south east,
       xshift=-9mm,
-      yshift=3.5mm,
+      yshift=3.2mm,
       text=TLCoverBlue,
-      font=\sffamily\fontsize{7.8}{8.5}\selectfont
+      font=\sffamily\fontsize{8.2}{9}\selectfont
     ] at (current page.south east) {ATS};
   \end{tikzpicture}%
 }
@@ -131,13 +132,8 @@
 % -----------------------------------------------------------------------------
 % Couverture
 % -----------------------------------------------------------------------------
-% La couverture est une page normale explicitement expédiée par \clearpage.
-% Le contenu suivant commence donc sans ambiguïté en page 2.
-\newcommand{\TLCourseCover}{%
-  \setcounter{page}{1}%
-  \thispagestyle{empty}%
+\newcommand{\TLDrawCourseCover}{%
   \begin{tikzpicture}[remember picture,overlay]
-
     \node[anchor=north west,inner sep=0pt,xshift=4mm,yshift=-4mm]
       at (current page.north west)
       {\includegraphics[
@@ -195,9 +191,19 @@
       text width=150mm,
       font=\sffamily\bfseries\fontsize{15}{19}\selectfont
     ] at (current page.north) {\TLCourseTitle};
-
   \end{tikzpicture}%
-  \null\vfill
+}
+
+% Le dessin de la couverture est accroché à l'expédition de la prochaine page.
+% Cela évite toute interaction entre les coordonnées de la couverture et la
+% première page du contenu kaobook. La page 1 est expédiée ici, puis le cours
+% commence nécessairement sur la page 2.
+\newcommand{\TLCourseCover}{%
+  \clearpage
+  \setcounter{page}{1}%
+  \thispagestyle{empty}%
+  \AddToShipoutPictureFG*{\TLDrawCourseCover}%
+  \null
   \clearpage
   \setcounter{page}{2}%
 }
