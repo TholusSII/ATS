@@ -116,10 +116,12 @@
   \frenchsetup{StandardItemLabels=true}
 \fi
 
-\usepackage{kaobiblio}
+% Charger explicitement les versions du framework stockées dans Style afin
+% d'éviter qu'une autre copie de kaobook installée par MiKTeX soit utilisée.
+\usepackage{\repStyle/kaobiblio}
 \addbibresource{Cy_01_ModelisationSystemes.bib}
-\usepackage{kaotheorems}
-\usepackage{kaorefs}
+\usepackage{\repStyle/kaotheorems}
+\usepackage{\repStyle/kaorefs}
 \usepackage[normalem]{ulem}
 \providecommand{\ul}[1]{\uline{#1}}
 
