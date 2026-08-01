@@ -1,3 +1,9 @@
+% Les versions récentes de xcolor ignorent l'ancienne option `usenames` encore
+% transmise par le socle historique kaobook. Masquer uniquement cet avertissement
+% avant le chargement de la classe évite de cacher les autres diagnostics.
+\RequirePackage{silence}
+\WarningFilter{xcolor}{Package option `usenames' is obsolete}
+
 % Load the kaobook class
 \documentclass[
 	fontsize=10pt,
@@ -125,7 +131,17 @@
 \usepackage{kaobiblio}
 \addbibresource{Cy_01_ModelisationSystemes.bib}
 \usepackage{kaotheorems}
+
+% L'ancienne version de kaorefs enregistre les légendes de toutes les langues,
+% même lorsqu'elles ne sont pas chargées par babel. Créer les crochets absents
+% rend ces enregistrements inoffensifs sous MiKTeX 2026.
+\providecommand{\captionsgerman}{}
+\providecommand{\captionsdanish}{}
+\providecommand{\captionsenglish}{}
+\providecommand{\captionsitalian}{}
+\providecommand{\captionsrussian}{}
 \usepackage{kaorefs}
+
 \usepackage[normalem]{ulem}
 \providecommand{\ul}[1]{\uline{#1}}
 
