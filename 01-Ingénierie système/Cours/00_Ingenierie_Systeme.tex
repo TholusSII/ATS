@@ -1,0 +1,89 @@
+% ============================================================================
+% MOTEUR GÉNÉRIQUE DES POLYCOPIÉS DE COURS
+% Pour créer un nouveau poly, seule la ligne TLCourseDefinitionFile change.
+% Le fichier 01_... définit la couverture et charge toutes les ressources.
+% ============================================================================
+\RequirePackage{silence}
+\WarningFilter{xcolor}{Package option `usenames' is obsolete}
+
+\documentclass[
+  fontsize=10pt,
+  twoside=true,
+]{kaobook}
+
+\usepackage[french]{babel}
+
+% Fichier de définition du cours à compiler.
+\newcommand{\TLCourseDefinitionFile}{01_Ingenierie_Systeme}
+
+% -----------------------------------------------------------------------------
+% Mise en page commune à tous les cours
+% -----------------------------------------------------------------------------
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{2em}
+\setcounter{topnumber}{5}
+\setcounter{bottomnumber}{5}
+\setcounter{totalnumber}{8}
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.90}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.80}
+\setlength{\floatsep}{8pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{10pt plus 2pt minus 2pt}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+
+\newcommand{\discipline}{Sciences Industrielles de l'Ingénieur}
+\newcommand{\auteur}{Thomas Lusseau}
+\newcommand{\repRel}{../../}
+\newcommand{\repStyle}{\repRel/Style}
+
+% Charger en priorité les packages locaux du framework.
+\makeatletter
+\def\input@path{{../../Style/}}
+\makeatother
+
+\input{\repStyle/packages_v2}
+\input{\repStyle/macros_SII_v2}
+\input{\repStyle/environment_v2}
+\pgfplotsset{compat=1.18}
+
+\usepackage{UPSTI_Pedagogique}
+\usepackage{CouvertureCours}
+\usepackage{TL}
+\usepackage{needspace}
+\usepackage{etoolbox}
+\usepackage{kaotheorems}
+\usepackage[normalem]{ulem}
+
+\providecommand{\ul}[1]{\uline{#1}}
+
+\ifdefined\frenchsetup
+  \frenchsetup{StandardItemLabels=true}
+\fi
+
+\graphicspath{{images/}{./}}
+\makeindex[columns=3, title=Index alphabétique, intoc]
+
+\pretocmd{\section}{\Needspace{6\baselineskip}}{}{}
+\pretocmd{\subsection}{\Needspace{5\baselineskip}}{}{}
+\pretocmd{\subsubsection}{\Needspace{4\baselineskip}}{}{}
+
+% Les hooks anglais de varioref ne sont pas utilisés dans les cours français.
+\makeatletter
+\@ifundefined{extrasenglish}{}{\let\extrasenglish\@empty}
+\@ifundefined{noextrasenglish}{}{\let\noextrasenglish\@empty}
+\makeatother
+
+\begin{document}
+
+\mainmatter
+\setchapterstyle{kao}
+\setcounter{margintocdepth}{\sectiontocdepth}
+\marginlayout
+\pagestyle{scrheadings}
+
+% Toute la configuration spécifique et toutes les ressources sont appelées ici.
+\input{\TLCourseDefinitionFile}
+
+\end{document}
