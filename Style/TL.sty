@@ -92,52 +92,50 @@
 
 \let\boxreflexion\TLReflectionBox
 
+% Copies réelles des commandes kaobook. \let ne convient pas ici car certaines
+% commandes sont robustes : l'alias finissait par rappeler la commande redéfinie
+% et provoquait une récursion jusqu'à saturation de la pile TeX.
+\NewCommandCopy\TLBaseChapter\chapter
+\NewCommandCopy\TLBaseSection\section
+\NewCommandCopy\TLBaseIncludeGraphics\includegraphics
+\NewCommandCopy\TLBaseClearPage\clearpage
+
 % Inclusion d'un ancien fichier de cours converti depuis Word : la commande
 % retire uniquement son ancienne page de chapitre, son image de couverture et
 % son premier saut de page. Les sections sont étiquetées automatiquement pour
 % le sommaire court de la couverture.
 \newcounter{TLTrackedSection}
+\newif\ifTLskipLegacyChapter
+\newif\ifTLskipLegacyImage
+\newif\ifTLskipLegacyClearPage
 
 \NewDocumentCommand{\TLInputCourseBody}{m m}{%
   \setcounter{TLTrackedSection}{0}%
-  \newif\ifTLskipLegacyChapter
-  \newif\ifTLskipLegacyImage
-  \newif\ifTLskipLegacyClearPage
-  \TLskipLegacyChaptertrue
-  \TLskipLegacyImagetrue
-  \TLskipLegacyClearPagetrue
-
-  \let\TLOriginalChapter\chapter
-  \let\TLOriginalSection\section
-  \let\TLOriginalIncludeGraphics\includegraphics
-  \let\TLOriginalClearPage\clearpage
-  \let\TLOriginalSetChapterImage\setchapterimage
-  \let\TLOriginalSetChapterPreamble\setchapterpreamble
-
-  \RenewDocumentCommand{\setchapterimage}{m}{}%
-  \RenewDocumentCommand{\setchapterpreamble}{O{} m}{}%
+  \global\TLskipLegacyChaptertrue
+  \global\TLskipLegacyImagetrue
+  \global\TLskipLegacyClearPagetrue
 
   \RenewDocumentCommand{\chapter}{s o m}{%
     \IfBooleanTF{##1}{%
       \ifTLskipLegacyChapter
         \global\TLskipLegacyChapterfalse
       \else
-        \TLOriginalChapter*{##3}%
+        \TLBaseChapter*{##3}%
       \fi
     }{%
       \IfNoValueTF{##2}
-        {\TLOriginalChapter{##3}}
-        {\TLOriginalChapter[##2]{##3}}%
+        {\TLBaseChapter{##3}}
+        {\TLBaseChapter[##2]{##3}}%
     }%
   }%
 
   \RenewDocumentCommand{\section}{s o m}{%
     \IfBooleanTF{##1}{%
-      \TLOriginalSection*{##3}%
+      \TLBaseSection*{##3}%
     }{%
       \IfNoValueTF{##2}
-        {\TLOriginalSection{##3}}
-        {\TLOriginalSection[##2]{##3}}%
+        {\TLBaseSection{##3}}
+        {\TLBaseSection[##2]{##3}}%
       \stepcounter{TLTrackedSection}%
       \label{TL-course-section-\arabic{TLTrackedSection}}%
     }%
@@ -149,13 +147,13 @@
         \global\TLskipLegacyImagefalse
       }{%
         \IfBooleanTF{##1}
-          {\TLOriginalIncludeGraphics*[##2]{##3}}
-          {\TLOriginalIncludeGraphics[##2]{##3}}%
+          {\TLBaseIncludeGraphics*[##2]{##3}}
+          {\TLBaseIncludeGraphics[##2]{##3}}%
       }%
     \else
       \IfBooleanTF{##1}
-        {\TLOriginalIncludeGraphics*[##2]{##3}}
-        {\TLOriginalIncludeGraphics[##2]{##3}}%
+        {\TLBaseIncludeGraphics*[##2]{##3}}
+        {\TLBaseIncludeGraphics[##2]{##3}}%
     \fi
   }%
 
@@ -163,16 +161,14 @@
     \ifTLskipLegacyClearPage
       \global\TLskipLegacyClearPagefalse
     \else
-      \TLOriginalClearPage
+      \TLBaseClearPage
     \fi
   }%
 
   \input{#1}%
 
-  \let\chapter\TLOriginalChapter
-  \let\section\TLOriginalSection
-  \let\includegraphics\TLOriginalIncludeGraphics
-  \let\clearpage\TLOriginalClearPage
-  \let\setchapterimage\TLOriginalSetChapterImage
-  \let\setchapterpreamble\TLOriginalSetChapterPreamble
+  \RenewCommandCopy\chapter\TLBaseChapter
+  \RenewCommandCopy\section\TLBaseSection
+  \RenewCommandCopy\includegraphics\TLBaseIncludeGraphics
+  \RenewCommandCopy\clearpage\TLBaseClearPage
 }
