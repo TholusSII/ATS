@@ -212,6 +212,16 @@
 \marginlayout
 \graphicspath{{\repStyle/png}}
 \pagestyle{scrheadings}
+
+% Pied de page du document : logo à gauche et établissement à droite,
+% sur les pages paires, impaires et les pages de style plain.
+\newcommand{\AFfooterlogo}{\includegraphics[height=7mm]{\repStyle/png/logo_lycee.png}}
+\newcommand{\AFfootertext}{\textcolor{AFblue}{\sffamily\small Lycée Robert Doisneau - ATS}}
+\lefoot[\AFfooterlogo]{\AFfooterlogo}
+\lofoot[\AFfooterlogo]{\AFfooterlogo}
+\refoot[\AFfootertext]{\AFfootertext}
+\rofoot[\AFfootertext]{\AFfootertext}
+
 \AtBeginEnvironment{corrige}{\small}
 
 \livrettrue
