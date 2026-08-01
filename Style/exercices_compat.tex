@@ -16,6 +16,11 @@
 \RequirePackage{caption}
 \pgfplotsset{compat=1.18}
 
+% Avec des répertoires accentués, le chargement tardif de TS1 par un symbole
+% degré brut peut réinterpréter les accents des chemins comme des commandes T1.
+% Le symbole est donc composé directement en mode mathématique.
+\renewcommand{\textdegree}{\ensuremath{^{\circ}}}
+
 % Alias de couleurs historiques employés dans les environnements xpessoles.
 \providecolor{White}{RGB}{255,255,255}
 \providecolor{Black}{RGB}{0,0,0}
