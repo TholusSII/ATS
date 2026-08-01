@@ -26,13 +26,17 @@ translations \(T_x,T_y,T_z\) et les trois rotations \(R_x,R_y,R_z\).
 \end{TLDefinition}
 
 \begin{center}
-\begin{tabular}{|c|p{.60\linewidth}|}
+\begin{minipage}[c]{.72\linewidth}
+\begin{tabularx}{\linewidth}{|>{\centering\arraybackslash}p{.20\linewidth}|X|}
 \hline
 \rowcolor{TLTableHeader}\textbf{Mouvement} & \textbf{Signification}\\ \hline
 \(T_x,T_y,T_z\) & translations rectilignes suivant \(\vec x,\vec y,\vec z\)\\ \hline
 \(R_x,R_y,R_z\) & rotations autour des axes \((O,\vec x),(O,\vec y),(O,\vec z)\)\\ \hline
-\end{tabular}\qquad
-\includegraphics[width=.22\linewidth,height=.17\textheight,keepaspectratio]{images/image26.png}
+\end{tabularx}
+\end{minipage}\hfill
+\begin{minipage}[c]{.23\linewidth}\centering
+\includegraphics[width=\linewidth,height=.17\textheight,keepaspectratio]{images/image26.png}
+\end{minipage}
 \end{center}
 
 Le nombre de degrés de liberté est le nombre de paramètres indépendants
@@ -42,16 +46,19 @@ nécessaires pour caractériser le mouvement relatif entre les deux solides.
 
 Pour chacune des liaisons, on associe les informations suivantes.
 
-\begin{tabularx}{\linewidth}{|>{\bfseries}p{.28\linewidth}|X|}
+\begingroup
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\linewidth}{|>{\bfseries\raggedright\arraybackslash\hspace{0pt}}p{.25\linewidth}|>{\raggedright\arraybackslash\hspace{0pt}}X|}
 \hline
 \rowcolor{TLTableHeader}Élément & Remarques\\ \hline
 Nom & Deux désignations peuvent parfois correspondre à une même liaison.\\ \hline
 Description géométrique & Axe pour un cylindre, normale pour un plan, centre pour une sphère.\\ \hline
 Symboles 2D et 3D & Ils expriment uniquement les mouvements possibles et non la réalisation matérielle.\\ \hline
-Mobilités / degrés de liberté & Tableau des rotations et translations autorisées.\\ \hline
+\makecell[l]{Mobilités /\\degrés de liberté} & Tableau des rotations et translations autorisées.\\ \hline
 Paramétrage & Position linéaire ou angulaire relative ; les rotations sont représentées sur une figure de changement de base.\\ \hline
 Torseur cinématique & Forme générale exprimée en un point caractéristique de la liaison.\\ \hline
 \end{tabularx}
+\endgroup
 
 \subsection{Liaisons simples}
 
