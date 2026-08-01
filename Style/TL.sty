@@ -113,6 +113,8 @@
 \NewCommandCopy\TLBaseClearPage\clearpage
 \NewCommandCopy\TLBaseQuote\quote
 \NewCommandCopy\TLBaseEndQuote\endquote
+\NewCommandCopy\TLBaseSetChapterImage\setchapterimage
+\NewCommandCopy\TLBaseSetChapterPreamble\setchapterpreamble
 
 % Inclusion graphique sécurisée : l'option demandée est respectée tant que le
 % résultat tient dans la largeur réellement disponible. Dans une cellule étroite
@@ -132,39 +134,30 @@
 }
 
 % Inclusion d'un ancien fichier de cours converti depuis Word : la commande
-% retire uniquement son ancienne page de chapitre, son image de couverture et
-% son premier saut de page. Les sections sont étiquetées automatiquement pour
-% le sommaire court de la couverture.
+% retire son ancienne page de chapitre, son image de couverture et son premier
+% saut de page. Les sections sont étiquetées automatiquement pour le sommaire
+% court de la couverture.
 \newcounter{TLTrackedSection}
-\newif\ifTLskipLegacyChapter
 \newif\ifTLskipLegacyImage
 \newif\ifTLskipLegacyClearPage
 
 \NewDocumentCommand{\TLInputCourseBody}{m m}{%
   \setcounter{TLTrackedSection}{0}%
-  \global\TLskipLegacyChaptertrue
   \global\TLskipLegacyImagetrue
   \global\TLskipLegacyClearPagetrue
+
+  % Les commandes de couverture présentes dans l'ancien fichier sont totalement
+  % neutralisées. Le contenu pédagogique commence donc directement par 1.1,
+  % sans page blanche ni seconde page de chapitre kaobook.
+  \RenewDocumentCommand{\setchapterimage}{m}{}%
+  \RenewDocumentCommand{\setchapterpreamble}{O{} m}{}%
+  \RenewDocumentCommand{\chapter}{s o m}{}%
 
   % Les environnements quote générés par la conversion Word ne représentent pas
   % des citations : ils ne doivent pas ajouter de marge dans les cellules.
   \renewenvironment{quote}
     {\list{}{\leftmargin=0pt\rightmargin=0pt\topsep=0pt\parsep=0pt}\item\relax}
     {\endlist}
-
-  \RenewDocumentCommand{\chapter}{s o m}{%
-    \IfBooleanTF{##1}{%
-      \ifTLskipLegacyChapter
-        \global\TLskipLegacyChapterfalse
-      \else
-        \TLBaseChapter*{##3}%
-      \fi
-    }{%
-      \IfNoValueTF{##2}
-        {\TLBaseChapter{##3}}
-        {\TLBaseChapter[##2]{##3}}%
-    }%
-  }%
 
   \RenewDocumentCommand{\section}{s o m}{%
     \IfBooleanTF{##1}{%
@@ -210,4 +203,6 @@
   \RenewCommandCopy\clearpage\TLBaseClearPage
   \RenewCommandCopy\quote\TLBaseQuote
   \RenewCommandCopy\endquote\TLBaseEndQuote
+  \RenewCommandCopy\setchapterimage\TLBaseSetChapterImage
+  \RenewCommandCopy\setchapterpreamble\TLBaseSetChapterPreamble
 }
