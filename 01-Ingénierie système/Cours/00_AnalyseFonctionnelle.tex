@@ -24,12 +24,18 @@
 \newcommand{\discipline}{Sciences Industrielles de l'Ingénieur }
 \newcommand{\auteur}{Thomas Lusseau}
 \newcommand{\repRel}{../../}
+\newcommand{\repStyle}{\repRel/Style}
+
+% Ajouter le dossier Style au chemin de recherche permet de charger les
+% packages locaux par leur nom normal, sans avertissement ProvidesPackage.
+\makeatletter
+\def\input@path{{../../Style/}{../../Style/ECM/}}
+\makeatother
 
 \input{\repRel/Style/packages_v2}
-\newcommand{\repStyle}{\repRel/Style}
 \input{\repRel/Style/macros_SII_v2}
 \input{\repRel/Style/environment_v2}
-\usepackage{\repStyle/UPSTI_Pedagogique}
+\usepackage{UPSTI_Pedagogique}
 
 % Bob
 \usepackage[most]{tcolorbox}
@@ -116,12 +122,10 @@
   \frenchsetup{StandardItemLabels=true}
 \fi
 
-% Charger explicitement les versions du framework stockées dans Style afin
-% d'éviter qu'une autre copie de kaobook installée par MiKTeX soit utilisée.
-\usepackage{\repStyle/kaobiblio}
+\usepackage{kaobiblio}
 \addbibresource{Cy_01_ModelisationSystemes.bib}
-\usepackage{\repStyle/kaotheorems}
-\usepackage{\repStyle/kaorefs}
+\usepackage{kaotheorems}
+\usepackage{kaorefs}
 \usepackage[normalem]{ulem}
 \providecommand{\ul}[1]{\uline{#1}}
 
@@ -144,6 +148,14 @@
     }%
   \end{center}%
 }
+
+% Sécurité locale complémentaire : les hooks anglais de varioref ne sont pas
+% utilisés dans ce cours français et peuvent devenir autoréférents avec certaines
+% combinaisons récentes de babel/varioref.
+\makeatletter
+\@ifundefined{extrasenglish}{}{\let\extrasenglish\@empty}
+\@ifundefined{noextrasenglish}{}{\let\noextrasenglish\@empty}
+\makeatother
 
 \begin{document}
 
