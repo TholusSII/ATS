@@ -77,7 +77,10 @@ plan, cylindre et sphère.
 \end{tabularx}
 \end{center}
 
-\begin{longtable}{|p{.22\linewidth}|>{\centering\arraybackslash}p{.15\linewidth}|p{.15\linewidth}|p{.34\linewidth}|}
+\begingroup
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{longtable}{|>{\raggedright\arraybackslash}p{.20\linewidth}|>{\centering\arraybackslash}p{.14\linewidth}|>{\raggedright\arraybackslash}p{.14\linewidth}|>{\raggedright\arraybackslash}p{.32\linewidth}|}
 \hline
 \rowcolor{TLTableHeader}
 \textbf{Liaison} & \textbf{Symbole} & \textbf{Mobilité} & \textbf{Torseur cinématique}\\ \hline
@@ -87,11 +90,11 @@ plan, cylindre et sphère.
 \endhead
 Appui-plan de normale \(\vec z\) &
 \TLSymAppuiPlan &
-\(R_z,T_x,T_y\) — 3 ddl &
+\(R_z,T_x,T_y\)\\3 ddl &
 \TLTorseur{\omega_x}{\omega_y}{\omega_z}{v_x}{v_y}{0}{P,\mathcal B}\\ \hline
 Sphère-plan de normale \(\vec z\) &
 \TLSymSpherePlan &
-\(R_x,R_y,R_z,T_x,T_y\) — 5 ddl &
+\(R_x,R_y,R_z\)\\\(T_x,T_y\)\\5 ddl &
 \TLTorseur{\omega_x}{\omega_y}{\omega_z}{v_x}{v_y}{0}{P,\mathcal B}\\ \hline
 Sphère-cylindre d'axe \(\vec z\) &
 \TLSymSphereCylindre &
@@ -103,13 +106,14 @@ Cylindre-plan d'axe \(\vec x\), normale \(\vec z\) &
 \TLTorseur{\omega_x}{0}{\omega_z}{v_x}{v_y}{0}{P,\mathcal B}\\ \hline
 Sphérique de centre \(O\) &
 \TLSymSpherique &
-\(R_x,R_y,R_z\) — 3 ddl &
+\(R_x,R_y,R_z\)\\3 ddl &
 \TLTorseur{\omega_x}{\omega_y}{\omega_z}{0}{0}{0}{O,\mathcal B}\\ \hline
 Pivot glissant d'axe \(\vec z\) &
 \TLSymPivotGlissant &
-\(R_z,T_z\) — 2 ddl &
+\(R_z,T_z\)\\2 ddl &
 \TLTorseur{0}{0}{\omega_z}{0}{0}{v_z}{P,\mathcal B}\\ \hline
 \end{longtable}
+\endgroup
 
 \TLReflectionBox{Compléter le tableau de mobilités et les symboles manquants, puis vérifier la cohérence avec les formes générales des torseurs cinématiques.}
 
@@ -128,7 +132,10 @@ ou en parallèle : glissière, pivot, hélicoïdale et sphérique à doigt.
 \end{tabular}
 \end{center}
 
-\begin{longtable}{|p{.22\linewidth}|>{\centering\arraybackslash}p{.15\linewidth}|p{.15\linewidth}|p{.34\linewidth}|}
+\begingroup
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{longtable}{|>{\raggedright\arraybackslash}p{.20\linewidth}|>{\centering\arraybackslash}p{.14\linewidth}|>{\raggedright\arraybackslash}p{.14\linewidth}|>{\raggedright\arraybackslash}p{.32\linewidth}|}
 \hline
 \rowcolor{TLTableHeader}
 \textbf{Liaison} & \textbf{Symbole} & \textbf{Mobilité} & \textbf{Torseur cinématique}\\ \hline
@@ -138,21 +145,22 @@ ou en parallèle : glissière, pivot, hélicoïdale et sphérique à doigt.
 \endhead
 Glissière de direction \(\vec z\) &
 \TLSymGlissiere &
-\(T_z\) — 1 ddl &
+\(T_z\)\\1 ddl &
 \TLTorseur{0}{0}{0}{0}{0}{v_z}{P,\mathcal B}\\ \hline
 Pivot d'axe \((O,\vec z)\) &
 \TLSymPivot &
-\(R_z\) — 1 ddl &
+\(R_z\)\\1 ddl &
 \TLTorseur{0}{0}{\omega_z}{0}{0}{0}{P,\mathcal B}\\ \hline
 Hélicoïdale d'axe \((O,\vec z)\) &
 \TLSymHelicoidale &
-\(R_z,T_z\) liés — 1 ddl &
+\(R_z,T_z\) liés\\1 ddl &
 \(v_z=p\,\omega_z\), avec \(p\) le pas réduit\\ \hline
 Sphérique à doigt de centre \(O\), rotation \(\vec z\) interdite &
 \TLSymSpheriqueDoigt &
 2 ddl &
 \TLTorseur{\omega_x}{\omega_y}{0}{0}{0}{0}{O,\mathcal B}\\ \hline
 \end{longtable}
+\endgroup
 
 \begin{TLQuoteBox}
 Pour un appui-plan, la seule rotation autorisée est celle autour de la
