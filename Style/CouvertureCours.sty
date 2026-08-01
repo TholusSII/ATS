@@ -10,6 +10,12 @@
 \usetikzlibrary{calc}
 \input{TLDoisneauPhoto.tex}
 
+% Copie indépendante de \includegraphics. Les fichiers de cours historiques
+% peuvent redéfinir temporairement \includegraphics pour retirer leur ancienne
+% couverture : cette copie garantit que les images de la nouvelle couverture ne
+% sont jamais interceptées par ce mécanisme.
+\NewCommandCopy\TLCoverIncludeGraphics\includegraphics
+
 \definecolor{TLCoverBlue}{RGB}{0,74,146}
 \definecolor{TLCoverGreen}{RGB}{151,183,63}
 \definecolor{TLCoverOrange}{RGB}{235,104,0}
@@ -39,6 +45,15 @@
   \gdef\TLCoverContentsBody{#1}%
 }
 
+% Une référence absente lors de la toute première passe est remplacée par un
+% tiret. La deuxième passe affiche automatiquement le numéro de page sans
+% produire d'avertissement « undefined reference ».
+\makeatletter
+\newcommand{\TLCoursePageReference}[1]{%
+  \@ifundefined{r@#1}{--}{\pageref{#1}}%
+}
+\makeatother
+
 \newcommand{\TLCourseContentsLine}[3]{%
   \par\noindent
   \begin{minipage}[t]{8mm}
@@ -47,7 +62,7 @@
   \begin{minipage}[t]{39mm}
     \raggedright\bfseries #2
   \end{minipage}%
-  \hfill\textbf{\pageref{#3}}\par
+  \hfill\textbf{\TLCoursePageReference{#3}}\par
   \vspace{1.1mm}%
 }
 
@@ -136,7 +151,7 @@
   \begin{tikzpicture}[remember picture,overlay]
     \node[anchor=north west,inner sep=0pt,xshift=4mm,yshift=-4mm]
       at (current page.north west)
-      {\includegraphics[
+      {\TLCoverIncludeGraphics[
         width=\dimexpr\paperwidth-8mm\relax,
         height=62mm
       ]{\TLHeroImage}};
@@ -159,7 +174,7 @@
     \node[anchor=north,inner sep=0pt,xshift=-38mm,yshift=-82mm]
       at (current page.north)
       {\IfFileExists{\TLPreviewImage}{%
-        \includegraphics[width=66mm,height=43mm,keepaspectratio]{\TLPreviewImage}%
+        \TLCoverIncludeGraphics[width=66mm,height=43mm,keepaspectratio]{\TLPreviewImage}%
       }{}};
 
     \node[
@@ -194,16 +209,13 @@
   \end{tikzpicture}%
 }
 
-% Le dessin de la couverture est accroché à l'expédition de la prochaine page.
-% Cela évite toute interaction entre les coordonnées de la couverture et la
-% première page du contenu kaobook. La page 1 est expédiée ici, puis le cours
-% commence nécessairement sur la page 2.
+% La page de couverture est la prochaine page effectivement expédiée. Tous les
+% éléments utilisent le même calque et restent donc sur la page du bandeau.
 \newcommand{\TLCourseCover}{%
-  \clearpage
   \setcounter{page}{1}%
   \thispagestyle{empty}%
   \AddToShipoutPictureFG*{\TLDrawCourseCover}%
-  \null
+  \null\vfill
   \clearpage
   \setcounter{page}{2}%
 }
