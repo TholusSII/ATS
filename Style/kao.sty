@@ -1,6 +1,13 @@
-%% Point d'entrée kaobook compatible TeX Live 2025
+%% Point d'entrée kaobook compatible TeX Live 2025 et MiKTeX 2026
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{kao}[2026/07/28 Couche kaobook ATS compatible TeX Live 2025]
+\ProvidesPackage{kao}[2026/08/01 Couche kaobook ATS compatible TeX Live 2025 et MiKTeX 2026]
+
+% L'ancien socle kaobook passe encore l'option xcolor `usenames`, devenue
+% obsolète. Le socle reste fonctionnel : on masque uniquement cet avertissement
+% précis pendant son chargement.
+\RequirePackage{silence}
+\WarningFilter{xcolor}{Package option `usenames' is obsolete}
+
 % Le socle ECM contient toutes les commandes historiques de kaobook.
 \InputIfFileExists{ECM/kao.sty}{}{%
   \PackageError{kao}{ECM/kao.sty introuvable}{Le socle kaobook du framework est incomplet.}%
@@ -31,10 +38,11 @@
 \AtBeginDocument{\addtokomafont{section}{\color{black}}}
 
 % varioref et les versions récentes de babel peuvent construire une définition
-% autoréférente de \extrasenglish lorsque seul le français est demandé. Le cours
-% est intégralement en français : neutraliser ce crochet anglais évite la
-% récursion à \begin{document} sans modifier le rendu français.
-\makeatletter
-\@ifundefined{extrasenglish}{}{\def\extrasenglish{}}
-\makeatother
+% autoréférente de \extrasenglish lorsque seul le français est demandé. On
+% neutralise ces crochets à la toute fin du préambule, après le chargement de
+% tous les packages. Les documents ATS concernés sont intégralement en français.
+\AtEndPreamble{%
+  \@ifundefined{extrasenglish}{}{\global\let\extrasenglish\@empty}%
+  \@ifundefined{noextrasenglish}{}{\global\let\noextrasenglish\@empty}%
+}
 \endinput
