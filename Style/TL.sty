@@ -1,0 +1,178 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{TL}[2026/08/01 Commandes et boîtes personnalisées TL]
+
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{graphicx}
+\RequirePackage{xparse}
+\RequirePackage{tikz}
+\RequirePackage{xcolor}
+\RequirePackage{etoolbox}
+
+\usetikzlibrary{calc,decorations.pathmorphing}
+
+\definecolor{TLExerciseBlue}{RGB}{35,85,160}
+\definecolor{TLReflectionBlue}{RGB}{43,112,176}
+\definecolor{TLBobBlue}{RGB}{45,78,120}
+
+\newcommand{\TLBobImage}{images/bob.png}
+\newcommand{\TLReflectionImage}{images/tete_engrenages.png}
+\newcommand{\TLSetBobImage}[1]{\renewcommand{\TLBobImage}{#1}}
+\newcommand{\TLSetReflectionImage}[1]{\renewcommand{\TLReflectionImage}{#1}}
+
+\newcommand{\TLReflectionBox}[1]{%
+  \noindent
+  \begin{minipage}[t]{0.12\linewidth}
+    \vspace{0pt}
+    \includegraphics[width=\linewidth]{\TLReflectionImage}
+  \end{minipage}%
+  \hspace{0.015\linewidth}%
+  \begin{minipage}[t]{0.02\linewidth}
+    \vspace{0pt}
+    \color{TLReflectionBlue}\rule{6pt}{7cm}
+  \end{minipage}%
+  \hspace{0.02\linewidth}%
+  \begin{minipage}[t]{0.80\linewidth}
+    \vspace{0pt}
+    #1
+  \end{minipage}%
+}
+
+\newtcolorbox{TLExercise}[2][]{
+  enhanced,
+  breakable,
+  colback=white,
+  colframe=TLExerciseBlue,
+  boxrule=1pt,
+  arc=1mm,
+  title={#2},
+  colbacktitle=TLExerciseBlue,
+  coltitle=white,
+  fonttitle=\bfseries\Large,
+  attach boxed title to top left={xshift=0mm,yshift=-2mm},
+  boxed title style={sharp corners,boxrule=0pt},
+  left=4mm,right=4mm,top=4mm,bottom=4mm,
+  before skip=6pt plus 2pt minus 2pt,
+  after skip=6pt plus 2pt minus 2pt,
+  #1
+}
+
+\newtcolorbox{TLBob}[1][]{
+  enhanced,
+  breakable,
+  colback=orange!10,
+  colframe=orange!90!black,
+  boxrule=0.8pt,
+  arc=1mm,
+  left=4mm,right=4mm,top=3mm,bottom=3mm,
+  before skip=6pt plus 2pt minus 2pt,
+  after skip=6pt plus 2pt minus 2pt,
+  parbox=false,
+  halign=center,
+  overlay unbroken={
+    \node[anchor=south east,inner sep=0pt,xshift=10mm]
+      at (frame.south east)
+      {\includegraphics[height=3.2cm]{\TLBobImage}};
+  },
+  overlay last={
+    \node[anchor=south east,inner sep=0pt,xshift=10mm]
+      at (frame.south east)
+      {\includegraphics[height=3.2cm]{\TLBobImage}};
+  },
+  #1
+}
+
+% Noms historiques conservés pour les anciens contenus déjà convertis.
+\NewDocumentEnvironment{bob}{O{}}
+  {\begin{TLBob}[#1]}
+  {\end{TLBob}}
+
+\NewDocumentEnvironment{exercice}{O{} m}
+  {\begin{TLExercise}[#1]{#2}}
+  {\end{TLExercise}}
+
+\let\boxreflexion\TLReflectionBox
+
+% Inclusion d'un ancien fichier de cours converti depuis Word : la commande
+% retire uniquement son ancienne page de chapitre, son image de couverture et
+% son premier saut de page. Les sections sont étiquetées automatiquement pour
+% le sommaire court de la couverture.
+\newcounter{TLTrackedSection}
+
+\NewDocumentCommand{\TLInputCourseBody}{m m}{%
+  \setcounter{TLTrackedSection}{0}%
+  \newif\ifTLskipLegacyChapter
+  \newif\ifTLskipLegacyImage
+  \newif\ifTLskipLegacyClearPage
+  \TLskipLegacyChaptertrue
+  \TLskipLegacyImagetrue
+  \TLskipLegacyClearPagetrue
+
+  \let\TLOriginalChapter\chapter
+  \let\TLOriginalSection\section
+  \let\TLOriginalIncludeGraphics\includegraphics
+  \let\TLOriginalClearPage\clearpage
+  \let\TLOriginalSetChapterImage\setchapterimage
+  \let\TLOriginalSetChapterPreamble\setchapterpreamble
+
+  \RenewDocumentCommand{\setchapterimage}{m}{}%
+  \RenewDocumentCommand{\setchapterpreamble}{O{} m}{}%
+
+  \RenewDocumentCommand{\chapter}{s o m}{%
+    \IfBooleanTF{##1}{%
+      \ifTLskipLegacyChapter
+        \global\TLskipLegacyChapterfalse
+      \else
+        \TLOriginalChapter*{##3}%
+      \fi
+    }{%
+      \IfNoValueTF{##2}
+        {\TLOriginalChapter{##3}}
+        {\TLOriginalChapter[##2]{##3}}%
+    }%
+  }%
+
+  \RenewDocumentCommand{\section}{s o m}{%
+    \IfBooleanTF{##1}{%
+      \TLOriginalSection*{##3}%
+    }{%
+      \IfNoValueTF{##2}
+        {\TLOriginalSection{##3}}
+        {\TLOriginalSection[##2]{##3}}%
+      \stepcounter{TLTrackedSection}%
+      \label{TL-course-section-\arabic{TLTrackedSection}}%
+    }%
+  }%
+
+  \RenewDocumentCommand{\includegraphics}{s O{} m}{%
+    \ifTLskipLegacyImage
+      \ifstrequal{##3}{#2}{%
+        \global\TLskipLegacyImagefalse
+      }{%
+        \IfBooleanTF{##1}
+          {\TLOriginalIncludeGraphics*[##2]{##3}}
+          {\TLOriginalIncludeGraphics[##2]{##3}}%
+      }%
+    \else
+      \IfBooleanTF{##1}
+        {\TLOriginalIncludeGraphics*[##2]{##3}}
+        {\TLOriginalIncludeGraphics[##2]{##3}}%
+    \fi
+  }%
+
+  \renewcommand{\clearpage}{%
+    \ifTLskipLegacyClearPage
+      \global\TLskipLegacyClearPagefalse
+    \else
+      \TLOriginalClearPage
+    \fi
+  }%
+
+  \input{#1}%
+
+  \let\chapter\TLOriginalChapter
+  \let\section\TLOriginalSection
+  \let\includegraphics\TLOriginalIncludeGraphics
+  \let\clearpage\TLOriginalClearPage
+  \let\setchapterimage\TLOriginalSetChapterImage
+  \let\setchapterpreamble\TLOriginalSetChapterPreamble
+}
