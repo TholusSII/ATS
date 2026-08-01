@@ -44,6 +44,7 @@
 \input{\repRel/Style/environment_v2}
 \pgfplotsset{compat=1.18}
 \usepackage{UPSTI_Pedagogique}
+\usepackage{CouvertureCours}
 
 % Bob
 \usepackage[most]{tcolorbox}
@@ -56,9 +57,6 @@
 \usepackage{xcolor}
 
 \definecolor{bleuexercice}{RGB}{43,112,176}
-\definecolor{AForange}{RGB}{235,104,0}
-\definecolor{AFgreen}{RGB}{139,183,62}
-\definecolor{AFblue}{RGB}{0,74,146}
 
 \newcommand{\boxreflexion}[1]{%
 \noindent
@@ -159,46 +157,6 @@
 \@ifundefined{noextrasenglish}{}{\let\noextrasenglish\@empty}
 \makeatother
 
-% -----------------------------------------------------------------------------
-% Première page
-% -----------------------------------------------------------------------------
-\newcommand{\AFcoverpage}{%
-  \begin{titlepage}
-    \thispagestyle{empty}%
-    \begin{center}
-      \vspace*{-8mm}
-      \includegraphics[width=0.62\textwidth]{images/image3.png}
-
-      \vspace{13mm}
-      {\color{AForange}\fontsize{20}{26}\selectfont
-       Cycle 1 : Analyser, expérimenter et\\[1mm]
-       communiquer sur les systèmes pluri-\\[1mm]
-       technologies\par}
-
-      \vspace{18mm}
-      {\color{AFgreen}\bfseries\fontsize{19}{23}\selectfont
-       Introduction à l'ingénierie système\par}
-
-      \vfill
-      {\color{AFblue}\fontsize{16}{20}\selectfont Thomas Lusseau\par}
-      \vspace{2mm}
-      {\color{AFblue}\fontsize{11}{14}\selectfont Lycée Robert Doisneau - ATS\par}
-      \vspace{14mm}
-    \end{center}
-
-    % Pied de page de la couverture : logo à gauche, établissement à droite.
-    \begin{tikzpicture}[remember picture,overlay]
-      \node[anchor=south west,xshift=12mm,yshift=7mm]
-        at (current page.south west)
-        {\includegraphics[height=9mm]{\repStyle/png/logo_lycee.png}};
-      \node[anchor=south east,xshift=-12mm,yshift=9mm,
-            text=AFblue,font=\sffamily\small]
-        at (current page.south east)
-        {Lycée Robert Doisneau - ATS};
-    \end{tikzpicture}
-  \end{titlepage}
-}
-
 \begin{document}
 
 \titlehead{Thomas Lusseau - SII en ATS}
@@ -213,14 +171,15 @@
 \graphicspath{{\repStyle/png}}
 \pagestyle{scrheadings}
 
-% Pied de page du document : logo à gauche et établissement à droite,
-% sur les pages paires, impaires et les pages de style plain.
-\newcommand{\AFfooterlogo}{\includegraphics[height=7mm]{\repStyle/png/logo_lycee.png}}
-\newcommand{\AFfootertext}{\textcolor{AFblue}{\sffamily\small Lycée Robert Doisneau - ATS}}
-\lefoot[\AFfooterlogo]{\AFfooterlogo}
-\lofoot[\AFfooterlogo]{\AFfooterlogo}
-\refoot[\AFfootertext]{\AFfootertext}
-\rofoot[\AFfootertext]{\AFfootertext}
+% Couverture standard réutilisable pour les polys de cours.
+\UPSTIsetupcoursecover
+  {images/image3.png}
+  {images/image14.png}
+  {Cycle 1 : Analyser, expérimenter et\\ communiquer sur les systèmes pluri-\\ technologies}
+  {Introduction à l'ingénierie système}
+  {\repStyle/png/logo_lycee.png}
+  {Lycée Robert Doisneau - ATS}
+\UPSTIapplycoursefooter
 
 \AtBeginEnvironment{corrige}{\small}
 
@@ -228,16 +187,7 @@
 %\livretfalse
 \collefalse
 
-\AFcoverpage
-
-% Table des matières sur la page qui suit la couverture.
-\phantomsection
-\addcontentsline{toc}{chapter}{Introduction à l'ingénierie système}
-\begingroup
-  \setstretch{1}
-  \tableofcontents
-\endgroup
-\clearpage
+\UPSTImakecoursecover
 \markboth{Introduction à l'ingénierie système}{Introduction à l'ingénierie système}
 
 % Le fichier converti contient encore son ancien titre, son image de couverture
