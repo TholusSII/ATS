@@ -1,0 +1,43 @@
+% ============================================================================
+% DÉFINITION DU COURS : INGÉNIERIE SYSTÈME
+% Ce fichier configure la couverture puis charge le cours et ses ressources.
+% ============================================================================
+
+\titlehead{Thomas Lusseau - SII en ATS}
+\title[Introduction à l'ingénierie système]{Introduction à l'ingénierie système}
+\author[TL]{Thomas Lusseau}
+\date{\today}
+
+\TLCourseCoverSetup
+  {images/image3.png}
+  {images/image14.png}
+  {Cycle 1 : Analyser, expérimenter et\\ communiquer sur les systèmes pluri-\\ technologies}
+  {Introduction à l'ingénierie système}
+  {Lycée Robert Doisneau}
+
+\TLCourseCoverContents{%
+  \TLCourseContentsLine{1.1}{MISE EN SITUATION}{TL-course-section-1}
+  \TLCourseContentsLine{1.2}{Typologie des systèmes}{TL-course-section-2}
+  \TLCourseContentsLine{1.3}{L'approche Ingénierie Système}{TL-course-section-3}
+  \TLCourseContentsLine{1.4}{Le langage et les diagrammes SysML}{TL-course-section-4}
+  \TLCourseContentsLine{1.5}{Architecture fonctionnelle et chaînes fonctionnelles}{TL-course-section-5}
+  \TLCourseContentsLine{1.6}{Sources}{TL-course-section-6}
+  \TLCourseContentsLine{1.7}{Exercices du chapitre}{exercices-du-chapitre}
+}
+
+\TLCourseFooter
+\TLCourseCover
+\markboth{Introduction à l'ingénierie système}{Introduction à l'ingénierie système}
+
+\AtBeginEnvironment{corrige}{\small}
+\livrettrue
+%\livretfalse
+\collefalse
+
+% Le fichier de cours historique contenait sa propre couverture. La commande
+% suivante ne conserve que son contenu pédagogique et étiquette les sections.
+\TLInputCourseBody{01_Ingenierie_Systeme_Cours}{images/image3.png}
+
+% Ressources et exercices associés au chapitre.
+\input{01_Ingenierie_Systeme_Exercices_Images}
+\input{01_Ingenierie_Systeme_Exercices}
