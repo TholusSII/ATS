@@ -1,0 +1,68 @@
+% ============================================================================
+% DÉFINITION DU COURS 02 : MODÉLISATION DES MÉCANISMES
+% Couverture, dépendances particulières, cours et exercices.
+% ============================================================================
+
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{adjustbox}
+\usepackage{catchfile}
+\usepackage{newunicodechar}
+\usepackage{colortbl}
+
+% Bibliothèque de schémas cinématiques déposée dans Style/.
+% Le chargement par input évite l'ancien nom interne rpcinematik du package.
+\input{cinematique.sty}
+
+% Caractères provenant de l'ancien export Word encore utilisé pour les exercices.
+\newunicodechar{⃝}{\ensuremath{\bigcirc}}
+\newunicodechar{🢩}{\ensuremath{\Rightarrow}}
+\newunicodechar{α}{\ensuremath{\alpha}}
+\newunicodechar{β}{\ensuremath{\beta}}
+\newunicodechar{θ}{\ensuremath{\theta}}
+\newunicodechar{ρ}{\ensuremath{\rho}}
+\newunicodechar{≈}{\ensuremath{\approx}}
+\newunicodechar{→}{\ensuremath{\rightarrow}}
+\newunicodechar{∀}{\ensuremath{\forall}}
+\newunicodechar{∈}{\ensuremath{\in}}
+\newunicodechar{°}{\ensuremath{^\circ}}
+
+\titlehead{Thomas Lusseau - SII en ATS}
+\title[Modélisation des mécanismes]{Modélisation des mécanismes}
+\author[TL]{Thomas Lusseau}
+\date{\today}
+
+\TLCourseCoverSetup
+  {\repStyle/FondPoly.png}
+  {images/image3.png}
+  {Cycle 2 : Modéliser et déterminer les lois de\\ mouvement d'un mécanisme}
+  {Modélisation des mécanismes}
+  {Lycée Robert Doisneau - ATS}
+  {Thomas Lusseau}
+
+\TLCourseCoverContents{%
+  \TLCourseContentsLine{2.1}{MISE EN SITUATION}{TL-course-section-1}
+  \TLCourseContentsLine{2.2}{Introduction à la modélisation cinématique}{TL-course-section-2}
+  \TLCourseContentsLine{2.3}{Les liaisons cinématiques}{TL-course-section-3}
+  \TLCourseContentsLine{2.4}{Élaboration d'un modèle cinématique}{TL-course-section-4}
+  \TLCourseContentsLine{2.5}{Paramétrage d'un schéma cinématique}{TL-course-section-5}
+  \TLCourseContentsLine{2.6}{Liaison équivalente}{TL-course-section-6}
+  \TLCourseContentsLine{2.7}{Sources}{TL-course-section-7}
+  \TLCourseContentsLine{2.8}{Exercices du chapitre}{exercices-du-chapitre}
+}
+
+\TLCourseFooter
+\TLCourseCover
+\markboth{Modélisation des mécanismes}{Modélisation des mécanismes}
+
+\AtBeginEnvironment{corrige}{\small}
+\livrettrue
+%\livretfalse
+\collefalse
+
+\input{02_Modelisation_Mecanismes_Cours}
+\input{02_Modelisation_Mecanismes_Exercices}
