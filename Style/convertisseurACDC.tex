@@ -1,0 +1,192 @@
+\documentclass[11pt, a4paper]{exam}
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amsmath, amsfonts, amssymb, mathrsfs}
+\usepackage{geometry}                 
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc} % avec T1 comme option  d'encodage c'est ben mieux, surtout pour taper du français.
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}      
+\usepackage[european, europeancurrents, europeanvoltages, europeanresistors, cuteinductors, straightvoltages,siunitx,RPvoltages]{circuitikz}							
+\colorlet{green2}{green!40!black!70}
+\colorlet{red2}{red!50!black!70}
+\colorlet{blue2}{blue!50!black!70}
+\colorlet{orange2}{orange!50!black!70}
+\geometry{a4paper, top=1.5cm, bottom=1cm, left=1cm, right=1cm} 
+
+\begin{document}
+
+
+
+\section{Convertisseur statique AC/DC}
+\begin{figure}[h!]
+\shorthandoff{:!}
+\ctikzset{% styles here!
+    european,
+    cute inductors,
+%    american inductors,
+    full diodes,
+    bipoles/cuteswitch/thickness=0.3,
+    diodes/scale=0.5,
+     inductors/scale=0.7,
+    resistors/scale=0.7,
+    capacitors/scale=0.7,
+    capacitors/thickness=4,}
+% note that the switch "straight" (for straight European voltages) is
+% experimental
+
+\centering
+\begin{circuitikz}[circuitikz/straight=true,]
+    \node [transformer](T){};
+    {\color{blue2}\draw (T.A1)  to[open, v_=$u_0$] (T.A2) ;}
+    {\color{green2!60!}\draw (T.B1) to [open, v^=$u_1$] (T.B2);}
+    \draw (T.B1) --++(2.5,0) coordinate(top bridge);
+    \coordinate (center bridge) at (T.center -| top bridge);
+    \coordinate (right bridge) at ($(center bridge)!1!-90:(top bridge)$);
+
+%    \draw (right bridge) to[short, i=$i_p$] ++(1,0) coordinate (c2h)
+%    to[C=$C_2$, i>^=$i_{c2}$, *-*] ++(0,-4) coordinate(c2l);
+    \coordinate (left bridge) at ($(center bridge)!1!90:(top bridge)$);
+    \coordinate (bottom bridge) at ($(center bridge)!1!-180:(top bridge)$);
+    \draw (top bridge) to [D, *-*] (right bridge)
+    to [D, *-*, invert] (bottom bridge)
+    to [D, *-*, invert] (left bridge)
+    to [D, *-*] (top bridge);
+    \node [jump crossing](X) at (left bridge |- T.B2) {};
+    \draw (T.B2) -- (X.west) (X.east) -- (bottom bridge);
+    \draw (right bridge) to ++(1,0) coordinate (c2h);
+    \coordinate (c2l) at ($(c2h)+(0,-3)$);
+
+    {\color{red2}\draw (c2h) to [open, v^=$u_2$] (c2l);}
+
+    %to[C=$C_2$, i>^=$i_{c2}$, *-*] ++(0,-4) coordinate(c2l);
+    % join the left part of the bridge now
+    \draw (left bridge) -- (X.north) (X.south) |- (c2l);
+    % ok, the rest of the circuit now
+%    \draw (c2h) to[L, l_=$L$, i=$i_L$, v^=$U_L$, *-*] ++(3,0) coordinate(c1h)
+    \draw (c2h)to++(1,0) to[R, l_=$R$] ++(1.8,0) coordinate(c1h)
+    to[C=$C$, *-*] (c2l-|c1h) coordinate(c1l) -- (c2l);
+    \draw (c1h) to[short, -] ++(2,0) coordinate(u1h)
+    to[short] ++(.5,0) coordinate(rh) ++ (0,-3) coordinate (rl)
+    to[short, -] (u1h|-c1l) coordinate(u1l) -- (c1l);
+    \draw (u1h) to[open, v^=$u_3$] (u1l);
+
+   \draw (rh)++(0,0) coordinate (Vcc)
+    ++(.5,0) coordinate (NE);
+
+\def\Zb{-4}
+\begin{scope}[gray!50]
+\draw[thick] (-2.25,1) rectangle (1.5,\Zb);
+\node at (-2.25,\Zb) [anchor=south west]{Transformateur};
+
+\draw[thick] (1.6,1) rectangle (6.2,\Zb);
+\node at (1.6,\Zb) [anchor=south west]{Pont redresseur de diode};
+
+
+\draw[thick] (6.3,1) rectangle (9.4,\Zb);
+\node at (6.3,\Zb) [anchor=south west]{Filtre $RC$};
+\end{scope}
+
+
+%\path (T.B1) node[ocirc]{} (T.B2) node[ocirc]{};
+%\path (T.A1) node[ocirc]{} (T.A2) node[ocirc]{};
+
+\end{circuitikz}
+%\shorthandon{:!}
+%\captionof{figure}{Schéma électrique global d'un adaptateur AC/DC.}
+\caption{Schéma électrique global d'un adaptateur AC/DC.}
+\label{fig:schemaElectrique}
+\end{figure}
+
+
+
+
+
+\begin{figure}[h!]\centering
+	\begin{tikzpicture}[scale=0.8]
+		\tikzstyle{fleche}=[->,>=latex]
+		\draw[fleche](0,-2)--(0,2.5);
+		\draw[fleche](0,0)--(10.5,0) node[right]{$t$};
+		\draw[thick, domain=0:21,samples=100,blue2] plot (\x/2,{2.*sin(deg(\x))}) node[right, anchor = south west] {$u_0(t)$};
+		\draw[thick, domain=0:21,samples=100,green2!60!] plot (\x/2,{.2*sin(deg(\x))}) node[right, anchor = south west] {$u_1(t)$};
+%		\draw[ultra thick, domain=0:21,samples=100,red2] plot (\x/2,{(3/(1+2^2)*(2*exp(-\x/2)))+(3/sqrt(1+(2)^2)*sin(deg(\x-1.11)))}) node[right] {$s(t)$};
+		\draw[dotted](-0.5,2)node[left]{$\sqrt{2} \times 230$ V}--(10,2);
+		\draw[dotted](-0.5,.2)node[left]{$\sqrt{2} \times 24$ V}--(7.6,.2);
+	\end{tikzpicture}
+	\caption{Signaux d'entrée et de sortie du transformateur.}
+	\label{transformateur}
+\end{figure}
+
+
+
+
+\begin{figure}[h!]\centering
+	\begin{tikzpicture}[scale=0.8]
+		\tikzstyle{fleche}=[->,>=latex]
+		\draw[fleche](0,-2)--(0,2.5);
+		\draw[fleche](0,0)--(10.5,0) node[right]{$t$};
+		\draw[thick, domain=0:21,samples=1000,green2!60!] plot (\x/2,{2*sin(deg(\x))}) node[right, anchor = south west] {$u_1(t)$};
+		\draw[dashed, thick, domain=0:21,samples=1000,red2] plot (\x/2,{2*abs(sin(deg(\x)))}) node[right, anchor = north west] {$u_2(t)$};
+%		\draw[ultra thick, domain=0:21,samples=100,red2] plot (\x/2,{(3/(1+2^2)*(2*exp(-\x/2)))+(3/sqrt(1+(2)^2)*sin(deg(\x-1.11)))}) node[right] {$s(t)$};
+		\draw[dotted](-0.5,2)node[left]{$\sqrt{2} \times 24$ V}--(10,2);
+	\end{tikzpicture}
+	\caption{Signaux d'entrée et de sortie du pont redresseur de diode.}
+	\label{redresseur}
+\end{figure}
+
+
+
+
+
+
+\begin{figure}[h!]\centering
+	\begin{tikzpicture}[scale=0.8]
+		\tikzstyle{fleche}=[->,>=latex]
+		\draw[fleche](0,-.2)--(0,2.5);
+		\draw[fleche](0,0)--(10.5,0) node[right]{$t$};
+		\draw[dashed, thick, domain=0:21,samples=1000,red2] plot (\x/2,{2*abs(sin(deg(\x)))}) node[right, anchor = north west] {$u_2(t)$};
+		\draw[thick, domain=0:1.8,samples=100,black] plot (\x/2,{2*abs(sin(deg(\x)))});% node[right, anchor = north west] {$u_3(t)$};
+\foreach \k in {0,1,...,5}{
+	\draw[thick, black](.9+\k*3.14/2,1.95)--(2.15+\k*3.14/2,1.8);
+	\draw[thick, domain=2*2.13+\k*3.14:2*2.5+\k*3.14,samples=100,black] plot (\x/2,{2*abs(sin(deg(\x)))});
+}
+		\draw(0,0) node at (10.5,2) [anchor= south west]{$u_3(t)$};
+		\draw[dotted](-0.5,2)node[left, anchor= south east]{$\sqrt{2} \times 24$ V}--(10,2);
+		\draw[dotted](-0.5,2*0.707)node[left, anchor=north east]{$24$ V}--(10,2*0.707);
+	\end{tikzpicture}
+	\caption{Signaux d'entrée et de sortie du filtre.}
+	\label{filtre}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
