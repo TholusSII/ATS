@@ -4,22 +4,16 @@
 \RequirePackage{silence}
 \WarningFilter{xcolor}{Package option `usenames' is obsolete}
 
-% Load the kaobook class
 \documentclass[
 	fontsize=10pt,
 	twoside=true,
-	%open=any,
-%%	secnumdepth=1,
 ]{kaobook}
 
-% Le document est intégralement en français. Le chargement explicite de babel
-% évite que siunitx, translations, KOMA-Script et les tables utilisent l'anglais
-% par défaut avec les versions récentes de MiKTeX.
+% Le document est en français.
 \usepackage[french]{babel}
 
 % -----------------------------------------------------------------------------
-% Optimisation de la mise en page : limitation des grands blancs et des débords
-% dus aux images pleine largeur issues de la conversion Word.
+% Mise en page
 % -----------------------------------------------------------------------------
 \raggedbottom
 \setlength{\parindent}{0pt}
@@ -58,10 +52,14 @@
 \usepackage{needspace}
 \usepackage{etoolbox}
 \usepackage{tikz}
-\usetikzlibrary{calc}
+\usetikzlibrary{calc,decorations.pathmorphing,decorations.text,backgrounds,shadings}
 \usepackage{xcolor}
 
 \definecolor{bleuexercice}{RGB}{43,112,176}
+\definecolor{AForange}{RGB}{235,104,0}
+\definecolor{AFgreen}{RGB}{139,183,62}
+\definecolor{AFblue}{RGB}{0,74,146}
+
 \newcommand{\boxreflexion}[1]{%
 \noindent
 \begin{minipage}[t]{0.12\linewidth}
@@ -123,7 +121,6 @@
     #1
 }
 
-\usetikzlibrary{decorations.pathmorphing}
 \definecolor{bobblue}{RGB}{45,78,120}
 \NewDocumentEnvironment{bob}{O{}}
 {\begin{bobbox}[#1]}
@@ -133,23 +130,19 @@
   \frenchsetup{StandardItemLabels=true}
 \fi
 
-% Ce cours ne contient aucune citation ni bibliographie : ne pas charger
-% kaobiblio évite une demande inutile d'exécution de Biber.
+% Le cours n'utilise ni citations ni bibliographie : ne pas charger kaobiblio
+% évite une exécution inutile de Biber.
 \usepackage{kaotheorems}
-
 \usepackage[normalem]{ulem}
 \providecommand{\ul}[1]{\uline{#1}}
 
 \graphicspath{{images/}{./}}
 \makeindex[columns=3, title=Index alphabétique, intoc]
-\usetikzlibrary{decorations.text,backgrounds,shadings}
 
 \pretocmd{\section}{\Needspace{6\baselineskip}}{}{}
 \pretocmd{\subsection}{\Needspace{5\baselineskip}}{}{}
 \pretocmd{\subsubsection}{\Needspace{4\baselineskip}}{}{}
 
-% Définition de secours, remplacée ensuite par la correspondance des images
-% réellement présentes dans le dossier images.
 \newcommand{\AFfigure}[2][0.96\linewidth]{%
   \begin{center}%
     \IfFileExists{images/#2}{%
@@ -160,37 +153,50 @@
   \end{center}%
 }
 
-% Les liens de retour du vieux package footnotebackref provoquent, avec les
-% longtable et hyperref récents, des destinations dupliquées et des références
-% bhfn non définies. Les notes restent numérotées, mais sans lien de retour.
-\hypersetup{hyperfootnotes=false}
+% Sécurité locale : les hooks anglais de varioref ne sont pas utilisés ici.
 \makeatletter
-\def\@footnotemark{%
-  \leavevmode
-  \ifhmode\edef\@x@sf{\the\spacefactor}\nobreak\fi
-  \@makefnmark
-  \ifhmode\spacefactor\@x@sf\fi
-  \relax
-}
-\renewcommand\@makefntext[1]{%
-  \renewcommand\@makefnmark{%
-    \mbox{\textsuperscript{\normalfont\@thefnmark}\,}%
-  }%
-  \BHFN@OldMakefntext{#1}%
-}
+\@ifundefined{extrasenglish}{}{\let\extrasenglish\@empty}
+\@ifundefined{noextrasenglish}{}{\let\noextrasenglish\@empty}
 \makeatother
 
-% Table des matières compacte, affichée après l'image d'ouverture. Le fichier
-% source converti contient déjà un \clearpage à cet endroit ; on l'utilise pour
-% insérer la table sans modifier le chapitre importé.
-\newcommand{\AFtableofcontents}{%
-  \par\medskip
-  \begingroup
-    \setstretch{1}%
-    \etocsettocstyle{\section*{\contentsname}}{}%
-    \etocsetnexttocdepth{\subsectiontocdepth}%
-    \tableofcontents
-  \endgroup
+% -----------------------------------------------------------------------------
+% Première page
+% -----------------------------------------------------------------------------
+\newcommand{\AFcoverpage}{%
+  \begin{titlepage}
+    \thispagestyle{empty}%
+    \begin{center}
+      \vspace*{-8mm}
+      \includegraphics[width=0.62\textwidth]{images/image3.png}
+
+      \vspace{13mm}
+      {\color{AForange}\fontsize{20}{26}\selectfont
+       Cycle 1 : Analyser, expérimenter et\\[1mm]
+       communiquer sur les systèmes pluri-\\[1mm]
+       technologies\par}
+
+      \vspace{18mm}
+      {\color{AFgreen}\bfseries\fontsize{19}{23}\selectfont
+       Introduction à l'ingénierie système\par}
+
+      \vfill
+      {\color{AFblue}\fontsize{16}{20}\selectfont Thomas Lusseau\par}
+      \vspace{2mm}
+      {\color{AFblue}\fontsize{11}{14}\selectfont Lycée Robert Doisneau - ATS\par}
+      \vspace{14mm}
+    \end{center}
+
+    % Pied de page de la couverture : logo à gauche, établissement à droite.
+    \begin{tikzpicture}[remember picture,overlay]
+      \node[anchor=south west,xshift=12mm,yshift=7mm]
+        at (current page.south west)
+        {\includegraphics[height=9mm]{\repStyle/png/logo_lycee.png}};
+      \node[anchor=south east,xshift=-12mm,yshift=9mm,
+            text=AFblue,font=\sffamily\small]
+        at (current page.south east)
+        {Lycée Robert Doisneau - ATS};
+    \end{tikzpicture}
+  \end{titlepage}
 }
 
 \begin{document}
@@ -212,31 +218,62 @@
 %\livretfalse
 \collefalse
 
-% Repérer l'image d'ouverture image3.png, puis insérer la table des matières au
-% premier \clearpage qui la suit. Les commandes originales sont restaurées dès
-% la fin du cours principal.
-\newif\ifAFtocpending
-\newif\ifAFtocprinted
+\AFcoverpage
+
+% Table des matières sur la page qui suit la couverture.
+\phantomsection
+\addcontentsline{toc}{chapter}{Introduction à l'ingénierie système}
+\begingroup
+  \setstretch{1}
+  \tableofcontents
+\endgroup
+\clearpage
+\markboth{Introduction à l'ingénierie système}{Introduction à l'ingénierie système}
+
+% Le fichier converti contient encore son ancien titre, son image de couverture
+% et un saut de page. On ne neutralise que leur première occurrence, sans
+% redéfinir les commandes pendant le reste du document.
+\newif\ifAFskipcoverimage
+\AFskipcoverimagetrue
+\newif\ifAFskipfirstclearpage
+\AFskipfirstclearpagetrue
+
+\let\AForiginalchapter\chapter
 \let\AForiginalincludegraphics\includegraphics
 \let\AForiginalclearpage\clearpage
+
+\makeatletter
+\newcommand{\AFdiscardstarchapter}[1]{}
+\renewcommand{\chapter}{\@ifstar\AFdiscardstarchapter\AForiginalchapter}
+\makeatother
+
 \RenewDocumentCommand{\includegraphics}{s O{} m}{%
-  \IfBooleanTF{#1}{%
-    \AForiginalincludegraphics*[#2]{#3}%
-  }{%
-    \AForiginalincludegraphics[#2]{#3}%
-  }%
-  \ifstrequal{#3}{images/image3.png}{\global\AFtocpendingtrue}{}%
-}
-\renewcommand{\clearpage}{%
-  \ifAFtocpending
-    \ifAFtocprinted\else
-      \global\AFtocprintedtrue
-      \AFtableofcontents
-    \fi
+  \ifAFskipcoverimage
+    \ifstrequal{#3}{images/image3.png}{%
+      \global\AFskipcoverimagefalse
+    }{%
+      \IfBooleanTF{#1}
+        {\AForiginalincludegraphics*[#2]{#3}}
+        {\AForiginalincludegraphics[#2]{#3}}%
+    }%
+  \else
+    \IfBooleanTF{#1}
+      {\AForiginalincludegraphics*[#2]{#3}}
+      {\AForiginalincludegraphics[#2]{#3}}%
   \fi
-  \AForiginalclearpage
 }
+
+\renewcommand{\clearpage}{%
+  \ifAFskipfirstclearpage
+    \global\AFskipfirstclearpagefalse
+  \else
+    \AForiginalclearpage
+  \fi
+}
+
 \input{01_AnalyseFonctionnelle2022}
+
+\let\chapter\AForiginalchapter
 \let\includegraphics\AForiginalincludegraphics
 \let\clearpage\AForiginalclearpage
 
