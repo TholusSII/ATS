@@ -1,7 +1,6 @@
 % ============================================================================
 % MOTEUR GÉNÉRIQUE — COURS 02 : MODÉLISATION DES MÉCANISMES
-% Ce fichier ne contient aucune ressource pédagogique : il charge uniquement
-% la définition 02_Modelisation_Mecanismes.tex.
+% Ce fichier contient le préambule du polycopié et charge ensuite sa définition.
 % ============================================================================
 \RequirePackage{silence}
 \WarningFilter{xcolor}{Package option `usenames' is obsolete}
@@ -21,6 +20,49 @@
 \makeatother
 \usepackage{TLCours}
 
+% -----------------------------------------------------------------------------
+% Dépendances particulières au cours de modélisation des mécanismes
+% Elles doivent impérativement être chargées avant \begin{document}.
+% -----------------------------------------------------------------------------
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{adjustbox}
+\usepackage{catchfile}
+\usepackage{newunicodechar}
+\usepackage{colortbl}
+\usepackage{calc}
+
+% Bibliothèque de schémas cinématiques disponible dans Style/.
+% Son nom interne historique est rpcinematik ; on la charge donc par \input.
+\input{cinematique.sty}
+
+% Caractères provenant de l'ancienne conversion Word utilisée pour les exercices.
+\newunicodechar{⃝}{\ensuremath{\bigcirc}}
+\newunicodechar{🢩}{\ensuremath{\Rightarrow}}
+\newunicodechar{α}{\ensuremath{\alpha}}
+\newunicodechar{β}{\ensuremath{\beta}}
+\newunicodechar{θ}{\ensuremath{\theta}}
+\newunicodechar{ω}{\ensuremath{\omega}}
+\newunicodechar{ρ}{\ensuremath{\rho}}
+\newunicodechar{≈}{\ensuremath{\approx}}
+\newunicodechar{⇒}{\ensuremath{\Rightarrow}}
+\newunicodechar{∀}{\ensuremath{\forall}}
+\newunicodechar{∈}{\ensuremath{\in}}
+\newunicodechar{■}{\rule{1ex}{1ex}}
+\newunicodechar{𝑂}{\ensuremath{O}}
+\newunicodechar{𝑥}{\ensuremath{\vec x}}
+\newunicodechar{𝑦}{\ensuremath{\vec y}}
+\newunicodechar{𝑧}{\ensuremath{\vec z}}
+% La flèche combinante est déjà portée par les trois commandes précédentes.
+\newunicodechar{⃗}{}
+
+% -----------------------------------------------------------------------------
+% Mise en page commune
+% -----------------------------------------------------------------------------
 \raggedbottom
 \setlength{\parindent}{0pt}
 \setlength{\emergencystretch}{3em}
