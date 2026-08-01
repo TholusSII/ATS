@@ -1,0 +1,49 @@
+% ============================================================================
+% MOTEUR GÉNÉRIQUE — COURS 02 : MODÉLISATION DES MÉCANISMES
+% Ce fichier ne contient aucune ressource pédagogique : il charge uniquement
+% la définition 02_Modelisation_Mecanismes.tex.
+% ============================================================================
+\RequirePackage{silence}
+\WarningFilter{xcolor}{Package option `usenames' is obsolete}
+\WarningFilter{french3.ldf}{Please load the "listings" package}
+
+\documentclass[
+  fontsize=10pt,
+  twoside=true,
+]{kaobook}
+
+\usepackage[french]{babel}
+
+\newcommand{\TLCourseDefinitionFile}{02_Modelisation_Mecanismes}
+
+\makeatletter
+\def\input@path{{../../Style/}}
+\makeatother
+\usepackage{TLCours}
+
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{3em}
+\setcounter{topnumber}{5}
+\setcounter{bottomnumber}{5}
+\setcounter{totalnumber}{8}
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.90}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.80}
+\setlength{\floatsep}{8pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{10pt plus 2pt minus 2pt}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+
+\makeindex[columns=3, title=Index alphabétique, intoc]
+
+\begin{document}
+\mainmatter
+\setchapterstyle{kao}
+\setcounter{margintocdepth}{\sectiontocdepth}
+\marginlayout
+\pagestyle{scrheadings}
+
+\input{\TLCourseDefinitionFile}
+
+\end{document}
