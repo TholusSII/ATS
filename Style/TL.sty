@@ -92,6 +92,18 @@
 
 \let\boxreflexion\TLReflectionBox
 
+% Les longs tableaux issus de la conversion Word sont composés avec une police
+% légèrement réduite, des espacements cohérents et des lignes assez hautes pour
+% accueillir les images et les cellules multi-lignes. Cela corrige les badboxes
+% sans masquer les diagnostics de LaTeX.
+\AtBeginEnvironment{longtable}{%
+  \footnotesize
+  \setlength{\tabcolsep}{2pt}%
+  \renewcommand{\arraystretch}{1.18}%
+  \setlength{\emergencystretch}{3em}%
+  \sloppy
+}
+
 % Copies réelles des commandes kaobook. \let ne convient pas ici car certaines
 % commandes sont robustes : l'alias finissait par rappeler la commande redéfinie
 % et provoquait une récursion jusqu'à saturation de la pile TeX.
@@ -99,6 +111,25 @@
 \NewCommandCopy\TLBaseSection\section
 \NewCommandCopy\TLBaseIncludeGraphics\includegraphics
 \NewCommandCopy\TLBaseClearPage\clearpage
+\NewCommandCopy\TLBaseQuote\quote
+\NewCommandCopy\TLBaseEndQuote\endquote
+
+% Inclusion graphique sécurisée : l'option demandée est respectée tant que le
+% résultat tient dans la largeur réellement disponible. Dans une cellule étroite
+% ou un environnement indenté, l'image est automatiquement réduite.
+\newsavebox{\TLGraphicMeasureBox}
+\NewDocumentCommand{\TLFitIncludeGraphics}{s O{} m}{%
+  \sbox{\TLGraphicMeasureBox}{%
+    \IfBooleanTF{#1}
+      {\TLBaseIncludeGraphics*[#2]{#3}}
+      {\TLBaseIncludeGraphics[#2]{#3}}%
+  }%
+  \ifdim\wd\TLGraphicMeasureBox>\linewidth
+    \resizebox{\linewidth}{!}{\usebox{\TLGraphicMeasureBox}}%
+  \else
+    \usebox{\TLGraphicMeasureBox}%
+  \fi
+}
 
 % Inclusion d'un ancien fichier de cours converti depuis Word : la commande
 % retire uniquement son ancienne page de chapitre, son image de couverture et
@@ -114,6 +145,12 @@
   \global\TLskipLegacyChaptertrue
   \global\TLskipLegacyImagetrue
   \global\TLskipLegacyClearPagetrue
+
+  % Les environnements quote générés par la conversion Word ne représentent pas
+  % des citations : ils ne doivent pas ajouter de marge dans les cellules.
+  \renewenvironment{quote}
+    {\list{}{\leftmargin=0pt\rightmargin=0pt\topsep=0pt\parsep=0pt}\item\relax}
+    {\endlist}
 
   \RenewDocumentCommand{\chapter}{s o m}{%
     \IfBooleanTF{##1}{%
@@ -147,13 +184,13 @@
         \global\TLskipLegacyImagefalse
       }{%
         \IfBooleanTF{##1}
-          {\TLBaseIncludeGraphics*[##2]{##3}}
-          {\TLBaseIncludeGraphics[##2]{##3}}%
+          {\TLFitIncludeGraphics*[##2]{##3}}
+          {\TLFitIncludeGraphics[##2]{##3}}%
       }%
     \else
       \IfBooleanTF{##1}
-        {\TLBaseIncludeGraphics*[##2]{##3}}
-        {\TLBaseIncludeGraphics[##2]{##3}}%
+        {\TLFitIncludeGraphics*[##2]{##3}}
+        {\TLFitIncludeGraphics[##2]{##3}}%
     \fi
   }%
 
@@ -171,4 +208,6 @@
   \RenewCommandCopy\section\TLBaseSection
   \RenewCommandCopy\includegraphics\TLBaseIncludeGraphics
   \RenewCommandCopy\clearpage\TLBaseClearPage
+  \RenewCommandCopy\quote\TLBaseQuote
+  \RenewCommandCopy\endquote\TLBaseEndQuote
 }
