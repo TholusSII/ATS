@@ -172,14 +172,17 @@
       rectangle
       ([yshift=-67mm]current page.north east);
 
+    % Titre centré verticalement dans les 16 mm du cartouche gris.
     \node[
-      anchor=west,
+      anchor=north west,
       xshift=14mm,
-      yshift=-59mm,
+      yshift=-51mm,
+      inner sep=0pt,
+      minimum height=16mm,
       text=TLCoverBlue,
       align=left,
       text width=.80\paperwidth,
-      font=\sffamily\bfseries\fontsize{15}{18}\selectfont
+      font=\sffamily\bfseries\fontsize{17}{20}\selectfont
     ] at (current page.north west) {\TLCourseTitle};
 
     % Illustration centrale légèrement agrandie.
