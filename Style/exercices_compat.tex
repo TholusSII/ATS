@@ -96,6 +96,27 @@
   \href{#2}{\fbox{\strut\textbf{Accéder au questionnaire en ligne}}}%
 }
 
+% Dans un recueil, les figures et tableaux doivent rester avec leur exercice.
+% Les environnements flottants historiques sont donc rendus non flottants.
+% Cela évite aussi « Not in outer par mode » dans les corrigebox et les
+% avertissements de modification automatique du placement [h] vers [ht].
+\RenewDocumentEnvironment{figure}{O{}}{%
+  \par\medskip\noindent\begin{center}\captionsetup{type=figure}%
+}{%
+  \end{center}\par\medskip%
+}
+\RenewDocumentEnvironment{table}{O{}}{%
+  \par\medskip\noindent\begin{center}\captionsetup{type=table}%
+}{%
+  \end{center}\par\medskip%
+}
+
+% Les QR codes historiques déclenchent des glyphes incompatibles avec certaines
+% installations MiKTeX/T1. Dans les recueils, ils sont remplacés par des liens
+% textuels cliquables, plus compacts et reproductibles.
+\RenewDocumentCommand{\qrcode}{O{} m}{\href{#2}{Accéder au questionnaire en ligne}}
+\RenewDocumentCommand{\fancyqr}{O{} m}{\href{#2}{Accéder au questionnaire en ligne}}
+
 % -----------------------------------------------------------------------------
 % Corrigés séparés : affichage global activable par une seule commande.
 % -----------------------------------------------------------------------------
