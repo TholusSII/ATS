@@ -1,0 +1,46 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{TLCours}[2026/08/01 Socle commun des polycopiés de cours TL]
+
+% -----------------------------------------------------------------------------
+% Dépendances réellement communes aux cours
+% -----------------------------------------------------------------------------
+\RequirePackage{etoolbox}
+\RequirePackage{needspace}
+\RequirePackage[normalem]{ulem}
+
+% Macros scientifiques et environnements historiques du framework.
+\input{macros_SII_v2}
+\input{environment_v2}
+
+% Commandes personnalisées TL et couverture des cours.
+\RequirePackage{CouvertureCours}
+\RequirePackage{TL}
+
+% Version explicite de PGFPlots, chargé par environment_v2.
+\pgfplotsset{compat=1.18}
+
+% -----------------------------------------------------------------------------
+% Valeurs communes et compatibilité avec les anciens fichiers
+% -----------------------------------------------------------------------------
+\providecommand{\discipline}{Sciences Industrielles de l'Ingénieur}
+\providecommand{\auteur}{Thomas Lusseau}
+\providecommand{\repRel}{../../}
+\providecommand{\repStyle}{\repRel/Style}
+\providecommand{\ul}[1]{\uline{#1}}
+
+\ifdefined\frenchsetup
+  \frenchsetup{StandardItemLabels=true}
+\fi
+
+\graphicspath{{images/}{./}}
+
+% Éviter qu'un titre soit isolé en bas de page.
+\pretocmd{\section}{\Needspace{6\baselineskip}}{}{}
+\pretocmd{\subsection}{\Needspace{5\baselineskip}}{}{}
+\pretocmd{\subsubsection}{\Needspace{4\baselineskip}}{}{}
+
+% Les hooks anglais de varioref ne sont pas utilisés dans les cours français.
+\makeatletter
+\@ifundefined{extrasenglish}{}{\let\extrasenglish\@empty}
+\@ifundefined{noextrasenglish}{}{\let\noextrasenglish\@empty}
+\makeatother
