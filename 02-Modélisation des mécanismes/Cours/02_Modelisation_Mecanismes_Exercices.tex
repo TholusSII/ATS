@@ -1,0 +1,25 @@
+% ============================================================================
+% EXERCICES DU CHAPITRE
+% Le fichier historique contient l'intégralité de la conversion Word.
+% On n'exécute que la partie à partir de \section{Exercices du chapitre}.
+% ============================================================================
+
+\makeatletter
+\CatchFileDef{\TLLegacyModelisationFile}
+  {02_ModelisationMecanismes_cours.tex}
+  {}
+
+% Parcours récursif des commandes section du fichier capturé.
+% L'argument #2 est le titre de la section ; #3 contient la suite du fichier.
+\long\def\TLExtractModelisationExercises#1\section#2#3\TLModelisationStop{%
+  \ifstrequal{#2}{Exercices du chapitre}{%
+    \section{#2}#3%
+  }{%
+    \expandafter\TLExtractModelisationExercises#3\TLModelisationStop
+  }%
+}
+
+\expandafter\TLExtractModelisationExercises
+  \TLLegacyModelisationFile
+  \TLModelisationStop
+\makeatother
