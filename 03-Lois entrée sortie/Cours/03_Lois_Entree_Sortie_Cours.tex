@@ -7,7 +7,15 @@
 
 \CatchFileDef{\TLThreeSource}{contenu.tex}{}
 
-\long\def\TLThreeExtractCourse#1\subsection{Exercices du chapitre}#2\TLThreeStop{#1}
+% Parcours récursif des sous-sections jusqu'au séparateur des exercices.
+\long\def\TLThreeExtractCourse#1\subsection#2#3\TLThreeStop{%
+  \ifstrequal{#2}{Exercices du chapitre}{%
+    #1%
+  }{%
+    #1\subsection{#2}%
+    \TLThreeExtractCourse#3\TLThreeStop
+  }%
+}
 
 \expandafter\TLThreeExtractCourse
   \TLThreeSource
