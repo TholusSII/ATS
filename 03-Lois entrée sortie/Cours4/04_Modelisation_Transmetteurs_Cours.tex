@@ -8,7 +8,15 @@
 
 \CatchFileDef{\TLFourSource}{\TLFourSourcePrefix contenu.tex}{}
 
-\long\def\TLFourExtractCourse#1\subsection{Exercices du chapitre}#2\TLFourStop{#1}
+% Parcours récursif des sous-sections jusqu'au séparateur des exercices.
+\long\def\TLFourExtractCourse#1\subsection#2#3\TLFourStop{%
+  \ifstrequal{#2}{Exercices du chapitre}{%
+    #1%
+  }{%
+    #1\subsection{#2}%
+    \TLFourExtractCourse#3\TLFourStop
+  }%
+}
 
 \expandafter\TLFourExtractCourse
   \TLFourSource
