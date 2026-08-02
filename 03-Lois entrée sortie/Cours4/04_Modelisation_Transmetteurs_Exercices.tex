@@ -1,0 +1,14 @@
+% Exercices de la première passe « Modélisation des transmetteurs ».
+% Le titre d'exercices est créé par le document maître fusionné.
+
+\begingroup
+\input{\TLFourSourcePrefix 04_Modelisation_Transmetteurs_Integration.tex}
+
+\CatchFileDef{\TLFourSource}{\TLFourSourcePrefix contenu.tex}{}
+
+\long\def\TLFourExtractExercises#1\subsection{Exercices du chapitre}#2\TLFourStop{#2}
+
+\expandafter\TLFourExtractExercises
+  \TLFourSource
+  \TLFourStop
+\endgroup
