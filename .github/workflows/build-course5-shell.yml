@@ -43,7 +43,7 @@ jobs:
             git push
           fi
 
-      - name: Compiler le document
+      - name: Compiler une passe de diagnostic
         id: compile
         continue-on-error: true
         shell: bash
@@ -55,15 +55,11 @@ jobs:
           {
             echo "WORKSPACE=$GITHUB_WORKSPACE"
             pwd
-            ls -la
             command -v pdflatex || true
             cd "$course"
             pwd
             ls -la 00_Systemes_Asservis.tex 05_Systemes_Asservis.tex
             rm -f 00_Systemes_Asservis.{aux,toc,out,mw,idx,ilg,ind,log,pdf}
-            pdflatex -file-line-error -halt-on-error -interaction=nonstopmode 00_Systemes_Asservis.tex
-            if [ -f 00_Systemes_Asservis.idx ]; then makeindex 00_Systemes_Asservis.idx; fi
-            pdflatex -file-line-error -halt-on-error -interaction=nonstopmode 00_Systemes_Asservis.tex
             pdflatex -file-line-error -halt-on-error -interaction=nonstopmode 00_Systemes_Asservis.tex
           } > "$log" 2>&1
 
