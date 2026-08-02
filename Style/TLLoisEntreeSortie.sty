@@ -86,10 +86,7 @@
   \end{center}%
 }
 
-% Compatibilité avec les deux commandes \includesvg issues de Pandoc.
-% Les options de taille Word sont volontairement ignorées : TikZ adapte les
-% figures à la largeur utile et ne nécessite ni Inkscape ni shell-escape.
-\ProvideDocumentCommand{\includesvg}{O{} m}{%
+\NewDocumentCommand{\TLIncludeCourseSVG}{O{} m}{%
   \ifstrequal{#2}{images/image7.svg}{%
     \TLEPASGeometry
   }{%
@@ -103,3 +100,13 @@
     }%
   }%
 }
+
+% Compatibilité avec les commandes \includesvg produites par Pandoc.
+% On remplace aussi une éventuelle définition déjà chargée par un autre paquet.
+\makeatletter
+\@ifundefined{includesvg}{%
+  \NewDocumentCommand{\includesvg}{O{} m}{\TLIncludeCourseSVG[#1]{#2}}%
+}{%
+  \RenewDocumentCommand{\includesvg}{O{} m}{\TLIncludeCourseSVG[#1]{#2}}%
+}
+\makeatother
