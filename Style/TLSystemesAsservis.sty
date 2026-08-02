@@ -1,0 +1,313 @@
+% ============================================================================
+% BIBLIOTHÈQUE TL — SYSTÈMES ASSERVIS
+% Schéma-blocs, notations SLCI et diagrammes de Bode
+% ============================================================================
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{TLSystemesAsservis}[2026/08/02 Bibliothèque systèmes asservis]
+
+\RequirePackage{xparse}
+\RequirePackage{etoolbox}
+\RequirePackage{adjustbox}
+\RequirePackage{amsmath}
+\RequirePackage{tikz}
+\usetikzlibrary{positioning,calc,arrows.meta}
+
+% Notations_SLCI charge également schemabloc et bodegraph.
+% L'option noRaccourci évite notamment de redéfinir \L.
+\RequirePackage[noRaccourci]{Notations_SLCI}
+
+\providecolor{TLCoverBlue}{RGB}{0,82,155}
+\definecolor{TLSystemFill}{RGB}{238,245,251}
+\definecolor{TLReturnFill}{RGB}{247,244,235}
+
+\sbStyleBloc{rounded corners=1mm,fill=TLSystemFill,draw=TLCoverBlue!75,thick}
+\sbStyleLien{thick,color=TLCoverBlue!85!black}
+\sbStyleSum{fill=white,draw=TLCoverBlue!75,thick}
+
+% ---------------------------------------------------------------------------
+% Images issues de la première conversion Word
+% ---------------------------------------------------------------------------
+\NewDocumentCommand{\SAimage}{m m m}{%
+  \par\noindent
+  \begin{center}
+    \includegraphics[width=#2,height=#3,keepaspectratio]{#1}%
+  \end{center}
+  \par\noindent
+}
+
+\NewDocumentCommand{\SAimagepair}{m m m m}{%
+  \par\noindent
+  \begin{center}
+    \begin{minipage}[c]{.47\linewidth}
+      \centering\includegraphics[width=#2,max height=.30\textheight,keepaspectratio]{#1}%
+    \end{minipage}\hfill
+    \begin{minipage}[c]{.47\linewidth}
+      \centering\includegraphics[width=#4,max height=.30\textheight,keepaspectratio]{#3}%
+    \end{minipage}
+  \end{center}
+  \par\noindent
+}
+
+% ---------------------------------------------------------------------------
+% Schéma-blocs de base
+% ---------------------------------------------------------------------------
+\newcommand{\TLBeginBlockDiagram}{%
+  \begin{tikzpicture}[auto,font=\small]
+}
+\newcommand{\TLEndBlockDiagram}{\end{tikzpicture}}
+
+\newcommand{\SASchemaMoteur}{%
+  \begin{center}
+  \TLBeginBlockDiagram
+    \sbEntree{E}
+    \sbBlocL[5]{M}{\(H_m(p)\)}{E}
+    \sbSortie[5]{S}{M}
+    \sbRelier[\(U_m(p)\)]{E}{M}
+    \sbRelier[\(\Omega_m(p)\)]{M}{S}
+  \TLEndBlockDiagram
+  \end{center}
+}
+
+\newcommand{\SASchemaBoucleGenerale}{%
+  \begin{center}
+  \resizebox{.98\linewidth}{!}{%
+  \TLBeginBlockDiagram
+    \sbEntree{E}
+    \sbComp[4]{Comp}{E}
+    \sbBlocL[4]{Corr}{Correcteur}{Comp}
+    \sbBlocL[4]{Proc}{Système}{Corr}
+    \sbSortie[4]{S}{Proc}
+    \sbRelier[Consigne]{E}{Comp}
+    \sbRelier[\(\varepsilon\)]{Comp}{Corr}
+    \sbRelier[Commande]{Corr}{Proc}
+    \sbRelier[Réponse]{Proc}{S}
+    \node[sbStyleBloc,below=2.2em of Proc] (Cap) {Capteur};
+    \draw[sbStyleLien] (Proc-S.south) |- (Cap.east);
+    \draw[sbStyleLien] (Cap.west) -| node[pos=.25,below]{Mesure} (Comp.south);
+    \node[font=\itshape,above=1.4em of Proc] (Pert) {Perturbations};
+    \draw[sbStyleLien] (Pert) -- (Proc.north);
+  \TLEndBlockDiagram}
+  \end{center}
+}
+
+\newcommand{\SAChaineAsservie}{%
+  \begin{center}
+  \resizebox{.98\linewidth}{!}{%
+  \TLBeginBlockDiagram
+    \sbEntree{E}
+    \sbComp[4]{Comp}{E}
+    \sbBlocL[4]{C}{\(C(p)\)}{Comp}
+    \sbBlocL[4]{P}{\(P(p)\)}{C}
+    \sbSortie[4]{S}{P}
+    \sbRelier[\(E(p)\)]{E}{Comp}
+    \sbRelier[\(\varepsilon(p)\)]{Comp}{C}
+    \sbRelier[\(U(p)\)]{C}{P}
+    \sbRelier[\(S(p)\)]{P}{S}
+    \node[sbStyleBloc,below=2.2em of P] (H) {\(H(p)\)};
+    \draw[sbStyleLien] (P-S.south) |- (H.east);
+    \draw[sbStyleLien] (H.west) -| node[pos=.25,below]{\(S'(p)\)} (Comp.south);
+  \TLEndBlockDiagram}
+  \end{center}
+}
+
+\newcommand{\SAChaineFonctionnelle}{%
+  \begin{center}
+  \resizebox{.96\linewidth}{!}{%
+  \TLBeginBlockDiagram
+    \sbEntree{E}
+    \sbBlocL[4]{A}{Acquérir}{E}
+    \sbBlocL[4]{T}{Traiter}{A}
+    \sbBlocL[4]{C}{Commander}{T}
+    \sbBlocL[4]{Ag}{Agir}{C}
+    \sbSortie[4]{S}{Ag}
+    \sbRelier[Consigne]{E}{A}
+    \sbRelier{A}{T}
+    \sbRelier{T}{C}
+    \sbRelier{C}{Ag}
+    \sbRelier[Réponse]{Ag}{S}
+  \TLEndBlockDiagram}
+  \end{center}
+}
+
+\newcommand{\SASchemaElementsBase}{%
+  \begin{center}
+  \begin{minipage}[t]{.31\linewidth}
+    \centering\textbf{Bloc}\par\medskip
+    \begin{tikzpicture}[auto,font=\scriptsize]
+      \sbEntree{E}
+      \sbBlocL[3]{B}{\(H(p)\)}{E}
+      \sbSortie[3]{S}{B}
+      \sbRelier[\(E(p)\)]{E}{B}
+      \sbRelier[\(S(p)\)]{B}{S}
+    \end{tikzpicture}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{.31\linewidth}
+    \centering\textbf{Comparateur}\par\medskip
+    \begin{tikzpicture}[auto,font=\scriptsize]
+      \sbEntree{E}
+      \sbComp[3]{C}{E}
+      \sbSortie[3]{S}{C}
+      \sbRelier[\(+\)]{E}{C}
+      \sbRelier[\(\varepsilon\)]{C}{S}
+      \node[above=1.8em of C] (M) {Mesure};
+      \draw[sbStyleLien] (M) -- node[right]{\(-\)} (C.north);
+    \end{tikzpicture}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{.31\linewidth}
+    \centering\textbf{Prélèvement}\par\medskip
+    \begin{tikzpicture}[font=\scriptsize]
+      \draw[sbStyleLien] (0,0) -- node[above]{signal} (2.7,0);
+      \fill[TLCoverBlue] (1.35,0) circle (1.4pt);
+      \draw[sbStyleLien] (1.35,0) -- (1.35,-1.0) -- node[below]{copie} (2.7,-1.0);
+    \end{tikzpicture}
+  \end{minipage}
+  \end{center}
+}
+
+\newcommand{\SASchemaEtuve}{%
+  \begin{center}
+  \resizebox{.99\linewidth}{!}{%
+  \TLBeginBlockDiagram
+    \sbEntree{E}
+    \sbComp[4]{Comp}{E}
+    \sbBlocL[4]{Cor}{Correcteur}{Comp}
+    \sbBlocL[4]{Gra}{Gradateur}{Cor}
+    \sbBlocL[4]{Et}{Étuve}{Gra}
+    \sbSortie[4]{S}{Et}
+    \sbRelier[\(\theta_{cons}\)]{E}{Comp}
+    \sbRelier[\(\varepsilon\)]{Comp}{Cor}
+    \sbRelier[\(U_{com}\)]{Cor}{Gra}
+    \sbRelier[\(U\)]{Gra}{Et}
+    \sbRelier[\(\theta\)]{Et}{S}
+    \node[sbStyleBloc,below=2.2em of Et] (Cap) {Pt100 + conditionneur};
+    \draw[sbStyleLien] (Et-S.south) |- (Cap.east);
+    \draw[sbStyleLien] (Cap.west) -| node[pos=.25,below]{\(\theta_{mes}\)} (Comp.south);
+  \TLEndBlockDiagram}
+  \end{center}
+}
+
+\newcommand{\SASchemaFauteuil}{%
+  \begin{center}
+  \resizebox{.98\linewidth}{!}{%
+  \TLBeginBlockDiagram
+    \sbEntree{E}
+    \sbComp[4]{Comp}{E}
+    \sbBlocL[4]{Cor}{Correcteur}{Comp}
+    \sbBlocL[4]{Mot}{Motoréducteur}{Cor}
+    \sbBlocL[4]{Mec}{Mécanisme}{Mot}
+    \sbSortie[4]{S}{Mec}
+    \sbRelier[Position souhaitée]{E}{Comp}
+    \sbRelier[\(\varepsilon\)]{Comp}{Cor}
+    \sbRelier{Cor}{Mot}
+    \sbRelier{Mot}{Mec}
+    \sbRelier[Position réelle]{Mec}{S}
+    \node[sbStyleBloc,below=2.2em of Mec] (Cap) {Capteur de position};
+    \draw[sbStyleLien] (Mec-S.south) |- (Cap.east);
+    \draw[sbStyleLien] (Cap.west) -| (Comp.south);
+  \TLEndBlockDiagram}
+  \end{center}
+}
+
+\newcommand{\TLSchemaPerturbe}{%
+  \begin{center}
+  \resizebox{.98\linewidth}{!}{%
+  \TLBeginBlockDiagram
+    \sbEntree{E}
+    \sbComp[4]{Comp}{E}
+    \sbBlocL[4]{C}{\(C(p)\)}{Comp}
+    \sbSumh[4]{Som}{C}
+    \sbBlocL[4]{P}{\(P(p)\)}{Som}
+    \sbSortie[4]{S}{P}
+    \sbRelier[\(E(p)\)]{E}{Comp}
+    \sbRelier[\(\varepsilon(p)\)]{Comp}{C}
+    \sbRelier{C}{Som}
+    \sbRelier{Som}{P}
+    \sbRelier[\(S(p)\)]{P}{S}
+    \node[above=2.0em of Som] (Q) {\(Q(p)\)};
+    \draw[sbStyleLien] (Q) -- node[right]{\(+\)} (Som.north);
+    \node[sbStyleBloc,below=2.2em of P] (H) {\(H(p)\)};
+    \draw[sbStyleLien] (P-S.south) |- (H.east);
+    \draw[sbStyleLien] (H.west) -| (Comp.south);
+  \TLEndBlockDiagram}
+  \end{center}
+}
+
+\newcommand{\TLReglesBlocs}{%
+  \begin{center}
+  \begin{minipage}[t]{.48\linewidth}
+    \centering\textbf{Blocs en série}\par\medskip
+    \begin{tikzpicture}[auto,font=\scriptsize]
+      \sbEntree{E}\sbBlocL[3]{A}{\(H_1(p)\)}{E}\sbBlocL[3]{B}{\(H_2(p)\)}{A}\sbSortie[3]{S}{B}
+      \sbRelier{E}{A}\sbRelier{A}{B}\sbRelier{B}{S}
+    \end{tikzpicture}
+    \[H_{eq}(p)=H_1(p)H_2(p)\]
+  \end{minipage}\hfill
+  \begin{minipage}[t]{.48\linewidth}
+    \centering\textbf{Boucle fermée}\par\medskip
+    \begin{tikzpicture}[auto,font=\scriptsize]
+      \sbEntree{E}\sbComp[3]{C}{E}\sbBlocL[3]{D}{\(D(p)\)}{C}\sbSortie[3]{S}{D}
+      \sbRelier{E}{C}\sbRelier{C}{D}\sbRelier{D}{S}
+      \node[sbStyleBloc,below=1.8em of D] (R) {\(R(p)\)};
+      \draw[sbStyleLien] (D-S.south) |- (R.east);
+      \draw[sbStyleLien] (R.west) -| (C.south);
+    \end{tikzpicture}
+    \[H_{BF}(p)=\frac{D(p)}{1+D(p)R(p)}\]
+  \end{minipage}
+  \end{center}
+}
+
+% ---------------------------------------------------------------------------
+% Diagrammes de Bode utilisant la grille de bodegraph (sans gnuplot)
+% ---------------------------------------------------------------------------
+\NewDocumentCommand{\TLBodePremierOrdre}{O{1} O{1}}{%
+  \begin{center}
+  \begin{tikzpicture}[x=1.65cm,y=.035cm]
+    \UnitedB\OrdBode{20}\semilog*{-2}{2}{-60}{20}
+    \draw[Bode lines,domain=-2:2,samples=120,smooth]
+      plot (\x,{20*ln(abs(#1/sqrt(1+(#2*pow(10,\x))^2)))/ln(10)});
+    \draw[asymp lines,dashed] (-2,{20*ln(abs(#1))/ln(10)}) -- ({-ln(#2)/ln(10)},{20*ln(abs(#1))/ln(10)});
+    \draw[asymp lines,dashed] ({-ln(#2)/ln(10)},{20*ln(abs(#1))/ln(10)}) -- (2,{20*ln(abs(#1))/ln(10)-20*(2+ln(#2)/ln(10))});
+  \end{tikzpicture}
+
+  \vspace{2mm}
+  \begin{tikzpicture}[x=1.65cm,y=.022cm]
+    \UniteDegre\OrdBode{45}\semilog*{-2}{2}{-180}{0}
+    \draw[Bode lines,domain=-2:2,samples=120,smooth]
+      plot (\x,{-atan(#2*pow(10,\x))});
+  \end{tikzpicture}
+  \end{center}
+}
+
+\NewDocumentCommand{\TLBodeIntegrateur}{O{1}}{%
+  \begin{center}
+  \begin{tikzpicture}[x=1.65cm,y=.035cm]
+    \UnitedB\OrdBode{20}\semilog*{-2}{2}{-60}{60}
+    \draw[Bode lines,domain=-2:2] plot (\x,{20*ln(abs(#1))/ln(10)-20*\x});
+  \end{tikzpicture}
+
+  \vspace{2mm}
+  \begin{tikzpicture}[x=1.65cm,y=.022cm]
+    \UniteDegre\OrdBode{45}\semilog*{-2}{2}{-180}{0}
+    \draw[Bode lines] (-2,-90) -- (2,-90);
+  \end{tikzpicture}
+  \end{center}
+}
+
+\NewDocumentCommand{\TLBodeSecondOrdre}{O{1} O{0.7} O{1}}{%
+  \begin{center}
+  \begin{tikzpicture}[x=1.65cm,y=.035cm]
+    \UnitedB\OrdBode{20}\semilog*{-2}{2}{-80}{40}
+    \draw[Bode lines,domain=-2:2,samples=160,smooth]
+      plot (\x,{20*ln(abs(#1/sqrt((1-(pow(10,\x)/#3)^2)^2+(2*#2*pow(10,\x)/#3)^2)))/ln(10)});
+  \end{tikzpicture}
+
+  \vspace{2mm}
+  \begin{tikzpicture}[x=1.65cm,y=.022cm]
+    \UniteDegre\OrdBode{45}\semilog*{-2}{2}{-180}{0}
+    \draw[Bode lines,domain=-2:2,samples=160,smooth]
+      plot (\x,{-atan2(2*#2*pow(10,\x)/#3,1-(pow(10,\x)/#3)^2)});
+  \end{tikzpicture}
+  \end{center}
+}
+
+\endinput
