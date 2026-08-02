@@ -57,7 +57,14 @@ jobs:
             ghcr.io/xu-cheng/texlive-full:latest \
             -lc '
               set -o pipefail
+              TEXBIN=$(dirname "$(find / -type f -name pdflatex -perm -111 2>/dev/null | head -n 1)")
+              if [ -z "$TEXBIN" ] || [ ! -x "$TEXBIN/pdflatex" ]; then
+                echo "pdflatex introuvable dans le conteneur"
+                exit 127
+              fi
+              export PATH="$TEXBIN:$PATH"
               echo "PWD=$(pwd)"
+              echo "TEXBIN=$TEXBIN"
               echo "TEXINPUTS=$TEXINPUTS"
               command -v pdflatex
               kpsewhich kaobook.cls || true
