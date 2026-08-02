@@ -24,7 +24,7 @@ if exist "%JOB%.out" goto :cleanerror
 if exist "%JOB%.mw"  goto :cleanerror
 
 echo Premiere compilation...
-pdflatex -shell-escape -interaction=nonstopmode -halt-on-error "%JOB%.tex"
+pdflatex -interaction=nonstopmode -halt-on-error "%JOB%.tex"
 if errorlevel 1 goto :error
 
 if exist "%JOB%.idx" (
@@ -34,11 +34,11 @@ if exist "%JOB%.idx" (
 )
 
 echo Deuxieme compilation...
-pdflatex -shell-escape -interaction=nonstopmode -halt-on-error "%JOB%.tex"
+pdflatex -interaction=nonstopmode -halt-on-error "%JOB%.tex"
 if errorlevel 1 goto :error
 
 echo Troisieme compilation...
-pdflatex -shell-escape -interaction=nonstopmode -halt-on-error "%JOB%.tex"
+pdflatex -interaction=nonstopmode -halt-on-error "%JOB%.tex"
 if errorlevel 1 goto :error
 
 echo.
