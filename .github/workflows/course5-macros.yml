@@ -1,0 +1,46 @@
+name: Inventaire des macros du cours 05
+
+on:
+  push:
+    paths:
+      - .github/workflows/course5-macros.yml
+
+permissions:
+  contents: write
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Relever les macros et images structurantes
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          intro = Path('05-Modélisation Systèmes Asservis/Cours/contenu.tex').read_text(encoding='utf-8')
+          model = Path('05-Modélisation Systèmes Asservis/Cours/modelisation/contenu.tex').read_text(encoding='utf-8')
+          lines = ['=== MACROS SA INTRODUCTION ===']
+          for name in sorted(set(re.findall(r'\\(SA[A-Za-z]+)', intro))):
+              lines.append('\\' + name)
+          lines += ['', '=== MACROS TL/SB/BODE DÉJÀ PRÉSENTES ===']
+          for name in sorted(set(re.findall(r'\\((?:sb|Bode|semilog|TL)[A-Za-z]+)', intro + model))):
+              lines.append('\\' + name)
+          lines += ['', '=== IMAGES AUTOUR DES SCHÉMA-BLOCS MODÉLISATION ===']
+          for m in re.finditer(r'\\includegraphics(?:\[[^\]]*\])?\{([^}]*(?:image10|image57|image9|image12|image14)[^}]*)\}', model):
+              start = model.count('\n', 0, m.start()) + 1
+              lines.append(f'{start}: {m.group(0)}')
+          Path('05-Modélisation Systèmes Asservis/Cours/MACROS_COURS5.txt').write_text('\n'.join(lines) + '\n', encoding='utf-8')
+          PY
+
+      - name: Publier le rapport
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add '05-Modélisation Systèmes Asservis/Cours/MACROS_COURS5.txt'
+          git commit -m 'Ajoute l inventaire des macros du cours 05'
+          git push
