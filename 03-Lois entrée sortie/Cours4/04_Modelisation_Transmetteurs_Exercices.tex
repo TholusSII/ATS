@@ -8,7 +8,15 @@
 
 \CatchFileDef{\TLFourSource}{\TLFourSourcePrefix contenu.tex}{}
 
-\long\def\TLFourExtractExercises#1\subsection{Exercices du chapitre}#2\TLFourStop{#2}
+% Ignore récursivement les sous-sections du cours, puis restitue tout ce qui
+% suit le séparateur « Exercices du chapitre ».
+\long\def\TLFourExtractExercises#1\subsection#2#3\TLFourStop{%
+  \ifstrequal{#2}{Exercices du chapitre}{%
+    #3%
+  }{%
+    \TLFourExtractExercises#3\TLFourStop
+  }%
+}
 
 \expandafter\TLFourExtractExercises
   \TLFourSource
