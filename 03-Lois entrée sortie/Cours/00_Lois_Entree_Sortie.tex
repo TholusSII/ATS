@@ -30,8 +30,12 @@
 \usepackage{calc}
 \usepackage{multirow}
 \usepackage{adjustbox}
-\usepackage{svg}
 \usepackage{newunicodechar}
+
+% Figures vectorielles du cours, notamment les schémas qui provenaient de SVG.
+% Elles sont maintenant produites directement en TikZ : aucun appel à Inkscape
+% et aucune option shell-escape ne sont nécessaires.
+\input{TLLoisEntreeSortie.sty}
 
 % Compatibilité des principaux caractères issus du document Word.
 \newunicodechar{⃝}{\ensuremath{\bigcirc}}
