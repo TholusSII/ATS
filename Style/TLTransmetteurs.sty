@@ -22,8 +22,8 @@
     \coordinate (O2) at ({\Rone+\Rtwo},0);
     \draw[TL solide] (O1) circle[radius=\Rone];
     \draw[TL secondaire] (O2) circle[radius=\Rtwo];
-    \draw[TL point] (O1) node[below] {$O_1$};
-    \draw[TL point] (O2) node[below] {$O_2$};
+    \node[TL point,label=below:$O_1$] at (O1) {};
+    \node[TL point,label=below:$O_2$] at (O2) {};
     \draw[->,thick] ($(O1)+(0.65,0)$) arc[start angle=0,end angle=80,radius=.65];
     \draw[->,thick] ($(O2)+(-.8,0)$) arc[start angle=180,end angle=100,radius=.8];
     \node[above] at ($(O1)+(0,\Rone)$) {$\omega_1$};
