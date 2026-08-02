@@ -17,26 +17,47 @@
   \ifdefstring{\TLThreeGraphicBase}{image8}{%
     % rien
   }{%
-    \ifinner
-      % Dans les tableaux, minipages et boîtes, on respecte la largeur locale.
-      \adjustbox{max width=.96\linewidth,max totalheight=.75\textheight}{%
-        \IfBooleanTF{#1}
-          {\TLThreeOriginalIncludeGraphics*[#2]{#3}}
-          {\TLThreeOriginalIncludeGraphics[#2]{#3}}%
+    % image22 est une petite icône utilisée dans une cellule très étroite.
+    % Dans ce contexte, \linewidth peut devenir nul dans la conversion Pandoc,
+    % ce qui provoquait « Package graphics Error: Division by 0 ».
+    \ifdefstring{\TLThreeGraphicBase}{image22}{%
+      \TLThreeOriginalIncludeGraphics[width=8mm,height=8mm,keepaspectratio]{#3}%
+    }{%
+      % image11 apparaît notamment dans une colonne de tableau. Une largeur
+      % locale réduite évite le débordement résiduel du paragraphe.
+      \ifdefstring{\TLThreeGraphicBase}{image11}{%
+        \ifinner
+          \TLThreeOriginalIncludeGraphics[width=.72\linewidth,height=.22\textheight,keepaspectratio]{#3}%
+        \else
+          \par\noindent
+          \makebox[\linewidth][c]{%
+            \TLThreeOriginalIncludeGraphics[width=.58\linewidth,height=.30\textheight,keepaspectratio]{#3}%
+          }%
+          \par\noindent
+        \fi
+      }{%
+        \ifinner
+          % Dans les tableaux, minipages et boîtes, on respecte la largeur locale.
+          \adjustbox{max width=.92\linewidth,max totalheight=.70\textheight}{%
+            \IfBooleanTF{#1}
+              {\TLThreeOriginalIncludeGraphics*[#2]{#3}}
+              {\TLThreeOriginalIncludeGraphics[#2]{#3}}%
+          }%
+        \else
+          % Dans le corps du texte, chaque image devient un vrai bloc centré.
+          % Cela évite les séquences image + texte ou image + image sur la même ligne.
+          \par\noindent
+          \makebox[\linewidth][c]{%
+            \adjustbox{max width=.94\linewidth,max totalheight=.76\textheight}{%
+              \IfBooleanTF{#1}
+                {\TLThreeOriginalIncludeGraphics*[#2]{#3}}
+                {\TLThreeOriginalIncludeGraphics[#2]{#3}}%
+            }%
+          }%
+          \par\noindent
+        \fi
       }%
-    \else
-      % Dans le corps du texte, chaque image devient un vrai bloc centré.
-      % Cela évite les séquences image + texte ou image + image sur la même ligne.
-      \par\noindent
-      \makebox[\linewidth][c]{%
-        \adjustbox{max width=.96\linewidth,max totalheight=.78\textheight}{%
-          \IfBooleanTF{#1}
-            {\TLThreeOriginalIncludeGraphics*[#2]{#3}}
-            {\TLThreeOriginalIncludeGraphics[#2]{#3}}%
-        }%
-      }%
-      \par\noindent
-    \fi
+    }%
   }%
   \endgroup
 }
