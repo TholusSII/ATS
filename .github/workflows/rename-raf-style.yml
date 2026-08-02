@@ -1,0 +1,115 @@
+name: Renommage définitif des bibliothèques Raf
+
+on:
+  push:
+    paths:
+      - .github/workflows/rename-raf-style.yml
+
+permissions:
+  contents: write
+
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Renommer les dossiers et fichiers Raf
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          import subprocess
+
+          def strip_raf(component: str) -> str:
+              return component[4:] if component.lower().startswith("raf_") else component
+
+          raw = subprocess.check_output(["git", "ls-files", "-z"]).split(b"\0")
+          paths = [Path(p.decode("utf-8", errors="surrogateescape")) for p in raw if p]
+          tracked = {str(p) for p in paths}
+
+          moves = []
+          destinations = {}
+          for src in paths:
+              if not src.parts or src.parts[0] != "Style":
+                  continue
+              new_parts = [src.parts[0], *[strip_raf(part) for part in src.parts[1:]]]
+              dst = Path(*new_parts)
+              if dst == src:
+                  continue
+              if str(dst) in destinations:
+                  raise SystemExit(f"Deux fichiers visent la même destination : {destinations[str(dst)]} et {src} -> {dst}")
+              destinations[str(dst)] = src
+              moves.append((src, dst))
+
+          moving_sources = {str(src) for src, _ in moves}
+          for src, dst in moves:
+              if str(dst) in tracked and str(dst) not in moving_sources:
+                  raise SystemExit(f"Collision avec un fichier existant : {src} -> {dst}")
+
+          # Déplacer fichier par fichier vers les chemins finaux. Les dossiers vides
+          # disparaîtront automatiquement du dépôt.
+          for src, dst in sorted(moves, key=lambda item: len(item[0].parts), reverse=True):
+              dst.parent.mkdir(parents=True, exist_ok=True)
+              subprocess.run(["git", "mv", "--", str(src), str(dst)], check=True)
+
+          # Mettre à jour les références dans tous les fichiers texte suivis.
+          text_ext = {
+              ".tex", ".sty", ".cls", ".cfg", ".def", ".md", ".txt",
+              ".py", ".yml", ".yaml", ".bat", ".sh", ".json", ".toml",
+              ".ini", ".bib", ".lua", ".mk", ".cmake"
+          }
+          raw_after = subprocess.check_output(["git", "ls-files", "-z"]).split(b"\0")
+          for item in raw_after:
+              if not item:
+                  continue
+              path = Path(item.decode("utf-8", errors="surrogateescape"))
+              if not path.exists() or path.suffix.lower() not in text_ext:
+                  continue
+              data = path.read_bytes()
+              if not re.search(br"(?i)raf_", data):
+                  continue
+              path.write_bytes(re.sub(br"(?i)raf_", b"", data))
+
+          # Vérifications finales.
+          raw_final = subprocess.check_output(["git", "ls-files", "-z"]).split(b"\0")
+          bad_paths = []
+          bad_refs = []
+          for item in raw_final:
+              if not item:
+                  continue
+              path = Path(item.decode("utf-8", errors="surrogateescape"))
+              if path.parts and path.parts[0] == "Style" and any(part.lower().startswith("raf_") for part in path.parts[1:]):
+                  bad_paths.append(str(path))
+              if path.exists() and path.suffix.lower() in text_ext and re.search(br"(?i)raf_", path.read_bytes()):
+                  bad_refs.append(str(path))
+
+          if bad_paths:
+              raise SystemExit("Chemins Raf_ restants :\n" + "\n".join(bad_paths))
+          if bad_refs:
+              raise SystemExit("Références Raf_ restantes :\n" + "\n".join(bad_refs))
+
+          print(f"{len(moves)} fichier(s) déplacé(s).")
+          for src, dst in moves:
+              print(f"{src} -> {dst}")
+          PY
+
+      - name: Supprimer les fichiers temporaires
+        shell: bash
+        run: |
+          git rm -f .github/workflows/rename-raf-style.yml
+          if [ -f Style/RENOMMAGE_RAF.txt ]; then
+            git rm -f Style/RENOMMAGE_RAF.txt
+          fi
+
+      - name: Publier le renommage
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Supprime le préfixe Raf des bibliothèques Style'
+          git push
