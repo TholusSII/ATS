@@ -85,17 +85,32 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          course='05-Modélisation Systèmes Asservis/Cours'
+          cp "$course/COMPILATION_COURS5.txt" /tmp/COMPILATION_COURS5.txt
+          cp "$course/COMPILATION_COURS5.log" /tmp/COMPILATION_COURS5.log
+          if [ -f "$course/00_Systemes_Asservis.pdf" ]; then
+            cp "$course/00_Systemes_Asservis.pdf" /tmp/00_Systemes_Asservis.pdf
+          fi
+
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add '05-Modélisation Systèmes Asservis/Cours/COMPILATION_COURS5.txt'
-          git add '05-Modélisation Systèmes Asservis/Cours/COMPILATION_COURS5.log'
-          if [ '${{ steps.compile.outcome }}' = 'success' ]; then
-            git add '05-Modélisation Systèmes Asservis/Cours/00_Systemes_Asservis.pdf'
+          git reset --hard HEAD
+          git pull --rebase origin main
+
+          cp /tmp/COMPILATION_COURS5.txt "$course/COMPILATION_COURS5.txt"
+          cp /tmp/COMPILATION_COURS5.log "$course/COMPILATION_COURS5.log"
+          if [ '${{ steps.compile.outcome }}' = 'success' ] && [ -f /tmp/00_Systemes_Asservis.pdf ]; then
+            cp /tmp/00_Systemes_Asservis.pdf "$course/00_Systemes_Asservis.pdf"
+          fi
+
+          git add "$course/COMPILATION_COURS5.txt" "$course/COMPILATION_COURS5.log"
+          if [ '${{ steps.compile.outcome }}' = 'success' ] && [ -f "$course/00_Systemes_Asservis.pdf" ]; then
+            git add "$course/00_Systemes_Asservis.pdf"
           fi
           if ! git diff --cached --quiet; then
             git commit -m 'Met à jour le contrôle autonome du cours 05 [skip ci]'
-            git push
+            git push origin HEAD:main
           fi
 
       - name: Échouer après publication du journal
