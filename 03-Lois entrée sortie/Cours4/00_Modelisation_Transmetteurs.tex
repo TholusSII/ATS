@@ -1,0 +1,80 @@
+% ============================================================================
+% MOTEUR GÉNÉRIQUE — COURS 04 : MODÉLISATION DES TRANSMETTEURS
+% La première conversion du cours reste dans contenu.tex.
+% ============================================================================
+\RequirePackage{silence}
+\WarningFilter{xcolor}{Package option `usenames' is obsolete}
+\WarningFilter{french3.ldf}{Please load the "listings" package}
+\WarningFilter{french3.ldf}{footnotebackref package loaded}
+\WarningFilter{french3.ldf}{babel-french will NOT customise footnotes}
+
+\documentclass[
+  fontsize=10pt,
+  twoside=true,
+  open=any,
+]{kaobook}
+
+\usepackage[french]{babel}
+
+\newcommand{\TLCourseDefinitionFile}{04_Modelisation_Transmetteurs}
+
+\makeatletter
+\def\input@path{{../../Style/}}
+\makeatother
+\input{TLCours.sty}
+
+% Dépendances de la conversion Word/Pandoc déjà présente dans le dépôt.
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{calc}
+\usepackage{multirow}
+\usepackage{adjustbox}
+\usepackage{newunicodechar}
+
+% Commandes graphiques réutilisables pour les transmetteurs usuels.
+\input{TLTransmetteurs.sty}
+
+% Compatibilité avec les commandes générées par Pandoc.
+\providecommand{\pandocbounded}[1]{#1}
+\providecommand{\real}[1]{#1}
+
+% Caractères provenant du document Word.
+\newunicodechar{⃝}{\ensuremath{\bigcirc}}
+\newunicodechar{ω}{\ensuremath{\omega}}
+\newunicodechar{π}{\ensuremath{\pi}}
+\newunicodechar{λ}{\ensuremath{\lambda}}
+\newunicodechar{θ}{\ensuremath{\theta}}
+\newunicodechar{η}{\ensuremath{\eta}}
+\newunicodechar{α}{\ensuremath{\alpha}}
+\newunicodechar{Ω}{\ensuremath{\Omega}}
+\newunicodechar{Δ}{\ensuremath{\Delta}}
+\newunicodechar{∈}{\ensuremath{\in}}
+\newunicodechar{≈}{\ensuremath{\approx}}
+
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{3em}
+\setcounter{topnumber}{5}
+\setcounter{bottomnumber}{5}
+\setcounter{totalnumber}{8}
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.90}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.80}
+\setlength{\floatsep}{8pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{10pt plus 2pt minus 2pt}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+
+\makeindex[columns=3, title=Index alphabétique, intoc]
+
+\begin{document}
+\mainmatter
+\setchapterstyle{kao}
+\setcounter{margintocdepth}{\sectiontocdepth}
+\marginlayout
+\pagestyle{scrheadings}
+
+\input{\TLCourseDefinitionFile}
+
+\end{document}
