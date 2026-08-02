@@ -1,0 +1,112 @@
+% Couche locale d'intégration de la conversion Word des transmetteurs.
+% TLFourSourcePrefix vaut ../Cours4/ dans le document fusionné et reste vide
+% lors de la compilation autonome depuis ce dossier.
+
+\providecommand{\TLFourSourcePrefix}{}
+
+\makeatletter
+\let\TLFourOriginalIncludeGraphics\includegraphics
+\let\TLFourOriginalLabel\label
+\newif\ifTLFourVectorGraphic
+
+% Préfixe les labels du second cours afin d'éviter les doublons avec le cours
+% de lois entrée-sortie (mise-en-situation, sources, etc.).
+\renewcommand{\label}[1]{\TLFourOriginalLabel{transmetteurs:#1}}
+
+\newcommand{\TLFourMissingGraphic}[1]{%
+  \begin{tikzpicture}[baseline=(current bounding box.center)]
+    \node[
+      draw=TLCoverBlue!55,
+      rounded corners=1mm,
+      fill=TLCoverBlue!4,
+      text=TLCoverBlue!80!black,
+      align=center,
+      font=\sffamily\scriptsize,
+      inner sep=2mm,
+      text width=25mm
+    ] {Illustration vectorielle\\non convertie\\\ttfamily #1};
+  \end{tikzpicture}%
+}
+
+\newcommand{\TLFourPlaceOriginal}[3]{%
+  \ifinner
+    \ifdim\linewidth<12mm
+      \TLFourOriginalIncludeGraphics[width=8mm,height=8mm,keepaspectratio]{#3}%
+    \else
+      \adjustbox{max width=.92\linewidth,max totalheight=.70\textheight}{%
+        \IfBooleanTF{#1}
+          {\TLFourOriginalIncludeGraphics*[#2]{#3}}
+          {\TLFourOriginalIncludeGraphics[#2]{#3}}%
+      }%
+    \fi
+  \else
+    \par\noindent
+    \makebox[\linewidth][c]{%
+      \adjustbox{max width=.96\linewidth,max totalheight=.78\textheight}{%
+        \IfBooleanTF{#1}
+          {\TLFourOriginalIncludeGraphics*[#2]{#3}}
+          {\TLFourOriginalIncludeGraphics[#2]{#3}}%
+      }%
+    }%
+    \par\noindent
+  \fi
+}
+
+\newcommand{\TLFourPlaceConverted}[1]{%
+  \ifinner
+    \ifdim\linewidth<12mm
+      \TLFourOriginalIncludeGraphics[width=8mm,height=8mm,keepaspectratio]{#1}%
+    \else
+      \adjustbox{max width=.92\linewidth,max totalheight=.70\textheight}{%
+        \TLFourOriginalIncludeGraphics[width=\linewidth,height=.72\textheight,keepaspectratio]{#1}%
+      }%
+    \fi
+  \else
+    \par\noindent
+    \makebox[\linewidth][c]{%
+      \adjustbox{max width=.96\linewidth,max totalheight=.78\textheight}{%
+        \TLFourOriginalIncludeGraphics[width=\linewidth,height=.72\textheight,keepaspectratio]{#1}%
+      }%
+    }%
+    \par\noindent
+  \fi
+}
+
+\RenewDocumentCommand{\includegraphics}{s O{} m}{%
+  \begingroup
+  \filename@parse{#3}%
+  \edef\TLFourGraphicExtension{\filename@ext}%
+  \edef\TLFourGraphicBase{\filename@base}%
+  \edef\TLFourResolvedGraphic{\TLFourSourcePrefix#3}%
+  \edef\TLFourGraphicStem{\TLFourSourcePrefix\filename@area\filename@base}%
+
+  \TLFourVectorGraphicfalse
+  \ifdefstring{\TLFourGraphicExtension}{emf}{\TLFourVectorGraphictrue}{}
+  \ifdefstring{\TLFourGraphicExtension}{EMF}{\TLFourVectorGraphictrue}{}
+  \ifdefstring{\TLFourGraphicExtension}{wmf}{\TLFourVectorGraphictrue}{}
+  \ifdefstring{\TLFourGraphicExtension}{WMF}{\TLFourVectorGraphictrue}{}
+
+  \ifTLFourVectorGraphic
+    \IfFileExists{\TLFourGraphicStem.png}{%
+      \TLFourPlaceConverted{\TLFourGraphicStem.png}%
+    }{%
+      \IfFileExists{\TLFourGraphicStem.pdf}{%
+        \TLFourPlaceConverted{\TLFourGraphicStem.pdf}%
+      }{%
+        \ifinner
+          \TLFourMissingGraphic{\filename@base}%
+        \else
+          \par\noindent\makebox[\linewidth][c]{\TLFourMissingGraphic{\filename@base}}\par\noindent
+        \fi
+      }%
+    }%
+  \else
+    \ifdefstring{\TLFourGraphicBase}{image800}{%
+      \TLFourOriginalIncludeGraphics[width=5mm,height=5mm,keepaspectratio]{\TLFourResolvedGraphic}%
+    }{%
+      \TLFourPlaceOriginal{#1}{#2}{\TLFourResolvedGraphic}%
+    }%
+  \fi
+  \endgroup
+}
+\makeatother
