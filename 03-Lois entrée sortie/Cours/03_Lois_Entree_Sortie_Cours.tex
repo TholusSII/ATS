@@ -1,83 +1,15 @@
-% Première passe du cours 03, conservée sans réécriture.
-% Cette couche locale corrige uniquement les inclusions d'images produites
-% automatiquement par la conversion Word/Pandoc.
+% Partie cours de la première passe « Lois entrée-sortie ».
+% Le fichier contenu.tex reste inchangé ; on n'exécute que ce qui précède
+% la sous-section « Exercices du chapitre ».
 
 \begingroup
-\makeatletter
-\let\TLThreeOriginalIncludeGraphics\includegraphics
+\input{03_Lois_Entree_Sortie_Integration}
 
-\RenewDocumentCommand{\includegraphics}{s O{} m}{%
-  \begingroup
-  \filename@parse{#3}%
-  \edef\TLThreeGraphicBase{\filename@base}%
+\CatchFileDef{\TLThreeSource}{contenu.tex}{}
 
-  % Pictogrammes injectés dans des titres par la conversion Word : ils sont
-  % supprimés pour éviter les débordements et les signets PDF invalides.
-  \ifboolexpr{
-    test {\ifdefstring{\TLThreeGraphicBase}{image8}}
-    or test {\ifdefstring{\TLThreeGraphicBase}{image26}}
-    or test {\ifdefstring{\TLThreeGraphicBase}{image30}}
-    or test {\ifdefstring{\TLThreeGraphicBase}{image32}}
-    or test {\ifdefstring{\TLThreeGraphicBase}{image33}}
-    or test {\ifdefstring{\TLThreeGraphicBase}{image34}}
-  }{%
-    % rien
-  }{%
-    % image22 est une petite icône utilisée dans une cellule très étroite.
-    \ifdefstring{\TLThreeGraphicBase}{image22}{%
-      \TLThreeOriginalIncludeGraphics[width=8mm,height=8mm,keepaspectratio]{#3}%
-    }{%
-      % image11 apparaît notamment dans une colonne de tableau.
-      \ifdefstring{\TLThreeGraphicBase}{image11}{%
-        \ifinner
-          \TLThreeOriginalIncludeGraphics[width=.72\linewidth,height=.22\textheight,keepaspectratio]{#3}%
-        \else
-          \par\noindent
-          \makebox[\linewidth][c]{%
-            \TLThreeOriginalIncludeGraphics[width=.58\linewidth,height=.30\textheight,keepaspectratio]{#3}%
-          }%
-          \par\noindent
-        \fi
-      }{%
-        % image31 illustre la relation de Chasles. Elle doit être séparée du
-        % texte qui la suit et ne pas reprendre la largeur brute de Word.
-        \ifdefstring{\TLThreeGraphicBase}{image31}{%
-          \ifinner
-            \TLThreeOriginalIncludeGraphics[width=.78\linewidth,height=.30\textheight,keepaspectratio]{#3}%
-          \else
-            \par\noindent
-            \makebox[\linewidth][c]{%
-              \TLThreeOriginalIncludeGraphics[width=.72\linewidth,height=.34\textheight,keepaspectratio]{#3}%
-            }%
-            \par\noindent
-          \fi
-        }{%
-          \ifinner
-            % Dans les tableaux, minipages et boîtes, on respecte la largeur locale.
-            \adjustbox{max width=.92\linewidth,max totalheight=.70\textheight}{%
-              \IfBooleanTF{#1}
-                {\TLThreeOriginalIncludeGraphics*[#2]{#3}}
-                {\TLThreeOriginalIncludeGraphics[#2]{#3}}%
-            }%
-          \else
-            % Dans le corps du texte, chaque image devient un vrai bloc centré.
-            \par\noindent
-            \makebox[\linewidth][c]{%
-              \adjustbox{max width=.94\linewidth,max totalheight=.76\textheight}{%
-                \IfBooleanTF{#1}
-                  {\TLThreeOriginalIncludeGraphics*[#2]{#3}}
-                  {\TLThreeOriginalIncludeGraphics[#2]{#3}}%
-              }%
-            }%
-            \par\noindent
-          \fi
-        }%
-      }%
-    }%
-  }%
-  \endgroup
-}
-\makeatother
+\long\def\TLThreeExtractCourse#1\subsection{Exercices du chapitre}#2\TLThreeStop{#1}
 
-\input{contenu.tex}
+\expandafter\TLThreeExtractCourse
+  \TLThreeSource
+  \TLThreeStop
 \endgroup
