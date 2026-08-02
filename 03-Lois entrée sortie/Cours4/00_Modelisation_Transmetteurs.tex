@@ -1,6 +1,6 @@
 % ============================================================================
-% MOTEUR GÉNÉRIQUE — COURS 04 : MODÉLISATION DES TRANSMETTEURS
-% La première conversion du cours reste dans contenu.tex.
+% MOTEUR AUTONOME — MODÉLISATION DES TRANSMETTEURS
+% La version fusionnée est compilée depuis ../Cours/00_Lois_Entree_Sortie.tex.
 % ============================================================================
 \RequirePackage{silence}
 \WarningFilter{xcolor}{Package option `usenames' is obsolete}
@@ -23,23 +23,20 @@
 \makeatother
 \input{TLCours.sty}
 
-% Dépendances de la conversion Word/Pandoc déjà présente dans le dépôt.
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{calc}
 \usepackage{multirow}
 \usepackage{adjustbox}
+\usepackage{catchfile}
 \usepackage{newunicodechar}
 
-% Commandes graphiques réutilisables pour les transmetteurs usuels.
 \input{TLTransmetteurs.sty}
 
-% Compatibilité avec les commandes générées par Pandoc.
 \providecommand{\pandocbounded}[1]{#1}
 \providecommand{\real}[1]{#1}
 
-% Caractères provenant du document Word.
 \newunicodechar{⃝}{\ensuremath{\bigcirc}}
 \newunicodechar{ω}{\ensuremath{\omega}}
 \newunicodechar{π}{\ensuremath{\pi}}
