@@ -1,10 +1,11 @@
 % ============================================================================
-% DÉFINITION DU COURS 03 : LOIS ENTRÉE-SORTIE
-% Le contenu pédagogique reste dans la première passe contenu.tex.
+% DÉFINITION DU COURS 03 FUSIONNÉ
+% Ordre : cours lois E/S, cours transmetteurs, exercices lois E/S,
+% puis exercices transmetteurs.
 % ============================================================================
 
 \titlehead{Thomas Lusseau - SII en ATS}
-\title[Lois entrée-sortie]{Détermination des lois de mouvement -- Lois entrée-sortie}
+\title[Lois E/S et transmetteurs]{Lois entrée-sortie et modélisation des transmetteurs}
 \author[TL]{Thomas Lusseau}
 \date{\today}
 
@@ -12,28 +13,64 @@
   {\repStyle/FondPoly.png}
   {images/image3.png}
   {Cycle 2 : Modéliser et déterminer les lois de\\ mouvement d'un mécanisme}
-  {Détermination des lois de commande\\ Loi entrée-sortie}
+  {Lois entrée-sortie et\\ modélisation des transmetteurs}
   {Lycée Robert Doisneau - ATS}
   {Thomas Lusseau}
 
 \TLCourseCoverContents{%
-  \TLCourseContentsLine{3.1}{Mise en situation}{mise-en-situation}
-  \TLCourseContentsLine{3.2}{Modèle géométrique des structures fermées}{modele-geometrique-de-structures-fermees}
-  \TLCourseContentsLine{3.3}{Détermination d'une loi entrée-sortie}{determination-dune-loi-entree-sortie}
-  \TLCourseContentsLine{3.4}{Lois entrée-sortie en vitesse}{lois-entree-sortie-en-vitesse}
-  \TLCourseContentsLine{3.5}{Exercices du chapitre}{exercices-du-chapitre}
+  \TLCourseContentsLine{3.1}{Lois entrée-sortie}{cours-lois-entree-sortie}
+  \TLCourseContentsLine{3.2}{Modélisation des transmetteurs}{cours-modelisation-transmetteurs}
+  \TLCourseContentsLine{3.3}{Exercices — lois entrée-sortie}{exercices-lois-entree-sortie}
+  \TLCourseContentsLine{3.4}{Exercices — modélisation des transmetteurs}{exercices-modelisation-transmetteurs}
 }
 
 \TLCourseFooter
 \TLCourseCover
-\markboth{Lois entrée-sortie}{Lois entrée-sortie}
+\markboth{Lois E/S et transmetteurs}{Lois E/S et transmetteurs}
 
 \AtBeginEnvironment{corrige}{\small}
 \livrettrue
 \collefalse
 
+% Chapitre 3 : on incrémente le compteur sans afficher un second numéro de
+% chapitre après la couverture.
 \setcounter{chapter}{2}
-\chapter*{Détermination des lois de mouvement}
-\addcontentsline{toc}{chapter}{Détermination des lois de mouvement}
+\refstepcounter{chapter}
+\chapter*{Lois entrée-sortie et modélisation des transmetteurs}
+\addcontentsline{toc}{chapter}{Lois entrée-sortie et modélisation des transmetteurs}
 
+% -----------------------------------------------------------------------------
+% 1. COURS — LOIS ENTRÉE-SORTIE
+% -----------------------------------------------------------------------------
+\section{Lois entrée-sortie}\label{cours-lois-entree-sortie}
 \input{03_Lois_Entree_Sortie_Cours}
+
+\clearpage
+
+% -----------------------------------------------------------------------------
+% 2. COURS — MODÉLISATION DES TRANSMETTEURS
+% -----------------------------------------------------------------------------
+\section{Modélisation des transmetteurs}\label{cours-modelisation-transmetteurs}
+\begingroup
+\def\TLFourSourcePrefix{../Cours4/}
+\input{../Cours4/04_Modelisation_Transmetteurs_Cours.tex}
+\endgroup
+
+\clearpage
+
+% -----------------------------------------------------------------------------
+% 3. EXERCICES — LOIS ENTRÉE-SORTIE
+% -----------------------------------------------------------------------------
+\section{Exercices — lois entrée-sortie}\label{exercices-lois-entree-sortie}
+\input{03_Lois_Entree_Sortie_Exercices}
+
+\clearpage
+
+% -----------------------------------------------------------------------------
+% 4. EXERCICES — MODÉLISATION DES TRANSMETTEURS
+% -----------------------------------------------------------------------------
+\section{Exercices — modélisation des transmetteurs}\label{exercices-modelisation-transmetteurs}
+\begingroup
+\def\TLFourSourcePrefix{../Cours4/}
+\input{../Cours4/04_Modelisation_Transmetteurs_Exercices.tex}
+\endgroup
