@@ -1,4 +1,4 @@
-name: Renommer les bibliothèques Raf
+name: Inventorier les bibliothèques Raf
 
 on:
   push:
@@ -9,14 +9,14 @@ permissions:
   contents: write
 
 jobs:
-  rename:
+  inventory:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Renommer les bibliothèques et mettre à jour les références
+      - name: Inventorier les fichiers et collisions
         shell: bash
         run: |
           python3 - <<'PY'
@@ -24,60 +24,24 @@ jobs:
           import subprocess
 
           tracked = subprocess.check_output(["git", "ls-files", "-z"]).split(b"\0")
-          tracked = [Path(p.decode("utf-8", errors="surrogateescape")) for p in tracked if p]
-
-          renamed = []
-          for src in tracked:
-              if not src.parts or src.parts[0] != "Style":
-                  continue
-              if not src.name.startswith("Raf_"):
-                  continue
-              dst = src.with_name(src.name[len("Raf_"):])
-              if dst.exists() and dst != src:
-                  raise SystemExit(f"Collision détectée : {src} -> {dst}")
-              dst.parent.mkdir(parents=True, exist_ok=True)
-              subprocess.run(["git", "mv", "--", str(src), str(dst)], check=True)
-              renamed.append((src, dst))
-
-          text_ext = {
-              ".tex", ".sty", ".cls", ".cfg", ".def", ".md", ".txt",
-              ".py", ".yml", ".yaml", ".bat", ".sh", ".json", ".toml",
-              ".ini", ".bib", ".lua", ".mk", ".cmake"
-          }
-
-          tracked_after = subprocess.check_output(["git", "ls-files", "-z"]).split(b"\0")
-          for raw in tracked_after:
-              if not raw:
-                  continue
-              path = Path(raw.decode("utf-8", errors="surrogateescape"))
-              if path.suffix.lower() not in text_ext or not path.exists():
-                  continue
-              data = path.read_bytes()
-              if b"Raf_" in data:
-                  path.write_bytes(data.replace(b"Raf_", b""))
-
-          manifest = Path("Style/RENOMMAGE_RAF.txt")
-          manifest.write_text(
-              "\n".join(f"{src} -> {dst}" for src, dst in renamed) + "\n",
-              encoding="utf-8"
-          )
-
-          print(f"{len(renamed)} bibliothèque(s) renommée(s).")
-          for src, dst in renamed:
-              print(f"{src} -> {dst}")
+          paths = [Path(p.decode("utf-8", errors="surrogateescape")) for p in tracked if p]
+          lines = []
+          for src in paths:
+              if src.parts and src.parts[0] == "Style" and src.name.startswith("Raf_"):
+                  dst = src.with_name(src.name[len("Raf_"):])
+                  status = "COLLISION" if dst.exists() else "OK"
+                  lines.append(f"{status}\t{src}\t{dst}")
+          Path("Style/RENOMMAGE_RAF.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
+          print("\n".join(lines))
           PY
 
-      - name: Retirer le workflow temporaire
-        shell: bash
-        run: git rm .github/workflows/rename-raf-style.yml
-
-      - name: Publier le renommage
+      - name: Publier l’inventaire
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A
+          git add Style/RENOMMAGE_RAF.txt
           if ! git diff --cached --quiet; then
-            git commit -m 'Supprime le préfixe Raf des bibliothèques Style'
+            git commit -m 'Inventorie les bibliothèques Raf de Style'
             git push
           fi
