@@ -33,7 +33,7 @@ jobs:
         shell: bash
         run: |
           course='05-Modélisation Systèmes Asservis/Cours'
-          printf 'RUNNING\n' > "$course/COMPILATION_COURS5.txt"
+          printf 'RUNNING\nRUN_ID=%s\n' "$GITHUB_RUN_ID" > "$course/COMPILATION_COURS5.txt"
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
@@ -69,9 +69,9 @@ jobs:
           set -euo pipefail
           course='05-Modélisation Systèmes Asservis/Cours'
           if [ '${{ steps.compile.outcome }}' = 'success' ]; then
-            printf 'SUCCESS\n' > "$course/COMPILATION_COURS5.txt"
+            printf 'SUCCESS\nRUN_ID=%s\n' "$GITHUB_RUN_ID" > "$course/COMPILATION_COURS5.txt"
           else
-            printf 'FAILURE\n' > "$course/COMPILATION_COURS5.txt"
+            printf 'FAILURE\nRUN_ID=%s\n' "$GITHUB_RUN_ID" > "$course/COMPILATION_COURS5.txt"
           fi
           if [ -f "$course/compilation-shell.txt" ]; then
             cp "$course/compilation-shell.txt" "$course/COMPILATION_COURS5.log"
