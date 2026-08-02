@@ -1,6 +1,6 @@
 % ============================================================================
-% MOTEUR GÉNÉRIQUE — COURS 03 : LOIS ENTRÉE-SORTIE
-% La première conversion du cours reste dans contenu.tex.
+% MOTEUR GÉNÉRIQUE — COURS 03 FUSIONNÉ
+% Lois entrée-sortie puis modélisation des transmetteurs, avec leurs exercices.
 % ============================================================================
 \RequirePackage{silence}
 \WarningFilter{xcolor}{Package option `usenames' is obsolete}
@@ -23,21 +23,25 @@
 \makeatother
 \input{TLCours.sty}
 
-% Dépendances de la conversion Word/Pandoc déjà présente dans le dépôt.
+% Dépendances communes aux deux conversions Word/Pandoc.
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{calc}
 \usepackage{multirow}
 \usepackage{adjustbox}
+\usepackage{catchfile}
 \usepackage{newunicodechar}
 
-% Figures vectorielles du cours, notamment les schémas qui provenaient de SVG.
-% Elles sont maintenant produites directement en TikZ : aucun appel à Inkscape
-% et aucune option shell-escape ne sont nécessaires.
+% Bibliothèques graphiques des deux parties du cours.
 \input{TLLoisEntreeSortie.sty}
+\input{TLTransmetteurs.sty}
 
-% Compatibilité des principaux caractères issus du document Word.
+% Compatibilité avec les commandes générées par Pandoc.
+\providecommand{\pandocbounded}[1]{#1}
+\providecommand{\real}[1]{#1}
+
+% Caractères provenant des deux documents Word.
 \newunicodechar{⃝}{\ensuremath{\bigcirc}}
 \newunicodechar{α}{\ensuremath{\alpha}}
 \newunicodechar{β}{\ensuremath{\beta}}
@@ -46,11 +50,14 @@
 \newunicodechar{φ}{\ensuremath{\varphi}}
 \newunicodechar{ω}{\ensuremath{\omega}}
 \newunicodechar{λ}{\ensuremath{\lambda}}
+\newunicodechar{η}{\ensuremath{\eta}}
+\newunicodechar{π}{\ensuremath{\pi}}
+\newunicodechar{Ω}{\ensuremath{\Omega}}
+\newunicodechar{Δ}{\ensuremath{\Delta}}
+\newunicodechar{∈}{\ensuremath{\in}}
+\newunicodechar{≈}{\ensuremath{\approx}}
 \newunicodechar{⊥}{\ensuremath{\perp}}
-% Le document Word emploie le signe micro U+00B5 à la place du mu grec.
 \newunicodechar{µ}{\ensuremath{\mu}}
-% U+00D8 est déjà connu de l'encodage T1 ; on remplace sa traduction sans
-% appeler newunicodechar, afin d'éviter l'avertissement de redéfinition.
 \DeclareUnicodeCharacter{00D8}{\ensuremath{\varnothing}}
 
 \raggedbottom
