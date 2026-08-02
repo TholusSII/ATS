@@ -1,0 +1,44 @@
+name: Inventaire des sources du cours 05
+
+on:
+  push:
+    paths:
+      - .github/workflows/course5-source-inventory.yml
+
+permissions:
+  contents: write
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Inventorier les cours et bibliothèques utiles
+        shell: bash
+        run: |
+          {
+            echo '=== SOURCES CHAPITRE 05 ==='
+            find '05-Modélisation Systèmes Asservis' -type f \
+              \( -iname '*.docx' -o -iname '*.tex' -o -iname '*.pdf' -o -iname '*.bat' \) \
+              | sort
+            echo
+            echo '=== AUTRES DOCX INTRODUCTION/MODELISATION SA ==='
+            find . -type f -iname '*.docx' | grep -Ei 'intro|mod[eé]l|asserv|SA' | sort || true
+            echo
+            echo '=== BIBLIOTHEQUES STYLE BLOCS/BODE/AUTOM ==='
+            find Style -type f \
+              \( -iname '*.sty' -o -iname '*.tex' \) \
+              | grep -Ei 'bloc|bode|autom|slci|asserv|schema' | sort || true
+          } > COURSE5_SOURCES.txt
+
+      - name: Publier l’inventaire
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add COURSE5_SOURCES.txt
+          git commit -m 'Ajoute l inventaire des sources du cours 05'
+          git push
