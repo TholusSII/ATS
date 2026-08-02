@@ -1,0 +1,1939 @@
+Objectifs du cours
+
+A la fin du cours, vous devez être capables de~:
+
+\begin{itemize}
+\item
+  \textbf{connaître} la différence entre un système bouclé et un système
+  en boucle ouverte~;
+\item
+  \textbf{connaître la structure des systèmes asservis (chaîne directe,
+  chaîne de retour,\ldots)}
+\item
+  \textbf{connaître} les deux types de systèmes asservis~;
+\item
+  \textbf{mettre} un système asservi sous forme de schéma-blocs~;
+\item
+  \textbf{connaître et caractériser} les performances des systèmes
+  asservis.
+\end{itemize}
+
+Savoirs
+
+\textbf{Je connais~:}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.9045}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.0955}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{itemize}
+\item
+  les différents types de systèmes automatisés~;
+\end{itemize}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+$\bigcirc$
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{itemize}
+\item
+  les différents types de systèmes asservis~;
+\end{itemize}
+\end{minipage} & $\bigcirc$ \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{itemize}
+\item
+  la structure d'un système asservi~;
+\end{itemize}
+\end{minipage} & $\bigcirc$ \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{itemize}
+\item
+  les critères de performances~;
+\end{itemize}
+\end{minipage} & $\bigcirc$ \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{itemize}
+\item
+  les entrées tests.
+\end{itemize}
+\end{minipage} & $\bigcirc$ \\
+\end{longtable}
+
+Savoir-faire
+
+\textbf{Je sais~:}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.9045}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.0955}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{itemize}
+\item
+  reconnaître un système asservi~;
+\end{itemize}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+$\bigcirc$
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{itemize}
+\item
+  caractériser les performances d'un système asservi.
+\end{itemize}
+\end{minipage} & $\bigcirc$ \\
+\end{longtable}
+
+\section{MISE EN SITUATION}\label{mise-en-situation}
+
+\subsection[Cas n$^\circ$1~: Etuve
+thermique]{Cas n$^\circ$1~: Etuve thermique}\label{cas-n1-etuve-thermique}
+
+L'étuve thermique est utilisée pour la stérilisation des ustensiles de
+laboratoire (tubes à essai, boîtes de Pétri, tubes à culture et
+bouchons, pipettes Pasteur et récipients divers). Elle permet un réglage
+de température de la température ambiante jusqu\textquotesingle à 200
+$^\circ$C.
+
+Pour supprimer les micro-organismes, il est nécessaire de chauffer
+pendant 2 heures à une température constante de 150$^\circ$C .
+
+\SAimage{images/image6.png}{78mm}{52mm}Une
+résistance électrique alimentée par une tension \(U(t)\) assure le
+chauffage à l\textquotesingle intérieur de l\textquotesingle étuve. Une
+sonde de température Pt100, associée à un conditionneur permet de
+mesurer la température \(\theta(t)\) dans l\textquotesingle étuve.
+
+Un régulateur, composé d'un comparateur et d'un correcteur, élabore la
+tension de commande \(U_{com}(t)\) du gradateur à partir de la
+différence entre la température de consigne \(\theta_{cons}(t)\) et la
+température mesurée \(\theta_{mes}(t)\).
+
+\textbf{Comment garantir que la température restera toujours constante à
+150$^\circ$C pendant 2h~?}
+
+\subsection[Cas n$^\circ$2~: Robot Da
+Vinci]{Cas n$^\circ$2~: Robot Da Vinci}\label{cas-n2-robot-da-vinci}
+
+Un Da Vinci est un robot médical, et plus précisément une machine
+dirigée par un chirurgien pour réaliser des opérations, principalement
+au niveau de l\textquotesingle abdomen.
+
+Devenue un standard aux États-Unis, la chirurgie robotique se diffuse en
+France depuis quelques années. Outre-Atlantique, plus de 80 \% des cas
+de cancer de la prostate sont opérés à l\textquotesingle aide du robot
+Da Vinci. Ses avantages ? Opérations moins invasives, récupération du
+patient plus rapide, cicatrices plus petites, voire invisibles,
+complications et infections postopératoires diminuées, pertes sanguines
+réduites durant l\textquotesingle opération, risque diminué de séquelles
+liées à l\textquotesingle opération. Tous ces facteurs améliorent la
+prise en charge du patient et diminuent la durée de son hospitalisation.
+
+Le Da Vinci est composé de deux parties. La première se situe au-dessus
+de la personne à opérer et comporte trois (dans sa première version) ou
+quatre (à partir du modèle Da Vinci S) bras manipulateurs. Un bras tient
+une caméra endoscopique, les autres tiennent des instruments
+chirurgicaux tels qu\textquotesingle un bistouri, ou plus précisément un
+électrobistouri qui découpe les tissus à l\textquotesingle aide
+d\textquotesingle un courant électrique.
+
+La seconde est située à quelques mètres de la première, et comporte un
+siège sur lequel s\textquotesingle assied le chirurgien, deux écrans
+devant lesquels ce dernier vient placer ses yeux et qui retransmettent
+en direct la vue en 3D de la caméra endoscopique située sur la première
+partie, et deux manettes pour contrôler les instruments chirurgicaux
+situés sur la première partie afin de retranscrire fidèlement les
+mouvements complexes des mains du chirurgien à l\textquotesingle aide de
+pinces articulées et miniaturisées.
+
+\textbf{Comment être sûr que le robot effectue les mouvements réellement
+demandés par le chirurgien~?}
+
+\subsection{Cas n$^\circ$3~: Régulateur de vitesse
+Renault}\label{cas-n3-ruxe9gulateur-de-vitesse-renault}
+
+\SAimage{images/image8.jpeg}{64mm}{45mm}Le
+conducteur d\textquotesingle une Laguna a parcouru 47 km sur
+l\textquotesingle autoroute A 13 en Normandie au volant de sa voiture
+folle, dont le régulateur de vitesse est resté bloqué. Ce jour-là, au
+volant de sa Renault Laguna, le jeune homme roule sur une portion
+limitée à 90 km/h qui mène à l\textquotesingle autoroute A 13. «
+J\textquotesingle ai bloqué le régulateur à 87 km/h afin de circuler en
+toute sécurité. Mais quand il a fallu que je freine parce
+qu\textquotesingle un véhicule ralentissait, les freins ne répondaient
+plus du tout. J\textquotesingle ai donc été obligé de dépasser
+brusquement cette voiture. Je ne pouvais plus rien faire, ni accélérer,
+ni ralentir, ni débrayer, ni passer une vitesse, ni enlever la carte
+électronique. La voiture était incontrôlable, le régulateur de vitesse
+était bloqué. J\textquotesingle ai paniqué. »
+
+Pour maitriser parfaitement une grandeur physique (position, vitesse,
+température, \ldots) et ce quelles que soient les perturbations, il faut
+asservir cette grandeur~!
+
+
+\section{INTRODUCTION ET DÉFINITIONS}\label{introduction-et-definitions}
+
+\subsection{Système automatisé}\label{systuxe8me-automatisuxe9}
+
+Les échanges entre la chaîne d'information et la chaîne de puissance
+permettent à certaines activités d'un système d'être réalisées de
+manière relativement autonome. On parle de \textbf{système automatisé}.
+Un \textbf{système automatisé} est un système réalisant des
+\textbf{opérations sans intervention de l'homme}. Les systèmes
+automatisés sont utilisés pour réaliser des tâches :
+
+\begin{itemize}
+\item
+  \textbf{complexes} ou \textbf{dangereuses} pour
+  l\textquotesingle homme~;
+\end{itemize}
+
+\SAimagepair{images/image11.png}{0.24\linewidth}{images/image12.png}{0.46\linewidth}
+
+Correction de la vue par laser
+
+Robot serpent Tepco d'inspection du cœur d'une centrale nucléaire
+
+\begin{itemize}
+\item
+  \textbf{répétitives} ou \textbf{pénibles}.
+\end{itemize}
+
+\SAimagepair{images/image13.jpeg}{0.44\linewidth}{images/image14.jpeg}{0.44\linewidth}
+
+Voiture autonome Tesla
+
+Robots guides d'un complexe financier Santander de Madrid
+
+\SAimage{images/image150.pdf}{100mm}{55mm}
+
+L'intervention de l'homme est alors limitée à la \textbf{programmation}
+de l'unité de commande, la mise en marche et les \textbf{réglages} de
+certains \textbf{paramètres}.
+
+À partir du \textbf{modèle du système} étudié, sous forme d'équations,
+il s'agira \textbf{d'évaluer ses performances} dans le but d'anticiper
+son comportement réel et vérifier ainsi s'il est capable de répondre aux
+\textbf{exigences} de son \textbf{cahier des charges}.
+
+Notons enfin que, bien que de nombreux systèmes utilisent actuellement
+des échanges et un traitement des informations sous forme numérique, on
+limitera nos études uniquement aux cas des systèmes continus. Dans un
+système \textbf{continu}, les \textbf{grandeurs} \textbf{d'entrée} et de
+\textbf{sortie} évoluent de manière \textbf{continue} en fonction du
+\textbf{temps}, il s'agit donc de grandeurs analogiques.
+
+\subsection{Notion de système bouclé / boucle
+ouverte}\label{notion-de-systuxe8me-boucluxe9-boucle-ouverte}
+
+\textbf{Système}
+
+\textbf{Industriel}
+
+\textbf{Ordre ou Sollicitation ou Cause ou Consigne}
+
+\textbf{Réponse ou Effet}
+
+\emph{\textbf{Perturbations}}
+
+Un \textbf{système non bouclé (ou en boucle ouverte)} est un système qui
+\textbf{ne contrôle pas la manière dont l'ordre a été exécuté}. Il
+\textbf{ne prend pas en compte la réaction du système}.
+
+Un événement extérieur (\textbf{perturbation}) peut alors modifier la
+\textbf{réponse} (ou grandeur de sortie) attendue pour le système.
+
+\textbf{Etuve thermique}
+
+\textbf{Consigne de température}
+
+\textbf{Chauffage de l'étuve}
+
+\emph{\textbf{Variations de la température ambiante, ouverture de la
+porte}}
+
+\subparagraph*{Exemple de système en boucle ouverte }\label{exemple-de-systuxe8me-en-boucle-ouverte}
+\addcontentsline{toc}{subparagraph}{Exemple de système en boucle ouverte
+}
+
+Un conducteur de voiture qui conduit sur une ligne droite ferme les yeux
+et maintient le volant. La voiture va continuer à avancer à une vitesse
+constante. Si un piéton traverse ou qu'une voiture s'arrête
+(perturbations) le conducteur n'aura pas le temps de les éviter et ce
+sera l'accident. Pour les éviter le conducteur a besoin d'observer en
+permanence la route.
+
+\textbf{Autres exemples :} chauffage d'immeuble avec fenêtre ouverte,
+arrosage automatique sans contrôle d'humidité, etc...
+
+De nombreux systèmes nécessitent que \textbf{la grandeur de sortie
+(réponse) ne varie pas} (température, la vitesse d'un moteur, la
+position d'un bras de robot, le cap d'un bateau, ... ) \textbf{quels que
+soient les phénomènes extérieurs ou perturbations} (ouverture de la
+fenêtre dans un système de chauffage, variation du couple résistant ...)
+qui peuvent influer sur ces grandeurs.
+
+Pour pallier à ce problème, il faut \textbf{observer l'état du système
+pour le modifier et obtenir la réponse souhaitée quelles que soient les
+perturbations.}
+
+\textbf{Capteur}
+
+Réponse
+
+Consigne
+
+Mesure
+
++
+
+-
+
+Ecart
+
+\textbf{Système}
+
+\textbf{industriel}
+
+\emph{\textbf{Perturbations}}
+
+Il est alors réalisé une \textbf{rétroaction} \textbf{ou contre-réaction
+(feedback} en anglais), pour \textbf{observer l'état du système afin de
+le modifier et d'obtenir la réponse souhaitée quelles que soient les
+perturbations.}
+
+Un \textbf{système bouclé (ou en boucle fermée)} est un système dont la
+\textbf{grandeur de sortie est mesurée puis comparée à la valeur de
+consigne} (rétroaction de la sortie sur l'entrée). Cette différence est
+appelée \textbf{l'écart}.
+
+Le but des systèmes asservis est \textbf{d'annuler en permanence l'écart
+entre la grandeur de sortie et l'entrée (consigne)}. La sortie est alors
+\textbf{asservie} à l'entrée.
+
+Un système asservi \textbf{comporte toujours une boucle de retour}
+(contre-réaction) comprenant un capteur.
+
+\subsection{Structure générale d'un système
+asservi}\label{structure-guxe9nuxe9rale-dun-systuxe8me-asservi}
+
+La structure complète d'un système asservi peut se représenter par le
+schéma-bloc fonctionnel suivant.
+
+\SASchemaBoucleGenerale
+
+Il est constitué de deux chaînes :
+
+\begin{itemize}
+\item
+  La \textbf{chaîne directe} (ou d'action) assurant les fonctions de
+  commande et puissance. On y retrouve les constituants de la chaine
+  d'énergie.
+\item
+  La \textbf{chaîne de retour} (ou de réaction) assurant la fonction de
+  mesure. On y retrouve les constituants de la chaine d'information.
+\end{itemize}
+
+Le \textbf{régulateur} élabore le signal de commande à partir de
+\textbf{l'écart $\varepsilon$} constaté entre la \textbf{consigne} et la
+\textbf{mesure} issue du \textbf{capteur}. Il comporte~:
+
+\begin{itemize}
+\item
+  un \textbf{comparateur~} élaborant le signal d'écart \textbf{$\varepsilon$}~;
+\item
+  un \textbf{correcteur~}modifiant l'allure de la commande pour
+  améliorer les performances du système.
+\end{itemize}
+
+L'ensemble «pré-actionneur, actionneur, adaptateur» réalise la commande
+de l'effecteur à partir du signal de commande élaboré par le régulateur.
+
+\subsection{Types de systèmes
+asservis}\label{types-de-systuxe8mes-asservis}
+
+Il existe deux types de systèmes asservis :
+
+\begin{itemize}
+\item
+  Les \textbf{systèmes régulateurs~}qui maintiennent \textbf{la grandeur
+  de sortie constante quelles que soient les perturbations} ;
+
+  \begin{itemize}
+  \item
+    \ul{Ex:} Régulation de vitesse, de température, \ldots{}
+  \end{itemize}
+\item
+  Les \textbf{systèmes suiveurs} dont \textbf{la grandeur de sortie suit
+  la loi de variation donnée en consigne} (entrée).
+
+  \begin{itemize}
+  \item
+    \ul{Ex:} Radar de poursuite, anti-missiles, machine d'usinage, robot
+    suiveur de trajectoire \ldots{}
+  \end{itemize}
+\end{itemize}
+
+\SAimage{images/image16.jpeg}{25mm}{32mm}\textbf{Régulateur
+du niveau d'eau d'une piscine :} Système de régulation du niveau d'eau
+pour compenser les éclaboussures et l'évaporation.
+
+L'étude des systèmes asservis permet de répondre aux questions
+suivantes:
+
+\begin{itemize}
+\item
+  Comment va réagir le système à une consigne donnée (\textbf{Aspect
+  prédictif})
+\item
+  Quel type de système fournit telle réponse à telle sollicitation?
+  (\textbf{Aspect caractérisation, identification})
+\item
+  Comment \textbf{adapter ou régler un système} pour que ses
+  caractéristiques correspondent à celles définies dans le cahier des
+  charges~?
+\end{itemize}
+
+\subsection{Représentation par
+schéma-blocs}\label{repruxe9sentation-par-schuxe9ma-blocs}
+
+En automatique, les systèmes sont représentés par un ensemble de
+\textbf{schéma-blocs fonctionnels} : c'est la représentation
+fonctionnelle.
+
+Les 3 éléments de base sont :
+
+\begin{itemize}
+\item le \textbf{bloc}, qui représente un constituant ou une fonction de transfert ;
+\item le \textbf{comparateur (ou sommateur)}, qui additionne ou soustrait plusieurs signaux ;
+\item le \textbf{point de prélèvement}, qui duplique un signal sans le modifier.
+\end{itemize}
+
+\SASchemaElementsBase
+
+\textbf{Exemple :} un moteur peut être représenté par un bloc ayant une tension de commande en entrée et une vitesse de rotation en sortie.
+
+\SASchemaMoteur
+
+La représentation par schéma-blocs d'un système peut être obtenue à
+partir de différentes formes:
+
+\begin{itemize}
+\item
+  à partir des chaînes fonctionnelles du système ;
+\end{itemize}
+
+\SAChaineFonctionnelle
+
+\begin{itemize}
+\item
+  à partir d'un texte ou d'un schéma décrivant la structure du système ;
+\end{itemize}
+
+\SAChaineAsservie
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1227}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.8773}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\SAimage{images/image18.png}{13mm}{14mm}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\SAimage{images/image6.png}{78mm}{52mm}\SAimage{images/image5.png}{30mm}{30mm}\textbf{Etuve
+thermique}
+
+Une résistance électrique alimentée par une tension \(U(t)\) assure le
+chauffage à l\textquotesingle intérieur de l\textquotesingle étuve. Une
+sonde de température Pt100, associée à un conditionneur permet de
+mesurer la température \(\theta(t)\) dans l\textquotesingle étuve.
+
+Un régulateur, composé d'un comparateur et d'un correcteur, élabore la
+tension de commande \(U_{com}(t)\) du gradateur à partir de la
+différence entre la température de consigne \(\theta_{cons}(t)\) et la
+température mesurée \(\theta_{mes}(t)\).
+
+\textbf{Compléter la représentation, sous forme de schéma-bloc
+fonctionnel, de l'étuve.}
+
+\SASchemaEtuve
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+
+\section{Performances d'un système
+asservi}\label{performances-dun-systuxe8me-asservi}
+
+Un système est asservi pour que son fonctionnement soit conforme à des
+attentes définies dans un cahier des charges. Ces attentes sont
+déclinées en termes de \textbf{performances}.
+
+L'objectif est d'obtenir, à l'aide de réglages, le \textbf{meilleur
+compromis} entre les différents critères de performances globales du
+système et de valider les critères du CdCF.
+
+\subsection{Critères de performance d'un système
+asservi}\label{crituxe8res-de-performance-dun-systuxe8me-asservi}
+
+Les performances sont des caractéristiques propres à un système ou liées
+à son comportement lorsqu'il est sollicité de façon particulière. Nous
+allons voir les critères de performances suivants :
+
+\begin{itemize}
+\item
+  la \textbf{stabilité}, le système est-il stable? \textbf{C'est le
+  critère le plus important} !! C'est la propriété de convergence
+  temporelle vers un état d'équilibre ;
+\item
+  la \textbf{rapidité}, caractérisant le dynamisme des systèmes
+  stables~;
+\item
+  la \textbf{précision}, aptitude des systèmes asservis stables à
+  atteindre la valeur attendue.
+\item
+  Le \textbf{dépassement} : Est-ce que la réponse dépasse sa valeur
+  finale transitoirement~?
+\end{itemize}
+
+Pour \textbf{évaluer} ces différents critères, il est nécessaire de
+\textbf{procéder à des tests soit sur le système réel, soit en
+simulation} en choisissant les entrées qui peuvent être appliquées.
+
+La précision, la rapidité et le dépassement \textbf{peuvent être évalués
+à partir des réponses aux signaux de test} (réponse temporelle). La
+stabilité est évaluée à partir de la \textbf{réponse harmonique (entrée
+sinusoïdale).}
+
+Afin d'évaluer le comportement (puis de le corriger) d'un système
+asservi, il y a plusieurs possibilités :
+
+\begin{itemize}
+\item
+  Réaliser directement des mesures sur le système réel en appliquant des
+  signaux tests~;
+\item
+  Réaliser une simulation / calculs à partir du modèle du système en
+  appliquant des signaux tests.
+\end{itemize}
+
+\textbf{Simulation avec le modèle du système}
+
+\textbf{Réponse simulée}
+
+\textbf{Réponse expérimentale}
+
+\emph{\textbf{Comparaison}}
+
+\emph{\textbf{Vérification des performances}}
+
+\emph{\textbf{Vérification des performances}}
+
+\textbf{Choix de l'entrée (consigne)}
+
+\textbf{Mesures sur le système réel}
+
+\textbf{Cahier des charges}
+
+\subsection{Signaux tests (ou
+canoniques)}\label{signaux-tests-ou-canoniques}
+
+Les performances d'un système sont évaluées expérimentalement, ou
+prédites par simulation, lorsque le système est soumis à des
+\textbf{signaux tests e(t) en entrée} appelés \textbf{signaux
+canoniques}.
+
+Système
+
+e(t)
+
+consigne
+
+s(t)
+
+réponse
+
+Ces signaux tests envoyés en entrée sont~:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{L'impulsion (dite de Dirac)}
+
+\textbf{Réponse impulsionnelle}
+
+\[\varepsilon\]
+
+\[\frac{1}{\varepsilon}\]
+
+\emph{t}
+
+\emph{$\delta$(t)}
+
+\emph{avec}\(\ \varepsilon \rightarrow 0\)
+
+Exemple~: Airbag
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{L'échelon}
+
+\textbf{Réponse indicielle}
+
+\SAimage{images/image22.png}{65mm}{65mm}
+
+\emph{u(t)}
+
+\[1\]
+
+\[0\]
+
+\emph{t}
+
+Exemple~: Thermostat
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{La rampe}
+
+\SAimage{images/image23.png}{38mm}{46mm}
+
+\emph{t u(t)}
+
+\emph{t}
+
+Exemple~: Tracker solaire & \textbf{La sinusoïde}
+
+\textbf{Réponse harmonique}
+
+\SAimage{images/image24.png}{55mm}{34mm}
+
+\emph{sin(t) u(t)}
+
+\emph{t}
+
+Exemple~: Suspension \\
+\end{longtable}
+
+Par convention, tous ces signaux sont nuls pour t négatif~:
+\(\mathbf{e(t) = 0\ }\)\textbf{pour} \(\mathbf{t < 0}\)
+
+Notons toutefois que les performances sont \textbf{intrinsèques} au
+système et \textbf{ne dépendent pas du type d'entrée appliqué.}
+
+La rampe est la \textbf{primitive} de l\textquotesingle échelon qui est
+la \textbf{primitive} de l\textquotesingle impulsion. On pourrait le
+généraliser par intégration successive.
+
+L\textquotesingle entrée sinusoïdale se généralise en entrée harmonique.
+
+\textbf{Les systèmes asservis étudient uniquement les variations autour
+d'un point de fonctionnement (ou point de repos).}
+
+\subparagraph*{Exemple de choix des
+entrées}\label{exemple-de-choix-des-entruxe9es}
+\addcontentsline{toc}{subparagraph}{Exemple de choix des entrées}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1227}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.8773}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\SAimage{images/image18.png}{13mm}{14mm}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\SAimage{images/image5.png}{30mm}{30mm}\textbf{Etuve
+thermique}
+
+On souhaite évaluer les performances (rapidité, précision, dépassement)
+de l'étuve en prenant le cas suivant :
+
+Afin de stériliser les ustensiles de laboratoire, l'utilisateur
+programme la température de l'étuve à 150$^\circ$C. La température ambiante (et
+à l'intérieur de l'étuve \(\theta(t)\)) est de 25$^\circ$C.
+
+\textbf{Etuve thermique}
+
+\textbf{$\theta$(t)}
+
+\textbf{$\theta$\textsubscript{cons}(t)}
+
+\textbf{Quelle entrée}
+\(\mathbf{\theta}_{\mathbf{cons}}\mathbf{(}\mathbf{t}\mathbf{)}\)
+\textbf{doit-on utiliser pour évaluer ces critères de performances ?}
+
+\[150\]
+
+\[25\]
+
+\[\theta(t)\]
+
+\[t\]
+
+\[t_{init}\]
+
+\[\Delta\theta\]
+
+La consigne est constante (150$^\circ$C), l'entrée sera donc de type échelon.
+La variation de température autour du point de repos
+(\(\theta(t)\)=25$^\circ$C) est \(\Delta\theta\) =125$^\circ$C.
+
+Les systèmes asservis étudiant uniquement les variations autour d'un
+point de fonctionnement, il est possible d'évaluer ces critères en
+simulation avec un échelon d'amplitude 125$^\circ$. \textbf{La forme de la
+réponse sera la même}.
+
+\[125\]
+
+\[0\]
+
+\[\theta(t)\]
+
+\[t\]
+
+\[t_{init}\]
+
+\[\Delta\theta\]
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+
+\subsection{Consigne et réponse}\label{consigne-et-ruxe9ponse}
+
+Les valeurs finales des grandeurs d'entrée (consigne) et de sortie
+(réponse), correspondent aux valeurs de l'entrée et de la sortie du
+système en régime permanent, soit pour un temps suffisamment grand.
+Elles sont notées \(e_{\infty}\) et \(s_{\infty}\) avec~:
+
+\(e_{\infty} = \lim_{t \rightarrow + \infty}{e(t)}\) et
+\(s_{\infty} = \lim_{t \rightarrow + \infty}{s(t)}\)
+
+La variation totale de la grandeur d'entrée est
+\(\Delta E = e_{\infty} - e\left( t_{init} \right)\)
+
+La variation totale de la grandeur de sortie est
+\(\Delta S = s_{\infty} - s(t_{init})\)
+
+\[s(t)\]
+
+\[s_{\infty}
+\]
+
+\[s(t_{init})\]
+
+\[t\]
+
+\[t_{init}\]
+
+\[\Delta S\]
+
+\[e_{\infty}\]
+
+\[
+{e\left( t_{init} \right)}\]
+
+\[e(t)\]
+
+\[t\]
+
+\[t_{init}\]
+
+\[\Delta E\]
+
+\subsection{Stabilité des
+systèmes}\label{stabilituxe9-des-systuxe8mes}
+
+La \textbf{stabilité est la performance qu'il faut évaluer en premier}
+car un système instable est inutilisable.
+
+\textbf{La sortie diverge}
+
+\textbf{Système Instable}
+
+t
+
+0
+
+s(t)
+
+S\textsubscript{$\infty$}
+
+\textbf{Système Stable}
+
+\textbf{La sortie converge}
+
+t
+
+0
+
+s(t)
+
+S\textsubscript{$\infty$}
+
+La stabilité est évaluée à partir de la \textbf{réponse harmonique} ou
+fréquentielle et peut s'observer à partir de la réponse indicielle.
+
+Un système est \textbf{stable} si, \textbf{pour une entrée en échelon},
+la grandeur de sortie \textbf{converge} vers une \textbf{valeur finale
+constante}.
+
+(entrée bornée -- sortie bornée EB-SB).
+
+Un système réel instable oscille jusqu'à sa destruction. Ces
+oscillations sont dans le cas général \textbf{limitées par les
+différentes saturations} (électroniques ou mécaniques\ldots). Ces
+limitations physiques peuvent laisser croire que le système est stable.
+
+\subsection{Rapidité des systèmes}\label{rapidituxe9-des-systuxe8mes}
+
+Pour certains systèmes, il est impératif que le temps de réponse du
+système soit faible. À condition que le \textbf{système soit stable}, la
+\textbf{rapidité} est caractérisée, pour une \textbf{entrée en échelon
+(réponse indicielle)}, par la durée que met le système pour que la
+sortie soit suffisamment proche de sa valeur finale et ne plus s'en
+éloigner.
+
+Par convention, le critère caractérisant la \textbf{rapidité} d'un
+système stable est le \textbf{temps de réponse à 5\%} noté
+\(t_{r5\%}\)\emph{.} On définit le \textbf{tube des 5\%} par
+l\textquotesingle intervalle~:
+
+\(\left\lbrack s_{\infty} - 0,05\ \mathrm{\Delta}S\ ,\ s_{\infty} + 0,05\ \mathrm{\Delta}S \right\rbrack\)
+
+\subparagraph*{Réponse d'un système pour une entrée test en
+échelon}\label{ruxe9ponse-dun-systuxe8me-pour-une-entruxe9e-test-en-uxe9chelon}
+\addcontentsline{toc}{subparagraph}{Réponse d'un système pour une entrée
+test en échelon}
+
+\[s_{\infty}\]
+
+\[t_{init}\]
+
+\[t\]
+
+\[s(t)\]
+
+\[t_{r5\%}\]
+
+\[s_{\infty} - 0,05\ \mathrm{\Delta}s_{\infty}\ \]
+
+\[\Delta S\]
+
+\[tube\ des\ 5\%\]
+
+\[bande\ des\ 5\%\]
+
+\[s_{\infty} + 0,05\ \mathrm{\Delta}s_{\infty}\]
+
+Le \textbf{temps de réponse à 5\%} est la \textbf{durée} mise par la
+grandeur de \textbf{sortie} pour rentrer dans le tube des 5\% et ne
+\textbf{plus en sortir}.
+
+\paragraph*{On pourrait utiliser d'autres critères, comme le temps de montée (premier instant auquel la réponse atteint la valeur finale) ou le temps de réponse à 1\%. Cette valeur de 5\% vient de la réponse temporelle d'un premier ordre. On ne dira jamais que le temps de réponse est rapide, bon... il faut comparer. }\label{on-pourrait-utiliser-dautres-crituxe8res-comme-le-temps-de-montuxe9e-premier-instant-auquel-la-ruxe9ponse-atteint-la-valeur-finale-ou-le-temps-de-ruxe9ponse-uxe0-1.-cette-valeur-de-5-vient-de-la-ruxe9ponse-temporelle-dun-premier-ordre.-on-ne-dira-jamais-que-le-temps-de-ruxe9ponse-est-rapide-bon...-il-faut-comparer.}
+\addcontentsline{toc}{paragraph}{On pourrait utiliser d'autres critères,
+comme le temps de montée (premier instant auquel la réponse atteint la
+valeur finale) ou le temps de réponse à 1\%. Cette valeur de 5\% vient
+de la réponse temporelle d'un premier ordre. On ne dira jamais que le
+temps de réponse est rapide, bon... il faut comparer. }
+
+\subsubsection{ Il faut construire le tube des 5\% autour de la valeur finale de la sortie et non pas autour de la valeur de la grandeur d'entrée~!}\label{il-faut-construire-le-tube-des-5-autour-de-la-valeur-finale-de-la-sortie-et-non-pas-autour-de-la-valeur-de-la-grandeur-dentruxe9e}
+
+\subsubsection*{}\label{section}
+\addcontentsline{toc}{subsubsection}{}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1227}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.8773}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\SAimage{images/image18.png}{13mm}{14mm}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\SAimage{images/image5.png}{30mm}{30mm}\textbf{Etuve
+thermique}
+
+Le robot Da Vinci est un robot médical dirigé par un chirurgien pour
+réaliser des opérations, principalement au niveau de l'abdomen.
+L'opération se déroule à distance à l'aide d'un écran et de dispositifs
+haptiques. Les mouvements sont tous asservis et requièrent un réglage
+fin.
+
+On souhaite évaluer les performances (rapidité, précision, dépassement)
+de l'étuve en prenant le cas suivant :
+
+\textbf{Etuve thermique}
+
+\textbf{$\theta$(t)}
+
+\textbf{$\theta$\textsubscript{cons}(t)}
+
+Afin de stériliser les ustensiles de laboratoire, l'utilisateur
+programme la température de l'étuve à 150$^\circ$C. La température ambiante (et
+à l'intérieur de l'étuve \(\theta(t)\)) est de 25$^\circ$C.
+
+\textbf{Donner le temps de réponse du système non corrigé.}
+
+\SAimage{images/image27.png}{88mm}{72mm}
+
+\textbf{Donner le temps de réponse du système corrigé. Conclure.}
+
+\SAimage{images/image28.png}{88mm}{72mm}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1227}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.8773}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\SAimage{images/image18.png}{13mm}{14mm}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\SAimage{images/image29.png}{68mm}{38mm}\textbf{Robot
+chirurgical Da Vinci}
+
+\textbf{Déterminer le temps de réponse à 5\%.}
+
+x(t) {[}mm{]}
+
+\SAimage{images/image30.pdf}{90mm}{75mm}
+
+t {[}ms{]}
+
+\begin{quote}
+On lit graphiquement
+
+\[x_{\infty} = 8mm\]
+
+\[\Delta X = 8 - 5 = 3\ mm\]
+
+Le "tube des 5\%" est~:
+
+{[}8-0,05x3~; 8+0,05x3{]} = {[}7,85~;~8,15{]}
+
+On lit graphiquement :
+
+\[t_{r5\%} = 100 - 20 = 80\ ms\]
+\end{quote}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1227}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.8773}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\SAimage{images/image18.png}{13mm}{14mm}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\SAimage{images/image31.jpeg}{28mm}{58mm}\textbf{Stabilisateur}
+
+Un essai indiciel sur le stabilisateur pour un déplacement de 2$^\circ$ est
+donné ci-dessous.
+
+\SAimage{images/image32.pdf}{90mm}{75mm}
+
+\textbf{Déterminer le temps de réponse à 5\%.}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1227}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.8773}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\SAimage{images/image18.png}{13mm}{14mm}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Stabilisateur essai 2}
+
+Un essai indiciel sur le stabilisateur pour un déplacement de 2$^\circ$ est
+donné ci-dessous.
+
+\SAimage{images/image33.png}{90mm}{74mm}
+
+\textbf{Déterminer le temps de réponse à 5\%.}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+
+\subsection{Précision des systèmes
+asservis}\label{pruxe9cision-des-systuxe8mes-asservis}
+
+Pour certains systèmes, il est impératif que la précision du système
+soit excellente. La \textbf{précision s'évalue à partir de la
+différence} entre l'entrée (consigne ou valeur souhaitée) et la sortie
+(réponse effective) \textbf{en régime permanent} (quand l'écart entre la
+consigne et la réponse n'évolue plus).
+
+Elle est \textbf{évaluée pour une entrée donnée} (échelon, rampe,...).
+
+s(t)
+
+t
+
+0
+
+\textbf{Réponse à un échelon (indicielle)}
+
+\textbf{$\varepsilon$\textsubscript{s}}
+
+\textbf{Ecart statique ou écart de position $\varepsilon$\textsubscript{s}}
+
+S\textsubscript{$\infty$}
+
+régime transitoire
+
+Pour la \textbf{réponse à un échelon}, la précision est définie par
+\textbf{l'écart statique} \textbf{ou écart de position}
+\(\mathbf{\epsilon}_{\mathbf{s}}\) \textbf{(ou}
+\(\mathbf{\epsilon}_{\mathbf{p}}\)\textbf{)} . C'est le cas des systèmes
+régulateurs.
+
+\textbf{Réponse à une rampe}
+
+\textbf{$\varepsilon$\textsubscript{r}}
+
+\textbf{Ecart de traînage ou écart de suivi $\varepsilon$\textsubscript{r}}
+
+s(t)
+
+0
+
+t
+
+régime transitoire
+
+Pour la \textbf{réponse à une rampe}, la précision est définie par
+\textbf{l'écart de traînage ou l'écart de suivi}
+\(\mathbf{\epsilon}_{\mathbf{r}}\) \textbf{(ou}
+\(\mathbf{\epsilon}_{\mathbf{t}}\)\textbf{)}. C'est le cas des systèmes
+suiveurs.
+
+À condition que le système asservi soit \textbf{stable}, la
+\textbf{précision} n'est définie que pour un système ayant des
+\textbf{grandeurs d'entrée et de sortie} \textbf{de même nature}.
+
+L'écart : \(\epsilon(t) = e(t) - s(t)\)
+
+L'écart statique~:
+\(\epsilon_{s} = \lim_{t \rightarrow \infty}{\epsilon(t)}\)
+
+Si le système est stable et que l'entrée et la sortie sont de même
+nature, la \textbf{précision} est caractérisée par~:
+
+\begin{itemize}
+\item
+  \textbf{l\textquotesingle écart statique~absolu (dans l'unité de la
+  consigne)}: \(\epsilon_{s} = E_{0} - s_{\infty}\)
+\item
+  ou par \textbf{l\textquotesingle écart statique relatif (en \%)~}:
+\end{itemize}
+
+\(\epsilon_{s\%}\  = \left| \frac{\epsilon_{s}}{\Delta E} \right|\) pour
+une \ul{consigne en échelon d'amplitude} \(E_{0}\)\ul{.}
+
+Si l'écart statique est \textbf{nul}, on dira que le système est
+\textbf{précis}.
+
+\[t_{init}\]
+
+\[t\]
+
+\[s_{\infty}\]
+
+\[\Delta S\]
+
+\[\Delta E\]
+
+\[s(t)\ e(t)\]
+
+\[\epsilon_{s}\]
+
+\[E_{0}\]
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1227}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.8773}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\SAimage{images/image18.png}{13mm}{14mm}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Robot chirurgical Da vinci}
+
+\SAimage{images/image29.png}{68mm}{38mm}
+
+x(t) {[}mm{]}
+
+\SAimage{images/image30.pdf}{90mm}{75mm}
+
+t {[}ms{]}
+
+\textbf{Déterminer l\textquotesingle écart statique et
+l\textquotesingle écart statique relatif.}
+
+\begin{quote}
+Les grandeurs d'entrée et de sortie sont de même nature.
+
+\[\epsilon_{s} = E_{0} - x_{\infty} = 7 - 8 = - 1\ mm\]
+
+\[\epsilon_{s\%} = \left| \frac{\epsilon_{s}}{\Delta E} \right| = \left| \frac{- 1}{7 - 5} \right| = 0,5 = \frac{50}{100} = 50\%\]
+\end{quote}
+
+\textbf{Déterminer l\textquotesingle écart de trainage.}
+
+x(t) {[}mm{]}
+
+t {[}ms{]}
+
+\SAimage{images/image38.png}{90mm}{66mm}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+
+\subsection{Dépassement}\label{duxe9passement}
+
+Une réponse présente un \textbf{dépassement} si, pour une entrée en
+échelon, la grandeur de sortie dépasse sa \textbf{valeur finale}. La
+courbe de sortie présente alors un extrémum. Ce dépassement \textbf{est
+évalué à partir de la réponse et de sa valeur finale.} Pour certains
+systèmes, il est impératif qu'il n'y ait aucun dépassement.
+
+\[\Delta D\]
+
+\[s_{0}\]
+
+\[t\]
+
+\[t_{1}\]
+
+\[t_{2}\]
+
+\[s_{\infty}\]
+
+\[D_{2}\]
+
+\[s_{\max}\]
+
+\[\Delta S\]
+
+\[s(t)\]
+
+\[D_{1}\]
+
+Moins il y a d\textquotesingle oscillations, plus le système est
+\textbf{amorti}. Dans certaines applications elles seront à éviter
+(positionnement d'une machine à commande numérique, ...). La valeur du
+premier dépassement (le plus critique) se détermine à partir de la
+réponse indicielle.
+
+\[D_{1}(\%) = 100.\left| \frac{\Delta D}{\Delta S} \right| = 100.\left| \frac{s_{\max} - s_{\infty}}{s_{\infty} - s_{0}} \right|\]
+
+\textbf{L'amplitude du premier} \textbf{dépassement}, notée
+\emph{\textbf{D\textsubscript{1}}}, par rapport à la valeur finale:
+
+\[D_{1}(\%) = 100.\left| \frac{\Delta D}{\Delta S} \right| = 100.\left| \frac{s_{\max} - s_{\infty}}{s_{\infty} - s_{0}} \right|\]
+
+\subsubsection{}\label{section-1}
+
+\subsubsection{ Le dépassement n'existe que pour des systèmes d'ordre 2 ou supérieur. Un système d'ordre 1 ne peut pas avoir de dépassement.}\label{le-duxe9passement-nexiste-que-pour-des-systuxe8mes-dordre-2-ou-supuxe9rieur.-un-systuxe8me-dordre-1-ne-peut-pas-avoir-de-duxe9passement.}
+
+Ce ne sont pas les dépassements par rapport à la valeur en entrée mais
+bien par rapport à la valeur finale de la sortie.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1227}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.8773}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\SAimage{images/image18.png}{13mm}{14mm}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Robot chirurgical Da vinci}
+
+\SAimage{images/image29.png}{68mm}{38mm}Le
+robot Da Vinci est un robot médical dirigé par un chirurgien pour
+réaliser des opérations, principalement au niveau de l'abdomen.
+L'opération se déroule à distance à l'aide d'un écran et de dispositifs
+haptiques. Les mouvements sont tous asservis et requièrent un réglage
+fin.
+
+\textbf{Déterminer la valeur du premier dépassement.}
+
+x(t) {[}mm{]}
+
+\SAimage{images/image30.pdf}{90mm}{75mm}
+
+t {[}ms{]}
+
+Le système est stable car pour une entrée en échelon, la sortie converge
+vers une valeur constante (EBSB).
+
+\[D_{1} = \left| x_{\max} - x_{\infty} \right| = |8,9 - 8| = 0,9\ mm\]
+
+D\textsubscript{1\%}=\(\left| \frac{x_{\max} - x_{\infty}}{x_{\infty} - x_{0}} \right| = \left| \frac{0,9}{8 - 5} \right| = \ 0,3 = 30\%\)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1227}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.8773}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\SAimage{images/image18.png}{13mm}{14mm}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Stabilisateur}
+
+Un essai indiciel sur le stabilisateur pour un déplacement de 2$^\circ$ est
+donné ci-dessous.
+
+\SAimage{images/image33.png}{90mm}{74mm}
+
+\textbf{Déterminer la valeur du premier dépassement.}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+
+\section{Sources}\label{sources}
+
+Ce cours a été élaboré à l'aide de nombreuses ressources~provenant de
+différents collègues~de l'UPSTI.
+
+\section{Exercices du chapitre}\label{exercices-du-chapitre}
+
+\SAimage{images/image39.png}{70mm}{95mm}
+
+\SAimage{images/image40.jpeg}{158mm}{105mm}
+
+\SAimage{images/image410.png}{22mm}{22mm}
+Niveau 1
+
+\textbf{BRAS DE ROBOT PELLENC}
+
+Caractériser la réponse du système non corrigé (précision, rapidité,
+dépassement).
+
+Consigne
+
+Réponse (position
+
+du bras)
+
+Position du
+
+bras (
+
+$^\circ$
+
+)
+
+59.5
+
+0
+
+0
+
+10
+
+20
+
+30
+
+40
+
+50
+
+60
+
+temps (s)
+
+1.8
+
+2
+
+1.6
+
+1.4
+
+1.2
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+Caractériser la réponse du système corrigé (précision, rapidité,
+dépassement).
+
+Position du
+
+bras (
+
+$^\circ$
+
+)
+
+52,5
+
+0
+
+0.45
+
+0.5
+
+0
+
+temps (s)
+
+0.4
+
+0.35
+
+0.3
+
+0.25
+
+0.2
+
+0.15
+
+0.1
+
+0.05
+
+10
+
+20
+
+30
+
+40
+
+50
+
+60
+
+\textbf{CORDEUSE DE RAQUETTES}
+
+\SAimage{images/image410.png}{22mm}{22mm}
+Niveau 1
+
+Caractériser la réponse du système non corrigé (précision, rapidité,
+dépassement).
+
+\SAimage{images/image42.jpeg}{150mm}{75mm}
+
+Consigne
+
+Réponse (tension
+
+de la corde)
+
+Tension de la
+
+corde (N)
+
+133
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+0
+
+50
+
+100
+
+150
+
+200
+
+250
+
+300
+
+temps (s)
+
+Caractériser la réponse du système corrigé (précision, rapidité,
+dépassement).
+
+Tension de la
+
+corde (N)
+
+271
+
+0
+
+0.9
+
+1
+
+0
+
+50
+
+100
+
+150
+
+200
+
+250
+
+300
+
+temps (s)
+
+0.8
+
+0.7
+
+0.6
+
+0.5
+
+0.4
+
+0.3
+
+0.2
+
+0.1
+
+\SAimage{images/image43.jpeg}{30mm}{42mm}
+\textbf{ROBOT D'INSPECTION TUBULAIRE}
+
+\SAimage{images/image410.png}{22mm}{22mm}
+Niveau 2
+
+Caractériser les réponses suivantes(rapidité, dépassement).
+
+\SAimage{images/image44.png}{155mm}{92mm}
+
+\begin{quote}
+\emph{\textbf{Réponse en déplacement en réponse à un échelon de
+pression}}
+
+\SAimage{images/image45.png}{150mm}{110mm}
+
+\emph{\textbf{Réponse de l'ensemble (servovalve + actionneur)}}
+\end{quote}
+
+\textbf{20}
+
+\textbf{\ul{Nom~:}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  ~Donner les critères permettant d'évaluer un système asservi.
+  \emph{\textbf{(2 points)}}
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  ~~Indiquer la différence entre un système bouclé et un système non
+  bouclé. \emph{\textbf{(2 points)}}
+\item
+  Donner les deux types de systèmes asservis. \emph{\textbf{(1 points)}}
+\end{enumerate}
+
+\SAimage{images/image46.png}{155mm}{95mm}
+
+\textbf{1,75}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Donner le temps de réponse à 5 \% t\textsubscript{r5\%} et l'écart
+  statique. \emph{\textbf{(2 points)}}
+\end{enumerate}
+
+\SAimage{images/image47.png}{145mm}{80mm}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  Donner le temps de réponse à 5 \%, le dépassement et l'écart statique.
+  \emph{\textbf{(3 points)}}
+\end{enumerate}
+
+\SAimage{images/image48.png}{55mm}{38mm}
+
+\SAimage{images/image410.png}{22mm}{22mm}
+Niveau 2
+
+\textbf{RÉGULATION DE NIVEAU D'EAU D'UN RÉSERVOIR D'INCENDIE}
+
+\emph{(\ul{Source :} BTS IRIS 2008)}
+
+\textbf{\ul{Objectifs de l'étude~:}}
+
+\begin{itemize}
+\item
+  \textbf{Modéliser} le réservoir d'incendie à partir du modèle de
+  connaissance ;
+\item
+  \textbf{Établir} le schéma-bloc du système~;
+\end{itemize}
+
+Pour pouvoir faire face en cas d'incendie, de nombreuses communes
+disposent d'un réservoir d'eau. Le réservoir étudié est alimenté en eau
+par une pompe entraînée par une machine asynchrone alimentée par un
+variateur de fréquence~: ensemble redresseur + onduleur. La hauteur
+d'eau est mesurée par un capteur de pression placé au fond du réservoir.
+On peut schématiser le fonctionnement du système par la figure
+suivante~:
+
+\SAimage{images/image49.jpeg}{150mm}{82mm}
+
+Le réservoir est un cylindre de section constante S= 3.5
+m\textsuperscript{2}. On considère que le débit de sortie
+q\textsubscript{S} (en m\textsuperscript{3}.s\textsuperscript{-1}) est
+proportionnel à la hauteur d'eau h (en m).
+
+On désire que le réservoir se remplisse à 95\% de la hauteur voulue en
+15mn, avec une précision en régime permanent de 10 \%.
+
+\textbf{Modélisation du réservoir}
+
+On veut vérifier les performances par une étude comportementale, en
+faisant à l'instant t = 0, varier le débit de 0 à
+0.01m\textsuperscript{3}.s\textsuperscript{-1}. On enregistre
+l'évolution de la hauteur h de l'eau en fonction du temps comme le
+montre la figure suivante~:
+
+\SAimage{images/image50.png}{150mm}{78mm}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Indiquer} la valeur \emph{\textbf{h\textsubscript{$\infty$}}} de la
+  hauteur d'eau en régime permanent .
+\item
+  \textbf{Caractériser} cette réponse (rapidité, précision, stabilité,
+  dépassement).
+\item
+  \textbf{Donner} le temps nécessaire pour que le réservoir se remplisse
+  à 95\% de la hauteur voulue. Comparer au cahier des charges.
+
+  \textbf{Régulation du niveau d'eau du réservoir}
+\end{enumerate}
+
+On désire que le réservoir se remplisse à 95\% de la hauteur voulue en
+15mn, avec une précision en régime permanent de 10 \%. Afin d'améliorer
+les performances du système, on insère dans l'asservissement un
+correcteur proportionnel de transmittance \emph{\textbf{C(p)=
+C\textsubscript{0}}}.
+
+On souhaite mettre le système sous forme de schéma-blocs. Les modèles
+des différents éléments du système sont les suivants~:
+
+\begin{itemize}
+\item
+  Le capteur de pression mesurant la hauteur d'eau délivre une tension
+  \emph{\textbf{V\textsubscript{h}(t) = $\alpha$ h(t)}} .
+\end{itemize}
+
+\begin{itemize}
+\item
+  La salle de commande élabore la tension de commande \textbf{V(t)} du
+  variateur à partir de la différence entre la tension de consigne
+  \emph{\textbf{V\textsubscript{c}(t)}} et la mesure provenant du
+  capteur \emph{\textbf{V\textsubscript{h}(t)}}. \textbf{V(t)=
+  C\textsubscript{0} (\emph{V\textsubscript{c}(t)-
+  V\textsubscript{h}(t)}}).
+\end{itemize}
+
+\begin{itemize}
+\item
+  La relation entre la hauteur de consigne
+  \emph{\textbf{h\textsubscript{c}(t)}} et la tension de consigne est
+  \emph{\textbf{V\textsubscript{c}(t) = $\alpha$ h\textsubscript{c}(t)}}
+\end{itemize}
+
+\begin{itemize}
+\item
+  On modélise le fonctionnement de l'ensemble «~moteur+variateur+pompe~»
+  par \emph{\textbf{Q\textsubscript{E}(t) = A .V(t), où
+  Q\textsubscript{E}(t)}} représente le débit fourni par la pompe et
+  \emph{\textbf{V(t)}} la tension de commande.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  \textbf{Donner} le schéma bloc de l'asservissement, ayant pour entrée
+  \emph{\textbf{H\textsubscript{c}(p}}) (transformée de Laplace de la
+  hauteur de consigne h\textsubscript{c}), et pour sortie
+  \emph{\textbf{H(p).}}
+\end{enumerate}
+
+\emph{\hfill\break
+}
+
+\textbf{FAUTEUIL ELECTRIQUE}
+
+\SAimage{images/image410.png}{22mm}{22mm}
+Niveau 2
+
+\SAimage{images/image51.pdf}{155mm}{95mm}
+
+Le système étudié est un fauteuil électrique capable de franchir
+obstacles et marches.
+
+\textbf{Structure de régulation de l'inclinaison du siège}
+
+La capacité de monter les escaliers nécessite, pour le confort et la
+sécurité du passager, de maintenir l'inclinaison du siège par rapport à
+la verticale constante pendant la montée ou la descente, en conservant
+la possibilité pour celui-ci de régler l'inclinaison de son assise.
+
+Le choix fait par le concepteur est de réaliser un asservissement de la
+position angulaire du siège à l'aide d'un vérin électrique. Le but de
+cette partie est de déterminer la structure de cet asservissement en
+partie décrite par le diagramme IBD limité à la chaîne asservie (voir
+annexes).
+
+\ul{La partie commande} de cet asservissement comporte :
+
+\begin{itemize}
+\item
+  Une interface de communication avec l'usager (bloc « IHM »)
+\end{itemize}
+
+Siège
+
+B
+
+Ecrou
+
+Vis
+
+Corps
+
+A
+
+O
+
+Châssis
+
+\begin{itemize}
+\item
+  Une carte de commande dont le cœur est « l'unité de traitement » qui
+  ne reçoit et ne délivre que des signaux numériques
+\item
+  Un accéléromètre délivrant un signal analogique image de l'inclinaison
+  du siège par rapport à la verticale
+\end{itemize}
+
+\ul{La partie opérative} (voir schéma cinématique mécanique ci-contre)
+de cet asservissement comporte :
+
+\begin{itemize}
+\item
+  Un pont en H (hacheur quatre quadrants) qui à partir du signal
+  analogique reçu de la carte de commande et de l'énergie fournie par un
+  régulateur de tension alimente le motoréducteur du vérin
+\item
+  Un motoréducteur (moteur à courant continu et réducteur à engrenages)
+  qui fait tourner la vis du vérin
+\item
+  Un système vis écrou permettant de transformer la rotation de la vis
+  en un allongement du vérin (AB)
+\item
+  Un système triangulaire (ABO) modifiant l'inclinaison du siège
+\end{itemize}
+
+L'énergie électrique est fournie par deux batteries de 12V 60Ah dont la
+tension diminue de manière non négligeable au fur et à mesure que la
+batterie se décharge
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Indiquer ci-dessous à quels éléments correspondent les blocs du
+  diagramme IBD.
+\end{enumerate}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0968}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2258}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2258}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2258}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2258}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Bloc
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Modulateur
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Convertisseur
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Transmetteur
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Effecteur
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Elément & & & & \\
+\end{longtable}
+
+\emph{On donne dans le tableau ci-dessous les noms des différents flux
+d'information et d'énergie du diagramme IBD de l'annexe}
+
+On suppose que la carte de commande est constituée d'un comparateur qui
+compare la tension u\textsubscript{C}(t) image de la consigne de
+position du siège et la tension u\textsubscript{A}(t) image de la
+position angulaire du siège issue de l'accéléromètre.
+
+L'écart entre ces deux positions étant ensuite corrigé par un correcteur
+qui délivre au pont en H une tension u\textsubscript{H}(t). Lequel pont
+en H alimente le moteur avec la tension modulée u\textsubscript{M}(t).
+
+On adopte les notations des fonctions temporelles du système suivantes :
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.4220}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.0762}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.4219}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.0799}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Tension image de la consigne de position
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+u\textsubscript{C}(t)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Tension image de la réponse
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+u\textsubscript{A}(t)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Tension d'alimentation du moteur & u\textsubscript{M}(t) & Position
+angulaire du siège / à la verticale & $\theta$(t) \\
+Tension de commande du pont en H & u\textsubscript{H}(t) & Position
+angulaire du siège / au châssis & $\alpha$(t) \\
+Vitesse de rotation de la vis & $\omega$\textsubscript{V}(t) & Position
+angulaire du châssis / à la verticale & $\beta$(t) \\
+Ecart à l'entrée du correcteur & $\varepsilon$(t) & Longueur du vérin & $\lambda$(t) \\
+\end{longtable}
+
+\emph{Les noms des différents éléments du système sont : Motoréducteur,
+Correcteur, Pont en H, Accéléromètre, Système vis-écrou, Système
+triangulaire}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Placer les noms des différents blocs et les fonctions temporelles sur
+  le schéma-bloc ci-dessous.
+\end{enumerate}
+
+\SASchemaFauteuil
+
+\textbf{\ul{Modélisation du vérin}}
+
+\emph{Le} vérin électrique comprend le motoréducteur et le système vis
+écrou. Il est constitué de :
+
+\begin{itemize}
+\item
+  Un moteur à courant continu à aimants permanents pour lequel :
+\end{itemize}
+
+\begin{itemize}
+\item
+  On note u\textsubscript{M}(t) et i(t) les tensions et courant aux
+  bornes du moteur
+\item
+  On note e(t) la force contre électromotrice du moteur
+\item
+  On note $\omega$\textsubscript{M}(t) et c\textsubscript{M}(t) la vitesse de
+  rotation de l'arbre moteur et le couple sur l'arbre moteur
+\item
+  On néglige l'inductance de l'induit L mais pas sa résistance R
+\item
+  L'inertie de l'ensemble des pièces en mouvement ramené sur l'arbre
+  moteur est J
+\item
+  Le coefficient de frottement visqueux des pièces en mouvement ramené
+  sur l'arbre moteur est f
+\item
+  Les constantes mécanique et électrique sont K\textsubscript{M} et
+  K\textsubscript{E}
+\end{itemize}
+
+\begin{itemize}
+\item
+  Un réducteur à engrenages qui transmet la rotation de l'arbre moteur à
+  la vis. On note r le rapport de transmission de ce
+  réducteur,$\omega$\textsubscript{M}(t) et $\omega$\textsubscript{V}(t)les vitesses
+  de rotation de l'arbre moteur et de la vis.
+\item
+  Un système vis écrou qui transforme la vitesse de rotation de la vis
+  $\omega$\textsubscript{V}(t) en allongement du vérin $\lambda$(t).On note « pas » le
+  pas de la vis (distance par courue par l'écrou pour un tour de la vis)
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  Donner la relation entre $\omega$\textsubscript{V}(t) et
+  $\omega$\textsubscript{M}(t) d'une part, celle entre $\omega$\textsubscript{V}(t) et
+  $\lambda$(t) d'autre part.
+\end{enumerate}
+
+\textbf{\ul{Analyse des performances de l'asservissement en fonction du
+correcteur}}
+
+Pour valider le comportement de cet asservissement le concepteur a
+installé un correcteur qui possède deux paramètres de réglage~: un gain
+K et un coefficient a. Il a réalisé quatre essais avec des valeurs
+différentes de a et K avec le protocole suivant :
+
+\begin{itemize}
+\item
+  Le fauteuil est placé sur un sol horizontal ($\beta$(t) = 0)
+\item
+  Un échelon de consigne de $\theta$\textsubscript{C} = --5$^\circ$ est appliqué au
+  système
+\item
+  L'évolution temporelle de la réponse $\theta$(t) est relevée
+\end{itemize}
+
+On donne ci-dessous les différentes réponses temporelles pour ces quatre
+essais. On a en ordonnée la réponse $\theta$\textsubscript{C} en degré et en
+abscisse le temps t en seconde.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  Calculer et donner ci-dessous, pour chacun de ces essais, l'erreur
+  statique relative $\varepsilon$\textsubscript{S}, le temps de réponse à 5\%
+  t\textsubscript{r5\%}, et le taux de dépassement D\textsubscript{1\%}
+  si il existe.
+\end{enumerate}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5083}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4917}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\SAimage{images/image55.png}{75mm}{65mm}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\SAimage{images/image56.png}{75mm}{65mm}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\SAimage{images/image57.png}{75mm}{65mm} &
+\SAimage{images/image58.png}{75mm}{65mm} \\
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\item
+  En vous aidant du diagramme d'exigence (voir annexes), dire quels sont
+  les cas qui respectent le cahier des charges relatif à l'inclinaison
+  de l'assise. Argumenter la réponse.
+\end{enumerate}
+
+\SAimage{images/image59.png}{150mm}{100mm}
+
+Diagramme de blocs interne limité à la chaîne asservie d'inclinaison du
+siège
+
+\SAimage{images/image60.png}{150mm}{165mm}
+
+Diagramme d'exigence de premier niveau du fauteuil

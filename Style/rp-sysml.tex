@@ -1,0 +1,1087 @@
+% !TeX encoding = utf8
+% % !TeX spellcheck = fr 
+
+
+%--------------DOCUMENT--------------------------------------------------------
+
+\documentclass[a4paper,11pt]{article}                      % Type de document
+\usepackage[frenchb]{babel}                  % Titres en fran�ais
+\usepackage[T1]{fontenc}
+
+\usepackage[utf8]{inputenc}   % Correspondance clavier -> document
+%\usepackage{kpfonts} 
+%-------------PACKAGES---------------------------------------------------------
+\usepackage{makeidx}                       % Indexation du document
+\usepackage[Bjornstrup]{fncychap}                % beaux chapitres
+
+\usepackage{fancyhdr}                       % entete et pied de pages
+
+\usepackage{here}                           % avoir ses figures a la suite du texte
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{geometry}
+\geometry{ hmargin=2cm, vmargin=1.5cm }
+\usepackage{multicol}
+\usepackage{verbatim}
+\usepackage{subfigure}
+\usepackage{floatflt}% package for floatingfigure environment
+\usepackage{wrapfig}% package for wrapfigure environment
+
+
+
+\usepackage{siunitx}
+\sisetup{output-decimal-marker={,},group-minimum-digits=4,abbreviations}
+
+\usepackage{tikz}
+
+%\usepackage{loops}
+%-------------PACKAGES PERSO---------------------------------------------------------
+
+%\usepackage{schemabloc}
+
+\usepackage{rp-sysml}
+\usepackage{pgf-umlsd}
+
+\usepackage{verbatim}
+
+%\usepackage{tcblisting}
+
+\usepackage{ifpdf}
+\ifx\pdftexversion\undefined %if using TeX
+  \usepackage{graphicx}
+\else %if using PDFTeX
+  \usepackage{graphicx}
+\fi
+\ifpdf %if using PDFTeX in PDF mode
+  \DeclareGraphicsExtensions{.pdf,.png,.mps,.eps,.tpx}
+  \usepackage{pgf}
+\else %if using TeX or PDFTeX in TeX mode
+  \usepackage{graphicx}
+  \DeclareGraphicsExtensions{.eps,.bmp,.tpx}
+  \DeclareGraphicsRule{.emf}{bmp}{}{}% declare EMF filename extension
+  \DeclareGraphicsRule{.png}{bmp}{}{}% declare PNG filename extension
+  \usepackage{pgf}
+\fi
+
+%*******Macros diverses ***********
+
+%-------------ENTETE-ET-PIED-DE-PAGE-------------------------------------------
+
+\renewcommand{\headrulewidth}{0pt}          % epaisseur du trait apres entete
+\renewcommand{\footrulewidth}{0pt}          % epaisseur du trait avant pied de page
+\pagestyle{fancy}
+
+\usepackage{tikzducks}
+\usepackage[most]{tcolorbox}
+
+%-------------PAGE-DE-GARDE----------------------------------------------------
+
+\title{SysML  avec  PGF/TIKZ}                                    % Titre
+\author{Papanicola Robert}                                   % Auteur(s)
+\date{\today}                                     % Date (\today pour aujourd'hui)
+
+
+%-------------DEBUT-DU-DOCUMENT-----------------------------------------------
+\makeindex
+
+\begin{document}
+
+\maketitle
+
+\begin{description}
+\item[version 0.9:] 14/03/2018 : mise en ligne
+
+\end{description}
+
+\section{Présentation}
+
+Ce package propose un ensemble de commande permettant le tracé de différents diagrammes SysML.
+
+Ce package est écrit en s'appuyant sur les possibilités de tikz et s'intègre dans un  schéma réalisé avec tikz. 
+
+\section{Installation}
+
+Le package doit être installé dans votre répertoire personnel avec les autres packages.
+
+\subsection{Chargement}
+
+Placer dans l'entête de votre fichier: 
+\verb!\usepackage{rp-sysml}!
+
+
+\section{Use Case - Cas d'utilisation}
+
+
+\subsection{Exemple générique}
+
+On retrouve dans l'exemple ci-dessous les principales commandes permettant de tracer  un diagramme des cas d'utilisations.
+
+\begin{tcblisting}{title={Cas d'utilisation : exemple générique},bicolor,colbacklower=white,center lower,float}
+\begin{tikzpicture}
+\sysmlActeur{0,0}{Utilisateur}{util}
+\sysmlCase{$(util.east)+(4,-1)$}{Peser les aliments}{peser}
+\sysmlCase{$(peser.east)+(2,1)$}{Tarer}{tarer}
+\sysmlCase{$(peser.east)+(2.5,-1)$}{Convertir \si{\kilogram} / \si{\litre} }{conv}
+\draw(util) -- (peser);
+\draw(peser) -- (tarer);
+\draw(peser) -- (conv);
+\cadreUseCase[minimum width=15em]{Balance}{(peser) (tarer) ( conv)}
+\sysmlCartouche{uc: Cas d'utilisation de la balance [Utilisation normale]}{(cadreUC) (Acteurutil)}
+\end{tikzpicture}
+\end{tcblisting}
+
+\subsection{Éléments de base}
+
+
+
+\subsubsection{Acteur}
+
+L'usage pour la représentation d'un acteur humain est de représenter un \textbf{stickman}.
+
+la commande  \verb!\sysmlActeur[option tikz]{pos}{texte}{nom}!  permet de dessiner un  \textbf{stickman}  à la position \textbf{pos}   avec le label \textbf{label}, l'ensemble se comporte comme alors comme un \textbf{node}  et on peut donc lui passer toutes les options de  tikz.
+
+\begin{tcblisting}{title={Acteur: positionnement et style},sidebyside,bicolor,colbacklower=white,center lower}
+\begin{tikzpicture}
+\sysmlActeur{0,0}{Conducteur}{cond}
+\coordinate[above right=1em of Acteurcond](a);
+\sysmlActeur[red,text=blue]{a}{propriétaire}{prop}
+\end{tikzpicture}
+\end{tcblisting}
+
+
+\subsubsection{Use case}
+
+La commande \verb!\sysmlCase[options tikz]{pos}{Use Case}{nom}!  permet de dessiner le cas d'utilisation à la position \textbf{pos}  avec \textbf{Use Case} le texte du cas d'utilsation  avec \textbf{nom}  le nom pour désigner le cas d'utilisation.
+
+Il est aussi possible d'utiliser directement le style prédéfini \textbf{usecase} directement dans la commande  \verb!\node[usecase]!  pour obtenir le dessin du cas d'utilisation, on a alors accès à toutes les commandes de personnalisation et de positionnement de Tikz
+
+\begin{tcblisting}{title={Use case},sidebyside,bicolor,colbacklower=white,center lower}
+\begin{tikzpicture}
+\sysmlCase{0,0}{Conduire le véhicule}{cond-v}
+\coordinate[below=2em of cond-v](pos);
+\sysmlCase[red,text=blue,fill=green]{pos}
+	{Conduire le véhicule}{cond-v}
+\node[usecase] (uc3) at (0,-3) {Faire};	
+\end{tikzpicture}
+\end{tcblisting}
+
+
+\subsubsection{Cadre frontière de l'étude et cartouche}
+
+La commande 
+\verb!\cadreUseCase[option]{titre}{liste des use case}!  permet de réaliser le cadre qui précise la frontière de l'étude. Le titre s'affiche  au dessus des cas d'utilisation. La liste des cas d'utilisation qui doivent être encadrés  doit être écrite sans séparateur.
+
+Le nom  de ce cadre est \textbf{cadreUC}.
+
+La commande  \verb!\sysmlCartouche{texte du cartouche}{liste des élements à encadrer}!  permet de tracer le cartouche.  On retrouve cette commande  pour tracer le cartouche et le cadre de chaque diagramme.
+
+\begin{tcblisting}{title={Cas d'utilisation : cadre et cartouche},bicolor,colbacklower=white,center lower,breakable}
+\begin{tikzpicture}
+\sysmlActeur{0,0}{Utilisateur}{util}
+\sysmlCase{$(util.east)+(4,-1)$}{Peser les aliments}{peser}
+\sysmlCase{$(peser.east)+(2,1)$}{Tarer}{tarer}
+\sysmlCase{$(peser.east)+(2.5,-1)$}{Convertir \si{\kilogram} / \si{\litre} }{conv}
+
+\cadreUseCase[minimum width=15em,red]{Balance}{(peser) (tarer) ( conv)}
+\sysmlCartouche{uc: Cas d'utilisation de la balance [Utilisation normale]}{(cadreUC) (Acteurutil)}
+\end{tikzpicture}
+\end{tcblisting}
+
+
+\subsubsection{Relations}
+
+On distingue deux types de relations  \textbf{extend}  et \textbf{include}, il suffit de préciser le style correspondant dans la commande de tracer \verb!\draw[extend]...!  ou   \verb!\draw[include]...!  pour obtenir le tracé correspondant.
+
+\begin{tcblisting}{title={Relations},sidebyside,bicolor,colbacklower=white,center lower,breakable}
+\begin{tikzpicture}
+\node(a) at (0,0){};
+\node(b) at (3,1){};
+\draw[extend](a) to (b);
+\node(c) at (0,-2){};
+\node(d) at (3,-1){};
+\draw[include](c) to (d);
+\end{tikzpicture}
+\end{tcblisting}
+
+
+On retrouve l'utilisation sur l'exemple ci-dessous
+
+
+
+
+\begin{tcblisting}{title={Exemple complet},bicolor,colbacklower=white,center lower,breakable}
+\begin{tikzpicture}
+\sysmlActeur{0,0}{Utilisateur}{util}
+\sysmlCase{$(util.east)+(4,-1)$}{Peser les aliments}{peser}
+\sysmlCase{$(peser.east)+(2,1)$}{Tarer}{tarer}
+\sysmlCase{$(peser.east)+(2.5,-1)$}{Convertir \si{\kilogram} / \si{\litre} }{conv}
+\draw(util) -- (peser);
+\draw[include](peser) to (tarer) ;
+\draw[extend]  (conv) to (peser);
+\cadreUseCase[minimum width=15em]{Balance}{(peser) (tarer) ( conv)}
+\sysmlCartouche{uc: Cas d'utilisation de la balance [Utilisation normale]}{(cadreUC) (Acteurutil)}
+\end{tikzpicture}
+\end{tcblisting}
+
+
+
+
+\section{Requirements - Exigences}
+
+L'exemple ci-dessous montre ce qu'il est possible de  tracer  avec  le package
+
+\subsection{Exemple générique}
+
+\begin{tcblisting}{title={Exigences : Exemple générique}, bicolor,colbacklower=white,center lower,breakable}
+\begin{tikzpicture}
+\sysmlReq[text width=10em]{0,0}{bal}{Peser les aliments}{id="001"\par
+text="La balance doit être facilement utilisable et s'intégrer aux cuisines "}
+\sysmlReq[text width=13em]{$(bal)+(17em,+5em)$}{mesur}{Mesurer la masse}{id="002"\par
+text="La mesure doit être précise"}
+\sysmlReq[text width=13em]{$(bal)+(17em,-3em)$}{support}{Supporter un récipient}{id="003"\par
+text="La balance doit supporter tout type de récipients"}
+\sysmlReq[text width=13em]{$(bal)+(-2em,-9em)$}{cumul}{Permettre des mesures cumulées}{id="004"\par
+text="La balance doit permettre de peser successivement plusieurs aliments sans vider le récipient"}
+\sysmlReq[text width=13em]{$(bal)+(17em,-11em)$}{rang}{Faciliter le rangement}{id="004"\par
+text="La balance doit faciliter le rangement et l'utilisation"}
+
+\sysmlCartouche{req: Balance de ménage [exigences de pesée]}{(bal) (mesur) (support) (cumul)(rang)}
+
+\draw[contenance] (bal) to (mesur);
+\draw[contenance] (bal) to (support);
+\draw[contenance] (bal) to (cumul);
+
+\draw[deriv] (rang.west) to (bal);
+
+\end{tikzpicture}
+\end{tcblisting}
+
+
+
+
+\subsection{Éléments}
+\subsubsection{Cadre exigence}
+
+
+La commande \verb!\sysmlReq[option]{pos}{nom}{Titre}{Texte}!  permet de saisir et tracer l'exigence.
+
+\begin{tcblisting}{title={Cadre exigence},sidebyside, bicolor,colbacklower=white,center lower}
+\begin{tikzpicture}
+\sysmlReq[text width=12em]{2,0}{rewHSUV}{Véhicule HSUV}{id="001"\par
+text="Le véhicule doit pouvoir transporter en toute sécurité
+ x personnes avec une consommation minimale et le meilleur
+ confort sur tout terrain"}
+\end{tikzpicture}
+\end{tcblisting}
+
+\subsubsection{Relations}
+
+Plusieurs styles  sont disponibles permettant de tracer les différentes  relations entre les exigences et autres blocs.
+
+\begin{tcblisting}{title={Relations},sidebyside, bicolor,colbacklower=white,center lower}
+\begin{tikzpicture}
+\node(a) at (0,0){};
+\node(b) at (3,1){};
+\draw[deriv] (a) to (b);
+\node(c) at (0,-1){};
+\node(d) at (3,-0){};
+\draw[contenance] (c) to (d);
+\node(e) at (0,-2){};
+\node(f) at (3,-1){};
+\draw[satisfy](e) to (f);
+\node(g) at (0,-3){};
+\node(h) at (3,-2){};
+\draw[refine](g) to (h);
+\end{tikzpicture}
+\end{tcblisting}
+
+%\end{document}
+\subsubsection{Exigences spécialisées}
+
+Plusieurs commandes dédiées permettent de tracer des cadres d'exigences en précisant la nature de l'exigence.
+
+
+\begin{tcblisting}{title={Exigences spécialisées et style},,breakable, bicolor,colbacklower=white,center lower}
+\smaller
+\begin{tikzpicture}
+\sysmlReq[text width=10em]{0,0}{bal}{Peser les aliments}{id="001"\par
+text="La balance doit être facilement utilisable et s'intégrer aux cuisines "}
+
+\begin{scope} \tikzset{styleReq/.style={fill=purple!20,text=red}}
+\sysmlReqFonc[text width=13em]{$(bal)+(16em,+5em)$}{mesur}{Mesurer la masse}{id="002"\par
+text="La mesure doit être précise"}
+\sysmlReqPhys[text width=13em]{$(bal)+(16em,-3em)$}{rang}{Faciliter le rangement}{id="004"\par
+text="La balance doit faciliter le rangement et l'utilisation"}
+\sysmlReqUsa[text width=13em]{$(bal)+(16em,-11.5em)$}{support}{Supporter un récipient}{id="003"\par
+text="La balance doit supporter tout type de récipients"}
+\sysmlReqFonc[text width=13em]{$(bal)+(-0.5em,-9em)$}{cumul}{Permettre des mesures cumulées}{id="004"\par
+text="La balance doit permettre de peser successivement plusieurs aliments sans vider le récipient"}
+\end{scope}
+
+\begin{scope} \tikzset{styleReq/.style={fill=purple!10,text=red}}
+\sysmlReqPerf[text width=13em]{$(mesur)+(17em,3em)$}{precis}{Précision de la mesure}{id="21"\par
+Text="La précision doit être de \SI{1}{\gram}"}
+\sysmlBloc[text width=10em]{$(support)+(4em,-6em)$}{plateau}{plateau}{plateau en verre résistant au choc}
+\sysmlReqUsa[text width=13em]{$(rang)+(17em,3em)$}{autonomie}{Fonctionner en autonomie}{id="41"\par
+text="La balance doit être économe en énergie et fonctionner sans être branchée"}
+\sysmlReqPhys[text width=13em]{$(rang)+(17em,-6em)$}{encombr}{Limiter l'encombrement}{id="42"\par
+text="Les dimensions ne doivent pas dépasser $\SI{25}{\centi\metre} \times \SI{20}{\centi\metre} \times \SI{4}{\centi\metre}$ "}
+\end{scope}
+
+\draw[contenance] (bal) to (mesur);
+\draw[contenance] (bal) to[bend left=10] (support.west);
+\draw[contenance] (bal) to (cumul);
+\draw[deriv] (rang.west) to (bal);
+\draw[contenance] (rang) to (autonomie);
+\draw[contenance] (rang.-20) to (encombr.170);
+\draw[satisfy](plateau.west) to (support.225);
+\draw[refine](precis.175) to (mesur.-5);
+
+\sysmlCartouche{req: Balance de ménage [exigences de pesée détaillées]}{(bal) (mesur) (support) (cumul)(rang)(precis) (plateau) (encombr) (autonomie)}
+\end{tikzpicture}
+\end{tcblisting}
+
+\section{Diagrammes des blocs}
+
+L'exemple ci-dessous montre une partie des possibilités du package. 
+
+\subsection{Exemple générique}
+
+\begin{tcblisting}{title={Diagramme des blocs: exemple générique},,breakable, bicolor,colbacklower=white,center lower}
+\begin{tikzpicture}
+\sysmlStereotype{0,1}{balance}{System}{Balance}
+{\includegraphics[width=3cm]{balanceHalo.jpg}}
+\sysmlBloc[text width=7em]{0.5,4}{pile}{pile}{1 pile Cr2032}
+\sysmlBloc[text width=7em]{4.5,4}{IHM}{interface utilisateur}{}
+\sysmlBloc[text width=7em]{4.5,2.}{chassis}{chassis}{}
+\sysmlBloc[text width=7em]{4.5,0.5}{plateau}{plateau}{plateau en verre}
+
+\begin{scope}
+\tikzset{styleBlock/.style={fill=purple!20,text=black}}
+\sysmlBloc[text width=7em]{4.5,4}{IHM}{interface utilisateur}{}
+\sysmlBloc[text width=7em]{9,4}{afficheur}{afficheur}{}
+\sysmlBloc[text width=7em]{9,2.5}{bouton}{bouton on/off}{}
+\sysmlBloc[text width=7em]{9,1}{conversion}{bouton  kg/l}{}
+\end{scope}
+\sysmlBloc[text width=7em]{4.5,-1.5}{capteur}{capteur}{}
+\sysmlBloc[text width=7em]{9,-0.5}{poutre}{poutre déformable}{}
+\sysmlBloc[text width=7em]{9,-2.5}{jauge}{jauge de déformation}{}
+\begin{scope}
+\tikzset{styleBlock/.style={fill=yellow,text=red}}
+\sysmlBloc[text width=7em]{0,-3}{module}{module électronique}{}
+\sysmlBloc[text width=7em]{4.5,-3}{micro}{microcontroleur}{}
+\sysmlBloc[text width=7em]{4,-5}{ampli}{Amplificateur}{}
+\sysmlBloc[text width=7em]{-0,-5.5}{filtre}{filtre}{}
+\sysmlBloc[text width=7em]{9,-5}{logiciel}{Logiciel}{}
+\end{scope}
+\draw[composition] (balance) -- (plateau.west);
+\draw[composition] (balance) -- (pile);
+\draw[composition] (balance) -- (capteur);
+\draw[composition] (balance) -- (chassis.west);
+\draw[composition] (balance) -- (IHM.west);
+\draw[composition] (balance) -- (module);
+
+\draw[composition] (IHM) -- (afficheur);
+\draw[composition] (IHM) -- (bouton);
+\draw[composition] (IHM) -- (conversion);
+
+\draw[composition] (module) -- (micro);
+\draw[composition] (module) -- (ampli);
+\draw[composition] (module) -- (filtre);
+\draw[composition] (micro) -- (logiciel);
+
+\draw[composition]  (capteur) -- (jauge);
+\draw[composition]  (capteur) -- (poutre);
+
+\cartoucheBdd{[block] diagramme de définition de blocs}{(balance) (plateau) (chassis) (capteur) (pile)(afficheur)(poutre)(micro)(bouton)  (IHM) (filtre) }{balance de ménage}
+\end{tikzpicture}
+\end{tcblisting}
+
+
+
+
+
+\subsection{Éléments}
+
+\subsubsection{Blocs}
+
+La même commande  \verb!\sysmlBloc[options]{pos}{nom}{Titre}{détails}!  permet de dessiner un simple cadre d'exigence  ou des exigences détaillées.
+
+\paragraph{Bloc simple}~\par
+
+
+\begin{tcblisting}{title={Exigences : Exemple complet}, bicolor,colbacklower=white,center lower,sidebyside}
+\begin{tikzpicture}
+\sysmlBloc[text width=7em]{0,0}{chas}{chassis}{}
+\coordinate[below=3em of chas](pos);
+\sysmlBloc[text width=7em, fill=yellow, text=red] {pos}{pile}{Pile}{1 pile Cr2032}
+\end{tikzpicture}
+\end{tcblisting}
+
+\paragraph{Bloc détaillé}~\par
+Si on souhaite, préciser les \textit{Values}, \textit{Constraints}  et \textit{parts}  on le précise dans la partie \textbf{détails}.
+
+\begin{tcblisting}{title={Exigences : Cadre d'exigence complet}, bicolor,colbacklower=white,center lower,sidebyside}
+\begin{tikzpicture}
+\sysmlBloc[text width=10em]{0,0}{bloc}{Nom du Bloc}{
+\blockDetails{Values}{\begin{itemize}
+\item valeurs 1
+\item valeurs 2
+\end{itemize}
+}
+\Rule
+\blockDetails{Constraints}{\begin{itemize}
+\item contrainte 1
+\item contrainte 2
+\end{itemize}}
+\Rule
+\blockDetails{parts}{\begin{itemize}
+\item partie 1
+\item partie 2
+\end{itemize}
+}
+}
+\end{tikzpicture}
+\end{tcblisting}
+
+\paragraph{Autres stéréotypes}~\par
+
+La commande \verb!\sysmlStereotype{pos}{nom}{stéréotype}{Titre}{Détails}!  permet de préciser d'autres stéréotypes (System, actor, sub-systme, logiciel,\dots).
+
+\begin{tcblisting}{title={Bloc System}, bicolor,colbacklower=white,center lower,sidebyside}
+\begin{tikzpicture}
+\sysmlStereotype{0,1}{balance}{System}{Balance}
+{\includegraphics[width=3cm]{balanceHalo.jpg}}
+ 
+\sysmlStereotype{0,-4cm}{act}{Actor}{non humain}{}
+\end{tikzpicture}
+\end{tcblisting}
+
+\subsubsection{Relations}
+
+Plusieurs styles permettent de tracer les différentes relations entre les blocs.
+
+
+\begin{tcblisting}{title={Cadre exigence},sidebyside, bicolor,colbacklower=white,center lower}
+\begin{tikzpicture}
+\node(a) at (0,0){};
+\node(b) at (3,1){};
+\draw[deriv] (a) to (b);
+\node(c) at (0,-1){};
+\node(d) at (3,-0){};
+\draw[contenance] (c) to (d);
+\node(e) at (0,-2){};
+\node(f) at (3,-1){};
+\draw[satisfy](e) to (f);
+\node(g) at (0,-3){};
+\node(h) at (3,-2){};
+\draw[refine](g) to (h);
+\node(i) at (0,-4){};
+\node(j) at (3,-3){};
+\draw[verify](i) to (j);
+\node(k) at (0,-5){};
+\node(l) at (3,-4){};
+\draw[trace](k) to (l);
+\end{tikzpicture}
+\end{tcblisting}
+
+
+
+
+
+\section{Diagramme des blocs internes: ibd}
+
+
+
+\subsection{Éléments}
+\subsubsection{Bloc IBD}
+
+Un seul symbole ici \verb!\sysmlIbdBloc[options]{pos}{nom}{désignation}!  pour dessiner le bloc.  Il est aussi possible de tracer le bloc en utilisant le style prédéfini \textbf{IbdBlock}  dans la commande \verb!\node[IbdBlck]...!.
+
+
+\begin{tcblisting}{title={Bloc IBD},sidebyside, bicolor,colbacklower=white,center lower}
+\begin{tikzpicture}
+\sysmlIbdBloc[text width=6em]{0,0}{ampli}{Amplificateur}
+
+\node[IbdBloc,text width=5em](capt) at (0,-3){:Capteur};
+\end{tikzpicture}
+\end{tcblisting}
+
+\subsubsection{Relations}
+
+Deux types de relations entre les blocs IBD, \textit{portFlux}  et \textit{portStandart}.
+
+
+\begin{tcblisting}{title={Relations},sidebyside, bicolor,colbacklower=white,center lower}
+\begin{tikzpicture}
+\node(a) at (0,0){};
+\node(b) at (3,1){};
+\draw[portFlux] (a) to (b);
+\node(c) at (0,-1){};
+\node(d) at (3,-0){};
+\draw[portStandard] (c) to (d);
+\end{tikzpicture}
+\end{tcblisting}
+
+
+
+\subsection{Exemple complet}
+
+\begin{tcblisting}{title={Diagramme des blocs internes: exemple complet},,breakable, bicolor,colbacklower=white,center lower}
+\begin{tikzpicture}
+
+\sysmlIbdBloc[text width=6em]{0,0}{ampli}{Amplificateur}
+\sysmlIbdBloc[text width=5em]{$(ampli)+(12em,0)$}{filtre}{Filtre}
+\sysmlIbdBloc[text width=10em]{$(filtre)+(14em,0)$}{micro}{Micro-controleur}
+
+\node[fit=(ampli) (filtre) (micro)](module){};
+\node[above=0em of module](texte){Module Electronique};
+\node[fit=(texte) (module),draw](module){};
+
+\sysmlIbdBloc{$(ampli)+(0,8em)$}{jauge}{Jauge de contrainte}
+\sysmlIbdBloc[text width=6em]{$(jauge)+(0,5em)$}{poutre}{Poutre}
+
+\coordinate[above right=7em and -1em of poutre](plateau);
+\coordinate[above left=4em and -1em of poutre](chassis);
+
+\sysmlIbdBloc[text width=5em]{$(poutre)+(3em,7em)$}{plateau}{Plateau}
+\sysmlIbdBloc[text width=5em]{$(poutre)+(-1em,4em)$}{chassis}{Chassis}
+
+\sysmlIbdBloc[text width=5em]{$(micro)+(5em,10em)$}{boutongl}{Bouton g/l}
+\sysmlIbdBloc[text width=5em]{$(micro)+(0em,15em)$}{boutononoff}{Bouton On/Off}
+\sysmlIbdBloc[text width=6em]{$(micro)+(-5em,20em)$}{afficheur}{Afficheur}
+
+\sysmlIbdBloc[text width=5em]{$(afficheur)+(-10em,-5em)$}{pile}{Pile}
+
+\draw[portFlux,red, thick,](poutre.south) -- node[right,black,text width =5em,align=center]{déformation}(jauge.north-|poutre.south);
+\draw[portFlux,red, thick,](plateau.south) -- node[right,black,align=center]{force}(poutre.north-|plateau.south);
+\draw[portFlux,red, thick,] (poutre.north-|chassis.south)-- node[right,black,text width =5em,align=center]{}(chassis.south);
+\draw[portFlux,green](jauge.south) -- node[right,black,text width =5em]{signal electrique}(module.north-|jauge.south);
+\draw[portFlux,green](module.north-|jauge.south) -- (ampli.north-|jauge.south);
+\draw[portFlux,green](filtre.east) -- node[black,text width =5em,align=center]{signal filtré}(micro.west);
+\draw[portFlux,green](ampli.east) -- node[black,text width =5em,align=center]{signal amplifié}(filtre.west);
+
+\draw[portFlux,green](micro.150)-- (micro.150|-module.north)node[above left,black]{message};
+\draw[portFlux,green] (micro.150|-module.north)--++(0,3em)-| (afficheur.south);
+
+\draw[portStandard,green] (micro.15|-module.north)coordinate(bb)  -- (bb|-micro.north);
+\draw[portStandard,green](boutongl.south)node[black,below right]{g\_ml} --++(0,-1.5em)-| (bb) node[above right,black]{g\_ml};
+
+\draw[portStandard,green](boutononoff.south)node[black,below right]{on\_off} --++(0,-1.5em)-| (micro.90|-module.north) node[above right,black]{on\_off};
+\draw[portStandard,green] (micro.90|-module.north)  -- (micro.90|-micro.north);
+
+\coordinate[above right = 1.5em of boutononoff](cc);
+
+\draw[portFlux,red, ultra thick] (pile.east)--++(2em,0)coordinate(aa)--node[right,black,text width=5em]{énergie électrique}(module.north-|aa);
+\draw[portFlux,red, ultra thick] (pile.east)--(aa)|-(afficheur.west);
+\draw[portFlux,red, ultra thick] (pile.east)--(aa) |-(jauge.east);
+
+\cartoucheIbd{[Blocks] diagramme de bloc interne}{(chassis) (plateau) (module) (boutongl) (pile) }{Balance de ménage}
+
+\draw[portFlux,green] (cc-|Ibd.east)-| (boutononoff) node[pos=0.25,above,black]{doigt};
+\draw[portFlux,green] (cc-|Ibd.east)-| (boutongl) ;
+\draw[portFlux,green] (afficheur.east)-- node[text width=5em,black]{message lumineux}(Ibd.east|-afficheur.east) ;
+\draw[portFlux,red, ultra thick](Ibd.west|-plateau.west) -- node[above,black,text width =5em,align=center]{Aliments}(plateau.west);
+\end{tikzpicture}
+\end{tcblisting}
+
+
+
+\section{Machine à états : sm}
+
+Le tracé de machine à états finis peut être relativement complexe avec des états qui peuvent comporter des états composites ou des fonctionnement orthogonaux. Le package permet de tracer des cycles relativement complexes.
+
+
+\subsection{Exemple générique}
+
+\begin{tcblisting}{title={Machine à état: exemple simple},,breakable, bicolor,colbacklower=white,center lower}
+\begin{tikzpicture}
+\sysmlStmStart{0,0}{init}
+\sysmlStmBloc[below right=2em of init]{tarage}{Tarage}
+\sysmlStmBloc[below right=3em of tarage]{pesage}{Pesage}
+\sysmlStmBloc[ right=10em of pesage,text width=8em]{maintien}{Préparation arrêt}
+\sysmlStmBloc[ below left=4em of pesage,fill=red!20]{conversion}{Conversion};
+\sysmlStmEnd[below left=5em and 4em of maintien]{fin}
+
+\draw[lien] (init) -| node[pos=0.25,below]{On\_Off}(tarage);
+\draw[lien] (pesage) to[bend left=15]node[pos=0.5,below,sloped]{BP\_tarage} (tarage);
+\draw[lien] (tarage.east) to[bend left=15]node[pos=0.5,above,sloped]{fin\_tarage}(pesage.north);
+\draw[lien] (pesage.20) to[bend left=15]node[pos=0.5,above,sloped]{On\_Off} (maintien.170);
+\draw[lien] (maintien.190) to[bend left=15]node[pos=0.5,below,sloped]{On\_Off} (pesage.-20);
+
+
+\draw[lien](maintien) |- node[pos=0.15,left]{after $\SI{2}{\second}$} (fin);
+\draw[lien](pesage) |- node[pos=0.35,right]{after $\SI{1}{\minute}$} (fin);
+
+\draw[lien] (pesage) to[bend right=15]node[pos=0.5,above,sloped]{BP\_kg/l} (conversion.north);
+\draw[lien] (conversion) to[bend right=15]node[pos=0.5,below,sloped]{fin\_conv.} (pesage);
+
+\cartouchestm{Balance de ménage}{(tarage) (pesage) (init) (fin) (conversion) (maintien)}{fonctionnement global}
+\end{tikzpicture}
+\end{tcblisting}
+
+
+\subsection{Éléments}
+\subsubsection{États et pseudos-états}
+
+\begin{itemize}
+
+\item \verb!\sysmlStmStart{pos}{nom}! : trace  le symbole de début du graphe à la position \textbf{pos}  et le nomme \textbf{nom}.
+\item \verb!\sysmlStmEnd[option]{nom}! : la position du symbole doit être précisée dans l'option par exemple avec \verb![below=3em of etat]!.
+\end{itemize}
+
+
+\paragraph{début et fin}~\par
+
+Deux pseudos-états pour commencer   avec deux possibilités pour les tracer.
+
+\begin{itemize}
+\item \verb!\sysmlStmStart{0,0}{init}!  et \verb!\node[StmStart](init){}!  pour le pseudo état de début
+\item \verb!\sysmlStmEnd[below right =3em of init]{fin}!  et  \verb!\node[StmStop](fin) {}!  pour le code de fin.
+\end{itemize}
+\begin{tcblisting}{title={Bloc début},sidebyside, bicolor,colbacklower=white,center lower}
+\begin{tikzpicture}
+\sysmlStmStart{0,0}{init}
+\node[StmStart, right=3em of init](init2){};
+
+\sysmlStmEnd[below right =4em of init]{fin}
+\node[StmStop, right=3em of fin](fin2){};
+\end{tikzpicture}
+\end{tcblisting}
+
+\paragraph{Test}~\par
+
+\verb!\sysmlStmTest[options]{nomTest}!  permet de dessiner un test, la position est précisée dans les options.
+
+\begin{tcblisting}{title={Bloc test  et exemple},sidebyside, bicolor,colbacklower=white,center lower}
+\begin{tikzpicture}
+\sysmlStmTest[]{nomTest}
+
+\node[Stmtest] (test2) at (-1,-2){};
+\end{tikzpicture}
+\end{tcblisting}
+
+\paragraph{Fork / Join}~\par
+
+\verb!\sysmlStmFork[options]{nomTest}!  permet de dessiner un \textbf{fork} , la position est précisée dans les options.
+
+\begin{tcblisting}{title={Bloc test  et exemple},sidebyside, bicolor,colbacklower=white,center lower}
+\begin{tikzpicture}
+\sysmlStmForkJoin{fork1}
+
+\node[StmForkJoin=8em] (fork2) at (-1,-2){};
+
+\end{tikzpicture}
+\end{tcblisting}
+
+\paragraph{États}~\par
+
+La représentation d'un état dépend du niveau de description souhaité
+
+\begin{itemize}
+\item \verb!\sysmlStmBloc[options]{nom}{Texte}!  trace une représentation simple  d'un état. la position doit être précisée dans les option si elle n'est pas précisée, il est placé en (0,0).
+
+\item \verb!\node[StmBloc]...! permet aussi de tracer la même représentation directement avec la commande \verb!\node!  de tikz.
+\end{itemize}
+
+\begin{tcblisting}{title={Bloc état},sidebyside, bicolor,colbacklower=white,center lower}
+\begin{tikzpicture}
+\sysmlStmBloc{nom}{Texte}
+\node[StmBloc,fill=red!20][below right=3em of nom](nom2){Texte 2};
+\end{tikzpicture}
+\end{tcblisting}
+
+
+
+Pour une description plus complète, on utilisera la commande \\
+\verb!\sysmlStmBlocComplet[options]{designation}{Nom}{État}!  ou la commande  \verb!\node[StmBlocPart=xx]!  avec le style  \textbf{StmBlocPart}  qui permet de tracer  des états détaillés et aussi des états orthogonaux.  La valeur par défaut de la variable associée à  \textbf{StmBlocPart}   est 2.  
+
+Le style des états  est défini dans le style \verb!\StmBloc!, la valeur  par défaut  est:\\
+\begin{verbatim}
+\tikzset{StmBloc/.style={draw, rounded corners=1em, minimum height=4em,
+ minimum width=4em, text width=5em,align=center,fill=yellow!20}}
+\end{verbatim}
+
+
+Les exemple ci-dessous montrent l'utilisation de ces différentes commandes.
+
+
+
+
+\begin{tcblisting}{title={Bloc état nommé},sidebyside, bicolor,colbacklower=white,center lower}
+\begin{tikzpicture}
+\sysmlStmBlocComplet{designation}{Nom}{État}
+
+\node[StmBlocPart,StmBloc, below=3em of designation](etat2){
+Nom
+\nodepart{two}
+description \\de l'état};
+
+\node[StmBlocPart=3,StmBloc, right=3em of etat2](etat3){
+Nom
+\nodepart{two}
+état orthogonal 1
+\nodepart{three}
+état orthogonal 2};
+
+\end{tikzpicture}
+\end{tcblisting}
+
+La description de l'état peut être plus ou moins complexe et décrire les 3 instants d'un état \textbf{entry},  \textbf{do}  et \textbf{exit}.
+
+\begin{tcblisting}{title={Bloc état nommé},sidebyside, bicolor,colbacklower=white,center lower}
+\begin{tikzpicture}
+\sysmlStmBlocComplet[text width=12em]{designation}{Nom}{
+\begin{description}
+\item[entry :] Liste des taches exécutées en entrant.
+\item[do :] Liste des taches exécutées pendant le déroulement.
+\item[exit :] Liste des taches exécutées en sortant.
+\end{description}
+}
+\end{tikzpicture}
+\end{tcblisting}
+
+ou avec la commande \verb!node!
+
+\begin{tcblisting}{title={Bloc état nommé},sidebyside, bicolor,colbacklower=white,center lower}
+\begin{tikzpicture}
+\node[StmBlocPart,StmBloc,text width=12em](designation){
+Nom
+\nodepart{two}
+\begin{description}
+\item[entry :] Liste des taches exécutées en entrant.
+\item[do :] Liste des taches exécutées pendant le déroulement.
+\item[exit :] Liste des taches exécutées en sortant.
+\end{description}
+};
+\end{tikzpicture}
+\end{tcblisting}
+
+
+
+\begin{tcblisting}{title={Machine à état: exemple test},sidebyside, bicolor,colbacklower=white,center lower}
+\begin{tikzpicture}
+\sysmlStmBloc[]{etat1}{État 1}
+\sysmlStmTest[below=3em of etat1]{test}
+\sysmlStmBloc[below right=3em of test]{etat2}{État 2}
+\sysmlStmBloc[below left=3em of test]{etat3}{État 3}
+ 
+\draw[lien] (etat1) -- node[right]{événement} (test);
+\draw[lien] (test.east) to [bend left] node[right]{[condition]}(etat2.north);
+\draw[lien] (test.west) to [bend right] node[left]{[else]} (etat3.north);
+\end{tikzpicture}
+\end{tcblisting}
+
+
+\subsubsection{Relations}
+
+Le style \textbf{lien}  permet de dessiner l'arc entre deux états et permet de placer la transition sur l'arc.
+
+\begin{tcblisting}{title={Relations},sidebyside, bicolor,colbacklower=white,center lower}
+\begin{tikzpicture}
+\node(a) at (0,0){};
+\node(b) at (3,1){};
+\draw[lien] (a) to[bend left=20] node[pos=0.5]{transition}(b);
+\node(c) at (0,-1){};
+\node(d) at (3,-0){};
+\draw[lien] (c) -| node[pos=0.3,above]{eve[garde]/action}(d);
+\end{tikzpicture}
+\end{tcblisting}
+
+\subsection{Exemple  avec boucle}
+
+\begin{tcblisting}{title={Machine à état: exemple loop},breakable, bicolor,colbacklower=white,center lower}
+\begin{tikzpicture}
+\sysmlStmStart{0,0}{init}
+\sysmlStmBlocComplet[right=5em of init,text width=8em]{eteinte}{Éteinte}{
+\begin{description}
+\item[entry :] $L=1$
+\end{description}}
+
+\sysmlStmBlocComplet[below=6em of eteinte,text width=14em]{eclairee}{Éclairée}{
+\begin{description}
+\item[entry :]$Lancer\,Tempo$\\
+\item[do:] $L=1$
+\end{description}}
+\draw[lien] (init) to [bend left=10] (eteinte.west);
+\draw[lien] (eteinte) to [bend left=15] node[right]{$d$} (eclairee);
+\draw[lien] (eclairee) to [bend left=15] node[left]{$after(30s)$} (eteinte);
+\draw[lien] (eclairee) edge[loop left] node[name=aa]{$d$}();
+
+\cartouchestm{Lampe}{(eteinte) (eclairee) (init) (aa) }{description}
+\end{tikzpicture}
+\end{tcblisting}
+
+\subsection{États composites}
+
+Il est bien sur possible de tracer un  état composite avec le package  en incluant une figure tikz dans un \verb!\node!.
+
+Pour cela, il est préférable de concevoir le schéma inclus dans une commande Latex puis l'intégrer dans l'état souhaité
+
+Il est important de préciser la propriété \verb![remember picture]!  si on souhaite créer un lien entre l'extérieur de l'état composite et un des états à l'intérieur. Il est alors nécessaire de compiler au moins deux fois pour avoir le tracé correct.
+
+Il faut aussi prendre en compte que Tikz  transfère les styles du node englobant aux nodes  intérieurs, il faut donc  préciser dans chaque sous schéma  les styles à appliquer  avec les commandes:
+
+\begin{itemize}
+\item commencer par remettre à 1 le nombre de sous partie du node avec  \verb!StmBlocPart=1!   dans l'environnement \textbf{tikzpicture}. on programme donc \verb!\begin{tikzpicture}[remember picture,StmBlocPart=1]!.  On précisera ensuite le nombre partie pour chaque état.
+\item On précise ensuite le style que l'on veut appliquer aux différents états:
+\begin{verbatim}\tikzset{StmBloc/.style={draw, rounded corners=1em, minimum height=5em, 
+minimum width=4em, text width=5em,align=center,fill=red!20}} \end{verbatim}.
+
+\end{itemize}
+
+
+
+\begin{tcblisting}{title={Machine à état: état composite},,breakable, bicolor,colbacklower=white,center lower}
+\newcommand{\composUn}{
+\begin{tikzpicture}[remember picture,StmBlocPart=1]
+\tikzset{StmBloc/.style={draw, rounded corners=1em, minimum height=10em,
+ minimum width=4em, text width=5em,align=center,fill=red!20}}
+\node[StmStart](init) at (0,0){};
+\node[StmBloc,right=4em of init](etat1){État \\1};
+\node[StmBloc,right=4em of etat1](etat2){État\\ 2};
+\draw[lien](init) to[bend left] (etat1.180);
+\draw[lien] (etat1.20) to[bend left=20]node{trans-1} (etat2.160);
+\draw[lien] (etat2.200) to[bend left=20]node{trans-2} (etat1.-20);
+\end{tikzpicture}
+}
+
+\begin{tikzpicture}[remember picture]
+\node[StmBlocPart,StmBloc](etatcompo){État composite
+\nodepart{two}
+{
+\composUn
+}
+};
+\node[StmBloc, below=2em of etatcompo](etatext){État //extérieur};
+\draw[lien] (etatext) to[bend right] (etat1);
+
+\cartouchestm{État composite}{(etatcompo) (etatext) }{...}
+\end{tikzpicture}
+\end{tcblisting}
+
+\subsection{États orthogonaux}
+
+Le tracé d'états orthogonaux va être réalisé comme pour les états composites en intégrant  les schémas dans un \verb!\node!. On prendra les mêmes précautions en ré-initialisant le style et le nombre partie dans les schémas inclus.
+
+\begin{tcblisting}{title={Machine à état: état composite},,breakable, bicolor,colbacklower=white,center lower}
+\newcommand{\composUn}{\begin{tikzpicture}[remember picture,StmBlocPart=1]
+\tikzset{StmBloc/.style={draw, rounded corners=1em, minimum height=4em,
+ minimum width=4em, text width=5em,align=center,fill=green!20}}
+\node[StmStart](init) at (0,0){};
+\node[StmBloc,right=4em of init](etat1){État \\1};
+\node[StmBloc,right=4em of etat1](etat2){État \\2};
+\draw[lien](init) to[bend left] (etat1.180);
+\draw[lien] (etat1.20) to[bend left=20]node{trans-1} (etat2.160);
+\draw[lien] (etat2.200) to[bend left=20]node{trans-2} (etat1.-20);
+\end{tikzpicture}
+}
+
+\newcommand{\composDeux}{
+\begin{tikzpicture}[remember picture,StmBlocPart=1]
+\tikzset{StmBloc/.style={draw, rounded corners=1em, minimum height=4em,
+ minimum width=4em, text width=5em,align=center,fill=red!20}}
+\node[StmStart](init) at (0,0){};
+\node[StmBloc,right=4em of init](etat3){État\\ 3};
+\node[StmBloc,right=4em of etat3](etat4){État\\ 4};
+\draw[lien](init) to[bend left] (etat3.180);
+\draw[lien] (etat3.20) to[bend left=20]node{trans-1} (etat4.160);
+\draw[lien] (etat4.200) to[bend left=20]node{trans-2} (etat3.-20);
+\end{tikzpicture}
+}
+
+\begin{tikzpicture}[remember picture]
+\node[StmBlocPart=3,StmBloc](etatcompo){État composite
+\nodepart{two}
+\composUn
+\nodepart{three}
+\composDeux
+};
+
+
+\cartouchestm{État orthogonaux}{(etatcompo) }{...}
+\end{tikzpicture}
+\end{tcblisting}
+
+\subsection{Exemple avec fork / join}
+
+
+\begin{tcblisting}{title={Machine à état: état composite},,breakable, bicolor,colbacklower=white,center lower}
+\newcommand{\composUn}{
+\begin{tikzpicture}[remember picture,StmBlocPart=1]
+\tikzset{StmBloc/.style={draw, rounded corners=1em, minimum height=4em,
+ minimum width=4em, text width=5em,align=center,fill=green!20}}
+\node[StmBloc](etat1){État \\1};
+\node[StmBloc,right=4em of etat1](etat2){État \\n2};
+\draw[lien] (etat1.20) to[bend left=20]node[pos=0.5,above]{trans-1} (etat2.160);
+\draw[lien] (etat2.200) to[bend left=20]node[pos=0.5,below]{trans-2} (etat1.-20);
+\end{tikzpicture}
+}
+
+\newcommand{\composDeux}{
+\begin{tikzpicture}[remember picture,StmBlocPart=1]
+\tikzset{StmBloc/.style={draw, rounded corners=1em, minimum height=4em,
+ minimum width=4em, text width=5em,align=center,fill=red!20}}
+\node[StmBloc](etat3){État\\3};
+\node[StmBloc,right=4em of etat3](etat4){État \\4};
+\draw[lien] (etat3.20) to[bend left=20]node[pos=0.5,above]{trans-3} (etat4.160);
+\draw[lien] (etat4.200) to[bend left=20]node[pos=0.5,below]{trans-4} (etat3.-20);
+\end{tikzpicture}
+}
+
+\begin{tikzpicture}[remember picture]
+\node[StmBloc](etat0){État début};
+\node[StmForkJoin=5em,right=3em of etat0](fork1){};
+\node[StmBlocPart=3,StmBloc,right=3em of fork1](etatcompo){État composite
+\nodepart{two}
+\composUn
+\nodepart{three}
+\composDeux
+};
+\node[StmForkJoin=5em,right=3em of etatcompo](join1){};
+\node[StmBloc,right=3em of join1](etatfin){État fin};
+
+\draw[lien](etat0) -- (fork1);
+\draw[lien](fork1.60) -- (etat1.west);
+\draw[lien](fork1.-60) -- (etat3.west);
+\draw[lien](etat2.east) -- (join1.120);
+\draw[lien]  (etat4.east)--(join1.240);
+\draw (join1) -- (etatfin);
+\end{tikzpicture}
+\end{tcblisting}
+
+\subsubsection{Exemple complexe}
+
+
+Ce dernier exemple relativement complexe avec deux états composites inclus l'un dans l'autre est probablement la limite en terme de complexité avec les états composites.
+
+
+\begin{tcblisting}{title={Machine à état: Exemple complexe},,breakable, bicolor,colbacklower=white,center lower}
+\newcommand{\marcheUn}{
+\tikz\node[StmBlocPart=1,StmBloc,text width=17em]{
+\begin{description}
+\item[entry :] Remise\_à\_zéro\_Timer;\\ Mémoriser\_Temps\_cuisson;
+\end{description}};
+}
+
+
+\newcommand{\marcheDeux}{
+\begin{tikzpicture}[remember picture]
+\tikzset{StmBloc/.style={draw, rounded corners=1em, minimum height=4em,
+ minimum width=4em, text width=5em,align=center,fill=yellow!20}}
+\sysmlStmStart{0,0}{initOn}
+\sysmlStmBlocComplet[below=3em of initOn, text width=8em]{repos}{Repos}{
+\begin{description}
+\item[entry :] Timer en pause
+\end{description}
+};
+\sysmlStmBlocComplet[left=7em of repos, text width=12em]{cuisson}{Cuisson}{
+\begin{description}
+\item[entry :] Lancer\_Timer
+\item[do:] Générer\_micro-ondes
+\end{description}
+}
+\draw[lien] (repos) to[bend right] node(notin){[in (Fermée)]} (cuisson);
+\draw[lien] (cuisson) to[bend right] node[below](in){[not in (Fermée)]} (repos);
+\draw[lien] (initOn) to [bend right] (repos);
+
+\end{tikzpicture}
+}
+
+\newcommand{\enmarche}{
+\begin{tikzpicture}[remember picture,StmBlocPart=1]
+\tikzset{StmBloc/.style={draw, rounded corners=1em, minimum height=4em,
+ minimum width=4em, text width=5em,align=center,fill=red!20}}
+%\node[fill=black,draw,circle] (initOn){};
+\node[StmBlocPart=3,StmBloc,text width=28em](marche){
+En Marche
+\nodepart{two}
+\marcheUn
+
+\nodepart{three}
+\marcheDeux
+};
+
+\coordinate[left=8em of marche.160](initUp);
+\sysmlStmStart{initUp}{initUp}
+\node[StmBloc,below=3em of initUp](arret){Arrêt};
+%\sysmlStmBlocComplet[below=3em of initUp,StmBlocPart=1]{arret}{Arrêt}{}
+
+\draw[lien] (initUp) to [bend left] (arret);
+
+\draw[lien] (arret) to [bend left]node[below]{marche} (marche.170);
+\draw[lien] (marche.190) to [bend left]node[above]{arrêt} (arret);
+\draw[lien] (cuisson) to [bend left]node[pos=0.1,below left,text width=10em]{[Timer$\geq$Temps\_cuisson]} (arret.250);
+\end{tikzpicture}
+}
+
+
+\newcommand{\cycleporte}{
+\begin{tikzpicture}[remember picture,StmBlocPart=1]
+\sysmlStmStart{0,0}{initporte}
+\node[StmBloc,right=6em of initporte](fermee){Porte\\ fermée};
+\node[StmBloc,right=6em of fermee](ouverte){Porte\\ ouverte};
+
+\draw[lien] (initporte) to (fermee);
+\draw[lien] (fermee) to [bend left=10]node{porte\_ouverte} (ouverte);
+\draw[lien](ouverte) to [bend left=10]node[below]{porte\_fermée)}  (fermee);
+\end{tikzpicture}
+}
+
+\begin{tikzpicture}[remember picture]
+
+\node[StmBlocPart=3,draw](microonde){Micro-onde
+\nodepart{two}
+\enmarche
+\nodepart{three}
+\cycleporte
+ };
+\end{tikzpicture}
+\end{tcblisting}
+
+
+\section{Diagramme de séquence : sd}
+
+Le package ne prévoit pas de commande spécifique pour les diagrammes de séquences. Le package \textbf{pgf-umplsd} \href{https://ctan.org/pkg/pgf-umlsd}{https://ctan.org/pkg/pgf-umlsd}  sur le CTAN  permet de tracer de très beau diagramme de séquence.
+
+\begin{tcblisting}{title={Diagramme de séquence},,breakable, bicolor,colbacklower=white,center lower}
+\begin{sequencediagram}
+  \newthread{ss}{:SimulationServer}
+  \newinst{ctr}{:SimControlNode}
+  \newinst{ps}{:PhysicsServer}
+  \newinst[1]{sense}{:SenseServer}
+  
+  \begin{call}{ss}{Initialize()}{sense}{}
+  \end{call}
+  \begin{sdblock}{Run Loop}{The main loop}
+    \begin{call}{ss}{StartCycle()}{ctr}{}
+      \begin{call}{ctr}{ActAgent()}{sense}{}
+      \end{call}
+    \end{call}
+    \begin{call}{ss}{Update()}{ps}{}
+      \begin{messcall}{ps}{PrePhysicsUpdate()}{sense}{state}
+      \end{messcall}
+      \begin{sdblock}{Physics Loop}{}
+        \begin{call}{ps}{PhysicsUpdate()}{ps}{}
+        \end{call}
+      \end{sdblock}
+      \begin{call}{ps}{PostPhysicsUpdate()}{sense}{}
+      \end{call}
+    \end{call}
+    \begin{call}{ss}{EndCycle()}{ctr}{}
+      \begin{call}{ctr}{SenseAgent()}{sense}{}
+      \end{call}
+    \end{call}
+  \end{sdblock}
+\end{sequencediagram}
+\end{tcblisting}
+
+
+\section{Diagramme d'activité : act}
+
+Peut-être un jour!
+
+\end{document}
