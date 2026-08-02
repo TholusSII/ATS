@@ -1,0 +1,38 @@
+% ============================================================================
+% CORRECTIF NUMÉRIQUE — DIAGRAMME DE BODE DU SECOND ORDRE
+% ============================================================================
+% Ce correctif remplace uniquement le calcul du module de \TLBodeSecondOrdre.
+% La normalisation par max(1,r^2) évite les valeurs intermédiaires trop grandes
+% pour PGF/TikZ, sans modifier la fonction mathématique représentée.
+
+\RenewDocumentCommand{\TLBodeSecondOrdre}{O{1} O{0.7} O{1}}{%
+  \begin{center}
+  \begin{tikzpicture}[x=1.65cm,y=.035cm]
+    \UnitedB\OrdBode{20}\semilog*{-2}{2}{-80}{40}
+    \draw[Bode lines,domain=-2:2,samples=160,smooth]
+      plot (\x,{%
+        20*ln(abs(%
+          #1/(%
+            max(1,(pow(10,\x)/#3)^2)*%
+            sqrt(%
+              ((1-(pow(10,\x)/#3)^2)/%
+                max(1,(pow(10,\x)/#3)^2))^2%
+              +%
+              ((2*#2*pow(10,\x)/#3)/%
+                max(1,(pow(10,\x)/#3)^2))^2%
+            )%
+          )%
+        ))/ln(10)%
+      });
+  \end{tikzpicture}
+
+  \vspace{2mm}
+  \begin{tikzpicture}[x=1.65cm,y=.022cm]
+    \UniteDegre\OrdBode{45}\semilog*{-2}{2}{-180}{0}
+    \draw[Bode lines,domain=-2:2,samples=160,smooth]
+      plot (\x,{-atan2(2*#2*pow(10,\x)/#3,1-(pow(10,\x)/#3)^2)});
+  \end{tikzpicture}
+  \end{center}
+}
+
+\endinput
