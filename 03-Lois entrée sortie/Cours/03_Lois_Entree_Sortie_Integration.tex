@@ -1,0 +1,71 @@
+% Couche locale d'intégration de la conversion Word du cours de lois E/S.
+% Ce fichier doit être chargé dans un groupe TeX.
+
+\makeatletter
+\let\TLThreeOriginalIncludeGraphics\includegraphics
+
+\RenewDocumentCommand{\includegraphics}{s O{} m}{%
+  \begingroup
+  \filename@parse{#3}%
+  \edef\TLThreeGraphicBase{\filename@base}%
+
+  % Pictogrammes injectés dans les titres par la conversion Word.
+  \ifboolexpr{
+    test {\ifdefstring{\TLThreeGraphicBase}{image8}}
+    or test {\ifdefstring{\TLThreeGraphicBase}{image26}}
+    or test {\ifdefstring{\TLThreeGraphicBase}{image30}}
+    or test {\ifdefstring{\TLThreeGraphicBase}{image32}}
+    or test {\ifdefstring{\TLThreeGraphicBase}{image33}}
+    or test {\ifdefstring{\TLThreeGraphicBase}{image34}}
+  }{%
+    % rien
+  }{%
+    \ifdefstring{\TLThreeGraphicBase}{image22}{%
+      \TLThreeOriginalIncludeGraphics[width=8mm,height=8mm,keepaspectratio]{#3}%
+    }{%
+      \ifdefstring{\TLThreeGraphicBase}{image11}{%
+        \ifinner
+          \TLThreeOriginalIncludeGraphics[width=.72\linewidth,height=.22\textheight,keepaspectratio]{#3}%
+        \else
+          \par\noindent
+          \makebox[\linewidth][c]{%
+            \TLThreeOriginalIncludeGraphics[width=.58\linewidth,height=.30\textheight,keepaspectratio]{#3}%
+          }%
+          \par\noindent
+        \fi
+      }{%
+        \ifdefstring{\TLThreeGraphicBase}{image31}{%
+          \ifinner
+            \TLThreeOriginalIncludeGraphics[width=.78\linewidth,height=.30\textheight,keepaspectratio]{#3}%
+          \else
+            \par\noindent
+            \makebox[\linewidth][c]{%
+              \TLThreeOriginalIncludeGraphics[width=.72\linewidth,height=.34\textheight,keepaspectratio]{#3}%
+            }%
+            \par\noindent
+          \fi
+        }{%
+          \ifinner
+            \adjustbox{max width=.92\linewidth,max totalheight=.70\textheight}{%
+              \IfBooleanTF{#1}
+                {\TLThreeOriginalIncludeGraphics*[#2]{#3}}
+                {\TLThreeOriginalIncludeGraphics[#2]{#3}}%
+            }%
+          \else
+            \par\noindent
+            \makebox[\linewidth][c]{%
+              \adjustbox{max width=.94\linewidth,max totalheight=.76\textheight}{%
+                \IfBooleanTF{#1}
+                  {\TLThreeOriginalIncludeGraphics*[#2]{#3}}
+                  {\TLThreeOriginalIncludeGraphics[#2]{#3}}%
+              }%
+            }%
+            \par\noindent
+          \fi
+        }%
+      }%
+    }%
+  }%
+  \endgroup
+}
+\makeatother
