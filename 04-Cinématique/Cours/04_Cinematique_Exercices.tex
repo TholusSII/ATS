@@ -1,5 +1,5 @@
 % Exercices de la première passe « Approche cinématique ».
-% Le titre de la partie exercices est créé par le document maître.
+% Le titre et le label de la partie exercices sont créés par le document maître.
 
 \begingroup
 \input{04_Cinematique_Integration}
@@ -7,7 +7,7 @@
 \CatchFileDef{\TLFourKSource}{contenu.tex}{}
 \TLApplyCinematiquePatches{\TLFourKSource}
 
-\long\def\TLFourKExtractExercises#1\subsection{Exercices du chapitre}#2\TLFourKStop{#2}
+\long\def\TLFourKExtractExercises#1\subsection{Exercices du chapitre}\label{exercices-du-chapitre}#2\TLFourKStop{#2}
 
 \small
 \sloppy
