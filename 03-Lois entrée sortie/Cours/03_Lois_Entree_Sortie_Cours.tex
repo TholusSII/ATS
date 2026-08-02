@@ -1,2 +1,46 @@
 % Première passe du cours 03, conservée sans réécriture.
+% Cette couche locale corrige uniquement les inclusions d'images produites
+% automatiquement par la conversion Word/Pandoc.
+
+\begingroup
+\makeatletter
+\let\TLThreeOriginalIncludeGraphics\includegraphics
+
+\RenewDocumentCommand{\includegraphics}{s O{} m}{%
+  \begingroup
+  \filename@parse{#3}%
+  \edef\TLThreeGraphicBase{\filename@base}%
+
+  % image8 avait été insérée directement dans le titre du cas n°2, ce qui
+  % provoquait un débordement et polluait le signet PDF. L'illustration utile
+  % du robot est déjà fournie juste après par image9.
+  \ifdefstring{\TLThreeGraphicBase}{image8}{%
+    % rien
+  }{%
+    \ifinner
+      % Dans les tableaux, minipages et boîtes, on respecte la largeur locale.
+      \adjustbox{max width=.96\linewidth,max totalheight=.75\textheight}{%
+        \IfBooleanTF{#1}
+          {\TLThreeOriginalIncludeGraphics*[#2]{#3}}
+          {\TLThreeOriginalIncludeGraphics[#2]{#3}}%
+      }%
+    \else
+      % Dans le corps du texte, chaque image devient un vrai bloc centré.
+      % Cela évite les séquences image + texte ou image + image sur la même ligne.
+      \par\noindent
+      \makebox[\linewidth][c]{%
+        \adjustbox{max width=.96\linewidth,max totalheight=.78\textheight}{%
+          \IfBooleanTF{#1}
+            {\TLThreeOriginalIncludeGraphics*[#2]{#3}}
+            {\TLThreeOriginalIncludeGraphics[#2]{#3}}%
+        }%
+      }%
+      \par\noindent
+    \fi
+  }%
+  \endgroup
+}
+\makeatother
+
 \input{contenu.tex}
+\endgroup
