@@ -1,0 +1,204 @@
+name: Normaliser le cours 05 systèmes asservis
+
+on:
+  push:
+    paths:
+      - .github/workflows/normalize-course5.yml
+
+permissions:
+  contents: write
+
+jobs:
+  normalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Installer Inkscape
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y inkscape
+
+      - name: Convertir les anciens formats vectoriels
+        shell: bash
+        run: |
+          set -euo pipefail
+          img='05-Modélisation Systèmes Asservis/Cours/modelisation/images'
+          find "$img" -type f \( -iname '*.emf' -o -iname '*.wmf' \) -print0 |
+          while IFS= read -r -d '' file; do
+            pdf="${file%.*}.pdf"
+            if [ ! -s "$pdf" ]; then
+              inkscape "$file" --export-filename="$pdf" >/tmp/inkscape-course5.log 2>&1 || true
+            fi
+          done
+
+      - name: Générer les quatre parties du cours
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          root = Path('05-Modélisation Systèmes Asservis/Cours')
+          sources = root / 'sources'
+          sources.mkdir(exist_ok=True)
+
+          # -----------------------------------------------------------------
+          # Introduction : séparation cours / exercices sans modifier contenu.tex
+          # -----------------------------------------------------------------
+          intro = (root / 'contenu.tex').read_text(encoding='utf-8')
+          intro_marker = r'\section{Exercices du chapitre}\label{exercices-du-chapitre}'
+          if intro_marker not in intro:
+              raise SystemExit('Séparateur des exercices d introduction introuvable')
+          intro_course, intro_exercises = intro.split(intro_marker, 1)
+          (sources / '05_Introduction_SA_Cours.tex').write_text(
+              '% Partie cours issue de 7-IntroductionSA2022.docx.\n' + intro_course.strip() + '\n',
+              encoding='utf-8'
+          )
+          (sources / '05_Introduction_SA_Exercices.tex').write_text(
+              '% Exercices issus de 7-IntroductionSA2022.docx.\n' + intro_exercises.strip() + '\n',
+              encoding='utf-8'
+          )
+
+          # -----------------------------------------------------------------
+          # Modélisation : retrait de la table Word et séparation des questions
+          # -----------------------------------------------------------------
+          model = (root / 'modelisation' / 'contenu.tex').read_text(encoding='utf-8')
+          model = model.replace('./images/', 'modelisation/images/')
+
+          start_marker = r'\hypertarget{mise-en-situation}{%'
+          question_marker = r'\hypertarget{questions-de-cours}{%'
+          if start_marker not in model or question_marker not in model:
+              raise SystemExit('Repères du cours de modélisation introuvables')
+          model = model[model.index(start_marker):]
+          model_course, model_questions = model.split(question_marker, 1)
+
+          # Supprimer les pictogrammes injectés dans les titres PDF.
+          model_course = re.sub(
+              r'\\protect\\includegraphics(?:\[[^\]]*\])?\{[^}]+\}',
+              '',
+              model_course
+          )
+
+          # Le bandeau image10 est un résidu Word répété ; les règles de blocs
+          # sont reconstruites avec schemabloc.
+          model_course = re.sub(
+              r'\\includegraphics(?:\[[^\]]*\])?\{modelisation/images/image10\.png\}',
+              '',
+              model_course
+          )
+          model_course = re.sub(
+              r'\\includegraphics(?:\[[^\]]*\])?\{modelisation/images/image57\.(?:emf|pdf)\}',
+              '',
+              model_course,
+              flags=re.IGNORECASE
+          )
+
+          def insert_after_label(text: str, label: str, insertion: str) -> str:
+              token = rf'\label{{{label}}}}}'
+              if token not in text:
+                  raise SystemExit(f'Label introuvable : {label}')
+              return text.replace(token, token + '\n\n' + insertion + '\n', 1)
+
+          model_course = insert_after_label(
+              model_course,
+              'eluxe9ments-de-bases',
+              r'\SASchemaElementsBase'
+          )
+          model_course = insert_after_label(
+              model_course,
+              'manipulation-des-blocs',
+              r'\SAChaineAsservie'
+          )
+          model_course = insert_after_label(
+              model_course,
+              'simplifier-un-schuxe9ma-bloc',
+              r'\TLReglesBlocs'
+          )
+          model_course = insert_after_label(
+              model_course,
+              'schuxe9ma-bloc-dun-systuxe8me-perturbuxe9',
+              r'\TLSchemaPerturbe'
+          )
+          model_course = insert_after_label(
+              model_course,
+              'gain-et-phase',
+              r'\TLBodePremierOrdre[1][1]'
+          )
+          model_course = insert_after_label(
+              model_course,
+              'bilan-du-comportement-dun-moduxe8le-du-2uxe8me-ordre',
+              r'\TLBodeSecondOrdre[1][0.7][1]'
+          )
+          model_course = insert_after_label(
+              model_course,
+              'intuxe9ruxeat-de-luxe9chelle-logarithmique',
+              r'\TLBodeIntegrateur[1]'
+          )
+
+          # Utiliser les PDF convertis dès qu'ils existent.
+          img_dir = root / 'modelisation' / 'images'
+          for ext in ('emf', 'EMF', 'wmf', 'WMF'):
+              pattern = re.compile(rf'(modelisation/images/[^{{}}]+)\.{ext}(?=\}})')
+              def repl(match):
+                  rel = match.group(1)
+                  pdf = root / (rel + '.pdf')
+                  return rel + '.pdf' if pdf.exists() else match.group(0)
+              model_course = pattern.sub(repl, model_course)
+
+          # Préfixer tous les labels/hyperliens de la seconde source pour éviter
+          # les collisions avec le cours d'introduction.
+          model_course = re.sub(r'\\label\{([^}]+)\}', r'\\label{mod-\1}', model_course)
+          model_course = re.sub(r'\\hypertarget\{([^}]+)\}', r'\\hypertarget{mod-\1}', model_course)
+          model_course = re.sub(r'\\hyperlink\{([^}]+)\}', r'\\hyperlink{mod-\1}', model_course)
+
+          # Transformer les questions de cours Word en liste LaTeX propre.
+          questions = []
+          for line in model_questions.splitlines():
+              line = line.strip()
+              if line.startswith('- '):
+                  questions.append(line[2:].strip())
+          if not questions:
+              raise SystemExit('Aucune question de modélisation extraite')
+          model_exercises = [
+              '% Questions de cours issues de 8-ModelisationSA2023.docx.',
+              r'\begin{enumerate}',
+          ]
+          model_exercises.extend(r'\item ' + q for q in questions)
+          model_exercises.append(r'\end{enumerate}')
+
+          (sources / '05_Modelisation_SA_Cours.tex').write_text(
+              '% Partie cours issue de 8-ModelisationSA2023.docx.\n' + model_course.strip() + '\n',
+              encoding='utf-8'
+          )
+          (sources / '05_Modelisation_SA_Exercices.tex').write_text(
+              '\n'.join(model_exercises) + '\n',
+              encoding='utf-8'
+          )
+
+          # Correction d'une option issue de la première version de la bibliothèque.
+          style = Path('Style/TLSystemesAsservis.sty')
+          style_text = style.read_text(encoding='utf-8')
+          style_text = style_text.replace(
+              'width=#2,max height=.30\\textheight,keepaspectratio',
+              'width=#2,height=.30\\textheight,keepaspectratio'
+          )
+          style_text = style_text.replace(
+              'width=#4,max height=.30\\textheight,keepaspectratio',
+              'width=#4,height=.30\\textheight,keepaspectratio'
+          )
+          style.write_text(style_text, encoding='utf-8')
+          PY
+
+      - name: Publier les sources normalisées
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add '05-Modélisation Systèmes Asservis/Cours/sources' \
+                  '05-Modélisation Systèmes Asservis/Cours/modelisation/images' \
+                  'Style/TLSystemesAsservis.sty'
+          git commit -m 'Normalise les deux parties du cours 05'
+          git push
