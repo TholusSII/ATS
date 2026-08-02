@@ -6,10 +6,10 @@ aaf1175fdbaf: Pulling fs layer
 efd4e9480dcc: Pulling fs layer
 339aef223ec0: Pulling fs layer
 339aef223ec0: Waiting
-aaf1175fdbaf: Verifying Checksum
-aaf1175fdbaf: Download complete
 f876fef47397: Verifying Checksum
 f876fef47397: Download complete
+aaf1175fdbaf: Verifying Checksum
+aaf1175fdbaf: Download complete
 efd4e9480dcc: Verifying Checksum
 efd4e9480dcc: Download complete
 f876fef47397: Pull complete
@@ -20,9 +20,4 @@ efd4e9480dcc: Pull complete
 339aef223ec0: Pull complete
 Digest: sha256:11383430b9a3e48c0b79339f34d8092f942f897d91ab3749d4899d06731fea7f
 Status: Downloaded newer image for ghcr.io/xu-cheng/texlive-full:latest
-PWD=/work/05-Modélisation Systèmes Asservis/Cours
-TEXINPUTS=/work/Style//:
-/bin/bash: line 6: kpsewhich: command not found
--rw-r--r--    1 1001     1001          3646 Aug  2 19:45 00_Systemes_Asservis.tex
--rw-r--r--    1 1001     1001          2548 Aug  2 19:45 05_Systemes_Asservis.tex
-/bin/bash: line 9: pdflatex: command not found
+pdflatex introuvable dans le conteneur
