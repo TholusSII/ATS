@@ -1,0 +1,47 @@
+name: Corriger les packages du cours 05
+
+on:
+  push:
+    paths:
+      - .github/workflows/fix-course5-packages.yml
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Charger directement schémabloc et Bode
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('Style/TLSystemesAsservis.sty')
+          text = path.read_text(encoding='utf-8')
+          old = '''% Notations_SLCI charge également schemabloc et bodegraph.
+% L'option noRaccourci évite notamment de redéfinir \\L.
+\\RequirePackage[noRaccourci]{Notations_SLCI}'''
+          new = '''% Les deux bibliothèques historiques sont chargées directement.
+% Cela évite les raccourcis de Notations_Maths qui entrent en conflit avec
+% le framework commun, tout en conservant les commandes de blocs et de Bode.
+\\RequirePackage{schemabloc}
+\\RequirePackage{bodegraph}'''
+          if old not in text:
+              raise SystemExit('Bloc Notations_SLCI introuvable')
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
+
+      - name: Supprimer ce workflow et publier
+        shell: bash
+        run: |
+          git rm .github/workflows/fix-course5-packages.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add Style/TLSystemesAsservis.sty
+          git commit -m 'Évite le conflit Notations Maths du cours 05'
+          git push
