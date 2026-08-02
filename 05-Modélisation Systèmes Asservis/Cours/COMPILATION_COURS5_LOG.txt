@@ -6,10 +6,12 @@ aaf1175fdbaf: Pulling fs layer
 efd4e9480dcc: Pulling fs layer
 339aef223ec0: Pulling fs layer
 339aef223ec0: Waiting
+aaf1175fdbaf: Verifying Checksum
 aaf1175fdbaf: Download complete
-f876fef47397: Download complete
 efd4e9480dcc: Verifying Checksum
 efd4e9480dcc: Download complete
+f876fef47397: Verifying Checksum
+f876fef47397: Download complete
 f876fef47397: Pull complete
 aaf1175fdbaf: Pull complete
 efd4e9480dcc: Pull complete
@@ -25,8 +27,8 @@ TEXBIN=/opt/texlive/texdir/bin/x86_64-linuxmusl
 TEXINPUTS=/work/Style//:
 /opt/texlive/texdir/bin/x86_64-linuxmusl/pdflatex
 /work/Style/kaobook.cls
--rw-r--r--    1 1001     1001          3646 Aug  2 19:52 00_Systemes_Asservis.tex
--rw-r--r--    1 1001     1001          2548 Aug  2 19:52 05_Systemes_Asservis.tex
+-rw-r--r--    1 1001     1001          3646 Aug  2 19:58 00_Systemes_Asservis.tex
+-rw-r--r--    1 1001     1001          2548 Aug  2 19:58 05_Systemes_Asservis.tex
 This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
@@ -475,11 +477,7 @@ LaTeX Warning: You have requested file `',
 
 
 (/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta
-.code.tex) (/work/Style/Notations_SLCI/Notations_SLCI.sty
-(/opt/texlive/texdir/texmf-dist/tex/latex/jknapltx/mathrsfs.sty)
-(/opt/texlive/texdir/texmf-dist/tex/latex/xargs/xargs.sty)
-(/work/Style/bodegraph.sty
-(/opt/texlive/texdir/texmf-dist/tex/latex/ifsym/ifsym.sty)
+.code.tex) (/work/Style/schemabloc.sty
 (/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
 kzlibraryshapes.code.tex
 (/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
@@ -509,27 +507,81 @@ es.multipart.code.tex)))
 (/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
 kzlibraryarrows.code.tex
 (/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code
-.tex))
+.tex))) (/work/Style/bodegraph.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/ifsym/ifsym.sty)
 (/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
 kzlibrarybackgrounds.code.tex)
 (/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
 kzlibrarydecorations.markings.code.tex
 (/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrar
-ydecorations.markings.code.tex))) (/work/Style/schemabloc.sty)
-(/work/Style/Notations_Maths/Notations_Maths.sty
-(/opt/texlive/texdir/texmf-dist/tex/latex/tools/bm.sty)
+ydecorations.markings.code.tex))))
+Writing index file 00_Systemes_Asservis.idx
+(/opt/texlive/texdir/texmf-dist/tex/latex/scrhack/scrhack.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/floatrowbytocbasic/floatrowbytocbasic
+.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/setspaceenhanced/setspaceenhanced.sty
+))
+No file 00_Systemes_Asservis.aux.
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/omlnpxmi.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/unpxexa.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/lmsnpxsy.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/lmxnpxexx.fd)
+(/opt/texlive/texdir/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/opt/texlive/texdir/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/opt/texlive/texdir/texmf-dist/tex/latex/microtype/mt-ppl.cfg)
+(/opt/texlive/texdir/texmf-dist/tex/latex/caption/ltcaption.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/floatrow/fr-subfig.sty
 
-/work/Style/Notations_Maths/Notations_Maths.sty:75: LaTeX Error: Command \ii al
-ready defined.
-               Or name \end... illegal, see p.192 of the manual.
+Package fr-subfig Warning: The additions cooperated with 
+(fr-subfig)                version `2005/06/28 ver: 1.3' of package subfig,
+(fr-subfig)                but only version
+(fr-subfig)                2005/06/28 ver: 1.3 subfig package'
+(fr-subfig)                is available on input line 34.
 
-See the LaTeX manual or LaTeX Companion for explanation.
+) (/opt/texlive/texdir/texmf-dist/tex/latex/floatrow/fr-longtable.sty)
+No file 00_Systemes_Asservis.toc.
+(/opt/texlive/texdir/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/pdflscape/pdflscape-nometadata.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/graphics/lscape.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/lscapeenhanced/lscapeenhanced.sty)))
+(./05_Systemes_Asservis.tex
+(/opt/texlive/texdir/texmf-dist/tex/latex/tex-gyre/t1qhv.fd) [1{/opt/texlive/te
+xdir/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/opt/texlive/texdir/texmf-di
+st/fonts/enc/dvips/tex-gyre/q-ec.enc}{/opt/texlive/texdir/texmf-dist/fonts/enc/
+dvips/newtx/ntx-ec-lf.enc} <../..//Style/FondPoly.png>]
+(./00_Systemes_Asservis.mw)
+
+Class scrbook Warning: odd/even page label number 1 undefined on input line 40.
+
+
+(./05_Systemes_Asservis_Integration.tex)
+(./sources/05_Introduction_SA_Cours.tex
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/ot1minzpl.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/opt/texlive/texdir/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/microtype/mt-msb.cfg)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/unpxmia.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/unpxsym.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/unpxsyc.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/ts1zpllf.fd)
+
+LaTeX Warning: File `images/image6.png' not found on input line 110.
+
+
+./sources/05_Introduction_SA_Cours.tex:110: Package pdftex.def Error: File `ima
+ges/image6.png' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.75 \newcommand{\ii}	\iComplexe
-                                	%Nombre complexe, initialement un e dans le...
-
-/work/Style/Notations_Maths/Notations_Maths.sty:75:  ==> Fatal error occurred, 
-no output PDF file produced!
+l.110 \SAimage{images/image6.png}{78mm}{52mm}
+                                             Une
+./sources/05_Introduction_SA_Cours.tex:110:  ==> Fatal error occurred, no outpu
+t PDF file produced!
 Transcript written on 00_Systemes_Asservis.log.
