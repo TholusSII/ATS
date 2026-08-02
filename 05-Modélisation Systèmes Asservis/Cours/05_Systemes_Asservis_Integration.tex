@@ -1,0 +1,110 @@
+% Couche d'intégration des deux conversions Word/Pandoc du cours 05.
+% Les contenus sources restent conservés ; les images sont sécurisées ici.
+
+\makeatletter
+\let\TLFiveOriginalIncludeGraphics\includegraphics
+\newif\ifTLFiveVectorGraphic
+
+\newcommand{\TLFiveMissingGraphic}[1]{%
+  \begin{tikzpicture}[baseline=(current bounding box.center)]
+    \node[
+      draw=TLCoverBlue!55,
+      rounded corners=1mm,
+      fill=TLCoverBlue!4,
+      text=TLCoverBlue!80!black,
+      align=center,
+      font=\sffamily\scriptsize,
+      inner sep=2mm,
+      text width=27mm
+    ] {Illustration vectorielle\\non convertie\\\ttfamily #1};
+  \end{tikzpicture}%
+}
+
+\newcommand{\TLFivePlaceOriginal}[3]{%
+  \ifinner
+    \ifdim\linewidth<12mm
+      \TLFiveOriginalIncludeGraphics[width=8mm,height=8mm,keepaspectratio]{#3}%
+    \else
+      \adjustbox{max width=.92\linewidth,max totalheight=.68\textheight}{%
+        \IfBooleanTF{#1}
+          {\TLFiveOriginalIncludeGraphics*[#2]{#3}}
+          {\TLFiveOriginalIncludeGraphics[#2]{#3}}%
+      }%
+    \fi
+  \else
+    \par\noindent
+    \makebox[\linewidth][c]{%
+      \adjustbox{max width=.95\linewidth,max totalheight=.76\textheight}{%
+        \IfBooleanTF{#1}
+          {\TLFiveOriginalIncludeGraphics*[#2]{#3}}
+          {\TLFiveOriginalIncludeGraphics[#2]{#3}}%
+      }%
+    }%
+    \par\noindent
+  \fi
+}
+
+\newcommand{\TLFivePlaceConverted}[1]{%
+  \ifinner
+    \ifdim\linewidth<12mm
+      \TLFiveOriginalIncludeGraphics[width=8mm,height=8mm,keepaspectratio]{#1}%
+    \else
+      \adjustbox{max width=.92\linewidth,max totalheight=.68\textheight}{%
+        \TLFiveOriginalIncludeGraphics[width=\linewidth,height=.68\textheight,keepaspectratio]{#1}%
+      }%
+    \fi
+  \else
+    \par\noindent
+    \makebox[\linewidth][c]{%
+      \adjustbox{max width=.95\linewidth,max totalheight=.76\textheight}{%
+        \TLFiveOriginalIncludeGraphics[width=\linewidth,height=.74\textheight,keepaspectratio]{#1}%
+      }%
+    }%
+    \par\noindent
+  \fi
+}
+
+\RenewDocumentCommand{\includegraphics}{s O{} m}{%
+  \begingroup
+  \filename@parse{#3}%
+  \edef\TLFiveGraphicExtension{\filename@ext}%
+  \edef\TLFiveGraphicStem{\filename@area\filename@base}%
+  \edef\TLFiveGraphicBase{\filename@base}%
+  \edef\TLFiveGraphicFull{#3}%
+
+  % image10 est un bandeau Word répété de nombreuses fois. image57 est
+  % remplacée par les règles de simplification produites avec schemabloc.
+  \ifboolexpr{
+    test {\ifdefstring{\TLFiveGraphicFull}{modelisation/images/image10.png}}
+    or test {\ifdefstring{\TLFiveGraphicFull}{modelisation/images/image57.pdf}}
+    or test {\ifdefstring{\TLFiveGraphicFull}{modelisation/images/image57.emf}}
+  }{%
+    % rien
+  }{%
+    \TLFiveVectorGraphicfalse
+    \ifdefstring{\TLFiveGraphicExtension}{emf}{\TLFiveVectorGraphictrue}{}
+    \ifdefstring{\TLFiveGraphicExtension}{EMF}{\TLFiveVectorGraphictrue}{}
+    \ifdefstring{\TLFiveGraphicExtension}{wmf}{\TLFiveVectorGraphictrue}{}
+    \ifdefstring{\TLFiveGraphicExtension}{WMF}{\TLFiveVectorGraphictrue}{}
+
+    \ifTLFiveVectorGraphic
+      \IfFileExists{\TLFiveGraphicStem.pdf}{%
+        \TLFivePlaceConverted{\TLFiveGraphicStem.pdf}%
+      }{%
+        \IfFileExists{\TLFiveGraphicStem.png}{%
+          \TLFivePlaceConverted{\TLFiveGraphicStem.png}%
+        }{%
+          \ifinner
+            \TLFiveMissingGraphic{\filename@base}%
+          \else
+            \par\noindent\makebox[\linewidth][c]{\TLFiveMissingGraphic{\filename@base}}\par\noindent
+          \fi
+        }%
+      }%
+    \else
+      \TLFivePlaceOriginal{#1}{#2}{#3}%
+    \fi
+  }%
+  \endgroup
+}
+\makeatother
