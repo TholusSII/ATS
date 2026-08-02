@@ -48,8 +48,9 @@
 \newunicodechar{λ}{\ensuremath{\lambda}}
 % Le document Word emploie le signe micro U+00B5 à la place du mu grec.
 \newunicodechar{µ}{\ensuremath{\mu}}
-% Le caractère Ø représente ici un diamètre, pas la lettre scandinave O barré.
-\newunicodechar{Ø}{\ensuremath{\varnothing}}
+% U+00D8 est déjà connu de l'encodage T1 ; on remplace sa traduction sans
+% appeler newunicodechar, afin d'éviter l'avertissement de redéfinition.
+\DeclareUnicodeCharacter{00D8}{\ensuremath{\varnothing}}
 
 \raggedbottom
 \setlength{\parindent}{0pt}
