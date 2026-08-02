@@ -1,0 +1,14 @@
+% Exercices de la première passe « Lois entrée-sortie ».
+% Le titre d'exercices est créé par le document maître fusionné.
+
+\begingroup
+\input{03_Lois_Entree_Sortie_Integration}
+
+\CatchFileDef{\TLThreeSource}{contenu.tex}{}
+
+\long\def\TLThreeExtractExercises#1\subsection{Exercices du chapitre}#2\TLThreeStop{#2}
+
+\expandafter\TLThreeExtractExercises
+  \TLThreeSource
+  \TLThreeStop
+\endgroup
