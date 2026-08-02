@@ -1,0 +1,82 @@
+% Première passe du cours 04, conservée dans contenu.tex.
+% Cette couche locale sécurise les images de la conversion Word/Pandoc.
+
+\begingroup
+\makeatletter
+\let\TLFourOriginalIncludeGraphics\includegraphics
+\newif\ifTLFourVectorGraphic
+
+\newcommand{\TLFourMissingGraphic}[1]{%
+  \begin{tikzpicture}[baseline=(current bounding box.center)]
+    \node[
+      draw=TLCoverBlue!55,
+      rounded corners=1mm,
+      fill=TLCoverBlue!4,
+      text=TLCoverBlue!80!black,
+      align=center,
+      font=\sffamily\scriptsize,
+      inner sep=2mm,
+      text width=25mm
+    ] {Illustration vectorielle\\non convertie\\\ttfamily #1};
+  \end{tikzpicture}%
+}
+
+\newcommand{\TLFourPlaceGraphic}[1]{%
+  \ifinner
+    \ifdim\linewidth<12mm
+      \resizebox{8mm}{!}{#1}%
+    \else
+      \adjustbox{max width=.92\linewidth,max totalheight=.70\textheight}{#1}%
+    \fi
+  \else
+    \par\noindent
+    \makebox[\linewidth][c]{%
+      \adjustbox{max width=.96\linewidth,max totalheight=.78\textheight}{#1}%
+    }%
+    \par\noindent
+  \fi
+}
+
+\RenewDocumentCommand{\includegraphics}{s O{} m}{%
+  \begingroup
+  \filename@parse{#3}%
+  \edef\TLFourGraphicExtension{\filename@ext}%
+  \edef\TLFourGraphicStem{\filename@area\filename@base}%
+  \edef\TLFourGraphicBase{\filename@base}%
+
+  \TLFourVectorGraphicfalse
+  \ifdefstring{\TLFourGraphicExtension}{emf}{\TLFourVectorGraphictrue}{}
+  \ifdefstring{\TLFourGraphicExtension}{EMF}{\TLFourVectorGraphictrue}{}
+  \ifdefstring{\TLFourGraphicExtension}{wmf}{\TLFourVectorGraphictrue}{}
+  \ifdefstring{\TLFourGraphicExtension}{WMF}{\TLFourVectorGraphictrue}{}
+
+  \ifTLFourVectorGraphic
+    \IfFileExists{\TLFourGraphicStem.png}{%
+      \TLFourPlaceGraphic{%
+        \TLFourOriginalIncludeGraphics[width=\linewidth,height=.72\textheight,keepaspectratio]{\TLFourGraphicStem.png}%
+      }%
+    }{%
+      \IfFileExists{\TLFourGraphicStem.pdf}{%
+        \TLFourPlaceGraphic{%
+          \TLFourOriginalIncludeGraphics[width=\linewidth,height=.72\textheight,keepaspectratio]{\TLFourGraphicStem.pdf}%
+        }%
+      }{%
+        \TLFourPlaceGraphic{\TLFourMissingGraphic{\filename@base}}%
+      }%
+    }%
+  \else
+    % Petite pastille « niveau » utilisée dans les exercices.
+    \ifdefstring{\TLFourGraphicBase}{image800}{%
+      \TLFourOriginalIncludeGraphics[width=5mm,height=5mm,keepaspectratio]{#3}%
+    }{%
+      \IfBooleanTF{#1}
+        {\TLFourPlaceGraphic{\TLFourOriginalIncludeGraphics*[#2]{#3}}}
+        {\TLFourPlaceGraphic{\TLFourOriginalIncludeGraphics[#2]{#3}}}%
+    }%
+  \fi
+  \endgroup
+}
+
+\input{contenu.tex}
+\makeatother
+\endgroup
