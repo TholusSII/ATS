@@ -5,7 +5,8 @@ cd /d "%~dp0"
 set "JOB=00_Lois_Entree_Sortie"
 
 echo ============================================================
-echo Nettoyage des fichiers auxiliaires du cours 03
+echo Cours 03 fusionne : lois E/S et transmetteurs
+echo Nettoyage complet des fichiers auxiliaires
 echo ============================================================
 
 for %%E in (
