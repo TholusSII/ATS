@@ -48,13 +48,14 @@ jobs:
           set -o pipefail
           course='05-Modélisation Systèmes Asservis/Cours'
           mkdir -p "$course"
-          log="$course/compilation-shell.txt"
+          log="$course/COMPILATION_COURS5_LOG.txt"
           docker run --rm \
+            --entrypoint /bin/bash \
             -v "$GITHUB_WORKSPACE:/work" \
             -w "/work/$course" \
             -e 'TEXINPUTS=/work/Style//:' \
             ghcr.io/xu-cheng/texlive-full:latest \
-            sh -lc '
+            -lc '
               set -o pipefail
               echo "PWD=$(pwd)"
               echo "TEXINPUTS=$TEXINPUTS"
@@ -75,12 +76,12 @@ jobs:
           else
             printf 'FAILURE\nRUN_ID=%s\n' "$GITHUB_RUN_ID" > "$course/COMPILATION_COURS5.txt"
           fi
-          if [ -f "$course/compilation-shell.txt" ]; then
-            cp "$course/compilation-shell.txt" "$course/COMPILATION_COURS5.log"
-          elif [ -f "$course/00_Systemes_Asservis.log" ]; then
-            cp "$course/00_Systemes_Asservis.log" "$course/COMPILATION_COURS5.log"
-          else
-            printf 'Aucun journal produit par le runner.\n' > "$course/COMPILATION_COURS5.log"
+          if [ ! -f "$course/COMPILATION_COURS5_LOG.txt" ]; then
+            if [ -f "$course/00_Systemes_Asservis.log" ]; then
+              cp "$course/00_Systemes_Asservis.log" "$course/COMPILATION_COURS5_LOG.txt"
+            else
+              printf 'Aucun journal produit par le runner.\n' > "$course/COMPILATION_COURS5_LOG.txt"
+            fi
           fi
 
       - name: Publier le résultat
@@ -89,7 +90,7 @@ jobs:
           set -euo pipefail
           course='05-Modélisation Systèmes Asservis/Cours'
           cp "$course/COMPILATION_COURS5.txt" /tmp/COMPILATION_COURS5.txt
-          cp "$course/COMPILATION_COURS5.log" /tmp/COMPILATION_COURS5.log
+          cp "$course/COMPILATION_COURS5_LOG.txt" /tmp/COMPILATION_COURS5_LOG.txt
           if [ -f "$course/00_Systemes_Asservis.pdf" ]; then
             cp "$course/00_Systemes_Asservis.pdf" /tmp/00_Systemes_Asservis.pdf
           fi
@@ -100,14 +101,14 @@ jobs:
           git pull --rebase origin main
 
           cp /tmp/COMPILATION_COURS5.txt "$course/COMPILATION_COURS5.txt"
-          cp /tmp/COMPILATION_COURS5.log "$course/COMPILATION_COURS5.log"
+          cp /tmp/COMPILATION_COURS5_LOG.txt "$course/COMPILATION_COURS5_LOG.txt"
           if [ '${{ steps.compile.outcome }}' = 'success' ] && [ -f /tmp/00_Systemes_Asservis.pdf ]; then
             cp /tmp/00_Systemes_Asservis.pdf "$course/00_Systemes_Asservis.pdf"
           fi
 
-          git add "$course/COMPILATION_COURS5.txt" "$course/COMPILATION_COURS5.log"
+          git add "$course/COMPILATION_COURS5.txt" "$course/COMPILATION_COURS5_LOG.txt"
           if [ '${{ steps.compile.outcome }}' = 'success' ] && [ -f "$course/00_Systemes_Asservis.pdf" ]; then
-            git add "$course/00_Systemes_Asservis.pdf"
+            git add -f "$course/00_Systemes_Asservis.pdf"
           fi
           if ! git diff --cached --quiet; then
             git commit -m 'Met à jour le contrôle autonome du cours 05 [skip ci]'
