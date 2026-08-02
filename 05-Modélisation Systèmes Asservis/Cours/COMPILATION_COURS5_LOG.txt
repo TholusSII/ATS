@@ -6,16 +6,15 @@ aaf1175fdbaf: Pulling fs layer
 efd4e9480dcc: Pulling fs layer
 339aef223ec0: Pulling fs layer
 339aef223ec0: Waiting
+f876fef47397: Verifying Checksum
+f876fef47397: Download complete
 aaf1175fdbaf: Verifying Checksum
 aaf1175fdbaf: Download complete
 efd4e9480dcc: Verifying Checksum
 efd4e9480dcc: Download complete
-f876fef47397: Verifying Checksum
-f876fef47397: Download complete
 f876fef47397: Pull complete
 aaf1175fdbaf: Pull complete
 efd4e9480dcc: Pull complete
-339aef223ec0: Verifying Checksum
 339aef223ec0: Download complete
 339aef223ec0: Pull complete
 Digest: sha256:11383430b9a3e48c0b79339f34d8092f942f897d91ab3749d4899d06731fea7f
@@ -27,8 +26,8 @@ TEXBIN=/opt/texlive/texdir/bin/x86_64-linuxmusl
 TEXINPUTS=/work/Style//:
 /opt/texlive/texdir/bin/x86_64-linuxmusl/pdflatex
 /work/Style/kaobook.cls
--rw-r--r--    1 1001     1001          3646 Aug  2 19:58 00_Systemes_Asservis.tex
--rw-r--r--    1 1001     1001          2548 Aug  2 19:58 05_Systemes_Asservis.tex
+-rw-r--r--    1 1001     1001          3646 Aug  2 20:06 00_Systemes_Asservis.tex
+-rw-r--r--    1 1001     1001          2548 Aug  2 20:06 05_Systemes_Asservis.tex
 This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
@@ -568,20 +567,25 @@ Class scrbook Warning: odd/even page label number 1 undefined on input line 40.
 (/opt/texlive/texdir/texmf-dist/tex/latex/newpx/unpxmia.fd)
 (/opt/texlive/texdir/texmf-dist/tex/latex/newpx/unpxsym.fd)
 (/opt/texlive/texdir/texmf-dist/tex/latex/newpx/unpxsyc.fd)
-(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/ts1zpllf.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/ts1zpllf.fd) [2{/opt/texlive/te
+xdir/texmf-dist/fonts/enc/dvips/newpx/px-lms.enc}{/opt/texlive/texdir/texmf-dis
+t/fonts/enc/dvips/newpx/zpl_OsF.enc}] (./00_Systemes_Asservis.mw) [3{/opt/texli
+ve/texdir/texmf-dist/fonts/enc/dvips/newtx/ntx-ecth-tlf.enc} <./images/image6.p
+ng>] (./00_Systemes_Asservis.mw) [4 <./images/image8.jpeg>]
+(./00_Systemes_Asservis.mw)
 
-LaTeX Warning: File `images/image6.png' not found on input line 110.
+LaTeX Warning: File `images/image150.pdf' not found on input line 218.
 
 
-./sources/05_Introduction_SA_Cours.tex:110: Package pdftex.def Error: File `ima
-ges/image6.png' not found: using draft setting.
+./sources/05_Introduction_SA_Cours.tex:218: Package pdftex.def Error: File `ima
+ges/image150.pdf' not found: using draft setting.
 
 See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.110 \SAimage{images/image6.png}{78mm}{52mm}
-                                             Une
-./sources/05_Introduction_SA_Cours.tex:110:  ==> Fatal error occurred, no outpu
+l.218 \SAimage{images/image150.pdf}{100mm}{55mm}
+                                                
+./sources/05_Introduction_SA_Cours.tex:218:  ==> Fatal error occurred, no outpu
 t PDF file produced!
 Transcript written on 00_Systemes_Asservis.log.
