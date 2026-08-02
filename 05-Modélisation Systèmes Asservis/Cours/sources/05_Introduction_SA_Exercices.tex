@@ -1,0 +1,685 @@
+% Exercices issus de 7-IntroductionSA2022.docx.
+\SAimage{images/image39.png}{70mm}{95mm}
+
+\SAimage{images/image40.jpeg}{158mm}{105mm}
+
+\SAimage{images/image410.png}{22mm}{22mm}
+Niveau 1
+
+\textbf{BRAS DE ROBOT PELLENC}
+
+Caractériser la réponse du système non corrigé (précision, rapidité,
+dépassement).
+
+Consigne
+
+Réponse (position
+
+du bras)
+
+Position du
+
+bras (
+
+$^\circ$
+
+)
+
+59.5
+
+0
+
+0
+
+10
+
+20
+
+30
+
+40
+
+50
+
+60
+
+temps (s)
+
+1.8
+
+2
+
+1.6
+
+1.4
+
+1.2
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+Caractériser la réponse du système corrigé (précision, rapidité,
+dépassement).
+
+Position du
+
+bras (
+
+$^\circ$
+
+)
+
+52,5
+
+0
+
+0.45
+
+0.5
+
+0
+
+temps (s)
+
+0.4
+
+0.35
+
+0.3
+
+0.25
+
+0.2
+
+0.15
+
+0.1
+
+0.05
+
+10
+
+20
+
+30
+
+40
+
+50
+
+60
+
+\textbf{CORDEUSE DE RAQUETTES}
+
+\SAimage{images/image410.png}{22mm}{22mm}
+Niveau 1
+
+Caractériser la réponse du système non corrigé (précision, rapidité,
+dépassement).
+
+\SAimage{images/image42.jpeg}{150mm}{75mm}
+
+Consigne
+
+Réponse (tension
+
+de la corde)
+
+Tension de la
+
+corde (N)
+
+133
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+0
+
+50
+
+100
+
+150
+
+200
+
+250
+
+300
+
+temps (s)
+
+Caractériser la réponse du système corrigé (précision, rapidité,
+dépassement).
+
+Tension de la
+
+corde (N)
+
+271
+
+0
+
+0.9
+
+1
+
+0
+
+50
+
+100
+
+150
+
+200
+
+250
+
+300
+
+temps (s)
+
+0.8
+
+0.7
+
+0.6
+
+0.5
+
+0.4
+
+0.3
+
+0.2
+
+0.1
+
+\SAimage{images/image43.jpeg}{30mm}{42mm}
+\textbf{ROBOT D'INSPECTION TUBULAIRE}
+
+\SAimage{images/image410.png}{22mm}{22mm}
+Niveau 2
+
+Caractériser les réponses suivantes(rapidité, dépassement).
+
+\SAimage{images/image44.png}{155mm}{92mm}
+
+\begin{quote}
+\emph{\textbf{Réponse en déplacement en réponse à un échelon de
+pression}}
+
+\SAimage{images/image45.png}{150mm}{110mm}
+
+\emph{\textbf{Réponse de l'ensemble (servovalve + actionneur)}}
+\end{quote}
+
+\textbf{20}
+
+\textbf{\ul{Nom~:}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  ~Donner les critères permettant d'évaluer un système asservi.
+  \emph{\textbf{(2 points)}}
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  ~~Indiquer la différence entre un système bouclé et un système non
+  bouclé. \emph{\textbf{(2 points)}}
+\item
+  Donner les deux types de systèmes asservis. \emph{\textbf{(1 points)}}
+\end{enumerate}
+
+\SAimage{images/image46.png}{155mm}{95mm}
+
+\textbf{1,75}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Donner le temps de réponse à 5 \% t\textsubscript{r5\%} et l'écart
+  statique. \emph{\textbf{(2 points)}}
+\end{enumerate}
+
+\SAimage{images/image47.png}{145mm}{80mm}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  Donner le temps de réponse à 5 \%, le dépassement et l'écart statique.
+  \emph{\textbf{(3 points)}}
+\end{enumerate}
+
+\SAimage{images/image48.png}{55mm}{38mm}
+
+\SAimage{images/image410.png}{22mm}{22mm}
+Niveau 2
+
+\textbf{RÉGULATION DE NIVEAU D'EAU D'UN RÉSERVOIR D'INCENDIE}
+
+\emph{(\ul{Source :} BTS IRIS 2008)}
+
+\textbf{\ul{Objectifs de l'étude~:}}
+
+\begin{itemize}
+\item
+  \textbf{Modéliser} le réservoir d'incendie à partir du modèle de
+  connaissance ;
+\item
+  \textbf{Établir} le schéma-bloc du système~;
+\end{itemize}
+
+Pour pouvoir faire face en cas d'incendie, de nombreuses communes
+disposent d'un réservoir d'eau. Le réservoir étudié est alimenté en eau
+par une pompe entraînée par une machine asynchrone alimentée par un
+variateur de fréquence~: ensemble redresseur + onduleur. La hauteur
+d'eau est mesurée par un capteur de pression placé au fond du réservoir.
+On peut schématiser le fonctionnement du système par la figure
+suivante~:
+
+\SAimage{images/image49.jpeg}{150mm}{82mm}
+
+Le réservoir est un cylindre de section constante S= 3.5
+m\textsuperscript{2}. On considère que le débit de sortie
+q\textsubscript{S} (en m\textsuperscript{3}.s\textsuperscript{-1}) est
+proportionnel à la hauteur d'eau h (en m).
+
+On désire que le réservoir se remplisse à 95\% de la hauteur voulue en
+15mn, avec une précision en régime permanent de 10 \%.
+
+\textbf{Modélisation du réservoir}
+
+On veut vérifier les performances par une étude comportementale, en
+faisant à l'instant t = 0, varier le débit de 0 à
+0.01m\textsuperscript{3}.s\textsuperscript{-1}. On enregistre
+l'évolution de la hauteur h de l'eau en fonction du temps comme le
+montre la figure suivante~:
+
+\SAimage{images/image50.png}{150mm}{78mm}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Indiquer} la valeur \emph{\textbf{h\textsubscript{$\infty$}}} de la
+  hauteur d'eau en régime permanent .
+\item
+  \textbf{Caractériser} cette réponse (rapidité, précision, stabilité,
+  dépassement).
+\item
+  \textbf{Donner} le temps nécessaire pour que le réservoir se remplisse
+  à 95\% de la hauteur voulue. Comparer au cahier des charges.
+
+  \textbf{Régulation du niveau d'eau du réservoir}
+\end{enumerate}
+
+On désire que le réservoir se remplisse à 95\% de la hauteur voulue en
+15mn, avec une précision en régime permanent de 10 \%. Afin d'améliorer
+les performances du système, on insère dans l'asservissement un
+correcteur proportionnel de transmittance \emph{\textbf{C(p)=
+C\textsubscript{0}}}.
+
+On souhaite mettre le système sous forme de schéma-blocs. Les modèles
+des différents éléments du système sont les suivants~:
+
+\begin{itemize}
+\item
+  Le capteur de pression mesurant la hauteur d'eau délivre une tension
+  \emph{\textbf{V\textsubscript{h}(t) = $\alpha$ h(t)}} .
+\end{itemize}
+
+\begin{itemize}
+\item
+  La salle de commande élabore la tension de commande \textbf{V(t)} du
+  variateur à partir de la différence entre la tension de consigne
+  \emph{\textbf{V\textsubscript{c}(t)}} et la mesure provenant du
+  capteur \emph{\textbf{V\textsubscript{h}(t)}}. \textbf{V(t)=
+  C\textsubscript{0} (\emph{V\textsubscript{c}(t)-
+  V\textsubscript{h}(t)}}).
+\end{itemize}
+
+\begin{itemize}
+\item
+  La relation entre la hauteur de consigne
+  \emph{\textbf{h\textsubscript{c}(t)}} et la tension de consigne est
+  \emph{\textbf{V\textsubscript{c}(t) = $\alpha$ h\textsubscript{c}(t)}}
+\end{itemize}
+
+\begin{itemize}
+\item
+  On modélise le fonctionnement de l'ensemble «~moteur+variateur+pompe~»
+  par \emph{\textbf{Q\textsubscript{E}(t) = A .V(t), où
+  Q\textsubscript{E}(t)}} représente le débit fourni par la pompe et
+  \emph{\textbf{V(t)}} la tension de commande.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  \textbf{Donner} le schéma bloc de l'asservissement, ayant pour entrée
+  \emph{\textbf{H\textsubscript{c}(p}}) (transformée de Laplace de la
+  hauteur de consigne h\textsubscript{c}), et pour sortie
+  \emph{\textbf{H(p).}}
+\end{enumerate}
+
+\emph{\hfill\break
+}
+
+\textbf{FAUTEUIL ELECTRIQUE}
+
+\SAimage{images/image410.png}{22mm}{22mm}
+Niveau 2
+
+\SAimage{images/image51.pdf}{155mm}{95mm}
+
+Le système étudié est un fauteuil électrique capable de franchir
+obstacles et marches.
+
+\textbf{Structure de régulation de l'inclinaison du siège}
+
+La capacité de monter les escaliers nécessite, pour le confort et la
+sécurité du passager, de maintenir l'inclinaison du siège par rapport à
+la verticale constante pendant la montée ou la descente, en conservant
+la possibilité pour celui-ci de régler l'inclinaison de son assise.
+
+Le choix fait par le concepteur est de réaliser un asservissement de la
+position angulaire du siège à l'aide d'un vérin électrique. Le but de
+cette partie est de déterminer la structure de cet asservissement en
+partie décrite par le diagramme IBD limité à la chaîne asservie (voir
+annexes).
+
+\ul{La partie commande} de cet asservissement comporte :
+
+\begin{itemize}
+\item
+  Une interface de communication avec l'usager (bloc « IHM »)
+\end{itemize}
+
+Siège
+
+B
+
+Ecrou
+
+Vis
+
+Corps
+
+A
+
+O
+
+Châssis
+
+\begin{itemize}
+\item
+  Une carte de commande dont le cœur est « l'unité de traitement » qui
+  ne reçoit et ne délivre que des signaux numériques
+\item
+  Un accéléromètre délivrant un signal analogique image de l'inclinaison
+  du siège par rapport à la verticale
+\end{itemize}
+
+\ul{La partie opérative} (voir schéma cinématique mécanique ci-contre)
+de cet asservissement comporte :
+
+\begin{itemize}
+\item
+  Un pont en H (hacheur quatre quadrants) qui à partir du signal
+  analogique reçu de la carte de commande et de l'énergie fournie par un
+  régulateur de tension alimente le motoréducteur du vérin
+\item
+  Un motoréducteur (moteur à courant continu et réducteur à engrenages)
+  qui fait tourner la vis du vérin
+\item
+  Un système vis écrou permettant de transformer la rotation de la vis
+  en un allongement du vérin (AB)
+\item
+  Un système triangulaire (ABO) modifiant l'inclinaison du siège
+\end{itemize}
+
+L'énergie électrique est fournie par deux batteries de 12V 60Ah dont la
+tension diminue de manière non négligeable au fur et à mesure que la
+batterie se décharge
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Indiquer ci-dessous à quels éléments correspondent les blocs du
+  diagramme IBD.
+\end{enumerate}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0968}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2258}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2258}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2258}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2258}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Bloc
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Modulateur
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Convertisseur
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Transmetteur
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Effecteur
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Elément & & & & \\
+\end{longtable}
+
+\emph{On donne dans le tableau ci-dessous les noms des différents flux
+d'information et d'énergie du diagramme IBD de l'annexe}
+
+On suppose que la carte de commande est constituée d'un comparateur qui
+compare la tension u\textsubscript{C}(t) image de la consigne de
+position du siège et la tension u\textsubscript{A}(t) image de la
+position angulaire du siège issue de l'accéléromètre.
+
+L'écart entre ces deux positions étant ensuite corrigé par un correcteur
+qui délivre au pont en H une tension u\textsubscript{H}(t). Lequel pont
+en H alimente le moteur avec la tension modulée u\textsubscript{M}(t).
+
+On adopte les notations des fonctions temporelles du système suivantes :
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.4220}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.0762}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.4219}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.0799}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Tension image de la consigne de position
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+u\textsubscript{C}(t)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Tension image de la réponse
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+u\textsubscript{A}(t)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Tension d'alimentation du moteur & u\textsubscript{M}(t) & Position
+angulaire du siège / à la verticale & $\theta$(t) \\
+Tension de commande du pont en H & u\textsubscript{H}(t) & Position
+angulaire du siège / au châssis & $\alpha$(t) \\
+Vitesse de rotation de la vis & $\omega$\textsubscript{V}(t) & Position
+angulaire du châssis / à la verticale & $\beta$(t) \\
+Ecart à l'entrée du correcteur & $\varepsilon$(t) & Longueur du vérin & $\lambda$(t) \\
+\end{longtable}
+
+\emph{Les noms des différents éléments du système sont : Motoréducteur,
+Correcteur, Pont en H, Accéléromètre, Système vis-écrou, Système
+triangulaire}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Placer les noms des différents blocs et les fonctions temporelles sur
+  le schéma-bloc ci-dessous.
+\end{enumerate}
+
+\SASchemaFauteuil
+
+\textbf{\ul{Modélisation du vérin}}
+
+\emph{Le} vérin électrique comprend le motoréducteur et le système vis
+écrou. Il est constitué de :
+
+\begin{itemize}
+\item
+  Un moteur à courant continu à aimants permanents pour lequel :
+\end{itemize}
+
+\begin{itemize}
+\item
+  On note u\textsubscript{M}(t) et i(t) les tensions et courant aux
+  bornes du moteur
+\item
+  On note e(t) la force contre électromotrice du moteur
+\item
+  On note $\omega$\textsubscript{M}(t) et c\textsubscript{M}(t) la vitesse de
+  rotation de l'arbre moteur et le couple sur l'arbre moteur
+\item
+  On néglige l'inductance de l'induit L mais pas sa résistance R
+\item
+  L'inertie de l'ensemble des pièces en mouvement ramené sur l'arbre
+  moteur est J
+\item
+  Le coefficient de frottement visqueux des pièces en mouvement ramené
+  sur l'arbre moteur est f
+\item
+  Les constantes mécanique et électrique sont K\textsubscript{M} et
+  K\textsubscript{E}
+\end{itemize}
+
+\begin{itemize}
+\item
+  Un réducteur à engrenages qui transmet la rotation de l'arbre moteur à
+  la vis. On note r le rapport de transmission de ce
+  réducteur,$\omega$\textsubscript{M}(t) et $\omega$\textsubscript{V}(t)les vitesses
+  de rotation de l'arbre moteur et de la vis.
+\item
+  Un système vis écrou qui transforme la vitesse de rotation de la vis
+  $\omega$\textsubscript{V}(t) en allongement du vérin $\lambda$(t).On note « pas » le
+  pas de la vis (distance par courue par l'écrou pour un tour de la vis)
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  Donner la relation entre $\omega$\textsubscript{V}(t) et
+  $\omega$\textsubscript{M}(t) d'une part, celle entre $\omega$\textsubscript{V}(t) et
+  $\lambda$(t) d'autre part.
+\end{enumerate}
+
+\textbf{\ul{Analyse des performances de l'asservissement en fonction du
+correcteur}}
+
+Pour valider le comportement de cet asservissement le concepteur a
+installé un correcteur qui possède deux paramètres de réglage~: un gain
+K et un coefficient a. Il a réalisé quatre essais avec des valeurs
+différentes de a et K avec le protocole suivant :
+
+\begin{itemize}
+\item
+  Le fauteuil est placé sur un sol horizontal ($\beta$(t) = 0)
+\item
+  Un échelon de consigne de $\theta$\textsubscript{C} = --5$^\circ$ est appliqué au
+  système
+\item
+  L'évolution temporelle de la réponse $\theta$(t) est relevée
+\end{itemize}
+
+On donne ci-dessous les différentes réponses temporelles pour ces quatre
+essais. On a en ordonnée la réponse $\theta$\textsubscript{C} en degré et en
+abscisse le temps t en seconde.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  Calculer et donner ci-dessous, pour chacun de ces essais, l'erreur
+  statique relative $\varepsilon$\textsubscript{S}, le temps de réponse à 5\%
+  t\textsubscript{r5\%}, et le taux de dépassement D\textsubscript{1\%}
+  si il existe.
+\end{enumerate}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5083}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4917}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\SAimage{images/image55.png}{75mm}{65mm}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\SAimage{images/image56.png}{75mm}{65mm}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\SAimage{images/image57.png}{75mm}{65mm} &
+\SAimage{images/image58.png}{75mm}{65mm} \\
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\item
+  En vous aidant du diagramme d'exigence (voir annexes), dire quels sont
+  les cas qui respectent le cahier des charges relatif à l'inclinaison
+  de l'assise. Argumenter la réponse.
+\end{enumerate}
+
+\SAimage{images/image59.png}{150mm}{100mm}
+
+Diagramme de blocs interne limité à la chaîne asservie d'inclinaison du
+siège
+
+\SAimage{images/image60.png}{150mm}{165mm}
+
+Diagramme d'exigence de premier niveau du fauteuil
