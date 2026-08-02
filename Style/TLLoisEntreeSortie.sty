@@ -1,0 +1,105 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{TLLoisEntreeSortie}[2026/08/02 Figures du cours de lois entree-sortie]
+
+\RequirePackage{xparse}
+\RequirePackage{etoolbox}
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta,calc,angles,quotes}
+
+% Schéma géométrique simplifié de l'EPAS.
+\NewDocumentCommand{\TLEPASGeometry}{}{%
+  \begin{center}
+  \begin{tikzpicture}[
+    >=Latex,
+    line cap=round,
+    line join=round,
+    x=1.15cm,
+    y=1.15cm,
+    point/.style={circle,fill=black,inner sep=1.4pt},
+    solide/.style={very thick,TLCoverBlue},
+    verin/.style={very thick,orange!85!black},
+    axe/.style={->,thick,gray!75!black}
+  ]
+    \coordinate (O) at (0,0);
+    \coordinate (A) at (0,2.25);
+    \coordinate (B) at (5.1,0);
+    \coordinate (C) at (3.35,3.15);
+
+    \draw[axe] (O) -- (5.8,0) node[right] {$\vec{x}_0$};
+    \draw[axe] (O) -- (0,3.85) node[above] {$\vec{y}_0$};
+
+    \draw[solide] (O) -- (A) node[midway,left] {$a$};
+    \draw[solide] (A) -- (C) node[midway,above left] {$c$};
+    \draw[solide] (O) -- (B) node[midway,below] {$b$};
+    \draw[verin]  (B) -- (C) node[midway,right] {$r(t)$};
+    \draw[dashed,gray] (O) -- (C);
+
+    \pic[draw,->,"$\theta(t)$",angle radius=10mm,angle eccentricity=1.25]
+      {angle=B--O--C};
+
+    \node[point,label=below left:$O_0$] at (O) {};
+    \node[point,label=left:$A$] at (A) {};
+    \node[point,label=below:$B$] at (B) {};
+    \node[point,label=above right:$C$] at (C) {};
+  \end{tikzpicture}
+  \end{center}%
+}
+
+% Schéma bielle-manivelle associé au micromoteur.
+\NewDocumentCommand{\TLBielleManivelleGeometry}{}{%
+  \begin{center}
+  \begin{tikzpicture}[
+    >=Latex,
+    line cap=round,
+    line join=round,
+    x=1.2cm,
+    y=1.2cm,
+    point/.style={circle,fill=black,inner sep=1.4pt},
+    solide/.style={very thick,TLCoverBlue},
+    guide/.style={thick,gray!75!black}
+  ]
+    \coordinate (O) at (0,0);
+    \coordinate (A) at (1.65,1.15);
+    \coordinate (B) at (5.15,0);
+
+    \draw[->,thick,gray!75!black] (O) -- (6.0,0)
+      node[right] {$\vec{x}_0$};
+    \draw[->,thick,gray!75!black] (O) -- (0,2.25)
+      node[above] {$\vec{y}_0$};
+
+    \draw[solide] (O) -- (A) node[midway,above left] {$R$};
+    \draw[solide] (A) -- (B) node[midway,above] {$L$};
+
+    \draw[guide] (4.45,-.35) rectangle (5.85,.35);
+    \draw[guide] (4.35,-.55) -- (6.0,-.55);
+    \draw[guide] (4.35,.55) -- (6.0,.55);
+
+    \pic[draw,->,"$\alpha(t)$",angle radius=8mm,angle eccentricity=1.3]
+      {angle=B--O--A};
+    \draw[<->,orange!85!black,thick]
+      (O)+(0,-.85) -- node[fill=white,inner sep=1pt] {$x(t)$} (B)+(0,-.85);
+
+    \node[point,label=below left:$O$] at (O) {};
+    \node[point,label=above:$A$] at (A) {};
+    \node[point,label=above right:$B$] at (B) {};
+  \end{tikzpicture}
+  \end{center}%
+}
+
+% Compatibilité avec les deux commandes \includesvg issues de Pandoc.
+% Les options de taille Word sont volontairement ignorées : TikZ adapte les
+% figures à la largeur utile et ne nécessite ni Inkscape ni shell-escape.
+\ProvideDocumentCommand{\includesvg}{O{} m}{%
+  \ifstrequal{#2}{images/image7.svg}{%
+    \TLEPASGeometry
+  }{%
+    \ifstrequal{#2}{images/image13.svg}{%
+      \TLBielleManivelleGeometry
+    }{%
+      \begin{center}
+        \fbox{\parbox{.75\linewidth}{\centering
+          Illustration SVG non prise en charge : \texttt{#2}}}%
+      \end{center}%
+    }%
+  }%
+}
