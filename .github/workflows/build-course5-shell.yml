@@ -47,14 +47,25 @@ jobs:
         id: compile
         continue-on-error: true
         shell: bash
-        working-directory: '05-Modélisation Systèmes Asservis/Cours'
         run: |
           set -o pipefail
-          rm -f 00_Systemes_Asservis.{aux,toc,out,mw,idx,ilg,ind,log,pdf}
-          pdflatex -file-line-error -halt-on-error -interaction=nonstopmode 00_Systemes_Asservis.tex 2>&1 | tee compilation-shell.txt
-          if [ -f 00_Systemes_Asservis.idx ]; then makeindex 00_Systemes_Asservis.idx; fi
-          pdflatex -file-line-error -halt-on-error -interaction=nonstopmode 00_Systemes_Asservis.tex 2>&1 | tee -a compilation-shell.txt
-          pdflatex -file-line-error -halt-on-error -interaction=nonstopmode 00_Systemes_Asservis.tex 2>&1 | tee -a compilation-shell.txt
+          course='05-Modélisation Systèmes Asservis/Cours'
+          mkdir -p "$course"
+          log="$course/compilation-shell.txt"
+          {
+            echo "WORKSPACE=$GITHUB_WORKSPACE"
+            pwd
+            ls -la
+            command -v pdflatex || true
+            cd "$course"
+            pwd
+            ls -la 00_Systemes_Asservis.tex 05_Systemes_Asservis.tex
+            rm -f 00_Systemes_Asservis.{aux,toc,out,mw,idx,ilg,ind,log,pdf}
+            pdflatex -file-line-error -halt-on-error -interaction=nonstopmode 00_Systemes_Asservis.tex
+            if [ -f 00_Systemes_Asservis.idx ]; then makeindex 00_Systemes_Asservis.idx; fi
+            pdflatex -file-line-error -halt-on-error -interaction=nonstopmode 00_Systemes_Asservis.tex
+            pdflatex -file-line-error -halt-on-error -interaction=nonstopmode 00_Systemes_Asservis.tex
+          } > "$log" 2>&1
 
       - name: Enregistrer le résultat
         shell: bash
@@ -70,6 +81,8 @@ jobs:
             cp "$course/compilation-shell.txt" "$course/COMPILATION_COURS5.log"
           elif [ -f "$course/00_Systemes_Asservis.log" ]; then
             cp "$course/00_Systemes_Asservis.log" "$course/COMPILATION_COURS5.log"
+          else
+            printf 'Aucun journal produit par le runner.\n' > "$course/COMPILATION_COURS5.log"
           fi
 
       - name: Publier le résultat
@@ -80,9 +93,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add '05-Modélisation Systèmes Asservis/Cours/COMPILATION_COURS5.txt'
-          if [ -f '05-Modélisation Systèmes Asservis/Cours/COMPILATION_COURS5.log' ]; then
-            git add '05-Modélisation Systèmes Asservis/Cours/COMPILATION_COURS5.log'
-          fi
+          git add '05-Modélisation Systèmes Asservis/Cours/COMPILATION_COURS5.log'
           if [ '${{ steps.compile.outcome }}' = 'success' ]; then
             git add '05-Modélisation Systèmes Asservis/Cours/00_Systemes_Asservis.pdf'
           fi
