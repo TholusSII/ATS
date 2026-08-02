@@ -1,0 +1,35 @@
+name: Inventaire temporaire du cours 05
+
+on:
+  push:
+    paths:
+      - .github/workflows/course5-inventory.yml
+
+permissions:
+  contents: write
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Inventorier le chapitre 05
+        shell: bash
+        run: |
+          find '05-Modélisation Systèmes Asservis' -maxdepth 5 -type f \
+            \( -iname '*.tex' -o -iname '*.sty' -o -iname '*.docx' -o -iname '*.pdf' -o -iname '*.bat' \) \
+            | sort > '05-Modélisation Systèmes Asservis/COURSE5_INVENTORY.txt'
+
+      - name: Publier l’inventaire temporaire
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add '05-Modélisation Systèmes Asservis/COURSE5_INVENTORY.txt'
+          if ! git diff --cached --quiet; then
+            git commit -m 'Ajoute l inventaire temporaire du cours 05'
+            git push
+          fi
