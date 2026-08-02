@@ -29,6 +29,20 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Publier le démarrage
+        shell: bash
+        run: |
+          course='05-Modélisation Systèmes Asservis/Cours'
+          printf 'RUNNING\n' > "$course/COMPILATION_COURS5.txt"
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$course/COMPILATION_COURS5.txt"
+          if ! git diff --cached --quiet; then
+            git commit -m 'Démarre le contrôle autonome du cours 05 [skip ci]'
+            git push
+          fi
+
       - name: Compiler le document
         id: compile
         continue-on-error: true
