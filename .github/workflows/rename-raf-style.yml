@@ -1,4 +1,4 @@
-name: Inventorier les bibliothèques Raf
+name: Inventorier toutes les occurrences Raf
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Inventorier les fichiers et collisions
+      - name: Inventorier noms et références
         shell: bash
         run: |
           python3 - <<'PY'
@@ -25,12 +25,29 @@ jobs:
 
           tracked = subprocess.check_output(["git", "ls-files", "-z"]).split(b"\0")
           paths = [Path(p.decode("utf-8", errors="surrogateescape")) for p in tracked if p]
-          lines = []
-          for src in paths:
-              if src.parts and src.parts[0] == "Style" and src.name.startswith("Raf_"):
-                  dst = src.with_name(src.name[len("Raf_"):])
-                  status = "COLLISION" if dst.exists() else "OK"
-                  lines.append(f"{status}\t{src}\t{dst}")
+          lines = ["=== NOMS DE FICHIERS ==="]
+          for path in paths:
+              if path.parts and path.parts[0] == "Style" and "raf" in path.name.lower():
+                  lines.append(str(path))
+
+          lines.append("")
+          lines.append("=== OCCURRENCES DANS LES SOURCES ===")
+          text_ext = {".tex", ".sty", ".cls", ".cfg", ".def", ".md", ".txt", ".py", ".yml", ".yaml", ".bat", ".sh", ".json", ".toml", ".ini", ".bib", ".lua"}
+          for path in paths:
+              if path.suffix.lower() not in text_ext or not path.exists():
+                  continue
+              data = path.read_bytes()
+              lower = data.lower()
+              if b"raf" not in lower:
+                  continue
+              try:
+                  text = data.decode("utf-8")
+              except UnicodeDecodeError:
+                  text = data.decode("latin-1")
+              for number, line in enumerate(text.splitlines(), 1):
+                  if "raf" in line.lower():
+                      lines.append(f"{path}:{number}: {line}")
+
           Path("Style/RENOMMAGE_RAF.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
           print("\n".join(lines))
           PY
@@ -42,6 +59,6 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add Style/RENOMMAGE_RAF.txt
           if ! git diff --cached --quiet; then
-            git commit -m 'Inventorie les bibliothèques Raf de Style'
+            git commit -m 'Inventorie toutes les occurrences Raf du dépôt'
             git push
           fi
