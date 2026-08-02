@@ -1,6 +1,6 @@
 % ============================================================================
 % BIBLIOTHÈQUE TL — SYSTÈMES ASSERVIS
-% Schéma-blocs, notations SLCI et diagrammes de Bode
+% Schéma-blocs et diagrammes de Bode
 % ============================================================================
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{TLSystemesAsservis}[2026/08/02 Bibliothèque systèmes asservis]
@@ -12,9 +12,11 @@
 \RequirePackage{tikz}
 \usetikzlibrary{positioning,calc,arrows.meta}
 
-% Notations_SLCI charge également schemabloc et bodegraph.
-% L'option noRaccourci évite notamment de redéfinir \L.
-\RequirePackage[noRaccourci]{Notations_SLCI}
+% Chargement direct des deux bibliothèques historiques utiles au chapitre.
+% On évite volontairement Notations_SLCI, qui charge Notations_Maths et
+% redéfinit plusieurs commandes déjà fournies par le framework TL.
+\RequirePackage{schemabloc}
+\RequirePackage{bodegraph}
 
 \providecolor{TLCoverBlue}{RGB}{0,82,155}
 \definecolor{TLSystemFill}{RGB}{238,245,251}
