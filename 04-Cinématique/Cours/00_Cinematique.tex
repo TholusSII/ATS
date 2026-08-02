@@ -1,0 +1,92 @@
+% ============================================================================
+% MOTEUR GÉNÉRIQUE — COURS 05 : APPROCHE CINÉMATIQUE
+% ============================================================================
+\RequirePackage{silence}
+\WarningFilter{xcolor}{Package option `usenames' is obsolete}
+\WarningFilter{french3.ldf}{Please load the "listings" package}
+\WarningFilter{french3.ldf}{footnotebackref package loaded}
+\WarningFilter{french3.ldf}{babel-french will NOT customise footnotes}
+
+\documentclass[
+  fontsize=10pt,
+  twoside=true,
+  open=any,
+]{kaobook}
+
+\usepackage[french]{babel}
+
+\newcommand{\TLCourseDefinitionFile}{05_Cinematique}
+
+\makeatletter
+\def\input@path{{../../Style/}}
+\makeatother
+\input{TLCours.sty}
+
+% Dépendances de la conversion Word/Pandoc.
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{calc}
+\usepackage{multirow}
+\usepackage{adjustbox}
+\usepackage{newunicodechar}
+\usepackage{amssymb}
+
+% Bibliothèque de schémas et de relations cinématiques réutilisables.
+\input{TLCinematiqueSolide.sty}
+
+% Compatibilité Pandoc.
+\providecommand{\pandocbounded}[1]{#1}
+\providecommand{\real}[1]{#1}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Caractères issus du document Word.
+\DeclareUnicodeCharacter{20DD}{\ensuremath{\bigcirc}}
+\DeclareUnicodeCharacter{03C9}{\ensuremath{\omega}}
+\DeclareUnicodeCharacter{03C0}{\ensuremath{\pi}}
+\DeclareUnicodeCharacter{03BB}{\ensuremath{\lambda}}
+\DeclareUnicodeCharacter{03B8}{\ensuremath{\theta}}
+\DeclareUnicodeCharacter{03B7}{\ensuremath{\eta}}
+\DeclareUnicodeCharacter{03B1}{\ensuremath{\alpha}}
+\DeclareUnicodeCharacter{03B2}{\ensuremath{\beta}}
+\DeclareUnicodeCharacter{03B3}{\ensuremath{\gamma}}
+\DeclareUnicodeCharacter{03C6}{\ensuremath{\varphi}}
+\DeclareUnicodeCharacter{03D5}{\ensuremath{\varphi}}
+\DeclareUnicodeCharacter{03A9}{\ensuremath{\Omega}}
+\DeclareUnicodeCharacter{0393}{\ensuremath{\Gamma}}
+\DeclareUnicodeCharacter{0394}{\ensuremath{\Delta}}
+\DeclareUnicodeCharacter{2208}{\ensuremath{\in}}
+\DeclareUnicodeCharacter{2248}{\ensuremath{\approx}}
+\DeclareUnicodeCharacter{2227}{\ensuremath{\wedge}}
+\DeclareUnicodeCharacter{00B5}{\ensuremath{\mu}}
+\DeclareUnicodeCharacter{2192}{\ensuremath{\rightarrow}}
+\DeclareUnicodeCharacter{00D7}{\ensuremath{\times}}
+\DeclareUnicodeCharacter{2219}{\ensuremath{\cdot}}
+\DeclareUnicodeCharacter{FE38}{\ensuremath{\underbrace{\phantom{X}}}}
+
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{3em}
+\setcounter{topnumber}{5}
+\setcounter{bottomnumber}{5}
+\setcounter{totalnumber}{8}
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.90}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.80}
+\setlength{\floatsep}{8pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{10pt plus 2pt minus 2pt}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+
+\makeindex[columns=3, title=Index alphabétique, intoc]
+
+\begin{document}
+\mainmatter
+\setchapterstyle{kao}
+\setcounter{margintocdepth}{\sectiontocdepth}
+\marginlayout
+\pagestyle{scrheadings}
+
+\input{\TLCourseDefinitionFile}
+
+\end{document}
