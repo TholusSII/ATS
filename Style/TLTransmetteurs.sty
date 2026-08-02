@@ -1,0 +1,96 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{TLTransmetteurs}[2026/08/02 Figures usuelles de transmetteurs]
+
+\RequirePackage{xparse}
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta,calc,decorations.pathmorphing,patterns}
+
+\tikzset{
+  TL transmission/.style={line cap=round,line join=round,>=Latex},
+  TL axe/.style={->,thick,gray!75!black},
+  TL solide/.style={very thick,TLCoverBlue},
+  TL secondaire/.style={very thick,orange!85!black},
+  TL point/.style={circle,fill=black,inner sep=1.3pt}
+}
+
+% Deux roues de friction en contact extérieur.
+\NewDocumentCommand{\TLRouesFriction}{O{1.15} O{1.65}}{%
+  \begin{tikzpicture}[TL transmission,baseline=(current bounding box.center)]
+    \pgfmathsetmacro{\Rone}{#1}
+    \pgfmathsetmacro{\Rtwo}{#2}
+    \coordinate (O1) at (0,0);
+    \coordinate (O2) at ({\Rone+\Rtwo},0);
+    \draw[TL solide] (O1) circle[radius=\Rone];
+    \draw[TL secondaire] (O2) circle[radius=\Rtwo];
+    \draw[TL point] (O1) node[below] {$O_1$};
+    \draw[TL point] (O2) node[below] {$O_2$};
+    \draw[->,thick] ($(O1)+(0.65,0)$) arc[start angle=0,end angle=80,radius=.65];
+    \draw[->,thick] ($(O2)+(-.8,0)$) arc[start angle=180,end angle=100,radius=.8];
+    \node[above] at ($(O1)+(0,\Rone)$) {$\omega_1$};
+    \node[above] at ($(O2)+(0,\Rtwo)$) {$\omega_2$};
+    \node[TL point,label=above:$I$] at ($(O1)+(\Rone,0)$) {};
+  \end{tikzpicture}%
+}
+
+% Engrenage extérieur simplifié ; les nombres de dents servent aux légendes.
+\NewDocumentCommand{\TLEngrenageSimple}{O{$Z_1$} O{$Z_2$}}{%
+  \begin{tikzpicture}[TL transmission,baseline=(current bounding box.center)]
+    \coordinate (O1) at (0,0);
+    \coordinate (O2) at (3.15,0);
+    \draw[TL solide] (O1) circle[radius=1.05];
+    \draw[TL secondaire] (O2) circle[radius=2.10];
+    \foreach \a in {0,20,...,340}{\draw[TL solide] ($(O1)+(\a:1.05)$) -- ($(O1)+(\a:1.17)$);}
+    \foreach \a in {0,12,...,348}{\draw[TL secondaire] ($(O2)+(\a:2.10)$) -- ($(O2)+(\a:2.22)$);}
+    \node[TL point,label=below:$O_1$] at (O1) {};
+    \node[TL point,label=below:$O_2$] at (O2) {};
+    \node at (O1) {#1};
+    \node at (O2) {#2};
+  \end{tikzpicture}%
+}
+
+% Pignon-crémaillère générique.
+\NewDocumentCommand{\TLPignonCremaillere}{}{%
+  \begin{tikzpicture}[TL transmission,baseline=(current bounding box.center)]
+    \coordinate (O) at (0,1.45);
+    \draw[TL solide] (O) circle[radius=1.05];
+    \foreach \a in {0,20,...,340}{\draw[TL solide] ($(O)+(\a:1.05)$) -- ($(O)+(\a:1.17)$);}
+    \draw[TL secondaire] (-2.4,0) -- (2.4,0);
+    \foreach \x in {-2.2,-1.8,...,2.2}{\draw[TL secondaire] (\x,0) -- +(0,.22);}
+    \draw[->,thick] ($(O)+(0.65,0)$) arc[start angle=0,end angle=80,radius=.65]
+      node[midway,right] {$\omega$};
+    \draw[->,thick] (-1.5,-.45) -- (1.5,-.45) node[right] {$v$};
+    \node[TL point,label=above:$O$] at (O) {};
+  \end{tikzpicture}%
+}
+
+% Dispositif vis-écrou schématique.
+\NewDocumentCommand{\TLVisEcrou}{}{%
+  \begin{tikzpicture}[TL transmission,baseline=(current bounding box.center)]
+    \draw[TL solide] (-2.7,0) -- (2.7,0);
+    \draw[TL solide,decorate,decoration={coil,aspect=.35,segment length=4mm,amplitude=2.2mm}]
+      (-2.45,0) -- (2.45,0);
+    \draw[TL secondaire,fill=orange!8] (-.55,-.72) rectangle (.55,.72);
+    \draw[->,thick] (-2.1,.65) arc[start angle=160,end angle=-140,radius=.55]
+      node[left] {$\omega$};
+    \draw[->,thick] (.9,-1.05) -- (2.15,-1.05) node[right] {$v$};
+    \node[above] at (0,.75) {écrou};
+  \end{tikzpicture}%
+}
+
+% Train épicycloïdal schématique : soleil, satellite, couronne et porte-satellite.
+\NewDocumentCommand{\TLTrainEpicycloidal}{}{%
+  \begin{tikzpicture}[TL transmission,baseline=(current bounding box.center)]
+    \coordinate (O) at (0,0);
+    \coordinate (S) at (1.65,0);
+    \draw[TL solide] (O) circle[radius=.75];
+    \draw[TL secondaire] (S) circle[radius=.55];
+    \draw[very thick,gray!70!black] (O) circle[radius=2.25];
+    \draw[thick,dashed] (O) -- (S);
+    \node[TL point,label=below:$O$] at (O) {};
+    \node[TL point,label=below:$S$] at (S) {};
+    \node at (O) {solaire};
+    \node[font=\scriptsize] at (S) {sat.};
+    \node[above] at (0,2.25) {couronne};
+    \node[below] at (.8,-.25) {porte-satellite};
+  \end{tikzpicture}%
+}
