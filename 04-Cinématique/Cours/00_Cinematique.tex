@@ -1,5 +1,5 @@
 % ============================================================================
-% MOTEUR GÉNÉRIQUE — COURS 05 : APPROCHE CINÉMATIQUE
+% MOTEUR GÉNÉRIQUE — COURS 04 : APPROCHE CINÉMATIQUE
 % ============================================================================
 \RequirePackage{silence}
 \WarningFilter{xcolor}{Package option `usenames' is obsolete}
@@ -15,7 +15,7 @@
 
 \usepackage[french]{babel}
 
-\newcommand{\TLCourseDefinitionFile}{05_Cinematique}
+\newcommand{\TLCourseDefinitionFile}{04_Cinematique}
 
 \makeatletter
 \def\input@path{{../../Style/}}
@@ -29,11 +29,13 @@
 \usepackage{calc}
 \usepackage{multirow}
 \usepackage{adjustbox}
+\usepackage{catchfile}
 \usepackage{newunicodechar}
 \usepackage{amssymb}
+\usepackage{mathtools}
 
-% Bibliothèque de schémas et de relations cinématiques réutilisables.
-\input{TLCinematiqueSolide.sty}
+% Bibliothèque unifiée de cinématique.
+\input{TLCinematique.sty}
 
 % Compatibilité Pandoc.
 \providecommand{\pandocbounded}[1]{#1}
@@ -55,11 +57,14 @@
 \DeclareUnicodeCharacter{03A9}{\ensuremath{\Omega}}
 \DeclareUnicodeCharacter{0393}{\ensuremath{\Gamma}}
 \DeclareUnicodeCharacter{0394}{\ensuremath{\Delta}}
+\DeclareUnicodeCharacter{2200}{\ensuremath{\forall}}
 \DeclareUnicodeCharacter{2208}{\ensuremath{\in}}
 \DeclareUnicodeCharacter{2248}{\ensuremath{\approx}}
 \DeclareUnicodeCharacter{2227}{\ensuremath{\wedge}}
+\DeclareUnicodeCharacter{22A5}{\ensuremath{\perp}}
 \DeclareUnicodeCharacter{00B5}{\ensuremath{\mu}}
 \DeclareUnicodeCharacter{2192}{\ensuremath{\rightarrow}}
+\DeclareUnicodeCharacter{21D2}{\ensuremath{\Rightarrow}}
 \DeclareUnicodeCharacter{00D7}{\ensuremath{\times}}
 \DeclareUnicodeCharacter{2219}{\ensuremath{\cdot}}
 \DeclareUnicodeCharacter{FE38}{\ensuremath{\underbrace{\phantom{X}}}}
