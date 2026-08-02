@@ -1,0 +1,35 @@
+name: Extraire les médias Introduction SA
+
+on:
+  push:
+    paths:
+      - .github/workflows/extract-course5-intro-media.yml
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extraire les médias du Word
+        shell: bash
+        run: |
+          set -euo pipefail
+          course='05-Modélisation Systèmes Asservis/Cours'
+          mkdir -p "$course/images"
+          unzip -o -j "$course/7-IntroductionSA2022.docx" 'word/media/*' -d "$course/images"
+
+      - name: Supprimer ce workflow et publier
+        shell: bash
+        run: |
+          git rm .github/workflows/extract-course5-intro-media.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add '05-Modélisation Systèmes Asservis/Cours/images'
+          git commit -m 'Extrait les images du cours Introduction SA'
+          git push
