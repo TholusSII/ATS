@@ -52,11 +52,14 @@ jobs:
           docker run --rm \
             -v "$GITHUB_WORKSPACE:/work" \
             -w "/work/$course" \
+            -e 'TEXINPUTS=/work/Style//:' \
             ghcr.io/xu-cheng/texlive-full:latest \
             sh -lc '
               set -o pipefail
               echo "PWD=$(pwd)"
+              echo "TEXINPUTS=$TEXINPUTS"
               command -v pdflatex
+              kpsewhich kaobook.cls || true
               ls -la 00_Systemes_Asservis.tex 05_Systemes_Asservis.tex
               rm -f 00_Systemes_Asservis.{aux,toc,out,mw,idx,ilg,ind,log,pdf}
               pdflatex -file-line-error -halt-on-error -interaction=nonstopmode 00_Systemes_Asservis.tex
