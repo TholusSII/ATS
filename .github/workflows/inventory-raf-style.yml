@@ -1,0 +1,56 @@
+name: Inventaire des bibliothèques Raf
+
+on:
+  push:
+    paths:
+      - .github/workflows/inventory-raf-style.yml
+
+permissions:
+  contents: write
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Inventorier les bibliothèques Raf
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+
+          raw = subprocess.check_output(["git", "ls-files", "-z"]).split(b"\0")
+          paths = [Path(p.decode("utf-8", errors="surrogateescape")) for p in raw if p]
+          tracked = {str(p) for p in paths}
+          lines = []
+          count = 0
+          for src in sorted(paths, key=lambda p: str(p).lower()):
+              if not src.parts or src.parts[0] != "Style" or not src.name.startswith("Raf_"):
+                  continue
+              count += 1
+              dst = src.with_name(src.name[4:])
+              if str(dst) in tracked:
+                  same = src.read_bytes() == dst.read_bytes()
+                  status = "COLLISION_IDENTIQUE" if same else "COLLISION_DIFFERENTE"
+              else:
+                  status = "OK"
+              lines.append(f"{status}\t{src}\t{dst}")
+
+          lines.insert(0, f"TOTAL\t{count}")
+          Path("Style/RENOMMAGE_RAF.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
+          print("\n".join(lines))
+          PY
+
+      - name: Publier l'inventaire et retirer le workflow
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add Style/RENOMMAGE_RAF.txt
+          git rm .github/workflows/inventory-raf-style.yml
+          git commit -m 'Inventorie les bibliothèques Raf de Style'
+          git push
