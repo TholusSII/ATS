@@ -1,0 +1,55 @@
+=== MACROS SA INTRODUCTION ===
+\SAChaineAsservie
+\SAChaineFonctionnelle
+\SASchemaBoucleGenerale
+\SASchemaElementsBase
+\SASchemaEtuve
+\SASchemaFauteuil
+\SASchemaMoteur
+\SAimage
+\SAimagepair
+
+=== MACROS TL/SB/BODE DÉJÀ PRÉSENTES ===
+
+=== IMAGES AUTOUR DES SCHÉMA-BLOCS MODÉLISATION ===
+426: \includegraphics[width=6.89792in,height=2.12014in]{./images/image9.png}
+431: \includegraphics[width=4.61667in,height=1.82847in]{./images/image10.png}
+475: \includegraphics[width=4.67708in,height=1.80486in]{./images/image12.png}
+479: \includegraphics[width=5.99306in,height=2.09097in]{./images/image14.png}
+1260: \includegraphics[width=4.61667in,height=1.85in]{./images/image10.png}
+1338: \includegraphics[width=4.61667in,height=1.85in]{./images/image10.png}
+2513: \includegraphics[width=1.77222in,height=0.98333in]{./images/image57.emf}
+2516: \includegraphics[width=4.61667in,height=1.82847in]{./images/image10.png}
+2518: \includegraphics[width=4.61667in,height=1.82847in]{./images/image10.png}
+2520: \includegraphics[width=4.61667in,height=1.82847in]{./images/image10.png}
+2978: \includegraphics[width=4.61667in,height=1.82847in]{./images/image10.png}
+3378: \includegraphics{./images/image96.wmf}
+3378: \includegraphics{./images/image97.wmf}
+3398: \includegraphics[width=3.76806in,height=0.5in]{./images/image98.wmf}
+3731: \includegraphics{./images/image99.emf}
+3735: \includegraphics{./images/image100.emf}
+3739: \includegraphics{./images/image99.emf}
+3743: \includegraphics{./images/image99.emf}
+3745: \includegraphics{./images/image100.emf}
+3749: \includegraphics{./images/image99.emf}
+3751: \includegraphics{./images/image100.emf}
+3821: \includegraphics{./images/image99.emf}
+3823: \includegraphics{./images/image100.emf}
+3827: \includegraphics{./images/image99.emf}
+3829: \includegraphics{./images/image99.emf}
+3831: \includegraphics{./images/image100.emf}
+3831: \includegraphics{./images/image100.emf}
+3868: \includegraphics{./images/image101.emf}
+3872: \includegraphics{./images/image100.emf}
+3972: \includegraphics{./images/image99.emf}
+3983: \includegraphics{./images/image102.emf}
+4043: \includegraphics[width=6.10417in,height=4.57813in]{./images/image103.emf}
+4045: \includegraphics[width=6.10417in,height=4.57813in]{./images/image104.emf}
+4047: \includegraphics[width=6.08333in,height=4.5625in]{./images/image105.emf}
+4049: \includegraphics[width=6.08333in,height=4.5625in]{./images/image106.emf}
+4051: \includegraphics[width=5.83333in,height=4.375in]{./images/image107.emf}
+4084: \includegraphics[width=4.61667in,height=1.82847in]{./images/image10.png}
+4191: \includegraphics[width=4.61667in,height=1.82847in]{./images/image10.png}
+4204: \includegraphics{./images/image108.wmf}
+4206: \includegraphics{./images/image109.wmf}
+4235: \includegraphics[width=4.61667in,height=1.82847in]{./images/image10.png}
