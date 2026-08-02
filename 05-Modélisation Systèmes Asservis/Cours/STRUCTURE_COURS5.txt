@@ -1,0 +1,166 @@
+=== INTRODUCTION SA ===
+1939 05-Modélisation Systèmes Asservis/Cours/contenu.tex
+95:\section{MISE EN SITUATION}\label{mise-en-situation}
+97:\subsection[Cas n$^\circ$1~: Etuve
+123:\subsection[Cas n$^\circ$2~: Robot Da
+160:\subsection{Cas n$^\circ$3~: Régulateur de vitesse
+183:\section{INTRODUCTION ET DÉFINITIONS}\label{introduction-et-definitions}
+185:\subsection{Système automatisé}\label{systuxe8me-automatisuxe9}
+235:\subsection{Notion de système bouclé / boucle
+326:\subsection{Structure générale d'un système
+361:\subsection{Types de systèmes
+406:\subsection{Représentation par
+477:\section{Performances d'un système
+488:\subsection{Critères de performance d'un système
+550:\subsection{Signaux tests (ou
+719:\subsection{Consigne et réponse}\label{consigne-et-ruxe9ponse}
+761:\subsection{Stabilité des
+805:\subsection{Rapidité des systèmes}\label{rapidituxe9-des-systuxe8mes}
+857:\subsubsection{ Il faut construire le tube des 5\% autour de la valeur finale de la sortie et non pas autour de la valeur de la grandeur d'entrée~!}\label{il-faut-construire-le-tube-des-5-autour-de-la-valeur-finale-de-la-sortie-et-non-pas-autour-de-la-valeur-de-la-grandeur-dentruxe9e}
+859:\subsubsection*{}\label{section}
+997:\subsection{Précision des systèmes
+1136:\subsection{Dépassement}\label{duxe9passement}
+1179:\subsubsection{}\label{section-1}
+1181:\subsubsection{ Le dépassement n'existe que pour des systèmes d'ordre 2 ou supérieur. Un système d'ordre 1 ne peut pas avoir de dépassement.}\label{le-duxe9passement-nexiste-que-pour-des-systuxe8mes-dordre-2-ou-supuxe9rieur.-un-systuxe8me-dordre-1-ne-peut-pas-avoir-de-duxe9passement.}
+1249:\section{Sources}\label{sources}
+1254:\section{Exercices du chapitre}\label{exercices-du-chapitre}
+
+=== REPÈRES INTRODUCTION ===
+1249:\section{Sources}\label{sources}
+1251:Ce cours a été élaboré à l'aide de nombreuses ressources~provenant de
+1254:\section{Exercices du chapitre}\label{exercices-du-chapitre}
+1677:annexes).
+1766:d'information et d'énergie du diagramme IBD de l'annexe}
+1927:  En vous aidant du diagramme d'exigence (voir annexes), dire quels sont
+
+=== MODÉLISATION SA ===
+4324 05-Modélisation Systèmes Asservis/Cours/modelisation/contenu.tex
+14:\section*{\texorpdfstring{\textbf{Table des matières}}{Table des matières}}\label{table-des-matiuxe8res}}
+388:\subsection{MISE EN SITUATION}\label{mise-en-situation}}
+391:\subsubsection[Cas n°1~: Etuve thermique]{\texorpdfstring{\protect\includegraphics[width=1.41875in,height=1.4in]{./images/image5.png}Cas n°1~: Etuve thermique}{Cas n°1~: Etuve thermique}}\label{cas-n1-etuve-thermique}}
+406:\subsubsection{Cas n°2~: Toit ouvrant de voiture}\label{cas-n2-toit-ouvrant-de-voiture}}
+434:\subsection{INTRODUCTION AUX SLCI}\label{introduction-aux-slci}}
+490:\subsection{Modélisation de connaissance}\label{moduxe9lisation-de-connaissance}}
+493:\subsubsection{Systèmes modélisables par un gain}\label{systuxe8mes-moduxe9lisables-par-un-gain}}
+578:\subsubsection{Non linéarité et linéarisation}\label{non-linuxe9arituxe9-et-linuxe9arisation}}
+616:\subsubsection{Transformée de Laplace}\label{transformuxe9e-de-laplace}}
+989:\subsubsection{Fonctions de transfert -- cas générique}\label{fonctions-de-transfert-cas-guxe9nuxe9rique}}
+1055:\subsubsection{\texorpdfstring{Forme canonique du 1\textsuperscript{er} ordre}{Forme canonique du 1er ordre}}\label{forme-canonique-du-1er-ordre}}
+1096:\subsubsection{\texorpdfstring{Fonctions de transfert du 2\textsuperscript{d} ordre}{Fonctions de transfert du 2d ordre}}\label{fonctions-de-transfert-du-2d-ordre}}
+1216:\subsection{Prévoir le comportement d'un système à partir de la fonction de transfert}\label{pruxe9voir-le-comportement-dun-systuxe8me-uxe0-partir-de-la-fonction-de-transfert}}
+1221:\subsubsection{Prévoir le comportement en stabilité}\label{pruxe9voir-le-comportement-en-stabilituxe9}}
+1291:\subsubsection{Prévoir le comportement en rapidité}\label{pruxe9voir-le-comportement-en-rapidituxe9}}
+1330:\subsection{Prévoir le comportement en précision}\label{pruxe9voir-le-comportement-en-pruxe9cision}}
+1796:\subsection{Identifier un modèle de comportement}\label{identifier-un-moduxe8le-de-comportement}}
+1803:\subsubsection{Méthode pour identifier un modèle de comportement}\label{muxe9thode-pour-identifier-un-moduxe8le-de-comportement}}
+1825:\subsubsection[Identification temporelle d'un 1er ordre]{\texorpdfstring{\protect\includegraphics[width=2.17708in,height=1.56111in]{./images/image38.png}Identification temporelle d'un 1er ordre}{Identification temporelle d'un 1er ordre}}\label{identification-temporelle-dun-1er-ordre}}
+1997:\subsubsection{\texorpdfstring{Identification temporelle d'un 2\textsuperscript{ème} ordre pseudo-périodique}{Identification temporelle d'un 2ème ordre pseudo-périodique}}\label{identification-temporelle-dun-2uxe8me-ordre-pseudo-puxe9riodique}}
+2184:\subsubsection{\texorpdfstring{Identification temporelle d'un 2\textsuperscript{ème} ordre apériodique}{Identification temporelle d'un 2ème ordre apériodique}}\label{identification-temporelle-dun-2uxe8me-ordre-apuxe9riodique}}
+2299:\subsubsection{Réduction de l'ordre d'un modèle}\label{ruxe9duction-de-lordre-dun-moduxe8le}}
+2339:\subsection{Manipulation des blocs}\label{manipulation-des-blocs}}
+2342:\subsubsection{Eléments de bases}\label{eluxe9ments-de-bases}}
+2486:\subsubsection{Simplifier un schéma-bloc}\label{simplifier-un-schuxe9ma-bloc}}
+2710:\subsubsection{Schéma-bloc équivalent}\label{schuxe9ma-bloc-uxe9quivalent}}
+2782:\subsection{Systèmes asserivs perturbés}\label{systuxe8mes-asserivs-perturbuxe9s}}
+2785:\subsubsection{Perturbation}\label{perturbation}}
+2804:\subsubsection{Schéma-bloc d'un système perturbé}\label{schuxe9ma-bloc-dun-systuxe8me-perturbuxe9}}
+2815:\subsubsection{Théorème de superposition}\label{thuxe9oruxe8me-de-superposition}}
+2902:\subsubsection{Stabilité d'un modèle perturbé}\label{stabilituxe9-dun-moduxe8le-perturbuxe9}}
+2907:\subsubsection{Précision d'un modèle perturbé}\label{pruxe9cision-dun-moduxe8le-perturbuxe9}}
+2932:\subsubsection{Erreur statique d'un système non perturbé}\label{erreur-statique-dun-systuxe8me-non-perturbuxe9}}
+3036:\subsubsection{Erreur statique due à la perturbation}\label{erreur-statique-due-uxe0-la-perturbation}}
+3089:\subsubsection{Rejet de perturbation}\label{rejet-de-perturbation}}
+3282:\subsubsection{Lieux de transferts}\label{lieux-de-transferts}}
+3319:\subsubsection{\texorpdfstring{Décade, Octave, décibel, propriétés du log\textsubscript{10}}{Décade, Octave, décibel, propriétés du log10}}\label{duxe9cade-octave-duxe9cibel-propriuxe9tuxe9s-du-log10}}
+3385:\subsubsection{Intérêt de l'échelle logarithmique}\label{intuxe9ruxeat-de-luxe9chelle-logarithmique}}
+3408:\subsubsection{Gain et phase}\label{gain-et-phase}}
+3981:\subsubsection{Bilan du comportement d'un modèle du 2ème ordre}\label{bilan-du-comportement-dun-moduxe8le-du-2uxe8me-ordre}}
+3986:\subsubsection{Tracé de Bode réel}\label{tracuxe9-de-bode-ruxe9el}}
+4008:\subsubsection{Méthode pour identifier un diagramme de Bode}\label{muxe9thode-pour-identifier-un-diagramme-de-bode}}
+4060:\subsection{Etude de la stabilité -- Point critique}\label{etude-de-la-stabilituxe9-point-critique}}
+4233:\subsubsection{Performances à étudier en FTBO ou en FTBF}\label{performances-uxe0-uxe9tudier-en-ftbo-ou-en-ftbf}}
+4238:\subsection{Sources}\label{sources}}
+4243:\subsection{QUESTIONS DE COURS}\label{questions-de-cours}}
+
+=== REPÈRES MODÉLISATION ===
+157:\protect\hyperlink{sources}{13. Sources \protect\hyperlink{sources}{123}}
+4237:\hypertarget{sources}{%
+4238:\subsection{Sources}\label{sources}}
+4240:Ce cours a été élaboré à l'aide de nombreuses ressources~provenant de différents collègues~de l'UPSTI.
+
+=== IMAGES MODÉLISATION ===
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image1.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image10.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image100.emf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image101.emf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image102.emf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image103.emf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image104.emf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image105.emf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image106.emf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image107.emf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image108.wmf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image109.wmf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image110.wmf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image111.emf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image112.wmf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image113.emf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image114.wmf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image115.emf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image116.wmf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image117.emf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image12.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image14.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image17.jpeg
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image23.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image24.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image25.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image27.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image29.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image3.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image30.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image31.emf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image32.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image33.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image34.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image36.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image38.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image39.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image40.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image41.jpeg
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image44.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image45.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image46.emf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image47.jpeg
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image48.emf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image49.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image5.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image50.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image52.emf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image54.jpeg
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image55.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image56.jpeg
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image57.emf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image59.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image6.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image60.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image61.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image62.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image63.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image64.jpeg
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image65.jpeg
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image66.jpeg
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image67.jpeg
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image68.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image69.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image70.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image71.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image72.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image73.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image74.jpeg
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image8.jpeg
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image9.png
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image96.wmf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image97.wmf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image98.wmf
+05-Modélisation Systèmes Asservis/Cours/modelisation/images/image99.emf
