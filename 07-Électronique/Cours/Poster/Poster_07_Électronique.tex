@@ -6,25 +6,68 @@
 \def\input@path{{../../../Style/}}
 \makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{{TLElectronique.sty}}{{\input{{TLElectronique.sty}}}}{{}}
+\IfFileExists{TLElectronique.sty}{\input{TLElectronique.sty}}{}
+\IfFileExists{Notations_Elec/Notations_Elec.sty}{\input{Notations_Elec/Notations_Elec.sty}}{}
 \pagestyle{empty}
 \begin{document}
-\TLPosterTitre{{Électronique}}{{Fiche résumé éditable}}
-\begin{multicols}{2}
-\begin{TLPosterBloc}{Grandeurs}
-Tension, courant, puissance et énergie dans les dipôles.
+\TLPosterTitre{Électronique}{Fiche résumé éditable}
+\begin{multicols}{3}
+
+\begin{TLPosterBloc}{Grandeurs électriques}
+La tension $u_{AB}=V_A-V_B$ représente une différence de potentiel. Le courant $i$ est un débit de charges. En convention récepteur, $p=u\,i$.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Composants}
-Résistance, condensateur, inductance, diode et transistor.
+\begin{TLPosterBloc}{Lois de Kirchhoff}
+Loi des nœuds : la somme algébrique des courants est nulle. Loi des mailles : la somme algébrique des tensions est nulle.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Méthodes}
-Lois de Kirchhoff, équivalents de Thévenin/Norton et analyse temporelle.
+\begin{TLPosterBloc}{Association de résistances}
+Série : $R_{\mathrm{eq}}=\sum R_k$. Parallèle : $1/R_{\mathrm{eq}}=\sum 1/R_k$. Loi d'Ohm : $u=Ri$.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Points clés}
-Régimes transitoires, filtrage, adaptation et commande des composants.
+\begin{TLPosterBloc}{Condensateur}
+$i=C\,\mathrm{d}u/\mathrm{d}t$ et $E_C=\frac12Cu^2$. La tension est continue lors d'une commutation idéale.
 \end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Inductance}
+$u=L\,\mathrm{d}i/\mathrm{d}t$ et $E_L=\frac12Li^2$. Le courant est continu lors d'une commutation idéale.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Régime transitoire du premier ordre}
+Une réponse prend la forme $x(t)=x_\infty+[x(0^+)-x_\infty]e^{-t/\tau}$. Pour un circuit RC, $\tau=RC$ ; pour un circuit RL, $\tau=L/R$.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Méthode transitoire}
+Déterminer $x(0^-)$, appliquer la continuité, calculer $x(\infty)$, identifier $\tau$, puis écrire et vérifier la réponse.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Thévenin et Norton}
+Un réseau linéaire vu entre deux bornes se remplace par $(E_{Th},R_{Th})$ ou $(I_N,R_N)$ avec $R_N=R_{Th}$ et $I_N=E_{Th}/R_{Th}$.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Diode}
+La diode est un composant unidirectionnel. Modèle idéal : passante si $u_D\geq0$ avec $u_D=0$ ; bloquée si $u_D<0$ avec $i_D=0$.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Transistor en commutation}
+Le transistor est utilisé comme interrupteur commandé. Il faut distinguer l'état bloqué, l'état passant et respecter les limites de courant, tension et puissance.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Régime sinusoïdal}
+Les impédances complexes sont $Z_R=R$, $Z_C=1/(j\omega C)$ et $Z_L=j\omega L$. Les lois de Kirchhoff restent applicables aux grandeurs complexes.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Filtres}
+Un filtre sélectionne les fréquences. Identifier sa nature par les limites à basse et haute fréquence, puis déterminer gain, phase et fréquence de coupure.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Puissance}
+En continu, $P=UI$. En sinusoïdal, $P=UI\cos\varphi$, $Q=UI\sin\varphi$ et $S=UI$, avec $S^2=P^2+Q^2$.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Points de vigilance}
+Toujours fixer les conventions, vérifier les unités, contrôler les continuités de $u_C$ et $i_L$, puis confronter le résultat aux limites physiques.
+\end{TLPosterBloc}
+
 \end{multicols}
 \end{document}
