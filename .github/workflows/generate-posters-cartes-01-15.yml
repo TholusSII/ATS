@@ -1,0 +1,46 @@
+name: Générer posters et cartes mentales 01 à 15
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'tools/generate_posters_cartes_01_05.py'
+      - 'tools/generate_posters_cartes_06_15.py'
+      - 'Style/TLPosterCarteMentale.sty'
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    if: "!contains(github.event.head_commit.message, '[skip poster generation]')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Générer les cours 01 à 05
+        run: python tools/generate_posters_cartes_01_05.py
+      - name: Générer les cours 06 à 15
+        run: python tools/generate_posters_cartes_06_15.py
+      - name: Vérifier la présence des fichiers
+        run: |
+          set -e
+          for n in $(seq -w 1 15); do
+            d=$(find . -maxdepth 1 -type d -name "${n}-*" | head -n 1)
+            test -n "$d"
+            find "$d/Cours/Poster" -maxdepth 1 -name '*.tex' | grep -q .
+            find "$d/Cours/Carte mentale" -maxdepth 1 -name '*.tex' | grep -q .
+          done
+      - name: Publier les sources générées
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -- '0'*-*/Cours/Poster '0'*-*/Cours/'Carte mentale' '1'*-*/Cours/Poster '1'*-*/Cours/'Carte mentale'
+          if ! git diff --cached --quiet; then
+            git commit -m 'Génère les posters et cartes mentales des cours 01 à 15 [skip poster generation]'
+            git push
+          fi
