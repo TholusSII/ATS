@@ -1,0 +1,2463 @@
+\includegraphics[width=8.49444in,height=4.14861in]{10-Électronique de Puissance/Cours/pandoc/media/image1.png}
+
+\includegraphics[width=2.37986in,height=2.13194in]{10-Électronique de Puissance/Cours/pandoc/media/image3.jpeg}
+
+Cycle 5 : Analyser, Modéliser, Expérimenter et Résoudre la distribution et la conversion d\textquotesingle énergie en continu
+
+\textbf{Variation de vitesse d'une MCC}
+
+Thomas Lusseau
+
+Lycée Robert Doisneau - ATS
+
+\hypertarget{table-des-matiuxe8res}{%
+\section*{\texorpdfstring{\textbf{Table des matières}}{Table des matières}}\label{table-des-matiuxe8res}}
+\addcontentsline{toc}{section}{\textbf{Table des matières}}
+
+\protect\hyperlink{guxe9nuxe9ralituxe9s-sur-luxe9lectronique-de-puissance}{1. Généralités sur l'électronique de puissance {[}5{]}(\#généralités-sur-lélectronique-de-puissance)}
+
+\protect\hyperlink{introduction}{1.1. Introduction {[}5{]}(\#introduction)}
+
+\protect\hyperlink{composants-de-base-dun-cvs-bras-de-pont}{1.2. Composants de base d'un CVS -- Bras de pont {[}6{]}(\#composants-de-base-dun-cvs-bras-de-pont)}
+
+\protect\hyperlink{nature-des-sources}{1.3. Nature des sources {[}7{]}(\#nature-des-sources)}
+
+\protect\hyperlink{ruxe8gles-dassociation-des-sources}{1.4. Règles d'association des sources {[}8{]}(\#règles-dassociation-des-sources)}
+
+\protect\hyperlink{modification-des-sources}{1.5. Modification des sources {[}9{]}(\#modification-des-sources)}
+
+\protect\hyperlink{forme-du-courant-pour-diffuxe9rents-moduxe8les-de-charge}{1.6. Forme du courant pour différents modèles de charge {[}9{]}(\#forme-du-courant-pour-différents-modèles-de-charge)}
+
+\protect\hyperlink{commutations-possibles}{1.7. Commutations possibles {[}10{]}(\#commutations-possibles)}
+
+\protect\hyperlink{rapport-cyclique-et-duxe9coupage}{1.8. Rapport cyclique et découpage {[}10{]}(\#rapport-cyclique-et-découpage)}
+
+\protect\hyperlink{valeur-moyenne}{1.9. Valeur moyenne {[}11{]}(\#valeur-moyenne)}
+
+\protect\hyperlink{valeur-efficace}{1.10. Valeur efficace {[}12{]}(\#valeur-efficace)}
+
+\protect\hyperlink{composants-en-uxe9lectronique-de-puissance}{2. Composants en électronique de puissance {[}13{]}(\#composants-en-électronique-de-puissance)}
+
+\protect\hyperlink{introduction-1}{2.1. Introduction {[}13{]}(\#introduction-1)}
+
+\protect\hyperlink{caractuxe9ristique-statique-uxe9tats-bloquuxe9-passant}{2.2. Caractéristique statique (états bloqué /passant) {[}14{]}(\#caractéristique-statique-états-bloqué-passant)}
+
+\protect\hyperlink{caractuxe9ristique-dynamique-commutation-spontanuxe9ecommanduxe9e}{2.3. Caractéristique dynamique (commutation spontanée/commandée) {[}14{]}(\#caractéristique-dynamique-commutation-spontanéecommandée)}
+
+\protect\hyperlink{association-de-composants}{2.4. Association de composants {[}15{]}(\#association-de-composants)}
+
+\protect\hyperlink{pertes-des-composants-de-puissance}{2.5. Pertes des composants de puissance {[}15{]}(\#pertes-des-composants-de-puissance)}
+
+\protect\hyperlink{dimensionnement-des-composants-de-puissance}{2.6. Dimensionnement des composants de puissance {[}16{]}(\#dimensionnement-des-composants-de-puissance)}
+
+\protect\hyperlink{muxe9thode-duxe9tude-des-convertisseurs-dc-dc}{3. Méthode d'étude des convertisseurs DC-DC {[}17{]}(\#méthode-détude-des-convertisseurs-dc-dc)}
+
+\protect\hyperlink{_Toc124946331}{4. Hacheur série (ou Buck, ou abaisseur, ou dévolteur) {[}17{]}(\#\_Toc124946331)}
+
+\protect\hyperlink{schuxe9ma-de-principe}{4.1. Schéma de principe {[}17{]}(\#schéma-de-principe)}
+
+\protect\hyperlink{quadrants-du-hacheur-buck}{4.2. Quadrants du hacheur Buck {[}20{]}(\#quadrants-du-hacheur-buck)}
+
+\protect\hyperlink{hacheur-paralluxe8le-ou-boost-ou-survolteur-uxe9luxe9vateur}{5. Hacheur parallèle (ou Boost, ou survolteur, élévateur) {[}21{]}(\#hacheur-parallèle-ou-boost-ou-survolteur-élévateur)}
+
+\protect\hyperlink{schuxe9ma-de-principe-1}{5.1. Schéma de principe {[}21{]}(\#schéma-de-principe-1)}
+
+\protect\hyperlink{quadrants-du-hacheur-boost}{5.2. Quadrants du hacheur Boost {[}24{]}(\#quadrants-du-hacheur-boost)}
+
+\protect\hyperlink{hacheur-2-quadrants-2q}{6. Hacheur 2 quadrants (2Q) {[}24{]}(\#hacheur-2-quadrants-2q)}
+
+\protect\hyperlink{constitution-du-hacheur-2-quadrants}{6.1. Constitution du hacheur 2 quadrants {[}24{]}(\#constitution-du-hacheur-2-quadrants)}
+
+\protect\hyperlink{commande-compluxe9mentaire}{6.2. Commande complémentaire {[}25{]}(\#commande-complémentaire)}
+
+\protect\hyperlink{formes-donde}{6.3. Formes d'onde {[}25{]}(\#formes-donde)}
+
+\protect\hyperlink{calcul-de-la-tension-de-sortie-et-de-londulation-de-courant}{6.4. Calcul de la tension de sortie et de l'ondulation de courant {[}26{]}(\#calcul-de-la-tension-de-sortie-et-de-londulation-de-courant)}
+
+\protect\hyperlink{hacheur-4-quadrants}{7. Hacheur 4 quadrants {[}27{]}(\#hacheur-4-quadrants)}
+
+\protect\hyperlink{constitution-du-hacheur-4-quadrants}{7.1. Constitution du hacheur 4 quadrants {[}27{]}(\#constitution-du-hacheur-4-quadrants)}
+
+\protect\hyperlink{formes-donde-1}{7.2. Formes d'onde {[}28{]}(\#formes-donde-1)}
+
+\protect\hyperlink{calcul-de-la-tension-de-sortie-et-de-londulation-de-courant-1}{7.3. Calcul de la tension de sortie et de l'ondulation de courant {[}28{]}(\#calcul-de-la-tension-de-sortie-et-de-londulation-de-courant-1)}
+
+\protect\hyperlink{hacheur-uxe0-conversion-indirecte}{8. Hacheur à conversion indirecte {[}29{]}(\#hacheur-à-conversion-indirecte)}
+
+\protect\hyperlink{guxe9nuxe9ralituxe9s-sur-les-convertisseurs-ac-dc}{9. Généralités sur les convertisseurs AC-DC {[}30{]}(\#généralités-sur-les-convertisseurs-ac-dc)}
+
+\protect\hyperlink{convertisseurs-ac-dc}{9.1. Convertisseurs AC-DC {[}30{]}(\#convertisseurs-ac-dc)}
+
+\protect\hyperlink{redressement-monophasuxe9-non-commanduxe9}{10. Redressement monophasé non commandé {[}31{]}(\#redressement-monophasé-non-commandé)}
+
+\protect\hyperlink{diode-de-puissance}{10.1. Diode de puissance {[}31{]}(\#diode-de-puissance)}
+
+\protect\hyperlink{montage-pd2}{10.2. Montage PD2 {[}32{]}(\#montage-pd2)}
+
+\protect\hyperlink{puissance-instantanuxe9e-et-active}{10.3. Puissance instantanée et active {[}33{]}(\#puissance-instantanée-et-active)}
+
+\protect\hyperlink{puissance-ruxe9active-et-puissance-apparente}{10.4. Puissance réactive et puissance apparente {[}34{]}(\#puissance-réactive-et-puissance-apparente)}
+
+\protect\hyperlink{facteur-de-puissance}{10.5. Facteur de puissance {[}35{]}(\#facteur-de-puissance)}
+
+\protect\hyperlink{duxe9composition-en-suxe9rie-de-fourier}{10.6. Décomposition en série de Fourier {[}36{]}(\#décomposition-en-série-de-fourier)}
+
+\protect\hyperlink{puissance-duxe9formante}{10.7. Puissance déformante {[}37{]}(\#puissance-déformante)}
+
+\protect\hyperlink{transformateur-monophasuxe9-parfait}{10.8. Transformateur monophasé parfait {[}38{]}(\#transformateur-monophasé-parfait)}
+
+\protect\hyperlink{redresseur-uxe0-absorption-sinusouxefdale}{11. Redresseur à absorption sinusoïdale {[}38{]}(\#redresseur-à-absorption-sinusoïdale)}
+
+\protect\hyperlink{introduction-2}{11.1. Introduction {[}38{]}(\#introduction-2)}
+
+\protect\hyperlink{structure-uxe0-deux-uxe9tages}{11.2. Structure à deux étages {[}39{]}(\#structure-à-deux-étages)}
+
+\protect\hyperlink{structure-mono-uxe9tage}{11.3. Structure mono étage {[}40{]}(\#structure-mono-étage)}
+
+\protect\hyperlink{sources}{12. Sources {[}40{]}(\#sources)}
+
+\protect\hyperlink{_Toc124946363}{13. Exercices du chapitre {[}41{]}(\#\_Toc124946363)}
+
+Donner les démarches et outils nécessaires à la correction des systèmes asservis.
+
+\textbf{Je connais~:}
+
+\begin{itemize}
+\item
+  les différentes natures de sources (courant, tension) ainsi que leur règles d'associations~; ⃝
+\item
+  les caractéristiques d'un interrupteur à l'état passant (tension nulle) et à l'état bloqué (courant nul)~; ⃝
+\item
+  la forme du courant de la charge d'un convertisseur statique pour les charges~: courant constant, L-E, R-L-E~; ⃝
+\item
+  la définition du rapport cyclique; ⃝
+\item
+  les définitions de valeur moyenne et efficace~; ⃝
+\item
+  les principaux composants utilisés en électronique de puissance (Diode, MOS, IGBT)~; ⃝
+\item
+  l'association MOS+Diode têtes bêches qui permet d'avoir un interrupteur réversible en courant. ⃝
+\item
+  les schémas de principe du hacheur série, 2Q et 4Q~; ⃝
+\item
+  la démarche pour tracer toutes les tensions et les courants du convertisseur (schémas équivalents, modèle à l'état passant des interrupteurs, \ldots)~; ⃝
+\item
+  la démarche pour déterminer la relation entre la tension d'entrée et la tension de sortie (en passant par les valeurs moyennes)~; ⃝
+\item
+  la démarche pour déterminer l'expression de l'ondulation de courant, ainsi que la valeur du rapport cyclique pour laquelle elle est maximale. ⃝
+\end{itemize}
+
+\textbf{Je sais~:}
+
+\begin{itemize}
+\item
+  tracer l'allure du courant de la charge d'un convertisseur statique \textgreater{} pour les charges~: courant constant, L-E, R-L-E~; ⃝
+\item
+  déterminer le rapport cyclique à partir d'un chronogramme; ⃝
+\item
+  calculer une valeur moyenne et/ou efficace à partir d'un \textgreater{} chronogramme~;~ ⃝
+\item
+  reconnaître une diode, un transistor MOS ou IGBT sur un schéma \textgreater{} électrique. ⃝
+\item
+  tracer l'allure des tensions et courant pour n'importe quel \textgreater{} convertisseur DC-DC~; ⃝
+\item
+  déterminer la relation entre la tension de sortie et la tension \textgreater{} d'entrée pour n'importe quel convertisseur DC-DC~; ⃝
+\item
+  déterminer l'expression de l'ondulation de courant pour n'importe \textgreater{} quel convertisseur DC-DC~; ⃝
+\item
+  déterminer quel composant est passant à partir des chronogrammes de \textgreater{} tension et courant dans la charge pour n'importe quel \textgreater{} convertisseur DC-DC. ⃝
+\end{itemize}
+
+\hypertarget{guxe9nuxe9ralituxe9s-sur-luxe9lectronique-de-puissance}{%
+\subsection{Généralités sur l'électronique de puissance}\label{guxe9nuxe9ralituxe9s-sur-luxe9lectronique-de-puissance}}
+
+\hypertarget{introduction}{%
+\subsubsection{Introduction}\label{introduction}}
+
+L'énergie électrique se présente sous deux formes~:
+
+\begin{itemize}
+\item
+  continue ou DC (piles, batteries\ldots);
+\item
+  alternative ou AC (distribution EDF\ldots)
+\end{itemize}
+
+\includegraphics[width=3.57431in,height=2.87014in]{10-Électronique de Puissance/Cours/pandoc/media/image5.jpeg}On parle d'électronique de puissance lorsqu'on étudie les \textbf{convertisseurs statiques d'énergie (CVS)} permettant de modifier la présentation de l'énergie suivant nos besoins (chargeur de batterie, interconnexion France-GB en continu, contrôle de vitesse d'un moteur\ldots).
+
+On différencie donc \textbf{l'électronique des courants faibles qui traite des informations} codées sous la forme de signaux électriques et \textbf{l'électronique de puissance (ou courants forts) qui traite de la transformation de l'énergie}.
+
+Les différents variateurs (ou convertisseurs) d'électronique de puissance sont résumés sur la figure ci-contre. Ils sont aussi utilisés pour transformer la présentation de l'énergie électrique pour alimenter des circuits autres que les moteurs.
+
+\hypertarget{exemples-dutilisation-de-lenpu}{%
+\subparagraph*{Exemples d'utilisation de l'ENPU}\label{exemples-dutilisation-de-lenpu}}
+\addcontentsline{toc}{subparagraph}{Exemples d'utilisation de l'ENPU}
+
+\includegraphics[width=1.47847in,height=1.36042in]{10-Électronique de Puissance/Cours/pandoc/media/image6.jpeg}L'électronique de puissance est présente dans de nombreux systèmes et pour toutes les gammes de puissances (du mW au MW).
+
+\textbf{Alimentation de PC}
+
+A partir du secteur (230 V AC), l'alimentation de PC permet de fournir différentes tensions continues (5, 12, 3, 3 V, -12 V) pour les différents éléments électroniques du PC.
+
+\textbf{TGV PBKA (Paris -- Berlin -- Cologne -- Amsterdam)}
+
+Ce TGV doit pouvoir fonctionner avec les différentes alimentations :
+
+\begin{itemize}
+\item
+  \includegraphics[width=2.02639in,height=1.32361in]{10-Électronique de Puissance/Cours/pandoc/media/image7.png}1500 Volts continu
+\item
+  3000 Volts continu
+\item
+  15000 Volts 16 2/3 Hertz alternatif monophasé
+\item
+  25000 Volts 50 Hertz alternatif monophasé
+\end{itemize}
+
+\includegraphics[width=1.23194in,height=0.85486in]{10-Électronique de Puissance/Cours/pandoc/media/image8.png}
+
+\textbf{Exemple d'un convertisseur DC-DC}
+
+On souhaite faire varier la tension continue pour faire varier la vitesse d'une MCC. Une solution simple qui pourrait être envisagée est d'utiliser un potentiomètre ou un réseau résistif.
+
+\(U_{s} = \frac{R_{2}.R_{c}}{R_{1}.\left( R_{2} + R_{c} \right) + R_{2}R_{c}}.U_{e}\)~; \(\eta = \frac{P_{s}}{P_{e}} = \frac{U^{2}\left( R_{c}.R_{2} + R_{1}\left( R_{2} + R_{c} \right) \right)}{\left( R_{2} + R_{c} \right).R_{c}.E^{2}}\)
+
+Ce montage comporte plusieurs problèmes
+
+\begin{itemize}
+\item
+  La \textbf{tension de sortie dépend de la charge} (R\textsubscript{c}) ;
+\item
+  Le \textbf{rendement est très faible} (\textless20\%) car une grande partie est dissipée par effet Joule.
+\end{itemize}
+
+Pour obtenir un rendement élevé, les convertisseurs statiques utilisent des \textbf{interrupteurs électroniques} à la place des résistances.
+
+Ceci a pour conséquences :
+
+\begin{itemize}
+\item
+  \textbf{La disparition des pertes par effet Joule ;}
+\item
+  \textbf{L'ajout de circuits électroniques de commande pour les interrupteurs ;}
+\end{itemize}
+
+Un CVS doit permettre de convertir la présentation de l'énergie électrique avec un \textbf{rendement maximal}.
+
+\hypertarget{composants-de-base-dun-cvs-bras-de-pont}{%
+\subsubsection{Composants de base d'un CVS -- Bras de pont}\label{composants-de-base-dun-cvs-bras-de-pont}}
+
+Un CVS doit permettre de convertir la présentation de l'énergie électrique avec un \textbf{rendement maximal}. Le montage précédent est donc à éviter et les convertisseurs statiques (CVS) utilisent des interrupteurs électroniques. Les éléments autorisés sont donc uniquement ceux dissipant pas (ou peu) de puissance.
+
+Les interrupteurs électroniques sont donc utilisés pour dissiper le minimum de puissance (nulle s'ils sont idéaux). Il n'y a que deux états possibles pour un interrupteur (ouvert ou fermé)
+
+Si on remplace maintenant les résistances par des interrupteurs idéaux il n'y aura pas de pertes lors du transfert.
+
+Avec deux interrupteurs il y a alors 4 possibilités illustrées ci-dessous.
+
+\includegraphics[width=4.58333in,height=1.82847in]{10-Électronique de Puissance/Cours/pandoc/media/image9.png}
+
+\hypertarget{nature-des-sources}{%
+\subsubsection{Nature des sources}\label{nature-des-sources}}
+
+Un CVS permet le transfert d'énergie entre la source et la charge. Ce transfert peut être direct ou inverse.
+
+Les sources/charge peuvent être modélisées par deux types de sources :
+
+\begin{itemize}
+\item
+  \textbf{Les sources de tension ;}
+\item
+  \textbf{Les sources de courant.}
+\end{itemize}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Source de tension}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Source de courant}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Une source de tension permet d'imposer la tension quel que soit le courant demandé.
+
+\textbf{\ul{Ex}} : batterie, réseau EDF, \ldots{} & Une source de courant permet d'imposer le courant quelle que soit la tension.
+
+\textbf{\ul{Ex}} : panneaux solaires, MCC, \ldots{} \\
+\end{longtable}
+
+\hypertarget{ruxe8gles-dassociation-des-sources}{%
+\subsubsection{Règles d'association des sources}\label{ruxe8gles-dassociation-des-sources}}
+
+Nous avons vu dans le cas précédent que tous les cas de commutations des interrupteurs du bras de pont n'étaient pas possibles. Il y a alors des règles à respecter lorsqu'un convertisseur est utilisé.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Les sources de tension ne doivent jamais être court-circuitée (mais peuvent être ouvertes) (1)
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Le circuit des sources de courant ne doit jamais être ouvert (mais peuvent être en court-circuit). (2)
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Les sources de même nature ne peuvent pas être connectées entre elles (deux sources de tension ou deux sources de courant connectées). On ne peut connecter entre elles que des sources de nature différentes. (3a et 3b)
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Uniquement les sources de natures différentes peuvent être connectées directement.
+\end{enumerate}
+
+\hypertarget{modification-des-sources}{%
+\subsubsection{Modification des sources}\label{modification-des-sources}}
+
+Une source de tension associée à un CVS peut être «~vue~» comme une source de courant par ajout d'une inductance.
+
+\[{u_{L}(t) = L\frac{di(t)}{dt} = U_{e} - u(t),\ Soit\ \ \frac{di(t)}{dt} = \frac{U_{e} - u(t)}{L}
+}{Si\ \ L\ grand\ alors\ \frac{di(t)}{dt} \rightarrow 0\ soit\boxed{\ i(t) = cte}}\]
+
+\includegraphics[width=2.83819in,height=0.92847in]{10-Électronique de Puissance/Cours/pandoc/media/image10.jpeg}
+
+De même, une source de courant peut être «~vue~» comme une source de tension par ajout d'un condensateur.
+
+\[{i_{C} = C\frac{du(t)}{dt} = I_{0} - i(t),\ \ Soit\ \ \frac{du(t)}{dt} = \frac{I_{0} - i(t)}{C}
+}{Si\ \ C\ est\ grand\ alors\ \frac{du(t)}{dt} \rightarrow 0\ soit\boxed{\ u(t) = cte}}\]
+
+\hypertarget{forme-du-courant-pour-diffuxe9rents-moduxe8les-de-charge}{%
+\subsubsection{Forme du courant pour différents modèles de charge}\label{forme-du-courant-pour-diffuxe9rents-moduxe8les-de-charge}}
+
+Suivant si la source de courant est de type courant constant ou homogène à une source du courant, il existera une ondulation de courant.
+
+\includegraphics[width=3.43611in,height=1.20833in]{10-Électronique de Puissance/Cours/pandoc/media/image11.jpeg}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Source de courant idéale :}
+\end{itemize}
+
+Dans le cas d'une source de courant idéale, le courant absorbé par la charge est constant quelle que soit la tension à ses bornes.
+
+\includegraphics[width=3.43651in,height=1.51858in]{10-Électronique de Puissance/Cours/pandoc/media/image12.jpeg}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Charge L-E :}
+\end{itemize}
+
+Dans le cas d'une charge L-E, il existe une ondulation de courant qui dépend de la période de découpage T\textsubscript{d}, de \(\alpha\), et de la valeur de l'inductance L.
+
+\begin{itemize}
+\tightlist
+\item
+  \includegraphics[width=3.43333in,height=1.57848in]{10-Électronique de Puissance/Cours/pandoc/media/image13.jpeg}\textbf{Charge R-L-E :}
+\end{itemize}
+
+Dans le cas d'une charge RLE, il existe aussi une ondulation de courant mais l'évolution du courant n'est plus linéaire mais exponentielle. Cependant si L/R \textgreater\textgreater{} T\textsubscript{d} on peut considérer l'évolution comme linéaire.
+
+\hypertarget{commutations-possibles}{%
+\subsubsection{Commutations possibles}\label{commutations-possibles}}
+
+\includegraphics[width=3.38087in,height=2.10833in]{10-Électronique de Puissance/Cours/pandoc/media/image14.jpeg}Nous avons vu dans le paragraphe «~Règle d'association des sources~» que tous les cas de commutation pour un bras de pont n'étaient pas possibles. Au final, les commutations possibles pour un CVS sont les suivantes.
+
+Pour respecter les règles précédentes il faut dans le cas précédent que les interrupteurs soient \textbf{commandés de manière complémentaire :} \(\mathbf{K}_{\mathbf{1}}\mathbf{=}\overline{\mathbf{K}_{\mathbf{2}}}\)
+
+(Quand K2 est fermé K1 doit être ouvert et inversement)
+
+\hypertarget{rapport-cyclique-et-duxe9coupage}{%
+\subsubsection[Rapport cyclique et découpage]{\texorpdfstring{\protect\includegraphics[width=3.5125in,height=1.64306in]{10-Électronique de Puissance/Cours/pandoc/media/image15.jpeg}Rapport cyclique et découpage}{Rapport cyclique et découpage}}\label{rapport-cyclique-et-duxe9coupage}}
+
+La commutation des différents interrupteurs se fait de manière périodique (ou répétitive). On parle de \textbf{période de découpage} (en général notée T\textsubscript{d}).
+
+La \textbf{fréquence de découpage} associée est en général notée f\textsubscript{d}.
+
+\includegraphics[width=2.825in,height=1.11181in]{10-Électronique de Puissance/Cours/pandoc/media/image16.jpeg}Si, sur une période de découpage la durée de conduction de K1 est la même que celle de K2, on obtient l'allure suivante pour la tension u(t).
+
+Le \textbf{rapport cyclique} est défini comme le rapport entre la durée à l'état haut t\textsubscript{on} et la période de découpage T\textsubscript{d} : \(\alpha = \frac{t_{on}}{T_{d}}\)
+
+La valeur moyenne de la tension u(t) sur une période de découpage est alors :
+
+\(< u(t) > = u = \frac{1}{T_{d}}\left\lbrack E.\alpha.T_{d} \right\rbrack = \boxed{\alpha.E}\)
+
+Pour faire varier la valeur moyenne de la tension, il suffit alors de faire varier le \textbf{rapport cyclique}.
+
+Ce n'est plus la \textbf{valeur instantanée qui est réglée mais la valeur moyenne}. Si la fréquence de découpage est assez grande, la charge (par exemple une MCC) ne « verra » que la valeur moyenne.
+
+\hypertarget{valeur-moyenne}{%
+\subsubsection{Valeur moyenne}\label{valeur-moyenne}}
+
+\includegraphics[width=2.825in,height=1.7125in]{10-Électronique de Puissance/Cours/pandoc/media/image17.jpeg}Un signal électrique est \textbf{périodique} s'il se répète de manière identique à chaque période, notée \textbf{T et exprimée en seconde(s).}
+
+La \textbf{Fréquence} correspond au nombre de périodes par seconde. Elle s'exprime en \textbf{Hertz (Hz)}et se calcule directement depuis la Période
+
+\[\boxed{f = \frac{1}{T}}\ en\ Hz\]
+
+\textbf{Définition Valeur moyenne :}
+
+La valeur moyenne d'un signal (tension ou courant) périodique est définie par la relation suivante :
+
+\[\boxed{< s > = \bar{s} = \frac{1}{T}\int_{0}^{T}{s(t).dt}\ }\ \]
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1111}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.8750}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+{[}{]} (10-É lectr oniqu e de Puiss ance/ Cours /pand oc/me dia/i mage1 8.png )\{wid th=``0 .6262 69685 03937 01in''
+
+heigh t=``0. 65083 33333 33333 4in''\}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Calculs de valeurs moyennes}
+
+\textbf{Déterminer les valeurs moyennes des signaux suivants}
+
+\includegraphics[width=3.97027in,height=1.83333in]{10-Électronique de Puissance/ Cours/pandoc/media/image19.jpeg}
+
+\includegraphics[width=4.03144in,height=2.91667in]{10-Électronique de Puissance/ Cours/pandoc/media/image19.jpeg}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& \\
+\end{longtable}
+
+\hypertarget{valeur-efficace}{%
+\subsubsection{Valeur efficace}\label{valeur-efficace}}
+
+\textbf{Définition Valeur efficace :}
+
+La valeur efficace d'un signal (tension ou courant) périodique est définie comme la racine de la valeur moyenne du carré du signal (RMS) :
+
+\[\boxed{S = S_{eff} = \sqrt{< s^{2} >} = \sqrt{\frac{1}{T}\int_{0}^{T}{s^{2}(t).dt}}\ }\ \]
+
+\includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image20.png}\textbf{Une valeur efficace est forcément positive.}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1111}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.8750}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+{[}{]} (10-É lectr oniqu e de Puiss ance/ Cours /pand oc/me dia/i mage1 8.png )\{wid th=``0 .6262 69685 03937 01in''
+
+heigh t=``0. 65083 33333 33333 4in''\}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Calculs de valeurs efficaces}
+
+\textbf{Déterminer les valeurs efficaces des signaux suivants}
+
+\includegraphics[width=5.5754in,height=1.34897in]{10-Électronique de Puissance/ Cours/pandoc/media/image21.jpeg}
+
+\[U = U_{eff} = \sqrt{< u^{2} >} = \sqrt{\frac{1}{
+T}\left\lbrack {U_{M}}^{2}T \right\rbrack} = \boxed{U_{M}}\]
+
+\includegraphics[width=3.97014in,height=1.22619in]{10-Électronique de Puissance/ Cours/pandoc/media/image19.jpeg}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& \\
+\end{longtable}
+
+\hypertarget{composants-en-uxe9lectronique-de-puissance}{%
+\subsection{Composants en électronique de puissance}\label{composants-en-uxe9lectronique-de-puissance}}
+
+\hypertarget{introduction-1}{%
+\subsubsection{Introduction}\label{introduction-1}}
+
+Les composants utilisés en électronique de puissance sont utilisés comme des \textbf{interrupteurs} qui peuvent être \textbf{commandables} ou non. On introduit alors la notion de \textbf{commutation} (passage de l'état ouvert à l'état fermé) et on définit les \textbf{caractéristiques statiques} (intrinsèque du composant) et \textbf{dynamiques} (passage d'un état à l'autre - dépend du circuit associé).
+
+On utilisera aussi la notion de \textbf{réversibilité en courant} (aptitude à laisser passer des courants directs et inverses à l'état passant) ou \textbf{réversibilité en tension} (aptitude à supporter des tensions directes et inverses à l'état bloqué).
+
+\includegraphics[width=2.92292in,height=1.61319in]{10-Électronique de Puissance/Cours/pandoc/media/image22.jpeg}On dira alors si le composant (ou le convertisseur statique) est \textbf{réversible} ou \textbf{bidirectionnel} en courant ou tension. Dans le cas contraire on dira qu'il est\textbf{unidirectionnel.}
+
+Quel que soit le composant électronique utilisé, son \textbf{fonctionnement idéalisé sera celui d'un interrupteur} qui peut être unidirectionnel ou bidirectionnel en tension et courant suivant les \textbf{associations}.Ce qui change entre les différents composants est sa \textbf{commutation (spontanée, ou commandée)} et son \textbf{circuit de commande (en tension, en courant, \ldots).}
+
+Les composants commandés ont trois pattes car ils disposent d'une \textbf{patte ou électrodede commande}.
+
+\includegraphics[width=3.71806in,height=1.03958in]{10-Électronique de Puissance/Cours/pandoc/media/image23.jpeg}\includegraphics[width=3.42014in,height=2.02014in]{10-Électronique de Puissance/Cours/pandoc/media/image24.jpeg}
+
+\hypertarget{caractuxe9ristique-statique-uxe9tats-bloquuxe9-passant}{%
+\subsubsection{Caractéristique statique (états bloqué /passant)}\label{caractuxe9ristique-statique-uxe9tats-bloquuxe9-passant}}
+
+\includegraphics[width=3.28333in,height=2.68333in]{10-Électronique de Puissance/Cours/pandoc/media/image25.jpeg}Dans la \textbf{caractéristique statique}, on va voir apparaître deux régimes (ou états) statiques différents~: \textbf{l'état bloqué} et \textbf{l'état passant}. On la représente dans le plan u-i. Les interrupteurs ne fournissant pas d'énergie, leur caractéristique statique se trouve dans les \textbf{quadrants 1 et 3} en convention récepteur.
+
+Pour \textbf{l'état bloqué}, on aura une résistance très grande (i proche de 0).
+
+Pour \textbf{l'état passant} une résistance très faible (u proche 0).
+
+La \textbf{caractéristique statique} est une \textbf{caractéristique intrinsèque du composant} (ne dépend pas du montage associé).
+
+\includegraphics[width=3.13056in,height=1.51528in]{10-Électronique de Puissance/Cours/pandoc/media/image26.jpeg}La \textbf{caractéristique dynamique} est confondue avec la caractéristique statique et correspond au passage entre les deux états (passant et bloqué). On parle alors de \textbf{commutation}.
+
+Cette dernière \textbf{dépend alors des contraintes imposées par le circuit extérieur} associé au composant.
+
+On distingue deux types de commutation~:
+
+\begin{itemize}
+\item
+  la \textbf{commutation naturelle} (ou spontanée) ;
+\item
+  la \textbf{commutation commandée.}
+\end{itemize}
+
+\hypertarget{caractuxe9ristique-dynamique-commutation-spontanuxe9ecommanduxe9e}{%
+\subsubsection{Caractéristique dynamique (commutation spontanée/commandée)}\label{caractuxe9ristique-dynamique-commutation-spontanuxe9ecommanduxe9e}}
+
+\includegraphics[width=1.98472in,height=0.96042in]{10-Électronique de Puissance/Cours/pandoc/media/image27.jpeg}\textbf{Commutation naturelle (ou spontanée)}
+
+Dans le cas de la \textbf{commutation spontanée}, le passage d'un état à l'autre ne \textbf{dépend que de l'évolution des grandeurs du circuit associé}. Cette commutation s'effectue avec un \textbf{changement de quadrant} et la caractéristique passe par zéro (on reste toujours en fonctionnement récepteur).
+
+\textbf{Commutation commandée :}
+
+\includegraphics[width=2.06111in,height=1.02153in]{10-Électronique de Puissance/Cours/pandoc/media/image28.jpeg}La \textbf{commutation commandée} s'effectue \textbf{sans changer de quadrant}. Pour changer d'état, il faut donc \textbf{changer la résistance interne du semi-conducteur au moyen d'électrodes} de commande.
+
+Dans le cas de la \textbf{commutation commandée, l'interrupteur va agir sur le circuit extérieur} et donc subir les contraintes extérieures. Dans ce cas-là, plus la fréquence de commutation sera élevée plus les pertes de commutations seront élevées.
+
+\hypertarget{association-de-composants}{%
+\subsubsection{Association de composants}\label{association-de-composants}}
+
+Quasiment tous les interrupteurs utilisés en électronique de puissance sont \textbf{unidirectionnels}. Pour obtenir des interrupteurs \textbf{bidirectionnels} en tension ou en courant, il faut faire des \textbf{associations de composants.}
+
+L'association la plus utilisée est celle d'un transistor et d'une diode têtes bêches.
+
+\includegraphics[width=2.43194in,height=1.5in]{10-Électronique de Puissance/Cours/pandoc/media/image29.jpeg}\includegraphics[width=2.37569in,height=1.14583in]{10-Électronique de Puissance/Cours/pandoc/media/image30.jpeg}\includegraphics[width=2.44792in,height=1.13819in]{10-Électronique de Puissance/Cours/pandoc/media/image31.jpeg}
+
+\hypertarget{pertes-des-composants-de-puissance}{%
+\subsubsection{Pertes des composants de puissance}\label{pertes-des-composants-de-puissance}}
+
+Jusqu'à présent les composants électroniques étaient supposés idéaux. En réalité, il existe différentes pertes qui vont jouer sur le rendement.
+
+On distingue les pertes suivantes :
+
+\begin{itemize}
+\item
+  \textbf{pertes en conductions}(à l'état passant, indépendant de la \textgreater{} fréquence de commutation). On néglige les pertes à l'état bloqué.
+\item
+  \textbf{pertes de commutations} (passage d'un état à l'autre, dépendant \textgreater{} de la fréquence de commutation).
+\end{itemize}
+
+Les pertes en conductions peuvent se déterminer à partir du modèle équivalent à l'état passant.
+
+\includegraphics[width=6.52096in,height=2.10972in]{10-Électronique de Puissance/Cours/pandoc/media/image32.jpeg}
+
+Les pertes en conduction de la diode sont alors donnée par la puissance dissipée à l'état passant, soit : \(P_{cond} = V_{o} < i_{D} > + r_{D}{I_{D}}^{2}\)
+
+\hypertarget{dimensionnement-des-composants-de-puissance}{%
+\subsubsection[Dimensionnement des composants de puissance]{\texorpdfstring{\protect\includegraphics[width=1.1in,height=1.12361in]{10-Électronique de Puissance/Cours/pandoc/media/image33.jpeg}Dimensionnement des composants de puissance}{Dimensionnement des composants de puissance}}\label{dimensionnement-des-composants-de-puissance}}
+
+Les \textbf{pertes des composants se transforment en chaleur} qu'il est nécessaire d'évacuer afin d'éviter la \textbf{destruction du composant} (possible pour une température de jonction de 150ºC). On associera donc aux composants de puissances des \textbf{dispositifs de refroidissement} (radiateurs, \ldots).
+
+Les composants de puissance utilisés sont dimensionnés pour certaines valeurs de tension et de courant.
+
+Au-delà de ces valeurs « admissibles » le composant sera détruit ou sa durée de vie sera grandement diminuée.
+
+Ces valeurs sont indiquées dans les documentations constructeurs (datasheet) dans une application, il faut trouver les valeurs des tensions et courants moyens et efficaces aux bornes du composant considéré.
+
+\begin{figure}
+\centering
+\includegraphics[width=4.37081in,height=6.18194in]{10-Électronique de Puissance/Cours/pandoc/media/image34.jpeg}
+\caption{diode\_Page\_1}
+\end{figure}
+
+\hypertarget{muxe9thode-duxe9tude-des-convertisseurs-dc-dc}{%
+\subsection{Méthode d'étude des convertisseurs DC-DC}\label{muxe9thode-duxe9tude-des-convertisseurs-dc-dc}}
+
+Une méthode d'étude pour étudier les convertisseurs DC-DC est la suivante~:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Identifier les sources (tension/courant et l'approximation utilisée pour la source de courant (I constant, L-E, R-L-E) et tracer l'allure du courant.
+\item
+  Regarder la commande des interrupteurs.
+\item
+  Dessiner des schémas équivalents pour les phases de fonctionnement.
+\item
+  Ecrire la loi des mailles et la loi des nœuds avec les interrupteurs
+\item
+  Tracer les chronogrammes sur une période en utilisant les schémas équivalents
+\item
+  Bien vérifier que le produit courant tension pour un interrupteur parfait est nul (passant u=0, i≠0 et bloqué i=0, u≠0)
+\item
+  Déterminer les grandeurs demandées (valeur moyenne, valeur efficace,\ldots), bien penser à la maille de l'inductance pour l'ondulation de courant.
+\end{enumerate}
+
+\includegraphics[width=4.58333in,height=1.82847in]{10-Électronique de Puissance/Cours/pandoc/media/image9.png}
+
+\hypertarget{hacheur-suxe9rie-ou-buck-ou-abaisseur-ou-duxe9volteur}{%
+\subsection{Hacheur série (ou Buck, ou abaisseur, ou dévolteur)}\label{hacheur-suxe9rie-ou-buck-ou-abaisseur-ou-duxe9volteur}}
+
+\hypertarget{schuxe9ma-de-principe}{%
+\subsubsection{Schéma de principe}\label{schuxe9ma-de-principe}}
+
+Un \textbf{hacheur série} est un convertisseur DC-DC permettant d'obtenir une tension de sortie continue et \textbf{inférieure ou égale} \textbf{à la tension d'entrée}. Le schéma de principe est le suivant.
+
+Il y a alors 3 phases de fonctionnement possibles suivant l'état de l'interrupteur K et du courant dans la charge.
+
+\begin{itemize}
+\item
+  K est fermé donc u\textsubscript{D} = U\textsubscript{e}
+\item
+  K est ouvert et i\textsubscript{L} ≠ 0, donc u\textsubscript{D} = 0
+\item
+  K est ouvert et i\textsubscript{L} = 0, donc u\textsubscript{D} = U\textsubscript{s}
+\end{itemize}
+
+\begin{quote}
+L'interrupteur K est commandé périodiquement de 0 à \(\alpha\)T.
+
+Ce signal de commande (ou de découpage) est appelé \textbf{MLI (Modulation de Largeur d'impulsion} ou \textbf{PWM (Pulse Width Modulation).}
+\end{quote}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1111}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4306}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4306}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+{[}{]} (10-É lectr oniqu e de Puiss ance/ Cours /pand oc/me dia/i mage1 8.png )\{wid th=``0 .6262 69685 03937 01in''
+
+heigh t=``0. 65083 33333 33333 4in''\}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Etude du hacheur série}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \includegraphics{10-Électronique de Pui ssance/Cours/pandoc/media/im age35.jpeg}\{width=``2.4125in''
+\end{enumerate}
+
+height=``1.6375in''\}Identifier les sources (tension/courant et l'approximation utilisée pour la source de courant (I constant, L-E, R-L-E) et tracer l'allure du courant.
+
+\begin{quote}
+\textbf{Source de courant de type L-E}
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Regarder la commande des interrupteurs.
+\end{enumerate}
+
+\textbf{K passant de 0 à} \(\mathbf{\alpha T}\) \textbf{(donc D bloquée -- commande complémentaire)}
+
+\textbf{D passante de} \(\mathbf{\alpha T}\) \textbf{à} \(\mathbf{T}\) \textbf{(donc K bloqué -- commande complémentaire)}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Dessiner des schémas équivalents pour les phases de fonctionnement.
+\end{enumerate}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& \textbf{0 \textless{} t \textless{}} \(\mathbf{\alpha}\)\textbf{T}
+
+Dans le cas où K est passant, la diode D est bloquée puisqu'elle est polarisée en inverse (v\textsubscript{D}= -E). Le schéma équivalent est alors le suivant~:
+
+\includegraphics{10-Électronique de P uissance/Cours/pandoc/media/ image36.png}\{width=``3.125in'' he ight=``1.2333333333333334in''\} & \(\mathbf{\alpha}\)\textbf{T \textless{} t \textless{} T}
+
+\includegraphics{10-Électronique de Pui ssance/Cours/pandoc/media/im age37.png}\{width=``3.15625in'' height =``1.1208333333333333in''\}Dans le cas où K est bloqué, la diode D est naturellement passante (diode roue libre assurant la continuité du courant dans l'inductance). Le schéma équivalent est le suivant~: \\
+& \begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Ecrire la loi des mailles et la loi des nœuds avec les interrupteurs
+\end{enumerate}
+
+\[\mathbf
+{U}_{\mathbf{e}}\mathbf{=}\m
+athbf{u}_{\mathbf{K}}\mathbf
+{+}\mathbf{u}_{\mathbf{D}}\]
+
+\[\mathbf
+{i}_{\mathbf{L}}\mathbf{=}\m
+athbf{i}_{\mathbf{K}}\mathbf
+{+}\mathbf{i}_{\mathbf{D}}\]
+\end{minipage} & \\
+& \begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Tracer les chronogrammes sur une période en utilisant les schémas équivalents
+\end{enumerate}
+
+\includegraphics{10-É lectronique de Puissance/Cou rs/pandoc/media/image39.png} \{width=``2.585604768153981in'' h eight=``4.166666666666667in''\}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\item
+  Bien vérifier que le produit courant tension pour un interrupteur parfait est nul (passant u=0, i≠0 et bloqué i=0, u≠0)
+\item
+  Déterminer les grandeurs demandées (valeur moyenne, valeur efficace,\ldots), bien penser à la maille de l'inductance pour l'ondulation de courant
+\end{enumerate}
+
+\textbf{En régime permanent, il est possible de déterminer la tension de sortie} \(\mathbf{U}_{\mathbf{s}}\) \textbf{en utilisant l'égalité sur les valeurs moyennes.}
+
+\[
+\mathbf{<}\mathbf{U}_{\mathb
+f{s}}\mathbf{> =}\mathbf{U}_
+{\mathbf{s}}\mathbf{= <}\mat
+hbf{u}_{\mathbf{D}}\mathbf{>
+}\mathbf{-}\mathbf{<}\mathbf
+{u}_{\mathbf{L}}\mathbf{>}\]
+
+\textbf{Nous pouvons trouver} \(\mathbf{<}\mathb f{u}_{\mathbf{D}}\mathbf{>}\) \textbf{avec les chronogrammes précédents mais nous n'avons aucune information sur} \(\mathbf{u}_{\
+mathbf{L}}\mathbf{(t)}\)\textbf{.}
+
+\[\m
+athbf{<}\mathbf{u}_{\mathbf{
+D}}\mathbf{> =}\frac{\mathbf
+{1}}{\mathbf{T}}\int_{\mathb
+f{0}}^{\mathbf{T}}{\mathbf{u
+}_{\mathbf{D}}\mathbf{(t)}}\
+mathbf{dt =}\frac{\mathbf{1}
+}{\mathbf{T}}\left\lbrack \m
+athbf{U}_{\mathbf{e}}\mathbf
+{.\alpha T} \right\rbrack\ma
+thbf{=}\boxed{\mathbf{\alpha
+.}\mathbf{U}_{\mathbf{e}}}\]
+
+\[\mathbf{U}_{\mathbf{s}}\ma
+thbf{=}\boxed{\mathbf{\alpha
+.}\mathbf{U}_{\mathbf{e}}}\]
+
+\[\mathbf{<}\m
+athbf{u}_{\mathbf{L}}\mathbf
+{> \  =}\frac{\mathbf{1}}{\m
+athbf{T}}\int_{\mathbf{0}}^{
+\mathbf{T}}{\mathbf{u}_{\mat
+hbf{L}}\left( \mathbf{t} \ri
+ght)}\mathbf{dt =}\frac{\mat
+hbf{1}}{\mathbf{T}}\int_{\ma
+thbf{0}}^{\mathbf{T}}{\mathb
+f{L}\frac{\mathbf{d}\mathbf{
+i}_{\mathbf{L}}\left( \mathb
+f{t} \right)}{\mathbf{dt}}}\
+mathbf{dt =}\frac{\mathbf{L}
+}{\mathbf{T}}\left\lbrack \m
+athbf{i}_{\mathbf{L}}\left(
+\mathbf{t} \right) \right\rb
+rack_{\mathbf{t = 0}}^{\math
+bf{t = T}}\mathbf{=}\frac{\m
+athbf{L}}{\mathbf{T}}\left\l
+brack \mathbf{i}_{\mathbf{L}
+}\left( \mathbf{T} \right)\m
+athbf{-}\mathbf{i}_{\mathbf{
+L}}\left( \mathbf{0} \right)
+ \right\rbrack\mathbf{= 0}\]
+
+\includegraphics{10-Électronique de Pu issance/Cours/pandoc/media/i mage40.jpeg}\{width=``2.575in'' he ight=``1.4541666666666666in''\}
+
+\hypertarget{section}{%
+\subsubsection{}\label{section}}
+
+\hypertarget{calcul-de-londulation-de}{%
+\subsection{Calcul de l'ondulation de}\label{calcul-de-londulation-de}}
+
+courant \{\#calcul-de-londula tion-de-courant .unnumbered\}
+
+\textbf{L'ondulation de courant notée} \(\mathbf{\De lta}\mathbf{i}_{\mathbf{L}}\) \textbf{correspond à la différence entre la valeur minimale et maximale du courant traversant l'inductance sur une période. Si cette ondulation est trop importante il y a plus de risque d'avoir un régime discontinu. Pour diminuer cette ondulation il faudra augmenter l'inductance L.}
+
+\[
+\mathbf{\Delta}\mathbf{i}_{\
+mathbf{L}}\mathbf{=}\mathbf{
+i}_{\mathbf{Lmax}}\mathbf{-}
+\mathbf{i}_{\mathbf{Lmin}}\]
+
+\textbf{Pour}\(\mathbf{\ 0 \  < \ t\  < \alpha T}\)\textbf{,} \textbf{il y a transfert direct d'énergie entre la source et la charge. On a alors le courant traversant l'inductance L qui vaut~:}
+
+\[\mathbf{u}_{\mat
+hbf{L}}\mathbf{(t) = L}\frac
+{\mathbf{d}\mathbf{i}_{\math
+bf{L}}}{\mathbf{dt}}\mathbf{
+=}\mathbf{U}_{\mathbf{e}}\ma
+thbf{-}\mathbf{U}_{\mathbf{s
+}}\mathbf{\ }\mathbf{\Righta
+rrow}\frac{\mathbf{d}\mathbf
+{i}_{\mathbf{L}}\mathbf{(t)}
+}{\mathbf{dt}}\mathbf{=}\fra
+c{\mathbf{U}_{\mathbf{e}}\ma
+thbf{-}\mathbf{U}_{\mathbf{s
+}}\mathbf{\ }}{\mathbf{L}}\]
+
+\textbf{On a donc le courant qui va croître (}\(\
+mathbf{U}_{\mathbf{e}}\mathb f{>}\mathbf{U}_{\mathbf{s}}\) \textbf{) à partir d'une valeur minimale i\textsubscript{Lmin} , on a~:}
+
+\[\boxed{\mathbf{i}_{
+\mathbf{L}}\mathbf{(t) =}\fr
+ac{\mathbf{U}_{\mathbf{e}}\m
+athbf{-}\mathbf{U}_{\mathbf{
+s}}\mathbf{\ }}{\mathbf{L}}\
+mathbf{t\  + \ }\mathbf{i}_{
+\mathbf{Lmin}}}\mathbf{\ pou
+r\ 0\  < \ t\  < \alpha T}\]
+
+\[\
+mathbf{\Delta}\mathbf{i}_{\m
+athbf{L}}\mathbf{=}\mathbf{i
+}_{\mathbf{Lmax}}\mathbf{-}\
+mathbf{i}_{\mathbf{Lmin}}\ma
+thbf{=}\mathbf{i}_{\mathbf{L
+}}\left( \mathbf{\alpha T} \
+right)\mathbf{-}\mathbf{i}_{
+\mathbf{Lmin}}\mathbf{=}\fra
+c{\mathbf{U}_{\mathbf{e}}\ma
+thbf{-}\mathbf{U}_{\mathbf{s
+}}\mathbf{\ }}{\mathbf{L}}\m
+athbf{\alpha T + \ }\mathbf{
+i}_{\mathbf{Lmin}}\mathbf{-}
+\mathbf{i}_{\mathbf{Lmin}}\]
+
+\[\boxed{\mathbf{\D
+elta}\mathbf{i}_{\mathbf{L}}
+\mathbf{=}\frac{\mathbf{U}_{
+\mathbf{e}}\mathbf{-}\mathbf
+{\alpha}\mathbf{U}_{\mathbf{
+e}}\mathbf{\ }}{\mathbf{L}}\
+mathbf{\alpha T =}\frac{\mat
+hbf{U}_{\mathbf{e}}\mathbf{\
+ }}{\mathbf{LF}}\mathbf{\alp
+ha}\left( \mathbf{1}\mathbf{
+-}\mathbf{\alpha} \right)}\]
+\end{minipage} & \\
+\end{longtable}
+
+\hypertarget{quadrants-du-hacheur-buck}{%
+\subsubsection{Quadrants du hacheur Buck}\label{quadrants-du-hacheur-buck}}
+
+\includegraphics[width=2.75278in,height=1.71806in]{10-Électronique de Puissance/Cours/pandoc/media/image41.jpeg}Un \textbf{hacheur série} est un convertisseur DC-DC permettant d'obtenir une tension de sortie continue et \textbf{inférieure ou égale} \textbf{à la tension d'entrée}. Le schéma de principe est le suivant.
+
+\textbf{La tension de sortie est variable mais toujours positive. Le hacheur série} est un convertisseur \textbf{non réversible en tension}.
+
+Les différents composants étant unidirectionnels en courant, cette structure est \textbf{non} \textbf{réversible en courant}. La structure peut se mettre sous la forme d'un « bras de pont » où l'interrupteur K est un interrupteur commandé et D est une diode (commutation naturelle).
+
+\includegraphics[width=2.36706in,height=1.1505in]{10-Électronique de Puissance/Cours/pandoc/media/image42.jpeg}\includegraphics[width=2.692in,height=1.48279in]{10-Électronique de Puissance/Cours/pandoc/media/image43.jpeg}
+
+\hypertarget{hacheur-paralluxe8le-ou-boost-ou-survolteur-uxe9luxe9vateur}{%
+\subsection[Hacheur parallèle (ou Boost, ou survolteur, élévateur)]{\texorpdfstring{\protect\includegraphics[width=3.11319in,height=2.73681in]{10-Électronique de Puissance/Cours/pandoc/media/image44.jpeg}Hacheur parallèle (ou Boost, ou survolteur, élévateur)}{Hacheur parallèle (ou Boost, ou survolteur, élévateur)}}\label{hacheur-paralluxe8le-ou-boost-ou-survolteur-uxe9luxe9vateur}}
+
+\hypertarget{schuxe9ma-de-principe-1}{%
+\subsubsection{Schéma de principe}\label{schuxe9ma-de-principe-1}}
+
+Un \textbf{hacheur parallèle} est un convertisseur DC-DC permettant d'obtenir une tension de sortie continue et \textbf{supérieure} \textbf{à la tension d'entrée}. Le schéma de principe est le suivant.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1111}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4306}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4306}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+{[}{]} (10-É lectr oniqu e de Puiss ance/ Cours /pand oc/me dia/i mage1 8.png )\{wid th=``0 .6262 69685 03937 01in''
+
+heigh t=``0. 65083 33333 33333 4in''\}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Etude du hacheur parallèle}
+
+\includegraphics{10-Éle ctronique de Puissance/Cours /pandoc/media/image44.jpeg}\{ width=``3.1131944444444444in'' he ight=``2.7368055555555557in''\}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  \includegraphics{10-Électronique de Pui ssance/Cours/pandoc/media/im age35.jpeg}\{width=``2.4125in''
+\end{enumerate}
+
+height=``1.6375in''\}Identifier les sources (tension/courant et l'approximation utilisée pour la source de courant (I constant, L-E, R-L-E) et tracer l'allure du courant.
+
+\begin{quote}
+\textbf{Source de courant de type L-E}
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Regarder la commande des interrupteurs.
+\end{enumerate}
+
+\textbf{K passant de 0 à} \(\mathbf{\alpha T}\) \textbf{(donc D bloquée -- commande complémentaire)}
+
+\textbf{D passante de} \(\mathbf{\alpha T}\) \textbf{à} \(\mathbf{T}\) \textbf{(donc K bloqué -- commande complémentaire)}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Dessiner des schémas équivalents pour les phases de fonctionnement.
+\end{enumerate}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& \textbf{0 \textless{} t \textless{}} \(\mathbf{\alpha}\)\textbf{T}
+
+Dans le cas où K est passant, la diode D est bloquée puisqu'elle est polarisée en inverse (v\textsubscript{D}= -E). Le schéma équivalent est alors le suivant~:
+
+\includegraphics{10-Éle ctronique de Puissance/Cours /pandoc/media/image45.jpeg}\{ width=``3.2916666666666665in'' he ight=``1.2784722222222222in''\} & \(\mathbf{\alpha}\)\textbf{T \textless{} t \textless{} T}
+
+Dans le cas où K est bloqué, la diode D est naturellement passante (diode roue libre assurant la continuité du courant dans l'inductance). Le schéma équivalent est le suivant~:
+
+\includegraphics{10-Éle ctronique de Puissance/Cours /pandoc/media/image46.jpeg}\{ width=``3.2993055555555557in'' he ight=``1.2666666666666666in''\} \\
+& \begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Ecrire la loi des mailles et la loi des nœuds avec les interrupteurs
+\end{enumerate}
+
+\[\mathbf
+{U}_{\mathbf{e}}\mathbf{=}\m
+athbf{u}_{\mathbf{K}}\mathbf
+{+}\mathbf{u}_{\mathbf{D}}\]
+
+\[\mathbf
+{i}_{\mathbf{L}}\mathbf{=}\m
+athbf{i}_{\mathbf{K}}\mathbf
+{+}\mathbf{i}_{\mathbf{D}}\]
+\end{minipage} & \\
+& \begin{minipage}[t]{\linewidth}\raggedright
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Tracer les chronogrammes sur une période en utilisant les schémas équivalents
+\end{enumerate}
+
+\includegraphics{10-Éle ctronique de Puissance/Cours /pandoc/media/image47.jpeg}\{ width=``2.7395833333333335in'' h eight=``4.420833333333333in''\}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\item
+  Bien vérifier que le produit courant tension pour un interrupteur parfait est nul (passant u=0, i≠0 et bloqué i=0, u≠0)
+\item
+  Déterminer les grandeurs demandées (valeur moyenne, valeur efficace,\ldots), bien penser à la maille de l'inductance pour l'ondulation de courant
+\end{enumerate}
+
+\textbf{En régime permanent, il est possible de déterminer la tension de sortie Vs en utilisant l'égalité sur les valeurs moyennes.}
+
+\[\m
+athbf{E = <}\mathbf{u}_{\mat
+hbf{K}}\mathbf{> + <}\mathbf
+{u}_{\mathbf{L}}\mathbf{>}\]
+
+\textbf{Nous pouvons trouver \textless u\textsubscript{K}\textgreater{} avec les chronogrammes précédents mais nous n'avons aucune information sur u\textsubscript{L}(t).}
+
+\[\mathbf{<}
+\mathbf{u}_{\mathbf{K}}\math
+bf{(t) > =}\frac{\mathbf{1}}
+{\mathbf{T}}\int_{\mathbf{0}
+}^{\mathbf{T}}{\mathbf{u}_{\
+mathbf{K}}\mathbf{(t)}}\math
+bf{dt =}\frac{\mathbf{1}}{\m
+athbf{T}}\left\lbrack \mathb
+f{V}_{\mathbf{s}}\mathbf{.}\
+left( \mathbf{T}\mathbf{-}\m
+athbf{\alpha T} \right) \rig
+ht\rbrack\mathbf{=}\boxed{\l
+eft( \mathbf{1}\mathbf{-}\ma
+thbf{\alpha} \right)\mathbf{
+.}\mathbf{V}_{\mathbf{s}}}\]
+
+\[\mathbf{<}\mathbf{
+u}_{\mathbf{L}}\mathbf{(t) >
+ =}\frac{\mathbf{1}}{\mathbf
+{T}}\int_{\mathbf{0}}^{\math
+bf{T}}{\mathbf{u}_{\mathbf{L
+}}\mathbf{(t)}}\mathbf{dt}\]
+
+\[\mat
+hbf{<}\mathbf{u}_{\mathbf{L}
+}\mathbf{(t) > =}\frac{\math
+bf{1}}{\mathbf{T}}\int_{\mat
+hbf{0}}^{\mathbf{T}}{\mathbf
+{L}\frac{\mathbf{d}\mathbf{i
+}_{\mathbf{L}}\mathbf{(t)}}{
+\mathbf{dt}}}\mathbf{dt =}\f
+rac{\mathbf{L}}{\mathbf{T}}\
+int_{\mathbf{i}_{\mathbf{L}}
+\mathbf{(0)}}^{\mathbf{i}_{\
+mathbf{L}}\mathbf{(T)}}{\mat
+hbf{d}\mathbf{i}_{\mathbf{L}
+}\mathbf{(t)}}\mathbf{= 0}\]
+
+\[\mathbf{E = <}\ma
+thbf{u}_{\mathbf{K}}\mathbf{
+> + <}\mathbf{u}_{\mathbf{L}
+}\mathbf{> \  = \  <}\mathbf
+{u}_{\mathbf{K}}\mathbf{>}\]
+
+\[\mathbf{V}_{\
+mathbf{s}}\mathbf{=}\boxed{\
+frac{\mathbf{E}}{\mathbf{1}\
+mathbf{-}\mathbf{\alpha}}}\]
+
+\textbf{En théorie, V\textsubscript{s} peut être infinie mais en réalité elle est limitée par les semi-conducteurs qui ne sont pas parfaits.}
+
+\hypertarget{section-1}{%
+\subparagraph{}\label{section-1}}
+
+Calcul de l'ondulation de c ourant \{\#calcul-de-londulati on-de-courant-1 .unnumbered\}
+
+\textbf{L'ondulation de courant notée} \(\mathbf{\De lta}\mathbf{i}_{\mathbf{L}}\) \textbf{correspond à la différence entre la valeur minimale et maximale du courant traversant l'inductance sur une période.}
+
+\[
+\mathbf{\Delta}\mathbf{i}_{\
+mathbf{L}}\mathbf{=}\mathbf{
+i}_{\mathbf{Lmax}}\mathbf{-}
+\mathbf{i}_{\mathbf{Lmin}}\]
+
+\textbf{Pour}\(\mathbf{\
+ 0\  < \ t\  < \alpha T}\)\textbf{, il y a transfert direct d'énergie entre la source et la charge. On a alors le courant traversant l'inductance L qui vaut~:} \(\mathbf {u}_{\mathbf{L}}\mathbf{= L} \frac{\mathbf{d}\mathbf{i}_{ \mathbf{L}}}{\mathbf{dt}}\ma thbf{= E}\mathbf{-}\mathbf{u }_{\mathbf{K}}\mathbf{\ }\ma thbf{\Rightarrow}\frac{\math bf{d}\mathbf{i}_{\mathbf{L}} }{\mathbf{dt}}\mathbf{=}\fra c{\mathbf{E\ }}{\mathbf{L}}\)
+
+\textbf{On a donc le courant qui va croître (E \textgreater{} 0) à partir d'une valeur minimale i\textsubscript{Lmin} et on a~:}
+
+\[\boxed{\mathbf{i}_{\
+mathbf{L}}\mathbf{(t) =}\fra
+c{\mathbf{E\ }}{\mathbf{L}}\
+mathbf{t\  + \ }\mathbf{i}_{
+\mathbf{Lmin}}}\mathbf{\ pou
+r\ 0\  < \ t\  < \alpha T}\]
+
+\[\boxed
+{\mathbf{i}_{\mathbf{L}}\mat
+hbf{(t) =}\frac{\mathbf{E}\m
+athbf{-}\mathbf{V}_{\mathbf{
+s}}\mathbf{\ }}{\mathbf{L}}\
+mathbf{t\  + \ }\mathbf{i}_{
+\mathbf{Lmax}}}\mathbf{\ pou
+r\ \alpha T\  < \ t\  < T}\]
+
+\[\mathbf{\Delt
+a}\mathbf{i}_{\mathbf{L}}\ma
+thbf{=}\mathbf{i}_{\mathbf{L
+max}}\mathbf{-}\mathbf{i}_{\
+mathbf{Lmin}}\mathbf{=}\math
+bf{i}_{\mathbf{L}}\mathbf{(\
+alpha T)}\mathbf{-}\mathbf{i
+}_{\mathbf{Lmin}}\mathbf{=}\
+frac{\mathbf{E}}{\mathbf{L}}
+\mathbf{\alpha T\ }\boxed{\m
+athbf{+ \ }\mathbf{i}_{\math
+bf{Lmin}}}\boxed{\mathbf{-}\
+mathbf{i}_{\mathbf{Lmin}}}\]
+
+\[\bo
+xed{\mathbf{\Delta}\mathbf{i
+}_{\mathbf{L}}\mathbf{=}\fra
+c{\mathbf{E\ }}{\mathbf{L}}\
+mathbf{\alpha T =}\frac{\mat
+hbf{V}_{\mathbf{s}}\mathbf{\
+ }}{\mathbf{LF}}\mathbf{\alp
+ha}\left( \mathbf{1}\mathbf{
+-}\mathbf{\alpha} \right)}\]
+\end{minipage} & \\
+\end{longtable}
+
+\hypertarget{quadrants-du-hacheur-boost}{%
+\subsubsection{Quadrants du hacheur Boost}\label{quadrants-du-hacheur-boost}}
+
+\includegraphics[width=3.10347in,height=1.16667in]{10-Électronique de Puissance/Cours/pandoc/media/image48.jpeg}Un \textbf{hacheur parallèle} est un convertisseur DC-DC permettant d'obtenir une tension de sortie continue et \textbf{supérieure} \textbf{à la tension d'entrée}. Le schéma de principe est le suivant.
+
+\includegraphics[width=3.42847in,height=1.28194in]{10-Électronique de Puissance/Cours/pandoc/media/image49.jpeg}
+
+\includegraphics[width=6.73958in,height=1.63194in]{10-Électronique de Puissance/Cours/pandoc/media/image50.jpeg}Si on considère que la source de tension est V\textsubscript{s}, on obtient le schéma suivant ou \textbf{la charge (L, E) devient génératrice}. \textbf{La tension de sortie est variable mais toujours positive. Le hacheur parallèle} est un convertisseur \textbf{non réversible en tension et en courant.} \textbf{Cependant, dans ce cas, le quadrant de fonctionnement est un quadrant générateur.}
+
+\hypertarget{hacheur-2-quadrants-2q}{%
+\subsection{Hacheur 2 quadrants (2Q)}\label{hacheur-2-quadrants-2q}}
+
+\hypertarget{constitution-du-hacheur-2-quadrants}{%
+\subsubsection[Constitution du hacheur 2 quadrants]{\texorpdfstring{\protect\includegraphics[width=2.64514in,height=1.91667in]{10-Électronique de Puissance/Cours/pandoc/media/image51.jpeg}Constitution du hacheur 2 quadrants}{Constitution du hacheur 2 quadrants}}\label{constitution-du-hacheur-2-quadrants}}
+
+Le hacheur série et le hacheur parallèle sont deux \textbf{convertisseurs unidirectionnels}. Si on veut pouvoir réaliser de la \textbf{récupération d'énergie} (transfert de la charge vers la source) à \textbf{vitesse variable}, il faut associer ces deux structures de hacheur.
+
+Cette structure est très utilisée pour les applications à vitesse variable ne nécessitant qu'une inversion en courant (fonctionnement dans les quadrants 1 et 4) comme le Scot'elec, le VAE, la 106 Vedelic \ldots{}
+
+\includegraphics[width=6.14583in,height=1.75625in]{10-Électronique de Puissance/Cours/pandoc/media/image52.jpeg}
+
+\hypertarget{commande-compluxe9mentaire}{%
+\subsubsection{Commande complémentaire}\label{commande-compluxe9mentaire}}
+
+\includegraphics[width=3.03819in,height=1.62847in]{10-Électronique de Puissance/Cours/pandoc/media/image53.jpeg}
+
+L'ensemble T\textsubscript{1}-D\textsubscript{2} correspond à un hacheur série et l'ensemble T\textsubscript{2}-D\textsubscript{1} correspond à un hacheur parallèle.
+
+Afin d'éviter le court-circuit de la source de tension, on commande K\textsubscript{1} et K\textsubscript{2} de manière complémentaire.
+
+\includegraphics[width=2.36736in,height=2.39931in]{10-Électronique de Puissance/Cours/pandoc/media/image54.jpeg}
+
+\includegraphics[width=4.41042in,height=2.19792in]{10-Électronique de Puissance/Cours/pandoc/media/image55.jpeg}
+
+Lorsqu'un des interrupteurs (K\textsubscript{1} ou K\textsubscript{2}) est fermé, il y a \textbf{un des deux semi-conducteurs qui le compose (D\textsubscript{i} ou T\textsubscript{i}) qui conduit suivant le signe du courant.}
+
+\hypertarget{formes-donde}{%
+\subsubsection{Formes d'onde}\label{formes-donde}}
+
+Les composants passants dépendent de la charge et du signe du courant. Pour tracer les chronogrammes, on peut remplacer K\textsubscript{1} et K\textsubscript{2} par deux interrupteurs bidirectionnels en courant et commandés de manière complémentaire.
+
+Lorsqu'un des interrupteurs (K\textsubscript{1} ou K\textsubscript{2}) est fermé, il y a \textbf{un des deux semi-conducteurs qui le compose (D\textsubscript{i} ou T\textsubscript{i}) qui conduit.} La conduction dépendra de la commande et du sens du courant.
+
+\includegraphics[width=4.18333in,height=1.30972in]{10-Électronique de Puissance/Cours/pandoc/media/image56.jpeg}
+
+Il existe alors 3 cas possibles :
+
+\begin{itemize}
+\item
+  \textless i\textgreater{} \textgreater{} 0 ;
+\item
+  \textless i\textgreater{} = 0 ;
+\item
+  \textless i\textgreater{} \textless{} 0 .
+\end{itemize}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3311}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3311}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3311}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{\textless i\textgreater{} \textgreater{} 0}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{\textless i\textgreater{} \textless{} 0}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{\textless i\textgreater{} = 0}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\includegraphics[width=2.37668in,height=3.12857in]{10-Électronique de Puissance/Cours/pandoc/media/image57.jpeg} & \includegraphics[width=2.30486in,height=3.03472in]{10-Électronique de Puissance/Cours/pandoc/media/image58.jpeg} & \includegraphics[width=2.37276in,height=3.12857in]{10-Électronique de Puissance/Cours/pandoc/media/image59.jpeg} \\
+Dans le cas où \textless i\textgreater{} \textgreater{} 0, le fonctionnement du hacheur 2Q est analogue à celui du hacheur série. Le \textbf{fonctionnement est alors moteur}. & Dans le cas où \textless i\textgreater{} \textless{} 0, le fonctionnement du hacheur 2Q est analogue à celui du hacheur parallèle. Le fonctionnement est alors celui du \textbf{freinage}. & Dans le cas où \textless i\textgreater{} = 0, le fonctionnement du hacheur 2Q est analogue alternativement à celui du hacheur série et du hacheur parallèle. Le fonctionnement est alors celui d'un \textbf{moteur à vide.} \\
+\end{longtable}
+
+\hypertarget{calcul-de-la-tension-de-sortie-et-de-londulation-de-courant}{%
+\subsubsection{Calcul de la tension de sortie et de l'ondulation de courant}\label{calcul-de-la-tension-de-sortie-et-de-londulation-de-courant}}
+
+Le calcul de la valeur de la tension de sortie est analogue à celui du hacheur série.
+
+\[< V_{s} > = < u_{D2}(t) > = \frac{1}{T}\int_{0}^{T}{u_{D2}(t)}dt = \frac{1}{T}\lbrack E.\alpha T\rbrack = \boxed{\alpha.E}\]
+
+L'expression de l'ondulation de courant est aussi analogue à celle trouvée pour le hacheur série.
+
+\[\boxed{\Delta i_{L} = \frac{ET\ }{L}\alpha(1 - \alpha)}\]
+
+\hypertarget{hacheur-4-quadrants}{%
+\subsection{Hacheur 4 quadrants}\label{hacheur-4-quadrants}}
+
+\hypertarget{constitution-du-hacheur-4-quadrants}{%
+\subsubsection[Constitution du hacheur 4 quadrants]{\texorpdfstring{\protect\includegraphics[width=3.36111in,height=1.33056in]{10-Électronique de Puissance/Cours/pandoc/media/image60.jpeg}Constitution du hacheur 4 quadrants}{Constitution du hacheur 4 quadrants}}\label{constitution-du-hacheur-4-quadrants}}
+
+Le passage du hacheur 4 quadrants au hacheur 2 quadrants est réalisé en « dupliquant » la structure du hacheur 2Q. Il permet d'inverser le signe de la tension et ainsi de fonctionner dans les quatre quadrants.
+
+\includegraphics[width=3.52986in,height=3.22361in]{10-Électronique de Puissance/Cours/pandoc/media/image61.jpeg}Cette structure permet d'inverser le signe de la tension aux bornes de la charge tout en gardant la réversibilité en courant du hacheur 2Q.
+
+\textbf{Il y a toujours deux interrupteurs qui conduisent simultanément.}
+
+Pour tracer les chronogrammes, on peut remplacer K\textsubscript{1}, K\textsubscript{2}, K3 et K\textsubscript{4} par quatre interrupteurs bidirectionnels en courant.
+
+\hypertarget{formes-donde-1}{%
+\subsubsection{Formes d'onde}\label{formes-donde-1}}
+
+\includegraphics[width=2.90139in,height=1.50278in]{10-Électronique de Puissance/Cours/pandoc/media/image62.jpeg}Pour tracer les chronogrammes, on peut remplacer K\textsubscript{1} et K\textsubscript{2} par deux interrupteurs bidirectionnels en courant et commandés de manière complémentaire.
+
+Lorsqu'un des interrupteurs (K\textsubscript{1} ou K\textsubscript{2}) est fermé, il y a \textbf{un des deux semi-conducteurs qui le compose (D\textsubscript{i} ou T\textsubscript{i}) qui conduit.} La conduction dépendra de la commande et du sens du courant.
+
+Il existe alors 3 cas possibles : \textless i\textgreater{} \textgreater{} 0 ; \textless i\textgreater{} = 0 ; \textless i\textgreater{} \textless{} 0 .
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3322}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3288}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3322}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{\textless i\textgreater{} \textgreater{} 0}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{\textless i\textgreater{} \textless{} 0}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{\textless i\textgreater{} = 0}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\includegraphics[width=2.26761in,height=2.98472in]{10-Électronique de Puissance/Cours/pandoc/media/image63.jpeg} & \includegraphics[width=2.2501in,height=2.98571in]{10-Électronique de Puissance/Cours/pandoc/media/image64.jpeg} & \includegraphics[width=2.26469in,height=2.98571in]{10-Électronique de Puissance/Cours/pandoc/media/image65.jpeg} \\
+\end{longtable}
+
+Le fonctionnement dans les 4 quadrants dépend des signes des valeurs moyennes du courant et de la tension.
+
+\hypertarget{calcul-de-la-tension-de-sortie-et-de-londulation-de-courant-1}{%
+\subsubsection{Calcul de la tension de sortie et de l'ondulation de courant}\label{calcul-de-la-tension-de-sortie-et-de-londulation-de-courant-1}}
+
+Le calcul de la valeur de la tension de sortie est analogue à celui du hacheur série.
+
+\[< V_{s} > = < u(t) > = \frac{1}{T}\int_{0}^{T}{u(t)}dt = \frac{1}{T}\left\lbrack U_{M}.\alpha T - U_{M}(T - \alpha T) \right\rbrack\]
+
+\[< V_{s} > = < u(t) > = \frac{1}{T}\lbrack 2.E.\alpha T - ET\rbrack = \boxed{E\lbrack 2.\alpha - 1\rbrack}\]
+
+Tous calculs faits, l'expression de l'ondulation de courant est le double de celle trouvée pour les hacheurs 1Q et 2Q.
+
+\[\boxed{\Delta i_{L} = 2\alpha(1 - \alpha)\frac{ET\ }{L}}\]
+
+\hypertarget{hacheur-uxe0-conversion-indirecte}{%
+\subsection{Hacheur à conversion indirecte}\label{hacheur-uxe0-conversion-indirecte}}
+
+Pour relier deux sources de tensions, une inductance jouant le rôle de source de courant est ajoutée. L'énergie est alors stockée dans l'inductance lors de la première phase puis restituées lors de la seconde.
+
+\includegraphics[width=2.74901in,height=1.46489in]{10-Électronique de Puissance/Cours/pandoc/media/image66.jpeg}\includegraphics[width=2.67262in,height=1.44843in]{10-Électronique de Puissance/Cours/pandoc/media/image67.jpeg}
+
+\includegraphics[width=2.87569in,height=2.99861in]{10-Électronique de Puissance/Cours/pandoc/media/image68.jpeg}
+
+\includegraphics[width=3.23333in,height=0.43767in]{10-Électronique de Puissance/Cours/pandoc/media/image69.wmf}
+
+\includegraphics[width=0.775in,height=0.53in]{10-Électronique de Puissance/Cours/pandoc/media/image70.wmf}
+
+\hypertarget{guxe9nuxe9ralituxe9s-sur-les-convertisseurs-ac-dc}{%
+\subsection{Généralités sur les convertisseurs AC-DC}\label{guxe9nuxe9ralituxe9s-sur-les-convertisseurs-ac-dc}}
+
+\hypertarget{convertisseurs-ac-dc}{%
+\subsubsection{Convertisseurs AC-DC}\label{convertisseurs-ac-dc}}
+
+Les \textbf{convertisseurs AC-DC} associés à un filtre de sortie, permettent d'obtenir une tension continue de valeur moyenne \textless u\textsubscript{ch}\textgreater{} à partir d'une source de tension alternative sinusoïdale.
+
+C'est le convertisseur statique le plus répandu et trois types sont utilisés :
+
+\begin{itemize}
+\tightlist
+\item
+  les \textbf{redresseurs non commandés utilisant des diodes} : ils ne permettent pas de régler la tension de sortie;
+\end{itemize}
+
+\includegraphics[width=5.97674in,height=1.34119in]{10-Électronique de Puissance/Cours/pandoc/media/image71.jpeg}
+
+\begin{itemize}
+\tightlist
+\item
+  les \textbf{redresseurs commandés utilisant des thyristors} : ils permettent de régler la tension de sortie~;
+\end{itemize}
+
+\includegraphics[width=3.25581in,height=1.06043in]{10-Électronique de Puissance/Cours/pandoc/media/image72.jpeg}
+
+\begin{itemize}
+\item
+  les \textbf{redresseurs MLI} : ils permettent d'absorber un courant sinusoïdal.
+
+  Hypothèses et méthode d'étude
+\end{itemize}
+
+Pour simplifier l'étude, on considérera dans tout le cours que~:
+
+\begin{itemize}
+\item
+  Les \textbf{interrupteurs sont idéaux} (pas de pertes, pas de chute de tension, \ldots);
+\item
+  Le \textbf{rendement du convertisseur est unitaire} (Les puissances actives d'entrées et de sortie sont égales);
+\item
+  La \textbf{conduction est continue} (le courant dans la charge ne s'annule jamais);
+\item
+  La tension d'entrée est sinusoïdale et de la forme~(V est la valeur efficace):
+\end{itemize}
+
+\[v_{e}(t) = \overset{\hat{}}{V}.sin(\omega t) = V.\sqrt{2}.sin(\omega t)\]
+
+\ul{Pour étudier et dimensionner un redresseur, on peut procéder par les différentes étapes suivantes :}
+
+\begin{itemize}
+\item
+  \textbf{Identification de la commande} de chaque semi-conducteur (ou interrupteur) de puissance (voir s'il est commandé ou non, quel est le paramètre de commande,\ldots)
+\item
+  \textbf{Identification de la charge} (courant constant, résistance, \ldots)
+\item
+  \textbf{Intervalles de conduction de chaque semi-conducteur} (ou interrupteur) de puissance
+\item
+  \textbf{Tracé des chronogrammes} des courants et tensions d'entrée, de sortie et dans les semi-conducteurs de puissance.
+\item
+  \textbf{Calcul des valeurs moyennes et efficaces} en fonction des paramètres de commandes
+\item
+  \textbf{Calcul des contraintes sur les semi-conducteurs} (Dimensionnement)
+\item
+  \textbf{Calcul du facteur de puissance}
+\item
+  (Dimensionnement des filtres d'entrées et de sortie)
+\end{itemize}
+
+\hypertarget{redressement-monophasuxe9-non-commanduxe9}{%
+\subsection{Redressement monophasé non commandé}\label{redressement-monophasuxe9-non-commanduxe9}}
+
+\hypertarget{diode-de-puissance}{%
+\subsubsection{Diode de puissance}\label{diode-de-puissance}}
+
+\includegraphics[width=0.85in,height=0.63889in]{10-Électronique de Puissance/Cours/pandoc/media/image73.jpeg}On parle de redresseur monophasé \textbf{non commandé} pour les convertisseurs AC-DC \textbf{utilisant des diodes comme interrupteurs} car ce sont des \textbf{composants non commandés}.
+
+La diode de puissance correspond au composant de base de l'électronique de puissance. Son symbole est représenté ci-contre où A représente l'\textbf{anode} et K la \textbf{cathode}.
+
+C'est un composant \textbf{unidirectionnel en courant et en tension} et dont la \textbf{commutation est spontanée} et dépendante du signe du courant i\textsubscript{D} et de la tension v\textsubscript{AK}~:
+
+\begin{itemize}
+\item
+  i\textsubscript{D} \textgreater{} 0 et v\textsubscript{AK} \textgreater{} 0 \textbf{interrupteur fermé (diode passante) ;}
+\item
+  v\textsubscript{AK} \textless{} 0 \textbf{interrupteur ouvert (diode bloquée).}
+\end{itemize}
+
+\includegraphics[width=3.11597in,height=1.66528in]{10-Électronique de Puissance/Cours/pandoc/media/image74.jpeg}Pour une diode réelle (et pour le choix d'une diode), les caractéristiques importantes sont les suivantes~:
+
+\begin{itemize}
+\item
+  Courants moyen direct (I\textsubscript{FAV});
+\item
+  Courants direct maximal (I\textsubscript{D});
+\item
+  Courants direct maximal (I\textsubscript{FM});
+\item
+  Tension inverse maximale (V\textsubscript{RRM});
+\item
+  Tension de seuil (V\textsubscript{0}) et résistance dynamique (r\textsubscript{D}) pour le calcul des pertes.
+\end{itemize}
+
+\ul{Exemples de diodes de puissance}
+
+\includegraphics[width=0.83542in,height=0.83542in]{10-Électronique de Puissance/Cours/pandoc/media/image75.jpeg}\includegraphics[width=0.97317in,height=0.88814in]{10-Électronique de Puissance/Cours/pandoc/media/image76.jpeg}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.75069in,height=0.55764in]{10-Électronique de Puissance/Cours/pandoc/media/image77.jpeg}
+\caption{L4359069-01}
+\end{figure}
+
+\ul{Exemples de convertisseur AC-DC (pont de diodes) intégré}
+
+\begin{figure}
+\centering
+\includegraphics[width=1.04583in,height=0.99722in]{10-Électronique de Puissance/Cours/pandoc/media/image78.jpeg}
+\caption{R395435-01}
+\end{figure}
+
+\hypertarget{montage-pd2}{%
+\subsubsection{Montage PD2}\label{montage-pd2}}
+
+Les montages redresseurs double-alternance sont aussi appelés montages à commutation parallèle double ou PDq, q représentant le nombre de phases. En monophasé, on aura donc les \textbf{montages PD2} (pont de Graëtz) représenté ci-dessous.
+
+\includegraphics[width=2.45347in,height=1.26875in]{10-Électronique de Puissance/Cours/pandoc/media/image79.jpeg}
+
+\[v_{e}(t) = \overset{\hat{}}{V}.sin(\omega t) = 230.\sqrt{2}.sin(314.t)\]
+
+Pour des diodes ayant leurs \textbf{cathodes communes (cathodes reliées entre elles)}, la diode qui peut conduire est celle qui a \textbf{son potentiel d'anode le plus élevé}.
+
+Pour des diodes ayant leurs \textbf{anodes communes (anodes reliées entre elles)}, la diode qui peut conduire est celle qui a \textbf{son potentiel de cathode le plus bas}.
+
+\includegraphics[width=3.38333in,height=2.6875in]{10-Électronique de Puissance/Cours/pandoc/media/image80.jpeg}
+
+D\textsubscript{1} et D\textsubscript{2} ont leurs cathodes communes
+
+D\textsubscript{3} et D\textsubscript{4} leurs anodes communes.
+
+\includegraphics[width=3.03473in,height=1.82558in]{10-Électronique de Puissance/Cours/pandoc/media/image81.jpeg}\includegraphics[width=3.15484in,height=1.89535in]{10-Électronique de Puissance/Cours/pandoc/media/image82.jpeg}
+
+\includegraphics[width=2.98644in,height=1.7907in]{10-Électronique de Puissance/Cours/pandoc/media/image83.jpeg}\includegraphics[width=3.0154in,height=1.81395in]{10-Électronique de Puissance/Cours/pandoc/media/image84.jpeg}
+
+\[< v_{ch} > = \frac{1}{\pi}\int_{0}^{\pi}{v_{ch}(\theta)\ d\theta} = \frac{1}{\pi}\int_{0}^{\pi}{\overset{\hat{}}{V}.sin(\theta)\ d\theta}\]
+
+\[< v_{ch} > = \frac{1}{\pi}\int_{0}^{\pi}{\overset{\hat{}}{V}.sin(\theta)\ d\theta} = \frac{\overset{\hat{}}{V}}{\pi}\left\lbrack - cos(\theta) \right\rbrack_{0}^{\pi}\]
+
+\[< v_{ch} > = \frac{\overset{\hat{}}{V}}{\pi}\lbrack 1 + 1\rbrack_{0}^{\pi} = \boxed{\frac{2.\overset{\hat{}}{V}}{\pi} = \frac{2.V.\sqrt{2}}{\pi}}\]
+
+\[I_{D1} = \sqrt{\frac{1}{2\pi}\left\lbrack {I_{ch}}^{2}.\pi - 0 \right\rbrack} = \boxed{\frac{I_{ch}}{\sqrt{2}} = 42,4\ A}\]
+
+\[< i_{D1} \geq \frac{1}{2\pi}\left\lbrack I_{ch}.\pi - 0 \right\rbrack = \boxed{\frac{I_{ch}}{2} = 30\ A}\]
+
+\[\boxed{V_{RRM} = - \overset{\hat{}}{V} = - 33\sqrt{2}\ V}\]
+
+\hypertarget{puissance-instantanuxe9e-et-active}{%
+\subsubsection{Puissance instantanée et active}\label{puissance-instantanuxe9e-et-active}}
+
+En régime sinusoïdal, les \textbf{échanges d'énergies ne peuvent plus être quantifiés comme en continu} vu que courant et tension sont \textbf{variables en tout instant}. On définit alors plusieurs puissances pour traduire tous ces échanges d'énergies
+
+\includegraphics[width=1.02292in,height=0.59236in]{10-Électronique de Puissance/Cours/pandoc/media/image85.jpeg}\(Soit:\left\{ \begin{aligned}  & \ u(t)\  = \ \ U.\sqrt{2}.cos(\omega.t) \\  & \ i(t)\  = \ \ I.\sqrt{2}.cos(\omega.t - \phi) \end{aligned} \right.\ \)
+
+La \textbf{puissance instantanée} est le produit de la tension par le courant en valeurs instantanées : \(\boxed{p(t) = u(t).i(t)}\)
+
+Elle traduit en tout instant les échanges d'énergie entre le réseau et le dipôle. Elle s'exprime en \textbf{Watts (W).} En régime sinusoïdal elle vaut:
+
+\includegraphics[width=2.86047in,height=0.71902in]{10-Électronique de Puissance/Cours/pandoc/media/image86.jpeg}
+
+La puissance active est définie pour des signaux périodiques comme la valeur moyenne de la puissance instantanée.
+
+\[\boxed{P = < p > = \frac{1}{T}\int_{0}^{T}{u(t).i(t)dt}}\]
+
+En régime sinusoïdal, la puissance active s'exprime par la relation suivante.
+
+\[\boxed{P = < p > = U.I.cos(\phi)}\]
+
+On voit donc que la puissance active consommée dépend de notre ``charge'' (i.e de notre récepteur et de l'association de dipôle réalisée). \textbf{U et I sont les valeurs efficaces}
+
+Le produit I.cos(j) est aussi appelé \textbf{intensité active} (I\textsubscript{a})~: c'est l'intensité qui est réellement utile à notre charge~: \(\boxed{P = U.I_{a}}\)
+
+\hypertarget{puissance-ruxe9active-et-puissance-apparente}{%
+\subsubsection[Puissance réactive et puissance apparente]{\texorpdfstring{\protect\includegraphics[width=1.86875in,height=1.54583in]{10-Électronique de Puissance/Cours/pandoc/media/image87.jpeg}Puissance réactive et puissance apparente}{Puissance réactive et puissance apparente}}\label{puissance-ruxe9active-et-puissance-apparente}}
+
+Le diagramme de Fresnel d'un dipôle en prenant la tension comme référence des phases est le suivant~:
+
+L'intensité active ne correspond pas à la valeur du courant réellement transportée par les lignes électriques.
+
+Par analogie avec la puissance active on définit donc la puissance réactive :
+
+\[\boxed{Q = U.I.sin\phi}\]
+
+Elle traduit l'importance de l'échange d'énergie entre la source et les éléments réactifs (bobine et condensateur qui peuvent être vus comme des ``réactances''). Elle s'exprime en \textbf{VAR} (Voltampères Réactifs)
+
+\textbf{Puissance apparente :}
+
+La puissance apparente, notée S, ne traduit pas les échanges d'énergies mais permet de réaliser le dimensionnement des différents éléments d'un circuit (ex: transformateurs...). Elle est définie par : \(\boxed{S = U.I}\)
+
+Elle s'exprime en \textbf{VA} (VoltAmpères). \textbf{U et I sont les valeurs efficaces}
+
+Des 3 puissances précédentes, on peut déduire les relations suivantes:
+
+\[\boxed{S = \sqrt{P^{2} + Q^{2}}}\ et\ \boxed{Q = P.tan(\phi)}\]
+
+Ces relations sont \textbf{valables uniquement lorsque la tension et le courant sont sinusoïdaux}.
+
+\hypertarget{facteur-de-puissance}{%
+\subsubsection{Facteur de puissance}\label{facteur-de-puissance}}
+
+On définit le \textbf{facteur de puissance f\textsubscript{p}} comme le rapport entre la puissance active et la puissance apparente~: \(\boxed{f_{p} = \frac{P}{S}}\)
+
+Il est sans unité et il est toujours \textless1.
+
+\textbf{Importance du facteur de puissance :}
+
+Un convertisseur AC-DC «~branché~» sur le réseau peut être vu par le schéma suivant~:
+
+\includegraphics[width=3.41861in,height=1.11303in]{10-Électronique de Puissance/Cours/pandoc/media/image88.jpeg}
+
+La \textbf{puissance active} est la puissance «~réellement consommée~» par la charge et dans nos hypothèses (rendement unitaire du convertisseur), elle est égale à la puissance active «~vue~» par le réseau. Le facteur de puissance «~vu par le réseau~» est donc~:
+
+\[\boxed{f_{p} = \frac{P_{e}}{S_{e}}\underset{\eta = 1}{\overset{=}{︸}}\frac{P_{ch}}{U_{e}.I_{e}}}\]
+
+La section des câbles transportant l'électricité, dépend de la valeur efficace du courant les traversant.
+
+\[\boxed{I_{e} = \frac{P_{ch}}{U_{e}.f_{p}}}\]
+
+Le convertisseur AC-DC doit non seulement permettre la conversion avec un très bon rendement mais aussi avec un facteur de puissance le plus proche de 1 afin de ne pas surdimensionner les éléments en amont (transformateur, \ldots).
+
+\hypertarget{duxe9composition-en-suxe9rie-de-fourier}{%
+\subsubsection{Décomposition en série de Fourier}\label{duxe9composition-en-suxe9rie-de-fourier}}
+
+Dans les convertisseurs AC-DC, le courant fourni par le réseau \textbf{n'est pas purement sinusoïdal} mais périodique. La théorie en régime sinusoïdal n'est donc plus utilisable.
+
+Cependant, le \textbf{courant étant périodique}, il est décomposable en \textbf{série de Fourier}. Le courant est alors une \textbf{somme infinie de fonctions sinusoïdales de fréquences multiples} qu'on appelle \textbf{harmoniques}. Un circuit comportant des signaux non sinusoïdaux peut donc être étudié par la superposition de signaux sinusoïdaux.
+
+\textbf{\ul{Théorème de Fourier :}}
+
+Un signal s(t) (continu et dérivable) de période T (\textbf{fréquence f}) peut être décomposé en une somme comprenant :
+
+\begin{itemize}
+\item
+  Un \textbf{terme constant} (sa valeur moyenne);
+\item
+  Un terme sinusoïdal de fréquence f (appelé \textbf{fondamental ou premier harmonique});
+\item
+  Une suite (infinie ou non) de fonctions sinusoïdales de fréquence multiple entier de f que l'on appelle \textbf{harmoniques}.
+\end{itemize}
+
+\[\boxed{s(t) = a_{0} + \sum_{n = 1}^{\infty}S_{n}sin\ (n.\omega.t + \phi_{n})}\]
+
+Où :
+
+\begin{itemize}
+\item
+  S\textsubscript{0} est la valeur moyenne du signal (composante continue);
+\item
+  S\textsubscript{n} est \textbf{l'amplitude} de l'harmonique de rang n (ou coefficient de Fourier de rang n), (composante alternative);
+\item
+  j\textsubscript{n} est la phase du signal de rang n.
+\end{itemize}
+
+Le spectre d'un signal est un graphique ayant en abscisse le rang des harmoniques et en ordonnées la valeur efficace des harmoniques (qui peut être ramené par rapport au fondamental).
+
+\textbf{\ul{Exemple du signal carré :}}
+
+\includegraphics[width=2.73256in,height=1.43381in]{10-Électronique de Puissance/Cours/pandoc/media/image89.jpeg} \includegraphics[width=2.76744in,height=1.52637in]{10-Électronique de Puissance/Cours/pandoc/media/image90.jpeg}
+
+La décomposition en série de Fourier a permis de déterminer l'expression suivante :
+
+\[\boxed{u(t) = \frac{4U_{\max}}{\pi}\sum_{p = 0}^{\infty}\frac{sin\ \left( (2p + 1)\omega t \right)}{(2p + 1)}\ \ }\]
+
+\[\boxed{u(t) = \frac{4U_{\max}}{\pi}\left( sin\ (\omega t) + \frac{sin\ (3\omega t)}{3} + \frac{sin\ (5\omega t)}{5} + ... \right)\ }\]
+
+\hypertarget{puissance-duxe9formante}{%
+\subsubsection{Puissance déformante}\label{puissance-duxe9formante}}
+
+Dans le cas où le \textbf{courant absorbé par la charge ne soit pas purement sinusoïdal mais périodique}, il est décomposable en série de Fourier. On démontre alors que la \textbf{puissance active n'est transportée que par le fondamental du courant}, on a alors:
+
+\[\boxed{P_{e} = V_{e}.I_{e1}.cos\phi_{1}}\ et\ \boxed{Q_{e} = V_{e}.I_{e1}.sin\phi_{1}}\]
+
+I\textsubscript{e1} représente la valeur efficace du fondamental et j\textsubscript{1} le déphasage entre i\textsubscript{e1}(t) et v\textsubscript{e}(t). Cependant, les autres harmoniques de courant existent et font partie de l'intensité efficace totale. Par définition, on a toujours (en utilisant Parseval)~:
+
+\[\boxed{S_{e} = V_{e}.\sqrt{\sum_{n = 1}^{\infty}{I_{en}}^{2}}\ }\]
+
+Par définition, les termes manquants qui représentent la puissance transportée par les harmoniques de courant est appelée \textbf{puissance déformante}. On a alors~:
+
+\[\boxed{{S_{e}}^{2} = \ {P_{e}}^{2} + {Q_{e}}^{2} + D^{2}\ }\ et\ \boxed{D = V_{e.}\sqrt{\sum_{n = 2}^{\infty}{I_{en}}^{2}}}\]
+
+\[\boxed{f_{p} = \frac{P_{e}}{S_{e}} = \frac{P_{e}}{\sqrt{{P_{e}}^{2} + {Q_{e}}^{2} + D^{2}}}}\]
+
+Dans le cas des \textbf{convertisseurs AC-DC cette puissance déformante est présente} et influe grandement sur le facteur de puissance. En général, on ne demande pas de la calculer mais il est important de savoir qu'elle existe et qu'elle \textbf{influe sur le dimensionnement}. Pour \textbf{éliminer les harmoniques}, on utilise des \textbf{filtres (passifs ou actifs)} qui permettent de respecter la norme CEI 61000-3-2.
+
+\hypertarget{transformateur-monophasuxe9-parfait}{%
+\subsubsection{Transformateur monophasé parfait}\label{transformateur-monophasuxe9-parfait}}
+
+\includegraphics[width=3.68542in,height=1.85972in]{10-Électronique de Puissance/Cours/pandoc/media/image91.jpeg}Le transformateur monophasé est un dispositif utilisé pour \textbf{adapter l'énergie électrique alternative.} Il permet d'isoler deux réseaux électriques : c'est \textbf{l'isolation galvanique}. Le transfert d'énergie se fait magnétiquement
+
+\includegraphics[width=3.44167in,height=0.64306in]{10-Électronique de Puissance/Cours/pandoc/media/image92.jpeg}Il est constitué d'un circuit magnétique sur lequel sont bobinés disposés deux enroulements conducteurs et isolés~: \textbf{l'enroulement primaire et l'enroulement secondaire.}
+
+Les symboles utilisés sont les suivants~:
+
+Sur ces deux symboles, on a repéré les \textbf{bornes homologues} qui représentent le \textbf{sens des bobinages, donc du champ magnétique crée} (un courant entrant par une borne homologue crée un \textbf{flux positif} dans le circuit magnétique).
+
+On définit \textbf{le rapport de transformation m~}:
+
+\[\boxed{m\  = \frac{N_{2}}{N_{1}} = \frac{U_{2}}{U_{1}} = \frac{I_{1}}{I_{2}}}\]
+
+Si \textbf{m \textgreater{} 1,} le transformateur est \textbf{élévateur de tension,} sinon il est \textbf{abaisseur.}
+
+Le transformateur est un dispositif qui est parfaitement \textbf{réversible} (on peut inverser le rôle du primaire et du secondaire). Dans le cas du transformateur parfait, toutes les puissances se conservent et le rendement est don égal à 1~: \(\boxed{P_{1} = P_{2}},\ \boxed{Q_{1} = Q_{2}},\ \boxed{S_{1} = S_{2}}\)
+
+\hypertarget{redresseur-uxe0-absorption-sinusouxefdale}{%
+\subsection{Redresseur à absorption sinusoïdale}\label{redresseur-uxe0-absorption-sinusouxefdale}}
+
+\hypertarget{introduction-2}{%
+\subsubsection{Introduction}\label{introduction-2}}
+
+Le redresseur à absorption sinusoïdal est le «~dernier né~» et pallie aux problèmes de facteur de puissance. En effet, les différentes solutions que nous avons pu voir ne permettent pas d'obtenir un facteur de puissance unitaire et une tension de sortie parfaitement continue.
+
+Le redresseur à absorption sinusoïdale ou PFC (Power Factor Corrector) est un redresseur dont la commande est asservie en courant, pour un obtenir un courant d'entrée sinusoïdal et ainsi réduire les harmoniques de basses fréquences. Ces redresseurs sont aussi asservis en tension pour obtenir une tension continue.
+
+On a principalement deux structures~:
+
+\begin{itemize}
+\item
+  la structure deux étages utilisant un convertisseur Boost (hacheur élévateur);
+\item
+  la structure mono-étage ou convertisseur PFC.
+\end{itemize}
+
+\includegraphics[width=3.52153in,height=2.08264in]{10-Électronique de Puissance/Cours/pandoc/media/image93.jpeg}\includegraphics[width=3.15069in,height=1.95972in]{10-Électronique de Puissance/Cours/pandoc/media/image94.jpeg}
+
+\hypertarget{structure-uxe0-deux-uxe9tages}{%
+\subsubsection{Structure à deux étages}\label{structure-uxe0-deux-uxe9tages}}
+
+Dans cette structure, on utilise comme charge un hacheur boost (ou élévateur de tension) dont on asservit la commande pour obtenir un courant d'entrée sinusoïdal (pour ne pas avoir d'harmoniques) et en phase avec la tension d'entrée (pour ne pas avoir de puissance réactive).
+
+Pour cela il y a deux boucles qui sont réalisées~: une \textbf{boucle de courant} pour absorber un courant sinusoïdal en phase avec la tension d'entrée et une \textbf{boucle de tension} afin d'obtenir une tension constante aux bornes de la charge.
+
+La consigne est alors élaborée à partir de la tension réseau dont on prend la valeur absolue. Cette consigne est comparée au courant absorbé par la charge (redressé double alternance.
+
+Les courbes obtenues par cette structure sont représentées sur les figures suivantes où on peut s'apercevoir que le courant est parfaitement en phase avec la tension d'entrée. Il persiste quelques harmoniques mais qui sont de fréquences assez élevées et qui peuvent être éliminées par filtrage.
+
+\begin{figure}
+\centering
+\includegraphics[width=3.59375in,height=3.59375in]{10-Électronique de Puissance/Cours/pandoc/media/image95.jpeg}
+\caption{qsd}
+\end{figure}
+
+\hypertarget{structure-mono-uxe9tage}{%
+\subsubsection{Structure mono étage}\label{structure-mono-uxe9tage}}
+
+Dans la structure mono-étage, on utilise la même structure que le hacheur 4 quadrants. La commande est alors élaborée de la même manière que précédemment en utilisant deux boucles de courant et de tension. La consigne est elle aussi générée de la même manière comme le montre la figure suivante.
+
+\begin{figure}
+\centering
+\includegraphics[width=3.15069in,height=1.95972in]{10-Électronique de Puissance/Cours/pandoc/media/image94.jpeg}
+\caption{ghfj}
+\end{figure}
+
+L'avantage de la structure à deux étages est de permettre une dynamique plus élevée pour le courant. Ces structures sont aujourd'hui utilisées dans les petites alimentations du fait des grandes restrictions appliquées par les normes. Elles sont aussi présentes dans les systèmes éoliens car elles permettent de fournir de l'énergie réactive.
+
+\hypertarget{sources}{%
+\subsection{Sources}\label{sources}}
+
+Ce cours a été élaboré à l'aide de nombreuses ressources~provenant de différents collègues~de l'UPSTI.\\
+
+\hypertarget{exercices-du-chapitre}{%
+\subsection{Exercices du chapitre}\label{exercices-du-chapitre}}
+
+\includegraphics[width=5.46667in,height=8.37353in]{10-Électronique de Puissance/Cours/pandoc/media/image96.png}
+
+\includegraphics[width=1.35556in,height=0.38889in]{10-Électronique de Puissance/Cours/pandoc/media/image97.png}\includegraphics[width=0.9625in,height=0.64167in]{10-Électronique de Puissance/Cours/pandoc/media/image98.jpeg} \includegraphics[width=0.6509in,height=0.67442in]{10-Électronique de Puissance/Cours/pandoc/media/image99.jpeg} \textbf{CHARIOT DE GOLF ÉLECTRIQUE}
+
+\textbf{Mise en situation}
+
+\includegraphics[width=2.12639in,height=1.74097in]{10-Électronique de Puissance/Cours/pandoc/media/image100.png}Le terrain de golf est constitué d'un parcours comprenant de 9 à 18 trous, que le golfeur doit parcourir successivement. La distance totale effectuée pour 18 trous est d'environ 8 km et le temps de jeu d'environ 4h.
+
+\includegraphics[width=1.47431in,height=1.44653in]{10-Électronique de Puissance/Cours/pandoc/media/image101.jpeg}L'ensemble des clubs nécessaires (maximum de 14 ) ainsi que le sac permettant de les ranger représente un poids d'environ 20 kg. Le golf est un sport qui nécessite beaucoup de concentration, d'adresse, et une bonne condition physique. Afin de permettre au joueur d'économiser le maximum d'énergie, le transport du matériel est assuré par un chariot à propulsion électrique.
+
+Ce chariot permet de ransporter sans effort sur 2 parcours de golf de 18 trous vallonnés secs ou boueux (\textbf{12 à 15 Km}) un sac de golf de 20 kilos à l'aide d'un \textbf{véhicule à énergie électrique embarquée pour des vitesses variant entre 1 km/h et 8 km/h.}
+
+Le chariot de golf est un véhicule avec énergie embarquée. L'alimentation en énergie est assurée par un accumulateur (batterie) de 24 Ah et une tension de 12 V. La motorisation est constituée d'un moto réducteur à roue et vis sans fin transmettant le mouvement aux roues. Pour effectuer les virages, les roues comportent des roues libres.
+
+La commande du moteur en vitesse variable est effectuée en boucle ouverte (pas de retour d\textquotesingle information du moteur vers la partie commande). Le principe utilisé est basé sur le "hachage" de la source de tension continue (Ubat=12v) à partir d\textquotesingle un signal de commande (Uc) de type M.L.I. (Modulation de Largeur d\textquotesingle Impulsion).
+
+\includegraphics[width=5.11944in,height=2.04167in]{10-Électronique de Puissance/Cours/pandoc/media/image102.jpeg}La modulation de largeur d\textquotesingle impulsion (MLI) consiste à générer aux bornes du moteur une tension rectangulaire périodique :
+
+• de fréquence élevée par rapport à l\textquotesingle inertie du moteur.
+
+• de rapport cyclique α variable.
+
+Le microprocesseur génère le signal de commande du hacheur (UcPIC) sous forme d\textquotesingle un signal carré à fréquence fixe (T = 130μs) et rapport cyclique (α) variable.
+
+\textbf{Travail demandé}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Déterminer} les quadrants de fonctionnement du moteur du chariot de golf électrique.
+\item
+  \textbf{Déterminer} les quadrants de fonctionnement du variateur associé à la MCC.
+\end{enumerate}
+
+\begin{figure}
+\centering
+\includegraphics[width=2.96667in,height=3.09236in]{10-Électronique de Puissance/Cours/pandoc/media/image103.jpeg}
+\caption{toto}
+\end{figure}
+
+On considérera dans un premier temps que la machine à courant continu est équivalent à une source de courant idéale.
+
+La diode et les transistors sont considérés comme idéaux. C'est un hacheur série. L'interrupteur K est commandé de 0 à αT.
+
+\includegraphics[width=2.70308in,height=2.15116in]{10-Électronique de Puissance/Cours/pandoc/media/image104.jpeg}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  \textbf{Représenter} les tensions u(t) et v\textsubscript{DS}(t) sur une période de découpage et pour un rapport cyclique α = 0,5.
+\item
+  \textbf{Déterminer} la relation entre \textless u\textgreater, la tension de la batterie U\textsubscript{b} et le rapport cyclique α.
+\end{enumerate}
+
+\includegraphics[width=2.99167in,height=1.42986in]{10-Électronique de Puissance/Cours/pandoc/media/image105.jpeg}
+
+Le moteur d\textquotesingle entraînement utilisé est une MCC à aimants permanents de tension nominale 12 V. Le rapport de réduction est 25 et le diamètre des roues est de 300 mm. Tension d\textquotesingle alimentation de l\textquotesingle induit : U\textsubscript{N} = 12 V ; Résistance de l\textquotesingle induit : R\textsubscript{a} = 0,2 Ω, coefficient de fém k\textsubscript{e} =0,028 V/rad/s.
+
+Un premier modèle pour la MCC est une charge L\textsubscript{a}-E ci-contre.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\item
+  \textbf{Déterminer} la relation entre la tension \textless u\textgreater{} et la fém E.
+\item
+  \textbf{Déterminer} la relation entre la fém E et la vitesse du chariot V. En déduire la relation entre \textless u\textgreater{} et la vitesse du chariot de golf.
+\item
+  \includegraphics[width=2.67639in,height=1.27847in]{10-Électronique de Puissance/Cours/pandoc/media/image106.jpeg}\textbf{Déterminer} la relation entre la vitesse V (en km/h) du chariot et le rapport cyclique α. \textbf{Conclure} si les vitesses annoncées dans le cahier des charges sont atteignables.
+\end{enumerate}
+
+Un essai a permis de déterminer que, sur terrain plat, le chariot de golf ne démarre que pour un rapport cyclique minimal de 20\%. Le modèle précédent était incomplet et on utilise un deuxième modèle pour la MCC : une charge R-L-E.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\item
+  \textbf{Déterminer} le couple résistant total C\textsubscript{rd} (incluant le couple de pertes du moteur) que doit vaincre le moteur au démarrage.
+\item
+  \textbf{Donner} la nouvelle plage de variation de vitesse possible si on considère le couple résistant indépendant de la vitesse de rotation.
+\end{enumerate}
+
+Afin d'éviter une conduction discontinue, on souhaite que l'ondulation du courant soit limitée à 1 A. Pour réaliser cette étude, on considérera la MCC comme une charge L-E.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{9}
+\item
+  \textbf{Donner} l'expression du courant d'induit, noté i\textsubscript{a}(t), dans le cas où les transistors sont commandés (on pourra faire un schéma équivalent). On notera i\textsubscript{amin} la valeur initiale.
+\item
+  \textbf{Donner} l'expression du courant d'induit, noté ia(t), dans le cas où les transistors ne sont pas commandés (on pourra faire un schéma équivalent). On notera i\textsubscript{amax} la valeur initiale.
+\item
+  \textbf{Déterminer} l'expression de l'ondulation de courant.
+\item
+  \textbf{Déterminer} l'expression de l'ondulation maximale de courant en fonction de U\textsubscript{b}, T et L\textsubscript{a}.
+\end{enumerate}
+
+On souhaite une ondulation maximale de courant de 1 A afin d'éviter une conduction discontinue. L'inductance d'induit du moteur vaut 470 mH.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{13}
+\tightlist
+\item
+  \textbf{Déterminer} l'inductance d'induit minimale permettant d'obtenir l'ondulation maximale de 1 A. En déduire s'il est nécessaire d'ajouter une inductance en série avec le moteur.
+\end{enumerate}
+
+\includegraphics[width=2.70429in,height=3.43023in]{10-Électronique de Puissance/Cours/pandoc/media/image107.jpeg}
+
+\includegraphics[width=1.35556in,height=0.38889in]{10-Électronique de Puissance/Cours/pandoc/media/image97.png}\includegraphics[width=0.70833in,height=0.53125in]{10-Électronique de Puissance/Cours/pandoc/media/image108.jpeg}\textbf{COMMANDE D'UN PORTAIL AUTOMATIQUE}
+
+\emph{(\ul{Source} : ATS 2004)}
+
+\textbf{Mise en situation}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \includegraphics[width=2.44792in,height=1.76042in]{10-Électronique de Puissance/Cours/pandoc/media/image109.png}
+
+  Le thème du sujet est l'étude d'une porte automatique coulissant. Un usager peut déclencher l'ouverture de la porte depuis son véhicule par une action sur la télécommande qui lui a été fournie.
+\end{enumerate}
+
+Le synoptique du portail est représenté ci-contre :
+
+\emph{1a et 1b : barrière IR extérieure,}
+
+\emph{2a et 2b : barrière IR intérieure,}
+
+\includegraphics[width=2.60278in,height=1.58333in]{10-Électronique de Puissance/Cours/pandoc/media/image110.png}\emph{3 : palpeur,}
+
+\emph{4a et 4b : capteurs de télécommande,}
+
+\emph{5a et 5b : capteurs de fin de course}
+
+Le moteur et l'armoire électrique de commande ne sont pas représentés.
+
+\includegraphics[width=2.92708in,height=1.05208in]{10-Électronique de Puissance/Cours/pandoc/media/image111.png}
+
+Le moteur électrique de la porte de garage est alimentée par un hacheur série dont la structure est représentée ci-dessous :
+
+\ul{Hypothèses~:}
+
+\begin{itemize}
+\item
+  D est une diode idéale sans seuil.
+\item
+  La tension aux bornes du moteur à courant continu est égale à sa f.e.m. E proportionnelle à la vitesse de rotation du moteur : E=k.N avec k=5,25.10\textsuperscript{-2} V/(tr.min\textsuperscript{-1}).
+\item
+  L'intensité i du courant ne s'annule jamais et varie entre les valeurs minimales et maximales I\textsubscript{m} et I\textsubscript{M}.
+\end{itemize}
+
+\ul{Données~:}
+
+\begin{itemize}
+\item
+  La tension d'alimentation du hacheur est constante et vaut V\textsubscript{S} = 210 V.
+\item
+  K est un interrupteur commandé par la tension u\textsubscript{C} représentée ci-dessous.
+\end{itemize}
+
+\includegraphics[width=2.67708in,height=1.28125in]{10-Électronique de Puissance/Cours/pandoc/media/image112.png}
+
+Pour t∈{[}0,αT{]} K est fermé et pour t∈{[}αT ,T{]} K est ouvert. T représente la période de découpage et vaut \ul{T=0,1 ms}.
+
+\textbf{Étude de la commande}
+
+\textbf{Question 1 :} \textbf{Représenter} l'allure de la tension v\textsubscript{D} (t) sur le \textbf{document réponse DR1}.
+
+\textbf{Question 2 :} \textbf{Exprimer} la valeur moyenne de la tension v\textsubscript{D} en fonction de α et V\textsubscript{S} puis en déduire la relation entre E, α et V\textsubscript{S}.
+
+\textbf{Question 3 :} \textbf{Déterminer} la valeur du rapport cyclique α qui permet de régler la vitesse de rotation du moteur à N = 1000 tr.min\textsuperscript{-1}.
+
+\textbf{Question 4 :} \textbf{Déterminer} l'expression de i(t) pour t ∈{[}0,α\emph{T}{]} puis pour t ∈{[}α\emph{T} ,\emph{T}{]}.
+
+\textbf{Question 5 :} \textbf{Exprimer} l'ondulation de courant Δi = I\textsubscript{M} -- I\textsubscript{m} en fonction de α, V\textsubscript{S}, L et T.
+
+\textbf{Question 6 :} \textbf{Représenter} l'allure de Δi en fonction de α. Pour quelle valeur de α l'ondulation de courant est-elle maximale ? \textbf{Calculer} (Δi)\textsubscript{max.}
+
+\textbf{Question 7 :} Représenter l'allure de i\textsubscript{K} sur le \textbf{document réponse DR1} et exprimer sa valeur moyenne en fonction de α, I\textsubscript{m} et I\textsubscript{M}.
+
+\includegraphics[width=1.78125in,height=2.85417in]{10-Électronique de Puissance/Cours/pandoc/media/image113.png}\textbf{Question 8 :} \textbf{Représenter} l'allure de i\textsubscript{D} sur le \textbf{document réponse DR1} et exprimer sa valeur moyenne en fonction de α, I\textsubscript{m} et I\textsubscript{M}.
+
+En réalité, le hacheur n'alimente pas directement le moteur : on intercale comme indiqué sur la figure ci-contre un système de relais piloté par un interrupteur commandé par une tension v\textsubscript{3}.
+
+Au repos, lorsque la tension aux bornes de la bobine est nulle, les interrupteurs sont dans la position représentée sur la figure. Lorsque la tension aux bornes de la bobine est égale à 12 V, les interrupteurs sont dans l'autre position.
+
+\textbf{Question 9 :} \textbf{Indiquer} les quadrants de fonctionnement possibles du moteur obtenus par l'association «~hacheur série + système de relais~».
+
+\textbf{Question 10 :} \textbf{Conclure} sur l'utilité de ce système de relais
+
+\textbf{DOCUMENT RÉPONSE DR1}
+
+\begin{figure}
+\centering
+\includegraphics[width=5.57292in,height=6.60417in]{10-Électronique de Puissance/Cours/pandoc/media/image114.jpeg}
+\caption{tre}
+\end{figure}
+
+\includegraphics[width=1.35556in,height=0.38889in]{10-Électronique de Puissance/Cours/pandoc/media/image97.png}\includegraphics[width=0.93958in,height=0.57292in]{10-Électronique de Puissance/Cours/pandoc/media/image115.png}\textbf{TOYOTA PRIUS}
+
+\emph{(\ul{Source} : Concours Centrale Supélec TSI 2006)}
+
+\textbf{Mise en situation}
+
+\includegraphics[width=2.8875in,height=1.75833in]{10-Électronique de Puissance/Cours/pandoc/media/image116.jpeg}Le constructeur automobile japonais \textbf{TOYOTA} commercialise un véhicule de tourisme à motorisation hybride, la \textbf{TOYOTA PRIUS}. Cette motorisation repose sur la combinaison d'un moteur électrique et d'un moteur à essence.
+
+L\textquotesingle idée d\textquotesingle associer à bord d\textquotesingle un même véhicule, un moteur électrique et un moteur thermique permet de conserver un excellent niveau de performances dynamiques, tout en diminuant sensiblement la pollution en milieu urbain, grâce à une gestion énergétique optimisée.
+
+En \textbf{technologie hybride}, un \textbf{calculateur sélectionne le meilleur mode opératoire} en fonction de n'importe quelle situation. Il opte pour la propulsion électrique seule lorsque cela est possible ou pour une répartition entre propulsion électrique et thermique lorsque cela est nécessaire. La batterie se recharge automatiquement grâce au moteur essence mais aussi lors des décélérations ou du freinage.
+
+Les émissions de CO\textsubscript{2} sont de 104 g.km\textsuperscript{-1}, soit un niveau qui lui permet de rivaliser avec les voitures diesel citadines, les émissions d'oxyde d'azote et d'hydrates de carbone sont plus faibles que pour n'importe quelle voiture à moteur thermique existante. Quant aux émissions de particules, inconvénient important des moteurs diesel, elles sont réduites à zéro.
+
+\includegraphics[width=4.16667in,height=2.30208in]{10-Électronique de Puissance/Cours/pandoc/media/image117.jpeg}La chaîne simplifiée de transmission est représentée ci-dessous.
+
+\emph{.}
+
+Dans la \textbf{première version} de la PRIUS (année 2000) les convertisseurs \textbf{CV7} et \textbf{CV9} étaient directement reliés à la batterie \textbf{BAT8} (figure2).
+
+Dans la \textbf{seconde version} \textbf{(étudiée ici)} de la PRIUS (année 2004), le constructeur a intercalé un convertisseur DC/DC entre la batterie et les convertisseurs \textbf{CV7} et \textbf{CV9.}
+
+Ce convertisseur permet d'obtenir une tension d'alimentation de \textbf{CV7} et \textbf{CV9} de 500 V à partir d'une tension aux bornes de la batterie \emph{BAT8} comprise entre 150 V et 260 V.
+
+La structure du convertisseur DC-DC intercalé est la suivante~:
+
+\includegraphics[width=4.23958in,height=2.30208in]{10-Électronique de Puissance/Cours/pandoc/media/image118.jpeg} Les interrupteurs \textbf{K\textsubscript{1}} et \textbf{K\textsubscript{2}} sont des \textbf{IGBT} (Insulated Gate Bipolar Transistor). La période du signal de commande des interrupteurs \textbf{K\textsubscript{1}} et \textbf{K\textsubscript{2}} est \textbf{T\textsubscript{h} = 50 µs}.
+
+L'interrupteur \textbf{K\textsubscript{1}} est commandé à la fermeture de l'instant \textbf{t = 0} à l'instant \textbf{t = αT\textsubscript{h}}, puis à l'ouverture de l'instant \textbf{t = αT\textsubscript{h}}~à l'instant \textbf{t = T\textsubscript{h}}.
+
+La commande de l'interrupteur \textbf{K\textsubscript{2}} est complémentaire de la commande de l'interrupteur \textbf{K\textsubscript{1}}.
+
+\textbf{Détermination de la plage de variation du rapport cyclique α}
+
+La tension \textbf{U\textsubscript{0}} est la tension continue mesurée aux bornes de la batterie. Cette tension \textbf{U\textsubscript{0}} dépend de la température de la batterie, de la quantité d'électricité stockée dans la batterie et de la valeur moyenne du courant \textbf{i\textsubscript{b}}. On donne \textbf{150 V \textless{} U\textsubscript{0} \textless{} 260 V}.
+
+\textbf{\ul{Objectif de l'étude :} Déterminer} la plage de variation du rapport cyclique \textbf{α} permettant d'obtenir une tension \textbf{U\textsubscript{1} constante} quelle que soit la valeur de la tension batterie \textbf{U\textsubscript{0}}.
+
+\textbf{\ul{Critère :}} La tension \textbf{U\textsubscript{1}} doit être une tension continue constante égale à \textbf{500 V}.
+
+\textbf{\ul{Hypothèses~:}}
+
+\begin{itemize}
+\item
+  Tous les interrupteurs sont considérés comme idéaux~;
+\item
+  La conduction est continue dans \textbf{BAT8}~;
+\item
+  Pendant une période de hachage, le courant \textbf{i\textsubscript{b}} est soit strictement positif, soit strictement négatif.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{~Donner}, pour \textbf{0 ≤ t ≤ αT\textsubscript{h}},, les expressions des grandeurs \textbf{u\textsubscript{c} (t)}, \textbf{v\textsubscript{K1} (t),} \textbf{v\textsubscript{K2} (t) et u\textsubscript{L}(t)} en fonction de \textbf{U\textsubscript{1}} et \textbf{U\textsubscript{0}}.
+\item
+  \textbf{~ Donner}, pour \textbf{αT\textsubscript{h} ≤ t ≤ T\textsubscript{h}}, les expressions des grandeurs \textbf{u\textsubscript{c} (t)}, \textbf{v\textsubscript{K1} (t),} \textbf{v\textsubscript{K2} (t) et u\textsubscript{L}(t)} en fonction de \textbf{U\textsubscript{1}} et \textbf{U\textsubscript{0}}.
+\item
+  \textbf{Déterminer} l'expression de \textbf{\textless u\textsubscript{c}\textgreater{}} en fonction de \textbf{α} et \textbf{U\textsubscript{1}}.
+\item
+  \textbf{Déterminer} l'expression de \textbf{\textless u\textsubscript{c}\textgreater{}} en fonction de \textbf{U\textsubscript{0}}. \textbf{Exprimer} alors \textbf{α} en fonction de \textbf{U\textsubscript{0}} et \textbf{U\textsubscript{1}}.
+\item
+  ~\textbf{Conclure} sur la plage de variation du rapport cyclique \textbf{α.}
+\end{enumerate}
+
+\textbf{Dimensionnement de la bobine de lissage L du convertisseur DC / DC}
+
+La durée de vie et la quantité d'électricité que l'on peut stocker dans les batteries de type NiMH dépendent beaucoup de la valeur de l'ondulation du courant batterie \textbf{i\textsubscript{b}}. Afin d'obtenir une durée de vie de la batterie d'environ \textbf{150.000 km}, on souhaite limiter l'ondulation de ce courant à \textbf{2 A} maximum, quel que soit le mode de fonctionnement de la batterie.
+
+\textbf{\ul{Objectif de l'étude :} Déterminer} la valeur de l'inductance permettant d'obtenir une durée de vie de batterie d'environ \textbf{150.000 km}.
+
+\textbf{\ul{Critère :}} L'ondulation de courant doit toujours être \textbf{inférieure à 2A}.
+
+\textbf{\ul{Hypothèses~:}}
+
+\begin{itemize}
+\item
+  Tous les interrupteurs sont considérés \textbf{idéaux}~;
+\item
+  La conduction est \textbf{continue}~;
+\item
+  Quelle que soit la valeur de \textbf{i\textsubscript{S}}, on a la relation \textbf{U\textsubscript{0} = α~U\textsubscript{1~}};
+\item
+  À \textbf{t = 0}, \textbf{i\textsubscript{b} = i\textsubscript{bmini}}.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\item
+  ~\textbf{Établir}, pour \textbf{0 ≤ t ≤ αT\textsubscript{h}}, l'expression de \textbf{i\textsubscript{b} (t)} en fonction de \textbf{U\textsubscript{1}}, \textbf{α}, \textbf{i\textsubscript{bmini}} et \textbf{L}.
+\item
+  \textbf{~Établir} l'expression de l'ondulation \textbf{∆I\textsubscript{b} = i\textsubscript{bmaxi} -- i\textsubscript{bmini}} en fonction de \textbf{U\textsubscript{1}}, \textbf{α}, \textbf{T\textsubscript{h}} et \textbf{L}.
+\item
+  \textbf{Montrer} que l'ondulation \textbf{∆I\textsubscript{b}} est maximale pour une certaine valeur de \textbf{α}, notée \textbf{α\textsubscript{1}} dont vous donnerez la valeur numérique\textbf{.}
+\item
+  \textbf{~Etablir} l'expression de \textbf{∆I\textsubscript{b}(α\textsubscript{1}).}
+\item
+  ~\textbf{Conclure} sur la valeur minimale de l'inductance \textbf{L} de la bobine de lissage.
+\end{enumerate}
+
+\textbf{Choix des interrupteurs du convertisseur DC / DC}
+
+\textbf{\ul{Objectif de l'étude :} Déterminer} les contraintes en tension et en courant pour les interrupteurs K\textsubscript{1}-D\textsubscript{1} et K\textsubscript{2}-D\textsubscript{2} et \textbf{choisir} le module qui convient dans la documentation constructeur.
+
+\textbf{\ul{Hypothèses~:}}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  Tous les interrupteurs sont considérés comme idéaux~;
+\item
+  Quelle que soit la valeur de \textbf{i\textsubscript{S}}, on a la relation \textbf{U\textsubscript{0} = α~U\textsubscript{1~}};
+\item
+  On \textbf{\ul{néglige l'ondulation du courant}} i\textsubscript{b}(t). D'où i\textsubscript{b} = I\textsubscript{b} avec -- 200 A ≤ I\textsubscript{b} ≤ 80 A.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{10}
+\item
+  ~\textbf{Indiquer}, à partir des réponses obtenues aux \textbf{questions 1 et \textgreater{} 2}, les valeurs numériques maximales des tensions aux bornes des \textgreater{} différents composants \textbf{K\textsubscript{1}, D\textsubscript{1}}, \textbf{K\textsubscript{2}} et \textbf{D\textsubscript{2}}.
+\item
+  ~\textbf{Tracer} \textbf{i\textsubscript{D1}(t)}, \textbf{i\textsubscript{K1} (t),} \textbf{i\textsubscript{K2} (t), i\textsubscript{D2}(t)} et \textgreater{} \textbf{i\textsubscript{s}(t)} pour~\textbf{α = 0,5}. Vous envisagerez les cas \textbf{I\textsubscript{b} \textgreater{} \textgreater{} 0} puis \textbf{I\textsubscript{b} \textless{} 0} et vous indiquerez les composants qui \textgreater{} doivent être passants dans chaque cas.
+\item
+  ~ À partir de la réponse à la question précédente, \textbf{déterminer} \textgreater{} les valeurs efficaces et moyennes des courants \textbf{i\textsubscript{D1}(t)}, \textgreater{} \textbf{i\textsubscript{K1} (t),} \textbf{i\textsubscript{K2} (t), i\textsubscript{D2}(t)} et \textbf{i\textsubscript{s}(t)} en fonction \textgreater{} de \textbf{α} et de \textbf{I\textsubscript{b}}.
+\item
+  ~ Compte-tenu des réponses aux questions \textbf{5} et \textbf{13}, \textgreater{} \textbf{indiquer} les valeurs numériques maximales des courants moyens \textgreater{} qui participent au choix des composants \textbf{K\textsubscript{1}, D\textsubscript{1}, K\textsubscript{2}} et \textgreater{} \textbf{D\textsubscript{2}}.
+\end{enumerate}
+
+Le constructeur de composants \textbf{MITSUBISHI} a développé des modules IGBT qui regroupent dans un même boîtier les composants \textbf{K\textsubscript{1}, D\textsubscript{1}, K\textsubscript{2}, D\textsubscript{2}}.
+
+Les caractéristiques principales des modules sont~:
+
+\textbf{V\textsubscript{CES}}~: Tension collecteur-émetteur maximale.
+
+\textbf{I\textsubscript{C}}~: courant collecteur moyen maximal pour l'IGBT.
+
+\textbf{I\textsubscript{E}~}: courant direct moyen pour la diode.
+
+\textbf{I\textsubscript{CM}~}: courant crête maximal pour l'IGBT.
+
+\textbf{I\textsubscript{EM}}\textsubscript{~}: courant crête maximal pour la diode.
+
+\begin{quote}
+\textbf{Pour tous les modules du tableau I\textsubscript{E} = I\textsubscript{C} et I\textsubscript{EM} = I\textsubscript{CM} = 2I\textsubscript{C}.}
+\end{quote}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1622}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1622}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1622}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1622}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1622}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+\textbf{I\textsubscript{C} (A)}
+
+\begin{itemize}
+\tightlist
+\item
+  *V\textsubscript{CES} (V)**
+\end{itemize}
+\end{minipage} & \textbf{100} & \textbf{150} & \textbf{200} & \textbf{300} & \textbf{400} \\
+\textbf{600} & & CM1 50-DY12NF & CM2 00-DY12NF & CM3 00-DY12NF & CM4 00-DY12NF \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{itemize}
+\tightlist
+\item
+  *1200**
+\end{itemize}
+\end{minipage} & CM1 00-DY24NF & CM1 50-DY24NF & CM2 00-DY24NF & CM3 00-DY24NF & CM4 00-DY24NF \\
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{14}
+\tightlist
+\item
+  \textbf{~Choisir} le module qui convient à l'application étudiée, en \textgreater{} prenant un coefficient de sécurité de \textbf{1,1} sur les tensions et \textgreater{} de \textbf{1,2} sur les courants.
+\end{enumerate}
+
+\textbf{DOCUMENT RÉPONSE N°1}
+
+\includegraphics[width=1.35556in,height=0.38889in]{10-Électronique de Puissance/Cours/pandoc/media/image97.png}\textbf{BOURREUSE ZCA 2000 LGV}
+
+\emph{(\ul{Source} : ATS 2020)}
+
+\includegraphics[width=6.3in,height=2.86667in]{10-Électronique de Puissance/Cours/pandoc/media/image119.png}
+
+\includegraphics[width=6.3in,height=3.81528in]{10-Électronique de Puissance/Cours/pandoc/media/image120.png}
+
+\includegraphics[width=6.3in,height=2.65903in]{10-Électronique de Puissance/Cours/pandoc/media/image121.png}
+
+\includegraphics[width=7.26806in,height=3.78333in]{10-Électronique de Puissance/Cours/pandoc/media/image122.png}
+
+\textbf{BORNE SOLAIRE}
+
+\includegraphics[width=1.35556in,height=0.38889in]{10-Électronique de Puissance/Cours/pandoc/media/image97.png} \emph{(\ul{Source} : ATS 2010)}
+
+\includegraphics[width=1.89167in,height=1.83194in]{10-Électronique de Puissance/Cours/pandoc/media/image123.png}\textbf{Modélisation du moteur}
+
+L\textquotesingle objectif de cette partie est d\textquotesingle établir le modèle électrique équivalent du motoréducteur. Les valeurs de chaque paramètre seront identifiées à partir de différents résultats d\textquotesingle essais
+
+Le système est équipé d\textquotesingle un motoréducteur à courant continu. Celui-ci est l\textquotesingle association d\textquotesingle un moteur à aimants permanents de tension nominale 12V et d\textquotesingle un réducteur de rapport 1/60 (figure 6.a ci-contre)
+
+L\textquotesingle induit du moteur peut être représenté par son schéma électrique équivalent, faisant intervenir sa résistance notée \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image124.wmf} son inductance notée \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image125.wmf}, et sa force électromotrice notée \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image126.wmf}.
+
+\textbf{Q29} : Sachant que l\textquotesingle on note \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image127.wmf} le courant absorbé par le moteur et \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image128.wmf} sa tension d\textquotesingle alimentation, représenter le schéma équivalent de l\textquotesingle induit du moteur en utilisant une convention récepteur.
+
+\textbf{6.1. Essai rotor bloqué}
+
+On alimente le moteur avec une tension réduite et parfaitement continue, tout en maintenant le rotor bloqué.
+
+\textbf{Q30} : Montrer que cet essai permet de déterminer la valeur de \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image124.wmf}, dont on donnera l\textquotesingle expression.
+
+Lors d\textquotesingle un essai rotor bloqué, on mesure \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image129.wmf} et \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image130.wmf}.
+
+\textbf{Q31} : Déduire de cet essai la valeur numérique de \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image124.wmf}.
+
+\textbf{6.2. Essai en charge}
+
+La vitesse angulaire de l\textquotesingle arbre moteur est notée \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image131.wmf}.
+
+\textbf{Q32} : En considérant le courant \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image127.wmf} parfaitement continu, exprimer \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image132.wmf}, la constante de fem du moteur, en fonction de \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image133.wmf}, \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image124.wmf}, \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image127.wmf} et \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image134.wmf}.
+
+Lors d\textquotesingle un essai en charge, on mesure : \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image135.wmf} ; \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image130.wmf} (parfaitement continu) et \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image136.wmf}
+
+\textbf{Q33} : Déduire de cet essai la valeur numérique de \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image132.wmf}.
+
+\textbf{6.3. Détermination de l\textquotesingle inductance d\textquotesingle induit} \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image125.wmf}
+
+Le moteur est déconnecté du système pour être alimenté par le montage suivant (figure 6.b)
+
+\includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image137.wmf}
+
+Figure 6.b~: Essai du moteur avec un convertisseur électronique
+
+La tension \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image138.wmf} est constante et sa valeur est positive. Le courant \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image139.wmf} est toujours strictement positif.
+
+\includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image140.wmf} et \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image141.wmf} sont des interrupteurs électroniques considérés parfaits. Le convertisseur est commandé de façon périodique, de période \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image142.wmf}\textsc{,} et présente deux phases différentes de fonctionnement :
+
+- Pendant la première phase, de durée \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image143.wmf} (avec \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image144.wmf}), \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image140.wmf} est passant et \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image141.wmf} bloqué.
+
+- Pendant la seconde phase, soit le reste du temps, \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image140.wmf} est bloqué et \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image141.wmf} passant.
+
+\textbf{Q34} : Quel nom porte ce convertisseur électronique ? Comment appelle-t-on la grandeur notée \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image145.wmf} ?
+
+Le convertisseur est constitué d\textquotesingle une diode et d\textquotesingle un transistor.
+
+\textbf{Q35} : Dessiner le schéma du montage en faisant apparaître l\textquotesingle emplacement de ces composants.
+
+\textbf{Q36} : Parmi les sigles suivants, déterminer lesquels correspondent à des technologies de transistor : GTI, MOS, IGBT, AOC et MMX. Quelles sont les fréquences maximales de fonctionnement de chacun de ces composants ? (donner uniquement un ordre de grandeur)
+
+L\textquotesingle étude est menée en régime permanent. La période \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image142.wmf} ayant une valeur très inférieure à \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image146.wmf}, la résistance \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image124.wmf} sera négligée pour les 6 questions suivantes.
+
+\textbf{Q37} : Exprimer \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image147.wmf}, la valeur moyenne de la tension \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image148.wmf} en fonction de \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image145.wmf} et \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image138.wmf}. Détailler le calcul.
+
+\textbf{Q38} : Exprimer la fem du moteur\includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image149.wmf}, en fonction de \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image145.wmf} et \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image138.wmf}. Préciser les hypothèses qui mènent à cette relation.
+
+\textbf{Q39} : Donner l\textquotesingle expression de \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image139.wmf} lorsque \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image140.wmf} est fermé. On notera \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image150.wmf} la valeur du courant au début de cette phase de fonctionnement.
+
+\textbf{Q40} : En déduire l\textquotesingle expression de \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image151.wmf}, en fonction de \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image138.wmf}, \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image142.wmf}\textsc{.} \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image145.wmf} et \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image152.wmf}, l\textquotesingle ondulation de courant (définie par : \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image153.wmf})
+
+La figure 6.c ci-dessous montre la tension appliquée au moteur et le courant qu\textquotesingle{} absorbe lors d\textquotesingle un essai réalisé avec le convertisseur électronique.
+
+\includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image154.wmf}
+
+Figure 6.c~: Tension et courant du moteur avce le convertisseur électronique
+
+\textbf{Q41} : Déduire les valeurs numériques de \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image138.wmf}\textsc{,} \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image142.wmf}\textsc{,} \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image145.wmf} et \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image152.wmf} correspondantes à cet essai.
+
+\textbf{Q42} : En déduire la valeur numérique de \includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image151.wmf}
+
+\includegraphics[width=1.35556in,height=0.38889in]{10-Électronique de Puissance/Cours/pandoc/media/image97.png}\includegraphics[width=0.89583in,height=0.59375in]{10-Électronique de Puissance/Cours/pandoc/media/image155.png}\textbf{SYSTÈME AUTOMATIQUE DE DISTRIBUTION D'ALIMENTS POUR CHÈVRES}
+
+\emph{(\ul{Source} : Concours CCP TSI 2007)}
+
+\textbf{Mise en situation}
+
+Ce système est destiné à l'élevage (intensif) de chèvres pour la production laitière. Il assure la distribution automatique des aliments plusieurs fois par jour afin de favoriser leur assimilation par les animaux. L'augmentation de la production laitière peut alors atteindre 20 \%.
+
+Ce système comporte un convoyeur mobile sur un rail IPN, convoyeur constitué de deux éléments principaux :
+
+\begin{quote}
+- un chariot alimenté par batteries (déplacement sur le rail IPN),
+
+- une trémie de stockage d'aliments permettant leur distribution (cette trémie compartimentée reçoit différents éléments : blé, maïs, \ldots{} compléments (minéraux où médicaments)).
+
+- sous chaque compartiment, une bande transporteuse dont la vitesse est asservie à la vitesse de déplacement du chariot, assure la distribution du produit.
+\end{quote}
+
+\includegraphics[width=4.30694in,height=2.92708in]{10-Électronique de Puissance/Cours/pandoc/media/image156.emf}\textbf{Description du fonctionnement}
+
+Des systèmes de chargement amènent les aliments depuis des silos de stockage vers les différents compartiments de la trémie ; dans le même temps, les batteries sont mises en charge.
+
+Au début de chaque cycle, le convoyeur se déplace jusqu'au point de début de distribution ; par la suite, les aliments sont déposés en continu à une vitesse de déplacement voisine de 30 m/min. Dans les virages, la vitesse passe à environ 15 m/min. A la fin du cycle, le convoyeur regagne le poste de chargement. L'étude porte sur le chariot du convoyeur.
+
+\textbf{Analyse fonctionnelle sommaire}
+
+FP1 Déplacer la trémie le long du rail
+
+FP2 Amener la trémie sous les systèmes d'alimentation
+
+FC3 Permettre la connexion électrique au chargeur
+
+FC4 Etre adapté au milieu environnant
+
+\textbf{Description du chariot du convoyeur}
+
+\includegraphics[width=3.95833in,height=1.82292in]{10-Électronique de Puissance/Cours/pandoc/media/image157.emf}Chaque tête, articulée autour d'un axe vertical, comporte huit galets de guidage du chariot sur le rail. Les batteries embarquées sur le chariot fournissent l'énergie électrique au groupe motoréducteur à roue et vis.
+
+Le groupe motoréducteur permet la propulsion du chariot par l'intermédiaire de la roue motrice encastrée à l'extrémité de l'arbre de sortie du réducteur. Ce sous-ensemble est monté sur un berceau articulé soumis à l'action d'un ressort de poussée assurant le roulement sans glissement de la roue motrice sur le rail.
+
+\includegraphics[width=4.55208in,height=2.78125in]{10-Électronique de Puissance/Cours/pandoc/media/image158.emf}
+
+Les deux têtes sont conçues de manière identique.
+
+Sur la tête libre, une roue de friction entraîne une lame d'impulsion métallique au moyen d'un système pignons-chaîne. La vitesse du convoyeur est mesurée à partir de la détection des passages de la lame d'impulsion par un capteur inductif.
+
+Le cahier des charges du système Capristar implique l'utilisation d'un entraînement à vitesse variable. Le schéma de puissance d'entraînement choisi de la machine à courant continu est le suivant :
+
+\includegraphics[width=4.82569in,height=1.63542in]{10-Électronique de Puissance/Cours/pandoc/media/image159.emf}
+
+L représente une inductance de lissage mise en série avec la M.C.C.
+
+Nous n'étudierons ni le redresseur, ni le module de freinage. La première partie du sujet sera consacrée à l'identification de certains paramètres de la machine à courant continu. Celle-ci sera suivie d'une étude théorique du hacheur quatre quadrants.
+
+Tout au long du sujet, la tension E, tension d'entrée du hacheur 4 quadrants, sera supposée continue et égale à 30 V. L'acronyme M.C.C. sera utilisé tout au long du sujet pour désigner la machine à courant continu.
+
+Le réducteur associé à la MCC a un rapport de réduction de 1/21. Le diamètre extérieur de la roue motrice est noté D\textsubscript{3} = 100 mm.
+
+\includegraphics[width=3.07292in,height=1.52083in]{10-Électronique de Puissance/Cours/pandoc/media/image160.emf}\textbf{Identification des paramètres de la MCC}
+
+La M.C.C. est à aimants permanents. Elle est modélisée dans cet exercice par une force électromotrice e\textsubscript{M}(t) en série avec une résistance R\textsubscript{M} et une inductance L\textsubscript{M}.
+
+\begin{quote}
+FFigure 1 : Modèle équivalent de la M.C.C.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{15}
+\item
+  \textbf{~}Si on suppose que le courant dans le moteur est continu et égal à I, \textbf{donner} la relation liant ce courant et le couple électromagnétique C\textsubscript{EM}. En utilisant la courbe donnée en annexe, \textbf{déterminer} la valeur du coefficient de couple K de la machine à courant continu PM024 0922 utilisée dans cet entraînement.
+\item
+  Si on suppose que la tension aux bornes du moteur et la vitesse de rotation sont constantes et respectivement égales à U et à Ω, \textbf{donner} la relation entre la tension U et la vitesse de rotation Ω lorsque le courant dans le moteur est nul. \textbf{Déduire} de la courbe de l'annexe la tension d'alimentation du moteur qui a été utilisée pour faire les mesures.
+\item
+  ~\textbf{Conclure} sur la relation entre la vitesse de déplacement du convoyeur V\textsubscript{c} et la tension d'alimentation de la MCC \textless u\textsubscript{s}\textgreater{} si on considère la résistance R\textsubscript{m} négligeable.
+\end{enumerate}
+
+\textbf{Étude du hacheur 4 quadrants}
+
+\textbf{\ul{Critère :}} Nous rappelons le cahier des charges :
+
+- vitesse de 30 m/mn, en ligne droite et horizontale,
+
+- ramenée progressivement à 50\% de la vitesse nominale dans les virages,
+
+- 2 sens (avant et arrière).
+
+\textbf{\ul{Hypothèses~:}}
+
+\begin{itemize}
+\item
+  Tous les interrupteurs sont considérés \textbf{idéaux}~;
+\item
+  La conduction est \textbf{continue}~.
+\end{itemize}
+
+Chaque interrupteur est réalisé par un transistor I.G.B.T. en parallèle avec une diode. La structure du hacheur quatre quadrants est donc la suivante :
+
+\includegraphics[width=4.35417in,height=1.79167in]{10-Électronique de Puissance/Cours/pandoc/media/image161.emf}
+
+Figure 2 : Schéma de principe de l'ensemble hacheur à I.G.B.T.-M.C.C.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{18}
+\item
+  Quels peuvent être le signe du courant de sortie moyen \textless i(t)\textgreater{} et celui de la tension moyenne \textless u\textsubscript{s}(t)\textgreater{} de sortie d'un hacheur quatre quadrants ? \textbf{Justifier} le choix du hacheur quatre quadrants pour le cahier des charges.
+\item
+  Pourquoi a-t-on placé un module de freinage en amont du hacheur (voir la présentation du sujet) ? Pour répondre à cette question, raisonner en terme de transfert d'énergie entre la source (le réseau électrique) et la charge (la M.C.C.).
+\end{enumerate}
+
+Le hacheur quatre quadrants est commandé de la manière suivante : les transistors T1-T4 d'une part et T2-T3 d'autre part sont commandés simultanément à la fermeture et à l'ouverture. Le signal de commande est périodique de période T et de fréquence f = 1/T = 20 kHz. Pour t compris entre 0 et αT, T1-T4 sont fermés et T2-T3 sont ouverts. Sur le reste de la période (t compris entre αT et T), T2-T3 sont fermés et T1-T4 sont ouverts.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{20}
+\item
+  Représenter l'évolution de la tension de sortie u\textsubscript{s}(t) sur 3 périodes avec α~= 0,75 sur le document réponse n°1.
+\item
+  Le courant est supposé \ul{continu} dans la charge (i(t)=I). Indiquer sur le chronogramme de la question précédente (document réponse n°1) les composants qui conduisent à chaque instant de la période. Traiter le cas où le courant I dans la charge est positif et le cas où le courant est négatif.
+\item
+  Tracer, à partir de la question précédente et toujours sur le document réponse n°1, l'évolution du courant d'entrée i\textsubscript{e}(t) du hacheur lorsque le courant dans la machine est négatif et que le rapport cyclique α vaut 0,75. Le courant i(t)=I est toujours supposé continu. Quel est le signe de la valeur moyenne du courant i\textsubscript{e}(t) ? \textbf{En déduire} si, dans ce cas, la machine a un fonctionnement moteur ou générateur.
+\item
+  Que vaut la tension moyenne de sortie \textless u\textsubscript{s}(t)\textgreater{} lorsque α=0, α =0,5 et α =1 ? Déterminer la loi \textless u\textsubscript{s}(t)\textgreater=f(α) qui est une fonction linéaire.
+\item
+  ~\textbf{Conclure} sur la plage de variation du rapport cyclique \textbf{α} pour obtenir les deux vitesses de déplacement du convoyeur énoncées dans le cahier des charges et pour les deux sens.
+\end{enumerate}
+
+\textbf{DOCUMENT ANNEXE}
+
+\textbf{Caractéristiques du moteur PM024 0922}
+
+Ces caractéristiques sont tracées avec une tension d'alimentation constante aux bornes du moteur.
+
+\includegraphics[width=3.375in,height=5.78614in]{10-Électronique de Puissance/Cours/pandoc/media/image162.emf}\includegraphics[width=3.375in,height=2.61793in]{10-Électronique de Puissance/Cours/pandoc/media/image162.emf}
+
+\textbf{DOCUMENT RÉPONSE N°1}
+
+\includegraphics[width=6.29167in,height=5.26042in]{10-Électronique de Puissance/Cours/pandoc/media/image163.emf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Donner les définitions mathématiques de la valeur moyenne V\textsubscript{moy} et de la valeur efficace V\textsubscript{eff} d'une tension v(t), de période T. \textbf{\emph{(3 points)}}
+\item
+  Donner les rapports cycliques puis les valeurs moyennes et efficaces des signaux suivants. \textbf{\emph{(4 points)}}
+\item
+  ~Donner la caractéristique d'une diode idéale et indiquer les états passant et bloqué. \textbf{\emph{(3 points)}}
+\end{enumerate}
+
+On étudie le montage ci-contre. \textbf{La conduction est dans tous les cas continue, l'ondulation de courant est non négligeable. K est commandé durant l'intervalle {[}0~; αT{]}.}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  ~Tracer les allures de u\textsubscript{D}, u\textsubscript{K}, i\textsubscript{L}, i\textsubscript{D}, i\textsubscript{K}. \textbf{\emph{(6 points)}}
+\item
+  ~En déduire la valeur de V\textsubscript{s} en fonction de E et α. Justifier vos relations. \textbf{\emph{(4 points)}}
+\end{enumerate}
+
+\includegraphics[width=1.35556in,height=0.38889in]{10-Électronique de Puissance/Cours/pandoc/media/image97.png}\includegraphics[width=0.89583in,height=0.59375in]{10-Électronique de Puissance/Cours/pandoc/media/image155.png} \textbf{SYSTÈME}
+
+\textbf{AUTOMATIQUE DE DISTRIBUTION D'ALIMENTS POUR CHÈVRES}
+
+\emph{(\ul{Source} : Concours CCP TSI 2007)}
+
+\textbf{Mise en situation}
+
+Ce système est destiné à l'élevage (intensif) de chèvres pour la production laitière. Il assure la distribution automatique des aliments plusieurs fois par jour afin de favoriser leur assimilation par les animaux. L'augmentation de la production laitière peut alors atteindre 20 \%.
+
+Ce système comporte un convoyeur mobile sur un rail IPN, convoyeur constitué de deux éléments principaux :
+
+\begin{quote}
+- un chariot alimenté par batteries (déplacement sur le rail IPN),
+
+- une trémie de stockage d'aliments permettant leur distribution (cette trémie compartimentée reçoit différents éléments : blé, maïs, \ldots{} compléments (minéraux où médicaments)).
+
+- sous chaque compartiment, une bande transporteuse dont la vitesse est asservie à la vitesse de déplacement du chariot, assure la distribution du produit.
+\end{quote}
+
+\includegraphics[width=4.30694in,height=2.92708in]{10-Électronique de Puissance/Cours/pandoc/media/image156.emf}\textbf{Description du fonctionnement}
+
+Des systèmes de chargement amènent les aliments depuis des silos de stockage vers les différents compartiments de la trémie ; dans le même temps, les batteries sont mises en charge.
+
+Au début de chaque cycle, le convoyeur se déplace jusqu'au point de début de distribution ; par la suite, les aliments sont déposés en continu à une vitesse de déplacement voisine de 30 m/min. Dans les virages, la vitesse passe à environ 15 m/min. A la fin du cycle, le convoyeur regagne le poste de chargement. L'étude porte sur le chariot du convoyeur.
+
+\includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image168.emf}
+
+\textbf{Analyse fonctionnelle sommaire}
+
+FP1 Déplacer la trémie le long du rail
+
+FP2 Amener la trémie sous les systèmes d'alimentation
+
+FC3 Permettre la connexion électrique au chargeur
+
+FC4 Etre adapté au milieu environnant
+
+\textbf{Description du chariot du convoyeur}
+
+\includegraphics[width=3.95833in,height=1.82292in]{10-Électronique de Puissance/Cours/pandoc/media/image157.emf}Chaque tête, articulée autour d'un axe vertical, comporte huit galets de guidage du chariot sur le rail. Les batteries embarquées sur le chariot fournissent l'énergie électrique au groupe motoréducteur à roue et vis.
+
+Le groupe motoréducteur permet la propulsion du chariot par l'intermédiaire de la roue motrice encastrée à l'extrémité de l'arbre de sortie du réducteur. Ce sous-ensemble est monté sur un berceau articulé soumis à l'action d'un ressort de poussée assurant le roulement sans glissement de la roue motrice sur le rail.
+
+\includegraphics[width=4.55208in,height=2.78125in]{10-Électronique de Puissance/Cours/pandoc/media/image158.emf}
+
+Les deux têtes sont conçues de manière identique.
+
+Sur la tête libre, une roue de friction entraîne une lame d'impulsion métallique au moyen d'un système pignons-chaîne. La vitesse du convoyeur est mesurée à partir de la détection des passages de la lame d'impulsion par un capteur inductif.
+
+Le cahier des charges du système Capristar implique l'utilisation d'un entraînement à vitesse variable. Le schéma de puissance d'entraînement choisi de la machine à courant continu est le suivant :
+
+\includegraphics[width=4.82569in,height=1.63542in]{10-Électronique de Puissance/Cours/pandoc/media/image159.emf}
+
+L représente une inductance de lissage mise en série avec la M.C.C.
+
+Nous n'étudierons ni le redresseur, ni le module de freinage. La première partie du sujet sera consacrée à l'identification de certains paramètres de la machine à courant continu. Celle-ci sera suivie d'une étude théorique du hacheur quatre quadrants.
+
+Tout au long du sujet, la tension E, tension d'entrée du hacheur 4 quadrants, sera supposée continue et égale à 30 V. L'acronyme M.C.C. sera utilisé tout au long du sujet pour désigner la machine à courant continu.
+
+Le réducteur associé à la MCC a un rapport de réduction de 1/21. Le diamètre extérieur de la roue motrice est noté D\textsubscript{3} = 100 mm.
+
+\textbf{Dimensionnement du convertisseur AC-DC}
+
+Le convertisseur AC/DC utilisé est un redresseur de type Pont de Graëtz.
+
+\includegraphics[width=7.45694in,height=1.79028in]{10-Électronique de Puissance/Cours/pandoc/media/image169.jpeg}L'inductance L\textsubscript{f} confère un caractère de source de courant dynamique en sortie du redresseur, de courant constant \textbf{I\textsubscript{ch} = 60 A}. Le filtre de sortie L\textsubscript{f}-C\textsubscript{f} permet d'obtenir la valeur moyenne de la tension v\textsubscript{ch}(t) en sortie du filtre, soit E = \textless v\textsubscript{ch}\textgreater.
+
+\includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image170.wmf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Tracer} les chronogrammes des signaux v\textsubscript{ch}(t), i\textsubscript{d1}(t), i\textsubscript{d3}(t), i\textsubscript{e}(t) et \textbf{indiquer} pour chaque phase de fonctionnement les semi-conducteurs en conduction.
+\item
+  \textbf{Etablir} l'expression de la valeur moyenne de v\textsubscript{ch}(t) en fonction de la valeur efficace de la tension d'entrée V puis sa valeur numérique.
+\item
+  \textbf{En déduire} la valeur de V permettant d'obtenir E=30V.
+\item
+  \textbf{Indiquer} les différentes contraintes sur les diodes composants le redresseur (courant moyen, courant efficace et tension inverse maximale).
+\item
+  \textbf{Calculer} la puissance active au niveau de la charge puis celle au niveau de l'entrée.
+\item
+  \textbf{Calculer} la puissance active au niveau de la charge puis celle au niveau de l'entrée.
+\item
+  \textbf{En déduire} le facteur de puissance vu du réseau.
+\item
+  \textbf{Déterminer} la puissance apparente du transformateur.
+\item
+  \textbf{Déterminer} la valeur du rapport de transformation m pour obtenir E=30V.
+\end{enumerate}
+
+\includegraphics[width=4.26744in,height=2.56977in]{10-Électronique de Puissance/Cours/pandoc/media/image171.jpeg}\includegraphics[width=4.30233in,height=2.5814in]{10-Électronique de Puissance/Cours/pandoc/media/image172.jpeg}\includegraphics[width=4.25581in,height=2.55814in]{10-Électronique de Puissance/Cours/pandoc/media/image173.jpeg}\includegraphics[width=4.26744in,height=2.56977in]{10-Électronique de Puissance/Cours/pandoc/media/image174.jpeg}
+
+\includegraphics[width=1.35556in,height=0.38889in]{10-Électronique de Puissance/Cours/pandoc/media/image97.png}
+
+\includegraphics[width=0.72917in,height=0.55208in]{10-Électronique de Puissance/Cours/pandoc/media/image175.jpeg}\textbf{ALIMENTATION SANS INTERRUPTION}
+
+\textbf{Mise en situation}
+
+Une \textbf{Alimentation Sans Interruption} (ou \emph{ASI}, ou en anglais \textbf{\emph{UPS}}, \emph{Uninterruptible Power Supply}) est un dispositif de l\textquotesingle électronique de puissance qui permet de fournir à un système électrique ou électronique une alimentation électrique stable et dépourvue de coupure ou de microcoupure, quoi qu\textquotesingle il se produise sur le réseau électrique.
+
+Une ASI est constituée de trois éléments principaux :
+
+\begin{itemize}
+\item
+  un ensemble «~redresseur + convertisseur DC-DC~», alimenté par le réseau EDF, qui transforme la tension alternative en tension continue ;
+\item
+  une batterie est maintenue chargée, qui, lors d'une coupure, fournit l'énergie nécessaire à l'alimentation de la charge par l'onduleur ;
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  un onduleur (convertisseur DC/AC) qui transforme la tension continue en tension alternative pour alimenter les appareils connectés.
+\end{itemize}
+
+\includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image176.wmf}Le filtre de sortie du redresseur L\textsubscript{s}-C\textsubscript{s} permet d'obtenir la valeur moyenne de la tension v\textsubscript{ch}(t) en sortie du filtre. L'ensemble est alimenté par le réseau EDF~:
+
+\emph{\ul{Objectif de l'étude :}} \textbf{Dimensionner} l'ensemble «~redresseur+filtre~» de l'ASI~:
+
+\begin{itemize}
+\item
+  \textbf{Déterminer} les contraintes sur les diodes et la puissance apparente nécessaire pour un transformateur d'isolement ;
+\item
+  \textbf{Calculer} l'inductance de filtrage permettant de limiter l'ondulation de courant à 5\% du courant nominal.
+\end{itemize}
+
+On considère dans un premier temps l'ondulation de courant négligeable. Le courant i\textsubscript{ch} est donc constant~: i\textsubscript{ch}= I\textsubscript{ch} = 10 A. Ce courant correspond au courant nominal délivré par le redresseur.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Tracer} les chronogrammes des signaux v\textsubscript{ch}, i\textsubscript{d1}, i\textsubscript{d3}, i\textsubscript{e} et \textbf{indiquer} pour chaque phase de fonctionnement les semi-conducteurs en conduction.
+\item
+  \textbf{Etablir} l'expression de la valeur moyenne de v\textsubscript{ch} en fonction de la valeur efficace de la tension d'entrée V puis sa valeur numérique.
+\item
+  \textbf{Indiquer} les différentes contraintes sur les diodes composants le redresseur (courant moyen, courant efficace et tension inverse maximale).
+\item
+  \textbf{Calculer} la puissance active au niveau de la charge puis celle au niveau de l'entrée.
+\item
+  \textbf{En déduire} le facteur de puissance vu du réseau et la puissance apparente pour un transformateur d'isolement.
+\end{enumerate}
+
+La tension v\textsubscript{ch} n'étant pas constante, le courant i\textsubscript{ch} n'est pas constant et présente une ondulation de courant. On souhaite dimensionner l'inductance L\textsubscript{s} afin de limiter cette ondulation de courant à 5\% du courant nominal (I\textsubscript{ch} = 10 A).
+
+On supposera que la tension aux bornes du condensateur est constante et que le courant i\textsubscript{ch} est périodique. On propose alors d'utiliser le développement en série de Fourier de la tension v\textsubscript{ch} pour déterminer la valeur de l'inductance L\textsubscript{s}. Le développement en série de Fourier de la tension v\textsubscript{ch} est :
+
+\includegraphics{10-Électronique de Puissance/Cours/pandoc/media/image177.wmf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  \textbf{Calculer} la valeur numérique de l'inductance L\textsubscript{s} permettant de limiter l'ondulation de courant à 5\% du courant nominal (I\textsubscript{ch} =10 A) en se limitant au premier harmonique.
+\end{enumerate}
+
+\textbf{DOCUMENT RÉPONSE}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Donner} les définitions mathématiques des puissances active, réactive et apparente ainsi que la définition du facteur de puissance. \textbf{\emph{(4 points)}}
+\end{enumerate}
+
+Soit le convertisseur suivant~:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  \textbf{~Tracer} l'allure de la tension de sortie v\textsubscript{ch} et \textbf{indiquer} pour chaque phase de fonctionnement les semi-conducteurs en conduction. \textbf{\emph{(3 points)}}
+\item
+  ~\textbf{Etablir} l'expression de la valeur moyenne de v\textsubscript{ch} en fonction de la valeur efficace de la tension d'entrée V. \textbf{\emph{(3 points)}}
+\item
+  ~\textbf{En déduire} la valeur du rapport de transformation m du transformateur permettant d'avoir \textless v\textsubscript{ch}\textgreater{} = 32V. \textbf{\emph{(2 points)}}
+\item
+  \textbf{~Déterminer} le facteur de puissance vu du réseau et la puissance apparente nécessaire pour le transformateur si I\textsubscript{ch} = 5 A. \textbf{Indiquer} vos hypothèses. \textbf{\emph{(3 points)}}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{inventaire-des-images}{%
+\subsection{Inventaire des images}\label{inventaire-des-images}}
+
+10-Électronique de Puissance/Cours/pandoc/media/image1.png 10-Électronique de Puissance/Cours/pandoc/media/image10.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image100.png 10-Électronique de Puissance/Cours/pandoc/media/image101.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image102.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image103.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image104.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image105.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image106.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image107.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image108.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image109.png 10-Électronique de Puissance/Cours/pandoc/media/image11.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image110.png 10-Électronique de Puissance/Cours/pandoc/media/image111.png 10-Électronique de Puissance/Cours/pandoc/media/image112.png 10-Électronique de Puissance/Cours/pandoc/media/image113.png 10-Électronique de Puissance/Cours/pandoc/media/image114.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image115.png 10-Électronique de Puissance/Cours/pandoc/media/image116.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image117.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image118.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image119.png 10-Électronique de Puissance/Cours/pandoc/media/image12.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image120.png 10-Électronique de Puissance/Cours/pandoc/media/image121.png 10-Électronique de Puissance/Cours/pandoc/media/image122.png 10-Électronique de Puissance/Cours/pandoc/media/image123.png 10-Électronique de Puissance/Cours/pandoc/media/image124.wmf 10-Électronique de Puissance/Cours/pandoc/media/image125.wmf 10-Électronique de Puissance/Cours/pandoc/media/image126.wmf 10-Électronique de Puissance/Cours/pandoc/media/image127.wmf 10-Électronique de Puissance/Cours/pandoc/media/image128.wmf 10-Électronique de Puissance/Cours/pandoc/media/image129.wmf 10-Électronique de Puissance/Cours/pandoc/media/image13.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image130.wmf 10-Électronique de Puissance/Cours/pandoc/media/image131.wmf 10-Électronique de Puissance/Cours/pandoc/media/image132.wmf 10-Électronique de Puissance/Cours/pandoc/media/image133.wmf 10-Électronique de Puissance/Cours/pandoc/media/image134.wmf 10-Électronique de Puissance/Cours/pandoc/media/image135.wmf 10-Électronique de Puissance/Cours/pandoc/media/image136.wmf 10-Électronique de Puissance/Cours/pandoc/media/image137.wmf 10-Électronique de Puissance/Cours/pandoc/media/image138.wmf 10-Électronique de Puissance/Cours/pandoc/media/image139.wmf 10-Électronique de Puissance/Cours/pandoc/media/image14.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image140.wmf 10-Électronique de Puissance/Cours/pandoc/media/image141.wmf 10-Électronique de Puissance/Cours/pandoc/media/image142.wmf 10-Électronique de Puissance/Cours/pandoc/media/image143.wmf 10-Électronique de Puissance/Cours/pandoc/media/image144.wmf 10-Électronique de Puissance/Cours/pandoc/media/image145.wmf 10-Électronique de Puissance/Cours/pandoc/media/image146.wmf 10-Électronique de Puissance/Cours/pandoc/media/image147.wmf 10-Électronique de Puissance/Cours/pandoc/media/image148.wmf 10-Électronique de Puissance/Cours/pandoc/media/image149.wmf 10-Électronique de Puissance/Cours/pandoc/media/image15.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image150.wmf 10-Électronique de Puissance/Cours/pandoc/media/image151.wmf 10-Électronique de Puissance/Cours/pandoc/media/image152.wmf 10-Électronique de Puissance/Cours/pandoc/media/image153.wmf 10-Électronique de Puissance/Cours/pandoc/media/image154.wmf 10-Électronique de Puissance/Cours/pandoc/media/image155.png 10-Électronique de Puissance/Cours/pandoc/media/image156.emf 10-Électronique de Puissance/Cours/pandoc/media/image157.emf 10-Électronique de Puissance/Cours/pandoc/media/image158.emf 10-Électronique de Puissance/Cours/pandoc/media/image159.emf 10-Électronique de Puissance/Cours/pandoc/media/image16.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image160.emf 10-Électronique de Puissance/Cours/pandoc/media/image161.emf 10-Électronique de Puissance/Cours/pandoc/media/image162.emf 10-Électronique de Puissance/Cours/pandoc/media/image163.emf 10-Électronique de Puissance/Cours/pandoc/media/image168.emf 10-Électronique de Puissance/Cours/pandoc/media/image169.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image17.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image170.wmf 10-Électronique de Puissance/Cours/pandoc/media/image171.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image172.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image173.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image174.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image175.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image176.wmf 10-Électronique de Puissance/Cours/pandoc/media/image177.wmf 10-Électronique de Puissance/Cours/pandoc/media/image18.png 10-Électronique de Puissance/Cours/pandoc/media/image19.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image20.png 10-Électronique de Puissance/Cours/pandoc/media/image21.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image22.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image23.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image24.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image25.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image26.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image27.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image28.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image29.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image3.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image30.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image31.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image32.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image33.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image34.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image35.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image36.png 10-Électronique de Puissance/Cours/pandoc/media/image37.png 10-Électronique de Puissance/Cours/pandoc/media/image39.png 10-Électronique de Puissance/Cours/pandoc/media/image40.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image41.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image42.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image43.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image44.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image45.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image46.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image47.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image48.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image49.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image5.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image50.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image51.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image52.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image53.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image54.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image55.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image56.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image57.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image58.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image59.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image6.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image60.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image61.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image62.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image63.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image64.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image65.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image66.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image67.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image68.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image69.wmf 10-Électronique de Puissance/Cours/pandoc/media/image7.png 10-Électronique de Puissance/Cours/pandoc/media/image70.wmf 10-Électronique de Puissance/Cours/pandoc/media/image71.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image72.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image73.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image74.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image75.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image76.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image77.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image78.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image79.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image8.png 10-Électronique de Puissance/Cours/pandoc/media/image80.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image81.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image82.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image83.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image84.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image85.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image86.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image87.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image88.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image89.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image9.png 10-Électronique de Puissance/Cours/pandoc/media/image90.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image91.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image92.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image93.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image94.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image95.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image96.png 10-Électronique de Puissance/Cours/pandoc/media/image97.png 10-Électronique de Puissance/Cours/pandoc/media/image98.jpeg 10-Électronique de Puissance/Cours/pandoc/media/image99.jpeg

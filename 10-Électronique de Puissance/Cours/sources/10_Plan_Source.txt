@@ -1,0 +1,72 @@
+PLAN DU COURS 10
+
+# **Table des matières** {#table-des-matières .TOC-Heading .unnumbered}
+## Généralités sur l'électronique de puissance
+### Introduction
+### Composants de base d'un CVS -- Bras de pont
+### Nature des sources
+### Règles d'association des sources
+### Modification des sources
+### Forme du courant pour différents modèles de charge
+### Commutations possibles
+### ![](10-Électronique de Puissance/Cours/pandoc/media/image15.jpeg){width="3.5125in" height="1.6430555555555555in"}Rapport cyclique et découpage
+### Valeur moyenne
+### Valeur efficace
+## Composants en électronique de puissance
+### Introduction
+### Caractéristique statique (états bloqué /passant)
+### Caractéristique dynamique (commutation spontanée/commandée)
+### Association de composants
+### Pertes des composants de puissance
+### ![](10-Électronique de Puissance/Cours/pandoc/media/image33.jpeg){width="1.1in" height="1.1236111111111111in"}Dimensionnement des composants de puissance
+## Méthode d'étude des convertisseurs DC-DC
+## Hacheur série (ou Buck, ou abaisseur, ou dévolteur)
+### Schéma de principe
+### Quadrants du hacheur Buck
+## ![](10-Électronique de Puissance/Cours/pandoc/media/image44.jpeg){width="3.1131944444444444in" height="2.7368055555555557in"}Hacheur parallèle (ou Boost, ou survolteur, élévateur)
+### Schéma de principe
+### Quadrants du hacheur Boost
+## Hacheur 2 quadrants (2Q)
+### ![](10-Électronique de Puissance/Cours/pandoc/media/image51.jpeg){width="2.645138888888889in" height="1.9166666666666667in"}Constitution du hacheur 2 quadrants
+### Commande complémentaire
+### Formes d'onde
+### Calcul de la tension de sortie et de l'ondulation de courant
+## Hacheur 4 quadrants
+### ![](10-Électronique de Puissance/Cours/pandoc/media/image60.jpeg){width="3.361111111111111in" height="1.3305555555555555in"}Constitution du hacheur 4 quadrants
+### Formes d'onde
+### Calcul de la tension de sortie et de l'ondulation de courant
+## Hacheur à conversion indirecte
+## Généralités sur les convertisseurs AC-DC
+### Convertisseurs AC-DC
+## Redressement monophasé non commandé
+### Diode de puissance
+### Montage PD2
+### Puissance instantanée et active
+### ![](10-Électronique de Puissance/Cours/pandoc/media/image87.jpeg){width="1.86875in" height="1.5458333333333334in"}Puissance réactive et puissance apparente
+### Facteur de puissance
+### Décomposition en série de Fourier
+### Puissance déformante
+### Transformateur monophasé parfait
+## Redresseur à absorption sinusoïdale
+### Introduction
+### Structure à deux étages
+### Structure mono étage
+## Sources
+## Exercices du chapitre
+## Inventaire des images
+
+MOTS-CLES
+Diode
+Hacheur
+Redresseur
+Transistor
+contrainte
+diode
+dynamique
+glissement
+hacheur
+onduleur
+redresseur
+statique
+thyristor
+transistor

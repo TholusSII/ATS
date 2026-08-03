@@ -1,0 +1,64 @@
+PLAN DU COURS 14
+
+# **Table des matières** {#table-des-matières .TOC-Heading .unnumbered}
+## Généralités sur les systèmes logiques combinatoires
+### Symboles et notations
+### Démarche de synthèse d'un système combinatoire
+### Table de vérité
+### Equation logique à partir de la table de vérité
+### Règles de l'algèbre de Boole
+### Modélisation et représentation des opérateurs logiques
+### Optimisation de l'équation logique
+### Synthèse de l'équation logique
+### Fonctions combinatoires particulières
+### Technologie des circuits intégrés
+## Systèmes à évènements Discrets (SED)
+### Exemple introductif
+### Systèmes séquentiels
+### Diagramme d'état (stm)
+### D**émarche** de modélisation du comportement séquentiel d'un système par un graphe d'états 
+### État et ses activités associées
+### Franchissement des transitions
+### Evènement
+### Garde
+### Equation logique
+### Effet
+###  {#section .unnumbered}
+### Pseudos-états
+### État composite
+### Historique d'un état composite
+### État composite orthogonal 
+## Diagramme de séquence (sd) 
+### Diagramme de séquence
+## CODEUR INCREMENTAL ET ABSOLU
+### Familles de capteurs
+### Vocabulaire de métrologie
+### Les codeurs
+## RESEAUX ET BUS DE TERRAIN
+### Introduction sur les données
+###  Qualité de service : QoS
+### Architecture des réseaux de communication
+### Couches du modèle OSI
+### Les supports de transmission
+### ![principemultiplexage](14-Logique/Cours/pandoc/media/image137.jpeg){width="4.625in" height="2.1493055555555554in"}Multiplexage
+###  Les erreurs de transmission
+###  Topologie des réseaux
+### Types de liaisons des réseaux de communication
+### Architecture de la chaîne de transmission
+### Caractéristiques de la transmission
+### Protocoles des réseaux de communication
+## Sources
+## Exercices du chapitre
+## Inventaire des images
+
+MOTS-CLES
+Logique
+asynchrone
+contrainte
+dynamique
+déformation
+logique
+synchrone
+séquentiel
+torsion
+transistor

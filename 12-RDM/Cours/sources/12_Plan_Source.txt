@@ -1,0 +1,49 @@
+PLAN DU COURS 12
+
+# Table des matières {#table-des-matières .TOC-Heading .unnumbered}
+## Besoin rempli par la résistance des matériaux
+## Hypothèses de la résistance des matériaux
+### Théorie des poutres droites
+### Matériaux de construction
+### ![](12-RDM/Cours/pandoc/media/image9.emf){width="3.348611111111111in" height="1.96875in"}Efforts invariants
+### Hypothèse de Barré de Saint-Venant
+### ![](12-RDM/Cours/pandoc/media/image11.emf){width="3.2263888888888888in" height="1.792361111111111in"}Hypothèse de Navier-Bernoulli
+### Principe de superposition (de linéarité)
+## Modélisation des actions mécaniques extérieures
+### Actions mécaniques extérieures
+### Les liaisons
+## ![](12-RDM/Cours/pandoc/media/image21.wmf)Actions mécaniques intérieures (torseur de cohésion)
+### Coupure dans une poutre
+### Détermination du torseur de cohésion
+### Nature des sollicitations
+## Traction
+### Définition
+### Contrainte normale
+### Condition de résistance
+## Flexion
+### Condition de résistance
+### Déformations
+## Sources
+## Exercices du chapitre
+## Inventaire des images
+
+MOTS-CLES
+CONTRAINTE
+Contrainte
+Déformation
+Flexion
+PFS
+TRACTION
+Torseur
+Torsion
+Traction
+contrainte
+dynamique
+déformation
+flexion
+glissement
+logique
+statique
+torseur
+torsion
+traction

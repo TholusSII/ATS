@@ -1,0 +1,58 @@
+PLAN DU COURS 13
+
+# **Table des matières** {#table-des-matières .TOC-Heading .unnumbered}
+## ![](13-MAS-MS/Cours/pandoc/media/image5.png){width="2.848611111111111in" height="1.913888888888889in"}Distribution en triphasé -- Utilisation des complexes
+### Tensions simple et composée
+###  {#section .unnumbered}
+### Représentation vectorielle d'un signal sinusoïdal
+### Puissance réactive
+## Onduleur triphasé
+## GENERALITES SUR LES MACHINES ALTERNATIVES
+### ![800px-Stator_and_rotor_by_Zureks](13-MAS-MS/Cours/pandoc/media/image28.jpeg){width="2.042361111111111in" height="1.4472222222222222in"}Constitution d'une machine triphasée
+### Création du champ tournant
+### Vitesse de synchronisme
+### Plaque signalétique et plaque à bornes
+### Couplages étoile (Y) / triangle ($\mathbf{\Delta}$) {#couplages-étoile-y-triangle-mathbfdelta .Etude-de-cas}
+### Puissances en triphasé équilibré
+### Couple Thermique Equivalent (C~th~)
+## Machine Asynchrone (MAS)
+### Glissement
+### Schéma monophasé équivalent
+### Bilan de puissance et rendement
+### ![](13-MAS-MS/Cours/pandoc/media/image55.png){width="2.563888888888889in" height="2.09375in"}Couple électromagnétique
+### Variation de vitesse d'une MAS
+### ![](13-MAS-MS/Cours/pandoc/media/image58.png){width="3.50625in" height="2.7069444444444444in"}Commande V/f = cte :
+## MACHINE SYNCHRONE
+### Domaines d'emploi
+### Modèle simplifié pour un enroulement ou phase
+### Diagramme de Behn-Eschenburg
+### Diagramme de Behn-Eschenburg simplifié
+### Relations de base
+### Couple électromagnétique
+### Angle géométrique θ
+### Bilan de puissances
+### Variation de vitesse de la MS
+### ![](13-MAS-MS/Cours/pandoc/media/image74.emf)Moteur Brushless ou MS autopilotée
+## Sources
+## Exercices du chapitre
+## Inventaire des images
+
+MOTS-CLES
+Asynchrone
+Glissement
+Onduleur
+SYNCHRONE
+Synchrone
+asynchrone
+contrainte
+diode
+dynamique
+glissement
+logique
+onduleur
+redresseur
+statique
+synchrone
+traction
+transistor
+triphasé

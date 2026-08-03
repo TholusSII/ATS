@@ -1,0 +1,87 @@
+PLAN DU COURS 11
+
+## Introduction
+## Démarche de résolution pour déterminer les Actions Mécaniques
+### Démarche de résolution
+### Représenter le système : graphe de structure et schéma d'architecture
+### Isoler une partie du système
+### Démarche de résolution : Stratégie d'isolement
+### Recenser les actions mécaniques
+## ![](11-Actions Mécaniques/Cours/pandoc/media/image22.png){width="1.5298611111111111in" height="2.970833333333333in"}Actions mécaniques
+### Définition
+### Torseurs d'AM particuliers : Torseur glisseur, Torseur couple
+### Théorème des actions réciproques
+### Cas de l'action mécanique de la pesanteur
+### Actions mécaniques particulières à connaître
+### Actions mécaniques transmissibles par les liaisons usuelles
+###  {#section .unnumbered}
+### Cas particulier d'un problème plan
+## Etude de l'équilibre d'un système 
+### Etude de l'équilibre : Principe de la Statique
+### Démarche de résolution d'un problème pour étudier l'équilibre
+### Conseils pour le choix du point de réduction
+### Inventaire (ou bilan) des actions mécaniques extérieurs (BAME) 
+### Ensemble isolé soumis uniquement à des torseurs glisseurs
+###  {#section-1 .unnumbered}
+### Synthèse de la démarche de résolution d'un problème d'équilibre
+## Définir une action mécanique : Point de vue local
+### Définir une action mécanique : du point de vue local au point de vue global
+### Torseur des actions mécaniques
+## Prise en compte du phénomène de frottement 
+### ![](11-Actions Mécaniques/Cours/pandoc/media/image208.jpeg){width="1.042361111111111in" height="1.4833333333333334in"}Frottement en translation
+### Prise en compte du phénomène de frottement dans une liaison pivot
+### Phénomène d'arc-boutement
+## ![](11-Actions Mécaniques/Cours/pandoc/media/image266.jpeg){width="2.6729166666666666in" height="1.7027777777777777in"}Moment d'une force et Bras de Levier
+## ![](11-Actions Mécaniques/Cours/pandoc/media/image271.jpeg){width="2.7555555555555555in" height="1.7847222222222223in"}Masse -- Centre d'inertie
+### Masse
+### Centre d'inertie
+## Opérateur d'inertie - Effets d'inertie
+### ![](11-Actions Mécaniques/Cours/pandoc/media/image276.jpeg){width="2.9in" height="1.3284722222222223in"}Moment d'inertie
+### Produit d'inertie
+### L'opérateur d'inertie : la matrice d'inertie d'un solide \[I~0~(S)\]
+### Symétries matérielles
+### ![](11-Actions Mécaniques/Cours/pandoc/media/image286.jpeg){width="3.2819444444444446in" height="1.820138888888889in"}Théorème de Huygens généralisé
+### Détermination de la matrice d'inertie à partir des résultats classiques
+### Equilibrage dynamique
+## Le théorème de l'énergie cinétique Galiléenne (ou énergie-puissance)
+### Introduction
+### Théorème de l'énergie cinétique Galiléenne (ou théorème énergie puissance)
+### Démarche de résolution
+### Torseur cinétique
+### Déterminer l'énergie cinétique d'un solide
+### Détermination du moment d'inertie équivalent et de la masse équivalente
+### Notion de puissance mécanique
+### Puissance extérieure
+### Puissance développée par les actions mutuelles entre deux solides (P~int~)
+### Travail, énergie potentielle et puissance
+## Principe Fondamental de la Dynamique
+### Enoncé du PFD
+### Torseur Dynamique
+### Cas simplifiés
+## Sources
+## Exercices du chapitre
+## EQUILIBRE
+## ![](11-Actions Mécaniques/Cours/pandoc/media/image333.png){width="1.3555555555555556in" height="0.3888888888888889in"}THEOREME DE L'ENERGIE CINETIQUE
+##  PFD
+## Inventaire des images
+
+MOTS-CLES
+Dynamique
+PFD
+PFS
+Statique
+TRACTION
+Torseur
+asynchrone
+contrainte
+dynamique
+déformation
+flexion
+glissement
+logique
+pfd
+statique
+synchrone
+torseur
+torsion
+traction
