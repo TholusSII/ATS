@@ -1,101 +1,16 @@
-name: Contrôle LaTeX natif du cours 05
+name: Arrêter le contrôle natif du cours 05
 
 on:
   push:
     paths:
       - .github/workflows/build-course5-apt.yml
-      - '05-Modélisation Systèmes Asservis/Cours/**'
-      - 'Style/TLSystemesAsservis.sty'
-      - 'Style/schemabloc.sty'
-      - 'Style/bodegraph.sty'
-      - 'Style/Notations_SLCI/**'
-      - 'Style/Notations_Maths/**'
-
-permissions:
-  contents: write
 
 concurrency:
   group: build-course5-apt-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build:
+  stop:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Publier le démarrage
-        shell: bash
-        run: |
-          course='05-Modélisation Systèmes Asservis/Cours'
-          printf 'RUNNING\n' > "$course/COMPILATION_COURS5_APT.txt"
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add "$course/COMPILATION_COURS5_APT.txt"
-          if ! git diff --cached --quiet; then
-            git commit -m 'Démarre le contrôle natif du cours 05 [skip ci]'
-            git push
-          fi
-
-      - name: Installer les paquets LaTeX
-        shell: bash
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends \
-            texlive-latex-base texlive-latex-recommended texlive-latex-extra \
-            texlive-fonts-recommended texlive-fonts-extra texlive-lang-french \
-            texlive-pictures texlive-science texlive-extra-utils latexmk
-
-      - name: Compiler le document
-        id: compile
-        continue-on-error: true
-        shell: bash
-        working-directory: '05-Modélisation Systèmes Asservis/Cours'
-        run: |
-          set -o pipefail
-          rm -f 00_Systemes_Asservis.{aux,toc,out,mw,idx,ilg,ind,log,pdf}
-          pdflatex -file-line-error -halt-on-error -interaction=nonstopmode 00_Systemes_Asservis.tex 2>&1 | tee compilation-apt.txt
-          if [ -f 00_Systemes_Asservis.idx ]; then makeindex 00_Systemes_Asservis.idx; fi
-          pdflatex -file-line-error -halt-on-error -interaction=nonstopmode 00_Systemes_Asservis.tex 2>&1 | tee -a compilation-apt.txt
-          pdflatex -file-line-error -halt-on-error -interaction=nonstopmode 00_Systemes_Asservis.tex 2>&1 | tee -a compilation-apt.txt
-
-      - name: Enregistrer le résultat
-        shell: bash
-        run: |
-          set -euo pipefail
-          course='05-Modélisation Systèmes Asservis/Cours'
-          if [ '${{ steps.compile.outcome }}' = 'success' ]; then
-            printf 'SUCCESS\n' > "$course/COMPILATION_COURS5_APT.txt"
-          else
-            printf 'FAILURE\n' > "$course/COMPILATION_COURS5_APT.txt"
-          fi
-          if [ -f "$course/compilation-apt.txt" ]; then
-            cp "$course/compilation-apt.txt" "$course/COMPILATION_COURS5_APT.log"
-          elif [ -f "$course/00_Systemes_Asservis.log" ]; then
-            cp "$course/00_Systemes_Asservis.log" "$course/COMPILATION_COURS5_APT.log"
-          fi
-
-      - name: Publier le résultat
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add '05-Modélisation Systèmes Asservis/Cours/COMPILATION_COURS5_APT.txt'
-          if [ -f '05-Modélisation Systèmes Asservis/Cours/COMPILATION_COURS5_APT.log' ]; then
-            git add '05-Modélisation Systèmes Asservis/Cours/COMPILATION_COURS5_APT.log'
-          fi
-          if [ '${{ steps.compile.outcome }}' = 'success' ]; then
-            git add '05-Modélisation Systèmes Asservis/Cours/00_Systemes_Asservis.pdf'
-          fi
-          if ! git diff --cached --quiet; then
-            git commit -m 'Met à jour le contrôle natif du cours 05 [skip ci]'
-            git push
-          fi
-
-      - name: Échouer après publication du journal
-        if: steps.compile.outcome != 'success'
-        run: exit 1
+      - run: echo "Ancien contrôle du cours 05 neutralisé."
