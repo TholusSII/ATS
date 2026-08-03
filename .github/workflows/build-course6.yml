@@ -4,12 +4,17 @@ on:
   push:
     paths:
       - .github/workflows/build-course6.yml
-      - '06-Correction des Systèmes asservis/Cours/**'
+      - '06-Correction des Systèmes asservis/Cours/00_Correction_Systemes_Asservis.tex'
+      - '06-Correction des Systèmes asservis/Cours/06_Correction_Systemes_Asservis.tex'
+      - '06-Correction des Systèmes asservis/Cours/06_Correction_Systemes_Asservis_Integration.tex'
+      - '06-Correction des Systèmes asservis/Cours/sources/**'
+      - '06-Correction des Systèmes asservis/Cours/pandoc/images/**'
       - 'Style/TLCorrectionSystemesAsservis.sty'
       - 'Style/TLSystemesAsservis.sty'
       - 'Style/TLSystemesAsservisStableBode.sty'
       - 'Style/schemabloc.sty'
       - 'Style/bodegraph.sty'
+      - 'Style/Notations_*.sty'
 
 permissions:
   contents: write
@@ -29,6 +34,21 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Publier le démarrage
+        shell: bash
+        run: |
+          set -euo pipefail
+          course='06-Correction des Systèmes asservis/Cours'
+          printf 'RUNNING\n' > "$course/COMPILATION_COURS6.txt"
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$course/COMPILATION_COURS6.txt"
+          if ! git diff --cached --quiet; then
+            git commit -m 'Démarre le contrôle du cours 06 [skip ci]'
+            git push
+          fi
+
       - name: Compiler et enregistrer le diagnostic
         shell: bash
         run: |
@@ -39,20 +59,20 @@ jobs:
           rm -f "$job".{aux,toc,out,mw,idx,ilg,ind,log,pdf}
           : > COMPILATION_COURS6.log
 
-          pdflatex -file-line-error -halt-on-error -interaction=nonstopmode "$job.tex" 2>&1 | tee -a COMPILATION_COURS6.log
-          status=${PIPESTATUS[0]}
+          pdflatex -file-line-error -halt-on-error -interaction=nonstopmode "$job.tex" > COMPILATION_COURS6.log 2>&1
+          status=$?
 
           if [ "$status" -eq 0 ] && [ -f "$job.idx" ]; then
-            makeindex "$job.idx" 2>&1 | tee -a COMPILATION_COURS6.log
-            status=${PIPESTATUS[0]}
+            makeindex "$job.idx" >> COMPILATION_COURS6.log 2>&1
+            status=$?
           fi
           if [ "$status" -eq 0 ]; then
-            pdflatex -file-line-error -halt-on-error -interaction=nonstopmode "$job.tex" 2>&1 | tee -a COMPILATION_COURS6.log
-            status=${PIPESTATUS[0]}
+            pdflatex -file-line-error -halt-on-error -interaction=nonstopmode "$job.tex" >> COMPILATION_COURS6.log 2>&1
+            status=$?
           fi
           if [ "$status" -eq 0 ]; then
-            pdflatex -file-line-error -halt-on-error -interaction=nonstopmode "$job.tex" 2>&1 | tee -a COMPILATION_COURS6.log
-            status=${PIPESTATUS[0]}
+            pdflatex -file-line-error -halt-on-error -interaction=nonstopmode "$job.tex" >> COMPILATION_COURS6.log 2>&1
+            status=$?
           fi
 
           if [ "$status" -eq 0 ]; then
