@@ -1,0 +1,256 @@
+% ============================================================================
+% COURS 09 — MACHINE À COURANT CONTINU
+% Reprise fidèle de 13-MCC.docx
+% ============================================================================
+
+\section{Généralités sur les machines électriques}\label{sec:mcc-generalites}
+
+\subsection{Notions d'électromagnétisme}
+
+Un courant électrique crée un champ magnétique. Réciproquement, une variation de flux
+magnétique peut induire une force électromotrice. Les aimants possèdent deux pôles : nord et
+sud. Deux pôles identiques se repoussent, tandis que deux pôles opposés s'attirent.
+
+Le champ d'induction magnétique est noté $\vec B$ et s'exprime en teslas. Dans les machines
+électriques, les inductions usuelles sont de l'ordre de $1$ à $1{,}5\,\mathrm T$.
+
+\subsection{Principe simplifié des machines électriques}
+
+Le fonctionnement d'une machine tournante peut être interprété comme l'interaction entre un
+champ statorique $\vec B_s$ et un champ rotorique $\vec B_r$. Ces champs sont produits par des
+enroulements parcourus par des courants ou par des aimants permanents.
+
+On distingue notamment :
+\begin{itemize}
+  \item les machines à champ statorique fixe, comme la machine à courant continu ;
+  \item les machines à champ statorique tournant, comme les machines synchrones et asynchrones.
+\end{itemize}
+
+\section{Constitution de la machine à courant continu}\label{sec:mcc-constitution}
+
+La MCC comporte :
+\begin{itemize}
+  \item un inducteur ou stator, source du champ magnétique ;
+  \item un induit ou rotor, siège des forces électromotrices ;
+  \item un circuit magnétique comprenant stator, rotor et entrefer ;
+  \item un ensemble balais--collecteur assurant l'alimentation du rotor et la commutation des courants.
+\end{itemize}
+
+\subsection{Inducteur}
+
+L'inducteur peut être constitué d'aimants permanents ou d'un enroulement d'excitation. Dans le
+second cas, le flux $\Phi$ est commandé par le courant d'excitation $I_e$, tant que le circuit
+magnétique n'est pas saturé.
+
+\subsection{Induit et collecteur}
+
+L'induit est constitué d'un circuit magnétique feuilleté et d'un bobinage. Le collecteur est
+solidaire du rotor ; ses lames de cuivre sont reliées aux enroulements. Les balais sont fixes et
+assurent la liaison électrique avec l'induit.
+
+Le système balais--collecteur redresse les forces électromotrices élémentaires et inverse le
+courant dans les conducteurs au moment opportun afin de maintenir le couple dans un même sens.
+
+\subsection{Modes d'excitation}
+
+Les principaux modes sont : excitation indépendante, excitation shunt, excitation série et
+excitation composée. Dans les petites puissances, les aimants permanents sont très fréquents.
+
+\section{Relations fondamentales et bilan de puissance}\label{sec:mcc-relations}
+
+\subsection{Force électromotrice}
+
+La force électromotrice de l'induit est proportionnelle au flux et à la vitesse :
+\[
+E=K\Phi\Omega.
+\]
+À flux constant :
+\[
+E=K_e\Omega,
+\]
+où $K_e$ est la constante de force électromotrice en $\mathrm{V\,s\,rad^{-1}}$.
+
+\subsection{Modèle de l'induit en régime établi}
+
+\TLSchemaInduitMCCPermanent
+
+En convention récepteur :
+\[
+U=E+RI.
+\]
+En multipliant par $I$ :
+\[
+UI=EI+RI^2.
+\]
+On identifie la puissance absorbée $P_a=UI$, les pertes Joule $P_J=RI^2$ et la puissance
+électromagnétique $P_{em}=EI$.
+
+\subsection{Couple électromagnétique et couple utile}
+
+La puissance électromagnétique vérifie :
+\[
+P_{em}=EI=C_{em}\Omega.
+\]
+À flux constant :
+\[
+C_{em}=K_c I.
+\]
+En unités SI, les constantes $K_e$ et $K_c$ ont la même valeur numérique.
+
+Le couple utile disponible sur l'arbre est :
+\[
+C_u=C_{em}-C_p,
+\]
+où $C_p$ regroupe les pertes mécaniques et ferromagnétiques.
+
+Lors d'un essai à vide, $C_u=0$, donc $C_{em}=C_p$. On peut ainsi déterminer le couple de
+pertes à partir du courant à vide :
+\[
+C_p=K_c I_0.
+\]
+
+\subsection{Commande à flux constant}
+
+À flux constant, deux propriétés rendent la MCC simple à commander :
+\begin{itemize}
+  \item le courant d'induit impose directement le couple électromagnétique ;
+  \item la tension d'induit impose principalement la vitesse.
+\end{itemize}
+
+\TLQuadrantsMCC
+
+\subsection{Bilan de puissance et rendement}
+
+\TLBilanPuissancesMCC
+
+Le rendement moteur vaut :
+\[
+\eta=\frac{P_u}{P_a}=\frac{C_u\Omega}{UI}.
+\]
+
+\section{Fonctionnement en régime variable}\label{sec:mcc-variable}
+
+Lorsque le courant varie, l'inductance de l'induit doit être prise en compte.
+
+\TLSchemaInduitMCCVariable
+
+Les quatre équations fondamentales à flux constant sont :
+\[
+\boxed{U=RI+L\frac{\mathrm dI}{\mathrm dt}+K_e\Omega}
+\]
+\[
+\boxed{C_{em}=K_c I}
+\]
+\[
+\boxed{J\frac{\mathrm d\Omega}{\mathrm dt}=C_{em}-C_r-f\Omega}
+\]
+\[
+\boxed{E=K_e\Omega}
+\]
+
+Dans le domaine de Laplace, le modèle peut être représenté sous forme de schéma-blocs :
+
+\TLSchemaBlocMCC
+
+Le couple résistant apparaît comme une perturbation mécanique.
+
+\section{Fonctionnement en génératrice}\label{sec:mcc-generatrice}
+
+Lorsque la charge entraîne la machine, la puissance mécanique est convertie en puissance
+électrique. La machine fonctionne alors en génératrice. Le signe du produit $C\Omega$ devient
+négatif.
+
+En convention générateur :
+\[
+U=E-RI
+\]
+en régime établi. Pour récupérer l'énergie, la chaîne électrique, le variateur et la source
+d'alimentation doivent être réversibles.
+
+\section{Démarrage de la MCC}\label{sec:mcc-demarrage}
+
+Au démarrage, $\Omega=0$, donc $E=0$. Le courant initial vaut alors :
+\[
+I_d=\frac{U}{R}.
+\]
+Comme la résistance d'induit est faible, ce courant peut être très élevé. Le couple de démarrage
+est :
+\[
+C_d=K_c I_d.
+\]
+Pour les puissances importantes, on démarre sous tension réduite ou avec une limitation de
+courant. On limite généralement l'appel de courant entre $1{,}25I_n$ et $2I_n$.
+
+\section{Variation de vitesse}\label{sec:mcc-variation}
+
+En régime établi et à flux constant :
+\[
+\Omega=\frac{U-RI}{K_e}.
+\]
+Trois actions sont possibles.
+
+\subsection{Variation de la résistance d'induit}
+
+Ajouter une résistance série réduit la vitesse mais augmente les pertes Joule. Cette méthode est
+peu utilisée.
+
+\subsection{Variation de la tension d'induit}
+
+\TLVariationVitesseMCC
+
+C'est la solution la plus courante. La variation de tension est réalisée par un convertisseur
+statique : hacheur pour une source continue, pont commandé pour une source alternative.
+
+\subsection{Variation du flux inducteur}
+
+La diminution du flux permet de dépasser la vitesse nominale. Cette zone de défluxage se fait à
+puissance approximativement constante, donc au prix d'une diminution du couple disponible.
+
+\section{Identification expérimentale du modèle}\label{sec:mcc-identification}
+
+\TLEssaisIdentificationMCC
+
+\subsection{Identification de $K_e$}
+
+À vide, le courant est faible et la chute $RI$ peut être négligée. En régime permanent :
+\[
+U\simeq E=K_e\Omega.
+\]
+La pente de la droite $U=f(\Omega)$ fournit $K_e$.
+
+\subsection{Identification de $R$ et $L$}
+
+Rotor bloqué, $E=0$. Sous un échelon de tension réduit :
+\[
+U=RI+L\frac{\mathrm dI}{\mathrm dt}.
+\]
+La réponse est du premier ordre :
+\[
+I(t)=\frac{U}{R}\left(1-e^{-t/\tau}\right),\qquad \tau=\frac{L}{R}.
+\]
+La valeur finale fournit $R$ et la constante de temps fournit $L$.
+
+\section{Applications et exercices intégrés}\label{sec:mcc-applications}
+
+Le document source propose plusieurs applications : borne solaire, vélo à assistance électrique,
+système de treillis, magasin vertical, scooter électrique, béquille électrique, kart et maison
+hantée. Elles mobilisent les mêmes démarches :
+\begin{enumerate}
+  \item établir le schéma équivalent ;
+  \item écrire les équations électriques et mécaniques ;
+  \item identifier les paramètres par essais ;
+  \item calculer les puissances et le rendement ;
+  \item déterminer les quadrants et la réversibilité nécessaires.
+\end{enumerate}
+
+\section{À retenir}\label{sec:mcc-retenir}
+
+\begin{itemize}
+  \item $E=K_e\Omega$ à flux constant.
+  \item $C_{em}=K_cI$ et, en SI, $K_e=K_c$ numériquement.
+  \item En régime établi moteur : $U=E+RI$.
+  \item En régime variable : $U=E+RI+L\,\mathrm dI/\mathrm dt$.
+  \item Le courant commande le couple ; la tension commande principalement la vitesse.
+  \item La MCC est naturellement réversible, mais la récupération dépend du variateur et de la source.
+  \item Le démarrage doit être limité car $E=0$ lorsque $\Omega=0$.
+\end{itemize}
