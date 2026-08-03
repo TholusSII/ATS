@@ -8,10 +8,10 @@ efd4e9480dcc: Pulling fs layer
 339aef223ec0: Waiting
 f876fef47397: Verifying Checksum
 f876fef47397: Download complete
-efd4e9480dcc: Verifying Checksum
-efd4e9480dcc: Download complete
 aaf1175fdbaf: Verifying Checksum
 aaf1175fdbaf: Download complete
+efd4e9480dcc: Verifying Checksum
+efd4e9480dcc: Download complete
 f876fef47397: Pull complete
 aaf1175fdbaf: Pull complete
 efd4e9480dcc: Pull complete
@@ -511,6 +511,12 @@ kzlibrarydecorations.markings.code.tex
 (/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrar
 ydecorations.markings.code.tex))))
 (/work/Style/TLSystemesAsservisStableBode.sty))
+(/work/Style/TLCorrectionSystemesAsservisStableBode.sty
+
+LaTeX Warning: You have requested file `',
+               but the file provides `TLCorrectionSystemesAsservisStableBode'.
+
+)
 Writing index file 00_Correction_Systemes_Asservis.idx
 (/opt/texlive/texdir/texmf-dist/tex/latex/scrhack/scrhack.sty
 (/opt/texlive/texdir/texmf-dist/tex/latex/floatrowbytocbasic/floatrowbytocbasic
@@ -638,11 +644,1646 @@ Overfull \vbox (95.62227pt too high) has occurred while \output is active
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-./sources/06_Correction_SA_Cours.tex:502: Dimension too large.
-<recently read> \pgfmath@xa 
-                            
-l.502 \TLBodeRetardPhase[1][10][1]
-                                  
-./sources/06_Correction_SA_Cours.tex:502:  ==> Fatal error occurred, no output 
-PDF file produced!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+
+Overfull \hbox (41.48215pt too wide) detected at line 522
+[] \OML/npxmi/m/it/10 ![] \U/npxmia/m/it/10 = [] [] = [] [] = [] []  \LMS/npxsy
+/m/n/10 ) \OML/npxmi/m/it/10 ![] \U/npxmia/m/it/10 = []
+[16] (./00_Correction_Systemes_Asservis.mw)
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+[17] (./00_Correction_Systemes_Asservis.mw)
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+[18] (./00_Correction_Systemes_Asservis.mw) [19]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 699--699
+[] 
+[20 <./pandoc/images/image16.jpeg>] (./00_Correction_Systemes_Asservis.mw))
+Underfull \hbox (badness 10000) in paragraph at lines 721--46
+
+[21] (./00_Correction_Systemes_Asservis.mw)
+(./sources/06_Correction_SA_Exercices.tex
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 2--2
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 7--7
+[] 
+[22 <./pandoc/images/image17.png>] (./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 11--11
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 13--13
+[] 
+[23 <./pandoc/images/image18.png> <./pandoc/images/image19.png>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 33--33
+[] 
+[24 <./pandoc/images/image20.png> <./pandoc/images/image21.png>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 67--67
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 69--69
+[] 
+[25 <./pandoc/images/image22.png> <./pandoc/images/image23.png>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 114--114
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 114--114
+[] 
+
+LaTeX Warning: Command \' invalid in math mode on input line 124.
+
+Missing character: There is no é in font zpl-Regular-tlf-ot1!
+[26 <./pandoc/images/image24.png> <./pandoc/images/image25.png>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 126--126
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 136--136
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 154--154
+[] 
+[27 <./pandoc/images/image26.png> <./pandoc/images/image27.png>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 170--170
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 183--183
+[] 
+[28 <./pandoc/images/image28.png> <./pandoc/images/image29.png> <./pandoc/image
+s/image30.png>] (./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 231--231
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 233--233
+[] 
+[29 <./pandoc/images/image31.png>] (./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 237--237
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 241--241
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 250--250
+[] 
+[30 <./pandoc/images/image32.png> <./pandoc/images/image33.png> <./pandoc/image
+s/image34.png> <./pandoc/images/image35.jpeg>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 266--266
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 268--268
+[] 
+[31 <./pandoc/images/image36.png> <./pandoc/images/image37.png>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 293--293
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 322--322
+[] 
+[32 <./pandoc/images/image38.png> <./pandoc/images/image39.jpeg>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 330--330
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 330--330
+[] 
+)) [33] (./00_Correction_Systemes_Asservis.mw)
+(./00_Correction_Systemes_Asservis.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
+(see the transcript file for additional information)</opt/texlive/texdir/texmf-
+dist/fonts/type1/public/newpx/NewPXMI.pfb></opt/texlive/texdir/texmf-dist/fonts
+/type1/public/newpx/NewPXMI_gnu.pfb></opt/texlive/texdir/texmf-dist/fonts/type1
+/public/bera/fvmr8a.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/public/newp
+x/pxmiaX.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/public/newpx/pxsys.pfb
+></opt/texlive/texdir/texmf-dist/fonts/type1/public/tex-gyre/qhvb.pfb></opt/tex
+live/texdir/texmf-dist/fonts/type1/public/tex-gyre/qhvr.pfb></opt/texlive/texdi
+r/texmf-dist/fonts/type1/public/newtx/txexs.pfb></opt/texlive/texdir/texmf-dist
+/fonts/type1/public/newtx/txsym.pfb></opt/texlive/texdir/texmf-dist/fonts/type1
+/public/newpx/zplb.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/public/newpx
+/zplr.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/public/newpx/zplri.pfb>
+Output written on 00_Correction_Systemes_Asservis.pdf (33 pages, 3241930 bytes)
+.
+Transcript written on 00_Correction_Systemes_Asservis.log.
+This is makeindex, version 2.18 [TeX Live 2026] (kpathsea + Thai support).
+Scanning input file 00_Correction_Systemes_Asservis.idx...done (0 entries accepted, 0 rejected).
+Nothing written in 00_Correction_Systemes_Asservis.ind.
+Transcript written in 00_Correction_Systemes_Asservis.ilg.
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./00_Correction_Systemes_Asservis.tex
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-06-18>
+(/opt/texlive/texdir/texmf-dist/tex/latex/silence/silence.sty)
+(/work/Style/kaobook.cls
+Document Class: kaobook 2021/08/23 v0.9.8 kaobook
+(/opt/texlive/texdir/texmf-dist/tex/latex/koma-script/scrbook.cls
+Document Class: scrbook 2026/02/02 v3.49.2 KOMA-Script document class (book)
+(/opt/texlive/texdir/texmf-dist/tex/latex/koma-script/scrkbase.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/koma-script/scrbase.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/koma-script/scrlfile.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/koma-script/scrlfile-hook.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/koma-script/scrlogo.sty)))
+(/opt/texlive/texdir/texmf-dist/tex/latex/graphics/keyval.sty)))
+(/opt/texlive/texdir/texmf-dist/tex/latex/koma-script/tocbasic.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/koma-script/scrsize10pt.clo)
+(/opt/texlive/texdir/texmf-dist/tex/latex/koma-script/typearea.sty))
+(/work/Style/kao.sty (/work/Style/ECM/kao.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/babel/babel.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/babel/txtbabel.def)
+(/opt/texlive/texdir/texmf-dist/tex/generic/babel/locale/fr/babel-french.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/babel-french/french.ldf
+(/opt/texlive/texdir/texmf-dist/tex/generic/babel-french/french3.ldf)))
+(/opt/texlive/texdir/texmf-dist/tex/latex/carlisle/scalefnt.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/tools/calc.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/opt/texlive/texdir/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/opt/texlive/texdir/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/opt/texlive/texdir/texmf-dist/tex/latex/graphics/dvipsnam.def)
+(/opt/texlive/texdir/texmf-dist/tex/latex/colortbl/colortbl.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/tools/array.sty)
+new hooks used!!
+) (/opt/texlive/texdir/texmf-dist/tex/generic/iftex/iftex.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/xifthen/xifthen.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/base/ifthen.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/ifmtarg/ifmtarg.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/options/options.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/l3kernel/expl3.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)))
+(/opt/texlive/texdir/texmf-dist/tex/latex/xpatch/xpatch.sty)
+(/opt/texlive/texdir/texmf-dist/tex/generic/xstring/xstring.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/xstring/xstring.tex))
+(/opt/texlive/texdir/texmf-dist/tex/latex/tools/afterpage.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/imakeidx/imakeidx.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/xkeyval/xkvutils.tex)))
+(/opt/texlive/texdir/texmf-dist/tex/generic/iftex/ifxetex.sty)
+(/opt/texlive/texdir/texmf-dist/tex/generic/iftex/ifluatex.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/tools/multicol.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/tools/varioref.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/geometry/geometry.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/iftex/ifvtex.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/koma-script/scrlayer-scrpage.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/koma-script/scrlayer.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/ragged2e/ragged2e.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/setspace/setspace.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/hyphenat/hyphenat.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/microtype/microtype.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
+(/opt/texlive/texdir/texmf-dist/tex/latex/microtype/microtype.cfg))
+(/opt/texlive/texdir/texmf-dist/tex/latex/needspace/needspace.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/tools/xspace.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/placeins/placeins.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/marginnote/marginnote.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/sidenotes/sidenotes.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/caption/caption.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/caption/caption3.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/changepage/changepage.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/chngcntr/chngcntr.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/footmisc/footmisc.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/footnotebackref/footnotebackref.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/opt/texlive/texdir/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/hyperref/nameref.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/refcount/refcount.sty)
+(/opt/texlive/texdir/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
+ (/opt/texlive/texdir/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/opt/texlive/texdir/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/hyperref/puenc.def)
+(/opt/texlive/texdir/texmf-dist/tex/latex/url/url.sty)
+(/opt/texlive/texdir/texmf-dist/tex/generic/bitset/bitset.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))
+(/opt/texlive/texdir/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/opt/texlive/texdir/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty))))
+ (/opt/texlive/texdir/texmf-dist/tex/latex/graphics/graphicx.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/graphics/graphics.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/graphics/trig.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
+(/opt/texlive/texdir/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/pgf.revision.tex)))
+(/opt/texlive/texdir/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltere
+d.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.d
+ef)))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code
+.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code
+.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex)
+
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.cod
+e.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonome
+tric.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.co
+de.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compariso
+n.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code
+.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.cod
+e.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code
+.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerar
+ithmetics.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.t
+ex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct
+.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.cod
+e.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.t
+ex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.
+code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformatio
+ns.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.te
+x)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.
+tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessin
+g.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.t
+ex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.te
+x)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.te
+x)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code
+.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.t
+ex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.
+code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code
+.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex)
+))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.te
+x)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex)
+
+(/opt/texlive/texdir/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-6
+5.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-1
+8.sty)) (/opt/texlive/texdir/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.te
+x
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandler
+s.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.te
+x)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibrarytopaths.code.tex)))
+(/opt/texlive/texdir/texmf-dist/tex/latex/tikzpagenodes/tikzpagenodes.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/multirow/multirow.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/graphics/rotating.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/listings/listings.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/listings/lstpatch.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/listings/lstmisc.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/listings/listings.cfg))
+(/opt/texlive/texdir/texmf-dist/tex/latex/floatrow/floatrow.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/etoc/etoc.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/base/inputenc.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/base/fontenc.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/newpxtext.sty
+`newpxtext' v1.542, 2025/06/07 Text macros taking advantage of TeXGyre Pagella 
+and its extensions (msharpe)
+(/opt/texlive/texdir/texmf-dist/tex/latex/base/fontenc.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/base/textcomp.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/fontaxes/fontaxes.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/figureversions/figureversions.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/t1zpllf.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/t1zpltlf.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/t1zplosf.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/t1zpltosf.fd))
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/newpxmath.sty
+`newpxmath' v1.551, 2025/10/30 Math macros based on pxfonts (msharpe)
+(/opt/texlive/texdir/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/opt/texlive/texdir/texmf-dist/tex/latex/amsmath/amstext.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/opt/texlive/texdir/texmf-dist/tex/generic/kastrup/binhex.tex)
+(/opt/texlive/texdir/texmf-dist/tex/latex/oberdiek/centernot.sty)
+amsthm NOT loaded
+) (/opt/texlive/texdir/texmf-dist/tex/latex/bera/beramono.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/mathalpha/mathalfa.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/mathalpha/mathalpha.sty
+`mathalpha' v1.145, 2025/01/17, a renaming of mathalfa (msharpe))
+(/opt/texlive/texdir/texmf-dist/tex/latex/morewrites/morewrites.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/morewrites/primargs.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/bookmark/bookmark.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/bookmark/bkm-pdftex.def))
+(/opt/texlive/texdir/texmf-dist/tex/latex/enumitem/enumitem.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/tools/verbatim.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/environ/environ.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/trimspaces/trimspaces.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcbraster.code.tex
+Library (tcolorbox): 'tcbraster.code.tex' version '6.10.0'
+) (/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
+Library (tcolorbox): 'tcbskins.code.tex' version '6.10.0'
+(/opt/texlive/texdir/texmf-dist/tex/latex/tikzfill/tikzfill.image.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/tikzfill/tikzlibraryfill.image.code.t
+ex))
+(/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcbskinsjigsaw.code.tex
+Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.10.0'
+)) (/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcbbreakable.code.tex
+Library (tcolorbox): 'tcbbreakable.code.tex' version '6.10.0'
+(/opt/texlive/texdir/texmf-dist/tex/latex/pdfcol/pdfcol.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcbhooks.code.tex
+Library (tcolorbox): 'tcbhooks.code.tex' version '6.10.0'
+) (/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcbtheorems.code.tex
+Library (tcolorbox): 'tcbtheorems.code.tex' version '6.10.0'
+) (/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcbfitting.code.tex
+Library (tcolorbox): 'tcbfitting.code.tex' version '6.10.0'
+) (/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcblistingsutf8.code.tex
+Library (tcolorbox): 'tcblistingsutf8.code.tex' version '6.10.0'
+(/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcblistings.code.tex
+Library (tcolorbox): 'tcblistings.code.tex' version '6.10.0'
+(/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcblistingscore.code.tex
+Library (tcolorbox): 'tcblistingscore.code.tex' version '6.10.0'
+(/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcbprocessing.code.tex
+Library (tcolorbox): 'tcbprocessing.code.tex' version '6.10.0'
+))) (/opt/texlive/texdir/texmf-dist/tex/latex/listingsutf8/listingsutf8.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcbexternal.code.tex
+Library (tcolorbox): 'tcbexternal.code.tex' version '6.10.0'
+) (/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcbmagazine.code.tex
+Library (tcolorbox): 'tcbmagazine.code.tex' version '6.10.0'
+) (/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcbvignette.code.tex
+Library (tcolorbox): 'tcbvignette.code.tex' version '6.10.0'
+
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibraryfadings.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings.cod
+e.tex))) (/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcbposter.code.tex
+
+Library (tcolorbox): 'tcbposter.code.tex' version '6.10.0'
+)) (/opt/texlive/texdir/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/eso-pic/eso-pic.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/pdfpages/pppdftex.def))
+(/opt/texlive/texdir/texmf-dist/tex/latex/subfiles/subfiles.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/import/import.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/todonotes/todonotes.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibrarypositioning.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/relsize/relsize.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/ccicons/ccicons.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/glossaries/base/glossaries.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/mfirstuc/mfirstuc.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/xfor/xfor.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/tracklang/tracklang.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/tracklang/tracklang.tex))
+(/opt/texlive/texdir/texmf-dist/tex/latex/translator/translator.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/glossaries-french/glossaries-french.l
+df) (/opt/texlive/texdir/texmf-dist/tex/latex/datatool/datatool-base.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/datatool/datatool-l3fp.def)
+(/opt/texlive/texdir/texmf-dist/tex/latex/datatool/datatool-utf8.ldf)
+
+Package tracklang Warning: No `datatool' support for dialect `french'  on input
+ line 9924.
+
+)
+(/opt/texlive/texdir/texmf-dist/tex/latex/glossaries/styles/glossary-hypernav.s
+ty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/glossaries/styles/glossary-list.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/glossaries/styles/glossary-long.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/tools/longtable.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/glossaries/styles/glossary-super.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/supertabular/supertabular.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/glossaries/styles/glossary-tree.sty))
+ (/opt/texlive/texdir/texmf-dist/tex/latex/nomencl/nomencl.sty))))
+(/work/Style/TLCours.sty
+
+LaTeX Warning: You have requested file `',
+               but the file provides `TLCours'.
+
+(/opt/texlive/texdir/texmf-dist/tex/generic/ulem/ulem.sty)
+(/work/Style/macros_SII_v2.tex) (/work/Style/environment_v2.tex
+(/opt/texlive/texdir/texmf-dist/tex/latex/subfig/subfig.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/pgfplots/pgfplots.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.cod
+e.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.
+tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsold
+pgfsupp_loader.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.te
+x)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsold
+pgfsupp_pgfutil-common-lists.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex
+
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotslist
+structure.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotslist
+structureext.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarra
+y.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatr
+ix.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshar
+ed.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdequ
+e.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.t
+ex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.c
+ode.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.cod
+e.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.su
+rfshading.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.sur
+fshading.pgfsys-pdftex.def)))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code
+.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.te
+x))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.
+tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.
+tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.co
+de.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code
+.tex)))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex)
+
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.co
+de.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.te
+x)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibrarydecorations.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.co
+de.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibrarydecorations.pathmorphing.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrar
+ydecorations.pathmorphing.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibrarydecorations.pathreplacing.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrar
+ydecorations.pathreplacing.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.c
+ontourlua.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibraryplotmarks.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.c
+ode.tex))) (/opt/texlive/texdir/texmf-dist/tex/latex/listings/lstlang1.sty))
+(/work/Style/CouvertureCours.sty
+
+LaTeX Warning: You have requested file `',
+               but the file provides `CouvertureCours'.
+
+
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibrarycalc.code.tex) (/work/Style/TLDoisneauPhoto.tex)) (/work/Style/TL.sty
+
+LaTeX Warning: You have requested file `',
+               but the file provides `TL'.
+
+)) (/opt/texlive/texdir/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/adjustbox/adjcalc.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/adjustbox/trimclip.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/collectbox/collectbox.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/adjustbox/tc-pdftex.def))
+(/opt/texlive/texdir/texmf-dist/tex/latex/varwidth/varwidth.sty)
+==> First Aid for varwidth.sty applied!
+) (/opt/texlive/texdir/texmf-dist/tex/generic/catchfile/catchfile.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/etexcmds/etexcmds.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/newunicodechar/newunicodechar.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/mathtools/mathtools.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/mathtools/mhsetup.sty))
+(/work/Style/TLCorrectionSystemesAsservis.sty
+
+LaTeX Warning: You have requested file `',
+               but the file provides `TLCorrectionSystemesAsservis'.
+
+(/work/Style/TLSystemesAsservis.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta
+.code.tex) (/work/Style/schemabloc.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibraryshapes.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibraryshapes.geometric.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshap
+es.geometric.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibraryshapes.misc.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshap
+es.misc.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibraryshapes.symbols.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshap
+es.symbols.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibraryshapes.arrows.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshap
+es.arrows.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibraryshapes.callouts.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshap
+es.callouts.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibraryshapes.multipart.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshap
+es.multipart.code.tex)))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibraryarrows.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code
+.tex))) (/work/Style/bodegraph.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/ifsym/ifsym.sty)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibrarybackgrounds.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibrarydecorations.markings.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrar
+ydecorations.markings.code.tex))))
+(/work/Style/TLSystemesAsservisStableBode.sty))
+(/work/Style/TLCorrectionSystemesAsservisStableBode.sty
+
+LaTeX Warning: You have requested file `',
+               but the file provides `TLCorrectionSystemesAsservisStableBode'.
+
+)
+Writing index file 00_Correction_Systemes_Asservis.idx
+(/opt/texlive/texdir/texmf-dist/tex/latex/scrhack/scrhack.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/floatrowbytocbasic/floatrowbytocbasic
+.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/setspaceenhanced/setspaceenhanced.sty
+)) (./00_Correction_Systemes_Asservis.aux)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/omlnpxmi.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/unpxexa.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/lmsnpxsy.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/lmxnpxexx.fd)
+(/opt/texlive/texdir/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/opt/texlive/texdir/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/opt/texlive/texdir/texmf-dist/tex/latex/microtype/mt-ppl.cfg)
+(/opt/texlive/texdir/texmf-dist/tex/latex/caption/ltcaption.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/floatrow/fr-subfig.sty
+
+Package fr-subfig Warning: The additions cooperated with 
+(fr-subfig)                version `2005/06/28 ver: 1.3' of package subfig,
+(fr-subfig)                but only version
+(fr-subfig)                2005/06/28 ver: 1.3 subfig package'
+(fr-subfig)                is available on input line 34.
+
+) (/opt/texlive/texdir/texmf-dist/tex/latex/floatrow/fr-longtable.sty)
+No file 00_Correction_Systemes_Asservis.toc.
+(/opt/texlive/texdir/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/pdflscape/pdflscape-nometadata.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/graphics/lscape.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/lscapeenhanced/lscapeenhanced.sty)))
+(./06_Correction_Systemes_Asservis.tex
+(/opt/texlive/texdir/texmf-dist/tex/latex/tex-gyre/t1qhv.fd) [1{/opt/texlive/te
+xdir/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/opt/texlive/texdir/texmf-di
+st/fonts/enc/dvips/tex-gyre/q-ec.enc}{/opt/texlive/texdir/texmf-dist/fonts/enc/
+dvips/newtx/ntx-ec-lf.enc} <../..//Style/FondPoly.png> <./pandoc/images/image3.
+jpeg>] (./00_Correction_Systemes_Asservis.mw)
+(./06_Correction_Systemes_Asservis_Integration.tex)
+(./sources/06_Correction_SA_Cours.tex
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 8--8
+[] 
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/ot1minzpl.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/opt/texlive/texdir/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/microtype/mt-msb.cfg)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/unpxmia.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/unpxsym.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/unpxsyc.fd) [2 <./pandoc/images
+/image5.png>] (./00_Correction_Systemes_Asservis.mw) [3{/opt/texlive/texdir/tex
+mf-dist/fonts/enc/dvips/newtx/ntx-ecth-tlf.enc}{/opt/texlive/texdir/texmf-dist/
+fonts/enc/dvips/newpx/px-lms.enc}] (./00_Correction_Systemes_Asservis.mw)
+[4{/opt/texlive/texdir/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}]
+(./00_Correction_Systemes_Asservis.mw)
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+[5] (./00_Correction_Systemes_Asservis.mw)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/ts1zpllf.fd) [6]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (13.13695pt too wide) in paragraph at lines 225--226
+[] 
+
+Overfull \hbox (34.93628pt too wide) in paragraph at lines 225--226
+[]  
+
+Overfull \hbox (13.13695pt too wide) in paragraph at lines 254--255
+[] 
+
+Overfull \hbox (34.93628pt too wide) in paragraph at lines 254--255
+[]  
+[7{/opt/texlive/texdir/texmf-dist/fonts/enc/dvips/newpx/zpl_OsF.enc} <./pandoc/
+images/image7.png> <./pandoc/images/image8.jpeg>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (13.13695pt too wide) in paragraph at lines 283--284
+[] 
+
+Overfull \hbox (34.93628pt too wide) in paragraph at lines 283--284
+[]  
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+[8 <./pandoc/images/image10.jpeg> <./pandoc/images/image11.jpeg>]
+(./00_Correction_Systemes_Asservis.mw)
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+[9] (./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 374--374
+[] 
+[10] (./00_Correction_Systemes_Asservis.mw) [11 <./pandoc/images/image12.jpeg>]
+ (./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (13.13695pt too wide) in paragraph at lines 448--449
+[] 
+
+Overfull \hbox (34.93628pt too wide) in paragraph at lines 448--449
+[]  
+
+Overfull \hbox (11.94817pt too wide) in paragraph at lines 451--452
+[][]\T1/zpllf/b/n/8 (-20) Agitation 
+(/opt/texlive/texdir/texmf-dist/tex/latex/bera/t1fvm.fd) [12]
+(./00_Correction_Systemes_Asservis.mw) [13]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \vbox (865.82231pt too high) has occurred while \output is active
+[14{/opt/texlive/texdir/texmf-dist/fonts/enc/dvips/base/8r.enc} <./pandoc/image
+s/image13.png> <./pandoc/images/image15.jpeg>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \vbox (95.62227pt too high) has occurred while \output is active
+[15] (./00_Correction_Systemes_Asservis.mw)
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+
+Overfull \hbox (41.48215pt too wide) detected at line 522
+[] \OML/npxmi/m/it/10 ![] \U/npxmia/m/it/10 = [] [] = [] [] = [] []  \LMS/npxsy
+/m/n/10 ) \OML/npxmi/m/it/10 ![] \U/npxmia/m/it/10 = []
+[16] (./00_Correction_Systemes_Asservis.mw)
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+[17] (./00_Correction_Systemes_Asservis.mw)
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+[18] (./00_Correction_Systemes_Asservis.mw) [19]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 699--699
+[] 
+[20 <./pandoc/images/image16.jpeg>] (./00_Correction_Systemes_Asservis.mw))
+Underfull \hbox (badness 10000) in paragraph at lines 721--46
+
+[21] (./00_Correction_Systemes_Asservis.mw)
+(./sources/06_Correction_SA_Exercices.tex
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 2--2
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 7--7
+[] 
+[22 <./pandoc/images/image17.png>] (./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 11--11
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 13--13
+[] 
+[23 <./pandoc/images/image18.png> <./pandoc/images/image19.png>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 33--33
+[] 
+[24 <./pandoc/images/image20.png> <./pandoc/images/image21.png>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 67--67
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 69--69
+[] 
+[25 <./pandoc/images/image22.png> <./pandoc/images/image23.png>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 114--114
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 114--114
+[] 
+
+LaTeX Warning: Command \' invalid in math mode on input line 124.
+
+Missing character: There is no é in font zpl-Regular-tlf-ot1!
+[26 <./pandoc/images/image24.png> <./pandoc/images/image25.png>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 126--126
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 136--136
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 154--154
+[] 
+[27 <./pandoc/images/image26.png> <./pandoc/images/image27.png>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 170--170
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 183--183
+[] 
+[28 <./pandoc/images/image28.png> <./pandoc/images/image29.png> <./pandoc/image
+s/image30.png>] (./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 231--231
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 233--233
+[] 
+[29 <./pandoc/images/image31.png>] (./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 237--237
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 241--241
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 250--250
+[] 
+[30 <./pandoc/images/image32.png> <./pandoc/images/image33.png> <./pandoc/image
+s/image34.png> <./pandoc/images/image35.jpeg>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 266--266
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 268--268
+[] 
+[31 <./pandoc/images/image36.png> <./pandoc/images/image37.png>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 293--293
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 322--322
+[] 
+[32 <./pandoc/images/image38.png> <./pandoc/images/image39.jpeg>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 330--330
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 330--330
+[] 
+)) [33] (./00_Correction_Systemes_Asservis.mw)
+(./00_Correction_Systemes_Asservis.aux) )
+(see the transcript file for additional information)</opt/texlive/texdir/texmf-
+dist/fonts/type1/public/newpx/NewPXMI.pfb></opt/texlive/texdir/texmf-dist/fonts
+/type1/public/newpx/NewPXMI_gnu.pfb></opt/texlive/texdir/texmf-dist/fonts/type1
+/public/bera/fvmr8a.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/public/newp
+x/pxmiaX.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/public/newpx/pxsys.pfb
+></opt/texlive/texdir/texmf-dist/fonts/type1/public/tex-gyre/qhvb.pfb></opt/tex
+live/texdir/texmf-dist/fonts/type1/public/tex-gyre/qhvr.pfb></opt/texlive/texdi
+r/texmf-dist/fonts/type1/public/newtx/txexs.pfb></opt/texlive/texdir/texmf-dist
+/fonts/type1/public/newtx/txsym.pfb></opt/texlive/texdir/texmf-dist/fonts/type1
+/public/newpx/zplb.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/public/newpx
+/zplr.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/public/newpx/zplri.pfb>
+Output written on 00_Correction_Systemes_Asservis.pdf (33 pages, 3242422 bytes)
+.
+Transcript written on 00_Correction_Systemes_Asservis.log.
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./00_Correction_Systemes_Asservis.tex
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-06-18>
+(/opt/texlive/texdir/texmf-dist/tex/latex/silence/silence.sty)
+(/work/Style/kaobook.cls
+Document Class: kaobook 2021/08/23 v0.9.8 kaobook
+(/opt/texlive/texdir/texmf-dist/tex/latex/koma-script/scrbook.cls
+Document Class: scrbook 2026/02/02 v3.49.2 KOMA-Script document class (book)
+(/opt/texlive/texdir/texmf-dist/tex/latex/koma-script/scrkbase.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/koma-script/scrbase.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/koma-script/scrlfile.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/koma-script/scrlfile-hook.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/koma-script/scrlogo.sty)))
+(/opt/texlive/texdir/texmf-dist/tex/latex/graphics/keyval.sty)))
+(/opt/texlive/texdir/texmf-dist/tex/latex/koma-script/tocbasic.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/koma-script/scrsize10pt.clo)
+(/opt/texlive/texdir/texmf-dist/tex/latex/koma-script/typearea.sty))
+(/work/Style/kao.sty (/work/Style/ECM/kao.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/babel/babel.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/babel/txtbabel.def)
+(/opt/texlive/texdir/texmf-dist/tex/generic/babel/locale/fr/babel-french.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/babel-french/french.ldf
+(/opt/texlive/texdir/texmf-dist/tex/generic/babel-french/french3.ldf)))
+(/opt/texlive/texdir/texmf-dist/tex/latex/carlisle/scalefnt.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/tools/calc.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/opt/texlive/texdir/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/opt/texlive/texdir/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/opt/texlive/texdir/texmf-dist/tex/latex/graphics/dvipsnam.def)
+(/opt/texlive/texdir/texmf-dist/tex/latex/colortbl/colortbl.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/tools/array.sty)
+new hooks used!!
+) (/opt/texlive/texdir/texmf-dist/tex/generic/iftex/iftex.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/xifthen/xifthen.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/base/ifthen.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/ifmtarg/ifmtarg.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/options/options.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/l3kernel/expl3.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)))
+(/opt/texlive/texdir/texmf-dist/tex/latex/xpatch/xpatch.sty)
+(/opt/texlive/texdir/texmf-dist/tex/generic/xstring/xstring.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/xstring/xstring.tex))
+(/opt/texlive/texdir/texmf-dist/tex/latex/tools/afterpage.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/imakeidx/imakeidx.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/xkeyval/xkvutils.tex)))
+(/opt/texlive/texdir/texmf-dist/tex/generic/iftex/ifxetex.sty)
+(/opt/texlive/texdir/texmf-dist/tex/generic/iftex/ifluatex.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/tools/multicol.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/tools/varioref.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/geometry/geometry.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/iftex/ifvtex.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/koma-script/scrlayer-scrpage.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/koma-script/scrlayer.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/ragged2e/ragged2e.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/setspace/setspace.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/hyphenat/hyphenat.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/microtype/microtype.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
+(/opt/texlive/texdir/texmf-dist/tex/latex/microtype/microtype.cfg))
+(/opt/texlive/texdir/texmf-dist/tex/latex/needspace/needspace.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/tools/xspace.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/placeins/placeins.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/marginnote/marginnote.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/sidenotes/sidenotes.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/caption/caption.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/caption/caption3.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/changepage/changepage.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/chngcntr/chngcntr.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/footmisc/footmisc.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/footnotebackref/footnotebackref.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/opt/texlive/texdir/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/hyperref/nameref.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/refcount/refcount.sty)
+(/opt/texlive/texdir/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
+ (/opt/texlive/texdir/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/opt/texlive/texdir/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/hyperref/puenc.def)
+(/opt/texlive/texdir/texmf-dist/tex/latex/url/url.sty)
+(/opt/texlive/texdir/texmf-dist/tex/generic/bitset/bitset.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))
+(/opt/texlive/texdir/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/opt/texlive/texdir/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty))))
+ (/opt/texlive/texdir/texmf-dist/tex/latex/graphics/graphicx.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/graphics/graphics.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/graphics/trig.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
+(/opt/texlive/texdir/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/pgf.revision.tex)))
+(/opt/texlive/texdir/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltere
+d.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.d
+ef)))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code
+.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code
+.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex)
+
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.cod
+e.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonome
+tric.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.co
+de.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compariso
+n.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code
+.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.cod
+e.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code
+.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerar
+ithmetics.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.t
+ex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct
+.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.cod
+e.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.t
+ex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.
+code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformatio
+ns.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.te
+x)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.
+tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessin
+g.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.t
+ex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.te
+x)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.te
+x)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code
+.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.t
+ex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.
+code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code
+.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex)
+))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.te
+x)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex)
+
+(/opt/texlive/texdir/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-6
+5.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-1
+8.sty)) (/opt/texlive/texdir/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.te
+x
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandler
+s.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.te
+x)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibrarytopaths.code.tex)))
+(/opt/texlive/texdir/texmf-dist/tex/latex/tikzpagenodes/tikzpagenodes.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/multirow/multirow.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/graphics/rotating.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/listings/listings.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/listings/lstpatch.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/listings/lstmisc.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/listings/listings.cfg))
+(/opt/texlive/texdir/texmf-dist/tex/latex/floatrow/floatrow.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/etoc/etoc.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/base/inputenc.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/base/fontenc.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/newpxtext.sty
+`newpxtext' v1.542, 2025/06/07 Text macros taking advantage of TeXGyre Pagella 
+and its extensions (msharpe)
+(/opt/texlive/texdir/texmf-dist/tex/latex/base/fontenc.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/base/textcomp.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/fontaxes/fontaxes.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/figureversions/figureversions.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/t1zpllf.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/t1zpltlf.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/t1zplosf.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/t1zpltosf.fd))
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/newpxmath.sty
+`newpxmath' v1.551, 2025/10/30 Math macros based on pxfonts (msharpe)
+(/opt/texlive/texdir/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/opt/texlive/texdir/texmf-dist/tex/latex/amsmath/amstext.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/opt/texlive/texdir/texmf-dist/tex/generic/kastrup/binhex.tex)
+(/opt/texlive/texdir/texmf-dist/tex/latex/oberdiek/centernot.sty)
+amsthm NOT loaded
+) (/opt/texlive/texdir/texmf-dist/tex/latex/bera/beramono.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/mathalpha/mathalfa.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/mathalpha/mathalpha.sty
+`mathalpha' v1.145, 2025/01/17, a renaming of mathalfa (msharpe))
+(/opt/texlive/texdir/texmf-dist/tex/latex/morewrites/morewrites.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/morewrites/primargs.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/bookmark/bookmark.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/bookmark/bkm-pdftex.def))
+(/opt/texlive/texdir/texmf-dist/tex/latex/enumitem/enumitem.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/tools/verbatim.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/environ/environ.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/trimspaces/trimspaces.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcbraster.code.tex
+Library (tcolorbox): 'tcbraster.code.tex' version '6.10.0'
+) (/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
+Library (tcolorbox): 'tcbskins.code.tex' version '6.10.0'
+(/opt/texlive/texdir/texmf-dist/tex/latex/tikzfill/tikzfill.image.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/tikzfill/tikzlibraryfill.image.code.t
+ex))
+(/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcbskinsjigsaw.code.tex
+Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.10.0'
+)) (/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcbbreakable.code.tex
+Library (tcolorbox): 'tcbbreakable.code.tex' version '6.10.0'
+(/opt/texlive/texdir/texmf-dist/tex/latex/pdfcol/pdfcol.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcbhooks.code.tex
+Library (tcolorbox): 'tcbhooks.code.tex' version '6.10.0'
+) (/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcbtheorems.code.tex
+Library (tcolorbox): 'tcbtheorems.code.tex' version '6.10.0'
+) (/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcbfitting.code.tex
+Library (tcolorbox): 'tcbfitting.code.tex' version '6.10.0'
+) (/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcblistingsutf8.code.tex
+Library (tcolorbox): 'tcblistingsutf8.code.tex' version '6.10.0'
+(/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcblistings.code.tex
+Library (tcolorbox): 'tcblistings.code.tex' version '6.10.0'
+(/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcblistingscore.code.tex
+Library (tcolorbox): 'tcblistingscore.code.tex' version '6.10.0'
+(/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcbprocessing.code.tex
+Library (tcolorbox): 'tcbprocessing.code.tex' version '6.10.0'
+))) (/opt/texlive/texdir/texmf-dist/tex/latex/listingsutf8/listingsutf8.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcbexternal.code.tex
+Library (tcolorbox): 'tcbexternal.code.tex' version '6.10.0'
+) (/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcbmagazine.code.tex
+Library (tcolorbox): 'tcbmagazine.code.tex' version '6.10.0'
+) (/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcbvignette.code.tex
+Library (tcolorbox): 'tcbvignette.code.tex' version '6.10.0'
+
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibraryfadings.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings.cod
+e.tex))) (/opt/texlive/texdir/texmf-dist/tex/latex/tcolorbox/tcbposter.code.tex
+
+Library (tcolorbox): 'tcbposter.code.tex' version '6.10.0'
+)) (/opt/texlive/texdir/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/eso-pic/eso-pic.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/pdfpages/pppdftex.def))
+(/opt/texlive/texdir/texmf-dist/tex/latex/subfiles/subfiles.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/import/import.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/todonotes/todonotes.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibrarypositioning.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/relsize/relsize.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/ccicons/ccicons.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/glossaries/base/glossaries.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/mfirstuc/mfirstuc.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/xfor/xfor.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/tracklang/tracklang.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/tracklang/tracklang.tex))
+(/opt/texlive/texdir/texmf-dist/tex/latex/translator/translator.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/glossaries-french/glossaries-french.l
+df) (/opt/texlive/texdir/texmf-dist/tex/latex/datatool/datatool-base.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/datatool/datatool-l3fp.def)
+(/opt/texlive/texdir/texmf-dist/tex/latex/datatool/datatool-utf8.ldf)
+
+Package tracklang Warning: No `datatool' support for dialect `french'  on input
+ line 9924.
+
+)
+(/opt/texlive/texdir/texmf-dist/tex/latex/glossaries/styles/glossary-hypernav.s
+ty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/glossaries/styles/glossary-list.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/glossaries/styles/glossary-long.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/tools/longtable.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/glossaries/styles/glossary-super.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/supertabular/supertabular.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/glossaries/styles/glossary-tree.sty))
+ (/opt/texlive/texdir/texmf-dist/tex/latex/nomencl/nomencl.sty))))
+(/work/Style/TLCours.sty
+
+LaTeX Warning: You have requested file `',
+               but the file provides `TLCours'.
+
+(/opt/texlive/texdir/texmf-dist/tex/generic/ulem/ulem.sty)
+(/work/Style/macros_SII_v2.tex) (/work/Style/environment_v2.tex
+(/opt/texlive/texdir/texmf-dist/tex/latex/subfig/subfig.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/pgfplots/pgfplots.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.cod
+e.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.
+tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsold
+pgfsupp_loader.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.te
+x)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsold
+pgfsupp_pgfutil-common-lists.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex
+
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotslist
+structure.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotslist
+structureext.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarra
+y.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatr
+ix.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshar
+ed.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdequ
+e.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.t
+ex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.c
+ode.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.cod
+e.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.su
+rfshading.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.sur
+fshading.pgfsys-pdftex.def)))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code
+.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.te
+x))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.
+tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.
+tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.co
+de.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code
+.tex)))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex)
+
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.co
+de.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.te
+x)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibrarydecorations.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.co
+de.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibrarydecorations.pathmorphing.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrar
+ydecorations.pathmorphing.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibrarydecorations.pathreplacing.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrar
+ydecorations.pathreplacing.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.c
+ontourlua.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibraryplotmarks.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.c
+ode.tex))) (/opt/texlive/texdir/texmf-dist/tex/latex/listings/lstlang1.sty))
+(/work/Style/CouvertureCours.sty
+
+LaTeX Warning: You have requested file `',
+               but the file provides `CouvertureCours'.
+
+
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibrarycalc.code.tex) (/work/Style/TLDoisneauPhoto.tex)) (/work/Style/TL.sty
+
+LaTeX Warning: You have requested file `',
+               but the file provides `TL'.
+
+)) (/opt/texlive/texdir/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/adjustbox/adjcalc.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/adjustbox/trimclip.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/collectbox/collectbox.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/adjustbox/tc-pdftex.def))
+(/opt/texlive/texdir/texmf-dist/tex/latex/varwidth/varwidth.sty)
+==> First Aid for varwidth.sty applied!
+) (/opt/texlive/texdir/texmf-dist/tex/generic/catchfile/catchfile.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/etexcmds/etexcmds.sty))
+(/opt/texlive/texdir/texmf-dist/tex/latex/newunicodechar/newunicodechar.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/mathtools/mathtools.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/mathtools/mhsetup.sty))
+(/work/Style/TLCorrectionSystemesAsservis.sty
+
+LaTeX Warning: You have requested file `',
+               but the file provides `TLCorrectionSystemesAsservis'.
+
+(/work/Style/TLSystemesAsservis.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta
+.code.tex) (/work/Style/schemabloc.sty
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibraryshapes.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibraryshapes.geometric.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshap
+es.geometric.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibraryshapes.misc.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshap
+es.misc.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibraryshapes.symbols.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshap
+es.symbols.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibraryshapes.arrows.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshap
+es.arrows.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibraryshapes.callouts.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshap
+es.callouts.code.tex))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibraryshapes.multipart.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshap
+es.multipart.code.tex)))
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibraryarrows.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code
+.tex))) (/work/Style/bodegraph.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/ifsym/ifsym.sty)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibrarybackgrounds.code.tex)
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/ti
+kzlibrarydecorations.markings.code.tex
+(/opt/texlive/texdir/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrar
+ydecorations.markings.code.tex))))
+(/work/Style/TLSystemesAsservisStableBode.sty))
+(/work/Style/TLCorrectionSystemesAsservisStableBode.sty
+
+LaTeX Warning: You have requested file `',
+               but the file provides `TLCorrectionSystemesAsservisStableBode'.
+
+)
+Writing index file 00_Correction_Systemes_Asservis.idx
+(/opt/texlive/texdir/texmf-dist/tex/latex/scrhack/scrhack.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/floatrowbytocbasic/floatrowbytocbasic
+.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/setspaceenhanced/setspaceenhanced.sty
+)) (./00_Correction_Systemes_Asservis.aux)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/omlnpxmi.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/unpxexa.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/lmsnpxsy.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/lmxnpxexx.fd)
+(/opt/texlive/texdir/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/opt/texlive/texdir/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/opt/texlive/texdir/texmf-dist/tex/latex/microtype/mt-ppl.cfg)
+(/opt/texlive/texdir/texmf-dist/tex/latex/caption/ltcaption.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/floatrow/fr-subfig.sty
+
+Package fr-subfig Warning: The additions cooperated with 
+(fr-subfig)                version `2005/06/28 ver: 1.3' of package subfig,
+(fr-subfig)                but only version
+(fr-subfig)                2005/06/28 ver: 1.3 subfig package'
+(fr-subfig)                is available on input line 34.
+
+) (/opt/texlive/texdir/texmf-dist/tex/latex/floatrow/fr-longtable.sty)
+No file 00_Correction_Systemes_Asservis.toc.
+(/opt/texlive/texdir/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/pdflscape/pdflscape-nometadata.sty
+(/opt/texlive/texdir/texmf-dist/tex/latex/graphics/lscape.sty)
+(/opt/texlive/texdir/texmf-dist/tex/latex/lscapeenhanced/lscapeenhanced.sty)))
+(./06_Correction_Systemes_Asservis.tex
+(/opt/texlive/texdir/texmf-dist/tex/latex/tex-gyre/t1qhv.fd) [1{/opt/texlive/te
+xdir/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/opt/texlive/texdir/texmf-di
+st/fonts/enc/dvips/tex-gyre/q-ec.enc}{/opt/texlive/texdir/texmf-dist/fonts/enc/
+dvips/newtx/ntx-ec-lf.enc} <../..//Style/FondPoly.png> <./pandoc/images/image3.
+jpeg>] (./00_Correction_Systemes_Asservis.mw)
+(./06_Correction_Systemes_Asservis_Integration.tex)
+(./sources/06_Correction_SA_Cours.tex
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 8--8
+[] 
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/ot1minzpl.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/opt/texlive/texdir/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/microtype/mt-msb.cfg)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/unpxmia.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/unpxsym.fd)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/unpxsyc.fd) [2 <./pandoc/images
+/image5.png>] (./00_Correction_Systemes_Asservis.mw) [3{/opt/texlive/texdir/tex
+mf-dist/fonts/enc/dvips/newtx/ntx-ecth-tlf.enc}{/opt/texlive/texdir/texmf-dist/
+fonts/enc/dvips/newpx/px-lms.enc}] (./00_Correction_Systemes_Asservis.mw)
+[4{/opt/texlive/texdir/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}]
+(./00_Correction_Systemes_Asservis.mw)
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+[5] (./00_Correction_Systemes_Asservis.mw)
+(/opt/texlive/texdir/texmf-dist/tex/latex/newpx/ts1zpllf.fd) [6]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (13.13695pt too wide) in paragraph at lines 225--226
+[] 
+
+Overfull \hbox (34.93628pt too wide) in paragraph at lines 225--226
+[]  
+
+Overfull \hbox (13.13695pt too wide) in paragraph at lines 254--255
+[] 
+
+Overfull \hbox (34.93628pt too wide) in paragraph at lines 254--255
+[]  
+[7{/opt/texlive/texdir/texmf-dist/fonts/enc/dvips/newpx/zpl_OsF.enc} <./pandoc/
+images/image7.png> <./pandoc/images/image8.jpeg>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (13.13695pt too wide) in paragraph at lines 283--284
+[] 
+
+Overfull \hbox (34.93628pt too wide) in paragraph at lines 283--284
+[]  
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+[8 <./pandoc/images/image10.jpeg> <./pandoc/images/image11.jpeg>]
+(./00_Correction_Systemes_Asservis.mw)
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+[9] (./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 374--374
+[] 
+[10] (./00_Correction_Systemes_Asservis.mw) [11 <./pandoc/images/image12.jpeg>]
+ (./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (13.13695pt too wide) in paragraph at lines 448--449
+[] 
+
+Overfull \hbox (34.93628pt too wide) in paragraph at lines 448--449
+[]  
+
+Overfull \hbox (11.94817pt too wide) in paragraph at lines 451--452
+[][]\T1/zpllf/b/n/8 (-20) Agitation 
+(/opt/texlive/texdir/texmf-dist/tex/latex/bera/t1fvm.fd) [12]
+(./00_Correction_Systemes_Asservis.mw) [13]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \vbox (865.82231pt too high) has occurred while \output is active
+[14{/opt/texlive/texdir/texmf-dist/fonts/enc/dvips/base/8r.enc} <./pandoc/image
+s/image13.png> <./pandoc/images/image15.jpeg>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \vbox (95.62227pt too high) has occurred while \output is active
+[15] (./00_Correction_Systemes_Asservis.mw)
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+
+Overfull \hbox (41.48215pt too wide) detected at line 522
+[] \OML/npxmi/m/it/10 ![] \U/npxmia/m/it/10 = [] [] = [] [] = [] []  \LMS/npxsy
+/m/n/10 ) \OML/npxmi/m/it/10 ![] \U/npxmia/m/it/10 = []
+[16] (./00_Correction_Systemes_Asservis.mw)
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+[17] (./00_Correction_Systemes_Asservis.mw)
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+[18] (./00_Correction_Systemes_Asservis.mw) [19]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 699--699
+[] 
+[20 <./pandoc/images/image16.jpeg>] (./00_Correction_Systemes_Asservis.mw))
+Underfull \hbox (badness 10000) in paragraph at lines 721--46
+
+[21] (./00_Correction_Systemes_Asservis.mw)
+(./sources/06_Correction_SA_Exercices.tex
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 2--2
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 7--7
+[] 
+[22 <./pandoc/images/image17.png>] (./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 11--11
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 13--13
+[] 
+[23 <./pandoc/images/image18.png> <./pandoc/images/image19.png>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 33--33
+[] 
+[24 <./pandoc/images/image20.png> <./pandoc/images/image21.png>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 67--67
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 69--69
+[] 
+[25 <./pandoc/images/image22.png> <./pandoc/images/image23.png>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 114--114
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 114--114
+[] 
+
+LaTeX Warning: Command \' invalid in math mode on input line 124.
+
+Missing character: There is no é in font zpl-Regular-tlf-ot1!
+[26 <./pandoc/images/image24.png> <./pandoc/images/image25.png>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 126--126
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 136--136
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 154--154
+[] 
+[27 <./pandoc/images/image26.png> <./pandoc/images/image27.png>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 170--170
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 183--183
+[] 
+[28 <./pandoc/images/image28.png> <./pandoc/images/image29.png> <./pandoc/image
+s/image30.png>] (./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 231--231
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 233--233
+[] 
+[29 <./pandoc/images/image31.png>] (./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 237--237
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 241--241
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 250--250
+[] 
+[30 <./pandoc/images/image32.png> <./pandoc/images/image33.png> <./pandoc/image
+s/image34.png> <./pandoc/images/image35.jpeg>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 266--266
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 268--268
+[] 
+[31 <./pandoc/images/image36.png> <./pandoc/images/image37.png>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 293--293
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 322--322
+[] 
+[32 <./pandoc/images/image38.png> <./pandoc/images/image39.jpeg>]
+(./00_Correction_Systemes_Asservis.mw)
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 330--330
+[] 
+
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 330--330
+[] 
+)) [33] (./00_Correction_Systemes_Asservis.mw)
+(./00_Correction_Systemes_Asservis.aux) )
+(see the transcript file for additional information)</opt/texlive/texdir/texmf-
+dist/fonts/type1/public/newpx/NewPXMI.pfb></opt/texlive/texdir/texmf-dist/fonts
+/type1/public/newpx/NewPXMI_gnu.pfb></opt/texlive/texdir/texmf-dist/fonts/type1
+/public/bera/fvmr8a.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/public/newp
+x/pxmiaX.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/public/newpx/pxsys.pfb
+></opt/texlive/texdir/texmf-dist/fonts/type1/public/tex-gyre/qhvb.pfb></opt/tex
+live/texdir/texmf-dist/fonts/type1/public/tex-gyre/qhvr.pfb></opt/texlive/texdi
+r/texmf-dist/fonts/type1/public/newtx/txexs.pfb></opt/texlive/texdir/texmf-dist
+/fonts/type1/public/newtx/txsym.pfb></opt/texlive/texdir/texmf-dist/fonts/type1
+/public/newpx/zplb.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/public/newpx
+/zplr.pfb></opt/texlive/texdir/texmf-dist/fonts/type1/public/newpx/zplri.pfb>
+Output written on 00_Correction_Systemes_Asservis.pdf (33 pages, 3242422 bytes)
+.
 Transcript written on 00_Correction_Systemes_Asservis.log.
