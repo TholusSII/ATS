@@ -1,0 +1,27 @@
+name: Compile course 15
+
+on:
+  push:
+    paths:
+      - '15-Outils numériques/Cours/**'
+      - 'Style/TLOutilsNumeriques.sty'
+      - 'Style/TLCours.sty'
+      - '.github/workflows/compile-course15.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: 00_OutilsNumeriques.tex
+          working_directory: 15-Outils numériques/Cours
+          latexmk_use_xelatex: false
+      - name: Upload PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: cours-15-outils-numeriques
+          path: 15-Outils numériques/Cours/00_OutilsNumeriques.pdf
