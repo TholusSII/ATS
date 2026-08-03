@@ -6,25 +6,120 @@
 \def\input@path{{../../../Style/}}
 \makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{{TLMachinesAlternatives.sty}}{{\input{{TLMachinesAlternatives.sty}}}}{{}}
+\IfFileExists{TLMachinesAlternatives.sty}{\input{TLMachinesAlternatives.sty}}{}
+\IfFileExists{Notations_Elec/Notations_Elec.sty}{\input{Notations_Elec/Notations_Elec.sty}}{}
+\IfFileExists{Notations_Energetique/Notations_Energetique.sty}{\input{Notations_Energetique/Notations_Energetique.sty}}{}
 \pagestyle{empty}
 \begin{document}
-\TLPosterTitre{{Machines asynchrones et synchrones}}{{Fiche résumé éditable}}
+\TLPosterTitre{Machines asynchrones et synchrones}{Triphasé, conversion électromécanique et commande}
 \begin{multicols}{2}
-\begin{TLPosterBloc}{Triphasé}
-Tensions simples et composées, couplages étoile/triangle et puissances.
+
+\begin{TLPosterBloc}{Réseau triphasé équilibré}
+Trois tensions sinusoïdales de même valeur efficace, déphasées de $120^\circ$. En étoile : $U=\sqrt{3}\,V$ et $I=J$. En triangle : $U=V$ et $I=\sqrt{3}\,J$.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{MAS}
-Glissement, schéma équivalent, bilan de puissance et commande V/f constante.
+\begin{TLPosterBloc}{Puissances triphasées}
+Pour un récepteur équilibré :
+\[
+P=\sqrt{3}\,UI\cos\varphi,\qquad
+Q=\sqrt{3}\,UI\sin\varphi,\qquad
+S=\sqrt{3}\,UI.
+\]
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{MS}
-Vitesse synchrone, diagramme de Behn-Eschenburg et couple électromagnétique.
+\begin{TLPosterBloc}{Champ tournant}
+Les courants statoriques triphasés créent un champ magnétique tournant à la vitesse de synchronisme :
+\[
+n_s=\frac{60f}{p},\qquad \omega_s=\frac{2\pi f}{p},
+\]
+où $p$ est le nombre de paires de pôles.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Commande}
-Onduleur triphasé et autopilotage des moteurs brushless.
+\begin{TLPosterBloc}{Machine asynchrone : principe}
+Le rotor tourne à une vitesse différente de celle du champ. Le glissement vaut :
+\[
+g=\frac{n_s-n}{n_s}=\frac{\omega_s-\omega}{\omega_s}.
+\]
+En fonctionnement moteur, $0<g<1$.
 \end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Fréquence rotorique}
+Les grandeurs rotoriques ont pour fréquence :
+\[
+f_r=g f.
+\]
+À l'arrêt, $g=1$ ; près de la vitesse de synchronisme, $g$ devient faible.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Bilan de puissance de la MAS}
+\[
+P_{abs}\rightarrow P_{J,s}+P_{fer}\rightarrow P_{tr}\rightarrow P_{J,r}\rightarrow P_{em}\rightarrow P_{mec}.
+\]
+Avec $P_{J,r}=gP_{tr}$ et $P_{em}=(1-g)P_{tr}$.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Couple de la MAS}
+Le couple électromagnétique vérifie :
+\[
+C_{em}=\frac{P_{em}}{\omega}.
+\]
+La caractéristique $C(\omega)$ présente un couple de démarrage, un couple maximal et une zone stable proche de $\omega_s$.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Commande scalaire $V/f$}
+Pour maintenir le flux à peu près constant, on impose approximativement :
+\[
+\frac{V}{f}=\text{constante}.
+\]
+La fréquence fixe la vitesse de synchronisme et la tension limite le flux.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Machine synchrone : principe}
+Le rotor est lié au champ tournant sans glissement en régime établi :
+\[
+\omega=\omega_s.
+\]
+L'excitation peut être bobinée ou réalisée par aimants permanents.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Modèle de la machine synchrone}
+En régime sinusoïdal, une écriture simplifiée est :
+\[
+\underline V=\underline E+jX_s\underline I
+\]
+avec $\underline E$ la force électromotrice interne et $X_s$ la réactance synchrone.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Couple et angle interne}
+Le transfert de puissance dépend de l'angle interne $\delta$. Pour un modèle non saillant :
+\[
+P\simeq \frac{3VE}{X_s}\sin\delta.
+\]
+La stabilité impose de conserver une marge suffisante sur $\delta$.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Moteur brushless}
+Une machine synchrone à aimants permanents associée à un onduleur et à une information de position constitue un entraînement brushless autopiloté.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Onduleur triphasé}
+Il synthétise trois tensions déphasées à partir d'une source continue. La modulation de largeur d'impulsion règle fréquence, amplitude et sens de rotation.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Point de fonctionnement}
+Le régime permanent est défini par l'intersection entre la caractéristique moteur $C_m(\omega)$ et le couple résistant $C_r(\omega)$.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Rendement et pertes}
+\[
+\eta=\frac{P_{utile}}{P_{abs}}.
+\]
+Les pertes principales sont les pertes Joule, fer, mécaniques et celles du convertisseur.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Démarche d'étude}
+Identifier le couplage, déterminer $n_s$, calculer le glissement, établir le bilan de puissance, obtenir le couple puis vérifier le point de fonctionnement et le rendement.
+\end{TLPosterBloc}
+
 \end{multicols}
 \end{document}
