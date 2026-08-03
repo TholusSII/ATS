@@ -1,0 +1,95 @@
+\chapter{Machines asynchrones et synchrones}
+\chaptermark{MAS et MS}
+
+\section{Distribution triphasée et nombres complexes}
+Un système triphasé équilibré comporte trois tensions sinusoïdales de même valeur efficace et de même fréquence, déphasées de $2\pi/3$. Les tensions simples sont mesurées entre phase et neutre, tandis que les tensions composées sont mesurées entre deux phases.
+
+\begin{center}\TLTriphasageVectoriel\end{center}
+
+Pour un réseau équilibré :
+\[
+U=\sqrt{3}\,V,\qquad P=\sqrt{3}\,UI\cos\varphi,\qquad Q=\sqrt{3}\,UI\sin\varphi,
+\]
+où $V$ est la tension simple, $U$ la tension composée et $I$ le courant de ligne.
+
+\section{Onduleur triphasé}
+L'onduleur triphasé transforme une source continue en un système triphasé de tensions alternatives. Il est constitué de trois bras de pont commandés. La modulation permet de régler la fréquence et la valeur efficace de la tension fondamentale appliquée à la machine.
+
+\section{Généralités sur les machines alternatives}
+\subsection{Constitution et champ tournant}
+Le stator porte trois enroulements décalés de $120^\circ$ électriques. Alimentés par un système triphasé équilibré, ils créent un champ magnétique tournant. Sa vitesse de synchronisme est
+\[
+\Omega_s=\frac{2\pi f}{p},\qquad n_s=\frac{60f}{p},
+\]
+où $p$ est le nombre de paires de pôles.
+
+\subsection{Plaque à bornes et couplages}
+Le couplage étoile impose à chaque enroulement la tension simple ; le couplage triangle lui impose la tension composée.
+\begin{center}\TLCouplagesEtoileTriangle\end{center}
+
+\subsection{Puissances et couple thermique équivalent}
+En régime équilibré, les puissances active, réactive et apparente s'écrivent
+\[
+P=\sqrt3 UI\cos\varphi,\quad Q=\sqrt3 UI\sin\varphi,\quad S=\sqrt3 UI.
+\]
+Pour un fonctionnement cyclique, le couple thermique équivalent est obtenu par une moyenne quadratique pondérée sur le cycle.
+
+\section{Machine asynchrone}
+\subsection{Glissement}
+Le rotor tourne à une vitesse différente de celle du champ tournant. Le glissement vaut
+\[
+g=\frac{\Omega_s-\Omega}{\Omega_s}.
+\]
+En fonctionnement moteur, $0<g<1$.
+
+\subsection{Schéma monophasé équivalent}
+Le modèle par phase comporte les résistances et inductances de fuite du stator, la branche magnétisante et les grandeurs rotorique ramenées au stator. Il permet de déterminer courant, facteur de puissance, pertes et couple.
+
+\subsection{Bilan de puissance et rendement}
+\begin{center}\TLBilanPuissanceMAS\end{center}
+La puissance transmise au rotor est $P_{tr}$. Les pertes Joule rotoriques valent $gP_{tr}$ et la puissance mécanique développée vaut $(1-g)P_{tr}$.
+\[
+\eta=\frac{P_u}{P_1}.
+\]
+
+\subsection{Couple électromagnétique}
+\begin{center}\TLCoupleGlissementMAS\end{center}
+Le couple est nul au synchronisme et dépend du glissement. La zone stable de fonctionnement moteur est située avant le couple maximal.
+
+\subsection{Variation de vitesse}
+La vitesse est principalement réglée par la fréquence d'alimentation. Pour conserver approximativement le flux, on impose une loi $V/f$ constante sous la fréquence nominale.
+\begin{center}\TLCommandeVsurF\end{center}
+
+\section{Machine synchrone}
+\subsection{Domaines d'emploi et modèle simplifié}
+Le rotor produit un champ magnétique par excitation ou par aimants permanents. En régime établi, il tourne exactement à la vitesse de synchronisme. Pour une phase, le modèle simplifié s'écrit
+\[
+\underline V=\underline E+jX_s\underline I
+\]
+en négligeant la résistance statorique.
+
+\subsection{Diagramme de Behn--Eschenburg}
+\begin{center}\TLDiagrammeBehnEschenburg\end{center}
+L'angle $\delta$ représente le décalage entre la force électromotrice interne et la tension statorique. Il intervient directement dans l'expression de la puissance et du couple électromagnétique.
+
+\subsection{Relations de base, couple et bilan de puissance}
+Pour le modèle simplifié d'une machine non saillante,
+\[
+P_{em}=3\frac{VE}{X_s}\sin\delta,\qquad C_{em}=\frac{P_{em}}{\Omega_s}.
+\]
+Le bilan distingue les pertes Joule statoriques, les pertes fer et les pertes mécaniques avant d'aboutir à la puissance utile.
+
+\subsection{Variation de vitesse et moteur brushless}
+La variation de vitesse impose une alimentation à fréquence variable. Dans une machine synchrone autopilotée, la commande de l'onduleur est synchronisée avec la position du rotor.
+\begin{center}\TLChaineBrushless\end{center}
+
+\section{Méthode d'étude}
+Pour analyser une machine alternative :
+\begin{enumerate}
+\item identifier le couplage et les grandeurs de ligne ;
+\item déterminer la vitesse de synchronisme ;
+\item calculer le glissement pour une MAS ;
+\item établir le bilan de puissance ;
+\item utiliser le modèle électrique et le diagramme vectoriel ;
+\item vérifier les contraintes thermiques et le domaine de fonctionnement.
+\end{enumerate}
