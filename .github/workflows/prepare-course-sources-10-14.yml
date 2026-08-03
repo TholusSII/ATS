@@ -1,0 +1,78 @@
+name: Préparer les sources TeX des cours 10 à 14
+
+on:
+  push:
+    paths:
+      - .github/workflows/prepare-course-sources-10-14.yml
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Installer Pandoc
+        run: sudo apt-get update && sudo apt-get install -y pandoc
+
+      - name: Convertir les sources Markdown en LaTeX intermédiaire
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          convert_course() {
+            folder="$1"
+            number="$2"
+            mkdir -p "$folder/Cours/sources"
+            pandoc "$folder/Cours/COURSE${number}_SOURCE.md" \
+              --from=markdown \
+              --to=latex \
+              --wrap=none \
+              --output="$folder/Cours/sources/${number}_Source_Pandoc.tex"
+          }
+
+          convert_course '10-Électronique de Puissance' 10
+          convert_course '11-Actions Mécaniques' 11
+          convert_course '12-RDM' 12
+          convert_course '13-MAS-MS' 13
+          convert_course '14-Logique' 14
+
+      - name: Générer les plans synthétiques
+        shell: bash
+        run: |
+          set -euo pipefail
+          for spec in \
+            '10-Électronique de Puissance|10' \
+            '11-Actions Mécaniques|11' \
+            '12-RDM|12' \
+            '13-MAS-MS|13' \
+            '14-Logique|14'
+          do
+            folder="${spec%%|*}"
+            number="${spec##*|}"
+            src="$folder/Cours/COURSE${number}_SOURCE.md"
+            out="$folder/Cours/sources/${number}_Plan_Source.txt"
+            {
+              echo "PLAN DU COURS ${number}"
+              echo
+              grep -E '^#{1,4} ' "$src" || true
+              echo
+              echo 'MOTS-CLES'
+              grep -Eio 'hacheur|onduleur|redresseur|thyristor|diode|transistor|torseur|statique|dynamique|PFS|PFD|traction|torsion|flexion|contrainte|déformation|asynchrone|synchrone|triphasé|glissement|grafcet|logique|séquentiel' "$src" | sort -u || true
+            } > "$out"
+          done
+
+      - name: Publier les sources intermédiaires
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add '10-Électronique de Puissance/Cours/sources' \
+                  '11-Actions Mécaniques/Cours/sources' \
+                  '12-RDM/Cours/sources' \
+                  '13-MAS-MS/Cours/sources' \
+                  '14-Logique/Cours/sources'
+          git commit -m 'Prépare les sources TeX des cours 10 à 14' || exit 0
+          git push
