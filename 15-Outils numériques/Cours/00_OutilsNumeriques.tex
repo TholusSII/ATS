@@ -1,0 +1,25 @@
+\RequirePackage{silence}
+\WarningFilter{xcolor}{Package option `usenames' is obsolete}
+\documentclass[fontsize=10pt,twoside=true,open=any]{kaobook}
+\usepackage[french]{babel}
+\newcommand{\TLCourseDefinitionFile}{15_OutilsNumeriques}
+\makeatletter
+\def\input@path{{../../Style/}}
+\makeatother
+\input{TLCours.sty}
+\IfFileExists{Notations_Maths/Notations_Maths.sty}{\input{Notations_Maths/Notations_Maths.sty}}{}
+\IfFileExists{Style/Python.tex}{\input{Style/Python.tex}}{}
+\input{TLOutilsNumeriques.sty}
+\usepackage{amsmath,amssymb,mathtools,array,booktabs}
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{3em}
+\makeindex[columns=3,title=Index alphabétique,intoc]
+\begin{document}
+\mainmatter
+\setchapterstyle{kao}
+\setcounter{margintocdepth}{\sectiontocdepth}
+\marginlayout
+\pagestyle{scrheadings}
+\input{\TLCourseDefinitionFile}
+\end{document}
