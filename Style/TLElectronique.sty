@@ -1,0 +1,98 @@
+% ============================================================================
+% BIBLIOTHÈQUE TL — ÉLECTRONIQUE ET ACQUISITION DU SIGNAL
+% ============================================================================
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{TLElectronique}[2026/08/03 Electronique et acquisition]
+\RequirePackage[siunitx,european]{circuitikz}
+\RequirePackage{xparse}
+\RequirePackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,calc}
+
+\newcommand{\TLChaineAcquisition}{%
+\begin{center}
+\begin{tikzpicture}[node distance=7mm,>=Latex,font=\small]
+\tikzset{bloc/.style={draw,rounded corners=1mm,minimum width=25mm,minimum height=10mm,align=center,fill=blue!4}}
+\node[bloc] (cap) {Capteur};
+\node[bloc,right=of cap] (cond) {Conditionnement};
+\node[bloc,right=of cond] (ech) {Échantillonnage};
+\node[bloc,right=of ech] (can) {Conversion\\A/N};
+\node[bloc,right=of can] (num) {Traitement\\numérique};
+\draw[->] (cap)--(cond); \draw[->] (cond)--(ech); \draw[->] (ech)--(can); \draw[->] (can)--(num);
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\TLPontDiviseur}{%
+\begin{center}
+\begin{circuitikz}[european resistors]
+\draw (0,0) node[ground]{} to[V,l=$E$] (0,4)
+      to[R,l=$R_1$] (3,4) -- (3,2)
+      to[R,l=$R_2$] (3,0) -- (0,0);
+\draw (3,2) to[short,-o] (4.2,2) node[right]{$u_s$};
+\end{circuitikz}
+\end{center}}
+
+\newcommand{\TLFiltreRCPasseBas}{%
+\begin{center}
+\begin{circuitikz}[european resistors]
+\draw (0,2) node[left]{$u_e$} to[short,o-] (1,2) to[R,l=$R$] (4,2)
+      to[short,-o] (5,2) node[right]{$u_s$};
+\draw (4,2) to[C,l=$C$] (4,0) node[ground]{};
+\draw (1,0) node[ground]{} to[short,-o] (0,0);
+\end{circuitikz}
+\end{center}}
+
+\newcommand{\TLFiltreRCPasseHaut}{%
+\begin{center}
+\begin{circuitikz}[european resistors]
+\draw (0,2) node[left]{$u_e$} to[short,o-] (1,2) to[C,l=$C$] (4,2)
+      to[short,-o] (5,2) node[right]{$u_s$};
+\draw (4,2) to[R,l=$R$] (4,0) node[ground]{};
+\end{circuitikz}
+\end{center}}
+
+\newcommand{\TLAOPInverseur}{%
+\begin{center}
+\begin{circuitikz}[american voltages]
+\draw (4,2) node[op amp] (op) {};
+\draw (0,1.5) node[left]{$u_e$} to[short,o-] (1,1.5) to[R,l=$R_1$] (op.-);
+\draw (op.+) -- ++(0,-1) node[ground]{};
+\draw (op.out) to[short,-o] ++(1.5,0) node[right]{$u_s$};
+\draw (op.out) -- ++(0,1.5) to[R,l=$R_2$] ++(-3.5,0) |- (op.-);
+\end{circuitikz}
+\end{center}}
+
+\newcommand{\TLAOPNonInverseur}{%
+\begin{center}
+\begin{circuitikz}[american voltages]
+\draw (4,2) node[op amp] (op) {};
+\draw (0,2.5) node[left]{$u_e$} to[short,o-] (op.+);
+\draw (op.out) to[short,-o] ++(1.5,0) node[right]{$u_s$};
+\draw (op.-) -- ++(-1,0) coordinate (n);
+\draw (n) to[R,l_=$R_1$] ++(0,-2) node[ground]{};
+\draw (op.out) -- ++(0,1.5) to[R,l=$R_2$] ++(-3.5,0) |- (n);
+\end{circuitikz}
+\end{center}}
+
+\newcommand{\TLPontWheatstone}{%
+\begin{center}
+\begin{circuitikz}[european resistors]
+\draw (0,0) to[V,l=$E$] (0,4) -- (2,4);
+\draw (2,4) to[R,l=$R_1$] (2,2) to[R,l=$R_2$] (2,0) -- (0,0);
+\draw (2,4) -- (5,4) to[R,l=$R_3$] (5,2) to[R,l=$R_4$] (5,0) -- (2,0);
+\draw (2,2) to[short,-o] (3,2) node[below]{$A$};
+\draw (5,2) to[short,-o] (4,2) node[below]{$B$};
+\draw[<->] (3,2.35)--(4,2.35) node[midway,above]{$u_{AB}$};
+\end{circuitikz}
+\end{center}}
+
+\newcommand{\TLEchantillonnageSignal}{%
+\begin{center}
+\begin{tikzpicture}[x=.7cm,y=.8cm,>=Latex]
+\draw[->] (0,0)--(10,0) node[right]{$t$};
+\draw[->] (0,-1.4)--(0,2) node[above]{$u$};
+\draw[domain=0:9.5,samples=200,smooth] plot(\x,{sin(50*\x)});
+\foreach \x in {0,0.8,...,9.6}{\draw (\x,0)--(\x,{sin(50*\x)}) node[circle,fill,inner sep=1.2pt]{};}
+\end{tikzpicture}
+\end{center}}
+
+\endinput
