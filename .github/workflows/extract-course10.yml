@@ -1,0 +1,40 @@
+name: Extraire le cours 10
+
+on:
+  push:
+    paths:
+      - .github/workflows/extract-course10.yml
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Installer pandoc
+        run: sudo apt-get update && sudo apt-get install -y pandoc
+      - name: Extraire le Word
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p '10-Électronique de Puissance/Cours/pandoc/images'
+          pandoc '10-Électronique de Puissance/Cours/14-ElectroniquePuissance.docx' \
+            --extract-media='10-Électronique de Puissance/Cours/pandoc' \
+            -t markdown \
+            -o '10-Électronique de Puissance/Cours/COURSE10_SOURCE.md'
+          {
+            echo
+            echo '---'
+            echo '## Inventaire des images'
+            find '10-Électronique de Puissance/Cours/pandoc' -type f | sort
+          } >> '10-Électronique de Puissance/Cours/COURSE10_SOURCE.md'
+      - name: Publier l'extraction
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add '10-Électronique de Puissance/Cours/COURSE10_SOURCE.md' '10-Électronique de Puissance/Cours/pandoc'
+          git commit -m 'Extrait la source du cours 10' || exit 0
+          git push
