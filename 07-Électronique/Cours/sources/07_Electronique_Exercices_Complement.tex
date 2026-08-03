@@ -74,3 +74,30 @@ Le CAN de l'automate possède les caractéristiques suivantes :
   \item Déterminer la période d'échantillonnage du convertisseur.
   \item Donner la fréquence maximale théorique du signal mesurable conformément au théorème de Shannon-Nyquist.
 \end{enumerate}
+
+\subsection{Tracking solaire en site isolé}
+
+Le système étudié assure l'orientation d'un panneau solaire sur un site isolé afin d'améliorer la récupération d'énergie. Le suivi repose sur l'acquisition de grandeurs physiques, leur numérisation puis leur traitement par une unité de commande. Le document d'origine présente ce travail dirigé dans la partie « Acquisition et numérisation de l'information ».
+
+L'étude porte sur l'identification des informations utiles au suivi, la constitution de la chaîne d'acquisition et le choix des paramètres de numérisation. Les valeurs numériques et les documents techniques nécessaires sont à lire sur les figures et tableaux du sujet d'origine.
+
+\begin{enumerate}
+  \item Identifier les grandeurs physiques à acquérir pour assurer le suivi solaire et préciser, pour chacune, la nature du signal fourni par le capteur.
+  \item Représenter la chaîne d'information depuis les capteurs jusqu'à l'unité de traitement.
+  \item Identifier les fonctions de conditionnement nécessaires avant la conversion analogique-numérique : adaptation d'amplitude, filtrage et éventuel décalage de niveau.
+  \item À partir de l'étendue de mesure utile et de la résolution imposée dans le sujet, déterminer le nombre minimal de bits du convertisseur analogique-numérique.
+  \item Pour le CAN retenu, calculer le nombre de niveaux et le quantum correspondant à sa pleine échelle.
+  \item Vérifier que la résolution obtenue sur la grandeur physique respecte le cahier des charges.
+  \item À partir du spectre ou de la fréquence maximale du signal utile fourni dans le sujet, déterminer la fréquence minimale d'échantillonnage imposée par la condition de Shannon-Nyquist.
+  \item Vérifier que le temps de conversion du CAN est compatible avec la période d'échantillonnage choisie.
+  \item Justifier la présence d'un filtre anti-repliement avant le CAN et proposer son type ainsi que son gabarit.
+  \item Expliquer comment les informations acquises permettent de déterminer le sens de correction à appliquer aux actionneurs d'orientation.
+  \item Proposer un algorithme simple de poursuite du point de fonctionnement recherché à partir des mesures disponibles.
+  \item Préciser les précautions à prendre sur un site isolé concernant la consommation électrique de la chaîne d'acquisition et la fréquence des mesures.
+\end{enumerate}
+
+\begin{center}
+\fbox{\parbox{0.9\linewidth}{\centering
+Les valeurs numériques, courbes et schémas du TD solaire doivent être lus dans les pages 126 à 135 du document source. Ils ne sont pas reproduits ici tant que les illustrations correspondantes n'ont pas été extraites proprement.
+}}
+\end{center}
