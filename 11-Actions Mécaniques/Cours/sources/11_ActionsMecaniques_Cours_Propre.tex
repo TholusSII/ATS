@@ -1,0 +1,171 @@
+\section{Introduction}
+L'étude des actions mécaniques permet de déterminer les efforts transmis dans un mécanisme, de vérifier son équilibre, puis d'étudier son mouvement. La démarche repose sur le choix d'un système isolé, l'inventaire des actions extérieures et l'application du principe adapté : statique, énergie-puissance ou dynamique.
+
+\section{Démarche de résolution}
+\subsection{Représenter le système}
+On commence par identifier les solides, les liaisons et les actions extérieures. Le graphe de structure et le schéma d'architecture facilitent cette lecture.
+\TLGrapheStructureSimple
+
+\subsection{Choisir un isolement}
+L'isolement doit rendre accessibles les inconnues recherchées tout en limitant leur nombre. On privilégie souvent un solide ou un sous-ensemble soumis à peu d'actions mécaniques.
+
+\subsection{Bilan des actions mécaniques extérieures}
+Le BAME recense toutes les actions exercées par l'extérieur sur le système isolé.
+\TLBAME
+\TLChaineResolutionStatique
+
+\section{Actions mécaniques et torseurs}
+\subsection{Définition}
+Une action mécanique traduit l'influence d'un système matériel sur un autre. Son effet global sur un solide est modélisé par un torseur d'action mécanique :
+\[
+\left\{\mathcal T_{1\rightarrow2}\right\}_A=
+\left\{\begin{array}{c}
+\vec R_{1\rightarrow2}\\
+\vec M_A(1\rightarrow2)
+\end{array}\right\}.
+\]
+
+\subsection{Torseurs particuliers}
+Un \textbf{glisseur} possède une résultante non nulle et un moment nul en tout point de sa droite d'action. Un \textbf{couple} possède une résultante nulle et un moment indépendant du point de réduction.
+
+\subsection{Théorème des actions réciproques}
+Pour deux solides 1 et 2 :
+\[
+\left\{\mathcal T_{1\rightarrow2}\right\}_A=-\left\{\mathcal T_{2\rightarrow1}\right\}_A.
+\]
+
+\subsection{Pesanteur}
+L'action de la pesanteur sur un solide de masse $m$ est modélisée par un glisseur appliqué en son centre d'inertie $G$ :
+\[
+\vec P=m\vec g.
+\]
+
+\subsection{Liaisons usuelles}
+Chaque liaison transmet uniquement les composantes d'effort compatibles avec les mobilités qu'elle interdit. Dans un problème plan, le torseur se réduit généralement à deux composantes de résultante et une composante de moment.
+
+\section{Équilibre d'un système}
+\subsection{Principe fondamental de la statique}
+Dans un référentiel galiléen, si un système matériel est en équilibre :
+\[
+\sum \vec F_{\mathrm{ext}}=\vec 0,
+\qquad
+\sum \vec M_A(\mathrm{ext})=\vec 0.
+\]
+Sous forme torsorielle :
+\[
+\left\{\mathcal T_{\mathrm{ext}\rightarrow S}\right\}_A=\{0\}.
+\]
+
+\subsection{Choix du point de réduction}
+On choisit de préférence un point annulant le moment d'une ou plusieurs actions inconnues, typiquement un point de liaison ou un point appartenant à une droite d'action.
+
+\subsection{Système soumis à des glisseurs}
+Pour trois glisseurs coplanaires non parallèles en équilibre, les trois droites d'action sont concourantes. Cette propriété géométrique peut simplifier fortement la résolution.
+
+\section{Point de vue local et frottement}
+\subsection{Action de contact}
+À l'échelle locale, une action de contact est décrite par une répartition de pression et éventuellement de contraintes tangentielles. Le torseur global est obtenu par intégration sur la zone de contact.
+
+\subsection{Frottement de Coulomb}
+Au contact entre deux solides, la réaction se décompose en une composante normale $\vec N$ et une composante tangentielle $\vec T$.
+\[
+\|\vec T\|\le f\,\|\vec N\|.
+\]
+À la limite du glissement : $\|\vec T\|=f\|\vec N\|$.
+\TLConeFrottement
+
+\subsection{Frottement dans une liaison pivot}
+Le frottement peut être modélisé par un couple résistant, souvent borné par une valeur proportionnelle à l'effort normal et à un rayon de frottement équivalent.
+
+\subsection{Arc-boutement}
+L'arc-boutement correspond à une situation de blocage due à la position de la résultante de contact dans le cône de frottement.
+
+\section{Moment d'une force et bras de levier}
+Le moment en $A$ d'une force $\vec F$ appliquée en $B$ vaut :
+\[
+\vec M_A(\vec F)=\overrightarrow{AB}\wedge\vec F.
+\]
+Sa norme peut s'écrire $Fd$, où $d$ est le bras de levier.
+\TLForceMoment
+
+\section{Masse et centre d'inertie}
+La masse d'un solide est :
+\[
+m=\iiint_V \rho\,\mathrm dV.
+\]
+Le centre d'inertie $G$ est défini par :
+\[
+\overrightarrow{OG}=\frac1m\iiint_V \overrightarrow{OM}\,\rho\,\mathrm dV.
+\]
+
+\section{Opérateur d'inertie}
+\subsection{Matrice d'inertie}
+Dans une base orthonormée, l'opérateur d'inertie en $O$ s'écrit :
+\[
+\mathbf I_O=
+\begin{pmatrix}
+A&-F&-E\\
+-F&B&-D\\
+-E&-D&C
+\end{pmatrix}.
+\]
+Les termes diagonaux sont les moments d'inertie et les autres les produits d'inertie.
+
+\subsection{Symétries matérielles}
+Un plan de symétrie matérielle annule certains produits d'inertie. Des axes principaux d'inertie permettent de diagonaliser la matrice.
+
+\subsection{Théorème de Huygens}
+Entre le centre d'inertie $G$ et un point $O$ :
+\[
+\mathbf I_O=\mathbf I_G+m\left(\|\overrightarrow{OG}\|^2\mathbf 1-\overrightarrow{OG}\,\overrightarrow{OG}^{\,T}\right).
+\]
+
+\subsection{Équilibrage dynamique}
+L'équilibrage vise à placer le centre d'inertie sur l'axe de rotation et à rendre cet axe principal d'inertie afin de limiter les efforts dynamiques transmis aux paliers.
+
+\section{Théorème de l'énergie cinétique}
+Dans un référentiel galiléen :
+\TLEnergiePuissance
+
+\subsection{Énergie cinétique d'un solide}
+Pour un solide $S$ :
+\[
+E_c(S/R_g)=\frac12 mV_G^2+\frac12\vec\Omega\cdot\mathbf I_G\vec\Omega.
+\]
+
+\subsection{Inertie ou masse équivalente}
+Pour une chaîne cinématique à un seul paramètre, on regroupe les contributions d'énergie sous la forme :
+\[
+E_c=\frac12 J_{\mathrm{eq}}\omega^2
+\quad\text{ou}\quad
+E_c=\frac12 m_{\mathrm{eq}}v^2.
+\]
+
+\subsection{Puissance mécanique}
+La puissance d'une action mécanique représentée par un torseur d'effort $\{\mathcal T\}$ sur un mouvement décrit par un torseur cinématique $\{\mathcal V\}$ est le comoment :
+\[
+\mathcal P=\{\mathcal T\}\otimes\{\mathcal V\}.
+\]
+Le travail est l'intégrale temporelle de la puissance.
+
+\section{Principe fondamental de la dynamique}
+Dans un référentiel galiléen :
+\[
+\left\{\mathcal T_{\mathrm{ext}\rightarrow S}\right\}_A=
+\left\{\mathcal D(S/R_g)\right\}_A.
+\]
+Cela conduit aux équations :
+\[
+\sum\vec F_{\mathrm{ext}}=m\vec a_G,
+\qquad
+\sum\vec M_A(\mathrm{ext})=\vec\delta_A.
+\]
+
+\subsection{Cas simplifiés}
+Pour une translation, la résultante dynamique suffit souvent. Pour une rotation autour d'un axe fixe principal passant par $G$ :
+\[
+\sum M_{\Delta,\mathrm{ext}}=J_\Delta\,\dot\omega.
+\]
+
+\section{Synthèse}
+La résolution d'un problème d'actions mécaniques suit une logique constante : représenter, isoler, recenser, choisir le principe adapté, écrire les équations, résoudre puis vérifier la cohérence physique et les unités.
