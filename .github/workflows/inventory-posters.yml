@@ -14,7 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build inventory
+        with:
+          fetch-depth: 0
+      - name: Build detailed inventory
         shell: bash
         run: |
           {
@@ -25,10 +27,19 @@ jobs:
               echo 'DOSSIER Posters ABSENT'
             fi
             echo
+            echo '=== LATEX ==='
+            find Posters -type f \( -iname '*.tex' -o -iname '*.sty' \) 2>/dev/null | sort || true
+            echo
+            echo '=== PDF ==='
+            find Posters -type f -iname '*.pdf' 2>/dev/null | sort || true
+            echo
+            echo '=== IMAGES ==='
+            find Posters -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.svg' -o -iname '*.eps' \) 2>/dev/null | sort || true
+            echo
             echo '=== DOSSIERS DE COURS ==='
             find . -maxdepth 2 -type d -name Cours | sort
             echo
-            echo '=== FICHIERS LATEX DE STYLE LIES AUX POSTERS ==='
+            echo '=== STYLES LIES ==='
             find Style -type f \( -iname '*poster*' -o -iname '*mind*' -o -iname '*carte*' -o -iname '*resume*' \) | sort
           } > INVENTAIRE_POSTERS.txt
       - name: Commit inventory
@@ -38,6 +49,7 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add INVENTAIRE_POSTERS.txt
           if ! git diff --cached --quiet; then
-            git commit -m 'Ajoute l inventaire des posters et cartes mentales'
+            git commit -m 'Ajoute l inventaire détaillé des posters historiques [skip poster generation]'
+            git pull --rebase origin main
             git push
           fi
