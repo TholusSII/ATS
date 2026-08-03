@@ -1,0 +1,61 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{TLActionsMecaniques}[2026/08/03 Outils graphiques actions mecaniques]
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta,calc,positioning,patterns,decorations.pathmorphing}
+
+\newcommand{\TLGrapheStructureSimple}{%
+\begin{center}\begin{tikzpicture}[>=Latex,node distance=20mm,
+solide/.style={draw,rounded corners,minimum width=23mm,minimum height=9mm,fill=blue!5},
+liaison/.style={draw,ellipse,minimum width=20mm,minimum height=8mm,fill=orange!10}]
+\node[solide] (b) {Bâti 0};
+\node[solide,right=42mm of b] (s) {Solide 1};
+\node[liaison] at ($(b)!0.5!(s)$) (l) {Liaison};
+\draw[->] (b)--(l); \draw[->] (l)--(s);
+\end{tikzpicture}\end{center}}
+
+\newcommand{\TLTorseurAction}[6]{\left\{\mathcal T_{#1\rightarrow #2}\right\}_{#3}=\left\{\begin{array}{cc}#4&#5\\#6&\end{array}\right\}_{#3}}
+
+\newcommand{\TLForceMoment}{%
+\begin{center}\begin{tikzpicture}[>=Latex,scale=.9]
+\coordinate (A) at (0,0); \coordinate (B) at (4,0);
+\draw[thick] (A)--(B); \fill (A) circle(1.5pt) node[below]{$A$};
+\draw[very thick,->] (B)--++(0,2) node[above]{$\vec F$};
+\draw[dashed] (A)--(0,2); \draw[<->] (.2,0)--(.2,2) node[midway,right]{$d$};
+\node at (2,-.6) {$\|\vec M_A(\vec F)\|=F\,d$};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\TLConeFrottement}{%
+\begin{center}\begin{tikzpicture}[>=Latex,scale=.9]
+\draw[->] (0,0)--(0,3) node[above]{$\vec N$};
+\draw[->] (0,0)--(2.6,0) node[right]{$\vec T$};
+\draw[thick] (0,0)--(-1.5,3); \draw[thick] (0,0)--(1.5,3);
+\draw[->,very thick] (0,0)--(.8,2.3) node[right]{$\vec R$};
+\draw (0,.9) arc[start angle=90,end angle=70,radius=.9] node[midway,above right]{$\varphi$};
+\node at (0,-.5) {$\tan\varphi=f$};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\TLBAME}{%
+\begin{center}\begin{tikzpicture}[>=Latex]
+\draw[rounded corners,fill=blue!5] (-1.5,-.7) rectangle (1.5,.7) node[midway]{Système isolé $S$};
+\foreach \a/\lab in {150/$\mathcal A_1$,30/$\mathcal A_2$,-90/$\mathcal A_3$}{
+\draw[->,very thick] ({3*cos(\a)},{3*sin(\a)})--({1.55*cos(\a)},{1.55*sin(\a)}) node[midway,sloped,above]{\lab};}
+\end{tikzpicture}\end{center}}
+
+\newcommand{\TLChaineResolutionStatique}{%
+\begin{center}\begin{tikzpicture}[>=Latex,node distance=7mm,
+bloc/.style={draw,rounded corners,align=center,minimum width=32mm,minimum height=9mm,fill=blue!5}]
+\node[bloc] (a) {Choisir le système\\à isoler};
+\node[bloc,right=of a] (b) {Établir le BAME};
+\node[bloc,right=of b] (c) {Écrire le PFS};
+\node[bloc,right=of c] (d) {Résoudre et\\vérifier};
+\draw[->] (a)--(b);\draw[->] (b)--(c);\draw[->] (c)--(d);
+\end{tikzpicture}\end{center}}
+
+\newcommand{\TLEnergiePuissance}{%
+\begin{center}\fbox{\parbox{.82\linewidth}{\centering
+$\displaystyle \frac{\mathrm d E_c(S/R_g)}{\mathrm dt}=\mathcal P_{\mathrm{ext}}+\mathcal P_{\mathrm{int}}$
+\qquad et \qquad
+$E_c=\frac12 mV_G^2+\frac12\,\vec\Omega\cdot\mathbf I_G\vec\Omega$}}
+\end{center}}
+
+\endinput
