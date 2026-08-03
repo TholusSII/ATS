@@ -16,7 +16,7 @@ REPORT_DIR = ROOT / "reports"
 CSV_PATH = REPORT_DIR / "pages_pdf_presque_vides.csv"
 MD_PATH = REPORT_DIR / "pages_pdf_presque_vides.md"
 
-# Critères volontairement larges : peu de texte et très faible occupation graphique.
+# Critères volontairement larges afin de ne pas manquer les défauts de mise en page.
 MAX_TEXT_CHARS = 80
 MAX_IMAGE_AREA_RATIO = 0.12
 
