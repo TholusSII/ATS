@@ -1,0 +1,73 @@
+% Bibliothèque de schémas pour le cours d'électronique de puissance
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{TLElectroniquePuissance}[2026/08/03]
+\RequirePackage{tikz}
+\RequirePackage[european,europeanvoltages,europeancurrents]{circuitikz}
+\usetikzlibrary{arrows.meta,positioning,calc}
+
+\newcommand{\TLChaineConvertisseursPuissance}{%
+\begin{tikzpicture}[node distance=8mm,>=Latex,bloc/.style={draw,rounded corners,minimum width=25mm,minimum height=11mm,align=center}]
+\node[bloc] (acdc) {Redresseur\\AC $\to$ DC};
+\node[bloc,right=of acdc] (dcdc) {Hacheur\\DC $\to$ DC};
+\node[bloc,right=of dcdc] (dcac) {Onduleur\\DC $\to$ AC};
+\node[bloc,right=of dcac] (acac) {Gradateur\\AC $\to$ AC};
+\draw[->] (acdc)--(dcdc);\draw[->] (dcdc)--(dcac);\draw[->] (dcac)--(acac);
+\end{tikzpicture}}
+
+\newcommand{\TLBrasDePont}{%
+\begin{circuitikz}
+\draw (0,3) node[vcc]{$+E$} to[switch,l=$K_1$] (0,1.5) coordinate(M)
+      to[switch,l=$K_2$] (0,0) node[ground]{};
+\draw (M) -- (2,1.5) node[right]{$u_s$};
+\end{circuitikz}}
+
+\newcommand{\TLHacheurBuck}{%
+\begin{circuitikz}
+\draw (0,0) to[V,l=$E$] (0,3) to[switch,l=$K$] (2,3) to[L,l=$L$,i>^=$i$] (4,3)
+      to[R,l=$R$] (4,0) -- (0,0);
+\draw (2,0) to[D*,l_=$D$] (2,3);
+\draw (4,3) to[open,v^>=$u_s$] (4,0);
+\end{circuitikz}}
+
+\newcommand{\TLHacheurBoost}{%
+\begin{circuitikz}
+\draw (0,0) to[V,l=$E$] (0,3) to[L,l=$L$,i>^=$i$] (2,3)
+      to[D,l=$D$] (4,3) to[C,l=$C$] (4,0) -- (0,0);
+\draw (2,3) to[switch,l=$K$] (2,0);
+\draw (4,3) -- (5.5,3) to[R,l=$R$] (5.5,0) -- (4,0);
+\end{circuitikz}}
+
+\newcommand{\TLHacheurDeuxQuadrants}{%
+\begin{circuitikz}
+\draw (0,3) node[vcc]{$+E$} to[switch,l=$K_1$] (0,1.5) coordinate(M)
+      to[switch,l=$K_2$] (0,0) node[ground]{};
+\draw (1.1,3) to[D*,invert,l=$D_1$] (1.1,1.5) -- (M);
+\draw (M) -- (1.1,1.5) to[D*,invert,l=$D_2$] (1.1,0);
+\draw (M) -- (3,1.5) node[right]{$u_s,i_s$};
+\end{circuitikz}}
+
+\newcommand{\TLHacheurQuatreQuadrants}{%
+\begin{circuitikz}
+\draw (0,3) node[vcc]{$+E$} to[switch,l=$K_1$] (0,1.5) coordinate(A) to[switch,l=$K_2$] (0,0) node[ground]{};
+\draw (4,3) node[vcc]{$+E$} to[switch,l_=$K_3$] (4,1.5) coordinate(B) to[switch,l_=$K_4$] (4,0) node[ground]{};
+\draw (A) to[R,l=$\text{charge}$,v^>=$u_s$,i>^=$i_s$] (B);
+\end{circuitikz}}
+
+\newcommand{\TLPontDiodes}{%
+\begin{circuitikz}
+\draw (0,2) coordinate(A) to[D,l=$D_1$] (2,3.5) coordinate(P)
+      to[D,l=$D_2$] (4,2) coordinate(B)
+      to[D,l=$D_3$] (2,.5) coordinate(N)
+      to[D,l=$D_4$] (0,2);
+\draw (A) to[open,v=$u_e$] (B);
+\draw (P) to[R,l=$R$,v^>=$u_s$] (N);
+\end{circuitikz}}
+
+\newcommand{\TLChronogrammePWM}{%
+\begin{tikzpicture}[>=Latex]
+\draw[->] (0,0)--(7,0) node[right]{$t$};\draw[->] (0,-.2)--(0,2.3) node[above]{$u(t)$};
+\foreach \k in {0,2,4}{\draw[thick] (\k,0)--(\k,2)--(\k+1.2,2)--(\k+1.2,0)--(\k+2,0);}
+\draw[dashed] (1.2,0)--(1.2,2.2);\node[below] at (1.2,0){$\alpha T$};\node[below] at (2,0){$T$};
+\end{tikzpicture}}
+
+\endinput
