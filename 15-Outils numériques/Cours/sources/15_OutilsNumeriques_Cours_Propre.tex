@@ -1,0 +1,134 @@
+\chapter{Outils numériques : schéma d'Euler explicite}
+
+\section{Objectif de la résolution numérique}
+De nombreux modèles de sciences de l'ingénieur conduisent à une équation différentielle dont la solution exacte n'est pas directement exploitable. Une méthode numérique construit alors une suite de valeurs approchées de la solution à des instants discrétisés.
+
+On considère le problème de Cauchy
+\[
+\dot y(t)=f\bigl(t,y(t)\bigr),\qquad y(t_0)=y_0.
+\]
+On choisit un pas de temps constant $h>0$ et les instants
+\[
+t_k=t_0+kh.
+\]
+La valeur calculée $y_k$ constitue une approximation de $y(t_k)$.
+
+\begin{center}
+\TLEulerGeometrique
+\end{center}
+
+\section{Construction du schéma d'Euler explicite}
+Au voisinage de $t_k$, la dérivée peut être approchée par
+\[
+\dot y(t_k)\simeq \frac{y(t_{k+1})-y(t_k)}{h}.
+\]
+Comme $\dot y(t_k)=f(t_k,y(t_k))$, on obtient la relation de récurrence
+\[
+\boxed{y_{k+1}=y_k+h f(t_k,y_k)}.
+\]
+Cette relation est dite \emph{explicite} car la nouvelle valeur $y_{k+1}$ est calculée uniquement à partir de valeurs déjà connues.
+
+\begin{center}
+\TLAlgorithmeEuler
+\end{center}
+
+\section{Exemple linéaire du premier ordre}
+Les sources d'exercices proposent l'équation
+\[
+\dot y(t)+\alpha y(t)=\beta,\qquad y(0)=\gamma.
+\]
+Elle s'écrit
+\[
+\dot y(t)=\beta-\alpha y(t).
+\]
+Le schéma d'Euler explicite donne alors
+\[
+\boxed{y_{k+1}=y_k+h\left(\beta-\alpha y_k\right)}
+\]
+soit
+\[
+y_{k+1}=(1-\alpha h)y_k+\beta h.
+\]
+Le facteur $\alpha h$ montre que le choix du pas influence directement la qualité et la stabilité du calcul.
+
+\section{Équation non linéaire du premier ordre}
+Pour
+\[
+\dot y(t)=-t\,y^2(t),\qquad y(0)=\alpha,
+\]
+la récurrence devient
+\[
+\boxed{y_{k+1}=y_k-h\,t_k\,y_k^2}.
+\]
+La méthode reste identique : seule la fonction $f(t,y)$ change.
+
+\section{Passage d'une équation d'ordre deux à un système d'ordre un}
+Le schéma d'Euler s'applique directement à un système d'équations du premier ordre. Une équation d'ordre deux doit donc être transformée.
+
+Pour le pendule proposé dans les sources,
+\[
+\ddot\theta(t)+\frac{g}{\ell}\sin\theta(t)=0,
+\]
+on pose
+\[
+y_0(t)=\theta(t),\qquad y_1(t)=\dot\theta(t).
+\]
+On obtient le système
+\[
+\begin{cases}
+\dot y_0=y_1,\\
+\dot y_1=-\dfrac{g}{\ell}\sin y_0.
+\end{cases}
+\]
+
+\begin{center}
+\TLSchemaEtatOrdreDeux
+\end{center}
+
+Le schéma d'Euler explicite devient
+\[
+\boxed{\begin{aligned}
+y_{0,k+1}&=y_{0,k}+h y_{1,k},\\
+y_{1,k+1}&=y_{1,k}-h\frac{g}{\ell}\sin(y_{0,k}).
+\end{aligned}}
+\]
+
+\section{Implémentation en Python}
+\begin{lstlisting}[style=TLPython]
+def euler_explicit(f, t0, y0, h, n):
+    """Retourne les listes des temps et des valeurs calculées."""
+    t = [t0]
+    y = [y0]
+    for _ in range(n):
+        y_next = y[-1] + h * f(t[-1], y[-1])
+        t_next = t[-1] + h
+        t.append(t_next)
+        y.append(y_next)
+    return t, y
+\end{lstlisting}
+
+Pour un système, $y_k$ est remplacé par un vecteur d'état et la relation
+\[
+\mathbf y_{k+1}=\mathbf y_k+h\,\mathbf f(t_k,\mathbf y_k)
+\]
+s'applique composante par composante.
+
+\section{Choix du pas et validation}
+Un pas plus petit augmente généralement la précision, mais accroît le nombre de calculs. La validation d'une simulation repose sur plusieurs vérifications :
+\begin{itemize}
+\item cohérence des unités et des conditions initiales ;
+\item comparaison avec une solution exacte lorsqu'elle existe ;
+\item répétition du calcul avec un pas plus petit ;
+\item contrôle du comportement physique de la solution.
+\end{itemize}
+
+La méthode d'Euler explicite est simple et pédagogique, mais elle peut devenir imprécise ou instable lorsque le pas est trop grand.
+
+\section{Synthèse de la démarche}
+\begin{enumerate}
+\item Mettre le modèle sous la forme $\dot{\mathbf y}=\mathbf f(t,\mathbf y)$.
+\item Définir l'état initial $\mathbf y_0$, le pas $h$ et la durée de simulation.
+\item Calculer successivement $\mathbf y_{k+1}=\mathbf y_k+h\mathbf f(t_k,\mathbf y_k)$.
+\item Stocker les résultats et les représenter.
+\item Vérifier leur cohérence et étudier l'influence du pas.
+\end{enumerate}
