@@ -1,0 +1,262 @@
+=== 09-MCC ===
+09-MCC/ALL_TD.tex
+09-MCC/Cours/.gitkeep
+09-MCC/Cours/11-AcquisitionTraitementSignal2022.docx
+09-MCC/TD.tex
+09-MCC/TD/1023_MCC/1023_MCC.tex
+09-MCC/TD/1023_MCC/corrige.tex
+09-MCC/TD/1023_MCC/images/1023.pptx
+09-MCC/TD/1023_MCC/images/1023_01.png
+
+=== 10-Électronique de Puissance ===
+10-Électronique de Puissance/ALL_TD.tex
+10-Électronique de Puissance/Cours/.gitkeep
+10-Électronique de Puissance/Cours/14-ElectroniquePuissance.docx
+10-Électronique de Puissance/TD.tex
+10-Électronique de Puissance/TD/README.md
+
+=== 11-Actions Mécaniques ===
+11-Actions Mécaniques/ALL_TD.tex
+11-Actions Mécaniques/Cours/.gitkeep
+11-Actions Mécaniques/Cours/15-ActionsMecaniques.docx
+11-Actions Mécaniques/TD.tex
+11-Actions Mécaniques/TD/DYN/089_PFD_RobotChirurgical/089_PFD_RobotChirurgical.tex
+11-Actions Mécaniques/TD/DYN/089_PFD_RobotChirurgical/corrige.tex
+11-Actions Mécaniques/TD/DYN/090_Inertie/090_Inertie.tex
+11-Actions Mécaniques/TD/DYN/090_Inertie/corrige.tex
+11-Actions Mécaniques/TD/DYN/092_TorseursDyn_Orthese/092_TorseursDyn_Orthese.tex
+11-Actions Mécaniques/TD/DYN/092_TorseursDyn_Orthese/corrige.tex
+11-Actions Mécaniques/TD/DYN/093_PFD/093_PFD.tex
+11-Actions Mécaniques/TD/DYN/093_PFD/corrige.tex
+11-Actions Mécaniques/TD/STAT/016_PFS/016_PFS.tex
+11-Actions Mécaniques/TD/STAT/016_PFS/corrige.tex
+11-Actions Mécaniques/TD/STAT/021_QCM_PFS/021_QCM_PFS.tex
+11-Actions Mécaniques/TD/STAT/021_QCM_PFS/corrige.tex
+11-Actions Mécaniques/TD/STAT/032_Statiques_AM/032_Statiques_AM.tex
+11-Actions Mécaniques/TD/STAT/032_Statiques_AM/corrige.tex
+11-Actions Mécaniques/TD/STAT/041_Statique_PFS/041_Statique_PFS.tex
+11-Actions Mécaniques/TD/STAT/041_Statique_PFS/corrige.tex
+11-Actions Mécaniques/TD/STAT/048_PFS/048_PFS.tex
+11-Actions Mécaniques/TD/STAT/048_PFS/corrige.tex
+11-Actions Mécaniques/TD/STAT/058_PFS/058_PFS.tex
+11-Actions Mécaniques/TD/STAT/058_PFS/corrige.tex
+11-Actions Mécaniques/TD/STAT/071_PFS/071_PFS.tex
+11-Actions Mécaniques/TD/STAT/071_PFS/corrige.tex
+11-Actions Mécaniques/TD/STAT/095_Stat/095_Stat.tex
+11-Actions Mécaniques/TD/STAT/095_Stat/corrige.tex
+11-Actions Mécaniques/TD/STAT/096_Stat/096_Stat.tex
+11-Actions Mécaniques/TD/STAT/096_Stat/corrige.tex
+11-Actions Mécaniques/TD/TEC/982_TEC/982_TEC.tex
+11-Actions Mécaniques/TD/TEC/982_TEC/corrige.tex
+11-Actions Mécaniques/TD/TEC/999_TEC_Clever/999_TEC_Clever.tex
+11-Actions Mécaniques/TD/TEC/999_TEC_Clever/corrige.tex
+
+=== 12-RDM ===
+12-RDM/ALL_TD.tex
+12-RDM/Cours/.gitkeep
+12-RDM/Cours/16_Rdm_2026.docx
+12-RDM/TD.tex
+12-RDM/TD/Cohesion/522_RdM/522_RdM.tex
+12-RDM/TD/Cohesion/522_RdM/corrige.tex
+12-RDM/TD/Cohesion/523_RdM/523_RdM.tex
+12-RDM/TD/Cohesion/523_RdM/corrige.tex
+12-RDM/TD/Cohesion/524_RdM/524_RdM.tex
+12-RDM/TD/Cohesion/524_RdM/corrige.tex
+12-RDM/TD/Cohesion/525_RdM/525_RdM.tex
+12-RDM/TD/Cohesion/525_RdM/corrige.tex
+12-RDM/TD/Cohesion/526_RdM/526_RdM.tex
+12-RDM/TD/Cohesion/526_RdM/corrige.tex
+12-RDM/TD/Cohesion/527_RdM/527_RdM.tex
+12-RDM/TD/Cohesion/527_RdM/corrige.tex
+12-RDM/TD/Cohesion/528_BrocheFraisage/528_BrocheFraisage.tex
+12-RDM/TD/Cohesion/528_BrocheFraisage/corrige.tex
+12-RDM/TD/Cohesion/529_Passerelle/529_Passerelle.tex
+12-RDM/TD/Cohesion/529_Passerelle/corrige.tex
+12-RDM/TD/Cohesion/530_BancHelico/530_BancHelico.tex
+12-RDM/TD/Cohesion/530_BancHelico/corrige.tex
+12-RDM/TD/Deformation/531_RdM/531_RdM.tex
+12-RDM/TD/Deformation/531_RdM/corrige.tex
+12-RDM/TD/Deformation/532_RdM/532_RdM.tex
+12-RDM/TD/Deformation/532_RdM/corrige.tex
+12-RDM/TD/Deformation/540_RdM/540_RdM.tex
+12-RDM/TD/Deformation/540_RdM/corrige.tex
+12-RDM/TD/Deformation/541_RdM/541_RdM.tex
+12-RDM/TD/Deformation/541_RdM/corrige.tex
+12-RDM/TD/Deformation/542_RdM/542_RdM.tex
+12-RDM/TD/Deformation/542_RdM/corrige.tex
+12-RDM/TD/Flexion/539_Cours_RDM/539_Cours_RDM.tex
+12-RDM/TD/Flexion/539_Cours_RDM/corrige.tex
+12-RDM/TD/RDM/Formulaire_Dimensionnement.xlsx
+12-RDM/TD/Torsion/539_Cours_RDM/539_Cours_RDM.tex
+12-RDM/TD/Torsion/539_Cours_RDM/corrige.tex
+12-RDM/TD/Traction/539_Cours_RDM/539_Cours_RDM.tex
+12-RDM/TD/Traction/539_Cours_RDM/corrige.tex
+
+=== 13-MAS-MS ===
+13-MAS-MS/ALL_TD.tex
+13-MAS-MS/Cours/.gitkeep
+13-MAS-MS/Cours/17-MAS_MS.docx
+13-MAS-MS/TD.tex
+13-MAS-MS/TD/50_BancBalafre/50_BancBalafre.tex
+13-MAS-MS/TD/50_BancBalafre/corrige.tex
+13-MAS-MS/TD/50_BancBalafre/images/fig_50_01.png
+13-MAS-MS/TD/50_BancBalafre/images/fig_50_02.png
+13-MAS-MS/TD/50_BancBalafre/images/fig_50_03.png
+13-MAS-MS/TD/50_BancBalafre/images/fig_50_04.png
+13-MAS-MS/TD/50_BancBalafre/images/fig_50_05.png
+13-MAS-MS/TD/README.md
+
+=== 14-Logique ===
+14-Logique/ALL_TD.tex
+14-Logique/Cours/.gitkeep
+14-Logique/Cours/18-Logique_SED.docx
+14-Logique/TD.tex
+14-Logique/TD/Séquentiel/059_STM/059_STM.tex
+14-Logique/TD/Séquentiel/059_STM/corrige.tex
+14-Logique/TD/Séquentiel/50_BancBalafre/50_BancBalafre.tex
+14-Logique/TD/Séquentiel/50_BancBalafre/corrige.tex
+
+=== 15-Outils numériques ===
+15-Outils numériques/ALL_TD.tex
+15-Outils numériques/Cours/.gitkeep
+15-Outils numériques/TD.tex
+15-Outils numériques/TD/1021_Euler/1021_Euler.tex
+15-Outils numériques/TD/1021_Euler/corrige.tex
+15-Outils numériques/TD/1022_Euler/1022_Euler.tex
+15-Outils numériques/TD/1022_Euler/corrige.tex
+15-Outils numériques/TD/1023_Euler/1023_Euler.tex
+15-Outils numériques/TD/1023_Euler/corrige.tex
+
+=== BIBLIOTHEQUES STYLE POTENTIELLEMENT UTILES ===
+Style/ALL_TD_common.tex
+Style/Boites/Boites.sty
+Style/Boites/Boites_OLD.tex
+Style/Boites/help.tex
+Style/Competences/Competences.sty
+Style/Competences/help.tex
+Style/CouvertureCours.sty
+Style/Cy_i_Ch_j_Cours.tex
+Style/Cy_i_Ch_j_Cours_pdf.tex
+Style/Cy_i_Ch_j_TD_j.tex
+Style/Cy_i_Ch_j_TD_j_cor.tex
+Style/Cy_i_Ch_j_TD_k_cor_pdf.tex
+Style/Cy_i_Ch_j_TD_k_pdf.tex
+Style/Cy_i_Ch_j_TP_k.tex
+Style/Cy_i_Ch_j_TP_k_pdf.tex
+Style/Cy_i_Livret_Ch_j.tex
+Style/Cycle_01_Entete.tex
+Style/Cycle_02_ChS_Entete.tex
+Style/Cycle_02_Entete.tex
+Style/Cycle_03_PFD_Entete.tex
+Style/Cycle_04_Entete.tex
+Style/Cycle_04_TEC_Entete.tex
+Style/Cycle_05_Correcteurs_Entete.tex
+Style/Cycle_05_Entete.tex
+Style/Cycle_06_Entete.tex
+Style/Cycle_06_ResolutionNumerique.tex
+Style/Cycle_07_SystemesSequentiels.tex
+Style/DSk.tex
+Style/DSk_pdf.tex
+Style/ECM/ECM.tex
+Style/ECM/kao.sty
+Style/ECM/kaobiblio.sty
+Style/ECM/kaorefs.sty
+Style/ECM/kaotheorems.sty
+Style/Entete_Analyser.tex
+Style/Entete_Colle_PT.tex
+Style/Entete_DDS.tex
+Style/Entete_DS.tex
+Style/Entete_Modeliser.tex
+Style/Entete_Resoudre.tex
+Style/Entete_Themes_Info.tex
+Style/Info_01_Entete.tex
+Style/Info_Entete0.tex
+Style/Info_Entete_Graphes.tex
+Style/Notations_AF/Notations_AF.sty
+Style/Notations_AF/help.tex
+Style/Notations_Actions-Meca/Notations_Actions-Meca.sty
+Style/Notations_Actions-Meca/help.tex
+Style/Notations_Autom/Notations_Autom.sty
+Style/Notations_Autom/help.tex
+Style/Notations_Cinematique/Notations_Cinematique.sty
+Style/Notations_Cinematique/help.tex
+Style/Notations_Cotation/Notations_Cotation.sty
+Style/Notations_Cotation/help.tex
+Style/Notations_Dynamique/Notations_Dynamique.sty
+Style/Notations_Dynamique/help.tex
+Style/Notations_Elec/Notations_Elec.sty
+Style/Notations_Elec/help.tex
+Style/Notations_Energetique/Notations_Energetique.sty
+Style/Notations_Energetique/help.tex
+Style/Notations_Fab/Notations_Fab.sty
+Style/Notations_Fab/help.tex
+Style/Notations_MMC/Notations_MMC.sty
+Style/Notations_MMC/help.tex
+Style/Notations_Materiaux/Notations_Materiaux.sty
+Style/Notations_Materiaux/help.tex
+Style/Notations_Maths/Notations_Maths.sty
+Style/Notations_Maths/help.tex
+Style/Notations_RDM/Notations_RDM.sty
+Style/Notations_RDM/help.tex
+Style/Notations_SLCI/Notations_SLCI.sty
+Style/Notations_SLCI/help.tex
+Style/Notations_Torseurs/Notations_Torseurs.sty
+Style/Notations_Torseurs/help.tex
+Style/Notations_autres/Notations_Autres.sty
+Style/Notations_autres/help.tex
+Style/Notations_unites/Notations_Unites.sty
+Style/Notations_unites/help.tex
+Style/Packages_QCM/Packages_QCM.sty
+Style/Packages_QCM/bien-mal-coche.tex
+Style/Packages_QCM/image-bien-coche.tex
+Style/Revisions_Entete.tex
+Style/Style/Python.tex
+Style/Style/Style.sty
+Style/TL.sty
+Style/TLCinematique.sty
+Style/TLCinematiqueSolide.sty
+Style/TLCorrectionSystemesAsservis.sty
+Style/TLCorrectionSystemesAsservisStableBode.sty
+Style/TLCours.sty
+Style/TLDoisneauPhoto.tex
+Style/TLElectromecanique.sty
+Style/TLElectronique.sty
+Style/TLLoisEntreeSortie.sty
+Style/TLSystemesAsservis.sty
+Style/TLSystemesAsservisStableBode.sty
+Style/TLTransmetteurs.sty
+Style/UPSTI_Pedagogique.sty
+Style/UPSTI_Pedagogique_Custom.sty
+Style/base_cours_2022.tex
+Style/bodegraph.sty
+Style/cinematique.sty
+Style/convertisseurACDC.tex
+Style/environment.tex
+Style/environment_PTSI.tex
+Style/environment_v2.tex
+Style/exercices_compat.tex
+Style/info_Entete0.tex
+Style/kao.sty
+Style/kaobiblio.sty
+Style/kaorefs.sty
+Style/kaotheorems.sty
+Style/macros_SII.tex
+Style/macros_SII_v2.tex
+Style/new_pagegarde.tex
+Style/new_style.tex
+Style/new_style_ed.tex
+Style/packages.tex
+Style/packages_v2.tex
+Style/pagegarde_Fiche.tex
+Style/pagegarde_SII_DS.tex
+Style/pagegarde_TD.tex
+Style/pagegarde_chap.tex
+Style/pagegarde_cours.tex
+Style/pagegarde_cours_minitoc.tex
+Style/pagegarde_info.tex
+Style/pagegarde_info_ds.tex
+Style/pagegarde_info_tp.tex
+Style/pagegarde_livret_exos.tex
+Style/rp-sysml.sty
+Style/rp-sysml.tex
+Style/schemabloc.sty
