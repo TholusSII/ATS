@@ -1,28 +1,121 @@
 \documentclass[a3paper,landscape,10pt]{article}
 \usepackage[margin=10mm]{geometry}
 \usepackage[french]{babel}
-\usepackage{amsmath,amssymb}
-\makeatletter\def\input@path{{../../../Style/}}\makeatother
+\usepackage{amsmath,amssymb,array,booktabs}
+\makeatletter
+\def\input@path{{../../../Style/}}
+\makeatother
 \input{TLPosterCarteMentale.sty}
 \IfFileExists{Notations_AF/Notations_AF.sty}{\input{Notations_AF/Notations_AF.sty}}{}
+\IfFileExists{rp-sysml.sty}{\input{rp-sysml.sty}}{}
 \pagestyle{empty}
+
 \begin{document}
-\TLPosterTitre{Analyse fonctionnelle}{Fiche résumé éditable}
-\begin{multicols}{2}
-\begin{TLPosterBloc}{Besoin}
-Identifier le besoin, les utilisateurs, le contexte et la finalité du système.
+\TLPosterTitre{Analyse fonctionnelle}{Du besoin au cahier des charges}
+
+\begin{multicols}{3}
+
+\begin{TLPosterBloc}{1. Identifier le besoin}
+L'analyse fonctionnelle commence par la formulation du service attendu.
+\begin{itemize}
+  \item À qui le système rend-il service ?
+  \item Sur quoi agit-il ?
+  \item Dans quel but est-il conçu ?
+  \item Dans quel environnement fonctionne-t-il ?
+\end{itemize}
+Le besoin doit être formulé sans imposer prématurément une solution technique.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Exigences}
-Décrire les fonctions de service, les contraintes, les critères et les niveaux attendus.
+\begin{TLPosterBloc}{2. Délimiter le système}
+On précise la frontière d'étude et les éléments extérieurs en interaction avec le système :
+\begin{itemize}
+  \item utilisateurs et opérateurs ;
+  \item milieu physique ;
+  \item énergie et information ;
+  \item normes, sécurité et maintenance ;
+  \item autres systèmes connectés.
+\end{itemize}
+Le diagramme de contexte synthétise ces interactions.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{SysML}
-Exploiter les diagrammes de contexte, exigences, cas d'utilisation et blocs.
+\begin{TLPosterBloc}{3. Parties prenantes et cas d'utilisation}
+Une partie prenante exprime un besoin, une attente ou une contrainte.
+
+Le diagramme de cas d'utilisation répond à deux questions :
+\begin{itemize}
+  \item quels services le système fournit-il ?
+  \item quels acteurs utilisent ou sollicitent ces services ?
+\end{itemize}
+Un cas d'utilisation décrit une finalité observable par un acteur.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Méthode}
-Passer du besoin au cahier des charges puis vérifier la satisfaction des exigences.
+\begin{TLPosterBloc}{4. Exigences}
+Une exigence formalise ce que le système doit satisfaire.
+\begin{center}
+\begin{tabular}{>{\bfseries}p{0.27\linewidth}p{0.62\linewidth}}
+Besoin & attente exprimée par une partie prenante \\
+Fonction & service rendu par le système \\
+Critère & grandeur permettant l'évaluation \\
+Niveau & valeur ou domaine attendu \\
+Flexibilité & marge de négociation admissible \\
+\end{tabular}
+\end{center}
+Le diagramme des exigences organise, relie et trace ces éléments.
 \end{TLPosterBloc}
+
+\begin{TLPosterBloc}{5. Fonctions de service et contraintes}
+\textbf{Fonction principale :} raison d'être du système.
+
+\textbf{Fonctions complémentaires :} services nécessaires au fonctionnement ou à l'usage.
+
+\textbf{Contraintes :} limites imposées par l'environnement, la sécurité, l'énergie, le coût, l'ergonomie ou la réglementation.
+
+Chaque fonction doit être associée à des critères mesurables.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{6. Cahier des charges fonctionnel}
+Le cahier des charges regroupe :
+\begin{itemize}
+  \item les fonctions à assurer ;
+  \item les contraintes à respecter ;
+  \item les critères d'appréciation ;
+  \item les niveaux attendus ;
+  \item les priorités et flexibilités.
+\end{itemize}
+Il sert de référence pour concevoir, choisir et valider une solution.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{7. Diagrammes SysML utiles}
+\begin{itemize}
+  \item \textbf{Contexte :} environnement et interactions externes.
+  \item \textbf{Exigences :} objectifs, contraintes et traçabilité.
+  \item \textbf{Cas d'utilisation :} services offerts aux acteurs.
+  \item \textbf{Définition de blocs :} composition logique du système.
+  \item \textbf{Blocs internes :} échanges entre constituants.
+\end{itemize}
+Les diagrammes sont complémentaires : aucun ne suffit seul.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{8. Démarche globale}
+\begin{enumerate}
+  \item Comprendre le besoin.
+  \item Identifier les parties prenantes.
+  \item Définir la frontière du système.
+  \item Recenser les interactions extérieures.
+  \item Formuler fonctions et contraintes.
+  \item Associer critères et niveaux.
+  \item Organiser les exigences.
+  \item Vérifier et valider la satisfaction du besoin.
+\end{enumerate}
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{9. Vérification et validation}
+\textbf{Vérifier :} s'assurer que la solution respecte les exigences spécifiées.
+
+\textbf{Valider :} s'assurer que le système répond réellement au besoin des parties prenantes.
+
+La traçabilité relie besoin, exigences, architecture, essais et résultats.
+\end{TLPosterBloc}
+
 \end{multicols}
 \end{document}
