@@ -1,0 +1,28 @@
+name: Compiler le cours 12 RDM
+
+on:
+  push:
+    paths:
+      - '12-RDM/Cours/**'
+      - 'Style/TLRDM.sty'
+      - 'Style/TLCours.sty'
+      - '.github/workflows/compile-course12.yml'
+  workflow_dispatch:
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compiler le document
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: 00_RDM.tex
+          working_directory: 12-RDM/Cours
+          latexmk_use_xelatex: false
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+      - name: Publier le PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: cours-12-rdm
+          path: 12-RDM/Cours/00_RDM.pdf
