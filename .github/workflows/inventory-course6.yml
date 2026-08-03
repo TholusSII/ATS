@@ -1,0 +1,43 @@
+name: Inventorier les sources du cours 06
+
+on:
+  push:
+    paths:
+      - .github/workflows/inventory-course6.yml
+
+permissions:
+  contents: write
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Inventorier les sources liées au cours 06
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            echo '=== DOSSIERS RACINE ==='
+            find . -maxdepth 1 -mindepth 1 -type d -printf '%f\n' | sort
+            echo
+            echo '=== FICHIERS CORRECTION / CORRECTEUR / ASSERVIS ==='
+            find . -type f \
+              \( -iname '*correction*' -o -iname '*correcteur*' -o -iname '*asserv*' -o -iname '9-*.docx' -o -iname '10-*.docx' \) \
+              -not -path './.git/*' | sort
+            echo
+            echo '=== DOSSIERS 06 ==='
+            find . -type d \( -iname '06*' -o -iname '*correction*asserv*' \) -not -path './.git/*' | sort
+          } > INVENTAIRE_COURS6.txt
+
+      - name: Publier l'inventaire
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add INVENTAIRE_COURS6.txt
+          git commit -m 'Ajoute l inventaire des sources du cours 06'
+          git push
