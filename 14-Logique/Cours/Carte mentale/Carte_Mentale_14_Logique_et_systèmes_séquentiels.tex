@@ -6,13 +6,32 @@
 \def\input@path{{../../../Style/}}
 \makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{{TLLogiqueSED.sty}}{{\input{{TLLogiqueSED.sty}}}}{{}}
+\IfFileExists{TLLogiqueSED.sty}{\input{TLLogiqueSED.sty}}{}
 \pagestyle{empty}
 \begin{document}
-\begin{TLCarteMentale}{{Logique et systèmes séquentiels}}
-\TLBranche{Combinatoire}{Tables de vérité, algèbre de Boole et simplification des équations.}
-\TLBranche{Séquentiel}{États, transitions, événements, gardes et effets.}
-\TLBranche{SysML}{Diagrammes d'états et de séquence pour décrire le comportement.}
-\TLBranche{Communication}{Codeurs, réseaux, modèle OSI, multiplexage et protocoles.}
+\begin{TLCarteMentale}{Logique et systèmes séquentiels}
+\TLBranche{Binaire}{Variables et signaux à deux niveaux : $0$ et $1$.}
+\TLBranche{NON}{Complément logique : $\overline a$.}
+\TLBranche{ET}{Produit logique : $a\cdot b$.}
+\TLBranche{OU}{Somme logique : $a+b$.}
+\TLBranche{OU exclusif}{Sortie à $1$ lorsque les entrées sont différentes : $a\oplus b$.}
+\TLBranche{De Morgan}{$\overline{a+b}=\overline a\,\overline b$ et $\overline{ab}=\overline a+\overline b$.}
+\TLBranche{Table de vérité}{$2^n$ combinaisons pour $n$ entrées.}
+\TLBranche{Mintermes}{Construire une somme de produits à partir des lignes où la sortie vaut $1$.}
+\TLBranche{Karnaugh}{Regrouper les cases adjacentes par puissances de deux.}
+\TLBranche{Combinatoire}{La sortie dépend seulement des entrées présentes.}
+\TLBranche{Fonctions usuelles}{Multiplexeur, décodeur, additionneur, comparateur et codeur.}
+\TLBranche{Séquentiel}{La sortie dépend des entrées et de l'état mémorisé.}
+\TLBranche{Bascules}{RS, D, JK et T mémorisent un bit.}
+\TLBranche{Horloge}{Synchronisation sur front montant ou descendant.}
+\TLBranche{Chronogramme}{Représenter l'évolution temporelle des entrées, états et sorties.}
+\TLBranche{Automate}{États, état initial, transitions et sorties.}
+\TLBranche{Transition}{Événement $[\text{garde}]$ / effet.}
+\TLBranche{Moore}{Les sorties dépendent uniquement de l'état.}
+\TLBranche{Mealy}{Les sorties dépendent de l'état et des entrées.}
+\TLBranche{SysML états}{Décrire le comportement par états et transitions.}
+\TLBranche{Séquence}{Montrer les échanges de messages entre lignes de vie.}
+\TLBranche{Communication}{Codage, support, protocole et sens de transmission.}
+\TLBranche{Validation}{Tester toutes les combinaisons, transitions et cas limites.}
 \end{TLCarteMentale}
 \end{document}
