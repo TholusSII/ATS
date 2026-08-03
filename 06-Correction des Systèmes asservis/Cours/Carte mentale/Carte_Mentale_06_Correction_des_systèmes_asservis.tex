@@ -6,13 +6,34 @@
 \def\input@path{{../../../Style/}}
 \makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{{TLCorrectionSystemesAsservis.sty}}{{\input{{TLCorrectionSystemesAsservis.sty}}}}{{}}
+\IfFileExists{TLCorrectionSystemesAsservis.sty}{\input{TLCorrectionSystemesAsservis.sty}}{}
+\IfFileExists{TLSystemesAsservis.sty}{\input{TLSystemesAsservis.sty}}{}
+\IfFileExists{Notations_Autom/Notations_Autom.sty}{\input{Notations_Autom/Notations_Autom.sty}}{}
+\IfFileExists{Notations_SLCI/Notations_SLCI.sty}{\input{Notations_SLCI/Notations_SLCI.sty}}{}
 \pagestyle{empty}
 \begin{document}
-\begin{TLCarteMentale}{{Correction des systèmes asservis}}
-\TLBranche{Objectifs}{Précision, rapidité, stabilité et rejet des perturbations.}
-\TLBranche{Correcteurs}{P : gain ; PI : annulation de l'erreur statique ; PD : anticipation ; PID : compromis global.}
-\TLBranche{Méthode}{Identifier le besoin, choisir la structure, régler les paramètres, vérifier les marges et les performances.}
-\TLBranche{Points clés}{Effet du gain, pôles dominants, marges de gain et de phase, saturation et robustesse.}
+\begin{TLCarteMentale}{Correction des systèmes asservis}
+\TLBranche{Objectifs}{Précision, rapidité, stabilité, robustesse et rejet des perturbations.}
+\TLBranche{Correcteur}{Bloc $C(p)$ placé dans la chaîne directe pour modifier la boucle ouverte.}
+\TLBranche{Boucle ouverte}{$L(p)=C(p)G(p)H(p)$ : gain, phase, coupure et marges.}
+\TLBranche{Boucle fermée}{$T(p)=C(p)G(p)/(1+C(p)G(p)H(p))$.}
+\TLBranche{P}{$C(p)=K_p$ : erreur réduite et réponse accélérée, mais stabilité plus fragile.}
+\TLBranche{I}{$C(p)=K_i/p$ : améliore la précision et augmente la classe du système.}
+\TLBranche{PI}{Associe action proportionnelle et intégrale ; compromis précision/dynamique.}
+\TLBranche{D}{$C(p)=K_d p$ : anticipation, amortissement et sensibilité au bruit.}
+\TLBranche{PD}{Avance de phase, rapidité accrue et dépassement souvent réduit.}
+\TLBranche{PID}{Combine précision, rapidité et amortissement ; réglage plus délicat.}
+\TLBranche{Avance de phase}{Augmente localement la phase et améliore la marge de phase.}
+\TLBranche{Retard de phase}{Augmente le gain aux basses fréquences et améliore la précision.}
+\TLBranche{Temps}{Temps de réponse, montée, dépassement, erreur finale et amortissement.}
+\TLBranche{Fréquence}{Pulsation de coupure, marge de gain, marge de phase et pente de Bode.}
+\TLBranche{Pôles}{Les pôles dominants fixent l'allure principale de la réponse temporelle.}
+\TLBranche{Perturbations}{Vérifier le rejet en entrée, en sortie et dans la chaîne directe.}
+\TLBranche{Bruit}{Limiter l'action dérivée et filtrer les hautes fréquences.}
+\TLBranche{Saturation}{Contrôler l'effort de commande et éviter le windup intégral.}
+\TLBranche{Anti-windup}{Limiter ou recalculer l'état intégral pendant la saturation.}
+\TLBranche{Réglage}{Analyser, choisir, régler, simuler, vérifier puis tester la robustesse.}
+\TLBranche{Compromis}{Une amélioration locale peut dégrader une autre performance.}
+\TLBranche{Validation}{Confronter le résultat au cahier des charges temporel et fréquentiel.}
 \end{TLCarteMentale}
 \end{document}
