@@ -5,24 +5,91 @@
 \makeatletter\def\input@path{{../../../Style/}}\makeatother
 \input{TLPosterCarteMentale.sty}
 \IfFileExists{TLSystemesAsservis.sty}{\input{TLSystemesAsservis.sty}}{}
+\IfFileExists{Notations_Autom/Notations_Autom.sty}{\input{Notations_Autom/Notations_Autom.sty}}{}
+\IfFileExists{Notations_SLCI/Notations_SLCI.sty}{\input{Notations_SLCI/Notations_SLCI.sty}}{}
+\IfFileExists{schemabloc.sty}{\input{schemabloc.sty}}{}
 \pagestyle{empty}
 \begin{document}
-\TLPosterTitre{Systèmes asservis}{Fiche résumé éditable}
-\begin{multicols}{2}
-\begin{TLPosterBloc}{Structure}
-Chaîne directe, retour, comparateur, correcteur, procédé et capteur.
+\TLPosterTitre{Systèmes asservis}{Structure, modélisation et performances}
+\begin{multicols}{3}
+
+\begin{TLPosterBloc}{Système asservi}
+Un système asservi compare une consigne $r(t)$ à une mesure $y_m(t)$ et agit sur le procédé afin de réduire l'écart $\varepsilon(t)=r(t)-y_m(t)$.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Modèle}
-Fonctions de transfert, schémas-blocs et transformations de Laplace.
+\begin{TLPosterBloc}{Chaîne fonctionnelle}
+Comparateur $\rightarrow$ correcteur $\rightarrow$ préactionneur $\rightarrow$ procédé $\rightarrow$ capteur. La chaîne de retour fournit l'image mesurée de la sortie.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Performances}
-Précision, rapidité, stabilité et sensibilité aux perturbations.
+\begin{TLPosterBloc}{Boucle ouverte et boucle fermée}
+La boucle ouverte décrit l'action sans correction par le retour. La boucle fermée prend en compte la mesure et permet d'améliorer précision, rejet des perturbations et robustesse.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Analyse}
-Étudier réponses temporelles, pôles, gain statique et comportement fréquentiel.
+\begin{TLPosterBloc}{Transformée de Laplace}
+Sous conditions initiales nulles, une équation différentielle devient une relation algébrique. La fonction de transfert est
+\[
+H(p)=\frac{S(p)}{E(p)}.
+\]
 \end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Schémas-blocs}
+Les blocs représentent les fonctions de transfert. Les sommateurs traduisent les additions ou soustractions de signaux. Les points de prélèvement dupliquent un signal sans le modifier.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Réduction d'un schéma-blocs}
+Blocs en série : produit des fonctions de transfert. Blocs en parallèle : somme. Retour négatif :
+\[
+H_{BF}(p)=\frac{G(p)}{1+G(p)H(p)}.
+\]
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Fonction de transfert en boucle ouverte}
+La FTBO est le produit des fonctions rencontrées sur la boucle. Elle conditionne directement stabilité, précision et comportement fréquentiel de la boucle fermée.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Pôles et zéros}
+Les pôles sont les racines du dénominateur et gouvernent la dynamique. Les zéros sont les racines du numérateur et modifient la forme de la réponse.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Systèmes du premier ordre}
+Forme canonique :
+\[
+H(p)=\frac{K}{1+\tau p}.
+\]
+La constante de temps $\tau$ caractérise la rapidité ; à $t=3\tau$, la réponse atteint environ $95\%$ de sa valeur finale.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Systèmes du second ordre}
+Forme canonique :
+\[
+H(p)=\frac{K\omega_0^2}{p^2+2\xi\omega_0p+\omega_0^2}.
+\]
+$\xi$ règle l'amortissement ; $\omega_0$ règle l'échelle de temps.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Précision}
+L'erreur statique dépend du gain en basse fréquence et du nombre d'intégrateurs de la boucle ouverte. Une intégration améliore la précision pour une consigne en échelon.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Rapidité}
+On utilise notamment le temps de réponse à $5\%$, le temps de montée et la bande passante. Une augmentation du gain accélère souvent la réponse mais peut réduire la stabilité.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Stabilité}
+Un système continu est asymptotiquement stable si tous les pôles de la boucle fermée ont une partie réelle strictement négative.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Analyse fréquentielle}
+Les diagrammes de Bode représentent gain et phase en fonction de la pulsation. Les marges de gain et de phase mesurent l'éloignement à l'instabilité.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Perturbations}
+Une perturbation peut agir en entrée ou dans la chaîne d'énergie. La boucle fermée limite son effet si le gain de boucle est suffisamment élevé dans la bande considérée.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Démarche d'étude}
+Identifier les signaux, construire le schéma-blocs, déterminer FTBO et FTBF, étudier pôles et réponses, puis conclure sur précision, rapidité, stabilité et rejet des perturbations.
+\end{TLPosterBloc}
+
 \end{multicols}
 \end{document}
