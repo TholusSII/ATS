@@ -1,0 +1,27 @@
+name: Compiler le cours 14
+
+on:
+  push:
+    paths:
+      - '14-Logique/Cours/**'
+      - 'Style/TLLogiqueSED.sty'
+      - '.github/workflows/compile-course14.yml'
+  workflow_dispatch:
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Installer TeX Live
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-latex-extra texlive-lang-french texlive-pictures latexmk
+      - name: Compiler
+        working-directory: '14-Logique/Cours'
+        run: latexmk -pdf -interaction=nonstopmode -halt-on-error 00_Logique_SED.tex
+      - name: Publier le PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: cours-14-logique-sed
+          path: '14-Logique/Cours/00_Logique_SED.pdf'
