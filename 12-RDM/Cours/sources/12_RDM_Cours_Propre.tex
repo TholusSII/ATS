@@ -1,0 +1,132 @@
+\chapter{Résistance des matériaux}
+\label{chap:rdm}
+
+\begin{objectifs}
+Modéliser une poutre, déterminer son torseur de cohésion et vérifier sa résistance en traction ou en flexion.
+\end{objectifs}
+
+\section{Besoin rempli par la résistance des matériaux}
+La résistance des matériaux permet de prévoir le comportement d'une structure soumise à des actions mécaniques. Elle relie les efforts appliqués aux contraintes internes, aux déformations et aux déplacements. Elle sert notamment à vérifier qu'une pièce résiste, reste suffisamment rigide et conserve un comportement compatible avec le cahier des charges.
+
+\section{Hypothèses de la résistance des matériaux}
+\subsection{Théorie des poutres droites}
+Une poutre est un solide dont une dimension, la longueur, est grande devant les dimensions de la section droite. Sa géométrie est décrite par une ligne moyenne et une section droite supposée constante ou lentement variable.
+\TLPoutreReperee
+
+\subsection{Matériaux de construction}
+Dans le cadre du cours, le matériau est supposé homogène, isotrope et élastique linéaire. Dans son domaine élastique, la contrainte est proportionnelle à la déformation.
+
+\subsection{Efforts invariants}
+Le torseur des actions mécaniques est invariant lors d'un changement de point lorsqu'il est transporté conformément aux règles des torseurs. Cette propriété permet d'exprimer les actions extérieures et les efforts intérieurs dans une base adaptée à la poutre.
+
+\subsection{Hypothèse de Barré de Saint-Venant}
+L'état de contrainte loin d'une zone d'application locale dépend essentiellement du torseur résultant des actions appliquées et non de leur répartition détaillée.
+
+\subsection{Hypothèse de Navier--Bernoulli}
+Toute section droite, plane et normale à la ligne moyenne avant déformation, reste plane et normale à la ligne moyenne après déformation.
+
+\subsection{Principe de superposition}
+Lorsque le comportement est linéaire, les effets de plusieurs chargements sont la somme des effets produits séparément par chacun d'eux.
+
+\section{Modélisation des actions mécaniques extérieures}
+\subsection{Actions mécaniques extérieures}
+Les charges peuvent être ponctuelles, réparties ou constituées de couples. Elles sont complétées par les actions de liaison issues des appuis et des encastrements.
+
+\subsection{Les liaisons}
+Dans un problème plan, un appui simple transmet une réaction normale, une articulation transmet deux composantes de force, et un encastrement transmet deux composantes de force et un moment.
+
+\section{Actions mécaniques intérieures : torseur de cohésion}
+\subsection{Coupure dans une poutre}
+Une coupure fictive sépare la poutre en deux tronçons. L'action d'un tronçon sur l'autre est représentée par le torseur de cohésion au centre de la section coupée.
+\TLCoupurePoutre
+
+\subsection{Détermination du torseur de cohésion}
+La démarche est la suivante :
+\begin{enumerate}
+\item déterminer les réactions de liaison par le principe fondamental de la statique ;
+\item effectuer une coupure à l'abscisse considérée ;
+\item isoler l'un des deux tronçons ;
+\item appliquer l'équilibre au tronçon isolé ;
+\item identifier les composantes du torseur de cohésion.
+\end{enumerate}
+
+Dans une étude plane, on écrit généralement
+\[
+\left\{\mathcal T_{\mathrm{coh}}\right\}_G=
+\left\{\begin{array}{c}
+N\,\vec x+T_y\,\vec y\\
+M_z\,\vec z
+\end{array}\right\}_G.
+\]
+
+\subsection{Nature des sollicitations}
+Les composantes du torseur de cohésion permettent d'identifier la sollicitation : effort normal $N$ pour la traction-compression, effort tranchant $T_y$ pour le cisaillement, moment fléchissant $M_z$ pour la flexion et moment de torsion pour la torsion.
+
+\section{Traction}
+\subsection{Définition}
+Une poutre est sollicitée en traction simple lorsque son torseur de cohésion se réduit à un effort normal $N$ porté par la ligne moyenne.
+\TLDiagrammeTraction
+
+\subsection{Contrainte normale}
+Sous l'hypothèse d'une répartition uniforme,
+\[
+\sigma=\frac{N}{S}.
+\]
+Dans le domaine élastique linéaire, la loi de Hooke s'écrit
+\[
+\sigma=E\varepsilon,
+\qquad
+\varepsilon=\frac{\Delta L}{L},
+\qquad
+\Delta L=\frac{NL}{ES}.
+\]
+
+\subsection{Condition de résistance}
+La condition de résistance s'écrit
+\[
+|\sigma_{\max}|\leq \sigma_{\mathrm{adm}},
+\qquad
+\sigma_{\mathrm{adm}}=\frac{R_e}{s},
+\]
+où $R_e$ est la limite d'élasticité et $s$ le coefficient de sécurité.
+
+\section{Flexion}
+Une poutre est en flexion simple lorsque son torseur de cohésion comporte principalement un moment fléchissant. La contrainte normale varie linéairement avec la distance $y$ à la fibre neutre :
+\[
+\sigma(y)=-\frac{M_z}{I_z}\,y.
+\]
+\TLDistributionContrainteFlexion
+
+\subsection{Condition de résistance}
+La contrainte maximale vaut
+\[
+|\sigma_{\max}|=\frac{|M_z|}{I_z}\,y_{\max}
+=\frac{|M_z|}{W_z},
+\]
+où $W_z=I_z/y_{\max}$ est le module de flexion. La condition de résistance devient
+\[
+\frac{|M_z|}{W_z}\leq \sigma_{\mathrm{adm}}.
+\]
+
+\subsection{Déformations}
+La courbure de la ligne moyenne est liée au moment fléchissant par
+\[
+EI_z\,v''(x)=M_z(x),
+\]
+avec la convention de signe adoptée. L'intégration donne la rotation $v'(x)$ puis la flèche $v(x)$, les constantes étant déterminées par les conditions aux limites.
+\TLDiagrammeFlexion
+
+\section{Méthode de résolution}
+Pour traiter une étude de poutre :
+\begin{enumerate}
+\item modéliser la poutre, les appuis et les chargements ;
+\item déterminer les réactions de liaison ;
+\item calculer le torseur de cohésion par tronçons ;
+\item tracer les diagrammes de $N$, $T_y$ et $M_z$ ;
+\item déterminer les contraintes maximales ;
+\item vérifier la résistance ;
+\item calculer la déformée lorsque la rigidité doit être contrôlée.
+\end{enumerate}
+
+\section{Exercices du chapitre}
+Les exercices associés portent sur la détermination des réactions, le calcul du torseur de cohésion, la traction simple et la flexion de poutres isostatiques.
