@@ -1,0 +1,219 @@
+# Pages PDF presque vides
+
+PDF de cours analysés : **235**
+Pages suspectes détectées : **210**
+
+Critère : au plus 80 caractères extraits et moins de 12 % de la page occupée par des images.
+
+| PDF | Page | Texte | Images | Surface images | Aperçu |
+|---|---:|---:|---:|---:|---|
+| `03-Lois entrée sortie/Cours/00_Lois_Entree_Sortie.pdf` | 10/130 | 71 | 0 | 0.000 | Lycée Robert Doisneau - ATS Thomas Lusseau 10 Lois E/S et transmetteurs |
+| `03-Lois entrée sortie/Cours/LoiES_Kaobook.pdf` | 2/83 | 14 | 0 | 0.000 | Thomas Lusseau |
+| `03-Lois entrée sortie/Cours/LoiES_Kaobook.pdf` | 12/83 | 17 | 0 | 0.000 | Thomas Lusseau 10 |
+| `03-Lois entrée sortie/Cours/LoiES_Kaobook.pdf` | 20/83 | 61 | 1 | 0.057 | Thomas Lusseau 18 Exemple avec le dispositif bielle-manivelle |
+| `03-Lois entrée sortie/Cours/LoiES_Kaobook.pdf` | 36/83 | 17 | 0 | 0.000 | Thomas Lusseau 34 |
+| `03-Lois entrée sortie/Cours/LoiES_Kaobook.pdf` | 38/83 | 71 | 0 | 0.000 | Thomas Lusseau 36 fonction de 𝛽pour des valeurs variant de -12° à +12°. |
+| `03-Lois entrée sortie/Cours/LoiES_Kaobook.pdf` | 49/83 | 21 | 0 | 0.000 | Thomas Lusseau 47 1 1 |
+| `03-Lois entrée sortie/Cours/LoiES_Kaobook.pdf` | 81/83 | 41 | 0 | 0.000 | Thomas Lusseau 79 est associée au bâti 0; |
+| `04-Cinématique/Cours/images/image107.pdf` | 1/1 | 7 | 0 | 0.000 | r (,)Oz |
+| `04-Cinématique/Cours/images/image108.pdf` | 1/1 | 5 | 0 | 0.000 | = OAa |
+| `04-Cinématique/Cours/images/image116.pdf` | 1/1 | 34 | 0 | 0.000 | 0400 () OOxtxdz =⋅+⋅ uuuuuuruuruur |
+| `04-Cinématique/Cours/images/image117.pdf` | 1/1 | 18 | 0 | 0.000 | 11 AOaz=⋅ uuuuruur |
+| `04-Cinématique/Cours/images/image118.pdf` | 1/1 | 18 | 0 | 0.000 | 44 ODey=⋅ uuuuruur |
+| `04-Cinématique/Cours/images/image119.pdf` | 1/1 | 23 | 0 | 0.000 | 00 OAy(t)y =⋅ uuuuuruur |
+| `04-Cinématique/Cours/images/image120.pdf` | 1/1 | 20 | 0 | 0.000 | 122 OObx=⋅ uuuuuruur |
+| `04-Cinématique/Cours/images/image121.pdf` | 1/1 | 19 | 0 | 0.000 | 55 OPfz=−⋅ uuuuruur |
+| `04-Cinématique/Cours/images/image122.pdf` | 1/1 | 24 | 0 | 0.000 | 54 () DOztz=−⋅ uuuuuruur |
+| `04-Cinématique/Cours/images/image123.pdf` | 1/1 | 21 | 0 | 0.000 | 233 OOcz=⋅ uuuuuuruur |
+| `04-Cinématique/Cours/images/image124.pdf` | 1/1 | 19 | 0 | 0.000 | ( ) 12, yy α= uuruu |
+| `04-Cinématique/Cours/images/image125.pdf` | 1/1 | 20 | 0 | 0.000 | ( ) 23, xx β= uuruur |
+| `04-Cinématique/Cours/images/image126.pdf` | 1/1 | 11 | 0 | 0.000 | ,,, abcdete |
+| `04-Cinématique/Cours/images/image127.pdf` | 1/1 | 18 | 0 | 0.000 | 3332 (,,,) Oxyzrrr |
+| `04-Cinématique/Cours/images/image128.pdf` | 1/1 | 18 | 0 | 0.000 | 2122 (,,,) Oxyzrrr |
+| `04-Cinématique/Cours/images/image129.pdf` | 1/1 | 18 | 0 | 0.000 | 1111 (,,,) Oxyzrrr |
+| `04-Cinématique/Cours/images/image130.pdf` | 1/1 | 18 | 0 | 0.000 | 0000 (,,,) Oxyzrrr |
+| `04-Cinématique/Cours/images/image131.pdf` | 1/1 | 18 | 0 | 0.000 | 4444 (,,,) Oxyzrrr |
+| `04-Cinématique/Cours/images/image132.pdf` | 1/1 | 18 | 0 | 0.000 | 5555 (,,,) Oxyzrrr |
+| `04-Cinématique/Cours/images/image133.pdf` | 1/1 | 14 | 0 | 0.000 | 0145 ,, RRRetR |
+| `04-Cinématique/Cours/images/image134.pdf` | 1/1 | 9 | 0 | 0.000 | 0 OP uuuu |
+| `04-Cinématique/Cours/images/image135.pdf` | 1/1 | 3 | 0 | 0.000 | 0 R |
+| `04-Cinématique/Cours/images/image136.pdf` | 1/1 | 1 | 0 | 0.000 | P |
+| `04-Cinématique/Cours/images/image137.pdf` | 1/1 | 3 | 0 | 0.000 | 5 R |
+| `04-Cinématique/Cours/images/image138.pdf` | 1/1 | 1 | 0 | 0.000 | P |
+| `04-Cinématique/Cours/images/image139.pdf` | 1/1 | 3 | 0 | 0.000 | 0 R |
+| `04-Cinématique/Cours/images/image14.pdf` | 1/1 | 21 | 0 | 0.000 | i j k i j k i rrrrrrr |
+| `04-Cinématique/Cours/images/image140.pdf` | 1/1 | 16 | 0 | 0.000 | 5/0 P V ∈ uuuuuu |
+| `04-Cinématique/Cours/images/image141.pdf` | 1/1 | 1 | 0 | 0.000 | P |
+| `04-Cinématique/Cours/images/image142.pdf` | 1/1 | 3 | 0 | 0.000 | 0 R |
+| `04-Cinématique/Cours/images/image143.pdf` | 1/1 | 10 | 0 | 0.000 | 03 OO uuuu |
+| `04-Cinématique/Cours/images/image144.pdf` | 1/1 | 3 | 0 | 0.000 | 0 R |
+| `04-Cinématique/Cours/images/image145.pdf` | 1/1 | 3 | 0 | 0.000 | 2 R |
+| `04-Cinématique/Cours/images/image146.pdf` | 1/1 | 3 | 0 | 0.000 | 0 R |
+| `04-Cinématique/Cours/images/image147.pdf` | 1/1 | 18 | 0 | 0.000 | 3 3/0 O V ∈ uuuuuu |
+| `04-Cinématique/Cours/images/image148.pdf` | 1/1 | 3 | 0 | 0.000 | 0 R |
+| `04-Cinématique/Cours/images/image149.pdf` | 1/1 | 18 | 0 | 0.000 | 3 3/0 O ∈ Γ uuuuuu |
+| `04-Cinématique/Cours/images/image15.pdf` | 1/1 | 39 | 0 | 0.000 | ji = -k; kj = -i; ik = -j ∧∧∧ rrrrrrrrr |
+| `04-Cinématique/Cours/images/image150.pdf` | 1/1 | 10 | 0 | 0.000 | 3/2 Ω uuuu |
+| `04-Cinématique/Cours/images/image151.pdf` | 1/1 | 10 | 0 | 0.000 | 3/0 Ω uuuu |
+| `04-Cinématique/Cours/images/image152.pdf` | 1/1 | 1 | 0 | 0.000 | M |
+| `04-Cinématique/Cours/images/image153.pdf` | 1/1 | 11 | 0 | 0.000 | (,,)MMM xyz |
+| `04-Cinématique/Cours/images/image154.pdf` | 1/1 | 3 | 0 | 0.000 | 3 R |
+| `04-Cinématique/Cours/images/image155.pdf` | 1/1 | 15 | 0 | 0.000 | M3/0 V ∈ uuuuuu |
+| `04-Cinématique/Cours/images/image156.pdf` | 1/1 | 1 | 0 | 0.000 | M |
+| `04-Cinématique/Cours/images/image157.pdf` | 1/1 | 3 | 0 | 0.000 | 0 R |
+| `04-Cinématique/Cours/images/image158.pdf` | 1/1 | 7 | 0 | 0.000 | 0 M y = |
+| `04-Cinématique/Cours/images/image159.pdf` | 1/1 | 1 | 0 | 0.000 | M |
+| `04-Cinématique/Cours/images/image16.pdf` | 1/1 | 36 | 0 | 0.000 | ij = k; jk = i; ki = j ∧∧∧ rrrrrrrrr |
+| `04-Cinématique/Cours/images/image160.pdf` | 1/1 | 14 | 0 | 0.000 | 333 (,,) Oxzrr |
+| `04-Cinématique/Cours/images/image161.pdf` | 1/1 | 14 | 0 | 0.000 | P5/3 V ∈ uuuuu |
+| `04-Cinématique/Cours/images/image162.pdf` | 1/1 | 1 | 0 | 0.000 | P |
+| `04-Cinématique/Cours/images/image163.pdf` | 1/1 | 3 | 0 | 0.000 | 3 R |
+| `04-Cinématique/Cours/images/image164.pdf` | 1/1 | 14 | 0 | 0.000 | P5/3 V ∈ uuuuu |
+| `04-Cinématique/Cours/images/image165.pdf` | 1/1 | 16 | 0 | 0.000 | 5/0 P V ∈ uuuuuu |
+| `04-Cinématique/Cours/images/image166.pdf` | 1/1 | 16 | 0 | 0.000 | 3/0 P V ∈ uuuuuu |
+| `04-Cinématique/Cours/images/image167.pdf` | 1/1 | 16 | 0 | 0.000 | 3/0 M V ∈ uuuuuu |
+| `04-Cinématique/Cours/images/image168.pdf` | 1/1 | 1 | 0 | 0.000 | M |
+| `04-Cinématique/Cours/images/image170.pdf` | 1/1 | 1 | 0 | 0.000 | D |
+| `04-Cinématique/Cours/images/image173.pdf` | 1/1 | 25 | 0 | 0.000 | 0000 (,,,) ROxyz uuruuruu |
+| `04-Cinématique/Cours/images/image174.pdf` | 1/1 | 11 | 0 | 0.000 | 0 (,)Oy uur |
+| `04-Cinématique/Cours/images/image175.pdf` | 1/1 | 27 | 0 | 0.000 | ) z , y , x , O ( R 1 1 1 1 |
+| `04-Cinématique/Cours/images/image176.pdf` | 1/1 | 11 | 0 | 0.000 | ) z , O ( 0 |
+| `04-Cinématique/Cours/images/image177.pdf` | 1/1 | 9 | 0 | 0.000 | 1 0 z z = |
+| `04-Cinématique/Cours/images/image178.pdf` | 1/1 | 25 | 0 | 0.000 | 2222 (,,,) RAxyz uuruuruu |
+| `04-Cinématique/Cours/images/image179.pdf` | 1/1 | 11 | 0 | 0.000 | 1 (,)Az uur |
+| `04-Cinématique/Cours/images/image180.pdf` | 1/1 | 26 | 0 | 0.000 | 11 OAbxay =−⋅+⋅ uuuruuruur |
+| `04-Cinématique/Cours/images/image181.pdf` | 1/1 | 16 | 0 | 0.000 | 2 ACcx=⋅ uuuruur |
+| `04-Cinématique/Cours/images/image182.pdf` | 1/1 | 13 | 0 | 0.000 | 12 zz= uuruur |
+| `04-Cinématique/Cours/images/image183.pdf` | 1/1 | 18 | 0 | 0.000 | 12 (,)xx =θ uuruur |
+| `04-Cinématique/Cours/images/image184.pdf` | 1/1 | 25 | 0 | 0.000 | 3333 (,,,) RDxyz uuruuruu |
+| `04-Cinématique/Cours/images/image185.pdf` | 1/1 | 6 | 0 | 0.000 | 2 x uu |
+| `04-Cinématique/Cours/images/image186.pdf` | 1/1 | 21 | 0 | 0.000 | 2 () CDdtx =⋅ uuuruur |
+| `04-Cinématique/Cours/images/image187.pdf` | 1/1 | 51 | 0 | 0.000 | 00001111 (,,,)(,,,) ROxyzROxyz = uuruuruuruuruuruur |
+| `04-Cinématique/Cours/images/image188.pdf` | 1/1 | 9 | 0 | 0.000 | 2/0 C T ∈ |
+| `04-Cinématique/Cours/images/image189.pdf` | 1/1 | 9 | 0 | 0.000 | 3/2 D T ∈ |
+| `04-Cinématique/Cours/images/image190.pdf` | 1/1 | 9 | 0 | 0.000 | 3/0 D T ∈ |
+| `04-Cinématique/Cours/images/image191.pdf` | 1/1 | 7 | 0 | 0.000 | 23 RetR |
+| `04-Cinématique/Cours/images/image192.pdf` | 1/1 | 10 | 0 | 0.000 | 3/2 Ω uuuu |
+| `04-Cinématique/Cours/images/image193.pdf` | 1/1 | 10 | 0 | 0.000 | 3/0 Ω uuuu |
+| `04-Cinématique/Cours/images/image194.pdf` | 1/1 | 16 | 0 | 0.000 | 3/0 D V ∈ uuuuuu |
+| `04-Cinématique/Cours/images/image195.pdf` | 1/1 | 15 | 0 | 0.000 | 3/0 D∈ Γ uuuuuu |
+| `04-Cinématique/Cours/images/image202.pdf` | 1/1 | 3 | 0 | 0.000 | 0yr |
+| `04-Cinématique/Cours/images/image203.pdf` | 1/1 | 3 | 0 | 0.000 | 3yr |
+| `04-Cinématique/Cours/images/image204.pdf` | 1/1 | 50 | 0 | 0.000 | 03 36 68 (,) (,) (,) xx xx yy α b j = = = rr rr rr |
+| `04-Cinématique/Cours/images/image209.pdf` | 1/1 | 21 | 0 | 0.000 | ) z , y , x ( B i i i |
+| `04-Cinématique/Cours/images/image21.pdf` | 1/1 | 3 | 0 | 0.000 | U r |
+| `04-Cinématique/Cours/images/image210.pdf` | 1/1 | 9 | 0 | 0.000 | ) z , A ( |
+| `04-Cinématique/Cours/images/image211.pdf` | 1/1 | 17 | 0 | 0.000 | ) x , x ( 1 0 = a |
+| `04-Cinématique/Cours/images/image212.pdf` | 1/1 | 9 | 0 | 0.000 | ) z , A ( |
+| `04-Cinématique/Cours/images/image213.pdf` | 1/1 | 17 | 0 | 0.000 | ) x , x ( 2 0 = b |
+| `04-Cinématique/Cours/images/image214.pdf` | 1/1 | 9 | 0 | 0.000 | ) z , B ( |
+| `04-Cinématique/Cours/images/image215.pdf` | 1/1 | 9 | 0 | 0.000 | ) z , E ( |
+| `04-Cinématique/Cours/images/image216.pdf` | 1/1 | 9 | 0 | 0.000 | ) z , C ( |
+| `04-Cinématique/Cours/images/image217.pdf` | 1/1 | 11 | 0 | 0.000 | 3 x. D CB = |
+| `04-Cinématique/Cours/images/image218.pdf` | 1/1 | 11 | 0 | 0.000 | 3 x. H BJ = |
+| `04-Cinématique/Cours/images/image219.pdf` | 1/1 | 10 | 0 | 0.000 | 1 x.L AB = |
+| `04-Cinématique/Cours/images/image22.pdf` | 1/1 | 3 | 0 | 0.000 | V r |
+| `04-Cinématique/Cours/images/image220.pdf` | 1/1 | 11 | 0 | 0.000 | 2 x. D EA = |
+| `04-Cinématique/Cours/images/image221.pdf` | 1/1 | 10 | 0 | 0.000 | 4 x.L EC = |
+| `04-Cinématique/Cours/images/image224.pdf` | 1/1 | 25 | 0 | 0.000 | ⎥û ù êë é p p Î a 3 2 , 3 |
+| `04-Cinématique/Cours/images/image225.pdf` | 1/1 | 25 | 0 | 0.000 | ⎥û ù êë é p p - Î b 4 , 4 |
+| `04-Cinématique/Cours/images/image226.pdf` | 1/1 | 11 | 0 | 0.000 | { } 4/2 E V |
+| `04-Cinématique/Cours/images/image227.pdf` | 1/1 | 11 | 0 | 0.000 | { } 2/0 A V |
+| `04-Cinématique/Cours/images/image228.pdf` | 1/1 | 11 | 0 | 0.000 | { } 4/0 E V |
+| `04-Cinématique/Cours/images/image229.pdf` | 1/1 | 11 | 0 | 0.000 | { } 3/1 B V |
+| `04-Cinématique/Cours/images/image23.pdf` | 1/1 | 3 | 0 | 0.000 | W r |
+| `04-Cinématique/Cours/images/image230.pdf` | 1/1 | 11 | 0 | 0.000 | { } 1/0 A V |
+| `04-Cinématique/Cours/images/image231.pdf` | 1/1 | 11 | 0 | 0.000 | { } 3/0 B V |
+| `04-Cinématique/Cours/images/image232.pdf` | 1/1 | 13 | 0 | 0.000 | 3/0 JV ∈ uuuu |
+| `04-Cinématique/Cours/images/image233.pdf` | 1/1 | 11 | 0 | 0.000 | 0 / 3 J T ∈ |
+| `04-Cinématique/Cours/images/image234.pdf` | 1/1 | 5 | 0 | 0.000 | 0 = b |
+| `04-Cinématique/Cours/images/image235.pdf` | 1/1 | 11 | 0 | 0.000 | 0 / 3 J T ∈ |
+| `04-Cinématique/Cours/images/image236.pdf` | 1/1 | 7 | 0 | 0.000 | 3 π = a |
+| `04-Cinématique/Cours/images/image240.pdf` | 1/1 | 11 | 0 | 0.000 | 00 (,) r Oy |
+| `04-Cinématique/Cours/images/image243.pdf` | 1/1 | 13 | 0 | 0.000 | 1 1/0 O V ∈ r |
+| `04-Cinématique/Cours/images/image244.pdf` | 1/1 | 13 | 0 | 0.000 | 2 2/0 O V ∈ r |
+| `04-Cinématique/Cours/images/image245.pdf` | 1/1 | 13 | 0 | 0.000 | 4 4/0 O V ∈ r |
+| `04-Cinématique/Cours/images/image246.pdf` | 1/1 | 8 | 0 | 0.000 | 0 (,)Oyr |
+| `04-Cinématique/Cours/images/image247.pdf` | 1/1 | 7 | 0 | 0.000 | 1 0 θ = |
+| `04-Cinématique/Cours/images/image248.pdf` | 1/1 | 18 | 0 | 0.000 | 03 (,)zzcte α ==rr |
+| `04-Cinématique/Cours/images/image249.pdf` | 1/1 | 24 | 0 | 0.000 | 4 0 4/0 . O Vy V ∈ = r r |
+| `04-Cinématique/Cours/images/image25.pdf` | 1/1 | 10 | 0 | 0.000 | 1/0 Ω uuuu |
+| `04-Cinématique/Cours/images/image250.pdf` | 1/1 | 5 | 0 | 0.000 | Vcte= |
+| `04-Cinématique/Cours/images/image251.pdf` | 1/1 | 9 | 0 | 0.000 | 2 2 π q = |
+| `04-Cinématique/Cours/images/image252.pdf` | 1/1 | 10 | 0 | 0.000 | 3 2 π q =− |
+| `04-Cinématique/Cours/images/image253.pdf` | 1/1 | 13 | 0 | 0.000 | 4 4/0 O A ∈ r |
+| `04-Cinématique/Cours/images/image26.pdf` | 1/1 | 15 | 0 | 0.000 | 1/0 A V ∈ uuuuu |
+| `04-Cinématique/Cours/images/image266.pdf` | 1/1 | 10 | 0 | 0.000 | Ω uuuu 1/0 |
+| `04-Cinématique/Cours/images/image267.pdf` | 1/1 | 10 | 0 | 0.000 | Ω uuuu 2/1 |
+| `04-Cinématique/Cours/images/image268.pdf` | 1/1 | 10 | 0 | 0.000 | Ω uuuu 3/2 |
+| `04-Cinématique/Cours/images/image269.pdf` | 1/1 | 12 | 0 | 0.000 | uuuu A,1/0 V |
+| `04-Cinématique/Cours/images/image27.pdf` | 1/1 | 0 | 0 | 0.000 |  |
+| `04-Cinématique/Cours/images/image270.pdf` | 1/1 | 11 | 0 | 0.000 | { } 1/0 A V |
+| `04-Cinématique/Cours/images/image271.pdf` | 1/1 | 11 | 0 | 0.000 | { } 2/1 B V |
+| `04-Cinématique/Cours/images/image272.pdf` | 1/1 | 12 | 0 | 0.000 | uuuu C,2/0 V |
+| `04-Cinématique/Cours/images/image273.pdf` | 1/1 | 13 | 0 | 0.000 | 0 dx dt uur 2 |
+| `04-Cinématique/Cours/images/image274.pdf` | 1/1 | 13 | 0 | 0.000 | A uuuuu C,2/0 |
+| `04-Cinématique/Cours/images/image277.pdf` | 1/1 | 15 | 0 | 0.000 | 3/2 C V ∈ uuuuu |
+| `04-Cinématique/Cours/images/image278.pdf` | 1/1 | 15 | 0 | 0.000 | 3/0 C V ∈ uuuuu |
+| `04-Cinématique/Cours/images/image279.pdf` | 1/1 | 15 | 0 | 0.000 | 3/0 C A ∈ uuuuu |
+| `04-Cinématique/Cours/images/image280.pdf` | 1/1 | 10 | 0 | 0.000 | 45/0 ()t γ |
+| `04-Cinématique/Cours/images/image281.pdf` | 1/1 | 13 | 0 | 0.000 | 45/0 (0)0 γ = |
+| `04-Cinématique/Cours/images/image282.pdf` | 1/1 | 12 | 0 | 0.000 | 45/0 ()t γ&& |
+| `04-Cinématique/Cours/images/image284.pdf` | 1/1 | 1 | 0 | 0.000 | T |
+| `04-Cinématique/Cours/images/image285.pdf` | 1/1 | 16 | 0 | 0.000 | 45/0 ()90 T γ =° |
+| `04-Cinématique/Cours/images/image288.pdf` | 1/1 | 13 | 0 | 0.000 | 3 (0,3/0) V r |
+| `04-Cinématique/Cours/images/image289.pdf` | 1/1 | 11 | 0 | 0.000 | (,3/0) VA r |
+| `04-Cinématique/Cours/images/image290.pdf` | 1/1 | 1 | 0 | 0.000 | α |
+| `04-Cinématique/Cours/images/image291.pdf` | 1/1 | 2 | 0 | 0.000 | α& |
+| `04-Cinématique/Cours/images/image292.pdf` | 1/1 | 2 | 0 | 0.000 | β& |
+| `04-Cinématique/Cours/images/image300.pdf` | 1/1 | 48 | 0 | 0.000 | x& max v 1t 2t t Vitesse de déplacement du VAG 0 |
+| `04-Cinématique/Cours/images/image33.pdf` | 1/1 | 5 | 0 | 0.000 | r 1 R |
+| `04-Cinématique/Cours/images/image34.pdf` | 1/1 | 5 | 0 | 0.000 | r 2 R |
+| `04-Cinématique/Cours/images/image35.pdf` | 1/1 | 9 | 0 | 0.000 | 1 uuu A M |
+| `04-Cinématique/Cours/images/image36.pdf` | 1/1 | 10 | 0 | 0.000 | 2 uuur A M |
+| `04-Cinématique/Cours/images/image39.pdf` | 1/1 | 1 | 0 | 0.000 | M |
+| `04-Cinématique/Cours/images/image40.pdf` | 1/1 | 9 | 0 | 0.000 | /0 MS T ∈ |
+| `04-Cinématique/Cours/images/image41.pdf` | 1/1 | 1 | 0 | 0.000 | M |
+| `04-Cinématique/Cours/images/image42.pdf` | 1/1 | 3 | 0 | 0.000 | 1 R |
+| `04-Cinématique/Cours/images/image46.pdf` | 1/1 | 1 | 0 | 0.000 | Δ |
+| `04-Cinématique/Cours/images/image47.pdf` | 1/1 | 1 | 0 | 0.000 | C |
+| `04-Cinématique/Cours/images/image50.pdf` | 1/1 | 10 | 0 | 0.000 | 1 rads − ⋅ |
+| `04-Cinématique/Cours/images/image53.pdf` | 1/1 | 1 | 0 | 0.000 | M |
+| `04-Cinématique/Cours/images/image54.pdf` | 1/1 | 1 | 0 | 0.000 | S |
+| `04-Cinématique/Cours/images/image55.pdf` | 1/1 | 3 | 0 | 0.000 | 0 O |
+| `04-Cinématique/Cours/images/image60.pdf` | 1/1 | 9 | 0 | 0.000 | /0 MS T ∈ |
+| `04-Cinématique/Cours/images/image61.pdf` | 1/1 | 52 | 0 | 0.000 | ∈ ⎡⎤ = êú êú ëû uuuuur uuuuuuuuur 0 /0 0 MS dOM V dt |
+| `04-Cinématique/Cours/images/image62.pdf` | 1/1 | 3 | 0 | 0.000 | 0 R |
+| `04-Cinématique/Cours/images/image63.pdf` | 1/1 | 8 | 0 | 0.000 | 2 ms − ⋅ |
+| `04-Cinématique/Cours/images/image64.pdf` | 1/1 | 26 | 0 | 0.000 | 00000 (,,,) ROxyz uuruuruu |
+| `04-Cinématique/Cours/images/image65.pdf` | 1/1 | 77 | 0 | 0.000 | ∈ ÎÎ ⎡⎤ =G= êú êú ëû uuuuuuuu uuuuuuuuuuruuuuuuuuuur/0 /0/0 0 MS MSMS dV A dt |
+| `04-Cinématique/Cours/images/image67.pdf` | 1/1 | 47 | 0 | 0.000 | / j i iji R dx x dt ⎡⎤ =WÙ êú êú ëû uur uuuuuru |
+| `04-Cinématique/Cours/images/image70.pdf` | 1/1 | 3 | 0 | 0.000 | 3 O |
+| `04-Cinématique/Cours/images/image71.pdf` | 1/1 | 3 | 0 | 0.000 | 2 R |
+| `04-Cinématique/Cours/images/image72.pdf` | 1/1 | 3 | 0 | 0.000 | 1 R |
+| `04-Cinématique/Cours/images/image73.pdf` | 1/1 | 3 | 0 | 0.000 | 0 R |
+| `04-Cinématique/Cours/images/image76.pdf` | 1/1 | 43 | 0 | 0.000 | 2/02/11/0 PPP VVV ∈∈∈=+ uuuuuuuruuuuuuuruuu |
+| `04-Cinématique/Cours/images/image78.pdf` | 1/1 | 3 | 0 | 0.000 | 1 R |
+| `04-Cinématique/Cours/images/image79.pdf` | 1/1 | 54 | 0 | 0.000 | /0/11/0 PnPnnP VVV ∈∈−∈=+⋅⋅⋅+ uuuuuuuuruuuuuuuuuuruuuu |
+| `04-Cinématique/Cours/images/image80.pdf` | 1/1 | 43 | 0 | 0.000 | /0/11/0 nnn − Ω=Ω+⋅⋅⋅+Ω uuuuuruuuuuuuuruuuu |
+| `04-Cinématique/Cours/images/image81.pdf` | 1/1 | 36 | 0 | 0.000 | { } { } { } /0/11/0 nnn =+⋅⋅⋅+ - VVV |
+| `04-Cinématique/Cours/images/image82.pdf` | 1/1 | 1 | 0 | 0.000 | A |
+| `04-Cinématique/Cours/images/image83.pdf` | 1/1 | 1 | 0 | 0.000 | 1 |
+| `04-Cinématique/Cours/images/image85.pdf` | 1/1 | 46 | 0 | 0.000 | 1/01/01/0 BA VVBA ∈∈=+∧Ω uuuuuuuruuuuuuuruuuru |
+| `04-Cinématique/Cours/images/image88.pdf` | 1/1 | 1 | 0 | 0.000 | I |
+| `04-Cinématique/Cours/images/image89.pdf` | 1/1 | 15 | 0 | 0.000 | 2/1 I V ∈ uuuuu |
+| `05-Modélisation Systèmes Asservis/Cours/images/image15.pdf` | 1/1 | 8 | 0 | 0.000 | Digicode |
+| `05-Modélisation Systèmes Asservis/Cours/images/image150.pdf` | 1/1 | 8 | 0 | 0.000 | Digicode |
+| `05-Modélisation Systèmes Asservis/Cours/images/image17.pdf` | 1/1 | 11 | 0 | 0.000 | 123 S=E+E-E |
+| `05-Modélisation Systèmes Asservis/Cours/images/image30.pdf` | 1/1 | 0 | 0 | 0.000 |  |
+| `05-Modélisation Systèmes Asservis/Cours/modelisation/images/image100.pdf` | 1/1 | 43 | 0 | 0.000 | Gain en dB log10(w) Phase en ° log10(w) 0 0 |
+| `05-Modélisation Systèmes Asservis/Cours/modelisation/images/image101.pdf` | 1/1 | 43 | 0 | 0.000 | Gain en dB log10(w) Phase en ° log10(w) 0 0 |
+| `05-Modélisation Systèmes Asservis/Cours/modelisation/images/image108.pdf` | 1/1 | 6 | 0 | 0.000 | C(p)=1 |
+| `05-Modélisation Systèmes Asservis/Cours/modelisation/images/image109.pdf` | 1/1 | 21 | 0 | 0.000 | BO H(p)=C(p).H(p)=H(p |
+| `05-Modélisation Systèmes Asservis/Cours/modelisation/images/image110.pdf` | 1/1 | 31 | 0 | 0.000 | BO -4-62 140 H(p)=.p1+2.10p+10p |
+| `05-Modélisation Systèmes Asservis/Cours/modelisation/images/image112.pdf` | 1/1 | 52 | 0 | 0.000 | BO -7-9-172 50 H(p)= (1+1.59.10p)(1+7.96.10p+6.34.10 |
+| `05-Modélisation Systèmes Asservis/Cours/modelisation/images/image114.pdf` | 1/1 | 51 | 0 | 0.000 | BO -7-9-172 1 H(p)= (1+1.59.10p)(1+7.96.10p+6.34.10 |
+| `05-Modélisation Systèmes Asservis/Cours/modelisation/images/image116.pdf` | 1/1 | 39 | 0 | 0.000 | BO 11+8p1-0,05p H(p)=0,25..p1+2p1+0,05p |
+| `05-Modélisation Systèmes Asservis/Cours/modelisation/images/image96.pdf` | 1/1 | 32 | 0 | 0.000 | ⎛⎞ ç÷ èø 2 (Bell)10 1 P G =log P |
+| `05-Modélisation Systèmes Asservis/Cours/modelisation/images/image97.pdf` | 1/1 | 33 | 0 | 0.000 | ⎛⎞ ç÷ èø 2 (dB)10 1 P G =10.log P |
+| `05-Modélisation Systèmes Asservis/Cours/modelisation/images/image99.pdf` | 1/1 | 43 | 0 | 0.000 | Gain en dB log10(w) Phase en ° log10(w) 0 0 |
