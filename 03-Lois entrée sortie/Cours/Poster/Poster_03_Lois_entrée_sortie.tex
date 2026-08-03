@@ -5,24 +5,84 @@
 \makeatletter\def\input@path{{../../../Style/}}\makeatother
 \input{TLPosterCarteMentale.sty}
 \IfFileExists{TLLoisEntreeSortie.sty}{\input{TLLoisEntreeSortie.sty}}{}
+\IfFileExists{Notations_Cinematique/Notations_Cinematique.sty}{\input{Notations_Cinematique/Notations_Cinematique.sty}}{}
+\IfFileExists{TLCinematique.sty}{\input{TLCinematique.sty}}{}
 \pagestyle{empty}
 \begin{document}
-\TLPosterTitre{Lois entrée-sortie}{Fiche résumé éditable}
-\begin{multicols}{2}
+\TLPosterTitre{Lois entrée-sortie}{Du mouvement d'entrée au mouvement de sortie}
+\begin{multicols}{3}
+
 \begin{TLPosterBloc}{Objectif}
-Relier le mouvement d'entrée au mouvement de sortie d'un mécanisme.
+Déterminer une relation entre le paramètre d'entrée $q_e$ et le paramètre de sortie $q_s$ d'un mécanisme :
+\[
+q_s=f(q_e),\qquad \dot q_s=g(q_e,\dot q_e).
+\]
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Préparation du modèle}
+Identifier le bâti, les solides, les liaisons, les paramètres géométriques et les variables de mouvement. Choisir les repères et les angles de manière cohérente.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Chaîne fermée}
+Dans une boucle géométrique, la somme vectorielle des déplacements est nulle :
+\[
+\overrightarrow{AB}+\overrightarrow{BC}+\cdots+\overrightarrow{ZA}=\vec 0.
+\]
+La projection sur des axes adaptés fournit des équations scalaires.
 \end{TLPosterBloc}
 
 \begin{TLPosterBloc}{Fermeture géométrique}
-Écrire les relations vectorielles ou scalaires issues d'une chaîne fermée.
+Écrire la relation de fermeture, projeter dans une base pertinente, éliminer les variables intermédiaires puis isoler la relation $q_s=f(q_e)$.
 \end{TLPosterBloc}
 
 \begin{TLPosterBloc}{Fermeture cinématique}
-Composer les torseurs cinématiques et projeter sur des directions pertinentes.
+Dans une chaîne fermée :
+\[
+\sum \left\{\mathcal V_{i/j}\right\}=\left\{0\right\}.
+\]
+Composer les torseurs cinématiques et projeter les composantes utiles pour relier les vitesses.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Résultat}
-Obtenir une loi géométrique, cinématique ou un rapport de transmission.
+\begin{TLPosterBloc}{Dérivation de la loi géométrique}
+À partir de $F(q_e,q_s)=0$ :
+\[
+\frac{\partial F}{\partial q_e}\dot q_e+
+\frac{\partial F}{\partial q_s}\dot q_s=0,
+\]
+d'où une loi cinématique entre $\dot q_e$ et $\dot q_s$.
 \end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Rapport de transmission}
+Pour un transmetteur rotatif :
+\[
+r=\frac{\omega_s}{\omega_e}.
+\]
+Le signe traduit le sens relatif de rotation. Pour une transmission idéale, la conservation de puissance impose $C_e\omega_e+C_s\omega_s=0$.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Cas des engrenages}
+Pour deux roues extérieures :
+\[
+\frac{\omega_2}{\omega_1}=-\frac{Z_1}{Z_2}.
+\]
+Pour un train simple, multiplier les rapports élémentaires en tenant compte du nombre de contacts extérieurs.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Choix de la méthode}
+Utiliser la fermeture géométrique pour obtenir les positions, la dérivation pour les vitesses, et la fermeture cinématique lorsque les torseurs sont directement exploitables.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Vérifications}
+Contrôler les unités, les signes, les configurations limites, la cohérence des amplitudes et l'accord avec le fonctionnement réel du mécanisme.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Démarche synthétique}
+1. Paramétrer. 2. Repérer la boucle. 3. Écrire la fermeture. 4. Projeter. 5. Éliminer les inconnues intermédiaires. 6. Isoler la loi entrée-sortie. 7. Vérifier.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Résultats attendus}
+Loi géométrique, relation de vitesse, rapport de transmission, sens de mouvement, domaine de fonctionnement et éventuelles singularités.
+\end{TLPosterBloc}
+
 \end{multicols}
 \end{document}
