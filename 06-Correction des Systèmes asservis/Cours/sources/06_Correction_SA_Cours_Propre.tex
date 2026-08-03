@@ -1,0 +1,318 @@
+% ============================================================================
+% COURS 06 — CORRECTION ET RÉGLAGE DES SYSTÈMES ASSERVIS
+% Version propre utilisant les bibliothèques du framework SI
+% ============================================================================
+
+\section{Introduction à la correction}\label{sec:corr-introduction}
+
+Un système asservi doit satisfaire simultanément plusieurs exigences : stabilité,
+rapidité, précision, limitation du dépassement et robustesse. Le comportement du
+procédé seul ne permet pas toujours de respecter le cahier des charges. On ajoute
+alors un \textbf{correcteur} dans la chaîne directe afin de modifier la fonction de
+transfert en boucle ouverte et, par conséquent, le comportement en boucle fermée.
+
+\TLCorrecteurSerie
+
+Dans la suite, on note :
+\[
+C(p)\quad\text{le correcteur},\qquad G(p)\quad\text{le procédé},\qquad
+H(p)\quad\text{le capteur}.
+\]
+La fonction de transfert en boucle ouverte est alors
+\[
+H_{\mathrm{BO}}(p)=C(p)G(p)H(p).
+\]
+Le correcteur est réglé à partir du cahier des charges et des diagrammes de Bode de
+la boucle ouverte.
+
+\subsection{Performances à considérer}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|p{0.22\linewidth}|p{0.68\linewidth}|}
+\hline
+\textbf{Performance} & \textbf{Caractérisation} \\
+\hline
+Stabilité & Position des pôles de la FTBF et marges de gain et de phase. \\
+\hline
+Rapidité & Temps de réponse à 5\,\% ou pulsation de coupure à 0\,dB. \\
+\hline
+Précision & Erreur statique et classe de la fonction de transfert en boucle ouverte. \\
+\hline
+Dépassement & Valeur du premier dépassement et amortissement de la réponse. \\
+\hline
+Robustesse & Conservation des performances malgré les incertitudes du modèle et les perturbations. \\
+\hline
+\end{tabular}
+\end{center}
+
+La stabilité reste prioritaire. L'amélioration d'une performance dégrade souvent
+une autre performance : on réalise donc un compromis.
+
+\section{Actions élémentaires de correction}\label{sec:corr-actions}
+
+Les correcteurs usuels sont construits à partir de trois actions élémentaires :
+proportionnelle, intégrale et dérivée.
+
+\TLTroisActionsCorrection
+
+\subsection{Action proportionnelle}
+
+\[
+u(t)=K\varepsilon(t)
+\qquad\Longleftrightarrow\qquad
+C(p)=K.
+\]
+Une augmentation de $K$ augmente le gain de la boucle ouverte. Elle améliore en
+général la précision et la rapidité, mais réduit les marges de stabilité.
+
+\subsection{Action intégrale}
+
+\[
+u(t)=\frac{1}{T_i}\int_0^t\varepsilon(\tau)\,\mathrm d\tau
+\qquad\Longleftrightarrow\qquad
+C(p)=\frac{1}{T_i p}.
+\]
+L'intégrateur augmente la classe de la boucle ouverte. Il permet donc d'annuler
+certaines erreurs permanentes. En revanche, il retire $90^\circ$ de phase et peut
+fortement dégrader la stabilité.
+
+\subsection{Action dérivée}
+
+\[
+u(t)=T_d\frac{\mathrm d\varepsilon(t)}{\mathrm dt}
+\qquad\Longleftrightarrow\qquad
+C(p)=T_d p.
+\]
+L'action dérivée anticipe l'évolution de l'écart. Une dérivation idéale est
+irréalisable et amplifie fortement le bruit. En pratique, elle est filtrée :
+\[
+C_D(p)=K\frac{1+T_d p}{1+bT_d p},\qquad 0<b<1.
+\]
+
+\section{Correcteur proportionnel P}\label{sec:corr-p}
+
+Le correcteur proportionnel a pour fonction de transfert
+\[
+\boxed{C(p)=K}.
+\]
+
+\TLBodeCorrecteurP[10]
+
+Le diagramme de gain est translaté de $20\log_{10}K$ sans modification de la
+phase.
+
+\subsection{Influence sur les performances}
+
+\begin{itemize}
+  \item la précision est généralement améliorée ;
+  \item la bande passante augmente et le système devient souvent plus rapide ;
+  \item les marges de gain et de phase diminuent ;
+  \item un gain trop élevé peut entraîner des oscillations ou l'instabilité ;
+  \item la saturation de l'actionneur doit être vérifiée.
+\end{itemize}
+
+\subsection{Réglage à partir d'une marge de phase}
+
+Pour imposer une marge de phase $M_\varphi$ :
+\begin{enumerate}
+  \item déterminer la phase souhaitée à la pulsation de coupure :
+  \[
+  \varphi(\omega_c)=-180^\circ+M_\varphi ;
+  \]
+  \item relever sur le diagramme non corrigé la pulsation correspondante ;
+  \item relever le gain $G_{\mathrm{dB}}(\omega_c)$ ;
+  \item choisir
+  \[
+  20\log_{10}K=-G_{\mathrm{dB}}(\omega_c).
+  \]
+\end{enumerate}
+
+\section{Correcteurs intégral I et proportionnel intégral PI}\label{sec:corr-pi}
+
+\subsection{Correcteur intégral I}
+
+\[
+\boxed{C(p)=\frac{1}{T_i p}}
+\]
+
+\TLBodeCorrecteurI[1]
+
+Le gain présente une pente de $-20$\,dB/décade et la phase vaut $-90^\circ$.
+Ce correcteur améliore fortement la précision, mais il est rarement utilisé seul
+car son effet déstabilisant est important.
+
+\subsection{Correcteur PI}
+
+\[
+\boxed{C(p)=K\frac{1+T_i p}{T_i p}}
+\]
+
+\TLBodeCorrecteurPI[1][1]
+
+Le correcteur PI se comporte comme un intégrateur aux basses fréquences et comme
+un gain proportionnel aux hautes fréquences. Il est particulièrement adapté aux
+systèmes qui doivent présenter une erreur statique nulle.
+
+La pulsation de cassure est
+\[
+\omega_i=\frac{1}{T_i}.
+\]
+Pour limiter la dégradation de la marge de phase, on place généralement cette
+pulsation suffisamment en dessous de la pulsation de coupure souhaitée :
+\[
+\omega_i\leq \frac{\omega_c}{10}.
+\]
+
+\subsection{Compensation d'un pôle dominant}
+
+Si le procédé possède un pôle lent $1+Tp$, on peut choisir $T_i=T$ afin que le
+zéro du PI compense ce pôle. Cette compensation doit rester prudente, car le
+modèle réel est toujours entaché d'incertitudes.
+
+\section{Correcteur à retard de phase}\label{sec:corr-retard}
+
+Un correcteur à retard de phase s'écrit sous la forme
+\[
+\boxed{C(p)=K\frac{1+Tp}{1+aTp}},\qquad a>1.
+\]
+
+\TLBodeRetardPhase[1][10][1]
+
+Ses pulsations de cassure sont
+\[
+\omega_p=\frac{1}{aT},\qquad \omega_z=\frac{1}{T},
+\qquad \omega_p<\omega_z.
+\]
+Entre les deux cassures, le gain décroît avec une pente de $-20$\,dB/décade et la
+phase devient négative.
+
+Ce correcteur permet d'augmenter le gain aux basses fréquences, donc d'améliorer
+la précision, sans modifier fortement le gain aux hautes fréquences. Il tend
+toutefois à diminuer la rapidité.
+
+\section{Correcteur à avance de phase}\label{sec:corr-avance}
+
+Un correcteur à avance de phase s'écrit
+\[
+\boxed{C(p)=K\frac{1+Tp}{1+aTp}},\qquad 0<a<1.
+\]
+
+\TLBodeAvancePhase[1][0.1][1]
+
+Les cassures vérifient
+\[
+\omega_z=\frac{1}{T},\qquad \omega_p=\frac{1}{aT},
+\qquad \omega_z<\omega_p.
+\]
+Le correcteur apporte une phase positive autour de
+\[
+\omega_m=\frac{1}{T\sqrt a}.
+\]
+L'avance de phase maximale vaut
+\[
+\varphi_{\max}=\arcsin\left(\frac{1-a}{1+a}\right).
+\]
+
+\subsection{Méthode de réglage}
+
+\begin{enumerate}
+  \item déterminer l'avance de phase nécessaire, en conservant une marge de sécurité ;
+  \item calculer
+  \[
+  a=\frac{1-\sin\varphi_{\max}}{1+\sin\varphi_{\max}} ;
+  \]
+  \item choisir la nouvelle pulsation de coupure au voisinage de $\omega_m$ ;
+  \item en déduire
+  \[
+  T=\frac{1}{\omega_m\sqrt a} ;
+  \]
+  \item régler $K$ pour que le gain corrigé soit nul à la pulsation de coupure.
+\end{enumerate}
+
+Le correcteur à avance de phase améliore les marges de stabilité et augmente la
+bande passante. Il améliore donc généralement la rapidité.
+
+\section{Correcteur PID}\label{sec:corr-pid}
+
+Une forme classique du correcteur PID est
+\[
+\boxed{C(p)=K\left(1+\frac{1}{T_i p}+T_d p\right)}.
+\]
+Une forme physiquement réalisable utilise une dérivée filtrée :
+\[
+\boxed{C(p)=K\frac{1+T_i p}{T_i p}\frac{1+T_d p}{1+bT_d p}},
+\qquad 0<b<1.
+\]
+
+\TLBodeCorrecteurPID[1][10][1][0.1]
+
+\begin{itemize}
+  \item l'action proportionnelle règle le niveau global de commande ;
+  \item l'action intégrale améliore la précision ;
+  \item l'action dérivée filtrée améliore la stabilité et la rapidité.
+\end{itemize}
+
+Le PID offre de nombreuses possibilités de réglage, mais il est plus sensible aux
+incertitudes, au bruit et aux saturations. En pratique, on utilise souvent un PI
+ou un PID filtré avec un dispositif anti-saturation de l'intégrateur.
+
+\section{Bilan et architectures de correction}\label{sec:corr-bilan}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|p{0.14\linewidth}|c|c|c|p{0.28\linewidth}|}
+\hline
+\textbf{Correcteur} & \textbf{Précision} & \textbf{Rapidité} & \textbf{Stabilité} & \textbf{Remarque} \\
+\hline
+P & $+$ & $+$ & $-$ & Réglage simple, attention à la saturation. \\
+\hline
+I & $++$ & $-$ & $--$ & Rarement employé seul. \\
+\hline
+PI & $++$ & $0/-$ & $-$ & Très courant pour annuler l'erreur statique. \\
+\hline
+Retard & $+$ & $-$ & $0/-$ & Améliore le gain en basse fréquence. \\
+\hline
+Avance & $0$ & $+$ & $+$ & Augmente la marge de phase et la bande passante. \\
+\hline
+PID & $++$ & $+$ & $+$ & Performant mais plus délicat à régler. \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Boucles imbriquées}
+
+Pour un axe motorisé, on utilise fréquemment une boucle interne de vitesse et une
+boucle externe de position. La boucle interne doit être nettement plus rapide que
+la boucle externe.
+
+\TLBouclesImbriquees
+
+Une règle pratique consiste à séparer les bandes passantes d'un facteur compris
+entre 5 et 10. On règle d'abord la boucle interne, puis la boucle externe en
+considérant la boucle interne fermée comme un sous-système.
+
+\subsection{Démarche générale de synthèse}
+
+\begin{enumerate}
+  \item établir et valider le modèle du procédé ;
+  \item analyser la boucle ouverte non corrigée ;
+  \item traduire le cahier des charges en contraintes fréquentielles ;
+  \item choisir la structure du correcteur ;
+  \item calculer ses paramètres ;
+  \item vérifier stabilité, précision, rapidité et saturation ;
+  \item valider par simulation puis expérimentalement ;
+  \item ajuster le réglage en conservant des marges de robustesse.
+\end{enumerate}
+
+\section{À retenir}\label{sec:corr-retenir}
+
+\begin{itemize}
+  \item Le réglage s'effectue principalement sur la fonction de transfert en boucle ouverte.
+  \item Le gain proportionnel améliore précision et rapidité, mais réduit la stabilité.
+  \item L'intégrateur augmente la classe et annule certaines erreurs permanentes.
+  \item L'avance de phase améliore la marge de phase et la rapidité.
+  \item Le retard de phase améliore surtout la précision aux basses fréquences.
+  \item Un PID combine les trois actions, avec une dérivée nécessairement filtrée.
+  \item La stabilité, les saturations et la robustesse doivent toujours être vérifiées sur le système réel.
+\end{itemize}
