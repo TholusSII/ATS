@@ -1,0 +1,85 @@
+name: Compiler le cours 06 correction des systèmes asservis
+
+on:
+  push:
+    paths:
+      - .github/workflows/build-course6.yml
+      - '06-Correction des Systèmes asservis/Cours/**'
+      - 'Style/TLCorrectionSystemesAsservis.sty'
+      - 'Style/TLSystemesAsservis.sty'
+      - 'Style/TLSystemesAsservisStableBode.sty'
+      - 'Style/schemabloc.sty'
+      - 'Style/bodegraph.sty'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-course6-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    container:
+      image: ghcr.io/xu-cheng/texlive-full:latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Compiler et enregistrer le diagnostic
+        shell: bash
+        run: |
+          set +e
+          course='06-Correction des Systèmes asservis/Cours'
+          cd "$course"
+          job='00_Correction_Systemes_Asservis'
+          rm -f "$job".{aux,toc,out,mw,idx,ilg,ind,log,pdf}
+          : > COMPILATION_COURS6.log
+
+          pdflatex -file-line-error -halt-on-error -interaction=nonstopmode "$job.tex" 2>&1 | tee -a COMPILATION_COURS6.log
+          status=${PIPESTATUS[0]}
+
+          if [ "$status" -eq 0 ] && [ -f "$job.idx" ]; then
+            makeindex "$job.idx" 2>&1 | tee -a COMPILATION_COURS6.log
+            status=${PIPESTATUS[0]}
+          fi
+          if [ "$status" -eq 0 ]; then
+            pdflatex -file-line-error -halt-on-error -interaction=nonstopmode "$job.tex" 2>&1 | tee -a COMPILATION_COURS6.log
+            status=${PIPESTATUS[0]}
+          fi
+          if [ "$status" -eq 0 ]; then
+            pdflatex -file-line-error -halt-on-error -interaction=nonstopmode "$job.tex" 2>&1 | tee -a COMPILATION_COURS6.log
+            status=${PIPESTATUS[0]}
+          fi
+
+          if [ "$status" -eq 0 ]; then
+            printf 'SUCCESS\n' > COMPILATION_COURS6.txt
+          else
+            printf 'FAILURE\n' > COMPILATION_COURS6.txt
+          fi
+          exit 0
+
+      - name: Publier le résultat
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          course='06-Correction des Systèmes asservis/Cours'
+          git add "$course/COMPILATION_COURS6.txt" "$course/COMPILATION_COURS6.log"
+          if grep -qx 'SUCCESS' "$course/COMPILATION_COURS6.txt"; then
+            git add "$course/00_Correction_Systemes_Asservis.pdf"
+          fi
+          if ! git diff --cached --quiet; then
+            git commit -m 'Met à jour le contrôle de compilation du cours 06 [skip ci]'
+            git push
+          fi
+
+      - name: Signaler l’échec
+        shell: bash
+        run: |
+          grep -qx 'SUCCESS' '06-Correction des Systèmes asservis/Cours/COMPILATION_COURS6.txt'
