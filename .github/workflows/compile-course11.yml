@@ -1,0 +1,24 @@
+name: Compiler le cours 11
+
+on:
+  push:
+    paths:
+      - '11-Actions Mécaniques/Cours/**'
+      - 'Style/**'
+      - '.github/workflows/compile-course11.yml'
+  workflow_dispatch:
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: xu-cheng/latex-action@v3
+        with:
+          root_file: 00_ActionsMecaniques.tex
+          working_directory: 11-Actions Mécaniques/Cours
+          latexmk_use_xelatex: false
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cours-11-actions-mecaniques
+          path: 11-Actions Mécaniques/Cours/00_ActionsMecaniques.pdf
