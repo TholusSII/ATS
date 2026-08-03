@@ -218,9 +218,352 @@ On souhaite mesurer la température d'une pièce entre $\SI{0}{\degreeCelsius}$ 
   \item À partir de la loi $R(T)$ fournie par la documentation du capteur, déterminer s'il s'agit d'une thermistance CTN ou CTP.
 \end{enumerate}
 
+\section{Outils mathématiques pour la chaîne d'information : électrocinétique}\label{sec:elec-electrocinetique}
+
+\subsection{Généralités}
+
+L'énergie électrique nécessaire au fonctionnement d'un circuit est fournie par des sources d'électricité appelées générateurs. Elle est disponible sous deux formes :
+\begin{itemize}
+  \item les sources continues, ou DC : piles, accumulateurs, panneaux solaires ;
+  \item les sources alternatives, ou AC : centrales électriques, éoliennes, alternateurs.
+\end{itemize}
+
+L'énergie électrique est principalement produite sous forme alternative à partir de centrales qui transforment une énergie nucléaire, thermique, hydraulique, éolienne ou marémotrice. Son unité est le joule. En électricité, on utilise également le kilowattheure :
+\[
+\SI{1}{\kilo\watt\hour}=\SI{3.6}{\mega\joule}.
+\]
+
+\subsection{Électrocinétique}
+
+L'électrocinétique étudie la circulation des charges électriques dans un circuit ou réseau électrique. Un circuit élémentaire est constitué de conducteurs métalliques et de composants électriques. Il comporte au minimum un générateur, un récepteur et les conducteurs qui les relient.
+
+L'analogie hydraulique permet d'interpréter le fonctionnement : une pompe crée une différence de pression et met le fluide en mouvement ; de même, un générateur crée une différence de potentiel et provoque la circulation des charges.
+
+\subsection{Charge et courant}
+
+L'intensité électrique est définie comme le débit de charges traversant une section du conducteur :
+\[
+i(t)=\frac{\mathrm{d}q(t)}{\mathrm{d}t}.
+\]
+
+Le courant s'exprime en ampères et la charge en coulombs. La charge élémentaire de l'électron vaut $e=-1{,}6\times10^{-19}\,\si{\coulomb}$. Le sens conventionnel du courant est opposé au déplacement des électrons dans un conducteur métallique.
+
+Un courant se mesure avec un ampèremètre placé en série dans la branche étudiée. Pour un régime continu, l'intensité est constante. Pour un régime variable, elle dépend du temps.
+
+\subsection{Potentiel et différence de potentiel}
+
+Chaque point d'un circuit possède un potentiel électrique $V$, défini par rapport à un point de référence choisi arbitrairement, appelé masse ou potentiel nul.
+
+La tension entre deux points $A$ et $B$ est la différence de potentiel :
+\[
+U_{AB}=V_A-V_B.
+\]
+
+Une tension se mesure avec un voltmètre placé en dérivation entre les deux points. L'orientation de la flèche fixe l'ordre des potentiels dans la relation.
+
+\subsection{Dipôles}
+
+Un dipôle est un élément électrique comportant deux bornes. Son comportement est caractérisé par une relation entre la tension $u(t)$ à ses bornes et le courant $i(t)$ qui le traverse.
+
+On distingue notamment :
+\begin{itemize}
+  \item les dipôles passifs : résistance, condensateur, inductance ;
+  \item les dipôles actifs : sources de tension et sources de courant ;
+  \item les dipôles linéaires et non linéaires ;
+  \item les dipôles récepteurs et générateurs selon leur échange de puissance avec le reste du circuit.
+\end{itemize}
+
+\subsection{Sources de tension et de courant}
+
+Une source idéale de tension impose une tension indépendante du courant débité. Une source idéale de courant impose un courant indépendant de la tension à ses bornes.
+
+\begin{center}
+\begin{circuitikz}
+  \draw (0,0) to[V,l=$E$] (0,3);
+  \draw (3,0) to[I,l=$I_0$] (3,3);
+  \node[below] at (0,0) {source de tension};
+  \node[below] at (3,0) {source de courant};
+\end{circuitikz}
+\end{center}
+
+Une source réelle de tension est modélisée par une source idéale en série avec une résistance interne. Une source réelle de courant est modélisée par une source idéale en parallèle avec une résistance interne.
+
+\subsection{Énergie et puissance}
+
+La puissance électrique instantanée est définie par :
+\[
+p(t)=u(t)i(t).
+\]
+
+Elle s'exprime en watts. Elle traduit la quantité d'énergie fournie ou consommée par unité de temps :
+\[
+W(t_1,t_2)=\int_{t_1}^{t_2}p(t)\,\mathrm{d}t.
+\]
+
+En régime continu, lorsque $U$ et $I$ sont constants :
+\[
+P=UI,
+\qquad
+W=P\Delta t.
+\]
+
+\subsection{Point de fonctionnement}
+
+Chaque point de la caractéristique tension-courant d'un dipôle représente un fonctionnement possible. Le point de fonctionnement réel d'un circuit correspond à l'intersection de la caractéristique du générateur et de celle du récepteur. Il fixe simultanément la tension aux bornes du récepteur et le courant qui le traverse.
+
+\subsection{Conventions récepteur et générateur}
+
+Le courant et la tension sont des grandeurs algébriques. Leur signe dépend de l'orientation choisie pour les flèches.
+
+\begin{itemize}
+  \item En convention récepteur, les flèches de tension et de courant sont de sens opposés.
+  \item En convention générateur, les flèches de tension et de courant sont de même sens.
+\end{itemize}
+
+La convention est choisie en fonction du fonctionnement attendu. Une résistance fonctionne toujours comme récepteur. Un condensateur ou une inductance peuvent alternativement recevoir puis restituer de l'énergie.
+
+\subsection{La résistance}
+
+La résistance obéit à la loi d'Ohm :
+\[
+u(t)=Ri(t),
+\qquad
+R\text{ en }\si{\ohm}.
+\]
+
+La conductance vaut $G=1/R$ et s'exprime en siemens :
+\[
+i(t)=Gu(t).
+\]
+
+\subsubsection{Associations de résistances}
+
+Pour des résistances en série :
+\[
+R_{\mathrm{eq}}=R_1+R_2+\cdots+R_n.
+\]
+
+Pour des résistances en parallèle :
+\[
+\frac{1}{R_{\mathrm{eq}}}=\frac{1}{R_1}+\frac{1}{R_2}+\cdots+\frac{1}{R_n}.
+\]
+
+Dans le cas de deux résistances en parallèle :
+\[
+R_{\mathrm{eq}}=\frac{R_1R_2}{R_1+R_2}.
+\]
+
+La puissance dissipée par effet Joule est :
+\[
+P_R=Ri^2=\frac{u^2}{R}=ui.
+\]
+
+\subsection{Le condensateur}
+
+Un condensateur stocke de l'énergie sous forme électrostatique. Sa relation courant-tension est :
+\[
+i(t)=C\frac{\mathrm{d}u(t)}{\mathrm{d}t}.
+\]
+
+La tension aux bornes d'un condensateur ne peut pas varier instantanément. L'énergie emmagasinée vaut :
+\[
+W_C=\frac{1}{2}Cu^2.
+\]
+
+En régime continu établi, le condensateur se comporte comme un circuit ouvert.
+
+Pour des condensateurs en parallèle :
+\[
+C_{\mathrm{eq}}=C_1+C_2+\cdots+C_n.
+\]
+
+Pour des condensateurs en série :
+\[
+\frac{1}{C_{\mathrm{eq}}}=\frac{1}{C_1}+\frac{1}{C_2}+\cdots+\frac{1}{C_n}.
+\]
+
+\subsection{L'inductance}
+
+Une inductance stocke de l'énergie sous forme magnétique. Sa relation courant-tension est :
+\[
+u(t)=L\frac{\mathrm{d}i(t)}{\mathrm{d}t}.
+\]
+
+Le courant dans une inductance ne peut pas varier instantanément. L'énergie emmagasinée vaut :
+\[
+W_L=\frac{1}{2}Li^2.
+\]
+
+En régime continu établi, une inductance idéale se comporte comme un court-circuit.
+
+Pour des inductances non couplées en série :
+\[
+L_{\mathrm{eq}}=L_1+L_2+\cdots+L_n.
+\]
+
+Pour des inductances non couplées en parallèle :
+\[
+\frac{1}{L_{\mathrm{eq}}}=\frac{1}{L_1}+\frac{1}{L_2}+\cdots+\frac{1}{L_n}.
+\]
+
+\subsection{Quadrants de fonctionnement}
+
+Les conventions de fléchage ne déterminent pas à elles seules le mode de fonctionnement du dipôle. Celui-ci dépend du signe de la puissance $p=ui$.
+
+En convention récepteur :
+\begin{itemize}
+  \item si $p>0$, le dipôle reçoit de l'énergie : il fonctionne en récepteur ;
+  \item si $p<0$, le dipôle fournit de l'énergie : il fonctionne en générateur.
+\end{itemize}
+
+En convention générateur :
+\begin{itemize}
+  \item si $p>0$, le dipôle fonctionne en générateur ;
+  \item si $p<0$, il fonctionne en récepteur.
+\end{itemize}
+
+Pour une résistance, la caractéristique $u=Ri$ passe par l'origine. En convention récepteur, les quadrants 1 et 3 correspondent au fonctionnement récepteur. Pour une source de tension idéale représentée en convention générateur, les quadrants sont interprétés de manière inverse.
+
+\section{Outils et lois de l'électrocinétique}\label{sec:elec-lois}
+
+\subsection{Lois de Kirchhoff}
+
+Un circuit peut être constitué d'un ensemble de dipôles associés. On définit :
+\begin{description}
+  \item[Nœud :] connexion entre au moins deux dipôles ;
+  \item[Branche :] portion de circuit comprise entre deux nœuds consécutifs ;
+  \item[Maille :] chemin fermé constitué de plusieurs branches.
+\end{description}
+
+\subsubsection{Loi des nœuds}
+
+La somme algébrique des courants arrivant à un nœud est nulle :
+\[
+\sum_k i_k=0.
+\]
+
+On peut aussi écrire que la somme des courants entrants est égale à la somme des courants sortants.
+
+\subsubsection{Loi des mailles}
+
+Dans une maille orientée, la somme algébrique des tensions est nulle :
+\[
+\sum_k u_k=0.
+\]
+
+Le signe d'une tension dépend de l'orientation de sa flèche par rapport au sens choisi pour parcourir la maille.
+
+\subsection{Diviseur de tension}
+
+Le diviseur de tension s'applique à des résistances placées en série et parcourues par le même courant.
+
+\TLPontDiviseur
+
+Pour deux résistances :
+\[
+u_s=E\frac{R_2}{R_1+R_2}.
+\]
+
+Plus généralement, la tension aux bornes de $R_k$ dans une association série vaut :
+\[
+U_k=U\frac{R_k}{\sum_i R_i}.
+\]
+
+\subsection{Diviseur de courant}
+
+Le diviseur de courant s'applique à des résistances en parallèle soumises à la même tension.
+
+Pour deux résistances parcourues par les courants $I_1$ et $I_2$, avec $I=I_1+I_2$ :
+\[
+I_1=I\frac{R_2}{R_1+R_2},
+\qquad
+I_2=I\frac{R_1}{R_1+R_2}.
+\]
+
+En utilisant les conductances :
+\[
+I_k=I\frac{G_k}{\sum_i G_i}.
+\]
+
+\subsection{Théorème de superposition}
+
+Dans un circuit linéaire comportant plusieurs sources indépendantes, la tension ou le courant dans une branche est la somme algébrique des contributions obtenues en ne conservant qu'une source active à la fois.
+
+Pour neutraliser les autres sources :
+\begin{itemize}
+  \item une source idéale de tension est remplacée par un court-circuit ;
+  \item une source idéale de courant est remplacée par un circuit ouvert.
+\end{itemize}
+
+Le théorème s'applique aux tensions et aux courants, mais pas directement aux puissances.
+
+\subsection{Théorème de Millman}
+
+Le théorème de Millman permet de déterminer le potentiel d'un nœud relié à plusieurs branches contenant chacune une source de tension et une résistance.
+
+Pour un nœud de potentiel $V$ relié à des potentiels $E_k$ par des résistances $R_k$ :
+\[
+V=\frac{\displaystyle\sum_k \frac{E_k}{R_k}}
+        {\displaystyle\sum_k \frac{1}{R_k}}.
+\]
+
+Avec les conductances $G_k=1/R_k$ :
+\[
+V=\frac{\sum_k G_kE_k}{\sum_k G_k}.
+\]
+
+Le signe de chaque terme dépend de l'orientation de la source dans la branche correspondante.
+
+\subsection{Théorème de Kennelly}
+
+Le théorème de Kennelly permet de transformer un réseau de trois résistances montées en triangle en un réseau équivalent en étoile, et réciproquement.
+
+Pour le passage triangle $R_{AB}$, $R_{BC}$, $R_{CA}$ vers étoile $R_A$, $R_B$, $R_C$ :
+\[
+R_A=\frac{R_{AB}R_{CA}}{R_{AB}+R_{BC}+R_{CA}},
+\]
+\[
+R_B=\frac{R_{AB}R_{BC}}{R_{AB}+R_{BC}+R_{CA}},
+\]
+\[
+R_C=\frac{R_{BC}R_{CA}}{R_{AB}+R_{BC}+R_{CA}}.
+\]
+
+Pour le passage étoile vers triangle :
+\[
+R_{AB}=R_A+R_B+\frac{R_AR_B}{R_C},
+\]
+\[
+R_{BC}=R_B+R_C+\frac{R_BR_C}{R_A},
+\]
+\[
+R_{CA}=R_C+R_A+\frac{R_CR_A}{R_B}.
+\]
+
+\subsection{Synthèse électrocinétique}
+
+Pour choisir rapidement une méthode de résolution :
+\begin{itemize}
+  \item une source avec une association série : diviseur de tension ;
+  \item une source avec une association parallèle : diviseur de courant ;
+  \item plusieurs sources de tension reliées à un même nœud : théorème de Millman ;
+  \item un mélange de sources de tension et de courant dans un circuit linéaire : superposition ;
+  \item un réseau résistif non réductible par série-parallèle : transformation de Kennelly ou lois de Kirchhoff.
+\end{itemize}
+
+\subsubsection{Petites applications}
+
+À partir des circuits proposés dans le document de cours :
+\begin{enumerate}
+  \item déterminer l'expression d'un potentiel de nœud $V_1$ ;
+  \item déterminer l'expression d'un potentiel de nœud $V_4$ ;
+  \item en déduire la différence de potentiel aux bornes d'une résistance donnée ;
+  \item justifier le choix de la méthode utilisée parmi Kirchhoff, diviseur, Millman et superposition.
+\end{enumerate}
+
 % -----------------------------------------------------------------------------
-% La suite du cours reste provisoirement conservée ; elle sera reprise dans
-% l'ordre exact du document original lors des itérations suivantes.
+% Les parties suivantes sont encore provisoires. Elles seront remplacées dans
+% l'ordre du document source lors des prochaines reprises.
 % -----------------------------------------------------------------------------
 
 \section{Amplificateur opérationnel}\label{sec:elec-aop}
@@ -287,4 +630,5 @@ Un convertisseur numérique-analogique produit une tension ou un courant proport
   \item La nature analogique, logique ou numérique de l'information conditionne son traitement.
   \item Le choix d'un capteur repose sur son étendue, sa résolution, sa précision, sa sensibilité, sa rapidité et sa bande passante.
   \item Le conditionnement adapte le signal du capteur à l'unité de traitement.
+  \item Les lois de Kirchhoff, les diviseurs, Millman, la superposition et Kennelly constituent les principaux outils de résolution des circuits résistifs.
 \end{itemize}
