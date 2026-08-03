@@ -1,0 +1,82 @@
+% ============================================================================
+% Bibliothèque électromécanique — framework SI
+% ============================================================================
+\ProvidesPackage{TLElectromecanique}[2026/08/03 Bibliotheque electromecanique]
+\RequirePackage{tikz}
+\RequirePackage{circuitikz}
+\usetikzlibrary{arrows.meta,positioning,calc,decorations.pathmorphing}
+
+\newcommand{\TLChaineConversionElectromecanique}{%
+\begin{center}
+\begin{tikzpicture}[>=Latex,node distance=12mm,
+  bloc/.style={draw,rounded corners,minimum width=31mm,minimum height=12mm,align=center}]
+\node[bloc] (elec) {Énergie\\électrique};
+\node[bloc,right=of elec] (conv) {Convertisseur\\électromécanique};
+\node[bloc,right=of conv] (meca) {Énergie\\mécanique};
+\draw[->,thick] (elec)--node[above]{$P_e=ui$}(conv);
+\draw[->,thick] (conv)--node[above]{$P_m=C\Omega$}(meca);
+\draw[->,thick] (conv.south)--++(0,-10mm) node[below]{pertes};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\TLCircuitMagnetiqueSimple}{%
+\begin{center}
+\begin{tikzpicture}[scale=.9]
+\draw[very thick,rounded corners=3pt] (0,0) rectangle (6,4);
+\draw[very thick,rounded corners=3pt,fill=white] (1.2,1) rectangle (4.8,3);
+\draw[very thick] (5.7,1.8)--(6.3,1.8);
+\draw[very thick] (5.7,2.2)--(6.3,2.2);
+\node[right] at (6.3,2){entrefer $e$};
+\foreach \y in {0.6,0.9,1.2,1.5,1.8,2.1,2.4,2.7,3.0,3.3}
+  \draw[thick] (-.3,\y) -- (.35,\y+.18);
+\node[left] at (-.35,2){bobine $N$ spires};
+\draw[-Latex,thick] (2.0,.5) arc[start angle=210,end angle=-30,radius=1.5];
+\node at (3,.45){flux $\Phi$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\TLBobineRL}{%
+\begin{center}
+\begin{circuitikz}[european resistors]
+\draw (0,0) to[sV,l=$u(t)$] (0,3)
+      to[R,l=$R$] (3,3)
+      to[L,l=$L$,i>^=$i(t)$] (6,3)
+      -- (6,0) -- (0,0);
+\end{circuitikz}
+\end{center}}
+
+\newcommand{\TLTransformateurIdeal}{%
+\begin{center}
+\begin{circuitikz}
+\draw (0,0) to[sV,l=$u_1$] (0,3)
+      to[L,l=$N_1$] (3,3) -- (3,0) -- (0,0);
+\draw (5,3) to[L,l_=$N_2$] (8,3)
+      to[R,l=$Z_2$,v^>=$u_2$] (8,0) -- (5,0) -- (5,3);
+\draw[dashed,thick] (4,0)--(4,3);
+\node at (4,3.35){circuit magnétique};
+\end{circuitikz}
+\end{center}}
+
+\newcommand{\TLModeleMoteurCC}{%
+\begin{center}
+\begin{circuitikz}[european resistors]
+\draw (0,0) to[sV,l=$u$] (0,3)
+      to[R,l=$R$] (2.5,3)
+      to[L,l=$L$] (5,3)
+      to[V,l_=$e=K_e\Omega$] (5,0) -- (0,0);
+\draw[-Latex,thick] (6.2,2.7) arc[start angle=120,end angle=-180,radius=.8];
+\node[right] at (6.5,1.6){$C=K_t i$};
+\end{circuitikz}
+\end{center}}
+
+\newcommand{\TLBilanPuissancesElectromecanique}{%
+\begin{center}
+\begin{tikzpicture}[>=Latex,node distance=9mm,
+ bloc/.style={draw,rounded corners,minimum width=28mm,minimum height=11mm,align=center}]
+\node[bloc] (pe){Puissance\\absorbée $P_e$};
+\node[bloc,right=of pe] (pem){Puissance\\électromagnétique $P_{em}$};
+\node[bloc,right=of pem] (pu){Puissance\\utile $P_u$};
+\draw[->,thick] (pe)--node[above]{pertes Joule}(pem);
+\draw[->,thick] (pem)--node[above]{pertes mécaniques}(pu);
+\end{tikzpicture}
+\end{center}}
