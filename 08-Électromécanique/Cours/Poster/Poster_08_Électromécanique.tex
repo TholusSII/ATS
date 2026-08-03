@@ -6,25 +6,92 @@
 \def\input@path{{../../../Style/}}
 \makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{{TLElectromecanique.sty}}{{\input{{TLElectromecanique.sty}}}}{{}}
+\IfFileExists{TLElectromecanique.sty}{\input{TLElectromecanique.sty}}{}
+\IfFileExists{Notations_Elec/Notations_Elec.sty}{\input{Notations_Elec/Notations_Elec.sty}}{}
+\IfFileExists{Notations_Energetique/Notations_Energetique.sty}{\input{Notations_Energetique/Notations_Energetique.sty}}{}
 \pagestyle{empty}
 \begin{document}
-\TLPosterTitre{{Électromécanique}}{{Fiche résumé éditable}}
-\begin{multicols}{2}
-\begin{TLPosterBloc}{Conversion}
-Transformation réversible entre énergie électrique et énergie mécanique.
+\TLPosterTitre{Électromécanique}{Conversion d'énergie électrique et mécanique}
+\begin{multicols}{3}
+
+\begin{TLPosterBloc}{Principe de conversion}
+Une machine électromécanique transforme une puissance électrique en puissance mécanique en mode moteur, ou une puissance mécanique en puissance électrique en mode génératrice.
+\[
+P_{\mathrm{em}}=C_{\mathrm{em}}\,\omega
+\]
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Grandeurs}
-Couple, vitesse, puissance, rendement et pertes.
+\begin{TLPosterBloc}{Grandeurs électriques}
+La machine est décrite par la tension $u$, le courant $i$, la puissance électrique $P_{\mathrm{elec}}$ et l'énergie électrique reçue ou fournie.
+\[
+P_{\mathrm{elec}}=u\,i
+\]
+En régime alternatif, distinguer puissance active, réactive et apparente.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Machines}
-Actionneur, génératrice, chaîne d'énergie et quadrants de fonctionnement.
+\begin{TLPosterBloc}{Grandeurs mécaniques}
+La puissance mécanique d'un arbre en rotation dépend du couple $C$ et de la vitesse angulaire $\omega$ :
+\[
+P_{\mathrm{meca}}=C\,\omega
+\]
+Avec $\omega=2\pi n/60$ lorsque $n$ est exprimée en tr/min.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Méthode}
-Établir le bilan des puissances puis relier les variables électriques et mécaniques.
+\begin{TLPosterBloc}{Couplage électromécanique}
+Le champ magnétique assure le couplage entre le circuit électrique et le mouvement mécanique. Une force électromotrice est liée à la vitesse et un couple électromagnétique est lié au courant.
 \end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Fonctionnement moteur}
+La machine reçoit une puissance électrique. Une partie est convertie en puissance électromagnétique puis en puissance mécanique utile. Les pertes réduisent la puissance disponible sur l'arbre.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Fonctionnement génératrice}
+La machine reçoit une puissance mécanique. Le mouvement produit une force électromotrice et permet de fournir de l'énergie électrique au réseau ou au convertisseur.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Bilan des puissances}
+Construire systématiquement la chaîne :
+\[
+P_{\mathrm{abs}}=P_{\mathrm{utile}}+\sum P_{\mathrm{pertes}}
+\]
+Identifier la puissance absorbée, la puissance électromagnétique, la puissance mécanique et la puissance utile.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Pertes}
+Les pertes principales sont : pertes Joule, pertes fer, pertes mécaniques par frottement et ventilation, pertes supplémentaires. Elles provoquent un échauffement et limitent le domaine d'utilisation.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Rendement}
+\[
+\eta=\frac{P_{\mathrm{utile}}}{P_{\mathrm{abs}}}
+\qquad 0<\eta<1
+\]
+Le sens de la chaîne de puissance dépend du mode moteur ou génératrice. Toujours préciser la puissance considérée comme utile.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Quadrants de fonctionnement}
+Le signe de $C$ et de $\omega$ définit quatre quadrants. Lorsque $C\omega>0$, le fonctionnement est moteur. Lorsque $C\omega<0$, le fonctionnement est générateur ou freinage récupératif.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Caractéristique mécanique}
+La caractéristique $C(\omega)$ permet d'identifier le couple de démarrage, le point nominal, la vitesse à vide et le comportement sous charge. Le point de fonctionnement est obtenu par intersection avec la charge.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Chaîne d'énergie}
+Alimenter $\rightarrow$ moduler $\rightarrow$ convertir $\rightarrow$ transmettre $\rightarrow$ agir. Le convertisseur statique adapte la tension, le courant et la fréquence imposés à la machine.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Réversibilité}
+Une chaîne réversible peut faire circuler l'énergie dans les deux sens. La machine et le convertisseur doivent tous deux autoriser le mode génératrice pour permettre la récupération d'énergie.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Démarche d'étude}
+Identifier le mode de fonctionnement, orienter les puissances, écrire les relations électriques et mécaniques, établir le bilan, calculer le rendement puis vérifier les signes, les unités et l'ordre de grandeur.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Points de vigilance}
+Ne pas confondre couple électromagnétique et couple utile ; distinguer vitesse angulaire et fréquence de rotation ; conserver une convention de signe cohérente ; intégrer les pertes avant de conclure sur la puissance disponible.
+\end{TLPosterBloc}
+
 \end{multicols}
 \end{document}
