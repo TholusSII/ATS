@@ -1,0 +1,27 @@
+\RequirePackage{silence}
+\WarningFilter{xcolor}{Package option `usenames' is obsolete}
+\documentclass[fontsize=10pt,twoside=true,open=any]{kaobook}
+\usepackage[french]{babel}
+\newcommand{\TLCourseDefinitionFile}{11_ActionsMecaniques}
+\makeatletter
+\def\input@path{{../../Style/}}
+\makeatother
+\input{TLCours.sty}
+\input{Notations_Torseurs/Notations_Torseurs.sty}
+\input{Notations_Actions-Meca/Notations_Actions-Meca.sty}
+\input{Notations_Dynamique/Notations_Dynamique.sty}
+\input{Notations_Cinematique/Notations_Cinematique.sty}
+\input{TLActionsMecaniques.sty}
+\usepackage{amsmath,amssymb,mathtools,array,booktabs}
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{3em}
+\makeindex[columns=3,title=Index alphabétique,intoc]
+\begin{document}
+\mainmatter
+\setchapterstyle{kao}
+\setcounter{margintocdepth}{\sectiontocdepth}
+\marginlayout
+\pagestyle{scrheadings}
+\input{\TLCourseDefinitionFile}
+\end{document}
