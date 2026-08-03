@@ -1,0 +1,75 @@
+=== DOSSIERS RACINE ===
+.git
+.github
+01-Ingénierie système
+02-Modélisation des mécanismes
+03-Lois entrée sortie
+04-Cinématique
+05-Modélisation Systèmes Asservis
+06-Correction des Systèmes asservis
+07-Électronique
+08-Électromécanique
+09-MCC
+10-Électronique de Puissance
+11-Actions Mécaniques
+12-RDM
+13-MAS-MS
+14-Logique
+15-Outils numériques
+ALL_EXOS
+FULL_PDF
+Posters
+Style
+scripts
+tools
+xx_Figures
+
+=== FICHIERS CORRECTION / CORRECTEUR / ASSERVIS ===
+./.github/workflows/compile-all-exercises-with-corrections.yml
+./.github/workflows/materialize-corrections-pr.yml
+./05-Modélisation Systèmes Asservis/Cours/00_Systemes_Asservis.tex
+./05-Modélisation Systèmes Asservis/Cours/05_Systemes_Asservis.tex
+./05-Modélisation Systèmes Asservis/Cours/05_Systemes_Asservis_Integration.tex
+./05-Modélisation Systèmes Asservis/Cours/Compiler_Systemes_Asservis.bat
+./06-Correction des Systèmes asservis/Cours/10-CorrectionSA2022.docx
+./06-Correction des Systèmes asservis/TD/COR/P/031_Correcteur_P/031_Correcteur_P.tex
+./06-Correction des Systèmes asservis/TD/COR/P/080_CorrecteurP/080_CorrecteurP.tex
+./06-Correction des Systèmes asservis/TD/COR/PI/030_Correcteur_PI/030_Correcteur_PI.tex
+./06-Correction des Systèmes asservis/TD/COR/PI/086_Correcteur_Clever/086_Correcteur_Clever.tex
+./CORRECTIONS.md
+./CORRECTIONS_REPORT.md
+./Posters/Poster - Systemes Asservis.pdf
+./Style/Cycle_05_Correcteurs_Entete.tex
+./Style/TLSystemesAsservis.sty
+./Style/TLSystemesAsservisStableBode.sty
+./tools/complete_missing_corrections.py
+./tools/enhance_new_corrections.py
+./tools/generate_corrections.py
+./tools/vendor/complete_missing_corrections.py.gz.b64.part-00
+./tools/vendor/complete_missing_corrections.py.gz.b64.part-01
+./tools/vendor/complete_missing_corrections.py.gz.b64.part-02
+./tools/vendor/complete_missing_corrections.py.gz.b64.part-03
+./tools/vendor/complete_missing_corrections.py.gz.b64.part-04
+./tools/vendor/complete_missing_corrections.py.gz.b64.part-05
+
+=== DOSSIERS 06 ===
+./02-Modélisation des mécanismes/TD/Geometrie/066_Modelisation_Geometrie
+./02-Modélisation des mécanismes/TD/Géométrie/06_TR
+./02-Modélisation des mécanismes/TD/Paramétrage/06_TR
+./02-Modélisation des mécanismes/TD/Paramétrage/06_TR_02
+./04-Cinématique/TD/VitesseAcceleration/06_TR
+./04-Cinématique/TD/VitesseAcceleration/06_TR_02
+./05-Modélisation Systèmes Asservis/TD/SLCI/Bode/060_Bode
+./05-Modélisation Systèmes Asservis/TD/SLCI/Modelisation/065_SLCI_Modelisation
+./05-Modélisation Systèmes Asservis/TD/SLCI/Modelisation/068_Modelisation
+./05-Modélisation Systèmes Asservis/TD/SLCI/Modelisation/069_SLCI_Calcul
+./05-Modélisation Systèmes Asservis/TD/SLCI/SchemaBlocs/067_Modelisation_SchemaBlocs
+./06-Correction des Systèmes asservis
+./11-Actions Mécaniques/TD/DYN/Methode/06_TR
+./11-Actions Mécaniques/TD/DYN/Methode/STOCK/06_TR_02
+./11-Actions Mécaniques/TD/DYN/PFD/06_TR
+./11-Actions Mécaniques/TD/DYN/PFD/STOCK/06_TR_02
+./11-Actions Mécaniques/TD/DYN/TorseurDynamique/06_TR
+./11-Actions Mécaniques/TD/DYN/TorseurDynamique/STOCK/06_TR_02
+./11-Actions Mécaniques/TD/STAT/Demarche/06_TR
+./11-Actions Mécaniques/TD/STAT/Demarche/STOCK/06_TR_02
