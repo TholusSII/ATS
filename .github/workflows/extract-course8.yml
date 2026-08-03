@@ -1,0 +1,66 @@
+name: Extraire la source du cours 08
+
+on:
+  push:
+    paths:
+      - .github/workflows/extract-course8.yml
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extraire le texte et les médias du Word
+        shell: bash
+        run: |
+          set -euo pipefail
+          SRC='08-Électromécanique/Cours/11-AcquisitionTraitementSignal2022.docx'
+          OUT='08-Électromécanique/Cours/source_extraite'
+          rm -rf "$OUT"
+          mkdir -p "$OUT/media"
+          python3 - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile
+          import xml.etree.ElementTree as ET
+          import shutil
+
+          src = Path('08-Électromécanique/Cours/11-AcquisitionTraitementSignal2022.docx')
+          out = Path('08-Électromécanique/Cours/source_extraite')
+          ns = {
+              'w': 'http://schemas.openxmlformats.org/wordprocessingml/2006/main',
+              'a': 'http://schemas.openxmlformats.org/drawingml/2006/main',
+              'r': 'http://schemas.openxmlformats.org/officeDocument/2006/relationships',
+          }
+          with ZipFile(src) as z:
+              root = ET.fromstring(z.read('word/document.xml'))
+              lines = []
+              for p in root.findall('.//w:p', ns):
+                  texts = [t.text or '' for t in p.findall('.//w:t', ns)]
+                  line = ''.join(texts).strip()
+                  if line:
+                      lines.append(line)
+              (out / 'texte_source.txt').write_text('\n'.join(lines) + '\n', encoding='utf-8')
+
+              media = sorted(n for n in z.namelist() if n.startswith('word/media/'))
+              manifest = []
+              for name in media:
+                  target = out / 'media' / Path(name).name
+                  target.write_bytes(z.read(name))
+                  manifest.append(f'{target.name}\t{len(z.read(name))} octets')
+              (out / 'medias.txt').write_text('\n'.join(manifest) + '\n', encoding='utf-8')
+          PY
+
+      - name: Publier la source extraite
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add '08-Électromécanique/Cours/source_extraite'
+          git commit -m 'Ajoute la source extraite du cours 08'
+          git push
