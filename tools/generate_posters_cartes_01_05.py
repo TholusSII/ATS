@@ -1,5 +1,6 @@
 from pathlib import Path
 
+# Générateur des posters et cartes mentales des cours 01 à 05.
 COURSES = [
     ("01", "Analyse fonctionnelle", "Notations_AF/Notations_AF.sty", [
         ("Besoin", "Identifier le besoin, les utilisateurs, le contexte et la finalité du système."),
