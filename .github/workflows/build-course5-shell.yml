@@ -1,132 +1,16 @@
-name: Contrôle autonome du cours 05
+name: Arrêter le contrôle autonome du cours 05
 
 on:
   push:
     paths:
       - .github/workflows/build-course5-shell.yml
-      - '05-Modélisation Systèmes Asservis/Cours/**'
-      - 'Style/TLSystemesAsservis.sty'
-      - 'Style/schemabloc.sty'
-      - 'Style/bodegraph.sty'
-      - 'Style/Notations_SLCI/**'
-      - 'Style/Notations_Maths/**'
-
-permissions:
-  contents: write
 
 concurrency:
   group: build-course5-shell-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build:
+  stop:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Publier le démarrage
-        shell: bash
-        run: |
-          course='05-Modélisation Systèmes Asservis/Cours'
-          printf 'RUNNING\nRUN_ID=%s\n' "$GITHUB_RUN_ID" > "$course/COMPILATION_COURS5.txt"
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add "$course/COMPILATION_COURS5.txt"
-          if ! git diff --cached --quiet; then
-            git commit -m 'Démarre le contrôle autonome du cours 05 [skip ci]'
-            git push
-          fi
-
-      - name: Compiler une passe de diagnostic dans TeX Live
-        id: compile
-        continue-on-error: true
-        shell: bash
-        run: |
-          set -o pipefail
-          course='05-Modélisation Systèmes Asservis/Cours'
-          mkdir -p "$course"
-          log="$course/COMPILATION_COURS5_LOG.txt"
-          docker run --rm \
-            --entrypoint /bin/bash \
-            -v "$GITHUB_WORKSPACE:/work" \
-            -w "/work/$course" \
-            -e 'TEXINPUTS=/work/Style//:' \
-            ghcr.io/xu-cheng/texlive-full:latest \
-            -lc '
-              set -o pipefail
-              TEXCMD=$(find / -name pdflatex 2>/dev/null | head -n 1)
-              if [ -z "$TEXCMD" ]; then
-                echo "pdflatex introuvable dans le conteneur"
-                find / -maxdepth 5 -iname "*latex*" 2>/dev/null | head -n 100
-                exit 127
-              fi
-              TEXREAL=$(readlink -f "$TEXCMD")
-              TEXBIN=$(dirname "$TEXREAL")
-              export PATH="$TEXBIN:$PATH"
-              echo "PWD=$(pwd)"
-              echo "TEXCMD=$TEXCMD"
-              echo "TEXREAL=$TEXREAL"
-              echo "TEXBIN=$TEXBIN"
-              echo "TEXINPUTS=$TEXINPUTS"
-              command -v pdflatex
-              kpsewhich kaobook.cls || true
-              ls -la 00_Systemes_Asservis.tex 05_Systemes_Asservis.tex
-              rm -f 00_Systemes_Asservis.{aux,toc,out,mw,idx,ilg,ind,log,pdf}
-              pdflatex -file-line-error -halt-on-error -interaction=nonstopmode 00_Systemes_Asservis.tex
-            ' > "$log" 2>&1
-
-      - name: Enregistrer le résultat
-        shell: bash
-        run: |
-          set -euo pipefail
-          course='05-Modélisation Systèmes Asservis/Cours'
-          if [ '${{ steps.compile.outcome }}' = 'success' ]; then
-            printf 'SUCCESS\nRUN_ID=%s\n' "$GITHUB_RUN_ID" > "$course/COMPILATION_COURS5.txt"
-          else
-            printf 'FAILURE\nRUN_ID=%s\n' "$GITHUB_RUN_ID" > "$course/COMPILATION_COURS5.txt"
-          fi
-          if [ ! -f "$course/COMPILATION_COURS5_LOG.txt" ]; then
-            if [ -f "$course/00_Systemes_Asservis.log" ]; then
-              cp "$course/00_Systemes_Asservis.log" "$course/COMPILATION_COURS5_LOG.txt"
-            else
-              printf 'Aucun journal produit par le runner.\n' > "$course/COMPILATION_COURS5_LOG.txt"
-            fi
-          fi
-
-      - name: Publier le résultat
-        shell: bash
-        run: |
-          set -euo pipefail
-          course='05-Modélisation Systèmes Asservis/Cours'
-          cp "$course/COMPILATION_COURS5.txt" /tmp/COMPILATION_COURS5.txt
-          cp "$course/COMPILATION_COURS5_LOG.txt" /tmp/COMPILATION_COURS5_LOG.txt
-          if [ -f "$course/00_Systemes_Asservis.pdf" ]; then
-            cp "$course/00_Systemes_Asservis.pdf" /tmp/00_Systemes_Asservis.pdf
-          fi
-
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git reset --hard HEAD
-          git pull --rebase origin main
-
-          cp /tmp/COMPILATION_COURS5.txt "$course/COMPILATION_COURS5.txt"
-          cp /tmp/COMPILATION_COURS5_LOG.txt "$course/COMPILATION_COURS5_LOG.txt"
-          if [ '${{ steps.compile.outcome }}' = 'success' ] && [ -f /tmp/00_Systemes_Asservis.pdf ]; then
-            cp /tmp/00_Systemes_Asservis.pdf "$course/00_Systemes_Asservis.pdf"
-          fi
-
-          git add "$course/COMPILATION_COURS5.txt" "$course/COMPILATION_COURS5_LOG.txt"
-          if [ '${{ steps.compile.outcome }}' = 'success' ] && [ -f "$course/00_Systemes_Asservis.pdf" ]; then
-            git add -f "$course/00_Systemes_Asservis.pdf"
-          fi
-          if ! git diff --cached --quiet; then
-            git commit -m 'Met à jour le contrôle autonome du cours 05 [skip ci]'
-            git push origin HEAD:main
-          fi
-
-      - name: Échouer après publication du journal
-        if: steps.compile.outcome != 'success'
-        run: exit 1
+      - run: echo "Ancien contrôle autonome du cours 05 neutralisé."
