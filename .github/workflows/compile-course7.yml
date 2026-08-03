@@ -1,0 +1,39 @@
+name: Compiler le cours 07 électronique
+
+on:
+  push:
+    paths:
+      - '07-Électronique/Cours/**'
+      - 'Style/TLElectronique.sty'
+      - 'Style/TLCours.sty'
+      - 'Style/Notations_Elec/**'
+      - '.github/workflows/compile-course7.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Installer LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y latexmk texlive-latex-extra texlive-lang-french texlive-science texlive-pictures
+
+      - name: Compiler
+        working-directory: '07-Électronique/Cours'
+        run: |
+          latexmk -pdf -interaction=nonstopmode -halt-on-error 00_Electronique.tex
+
+      - name: Publier le PDF
+        run: |
+          cp '07-Électronique/Cours/00_Electronique.pdf' '07-Électronique/Cours/07_Electronique.pdf'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add '07-Électronique/Cours/07_Electronique.pdf'
+          git diff --cached --quiet || git commit -m 'Met à jour le PDF du cours 07 [skip ci]'
+          git push
