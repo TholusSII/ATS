@@ -1,0 +1,65 @@
+\chapter{Logique, systèmes à événements discrets et communication}
+
+\section{Généralités sur les systèmes logiques combinatoires}
+Un système logique combinatoire associe à chaque combinaison des entrées une combinaison unique des sorties. Il ne possède pas de mémoire interne.
+
+\subsection{Symboles et notations}
+Les variables logiques prennent les valeurs 0 ou 1. Les opérateurs fondamentaux sont NON, ET et OU.
+\begin{center}\TLPortesLogiques\end{center}
+
+\subsection{Démarche de synthèse}
+\begin{center}\TLDemarcheCombinatoire\end{center}
+La table de vérité recense toutes les combinaisons d'entrée. L'équation logique s'obtient ensuite par somme de produits ou produit de sommes, puis se simplifie avec les règles de l'algèbre de Boole ou les tableaux de Karnaugh.
+
+\subsection{Algèbre de Boole}
+On utilise notamment :
+\[
+a+0=a,\quad a\cdot1=a,\quad a+a=a,\quad a\cdot a=a,
+\]
+\[
+a+\overline a=1,\quad a\cdot\overline a=0,
+\]
+\[
+\overline{a+b}=\overline a\cdot\overline b,\qquad
+\overline{a\cdot b}=\overline a+\overline b.
+\]
+
+\subsection{Fonctions combinatoires particulières}
+Les décodeurs, multiplexeurs, comparateurs, additionneurs et codeurs réalisent des fonctions standards. Leur implantation peut être câblée ou réalisée dans un circuit programmable.
+
+\section{Systèmes à événements discrets}
+Un système séquentiel possède une mémoire : sa sortie dépend des entrées courantes et de l'état antérieur.
+
+\subsection{Diagramme d'état}
+Le diagramme d'état SysML décrit les états, transitions, événements, gardes et effets.
+\begin{center}\TLGrapheEtatsSimple\end{center}
+Une transition est franchie lorsqu'un événement survient et que sa garde est vraie. Les actions d'entrée, internes ou de sortie sont rattachées aux états.
+
+\subsection{Pseudos-états et états composites}
+Les pseudos-états initial, final, choix, jonction et historique structurent le comportement. Un état composite peut contenir des sous-états exclusifs ou des régions orthogonales exécutées en parallèle.
+
+\section{Diagramme de séquence}
+Le diagramme de séquence représente l'ordre temporel des messages échangés entre acteurs et blocs.
+\begin{center}\TLDiagrammeSequenceSimple\end{center}
+Il permet de préciser un scénario de fonctionnement et de vérifier la cohérence des interactions.
+
+\section{Codeurs incrémentaux et absolus}
+Les codeurs mesurent une position ou une vitesse. Le codeur incrémental délivre des impulsions sur deux voies déphasées, ce qui permet de déterminer le sens de rotation. Une voie d'index fournit une référence par tour.
+\begin{center}\TLCodeurIncremental\end{center}
+Le codeur absolu associe directement un mot binaire à chaque position. Les performances principales sont la résolution, l'étendue de mesure, la précision et la répétabilité.
+
+\section{Réseaux et bus de terrain}
+Un réseau transporte des données entre équipements en respectant des contraintes de débit, latence, disponibilité et fiabilité.
+
+\subsection{Architecture et modèle OSI}
+\begin{center}\TLModeleOSI\end{center}
+Le modèle OSI sépare les fonctions de transmission en couches. Dans les réseaux industriels, les protocoles regroupent souvent plusieurs couches.
+
+\subsection{Supports, topologies et multiplexage}
+Les supports peuvent être filaires, optiques ou radio. Les topologies usuelles sont le bus, l'étoile, l'anneau et l'arbre. Le multiplexage partage un même support entre plusieurs communications.
+
+\subsection{Erreurs et qualité de service}
+La détection d'erreurs s'appuie notamment sur la parité, les sommes de contrôle et les codes CRC. La qualité de service caractérise le débit utile, le temps de réponse, la gigue, le taux d'erreur et la disponibilité.
+
+\section{Synthèse}
+Pour étudier un système logique ou séquentiel, il faut identifier les entrées et sorties, formaliser le comportement, choisir la représentation adaptée, simplifier les expressions puis vérifier le résultat sur les scénarios attendus.
