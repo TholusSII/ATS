@@ -1,0 +1,110 @@
+% ============================================================================
+% COURS 07 — EXERCICES DU CHAPITRE
+% Reprise progressive des exercices du document 11-AcquisitionTraitementSignal2022.docx
+% ============================================================================
+
+\section{Exercices du chapitre}\label{sec:elec-exercices}
+
+\subsection{Capteurs classiques}
+
+Pour chacun des capteurs suivants, donner son rôle, préciser la grandeur physique mesurée, indiquer la nature du signal de sortie et expliquer son principe de fonctionnement à l'aide d'un schéma de principe :
+\begin{enumerate}
+  \item génératrice tachymétrique ;
+  \item potentiomètre rotatif ;
+  \item codeur incrémental ;
+  \item codeur absolu.
+\end{enumerate}
+
+Pour chaque solution, préciser également :
+\begin{itemize}
+  \item s'il s'agit d'un capteur actif ou passif ;
+  \item si le signal délivré est analogique, logique ou numérique ;
+  \item les principales caractéristiques à vérifier pour choisir le capteur : étendue de mesure, résolution, précision, rapidité et bande passante.
+\end{itemize}
+
+\subsection{Le banc Balafre — chaîne d'acquisition d'efforts}
+
+Entre autres contrôles de la chaîne d'acquisition, le superviseur vérifie que la mesure des efforts se fait correctement au niveau des actionneurs piézoélectriques et au niveau du joint testé. Les capteurs de force utilisés sur le système sont analogiques.
+
+Afin de simplifier le traitement et l'interprétation de ces forces, on utilise un amplificateur de charge à plusieurs canaux. Cet amplificateur possède notamment :
+\begin{itemize}
+  \item un amplificateur de sommation pour le calcul analogique des forces et moments résultants ;
+  \item un convertisseur analogique-numérique pour le traitement des données par l'algorithme de contrôle.
+\end{itemize}
+
+Dans l'algorithme de contrôle, la valeur d'effort de chaque actionneur est comparée à la valeur théorique de la consigne. Si un écart trop important est constaté, l'algorithme émet un signal d'erreur.
+
+Pour cette mesure, on considère qu'une résolution inférieure à \SI{10}{\newton} est nécessaire. La conversion analogique-numérique est réalisée sur 12 bits. La mesure de l'effort s'effectue sur la plage de $-\SI{20}{\kilo\newton}$ à $+\SI{20}{\kilo\newton}$.
+
+\begin{enumerate}
+  \item Représenter la chaîne d'acquisition depuis le capteur piézoélectrique jusqu'à l'unité de traitement.
+  \item Identifier les fonctions assurées par l'amplificateur de charge.
+  \item Calculer le nombre de niveaux de quantification du CAN.
+  \item Déterminer le quantum correspondant à la plage complète de mesure.
+  \item Vérifier que la résolution obtenue respecte l'exigence de \SI{10}{\newton}.
+  \item Déterminer le nombre minimal de bits nécessaire pour respecter cette exigence sur la même plage de mesure.
+  \item Expliquer pourquoi une amplification et un conditionnement sont nécessaires avant la conversion analogique-numérique.
+\end{enumerate}
+
+\subsection{Accéléromètre ADXL335}
+
+On utilise un accéléromètre ADXL335 pour mesurer une accélération maximale $\gamma_{\max}=\SI{1.2}{\metre\per\second\squared}$. Le composant est alimenté sous \SI{3}{\volt} et consomme \SI{350}{\micro\ampere}. Sa sensibilité est de \SI{300}{\milli\volt\per g}, sa plage de linéarité est de $\pm 3g$ et sa tension de sortie vaut \SI{1.5}{\volt} pour une accélération nulle.
+
+\begin{enumerate}
+  \item Déterminer la plage de tension de sortie correspondant au domaine de linéarité.
+  \item Convertir le domaine de linéarité en \si{\metre\per\second\squared}.
+  \item Déterminer la tension de sortie pour une accélération de \SI{1.2}{\metre\per\second\squared}.
+  \item Calculer la puissance électrique consommée par le dispositif.
+  \item Proposer une chaîne de conditionnement permettant d'utiliser ce capteur avec un CAN dont la plage d'entrée est $[0;\SI{3.3}{\volt}]$.
+\end{enumerate}
+
+\subsection{Mesure de température}
+
+On souhaite mesurer la température d'une pièce entre \SI{0}{\degreeCelsius} et \SI{50}{\degreeCelsius}. Le capteur disponible possède une plage de mesure allant de $-\SI{50}{\degreeCelsius}$ à \SI{100}{\degreeCelsius}.
+
+\begin{enumerate}
+  \item Définir l'étendue de mesure du capteur et celle réellement utile pour l'application.
+  \item Préciser les critères permettant de comparer plusieurs capteurs possibles.
+  \item Expliquer la différence entre précision et résolution dans cette application.
+  \item À partir d'une caractéristique $R(T)$ décroissante, déterminer s'il s'agit d'une thermistance CTN ou CTP.
+  \item Proposer un montage de conditionnement simple permettant de transformer la variation de résistance en tension.
+  \item Indiquer les précautions à prendre pour limiter l'auto-échauffement du capteur.
+\end{enumerate}
+
+\subsection{Numérisation d'une grandeur analogique}
+
+Un capteur fournit une tension comprise entre \SI{0.5}{\volt} et \SI{4.5}{\volt}. Cette tension est convertie par un CAN sur 10 bits dont la plage d'entrée est $[0;\SI{5}{\volt}]$.
+
+\begin{enumerate}
+  \item Calculer le nombre de niveaux du CAN.
+  \item Déterminer le quantum du convertisseur.
+  \item Déterminer les codes numériques correspondant aux tensions \SI{0.5}{\volt}, \SI{2.5}{\volt} et \SI{4.5}{\volt}.
+  \item Calculer la résolution réellement obtenue sur la plage utile du capteur.
+  \item Proposer une adaptation affine permettant d'utiliser toute la plage $[0;\SI{5}{\volt}]$ du CAN.
+  \item Déterminer le gain et le décalage nécessaires pour cette adaptation.
+\end{enumerate}
+
+\subsection{Choix d'une fréquence d'échantillonnage}
+
+Un signal utile contient des composantes fréquentielles jusqu'à \SI{800}{\hertz}. Il est acquis par une chaîne comprenant un filtre anti-repliement puis un CAN.
+
+\begin{enumerate}
+  \item Déterminer la fréquence minimale d'échantillonnage imposée par le théorème de Shannon-Nyquist.
+  \item Proposer une fréquence d'échantillonnage pratique et justifier le choix.
+  \item Expliquer le rôle du filtre anti-repliement.
+  \item Indiquer ce qui se produit si une composante de fréquence \SI{1.4}{\kilo\hertz} est échantillonnée à \SI{2}{\kilo\hertz} sans filtrage préalable.
+  \item Préciser la relation entre période d'échantillonnage et temps de conversion maximal du CAN.
+\end{enumerate}
+
+\subsection{Filtrage d'un signal de capteur}
+
+Un capteur délivre un signal utile de fréquence inférieure à \SI{50}{\hertz}, auquel se superpose un bruit important à \SI{1}{\kilo\hertz}. On utilise un filtre RC passe-bas.
+
+\begin{enumerate}
+  \item Justifier le choix d'un filtre passe-bas.
+  \item Établir la fonction de transfert du montage.
+  \item Choisir une fréquence de coupure compatible avec les données du problème.
+  \item Pour $R=\SI{10}{\kilo\ohm}$, déterminer la valeur de $C$ correspondante.
+  \item Calculer l'atténuation du bruit à \SI{1}{\kilo\hertz}.
+  \item Vérifier que le signal utile à \SI{50}{\hertz} reste suffisamment peu atténué.
+\end{enumerate}
