@@ -1,0 +1,121 @@
+% ============================================================================
+% CORRECTIF NUMÉRIQUE — BODE DES CORRECTEURS
+% ============================================================================
+% Les calculs directs de sqrt(1+q^2) débordent dans le moteur arithmétique
+% fixe de PGF lorsque q devient grand. La fonction ci-dessous évalue
+% ln(1+q^2) après normalisation, sans modifier la fonction représentée.
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{TLCorrectionSystemesAsservisStableBode}[2026/08/03 Bode stables des correcteurs]
+
+\RequirePackage{xparse}
+\RequirePackage{tikz}
+
+\pgfmathdeclarefunction{TLlnOnePlusSquare}{1}{%
+  \pgfmathparse{%
+    2*ln(max(1,abs(#1)))
+    +ln(
+      (1/max(1,abs(#1)))^2
+      +(abs(#1)/max(1,abs(#1)))^2
+    )%
+  }%
+}
+
+\RenewDocumentCommand{\TLBodeCorrecteurPI}{O{1} O{1}}{%
+  \begin{center}
+  \begin{tikzpicture}[x=1.7cm,y=.04cm]
+    \UnitedB\OrdBode{20}\semilog*{-2}{2}{-60}{40}
+    \draw[Bode lines,domain=-2:2,samples=140,smooth]
+      plot (\x,{%
+        20*ln(abs(#1))/ln(10)
+        +10*TLlnOnePlusSquare(#2*pow(10,\x))/ln(10)
+        -20*ln(#2*pow(10,\x))/ln(10)%
+      });
+    \draw[asymp lines,dashed]
+      ({-ln(#2)/ln(10)},-60) -- ({-ln(#2)/ln(10)},40);
+  \end{tikzpicture}
+  \vspace{2mm}
+  \begin{tikzpicture}[x=1.7cm,y=.025cm]
+    \UniteDegre\OrdBode{45}\semilog*{-2}{2}{-180}{0}
+    \draw[Bode lines,domain=-2:2,samples=140,smooth]
+      plot (\x,{atan(#2*pow(10,\x))-90});
+  \end{tikzpicture}
+  \end{center}
+}
+
+\RenewDocumentCommand{\TLBodeRetardPhase}{O{1} O{10} O{1}}{%
+  \begin{center}
+  \begin{tikzpicture}[x=1.7cm,y=.05cm]
+    \UnitedB\OrdBode{20}\semilog*{-2}{2}{-40}{40}
+    \draw[Bode lines,domain=-2:2,samples=150,smooth]
+      plot (\x,{%
+        20*ln(abs(#1))/ln(10)
+        +10*TLlnOnePlusSquare(#3*pow(10,\x))/ln(10)
+        -10*TLlnOnePlusSquare(#2*#3*pow(10,\x))/ln(10)%
+      });
+    \draw[asymp lines,dashed]
+      ({-ln(#3)/ln(10)},-40) -- ({-ln(#3)/ln(10)},40);
+    \draw[asymp lines,dashed]
+      ({-ln(#2*#3)/ln(10)},-40) -- ({-ln(#2*#3)/ln(10)},40);
+  \end{tikzpicture}
+  \vspace{2mm}
+  \begin{tikzpicture}[x=1.7cm,y=.025cm]
+    \UniteDegre\OrdBode{45}\semilog*{-2}{2}{-90}{45}
+    \draw[Bode lines,domain=-2:2,samples=150,smooth]
+      plot (\x,{atan(#3*pow(10,\x))-atan(#2*#3*pow(10,\x))});
+  \end{tikzpicture}
+  \end{center}
+}
+
+\RenewDocumentCommand{\TLBodeAvancePhase}{O{1} O{0.1} O{1}}{%
+  \begin{center}
+  \begin{tikzpicture}[x=1.7cm,y=.05cm]
+    \UnitedB\OrdBode{20}\semilog*{-2}{2}{-20}{40}
+    \draw[Bode lines,domain=-2:2,samples=150,smooth]
+      plot (\x,{%
+        20*ln(abs(#1))/ln(10)
+        +10*TLlnOnePlusSquare(#3*pow(10,\x))/ln(10)
+        -10*TLlnOnePlusSquare(#2*#3*pow(10,\x))/ln(10)%
+      });
+    \draw[asymp lines,dashed]
+      ({-ln(#3)/ln(10)},-20) -- ({-ln(#3)/ln(10)},40);
+    \draw[asymp lines,dashed]
+      ({-ln(#2*#3)/ln(10)},-20) -- ({-ln(#2*#3)/ln(10)},40);
+  \end{tikzpicture}
+  \vspace{2mm}
+  \begin{tikzpicture}[x=1.7cm,y=.025cm]
+    \UniteDegre\OrdBode{45}\semilog*{-2}{2}{-45}{90}
+    \draw[Bode lines,domain=-2:2,samples=150,smooth]
+      plot (\x,{atan(#3*pow(10,\x))-atan(#2*#3*pow(10,\x))});
+  \end{tikzpicture}
+  \end{center}
+}
+
+\RenewDocumentCommand{\TLBodeCorrecteurPID}{O{1} O{10} O{1} O{0.1}}{%
+  % C(p)=K (1+Ti p)/(Ti p) (1+Td p)/(1+b Td p).
+  \begin{center}
+  \begin{tikzpicture}[x=1.7cm,y=.04cm]
+    \UnitedB\OrdBode{20}\semilog*{-2}{2}{-60}{60}
+    \draw[Bode lines,domain=-2:2,samples=170,smooth]
+      plot (\x,{%
+        20*ln(abs(#1))/ln(10)
+        +10*TLlnOnePlusSquare(#2*pow(10,\x))/ln(10)
+        -20*ln(#2*pow(10,\x))/ln(10)
+        +10*TLlnOnePlusSquare(#3*pow(10,\x))/ln(10)
+        -10*TLlnOnePlusSquare(#4*#3*pow(10,\x))/ln(10)%
+      });
+  \end{tikzpicture}
+  \vspace{2mm}
+  \begin{tikzpicture}[x=1.7cm,y=.022cm]
+    \UniteDegre\OrdBode{45}\semilog*{-2}{2}{-180}{90}
+    \draw[Bode lines,domain=-2:2,samples=170,smooth]
+      plot (\x,{%
+        atan(#2*pow(10,\x))-90
+        +atan(#3*pow(10,\x))
+        -atan(#4*#3*pow(10,\x))%
+      });
+  \end{tikzpicture}
+  \end{center}
+}
+
+\endinput
