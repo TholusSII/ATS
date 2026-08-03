@@ -1,0 +1,43 @@
+name: Inventory posters
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/inventory-posters.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build inventory
+        shell: bash
+        run: |
+          {
+            echo '=== DOSSIER POSTERS ==='
+            if [ -d Posters ]; then
+              find Posters -type f | sort
+            else
+              echo 'DOSSIER Posters ABSENT'
+            fi
+            echo
+            echo '=== DOSSIERS DE COURS ==='
+            find . -maxdepth 2 -type d -name Cours | sort
+            echo
+            echo '=== FICHIERS LATEX DE STYLE LIES AUX POSTERS ==='
+            find Style -type f \( -iname '*poster*' -o -iname '*mind*' -o -iname '*carte*' -o -iname '*resume*' \) | sort
+          } > INVENTAIRE_POSTERS.txt
+      - name: Commit inventory
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add INVENTAIRE_POSTERS.txt
+          if ! git diff --cached --quiet; then
+            git commit -m 'Ajoute l inventaire des posters et cartes mentales'
+            git push
+          fi
