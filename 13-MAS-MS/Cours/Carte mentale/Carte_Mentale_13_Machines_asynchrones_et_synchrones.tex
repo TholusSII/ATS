@@ -6,13 +6,37 @@
 \def\input@path{{../../../Style/}}
 \makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{{TLMachinesAlternatives.sty}}{{\input{{TLMachinesAlternatives.sty}}}}{{}}
+\IfFileExists{TLMachinesAlternatives.sty}{\input{TLMachinesAlternatives.sty}}{}
+\IfFileExists{Notations_Elec/Notations_Elec.sty}{\input{Notations_Elec/Notations_Elec.sty}}{}
+\IfFileExists{Notations_Energetique/Notations_Energetique.sty}{\input{Notations_Energetique/Notations_Energetique.sty}}{}
 \pagestyle{empty}
 \begin{document}
-\begin{TLCarteMentale}{{Machines asynchrones et synchrones}}
-\TLBranche{Triphasé}{Tensions simples et composées, couplages étoile/triangle et puissances.}
-\TLBranche{MAS}{Glissement, schéma équivalent, bilan de puissance et commande V/f constante.}
-\TLBranche{MS}{Vitesse synchrone, diagramme de Behn-Eschenburg et couple électromagnétique.}
-\TLBranche{Commande}{Onduleur triphasé et autopilotage des moteurs brushless.}
+\begin{TLCarteMentale}{Machines asynchrones et synchrones}
+\TLBranche{Triphasé}{Trois tensions sinusoïdales équilibrées déphasées de $120^\circ$.}
+\TLBranche{Étoile}{En étoile : $U=\sqrt{3}V$ et le courant de ligne est égal au courant de phase.}
+\TLBranche{Triangle}{En triangle : $U=V$ et $I=\sqrt{3}J$.}
+\TLBranche{Puissance active}{$P=\sqrt{3}UI\cos\varphi$.}
+\TLBranche{Puissances}{$Q=\sqrt{3}UI\sin\varphi$ et $S=\sqrt{3}UI$.}
+\TLBranche{Champ tournant}{Le stator triphasé crée un champ magnétique tournant.}
+\TLBranche{Synchronisme}{$n_s=60f/p$ et $\omega_s=2\pi f/p$.}
+\TLBranche{MAS}{Le rotor tourne à une vitesse différente de celle du champ statorique.}
+\TLBranche{Glissement}{$g=(n_s-n)/n_s=(\omega_s-\omega)/\omega_s$.}
+\TLBranche{Fréquence rotorique}{$f_r=gf$.}
+\TLBranche{Bilan MAS}{Puissance absorbée, pertes statoriques, puissance transmise, pertes rotoriques et puissance mécanique.}
+\TLBranche{Pertes rotoriques}{$P_{J,r}=gP_{tr}$.}
+\TLBranche{Puissance électromécanique}{$P_{em}=(1-g)P_{tr}$.}
+\TLBranche{Couple MAS}{$C_{em}=P_{em}/\omega$.}
+\TLBranche{Caractéristique MAS}{Couple de démarrage, couple maximal et zone stable proche du synchronisme.}
+\TLBranche{Commande $V/f$}{Maintenir approximativement $V/f$ constant pour conserver le flux.}
+\TLBranche{MS}{En régime établi, le rotor tourne à la vitesse du champ : $\omega=\omega_s$.}
+\TLBranche{Excitation}{Rotor bobiné ou aimants permanents.}
+\TLBranche{Modèle synchrone}{$\underline V=\underline E+jX_s\underline I$ dans un modèle simplifié.}
+\TLBranche{Angle interne}{La puissance dépend de $\sin\delta$ et la stabilité impose une marge sur $\delta$.}
+\TLBranche{Brushless}{Machine synchrone à aimants, onduleur et information de position.}
+\TLBranche{Onduleur}{Il règle l'amplitude, la fréquence et l'ordre des phases par MLI.}
+\TLBranche{Point de fonctionnement}{Intersection de $C_m(\omega)$ et $C_r(\omega)$.}
+\TLBranche{Pertes}{Pertes Joule, fer, mécaniques et pertes du convertisseur.}
+\TLBranche{Rendement}{$\eta=P_{utile}/P_{abs}$.}
+\TLBranche{Méthode}{Couplage, synchronisme, glissement, bilan, couple, point de fonctionnement et rendement.}
 \end{TLCarteMentale}
 \end{document}
