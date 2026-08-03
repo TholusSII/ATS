@@ -5,12 +5,30 @@
 \makeatletter\def\input@path{{../../../Style/}}\makeatother
 \input{TLPosterCarteMentale.sty}
 \IfFileExists{TLSystemesAsservis.sty}{\input{TLSystemesAsservis.sty}}{}
+\IfFileExists{Notations_Autom/Notations_Autom.sty}{\input{Notations_Autom/Notations_Autom.sty}}{}
+\IfFileExists{Notations_SLCI/Notations_SLCI.sty}{\input{Notations_SLCI/Notations_SLCI.sty}}{}
 \pagestyle{empty}
 \begin{document}
 \begin{TLCarteMentale}{Systèmes asservis}
-\TLBranche{Structure}{Chaîne directe, retour, comparateur, correcteur, procédé et capteur.}
-\TLBranche{Modèle}{Fonctions de transfert, schémas-blocs et transformations de Laplace.}
-\TLBranche{Performances}{Précision, rapidité, stabilité et sensibilité aux perturbations.}
-\TLBranche{Analyse}{Étudier réponses temporelles, pôles, gain statique et comportement fréquentiel.}
+\TLBranche{Consigne}{Grandeur de référence imposée au système.}
+\TLBranche{Comparateur}{Produit l'écart $\varepsilon=r-y_m$.}
+\TLBranche{Correcteur}{Transforme l'écart pour améliorer les performances.}
+\TLBranche{Procédé}{Partie physique commandée du système.}
+\TLBranche{Capteur}{Mesure la sortie et fournit le signal de retour.}
+\TLBranche{Boucle ouverte}{Produit des fonctions de transfert parcourant la boucle.}
+\TLBranche{Boucle fermée}{$H_{BF}=G/(1+GH)$ pour un retour négatif.}
+\TLBranche{Laplace}{Transforme les équations différentielles en relations algébriques.}
+\TLBranche{Schéma-blocs}{Blocs, sommateurs et points de prélèvement décrivent les échanges de signaux.}
+\TLBranche{Pôles}{Déterminent stabilité et dynamique.}
+\TLBranche{Zéros}{Modifient la forme de la réponse.}
+\TLBranche{Premier ordre}{$K/(1+\tau p)$ : gain statique et constante de temps.}
+\TLBranche{Second ordre}{$K\omega_0^2/(p^2+2\xi\omega_0p+\omega_0^2)$.}
+\TLBranche{Précision}{Étude de l'erreur statique et du gain basse fréquence.}
+\TLBranche{Rapidité}{Temps de réponse, temps de montée et bande passante.}
+\TLBranche{Stabilité}{Pôles de la FTBF à partie réelle négative.}
+\TLBranche{Fréquentiel}{Diagrammes de Bode, marges de gain et de phase.}
+\TLBranche{Perturbations}{Le retour doit limiter leur influence sur la sortie.}
+\TLBranche{Compromis}{Augmenter le gain améliore souvent précision et rapidité, mais peut dégrader la stabilité.}
+\TLBranche{Méthode}{Identifier, modéliser, réduire, calculer, analyser puis conclure.}
 \end{TLCarteMentale}
 \end{document}
