@@ -1,0 +1,76 @@
+% ============================================================================
+% COURS 07 — EXERCICES COMPLÉMENTAIRES
+% Reprise du document 11-AcquisitionTraitementSignal2022.docx
+% ============================================================================
+
+\subsection{Pompe médicale OPTIMA3 — acquisition d'une pression}
+
+La pompe médicale OPTIMA3 est une pompe volumétrique utilisée en milieu hospitalier. Elle assure l'injection d'un liquide par perfusion sans intervention permanente du personnel médical.
+
+Une anomalie possible est l'occlusion de la tubulure : le canal peut être fermé par écrasement, pliage ou obstruction de la veine. Dans ce cas, la pompe continue à débiter et la pression augmente dangereusement. Un capteur de pression est donc placé au contact de la tubulure. Au-delà d'un seuil étalonné en usine, le microcontrôleur arrête le moteur.
+
+La partie sensible du capteur est réalisée dans un matériau souple dans lequel est noyé un fil électrique. La déformation de ce fil modifie sa résistivité et donc la tension délivrée par le capteur.
+
+\begin{enumerate}
+  \item Identifier la nature de l'information délivrée par le capteur.
+  \item À partir de la caractéristique entrée-sortie fournie dans le document technique, calculer la sensibilité du capteur en \si{\milli\volt\per\mega\pascal}.
+\end{enumerate}
+
+L'information est envoyée au microcontrôleur qui possède un convertisseur analogique-numérique. La résolution souhaitée sur la pression doit rester inférieure à \SI{0.01}{\mega\pascal}.
+
+La chaîne d'acquisition comprend le capteur, un conditionneur, un filtre anti-repliement, le CAN et l'unité de traitement.
+
+\begin{enumerate}
+  \setcounter{enumi}{2}
+  \item Calculer le gain de l'amplificateur du conditionneur afin d'obtenir une augmentation de \SI{1}{\volt} en sortie pour une augmentation de pression de \SI{0.1}{\mega\pascal}.
+  \item Déterminer la plage de tension en sortie du conditionneur pour l'étendue de pression utile.
+  \item À partir du nombre de bits et de la pleine échelle du CAN donnés dans le document technique, déterminer son quantum en volts.
+  \item En déduire la résolution obtenue sur la mesure de pression et vérifier l'exigence de \SI{0.01}{\mega\pascal}.
+  \item À partir du spectre du signal de pression, déterminer la fréquence maximale utile.
+  \item En déduire la fréquence minimale d'échantillonnage imposée par Shannon-Nyquist.
+  \item Proposer le gabarit du filtre anti-repliement placé avant le CAN.
+\end{enumerate}
+
+\subsection{Mesure du courant image du couple moteur}
+
+Le couple d'un moteur est estimé à partir de la mesure de son courant par un capteur à effet Hall. Le capteur délivre une tension image du courant moteur. Cette tension comporte une composante moyenne utile et une ondulation liée à la commande du moteur.
+
+On souhaite conserver l'image du courant moyen et atténuer suffisamment l'ondulation afin de disposer d'une mesure exploitable pour l'asservissement. Un filtre passif est utilisé et son étude est menée avec la représentation complexe.
+
+\begin{enumerate}
+  \item Indiquer le type de filtre permettant de conserver la composante continue tout en atténuant l'ondulation.
+  \item Pour la structure RC proposée dans le document, exprimer la tension de sortie en fonction de la tension d'entrée et des impédances des composants.
+  \item Donner l'impédance complexe du condensateur.
+  \item En déduire la fonction de transfert du filtre et la mettre sous la forme canonique
+  \[
+    H(j\omega)=\frac{1}{1+j\dfrac{\omega}{\omega_c}},
+    \qquad \omega_c=\frac{1}{RC}.
+  \]
+  \item À partir de l'atténuation demandée au fondamental de l'ondulation et de sa fréquence, déterminer la pulsation de coupure maximale admissible.
+  \item Afin de ne pas charger excessivement le capteur à effet Hall, l'impédance d'entrée du montage ne doit pas être inférieure à la valeur imposée dans le document. En déduire la valeur minimale de la résistance $R$.
+  \item Calculer ensuite la capacité $C$ permettant de respecter la pulsation de coupure déterminée précédemment.
+  \item Vérifier le gain du filtre à la fréquence de l'ondulation et conclure sur le respect de l'atténuation demandée.
+\end{enumerate}
+
+\subsection{Chaîne d'acquisition d'un effort sur une barre}
+
+En fonctionnement normal, l'effort exercé sur une barre doit être compris entre \SI{5}{\newton} et \SI{100}{\newton}. Un effort inférieur signale une mauvaise mise en place ou un actionneur défectueux ; un effort supérieur peut provenir d'un ralentissement trop brutal ou d'une action volontaire des passagers.
+
+Le capteur est constitué d'un pont de jauges collé sur la barre. Sa sensibilité est de \SI{1.5}{\milli\volt\per\volt}, son étendue de mesure est de \SI{250}{\newton} et il est alimenté sous \SI{5}{\volt}. Le signal délivré vaut alors \SI{30}{\micro\volt} par newton.
+
+Le CAN de l'automate possède les caractéristiques suivantes :
+\begin{itemize}
+  \item quantum en tension : \SI{2.5}{\milli\volt} ;
+  \item codage sur 12 bits ;
+  \item fréquence d'échantillonnage : \SI{500}{\hertz}.
+\end{itemize}
+
+\begin{enumerate}
+  \item Justifier la zone d'implantation des jauges sur la barre.
+  \item Déterminer la tension brute délivrée par le pont de jauges pour \SI{5}{\newton}, \SI{100}{\newton} et \SI{250}{\newton}.
+  \item Montrer que l'entrée analogique de l'automate ne peut pas exploiter directement ce signal.
+  \item Déterminer le gain minimal du conditionneur permettant d'obtenir une résolution inférieure ou égale à \SI{1}{\newton}.
+  \item Vérifier l'absence de saturation pour l'effort maximal de \SI{250}{\newton} et la pleine échelle du CAN.
+  \item Déterminer la période d'échantillonnage du convertisseur.
+  \item Donner la fréquence maximale théorique du signal mesurable conformément au théorème de Shannon-Nyquist.
+\end{enumerate}
