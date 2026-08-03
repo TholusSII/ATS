@@ -6,25 +6,80 @@
 \def\input@path{{../../../Style/}}
 \makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{{TLLogiqueSED.sty}}{{\input{{TLLogiqueSED.sty}}}}{{}}
+\IfFileExists{TLLogiqueSED.sty}{\input{TLLogiqueSED.sty}}{}
 \pagestyle{empty}
 \begin{document}
-\TLPosterTitre{{Logique et systèmes séquentiels}}{{Fiche résumé éditable}}
+\TLPosterTitre{Logique et systèmes séquentiels}{Fiche résumé éditable}
 \begin{multicols}{2}
-\begin{TLPosterBloc}{Combinatoire}
-Tables de vérité, algèbre de Boole et simplification des équations.
+
+\begin{TLPosterBloc}{Variables logiques}
+Une variable binaire prend les valeurs $0$ ou $1$. Une fonction logique associe une sortie binaire à une combinaison des entrées.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Séquentiel}
-États, transitions, événements, gardes et effets.
+\begin{TLPosterBloc}{Opérateurs fondamentaux}
+NON : $\overline{a}$ ; ET : $a\cdot b$ ; OU : $a+b$ ; OU exclusif : $a\oplus b$. Les portes NAND et NOR sont universelles.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{SysML}
-Diagrammes d'états et de séquence pour décrire le comportement.
+\begin{TLPosterBloc}{Algèbre de Boole}
+Identités utiles : $a+a=a$, $a\cdot a=a$, $a+\overline a=1$, $a\cdot\overline a=0$ et absorption $a+a b=a$.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Communication}
-Codeurs, réseaux, modèle OSI, multiplexage et protocoles.
+\begin{TLPosterBloc}{Lois de De Morgan}
+\[
+\overline{a+b}=\overline a\,\overline b,
+\qquad
+\overline{a b}=\overline a+\overline b.
+\]
+Elles permettent de transformer une réalisation logique et de basculer entre portes ET, OU, NAND et NOR.
 \end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Table de vérité}
+Pour $n$ entrées, la table comporte $2^n$ combinaisons. Elle permet de passer du cahier des charges à l'équation logique puis au schéma de portes.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Formes canoniques}
+La somme de produits est construite à partir des mintermes associés aux lignes où la sortie vaut $1$. Le produit de sommes utilise les maxtermes.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Simplification}
+Utiliser les identités de Boole ou un tableau de Karnaugh. Regrouper les cases adjacentes par paquets de $1$, $2$, $4$, $8$, etc., aussi grands que possible.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Logique combinatoire}
+La sortie dépend uniquement des entrées présentes. Exemples : multiplexeur, décodeur, additionneur, comparateur et codeur.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Mémoire et logique séquentielle}
+La sortie dépend des entrées et de l'état précédent. Les bascules RS, D, JK ou T mémorisent un bit et constituent registres, compteurs et mémoires.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Horloge et chronogramme}
+Les changements d'état peuvent être synchronisés sur un front montant ou descendant. Respecter les temps de propagation, de préparation et de maintien.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Automate fini}
+Un automate est défini par ses états, son état initial, ses transitions et ses sorties. Une transition peut porter la forme : événement $[\text{garde}]$ / effet.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Moore et Mealy}
+Dans une machine de Moore, les sorties dépendent uniquement de l'état. Dans une machine de Mealy, elles dépendent de l'état et des entrées.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Diagramme d'états SysML}
+Identifier les états stables, les événements déclencheurs, les conditions de garde, les actions d'entrée, de sortie et les effets des transitions.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Diagramme de séquence}
+Il représente les échanges de messages entre acteurs et blocs au cours du temps : lignes de vie, messages synchrones ou asynchrones, fragments alternatifs et boucles.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Communication numérique}
+Distinguer information, codage, support et protocole. Les transmissions peuvent être série ou parallèle, synchrones ou asynchrones, simplex, semi-duplex ou duplex.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Démarche de résolution}
+Lister entrées et sorties, établir la table de vérité ou les états, simplifier, réaliser le schéma ou l'automate, tracer les chronogrammes puis vérifier tous les cas limites.
+\end{TLPosterBloc}
+
 \end{multicols}
 \end{document}
