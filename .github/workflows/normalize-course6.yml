@@ -1,0 +1,148 @@
+name: Normaliser le cours 06 correction des systèmes asservis
+
+on:
+  push:
+    paths:
+      - .github/workflows/normalize-course6.yml
+
+permissions:
+  contents: write
+
+jobs:
+  normalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Installer Inkscape
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y inkscape
+
+      - name: Convertir les anciens formats vectoriels
+        shell: bash
+        run: |
+          set -euo pipefail
+          img='06-Correction des Systèmes asservis/Cours/pandoc/images'
+          find "$img" -type f \( -iname '*.emf' -o -iname '*.wmf' \) -print0 |
+          while IFS= read -r -d '' file; do
+            pdf="${file%.*}.pdf"
+            if [ ! -s "$pdf" ]; then
+              inkscape "$file" --export-filename="$pdf" >/tmp/inkscape-course6.log 2>&1 || true
+            fi
+          done
+
+      - name: Générer les parties cours et exercices
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          from collections import Counter, defaultdict
+
+          root = Path('06-Correction des Systèmes asservis/Cours')
+          src = root / 'pandoc' / 'contenu.tex'
+          images = root / 'pandoc' / 'images'
+          out = root / 'sources'
+          out.mkdir(exist_ok=True)
+
+          text = src.read_text(encoding='utf-8')
+          text = text.replace('./images/', 'pandoc/images/')
+
+          start = r'\hypertarget{introduction-uxe0-la-correction}{%'
+          exercise_anchor = r'\hypertarget{exercices-du-chapitre}{%'
+          exercise_heading = r'\subsection{Exercices du chapitre}\label{exercices-du-chapitre}}'
+          if start not in text or exercise_anchor not in text or exercise_heading not in text:
+              raise SystemExit('Repères du cours 06 introuvables')
+
+          text = text[text.index(start):]
+          course, exercise_block = text.split(exercise_anchor, 1)
+          exercises = exercise_block.split(exercise_heading, 1)[1]
+
+          # Les titres Word commencent au niveau 2. On les remonte d'un niveau
+          # dans la partie cours, sans modifier l'organisation des exercices.
+          course = course.replace(r'\subsubsection', r'\TLSixPromoteSubsection')
+          course = course.replace(r'\subsection', r'\section')
+          course = course.replace(r'\TLSixPromoteSubsection', r'\subsection')
+          course = course.replace(r'\subparagraph*', r'\subsubsection*')
+          course = course.replace('{subparagraph}', '{subsubsection}')
+
+          # Supprimer le schéma bitmap générique remplacé par schemabloc.
+          course = re.sub(
+              r'\\includegraphics(?:\[[^\]]*\])?\{pandoc/images/image6\.jpeg\}',
+              '',
+              course,
+              count=1
+          )
+
+          # Les mentions étaient des emplacements Word vides : elles sont
+          # remplacées par les tracés fréquentiels natifs ci-dessous.
+          course = course.replace('Diagramme temporelle Diagramme de Bode', '')
+
+          def insert_after_label(source: str, label: str, insertion: str) -> str:
+              token = rf'\label{{{label}}}}}'
+              if token not in source:
+                  raise SystemExit(f'Label introuvable : {label}')
+              return source.replace(token, token + '\n\n' + insertion + '\n', 1)
+
+          insertions = [
+              ('introduction-aux-correcteurs', r'\TLCorrecteurSerie'),
+              ('diffuxe9rentes-actions-de-correction', r'\TLTroisActionsCorrection'),
+              ('correcteur-proportionnel-p', r'\TLBodeCorrecteurP[10]'),
+              ('correcteur-intuxe9gral-i', r'\TLBodeCorrecteurI[1]'),
+              ('correcteur-proportionnel-intuxe9gral-pi', r'\TLBodeCorrecteurPI[1][1]'),
+              ('retard-de-phase-ou-correcteur-pi-ruxe9el', r'\TLBodeRetardPhase[1][10][1]'),
+              ('correcteur-uxe0-avance-de-phase-ou-correcteur-pd-ruxe9el', r'\TLBodeAvancePhase[1][0.1][1]'),
+              ('correcteur-proportionnel-intuxe9gral-duxe9rivuxe9-pid', r'\TLBodeCorrecteurPID[1][10][1][0.1]'),
+              ('ruxe9gulation-cascade-ou-boucles-imbriquuxe9es', r'\TLBouclesImbriquees'),
+          ]
+          for label, insertion in insertions:
+              course = insert_after_label(course, label, insertion)
+
+          # Employer les PDF convertis dès qu'ils existent.
+          def replace_vector(match):
+              stem = match.group(1)
+              pdf = root / (stem + '.pdf')
+              return stem + '.pdf' if pdf.exists() else match.group(0)
+
+          vector_pattern = re.compile(r'(pandoc/images/[^{}]+)\.(?:emf|wmf)(?=\})', re.IGNORECASE)
+          course = vector_pattern.sub(replace_vector, course)
+          exercises = vector_pattern.sub(replace_vector, exercises)
+
+          (out / '06_Correction_SA_Cours.tex').write_text(
+              '% Partie cours issue de 10-CorrectionSA2022.docx.\n' + course.strip() + '\n',
+              encoding='utf-8'
+          )
+          (out / '06_Correction_SA_Exercices.tex').write_text(
+              '% Exercices issus de 10-CorrectionSA2022.docx.\n' + exercises.strip() + '\n',
+              encoding='utf-8'
+          )
+
+          # Inventaire Unicode pour fiabiliser la compilation pdfLaTeX.
+          counts = Counter()
+          samples = defaultdict(list)
+          for path in out.glob('*.tex'):
+              for lineno, line in enumerate(path.read_text(encoding='utf-8').splitlines(), 1):
+                  for ch in line:
+                      if ord(ch) > 127:
+                          counts[ch] += 1
+                          if len(samples[ch]) < 3:
+                              samples[ch].append(f'{path.name}:{lineno}')
+          report = []
+          for ch, count in sorted(counts.items(), key=lambda item: ord(item[0])):
+              report.append(f'U+{ord(ch):04X}\t{ch!r}\t{count}\t{", ".join(samples[ch])}')
+          (root / 'UNICODE_COURS6.txt').write_text('\n'.join(report) + '\n', encoding='utf-8')
+          PY
+
+      - name: Publier les sources normalisées
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add '06-Correction des Systèmes asservis/Cours/sources' \
+                  '06-Correction des Systèmes asservis/Cours/pandoc/images' \
+                  '06-Correction des Systèmes asservis/Cours/UNICODE_COURS6.txt'
+          git commit -m 'Normalise le cours 06 et ses exercices'
+          git push
