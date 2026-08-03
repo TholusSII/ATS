@@ -5,24 +5,91 @@
 \makeatletter\def\input@path{{../../../Style/}}\makeatother
 \input{TLPosterCarteMentale.sty}
 \IfFileExists{TLTransmetteurs.sty}{\input{TLTransmetteurs.sty}}{}
+\IfFileExists{Notations_Cinematique/Notations_Cinematique.sty}{\input{Notations_Cinematique/Notations_Cinematique.sty}}{}
+\IfFileExists{Notations_Energetique/Notations_Energetique.sty}{\input{Notations_Energetique/Notations_Energetique.sty}}{}
 \pagestyle{empty}
 \begin{document}
-\TLPosterTitre{Modélisation des transmetteurs}{Fiche résumé éditable}
-\begin{multicols}{2}
-\begin{TLPosterBloc}{Fonction}
-Adapter vitesse, couple, effort ou mouvement dans une chaîne d'énergie.
+\TLPosterTitre{Modélisation des transmetteurs}{Rapports, puissance, rendement et réversibilité}
+\begin{multicols}{3}
+
+\begin{TLPosterBloc}{Fonction d'un transmetteur}
+Adapter les grandeurs mécaniques entre l'actionneur et l'effecteur : vitesse, couple, effort, sens de rotation ou nature du mouvement.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Transmetteurs}
-Engrenages, poulies-courroies, chaînes, vis-écrou et trains épicycloïdaux.
+\begin{TLPosterBloc}{Grandeur de transmission}
+On définit en général le rapport cinématique
+\[
+r=\frac{\omega_s}{\omega_e}
+\]
+ou, pour un mouvement de translation, une relation entre vitesse linéaire et vitesse angulaire.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Rapports}
-Déterminer le rapport de transmission avec une convention de signe cohérente.
+\begin{TLPosterBloc}{Engrenage simple}
+Pour deux roues dentées extérieures :
+\[
+\frac{\omega_2}{\omega_1}=-\frac{Z_1}{Z_2}
+\]
+Le signe traduit l'inversion du sens de rotation.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Puissance}
-Relier efforts et vitesses en tenant compte du rendement et de la réversibilité.
+\begin{TLPosterBloc}{Train d'engrenages}
+Le rapport global est le produit des rapports élémentaires. Les roues intermédiaires modifient le sens mais pas toujours la valeur absolue du rapport.
 \end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Poulies et courroies}
+Sans glissement :
+\[
+R_1\omega_1=R_2\omega_2
+\]
+Une courroie ouverte conserve le sens ; une courroie croisée l'inverse.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Pignons et chaîne}
+Sans glissement entre chaîne et dentures :
+\[
+\frac{\omega_2}{\omega_1}=\frac{Z_1}{Z_2}
+\]
+Le sens de rotation est conservé pour deux pignons reliés par une chaîne ouverte.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Vis-écrou}
+Pour un pas $p$, une rotation de $2\pi$ entraîne une translation $p$ :
+\[
+v=\frac{p}{2\pi}\,\omega
+\]
+Le signe dépend du pas et des conventions d'orientation.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Train épicycloïdal}
+On applique la relation de Willis entre les vitesses du soleil, de la couronne et du porte-satellites. Il faut identifier l'organe d'entrée, de sortie et l'organe fixe.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Puissance mécanique}
+En rotation :
+\[
+P=C\omega
+\]
+En translation :
+\[
+P=Fv
+\]
+Ces relations permettent de relier les variables d'entrée et de sortie.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Rendement}
+\[
+\eta=\frac{P_{\mathrm{utile}}}{P_{\mathrm{absorbée}}}
+\]
+Avec pertes, le couple de sortie n'est pas obtenu par la seule conservation idéale de la puissance.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Réversibilité}
+Un transmetteur est réversible si l'effecteur peut entraîner l'actionneur. Le frottement, le pas d'une vis et les conditions de contact peuvent rendre le système irréversible.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Démarche de résolution}
+Identifier entrée et sortie, poser les conventions de signe, écrire chaque rapport élémentaire, composer les rapports, puis vérifier sens, dimensions, puissance et plausibilité du résultat.
+\end{TLPosterBloc}
+
 \end{multicols}
 \end{document}
