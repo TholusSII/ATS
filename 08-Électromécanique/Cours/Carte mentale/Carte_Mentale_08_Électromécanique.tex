@@ -6,13 +6,36 @@
 \def\input@path{{../../../Style/}}
 \makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{{TLElectromecanique.sty}}{{\input{{TLElectromecanique.sty}}}}{{}}
+\IfFileExists{TLElectromecanique.sty}{\input{TLElectromecanique.sty}}{}
+\IfFileExists{Notations_Elec/Notations_Elec.sty}{\input{Notations_Elec/Notations_Elec.sty}}{}
+\IfFileExists{Notations_Energetique/Notations_Energetique.sty}{\input{Notations_Energetique/Notations_Energetique.sty}}{}
 \pagestyle{empty}
 \begin{document}
-\begin{TLCarteMentale}{{Électromécanique}}
-\TLBranche{Conversion}{Transformation réversible entre énergie électrique et énergie mécanique.}
-\TLBranche{Grandeurs}{Couple, vitesse, puissance, rendement et pertes.}
-\TLBranche{Machines}{Actionneur, génératrice, chaîne d'énergie et quadrants de fonctionnement.}
-\TLBranche{Méthode}{Établir le bilan des puissances puis relier les variables électriques et mécaniques.}
+\begin{TLCarteMentale}{Électromécanique}
+\TLBranche{Conversion}{Énergie électrique $\leftrightarrow$ énergie mécanique.}
+\TLBranche{Mode moteur}{Puissance électrique reçue, puissance mécanique fournie.}
+\TLBranche{Mode génératrice}{Puissance mécanique reçue, puissance électrique fournie.}
+\TLBranche{Tension et courant}{$u$, $i$ et $P_{\mathrm{elec}}=ui$.}
+\TLBranche{Couple et vitesse}{$C$, $\omega$ et $P_{\mathrm{meca}}=C\omega$.}
+\TLBranche{Vitesse de rotation}{$\omega=2\pi n/60$.}
+\TLBranche{Couple électromagnétique}{Variable interne assurant la conversion.}
+\TLBranche{Force électromotrice}{Grandeur électrique liée au mouvement.}
+\TLBranche{Bilan de puissance}{$P_{\mathrm{abs}}=P_{\mathrm{utile}}+\sum P_{\mathrm{pertes}}$.}
+\TLBranche{Pertes Joule}{Échauffement des conducteurs.}
+\TLBranche{Pertes fer}{Hystérésis et courants de Foucault.}
+\TLBranche{Pertes mécaniques}{Frottements et ventilation.}
+\TLBranche{Rendement}{$\eta=P_{\mathrm{utile}}/P_{\mathrm{abs}}$.}
+\TLBranche{Quadrant 1}{Rotation positive, couple positif, mode moteur.}
+\TLBranche{Quadrant 2}{Rotation positive, couple négatif, freinage générateur.}
+\TLBranche{Quadrant 3}{Rotation négative, couple négatif, mode moteur inverse.}
+\TLBranche{Quadrant 4}{Rotation négative, couple positif, freinage générateur.}
+\TLBranche{Caractéristique mécanique}{Courbe $C(\omega)$ de la machine.}
+\TLBranche{Charge}{Caractéristique résistante du mécanisme entraîné.}
+\TLBranche{Point de fonctionnement}{Intersection machine-charge.}
+\TLBranche{Convertisseur statique}{Adapte tension, courant et fréquence.}
+\TLBranche{Chaîne d'énergie}{Alimenter, moduler, convertir, transmettre, agir.}
+\TLBranche{Réversibilité}{Énergie susceptible de circuler dans les deux sens.}
+\TLBranche{Échauffement}{Conséquence des pertes et limite d'utilisation.}
+\TLBranche{Validation}{Signes, unités, rendement et ordre de grandeur.}
 \end{TLCarteMentale}
 \end{document}
