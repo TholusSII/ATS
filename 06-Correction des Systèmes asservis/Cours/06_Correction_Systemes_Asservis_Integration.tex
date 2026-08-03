@@ -1,9 +1,11 @@
 % Couche d'intégration de la conversion Word/Pandoc du cours 06.
 % Les sources normalisées restent lisibles ; les images sont sécurisées ici.
+% Les schémas SA connus sont remplacés par les commandes éditables du framework.
 
 \makeatletter
 \let\TLSixOriginalIncludeGraphics\includegraphics
 \newif\ifTLSixVectorGraphic
+\newif\ifTLSixLibraryGraphic
 
 \newcommand{\TLSixMissingGraphic}[1]{%
   \begin{tikzpicture}[baseline=(current bounding box.center)]
@@ -70,29 +72,39 @@
   \edef\TLSixGraphicExtension{\filename@ext}%
   \edef\TLSixGraphicStem{\filename@area\filename@base}%
 
-  \TLSixVectorGraphicfalse
-  \ifdefstring{\TLSixGraphicExtension}{emf}{\TLSixVectorGraphictrue}{}
-  \ifdefstring{\TLSixGraphicExtension}{EMF}{\TLSixVectorGraphictrue}{}
-  \ifdefstring{\TLSixGraphicExtension}{wmf}{\TLSixVectorGraphictrue}{}
-  \ifdefstring{\TLSixGraphicExtension}{WMF}{\TLSixVectorGraphictrue}{}
+  % image9 est le schéma des deux boucles imbriquées du moteur.
+  % Il est désormais produit par la librairie SA et reste entièrement éditable.
+  \TLSixLibraryGraphicfalse
+  \ifdefstring{\TLSixGraphicStem}{pandoc/images/image9}{\TLSixLibraryGraphictrue}{}
 
-  \ifTLSixVectorGraphic
-    \IfFileExists{\TLSixGraphicStem.pdf}{%
-      \TLSixPlaceConverted{\TLSixGraphicStem.pdf}%
-    }{%
-      \IfFileExists{\TLSixGraphicStem.png}{%
-        \TLSixPlaceConverted{\TLSixGraphicStem.png}%
-      }{%
-        \ifinner
-          \TLSixMissingGraphic{\filename@base}%
-        \else
-          \par\noindent\makebox[\linewidth][c]{\TLSixMissingGraphic{\filename@base}}\par\noindent
-        \fi
-      }%
-    }%
+  \ifTLSixLibraryGraphic
+    \endgroup
+    \TLBouclesImbriquees
   \else
-    \TLSixPlaceOriginal{#1}{#2}{#3}%
+    \TLSixVectorGraphicfalse
+    \ifdefstring{\TLSixGraphicExtension}{emf}{\TLSixVectorGraphictrue}{}
+    \ifdefstring{\TLSixGraphicExtension}{EMF}{\TLSixVectorGraphictrue}{}
+    \ifdefstring{\TLSixGraphicExtension}{wmf}{\TLSixVectorGraphictrue}{}
+    \ifdefstring{\TLSixGraphicExtension}{WMF}{\TLSixVectorGraphictrue}{}
+
+    \ifTLSixVectorGraphic
+      \IfFileExists{\TLSixGraphicStem.pdf}{%
+        \TLSixPlaceConverted{\TLSixGraphicStem.pdf}%
+      }{%
+        \IfFileExists{\TLSixGraphicStem.png}{%
+          \TLSixPlaceConverted{\TLSixGraphicStem.png}%
+        }{%
+          \ifinner
+            \TLSixMissingGraphic{\filename@base}%
+          \else
+            \par\noindent\makebox[\linewidth][c]{\TLSixMissingGraphic{\filename@base}}\par\noindent
+          \fi
+        }%
+      }%
+    \else
+      \TLSixPlaceOriginal{#1}{#2}{#3}%
+    \fi
+    \endgroup
   \fi
-  \endgroup
 }
 \makeatother
