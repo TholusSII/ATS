@@ -1,0 +1,28 @@
+\documentclass[a3paper,landscape,10pt]{article}
+\usepackage[margin=10mm]{geometry}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
+\input{TLPosterCarteMentale.sty}
+\IfFileExists{TLTransmetteurs.sty}{\input{TLTransmetteurs.sty}}{}
+\pagestyle{empty}
+\begin{document}
+\TLPosterTitre{Modélisation des transmetteurs}{Fiche résumé éditable}
+\begin{multicols}{2}
+\begin{TLPosterBloc}{Fonction}
+Adapter vitesse, couple, effort ou mouvement dans une chaîne d'énergie.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Transmetteurs}
+Engrenages, poulies-courroies, chaînes, vis-écrou et trains épicycloïdaux.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Rapports}
+Déterminer le rapport de transmission avec une convention de signe cohérente.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Puissance}
+Relier efforts et vitesses en tenant compte du rendement et de la réversibilité.
+\end{TLPosterBloc}
+\end{multicols}
+\end{document}

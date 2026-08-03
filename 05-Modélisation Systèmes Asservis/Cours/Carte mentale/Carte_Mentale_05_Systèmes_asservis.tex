@@ -1,0 +1,16 @@
+\documentclass[a3paper,landscape,10pt]{article}
+\usepackage[margin=8mm]{geometry}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
+\input{TLPosterCarteMentale.sty}
+\IfFileExists{TLSystemesAsservis.sty}{\input{TLSystemesAsservis.sty}}{}
+\pagestyle{empty}
+\begin{document}
+\begin{TLCarteMentale}{Systèmes asservis}
+\TLBranche{Structure}{Chaîne directe, retour, comparateur, correcteur, procédé et capteur.}
+\TLBranche{Modèle}{Fonctions de transfert, schémas-blocs et transformations de Laplace.}
+\TLBranche{Performances}{Précision, rapidité, stabilité et sensibilité aux perturbations.}
+\TLBranche{Analyse}{Étudier réponses temporelles, pôles, gain statique et comportement fréquentiel.}
+\end{TLCarteMentale}
+\end{document}

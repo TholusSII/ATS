@@ -1,0 +1,30 @@
+\documentclass[a3paper,landscape,10pt]{article}
+\usepackage[margin=10mm]{geometry}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\makeatletter
+\def\input@path{{../../../Style/}}
+\makeatother
+\input{TLPosterCarteMentale.sty}
+\IfFileExists{{TLActionsMecaniques.sty}}{{\input{{TLActionsMecaniques.sty}}}}{{}}
+\pagestyle{empty}
+\begin{document}
+\TLPosterTitre{{Actions mécaniques}}{{Fiche résumé éditable}}
+\begin{multicols}{2}
+\begin{TLPosterBloc}{Modélisation}
+Une action mécanique est représentée par un torseur.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Statique}
+Isoler, dresser le BAME puis appliquer le principe fondamental de la statique.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Dynamique}
+Utiliser le PFD ou le théorème de l'énergie cinétique selon le problème.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Points clés}
+Frottement, moment d'une force, centre d'inertie et opérateur d'inertie.
+\end{TLPosterBloc}
+\end{multicols}
+\end{document}

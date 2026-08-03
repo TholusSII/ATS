@@ -1,0 +1,30 @@
+\documentclass[a3paper,landscape,10pt]{article}
+\usepackage[margin=10mm]{geometry}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\makeatletter
+\def\input@path{{../../../Style/}}
+\makeatother
+\input{TLPosterCarteMentale.sty}
+\IfFileExists{{TLElectroniquePuissance.sty}}{{\input{{TLElectroniquePuissance.sty}}}}{{}}
+\pagestyle{empty}
+\begin{document}
+\TLPosterTitre{{Électronique de puissance}}{{Fiche résumé éditable}}
+\begin{multicols}{2}
+\begin{TLPosterBloc}{Convertisseurs}
+DC-DC, AC-DC, DC-AC et AC-AC.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Interrupteurs}
+Diode, MOSFET, IGBT et thyristor ; états passant et bloqué.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Hacheurs}
+Buck, Boost, deux quadrants et quatre quadrants.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Méthode}
+Identifier les séquences, tracer les grandeurs puis calculer valeurs moyennes et ondulations.
+\end{TLPosterBloc}
+\end{multicols}
+\end{document}

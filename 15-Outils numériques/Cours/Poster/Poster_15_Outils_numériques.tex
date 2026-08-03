@@ -1,0 +1,30 @@
+\documentclass[a3paper,landscape,10pt]{article}
+\usepackage[margin=10mm]{geometry}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\makeatletter
+\def\input@path{{../../../Style/}}
+\makeatother
+\input{TLPosterCarteMentale.sty}
+\IfFileExists{{TLOutilsNumeriques.sty}}{{\input{{TLOutilsNumeriques.sty}}}}{{}}
+\pagestyle{empty}
+\begin{document}
+\TLPosterTitre{{Outils numériques}}{{Fiche résumé éditable}}
+\begin{multicols}{2}
+\begin{TLPosterBloc}{Discrétisation}
+t_k = t_0 + kh et approximation numérique des dérivées.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Euler explicite}
+y_{k+1} = y_k + h f(t_k,y_k).
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Ordre deux}
+Transformer l'équation en système de deux équations du premier ordre.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Validation}
+Étudier convergence, stabilité, influence du pas et cohérence physique.
+\end{TLPosterBloc}
+\end{multicols}
+\end{document}

@@ -1,0 +1,30 @@
+\documentclass[a3paper,landscape,10pt]{article}
+\usepackage[margin=10mm]{geometry}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\makeatletter
+\def\input@path{{../../../Style/}}
+\makeatother
+\input{TLPosterCarteMentale.sty}
+\IfFileExists{{TLRDM.sty}}{{\input{{TLRDM.sty}}}}{{}}
+\pagestyle{empty}
+\begin{document}
+\TLPosterTitre{{Résistance des matériaux}}{{Fiche résumé éditable}}
+\begin{multicols}{2}
+\begin{TLPosterBloc}{Hypothèses}
+Poutres droites, petites déformations, Saint-Venant et Navier-Bernoulli.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Cohésion}
+La coupure fait apparaître le torseur des efforts intérieurs.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Traction}
+sigma = N/S et allongement gouverné par la loi de Hooke.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Flexion}
+sigma = -M_f y/I et courbure liée à M_f/(EI).
+\end{TLPosterBloc}
+\end{multicols}
+\end{document}

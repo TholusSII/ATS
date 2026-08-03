@@ -1,0 +1,30 @@
+\documentclass[a3paper,landscape,10pt]{article}
+\usepackage[margin=10mm]{geometry}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\makeatletter
+\def\input@path{{../../../Style/}}
+\makeatother
+\input{TLPosterCarteMentale.sty}
+\IfFileExists{{TLCorrectionSystemesAsservis.sty}}{{\input{{TLCorrectionSystemesAsservis.sty}}}}{{}}
+\pagestyle{empty}
+\begin{document}
+\TLPosterTitre{{Correction des systèmes asservis}}{{Fiche résumé éditable}}
+\begin{multicols}{2}
+\begin{TLPosterBloc}{Objectifs}
+Précision, rapidité, stabilité et rejet des perturbations.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Correcteurs}
+P : gain ; PI : annulation de l'erreur statique ; PD : anticipation ; PID : compromis global.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Méthode}
+Identifier le besoin, choisir la structure, régler les paramètres, vérifier les marges et les performances.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Points clés}
+Effet du gain, pôles dominants, marges de gain et de phase, saturation et robustesse.
+\end{TLPosterBloc}
+\end{multicols}
+\end{document}

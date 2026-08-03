@@ -1,0 +1,18 @@
+\documentclass[a3paper,landscape,10pt]{article}
+\usepackage[margin=8mm]{geometry}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\makeatletter
+\def\input@path{{../../../Style/}}
+\makeatother
+\input{TLPosterCarteMentale.sty}
+\IfFileExists{{TLActionsMecaniques.sty}}{{\input{{TLActionsMecaniques.sty}}}}{{}}
+\pagestyle{empty}
+\begin{document}
+\begin{TLCarteMentale}{{Actions mécaniques}}
+\TLBranche{Modélisation}{Une action mécanique est représentée par un torseur.}
+\TLBranche{Statique}{Isoler, dresser le BAME puis appliquer le principe fondamental de la statique.}
+\TLBranche{Dynamique}{Utiliser le PFD ou le théorème de l'énergie cinétique selon le problème.}
+\TLBranche{Points clés}{Frottement, moment d'une force, centre d'inertie et opérateur d'inertie.}
+\end{TLCarteMentale}
+\end{document}

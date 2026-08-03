@@ -1,0 +1,18 @@
+\documentclass[a3paper,landscape,10pt]{article}
+\usepackage[margin=8mm]{geometry}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\makeatletter
+\def\input@path{{../../../Style/}}
+\makeatother
+\input{TLPosterCarteMentale.sty}
+\IfFileExists{{TLCorrectionSystemesAsservis.sty}}{{\input{{TLCorrectionSystemesAsservis.sty}}}}{{}}
+\pagestyle{empty}
+\begin{document}
+\begin{TLCarteMentale}{{Correction des systèmes asservis}}
+\TLBranche{Objectifs}{Précision, rapidité, stabilité et rejet des perturbations.}
+\TLBranche{Correcteurs}{P : gain ; PI : annulation de l'erreur statique ; PD : anticipation ; PID : compromis global.}
+\TLBranche{Méthode}{Identifier le besoin, choisir la structure, régler les paramètres, vérifier les marges et les performances.}
+\TLBranche{Points clés}{Effet du gain, pôles dominants, marges de gain et de phase, saturation et robustesse.}
+\end{TLCarteMentale}
+\end{document}

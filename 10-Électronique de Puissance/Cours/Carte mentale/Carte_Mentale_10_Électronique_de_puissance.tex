@@ -1,0 +1,18 @@
+\documentclass[a3paper,landscape,10pt]{article}
+\usepackage[margin=8mm]{geometry}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\makeatletter
+\def\input@path{{../../../Style/}}
+\makeatother
+\input{TLPosterCarteMentale.sty}
+\IfFileExists{{TLElectroniquePuissance.sty}}{{\input{{TLElectroniquePuissance.sty}}}}{{}}
+\pagestyle{empty}
+\begin{document}
+\begin{TLCarteMentale}{{Électronique de puissance}}
+\TLBranche{Convertisseurs}{DC-DC, AC-DC, DC-AC et AC-AC.}
+\TLBranche{Interrupteurs}{Diode, MOSFET, IGBT et thyristor ; états passant et bloqué.}
+\TLBranche{Hacheurs}{Buck, Boost, deux quadrants et quatre quadrants.}
+\TLBranche{Méthode}{Identifier les séquences, tracer les grandeurs puis calculer valeurs moyennes et ondulations.}
+\end{TLCarteMentale}
+\end{document}

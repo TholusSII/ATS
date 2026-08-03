@@ -1,0 +1,30 @@
+\documentclass[a3paper,landscape,10pt]{article}
+\usepackage[margin=10mm]{geometry}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\makeatletter
+\def\input@path{{../../../Style/}}
+\makeatother
+\input{TLPosterCarteMentale.sty}
+\IfFileExists{{TLMCC.sty}}{{\input{{TLMCC.sty}}}}{{}}
+\pagestyle{empty}
+\begin{document}
+\TLPosterTitre{{Machine à courant continu}}{{Fiche résumé éditable}}
+\begin{multicols}{2}
+\begin{TLPosterBloc}{Modèle}
+u = Ri + L di/dt + e, avec e = K_e omega.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Couple}
+C_em = K_t i ; à flux constant K_e = K_t en unités SI.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Bilan}
+Puissance électrique, pertes Joule, puissance électromagnétique et puissance utile.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Commande}
+Variation de vitesse par la tension d'induit et fonctionnement dans les quatre quadrants.
+\end{TLPosterBloc}
+\end{multicols}
+\end{document}

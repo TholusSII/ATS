@@ -1,0 +1,18 @@
+\documentclass[a3paper,landscape,10pt]{article}
+\usepackage[margin=8mm]{geometry}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\makeatletter
+\def\input@path{{../../../Style/}}
+\makeatother
+\input{TLPosterCarteMentale.sty}
+\IfFileExists{{TLRDM.sty}}{{\input{{TLRDM.sty}}}}{{}}
+\pagestyle{empty}
+\begin{document}
+\begin{TLCarteMentale}{{Résistance des matériaux}}
+\TLBranche{Hypothèses}{Poutres droites, petites déformations, Saint-Venant et Navier-Bernoulli.}
+\TLBranche{Cohésion}{La coupure fait apparaître le torseur des efforts intérieurs.}
+\TLBranche{Traction}{sigma = N/S et allongement gouverné par la loi de Hooke.}
+\TLBranche{Flexion}{sigma = -M_f y/I et courbure liée à M_f/(EI).}
+\end{TLCarteMentale}
+\end{document}

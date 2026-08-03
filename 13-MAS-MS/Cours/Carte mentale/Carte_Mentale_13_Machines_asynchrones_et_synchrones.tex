@@ -1,0 +1,18 @@
+\documentclass[a3paper,landscape,10pt]{article}
+\usepackage[margin=8mm]{geometry}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\makeatletter
+\def\input@path{{../../../Style/}}
+\makeatother
+\input{TLPosterCarteMentale.sty}
+\IfFileExists{{TLMachinesAlternatives.sty}}{{\input{{TLMachinesAlternatives.sty}}}}{{}}
+\pagestyle{empty}
+\begin{document}
+\begin{TLCarteMentale}{{Machines asynchrones et synchrones}}
+\TLBranche{Triphasé}{Tensions simples et composées, couplages étoile/triangle et puissances.}
+\TLBranche{MAS}{Glissement, schéma équivalent, bilan de puissance et commande V/f constante.}
+\TLBranche{MS}{Vitesse synchrone, diagramme de Behn-Eschenburg et couple électromagnétique.}
+\TLBranche{Commande}{Onduleur triphasé et autopilotage des moteurs brushless.}
+\end{TLCarteMentale}
+\end{document}

@@ -1,0 +1,18 @@
+\documentclass[a3paper,landscape,10pt]{article}
+\usepackage[margin=8mm]{geometry}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\makeatletter
+\def\input@path{{../../../Style/}}
+\makeatother
+\input{TLPosterCarteMentale.sty}
+\IfFileExists{{TLMCC.sty}}{{\input{{TLMCC.sty}}}}{{}}
+\pagestyle{empty}
+\begin{document}
+\begin{TLCarteMentale}{{Machine à courant continu}}
+\TLBranche{Modèle}{u = Ri + L di/dt + e, avec e = K_e omega.}
+\TLBranche{Couple}{C_em = K_t i ; à flux constant K_e = K_t en unités SI.}
+\TLBranche{Bilan}{Puissance électrique, pertes Joule, puissance électromagnétique et puissance utile.}
+\TLBranche{Commande}{Variation de vitesse par la tension d'induit et fonctionnement dans les quatre quadrants.}
+\end{TLCarteMentale}
+\end{document}

@@ -1,0 +1,28 @@
+\documentclass[a3paper,landscape,10pt]{article}
+\usepackage[margin=10mm]{geometry}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
+\input{TLPosterCarteMentale.sty}
+\IfFileExists{TLSystemesAsservis.sty}{\input{TLSystemesAsservis.sty}}{}
+\pagestyle{empty}
+\begin{document}
+\TLPosterTitre{Systèmes asservis}{Fiche résumé éditable}
+\begin{multicols}{2}
+\begin{TLPosterBloc}{Structure}
+Chaîne directe, retour, comparateur, correcteur, procédé et capteur.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Modèle}
+Fonctions de transfert, schémas-blocs et transformations de Laplace.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Performances}
+Précision, rapidité, stabilité et sensibilité aux perturbations.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Analyse}
+Étudier réponses temporelles, pôles, gain statique et comportement fréquentiel.
+\end{TLPosterBloc}
+\end{multicols}
+\end{document}

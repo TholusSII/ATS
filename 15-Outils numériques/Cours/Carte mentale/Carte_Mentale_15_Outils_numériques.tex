@@ -1,0 +1,18 @@
+\documentclass[a3paper,landscape,10pt]{article}
+\usepackage[margin=8mm]{geometry}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\makeatletter
+\def\input@path{{../../../Style/}}
+\makeatother
+\input{TLPosterCarteMentale.sty}
+\IfFileExists{{TLOutilsNumeriques.sty}}{{\input{{TLOutilsNumeriques.sty}}}}{{}}
+\pagestyle{empty}
+\begin{document}
+\begin{TLCarteMentale}{{Outils numériques}}
+\TLBranche{Discrétisation}{t_k = t_0 + kh et approximation numérique des dérivées.}
+\TLBranche{Euler explicite}{y_{k+1} = y_k + h f(t_k,y_k).}
+\TLBranche{Ordre deux}{Transformer l'équation en système de deux équations du premier ordre.}
+\TLBranche{Validation}{Étudier convergence, stabilité, influence du pas et cohérence physique.}
+\end{TLCarteMentale}
+\end{document}

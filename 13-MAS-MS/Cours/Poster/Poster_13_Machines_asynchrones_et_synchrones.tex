@@ -1,0 +1,30 @@
+\documentclass[a3paper,landscape,10pt]{article}
+\usepackage[margin=10mm]{geometry}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\makeatletter
+\def\input@path{{../../../Style/}}
+\makeatother
+\input{TLPosterCarteMentale.sty}
+\IfFileExists{{TLMachinesAlternatives.sty}}{{\input{{TLMachinesAlternatives.sty}}}}{{}}
+\pagestyle{empty}
+\begin{document}
+\TLPosterTitre{{Machines asynchrones et synchrones}}{{Fiche résumé éditable}}
+\begin{multicols}{2}
+\begin{TLPosterBloc}{Triphasé}
+Tensions simples et composées, couplages étoile/triangle et puissances.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{MAS}
+Glissement, schéma équivalent, bilan de puissance et commande V/f constante.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{MS}
+Vitesse synchrone, diagramme de Behn-Eschenburg et couple électromagnétique.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Commande}
+Onduleur triphasé et autopilotage des moteurs brushless.
+\end{TLPosterBloc}
+\end{multicols}
+\end{document}

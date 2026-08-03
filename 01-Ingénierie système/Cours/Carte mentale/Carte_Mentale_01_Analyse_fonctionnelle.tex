@@ -1,0 +1,16 @@
+\documentclass[a3paper,landscape,10pt]{article}
+\usepackage[margin=8mm]{geometry}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
+\input{TLPosterCarteMentale.sty}
+\IfFileExists{Notations_AF/Notations_AF.sty}{\input{Notations_AF/Notations_AF.sty}}{}
+\pagestyle{empty}
+\begin{document}
+\begin{TLCarteMentale}{Analyse fonctionnelle}
+\TLBranche{Besoin}{Identifier le besoin, les utilisateurs, le contexte et la finalité du système.}
+\TLBranche{Exigences}{Décrire les fonctions de service, les contraintes, les critères et les niveaux attendus.}
+\TLBranche{SysML}{Exploiter les diagrammes de contexte, exigences, cas d'utilisation et blocs.}
+\TLBranche{Méthode}{Passer du besoin au cahier des charges puis vérifier la satisfaction des exigences.}
+\end{TLCarteMentale}
+\end{document}
