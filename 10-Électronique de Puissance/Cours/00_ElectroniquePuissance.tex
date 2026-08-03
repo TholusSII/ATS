@@ -1,0 +1,26 @@
+\RequirePackage{silence}
+\WarningFilter{xcolor}{Package option `usenames' is obsolete}
+\documentclass[fontsize=10pt,twoside=true,open=any]{kaobook}
+\usepackage[french]{babel}
+\newcommand{\TLCourseDefinitionFile}{10_ElectroniquePuissance}
+\makeatletter
+\def\input@path{{../../Style/}}
+\makeatother
+\input{TLCours.sty}
+\input{Notations_Elec/Notations_Elec.sty}
+\input{Notations_Energetique/Notations_Energetique.sty}
+\input{TLElectronique.sty}
+\input{TLElectroniquePuissance.sty}
+\usepackage{amsmath,amssymb,mathtools,array,booktabs}
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{3em}
+\makeindex[columns=3,title=Index alphabétique,intoc]
+\begin{document}
+\mainmatter
+\setchapterstyle{kao}
+\setcounter{margintocdepth}{\sectiontocdepth}
+\marginlayout
+\pagestyle{scrheadings}
+\input{\TLCourseDefinitionFile}
+\end{document}
