@@ -1,0 +1,48 @@
+name: Préparer le cours 07 électronique
+
+on:
+  push:
+    paths:
+      - .github/workflows/prepare-course7.yml
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Installer Pandoc
+        run: sudo apt-get update && sudo apt-get install -y pandoc
+      - name: Convertir la source Word
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd '07-Électronique/Cours'
+          mkdir -p sources images_docx
+          pandoc '11-AcquisitionTraitementSignal2022.docx' \
+            --from=docx --to=latex \
+            --extract-media=images_docx \
+            --wrap=none \
+            -o sources/07_Electronique_Pandoc.tex
+          {
+            echo '=== STRUCTURE DU DOCUMENT ==='
+            grep -nE '^\\(chapter|section|subsection|subsubsection)|includegraphics|begin\{longtable\}|begin\{tabular\}' sources/07_Electronique_Pandoc.tex || true
+            echo
+            echo '=== IMAGES EXTRAITES ==='
+            find images_docx -type f -printf '%p\n' | sort
+            echo
+            echo '=== TERMES ELECTRONIQUES ==='
+            grep -niE 'filtre|résistance|condensateur|amplificateur|opérationnel|capteur|CAN|CNA|échantill|quantif|signal|tension|courant|diode|transistor' sources/07_Electronique_Pandoc.tex | head -400 || true
+          } > INVENTAIRE_DOCUMENT_COURS7.txt
+      - name: Publier la préparation
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add '07-Électronique/Cours/sources/07_Electronique_Pandoc.tex' \
+                  '07-Électronique/Cours/images_docx' \
+                  '07-Électronique/Cours/INVENTAIRE_DOCUMENT_COURS7.txt'
+          git commit -m 'Prépare la conversion du cours 07 électronique'
+          git push
