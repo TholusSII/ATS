@@ -10,6 +10,7 @@ on:
       - '06-Correction des Systèmes asservis/Cours/sources/**'
       - '06-Correction des Systèmes asservis/Cours/pandoc/images/**'
       - 'Style/TLCorrectionSystemesAsservis.sty'
+      - 'Style/TLCorrectionSystemesAsservisStableBode.sty'
       - 'Style/TLSystemesAsservis.sty'
       - 'Style/TLSystemesAsservisStableBode.sty'
       - 'Style/schemabloc.sty'
@@ -79,6 +80,11 @@ jobs:
               pdflatex -file-line-error -halt-on-error -interaction=nonstopmode "$job.tex"
             ' > "$log" 2>&1
           status=$?
+
+          # Les fichiers écrits dans le volume monté appartiennent à root.
+          # On rend leur propriété au runner avant la copie et le commit.
+          sudo chown -R "$(id -u):$(id -g)" "$course"
+
           cat "$log"
           exit "$status"
 
