@@ -21,15 +21,18 @@
 \end{tikzpicture}
 \end{center}}
 
-% Source de tension explicite : évite les ancres internes + et - du composant V,
-% incompatibles avec certaines associations anciennes PGF/TikZ + circuitikz.
+% Source de tension explicite. Le décalage de repère évite les calculs
+% arithmétiques directement placés dans les coordonnées TikZ, incompatibles
+% avec certaines anciennes versions de PGF/TikZ distribuées par MiKTeX.
 \newcommand{\TLSourceTensionVerticale}[3]{%
-  \draw (#1,#2) -- (#1,{#2+1.25});
-  \draw (#1,{#2+2.75}) -- (#1,{#2+4});
-  \draw (#1,{#2+2}) circle (0.75);
-  \node at (#1,{#2+2.28}) {\ensuremath{+}};
-  \node at (#1,{#2+1.72}) {\ensuremath{-}};
-  \node[left] at ({#1-0.75},{#2+2}) {#3};
+  \begin{scope}[shift={(#1,#2)}]
+    \draw (0,0) -- (0,1.25);
+    \draw (0,2.75) -- (0,4);
+    \draw (0,2) circle (0.75);
+    \node at (0,2.28) {$+$};
+    \node at (0,1.72) {$-$};
+    \node[left] at (-0.75,2) {#3};
+  \end{scope}
 }
 
 % Pont diviseur : résistances conservées en circuitikz.
