@@ -1,0 +1,36 @@
+% ============================================================================
+% MOTEUR — COURS 07 : ÉLECTRONIQUE
+% ============================================================================
+\RequirePackage{silence}
+\WarningFilter{xcolor}{Package option `usenames' is obsolete}
+
+\documentclass[
+  fontsize=10pt,
+  twoside=true,
+  open=any,
+]{kaobook}
+
+\usepackage[french]{babel}
+
+\makeatletter
+\def\input@path{{../../Style/}}
+\makeatother
+\input{TLCours.sty}
+\input{TLElectronique.sty}
+\input{Notations_Elec/Notations_Elec.sty}
+
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{3em}
+\makeindex[columns=3,title=Index alphabétique,intoc]
+
+\begin{document}
+\mainmatter
+\setchapterstyle{kao}
+\setcounter{margintocdepth}{\sectiontocdepth}
+\marginlayout
+\pagestyle{scrheadings}
+
+\input{07_Electronique}
+
+\end{document}
