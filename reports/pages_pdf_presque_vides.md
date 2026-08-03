@@ -1,7 +1,7 @@
 # Pages PDF presque vides
 
-PDF de cours analysés : **235**
-Pages suspectes détectées : **210**
+PDF de cours analysés : **236**
+Pages suspectes détectées : **219**
 
 Critère : au plus 80 caractères extraits et moins de 12 % de la page occupée par des images.
 
@@ -202,6 +202,15 @@ Critère : au plus 80 caractères extraits et moins de 12 % de la page occupée 
 | `04-Cinématique/Cours/images/image85.pdf` | 1/1 | 46 | 0 | 0.000 | 1/01/01/0 BA VVBA ∈∈=+∧Ω uuuuuuuruuuuuuuruuuru |
 | `04-Cinématique/Cours/images/image88.pdf` | 1/1 | 1 | 0 | 0.000 | I |
 | `04-Cinématique/Cours/images/image89.pdf` | 1/1 | 15 | 0 | 0.000 | 2/1 I V ∈ uuuuu |
+| `05-Modélisation Systèmes Asservis/Cours/00_Systemes_Asservis.pdf` | 30/146 | 63 | 0 | 0.000 | Lycée Robert Doisneau - ATS Thomas Lusseau 30 Systèmes asservis |
+| `05-Modélisation Systèmes Asservis/Cours/00_Systemes_Asservis.pdf` | 62/146 | 63 | 0 | 0.000 | Lycée Robert Doisneau - ATS Thomas Lusseau 62 Systèmes asservis |
+| `05-Modélisation Systèmes Asservis/Cours/00_Systemes_Asservis.pdf` | 65/146 | 57 | 0 | 0.000 | Lycée Robert Doisneau - ATS Thomas Lusseau 4.4 Sources 65 |
+| `05-Modélisation Systèmes Asservis/Cours/00_Systemes_Asservis.pdf` | 73/146 | 57 | 0 | 0.000 | Lycée Robert Doisneau - ATS Thomas Lusseau 4.4 Sources 73 |
+| `05-Modélisation Systèmes Asservis/Cours/00_Systemes_Asservis.pdf` | 78/146 | 63 | 0 | 0.000 | Lycée Robert Doisneau - ATS Thomas Lusseau 78 Systèmes asservis |
+| `05-Modélisation Systèmes Asservis/Cours/00_Systemes_Asservis.pdf` | 105/146 | 58 | 0 | 0.000 | Lycée Robert Doisneau - ATS Thomas Lusseau 4.4 Sources 105 |
+| `05-Modélisation Systèmes Asservis/Cours/00_Systemes_Asservis.pdf` | 109/146 | 58 | 0 | 0.000 | Lycée Robert Doisneau - ATS Thomas Lusseau 4.4 Sources 109 |
+| `05-Modélisation Systèmes Asservis/Cours/00_Systemes_Asservis.pdf` | 118/146 | 64 | 0 | 0.000 | Lycée Robert Doisneau - ATS Thomas Lusseau 118 Systèmes asservis |
+| `05-Modélisation Systèmes Asservis/Cours/00_Systemes_Asservis.pdf` | 123/146 | 58 | 0 | 0.000 | Lycée Robert Doisneau - ATS Thomas Lusseau 4.4 Sources 123 |
 | `05-Modélisation Systèmes Asservis/Cours/images/image15.pdf` | 1/1 | 8 | 0 | 0.000 | Digicode |
 | `05-Modélisation Systèmes Asservis/Cours/images/image150.pdf` | 1/1 | 8 | 0 | 0.000 | Digicode |
 | `05-Modélisation Systèmes Asservis/Cours/images/image17.pdf` | 1/1 | 11 | 0 | 0.000 | 123 S=E+E-E |
