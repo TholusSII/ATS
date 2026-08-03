@@ -2,11 +2,12 @@
 % BIBLIOTHÈQUE TL — ÉLECTRONIQUE ET ACQUISITION DU SIGNAL
 % ============================================================================
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{TLElectronique}[2026/08/03 Electronique et acquisition]
+\ProvidesPackage{TLElectronique}[2026/08/03 v2026.08.03c Electronique et acquisition]
 \RequirePackage[siunitx,european]{circuitikz}
 \RequirePackage{xparse}
 \RequirePackage{tikz}
 \usetikzlibrary{positioning,arrows.meta,calc}
+\typeout{TL-ELECTRONIQUE-MARKER-20260803-C}
 
 \newcommand{\TLChaineAcquisition}{%
 \begin{center}
@@ -21,31 +22,41 @@
 \end{tikzpicture}
 \end{center}}
 
-% Source de tension explicite. Le décalage de repère évite les calculs
-% arithmétiques directement placés dans les coordonnées TikZ, incompatibles
-% avec certaines anciennes versions de PGF/TikZ distribuées par MiKTeX.
-\newcommand{\TLSourceTensionVerticale}[3]{%
-  \begin{scope}[shift={(#1,#2)}]
-    \draw (0,0) -- (0,1.25);
-    \draw (0,2.75) -- (0,4);
-    \draw (0,2) circle (0.75);
-    \node at (0,2.28) {$+$};
-    \node at (0,1.72) {$-$};
-    \node[left] at (-0.75,2) {#3};
-  \end{scope}
-}
-
-% Pont diviseur : résistances conservées en circuitikz.
+% Version volontairement élémentaire du pont diviseur.
+% circuitikz reste chargé et utilisé dans les autres schémas de la bibliothèque.
 \newcommand{\TLPontDiviseur}{%
+\typeout{TL-PONT-DIVISEUR-VERSION-C}%
 \begin{center}
-\begin{circuitikz}[european resistors]
-\TLSourceTensionVerticale{0}{0}{$E$}
-\draw (0,4) to[R,l=$R_1$] (3,4) -- (3,2)
-      to[R,l=$R_2$] (3,0) -- (0,0);
-\draw (3,2) -- (4.2,2);
-\node[ocirc] at (4.2,2) {};
-\node[right] at (4.2,2) {$u_s$};
-\end{circuitikz}
+\begin{tikzpicture}[line width=0.8pt,font=\small]
+  % Source représentée par une pile, sans calcul de coordonnées.
+  \draw (0,0) -- (0,1.4);
+  \draw (-0.45,1.4) -- (0.45,1.4);
+  \draw (-0.25,1.7) -- (0.25,1.7);
+  \draw (0,1.7) -- (0,4);
+  \node[left] at (0,2.55) {$E$};
+
+  % Conducteur supérieur.
+  \draw (0,4) -- (2.5,4);
+
+  % Résistance R1, symbole rectangulaire IEC.
+  \draw (2.5,4) -- (2.5,3.6);
+  \draw (2.15,3.6) rectangle (2.85,2.6);
+  \node[right] at (2.85,3.1) {$R_1$};
+  \draw (2.5,2.6) -- (2.5,2);
+
+  % Sortie.
+  \fill (2.5,2) circle (1.3pt);
+  \draw (2.5,2) -- (4.2,2);
+  \draw (4.2,2) circle (2.2pt);
+  \node[right] at (4.2,2) {$u_s$};
+
+  % Résistance R2.
+  \draw (2.5,2) -- (2.5,1.6);
+  \draw (2.15,1.6) rectangle (2.85,0.6);
+  \node[right] at (2.85,1.1) {$R_2$};
+  \draw (2.5,0.6) -- (2.5,0);
+  \draw (2.5,0) -- (0,0);
+\end{tikzpicture}
 \end{center}}
 
 \newcommand{\TLFiltreRCPasseBas}{%
@@ -108,8 +119,11 @@
 \newcommand{\TLPontWheatstone}{%
 \begin{center}
 \begin{circuitikz}[european resistors]
-\TLSourceTensionVerticale{0}{0}{$E$}
-\draw (0,4) -- (2,4);
+\draw (0,0) -- (0,1.4);
+\draw (-0.45,1.4) -- (0.45,1.4);
+\draw (-0.25,1.7) -- (0.25,1.7);
+\draw (0,1.7) -- (0,4) -- (2,4);
+\node[left] at (0,2.55) {$E$};
 \draw (2,4) to[R,l=$R_1$] (2,2) to[R,l=$R_2$] (2,0) -- (0,0);
 \draw (2,4) -- (5,4) to[R,l=$R_3$] (5,2) to[R,l=$R_4$] (5,0) -- (2,0);
 \draw (2,2) -- (3,2);
