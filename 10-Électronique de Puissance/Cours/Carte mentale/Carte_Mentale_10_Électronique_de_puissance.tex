@@ -6,13 +6,37 @@
 \def\input@path{{../../../Style/}}
 \makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{{TLElectroniquePuissance.sty}}{{\input{{TLElectroniquePuissance.sty}}}}{{}}
+\IfFileExists{TLElectroniquePuissance.sty}{\input{TLElectroniquePuissance.sty}}{}
+\IfFileExists{Notations_Elec/Notations_Elec.sty}{\input{Notations_Elec/Notations_Elec.sty}}{}
+\IfFileExists{Notations_Energetique/Notations_Energetique.sty}{\input{Notations_Energetique/Notations_Energetique.sty}}{}
 \pagestyle{empty}
 \begin{document}
-\begin{TLCarteMentale}{{Électronique de puissance}}
-\TLBranche{Convertisseurs}{DC-DC, AC-DC, DC-AC et AC-AC.}
-\TLBranche{Interrupteurs}{Diode, MOSFET, IGBT et thyristor ; états passant et bloqué.}
-\TLBranche{Hacheurs}{Buck, Boost, deux quadrants et quatre quadrants.}
-\TLBranche{Méthode}{Identifier les séquences, tracer les grandeurs puis calculer valeurs moyennes et ondulations.}
+\begin{TLCarteMentale}{Électronique de puissance}
+\TLBranche{Objectif}{Convertir la forme de l'énergie électrique avec un rendement élevé.}
+\TLBranche{AC--DC}{Redresseurs à diodes ou commandés.}
+\TLBranche{DC--DC}{Hacheurs abaisseurs, élévateurs et réversibles.}
+\TLBranche{DC--AC}{Onduleurs monophasés ou triphasés.}
+\TLBranche{AC--AC}{Gradateurs et conversion de fréquence.}
+\TLBranche{Interrupteur idéal}{Passant : $u=0$ ; bloqué : $i=0$.}
+\TLBranche{Diode}{Commutation spontanée selon les grandeurs du circuit.}
+\TLBranche{MOSFET / IGBT}{Commutation commandée, choix selon tension et fréquence.}
+\TLBranche{Thyristor}{Amorçage commandé, extinction souvent naturelle.}
+\TLBranche{Inductance}{Courant continu : $i_L(0^+)=i_L(0^-)$.}
+\TLBranche{Condensateur}{Tension continue : $u_C(0^+)=u_C(0^-)$.}
+\TLBranche{Découpage}{Période $T$, fréquence $f=1/T$, rapport cyclique $\alpha$.}
+\TLBranche{Buck}{Abaissement : $\langle u_s\rangle=\alpha E$.}
+\TLBranche{Boost}{Élévation : $\langle u_s\rangle=E/(1-\alpha)$.}
+\TLBranche{Réversibilité}{Deux ou quatre quadrants, freinage et récupération.}
+\TLBranche{Pont en H}{Inversion de la tension appliquée à la charge.}
+\TLBranche{MLI}{Réglage de la fondamentale et déplacement des harmoniques.}
+\TLBranche{Régime périodique}{$\langle u_L\rangle=0$ et $\langle i_C\rangle=0$.}
+\TLBranche{Valeur moyenne}{$\langle x\rangle=T^{-1}\int_0^T x(t)\,dt$.}
+\TLBranche{Ondulations}{$L$ lisse le courant ; $C$ lisse la tension.}
+\TLBranche{Séquences}{Un schéma équivalent et des équations pour chaque état.}
+\TLBranche{Formes d'onde}{Tracer tensions et courants avant tout calcul moyen.}
+\TLBranche{Puissance}{Identifier le sens des transferts et les modes moteur/génératrice.}
+\TLBranche{Pertes}{Conduction, commutation et échauffement.}
+\TLBranche{Protections}{Roue libre, limitation de courant, écrêtage et temps morts.}
+\TLBranche{Méthode}{États $\rightarrow$ séquences $\rightarrow$ équations $\rightarrow$ tracés $\rightarrow$ moyennes $\rightarrow$ validation.}
 \end{TLCarteMentale}
 \end{document}
