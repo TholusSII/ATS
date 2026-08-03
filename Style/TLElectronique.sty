@@ -2,12 +2,23 @@
 % BIBLIOTHÈQUE TL — ÉLECTRONIQUE ET ACQUISITION DU SIGNAL
 % ============================================================================
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{TLElectronique}[2026/08/03 v2026.08.03e Electronique et acquisition]
+\ProvidesPackage{TLElectronique}[2026/08/03 v2026.08.03f Electronique et acquisition]
 \RequirePackage[siunitx,european]{circuitikz}
 \RequirePackage{xparse}
 \RequirePackage{tikz}
+\RequirePackage{etoolbox}
 \usetikzlibrary{positioning,arrows.meta,calc}
-\typeout{TL-ELECTRONIQUE-MARKER-20260803-E}
+
+% babel-french rend : ; ! ? actifs. Ces caractères perturbent l'analyse
+% interne des chemins circuitikz (to[R], to[C], op amp, etc.).
+% La désactivation est locale à chaque environnement circuitikz.
+\AtBeginEnvironment{circuitikz}{%
+  \ifdefined\shorthandoff
+    \shorthandoff{:;!?}%
+  \fi
+}
+
+\typeout{TL-ELECTRONIQUE-MARKER-20260803-F}
 
 \newcommand{\TLChaineAcquisition}{%
 \begin{center}
@@ -18,180 +29,105 @@
 \node[bloc,right=of cond] (ech) {Échantillonnage};
 \node[bloc,right=of ech] (can) {Conversion\\A/N};
 \node[bloc,right=of can] (num) {Traitement\\numérique};
-\draw[->] (cap)--(cond); \draw[->] (cond)--(ech); \draw[->] (ech)--(can); \draw[->] (can)--(num);
+\draw[->] (cap)--(cond);
+\draw[->] (cond)--(ech);
+\draw[->] (ech)--(can);
+\draw[->] (can)--(num);
 \end{tikzpicture}
 \end{center}}
 
 \newcommand{\TLPontDiviseur}{%
-\typeout{TL-PONT-DIVISEUR-VERSION-C}%
+\typeout{TL-PONT-DIVISEUR-VERSION-F}%
 \begin{center}
-\begin{tikzpicture}[line width=0.8pt,font=\small]
-  \draw (0,0) -- (0,1.4);
-  \draw (-0.45,1.4) -- (0.45,1.4);
-  \draw (-0.25,1.7) -- (0.25,1.7);
-  \draw (0,1.7) -- (0,4);
-  \node[left] at (0,2.55) {$E$};
-  \draw (0,4) -- (2.5,4);
-  \draw (2.5,4) -- (2.5,3.6);
-  \draw (2.15,3.6) rectangle (2.85,2.6);
-  \node[right] at (2.85,3.1) {$R_1$};
-  \draw (2.5,2.6) -- (2.5,2);
-  \fill (2.5,2) circle (1.3pt);
-  \draw (2.5,2) -- (4.2,2);
-  \draw (4.2,2) circle (2.2pt);
-  \node[right] at (4.2,2) {$u_s$};
-  \draw (2.5,2) -- (2.5,1.6);
-  \draw (2.15,1.6) rectangle (2.85,0.6);
-  \node[right] at (2.85,1.1) {$R_2$};
-  \draw (2.5,0.6) -- (2.5,0);
-  \draw (2.5,0) -- (0,0);
-\end{tikzpicture}
+\begin{circuitikz}[european resistors]
+\draw (0,0) node[ground]{}
+      to[V,l=$E$] (0,4)
+      to[R,l=$R_1$] (3,4)
+      -- (3,2)
+      to[R,l=$R_2$] (3,0)
+      -- (0,0);
+\draw (3,2) to[short,-o] (4.2,2)
+      node[right] {$u_s$};
+\end{circuitikz}
 \end{center}}
 
 \newcommand{\TLFiltreRCPasseBas}{%
+\typeout{TL-FILTRE-RC-PASSE-BAS-VERSION-F}%
 \begin{center}
 \begin{circuitikz}[european resistors]
-\node[ocirc] at (0,2) {};
-\node[left] at (0,2) {$u_e$};
-\draw (0,2) -- (1,2) to[R,l=$R$] (4,2) -- (5,2);
-\node[ocirc] at (5,2) {};
-\node[right] at (5,2) {$u_s$};
+\draw (0,2) node[left] {$u_e$}
+      to[short,o-] (1,2)
+      to[R,l=$R$] (4,2)
+      to[short,-o] (5,2)
+      node[right] {$u_s$};
 \draw (4,2) to[C,l=$C$] (4,0) node[ground]{};
-\draw (1,0) node[ground]{} -- (0,0);
-\node[ocirc] at (0,0) {};
+\draw (0,0) node[ocirc]{} -- (4,0);
 \end{circuitikz}
 \end{center}}
 
 \newcommand{\TLFiltreRCPasseHaut}{%
+\typeout{TL-FILTRE-RC-PASSE-HAUT-VERSION-F}%
 \begin{center}
 \begin{circuitikz}[european resistors]
-\node[ocirc] at (0,2) {};
-\node[left] at (0,2) {$u_e$};
-\draw (0,2) -- (1,2) to[C,l=$C$] (4,2) -- (5,2);
-\node[ocirc] at (5,2) {};
-\node[right] at (5,2) {$u_s$};
+\draw (0,2) node[left] {$u_e$}
+      to[short,o-] (1,2)
+      to[C,l=$C$] (4,2)
+      to[short,-o] (5,2)
+      node[right] {$u_s$};
 \draw (4,2) to[R,l=$R$] (4,0) node[ground]{};
+\draw (0,0) node[ocirc]{} -- (4,0);
 \end{circuitikz}
 \end{center}}
 
-% AOP inverseur en TikZ élémentaire : aucune ancre op.+ ou op.-.
 \newcommand{\TLAOPInverseur}{%
-\typeout{TL-AOP-INVERSEUR-VERSION-E}%
+\typeout{TL-AOP-INVERSEUR-VERSION-F}%
 \begin{center}
-\begin{tikzpicture}[line width=0.8pt,font=\small]
-  % Amplificateur opérationnel
-  \draw (3,0.8) -- (3,3.2) -- (5.4,2) -- cycle;
-  \node at (3.35,2.65) {$-$};
-  \node at (3.35,1.35) {$+$};
-
-  % Entrée inverseuse et résistance R1
-  \draw (0,2.65) circle (2.2pt);
-  \node[left] at (0,2.65) {$u_e$};
-  \draw (0,2.65) -- (1,2.65);
-  \draw (1,2.35) rectangle (2.2,2.95);
-  \node[above] at (1.6,2.95) {$R_1$};
-  \draw (2.2,2.65) -- (3,2.65);
-
-  % Entrée non inverseuse à la masse
-  \draw (3,1.35) -- (2.5,1.35) -- (2.5,0.55);
-  \draw (2.15,0.55) -- (2.85,0.55);
-  \draw (2.27,0.42) -- (2.73,0.42);
-  \draw (2.39,0.29) -- (2.61,0.29);
-
-  % Sortie
-  \draw (5.4,2) -- (6.8,2);
-  \draw (6.8,2) circle (2.2pt);
-  \node[right] at (6.8,2) {$u_s$};
-
-  % Boucle de rétroaction avec R2
-  \draw (5.9,2) -- (5.9,4);
-  \draw (4.2,3.7) rectangle (5.4,4.3);
-  \node[above] at (4.8,4.3) {$R_2$};
-  \draw (5.9,4) -- (5.4,4);
-  \draw (4.2,4) -- (2.55,4) -- (2.55,2.65);
-\end{tikzpicture}
+\begin{circuitikz}[american voltages]
+\draw (4,2) node[op amp] (op) {};
+\draw (0,1.5) node[left] {$u_e$}
+      to[short,o-] (1,1.5)
+      to[R,l=$R_1$] (op.-);
+\draw (op.+) -- ++(0,-1) node[ground]{};
+\draw (op.out) to[short,-o] ++(1.5,0)
+      node[right] {$u_s$};
+\draw (op.out) -- ++(0,1.5)
+      to[R,l=$R_2$] ++(-3.5,0)
+      |- (op.-);
+\end{circuitikz}
 \end{center}}
 
-% AOP non inverseur en TikZ élémentaire : aucune ancre op.+ ou op.-.
 \newcommand{\TLAOPNonInverseur}{%
-\typeout{TL-AOP-NON-INVERSEUR-VERSION-E}%
+\typeout{TL-AOP-NON-INVERSEUR-VERSION-F}%
 \begin{center}
-\begin{tikzpicture}[line width=0.8pt,font=\small]
-  % Amplificateur opérationnel
-  \draw (3,0.8) -- (3,3.2) -- (5.4,2) -- cycle;
-  \node at (3.35,2.65) {$-$};
-  \node at (3.35,1.35) {$+$};
-
-  % Entrée non inverseuse
-  \draw (0,1.35) circle (2.2pt);
-  \node[left] at (0,1.35) {$u_e$};
-  \draw (0,1.35) -- (3,1.35);
-
-  % Sortie
-  \draw (5.4,2) -- (6.8,2);
-  \draw (6.8,2) circle (2.2pt);
-  \node[right] at (6.8,2) {$u_s$};
-
-  % Nœud inverseur
-  \draw (3,2.65) -- (2.4,2.65);
-  \fill (2.4,2.65) circle (1.3pt);
-
-  % Résistance R1 vers la masse
-  \draw (2.4,2.65) -- (2.4,1.9);
-  \draw (2.1,0.9) rectangle (2.7,1.9);
-  \node[left] at (2.1,1.4) {$R_1$};
-  \draw (2.4,0.9) -- (2.4,0.55);
-  \draw (2.05,0.55) -- (2.75,0.55);
-  \draw (2.17,0.42) -- (2.63,0.42);
-  \draw (2.29,0.29) -- (2.51,0.29);
-
-  % Résistance R2 de rétroaction
-  \draw (5.9,2) -- (5.9,4);
-  \draw (4.2,3.7) rectangle (5.4,4.3);
-  \node[above] at (4.8,4.3) {$R_2$};
-  \draw (5.9,4) -- (5.4,4);
-  \draw (4.2,4) -- (2.4,4) -- (2.4,2.65);
-\end{tikzpicture}
+\begin{circuitikz}[american voltages]
+\draw (4,2) node[op amp] (op) {};
+\draw (0,2.5) node[left] {$u_e$}
+      to[short,o-] (op.+);
+\draw (op.out) to[short,-o] ++(1.5,0)
+      node[right] {$u_s$};
+\draw (op.-) -- ++(-1,0) coordinate (n);
+\draw (n) to[R,l_=$R_1$] ++(0,-2) node[ground]{};
+\draw (op.out) -- ++(0,1.5)
+      to[R,l=$R_2$] ++(-3.5,0)
+      |- (n);
+\end{circuitikz}
 \end{center}}
 
 \newcommand{\TLPontWheatstone}{%
-\typeout{TL-PONT-WHEATSTONE-VERSION-D}%
+\typeout{TL-PONT-WHEATSTONE-VERSION-F}%
 \begin{center}
-\begin{tikzpicture}[line width=0.8pt,font=\small]
-  \draw (0,0) -- (0,1.4);
-  \draw (-0.45,1.4) -- (0.45,1.4);
-  \draw (-0.25,1.7) -- (0.25,1.7);
-  \draw (0,1.7) -- (0,4);
-  \node[left] at (0,2.55) {$E$};
-  \draw (0,4) -- (5,4);
-  \draw (0,0) -- (5,0);
-  \draw (2,4) -- (2,3.6);
-  \draw (1.65,3.6) rectangle (2.35,2.6);
-  \node[left] at (1.65,3.1) {$R_1$};
-  \draw (2,2.6) -- (2,2);
-  \fill (2,2) circle (1.3pt);
-  \draw (2,2) -- (2,1.6);
-  \draw (1.65,1.6) rectangle (2.35,0.6);
-  \node[left] at (1.65,1.1) {$R_2$};
-  \draw (2,0.6) -- (2,0);
-  \draw (5,4) -- (5,3.6);
-  \draw (4.65,3.6) rectangle (5.35,2.6);
-  \node[right] at (5.35,3.1) {$R_3$};
-  \draw (5,2.6) -- (5,2);
-  \fill (5,2) circle (1.3pt);
-  \draw (5,2) -- (5,1.6);
-  \draw (4.65,1.6) rectangle (5.35,0.6);
-  \node[right] at (5.35,1.1) {$R_4$};
-  \draw (5,0.6) -- (5,0);
-  \draw (2,2) -- (3,2);
-  \draw (3,2) circle (2.2pt);
-  \node[below] at (3,2) {$A$};
-  \draw (5,2) -- (4,2);
-  \draw (4,2) circle (2.2pt);
-  \node[below] at (4,2) {$B$};
-  \draw[<->] (3,2.35) -- (4,2.35);
-  \node[above] at (3.5,2.35) {$u_{AB}$};
-\end{tikzpicture}
+\begin{circuitikz}[european resistors]
+\draw (0,0) to[V,l=$E$] (0,4) -- (2,4);
+\draw (2,4) to[R,l=$R_1$] (2,2)
+      to[R,l=$R_2$] (2,0) -- (0,0);
+\draw (2,4) -- (5,4)
+      to[R,l=$R_3$] (5,2)
+      to[R,l=$R_4$] (5,0) -- (2,0);
+\draw (2,2) to[short,-o] (3,2) node[below] {$A$};
+\draw (5,2) to[short,-o] (4,2) node[below] {$B$};
+\draw[<->] (3,2.35) -- (4,2.35)
+      node[midway,above] {$u_{AB}$};
+\end{circuitikz}
 \end{center}}
 
 \newcommand{\TLEchantillonnageSignal}{%
@@ -200,7 +136,10 @@
 \draw[->] (0,0)--(10,0) node[right]{$t$};
 \draw[->] (0,-1.4)--(0,2) node[above]{$u$};
 \draw[domain=0:9.5,samples=200,smooth] plot(\x,{sin(50*\x)});
-\foreach \x in {0,0.8,...,9.6}{\draw (\x,0)--(\x,{sin(50*\x)}) node[circle,fill,inner sep=1.2pt]{};}
+\foreach \x in {0,0.8,...,9.6}{
+  \draw (\x,0)--(\x,{sin(50*\x)})
+        node[circle,fill,inner sep=1.2pt]{};
+}
 \end{tikzpicture}
 \end{center}}
 
