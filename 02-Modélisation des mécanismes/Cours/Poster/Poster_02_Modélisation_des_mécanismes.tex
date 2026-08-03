@@ -5,24 +5,62 @@
 \makeatletter\def\input@path{{../../../Style/}}\makeatother
 \input{TLPosterCarteMentale.sty}
 \IfFileExists{TLCinematique.sty}{\input{TLCinematique.sty}}{}
+\IfFileExists{cinematique.sty}{\input{cinematique.sty}}{}
+\IfFileExists{Notations_Cinematique/Notations_Cinematique.sty}{\input{Notations_Cinematique/Notations_Cinematique.sty}}{}
 \pagestyle{empty}
 \begin{document}
-\TLPosterTitre{Modélisation des mécanismes}{Fiche résumé éditable}
-\begin{multicols}{2}
-\begin{TLPosterBloc}{Solides et liaisons}
-Définir les classes d'équivalence cinématique et les liaisons entre solides.
+\TLPosterTitre{Modélisation des mécanismes}{Solides, liaisons et représentations cinématiques}
+\begin{multicols}{3}
+
+\begin{TLPosterBloc}{Objectif de la modélisation}
+Remplacer le mécanisme réel par un modèle suffisamment simple pour étudier ses mouvements, ses mobilités et ses relations géométriques, tout en conservant les caractéristiques utiles au problème.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Représentations}
-Construire graphe de liaisons, schéma cinématique et paramétrage géométrique.
+\begin{TLPosterBloc}{Solide indéformable}
+Un solide est supposé indéformable lorsque la distance entre deux de ses points reste constante. Les pièces sans mouvement relatif sont regroupées dans une même classe d'équivalence cinématique.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Référentiel et repère}
+À chaque solide $S_i$ est associé un repère $\mathcal{R}_i=(O_i,\vec{x_i},\vec{y_i},\vec{z_i})$. Le bâti constitue généralement le solide de référence $S_0$.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Liaison mécanique}
+Une liaison limite les mouvements relatifs entre deux solides. Elle est caractérisée par ses degrés de liberté, sa géométrie, sa direction privilégiée et son centre éventuel.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Liaisons usuelles}
+Encastrement : $0$ ddl. Pivot : $1$ rotation. Glissière : $1$ translation. Pivot glissant : $1$ rotation et $1$ translation de même axe. Rotule : $3$ rotations. Appui plan : $2$ translations et $1$ rotation.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Contact et liaison équivalente}
+Identifier les surfaces en contact, leur nature et les mouvements possibles. Plusieurs contacts élémentaires peuvent être remplacés par une liaison normalisée équivalente.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Graphe de liaisons}
+Les sommets représentent les solides ou classes d'équivalence. Les arêtes représentent les liaisons. Le graphe met en évidence les chaînes ouvertes, fermées et les boucles cinématiques.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Schéma cinématique}
+Il représente la structure géométrique du mécanisme avec les symboles normalisés des liaisons. Il doit montrer le bâti, les solides, les axes, les centres et les paramètres utiles.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Paramétrage}
+Choisir les variables indépendantes décrivant la configuration : angles $\theta_i(t)$, translations $\lambda_i(t)$ ou coordonnées géométriques. Préciser leur sens positif et leur domaine de variation.
 \end{TLPosterBloc}
 
 \begin{TLPosterBloc}{Mobilité}
-Analyser les degrés de liberté, les chaînes fermées et les mouvements possibles.
+La mobilité correspond au nombre de paramètres indépendants nécessaires pour définir la position du mécanisme. Une mobilité utile produit le mouvement recherché ; une mobilité interne n'agit pas sur l'entrée-sortie.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Méthode}
-Isoler les solides, identifier les contacts puis choisir une modélisation adaptée.
+\begin{TLPosterBloc}{Chaîne ouverte ou fermée}
+Dans une chaîne ouverte, chaque solide est relié au précédent sans boucle. Dans une chaîne fermée, les paramètres sont liés par des équations de fermeture géométrique et cinématique.
 \end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Démarche de modélisation}
+1. Identifier le bâti et les pièces. 2. Regrouper les pièces sans mouvement relatif. 3. Identifier les contacts. 4. Choisir les liaisons équivalentes. 5. Tracer le graphe. 6. Construire le schéma cinématique. 7. Paramétrer et vérifier la mobilité.
+\end{TLPosterBloc}
+
+\TLPosterAttention{Le modèle n'est pas une copie du réel : il doit être cohérent avec l'objectif de l'étude et avec les hypothèses retenues.}
+
 \end{multicols}
 \end{document}
