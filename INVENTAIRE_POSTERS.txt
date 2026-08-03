@@ -1,0 +1,58 @@
+=== DOSSIER POSTERS ===
+Posters/Cinématique - Carte mentale.pdf
+Posters/O5&6 -PFD - Carte mentale.pdf
+Posters/O5&6 -TEC - Carte mentale.pdf
+Posters/PFS - Carte mentale.pdf
+Posters/Poster - Acquisition.pdf
+Posters/Poster - Détermination des actions mécaniques.pdf
+Posters/Poster - Electromecanique+MCC2.pdf
+Posters/Poster - Outils et lois de l'electrocinetique2.pdf
+Posters/Poster - Systemes Asservis.pdf
+Posters/Poster -CVS4.pdf
+Posters/Poster Analyse fonctionnelle.pdf
+Posters/Poster Equations horaires.pptx
+Posters/Poster MS.pptx
+Posters/Poster Outils Mathématiques.pdf
+Posters/Poster Transmission énergie.pptx
+Posters/Poster cinématique2.pdf
+Posters/Poster_Modelisation.pdf
+
+=== LATEX ===
+
+=== PDF ===
+Posters/Cinématique - Carte mentale.pdf
+Posters/O5&6 -PFD - Carte mentale.pdf
+Posters/O5&6 -TEC - Carte mentale.pdf
+Posters/PFS - Carte mentale.pdf
+Posters/Poster - Acquisition.pdf
+Posters/Poster - Détermination des actions mécaniques.pdf
+Posters/Poster - Electromecanique+MCC2.pdf
+Posters/Poster - Outils et lois de l'electrocinetique2.pdf
+Posters/Poster - Systemes Asservis.pdf
+Posters/Poster -CVS4.pdf
+Posters/Poster Analyse fonctionnelle.pdf
+Posters/Poster Outils Mathématiques.pdf
+Posters/Poster cinématique2.pdf
+Posters/Poster_Modelisation.pdf
+
+=== IMAGES ===
+
+=== DOSSIERS DE COURS ===
+./01-Ingénierie système/Cours
+./02-Modélisation des mécanismes/Cours
+./03-Lois entrée sortie/Cours
+./04-Cinématique/Cours
+./05-Modélisation Systèmes Asservis/Cours
+./06-Correction des Systèmes asservis/Cours
+./07-Électronique/Cours
+./08-Électromécanique/Cours
+./09-MCC/Cours
+./10-Électronique de Puissance/Cours
+./11-Actions Mécaniques/Cours
+./12-RDM/Cours
+./13-MAS-MS/Cours
+./14-Logique/Cours
+./15-Outils numériques/Cours
+
+=== STYLES LIES ===
+Style/TLPosterCarteMentale.sty
