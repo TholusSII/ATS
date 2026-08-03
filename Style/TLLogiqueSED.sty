@@ -1,0 +1,58 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{TLLogiqueSED}[2026/08/03 Logique combinatoire et SED]
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,shapes.geometric,fit}
+
+\newcommand{\TLPortesLogiques}{%
+\begin{tikzpicture}[>=Latex,node distance=13mm]
+\node[draw,rounded corners,minimum width=18mm,minimum height=9mm] (and) {ET};
+\node[draw,rounded corners,right=of and,minimum width=18mm,minimum height=9mm] (or) {OU};
+\node[draw,rounded corners,right=of or,minimum width=18mm,minimum height=9mm] (not) {NON};
+\node[left=8mm of and] (a) {$a,b$}; \draw[->] (a)--(and);
+\node[below=4mm of and] {$s=a\cdot b$};
+\node[below=4mm of or] {$s=a+b$};
+\node[below=4mm of not] {$s=\overline a$};
+\end{tikzpicture}}
+
+\newcommand{\TLDemarcheCombinatoire}{%
+\begin{tikzpicture}[>=Latex,node distance=8mm]
+\foreach \n/\t in {1/Cahier des charges,2/Table de vérité,3/Équation logique,4/Simplification,5/Implantation}{
+\node[draw,rounded corners,minimum width=32mm,minimum height=8mm] (n\n) at (0,-1.15*\n) {\t};}
+\foreach \a/\b in {1/2,2/3,3/4,4/5}{\draw[->] (n\a)--(n\b);}
+\end{tikzpicture}}
+
+\newcommand{\TLGrapheEtatsSimple}{%
+\begin{tikzpicture}[>=Latex,node distance=30mm]
+\node[draw,circle,minimum size=16mm] (e0) {Attente};
+\node[draw,circle,right=of e0,minimum size=16mm] (e1) {Marche};
+\draw[->] ([xshift=-13mm]e0.west)--(e0.west);
+\draw[->,bend left=18] (e0) to node[above]{départ} (e1);
+\draw[->,bend left=18] (e1) to node[below]{arrêt} (e0);
+\end{tikzpicture}}
+
+\newcommand{\TLDiagrammeSequenceSimple}{%
+\begin{tikzpicture}[>=Latex]
+\foreach \x/\t in {0/Utilisateur,3/Commande,6/Actionneur}{
+\node[draw,minimum width=22mm] (h\x) at (\x,0) {\t};
+\draw[dashed] (\x,-.35)--(\x,-4);}
+\draw[->] (0,-1)--node[above]{ordre}(3,-1);
+\draw[->] (3,-2)--node[above]{commander}(6,-2);
+\draw[->,dashed] (6,-3)--node[above]{retour}(3,-3);
+\end{tikzpicture}}
+
+\newcommand{\TLCodeurIncremental}{%
+\begin{tikzpicture}[>=Latex]
+\draw[thick] (0,0) circle (1.25);
+\foreach \a in {0,30,...,330}{\draw[thick] (0,0)--(\a:1.25);}
+\draw[fill=white] (0,0) circle (.45);
+\node[right] at (1.6,.35) {voie A};
+\node[right] at (1.6,-.35) {voie B};
+\draw[->] (1.45,.35)--(1,.35);
+\draw[->] (1.45,-.35)--(1,-.35);
+\end{tikzpicture}}
+
+\newcommand{\TLModeleOSI}{%
+\begin{tikzpicture}
+\foreach \i/\t in {1/Physique,2/Liaison,3/Réseau,4/Transport,5/Session,6/Présentation,7/Application}{
+\node[draw,minimum width=36mm,minimum height=6.5mm] at (0,.7*\i) {\i\ -- \t};}
+\end{tikzpicture}}
