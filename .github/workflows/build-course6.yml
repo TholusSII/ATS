@@ -27,8 +27,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 45
-    container:
-      image: ghcr.io/xu-cheng/texlive-full:latest
     steps:
       - uses: actions/checkout@v4
         with:
@@ -39,67 +37,93 @@ jobs:
         run: |
           set -euo pipefail
           course='06-Correction des Systèmes asservis/Cours'
-          printf 'RUNNING\n' > "$course/COMPILATION_COURS6.txt"
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          printf 'RUNNING\nRUN_ID=%s\n' "$GITHUB_RUN_ID" > "$course/COMPILATION_COURS6.txt"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add "$course/COMPILATION_COURS6.txt"
           if ! git diff --cached --quiet; then
             git commit -m 'Démarre le contrôle du cours 06 [skip ci]'
-            git push
+            git push origin HEAD:main
           fi
 
-      - name: Compiler et enregistrer le diagnostic
+      - name: Compiler dans TeX Live
+        id: compile
+        continue-on-error: true
         shell: bash
         run: |
-          set +e
+          set -o pipefail
           course='06-Correction des Systèmes asservis/Cours'
-          cd "$course"
-          job='00_Correction_Systemes_Asservis'
-          rm -f "$job".{aux,toc,out,mw,idx,ilg,ind,log,pdf}
-          : > COMPILATION_COURS6.log
+          log="$course/COMPILATION_COURS6.log"
+          : > "$log"
+          docker run --rm \
+            --entrypoint /bin/bash \
+            -v "$GITHUB_WORKSPACE:/work" \
+            -w "/work/$course" \
+            -e 'TEXINPUTS=/work/Style//:' \
+            ghcr.io/xu-cheng/texlive-full:latest \
+            -lc '
+              set -euo pipefail
+              TEXCMD=$(find / -name pdflatex 2>/dev/null | head -n 1)
+              test -n "$TEXCMD"
+              TEXREAL=$(readlink -f "$TEXCMD")
+              export PATH="$(dirname "$TEXREAL"):$PATH"
+              job=00_Correction_Systemes_Asservis
+              echo "PWD=$(pwd)"
+              echo "PDFLATEX=$(command -v pdflatex)"
+              echo "TEXINPUTS=$TEXINPUTS"
+              kpsewhich kaobook.cls || true
+              rm -f "$job".{aux,toc,out,mw,idx,ilg,ind,log,pdf}
+              pdflatex -file-line-error -halt-on-error -interaction=nonstopmode "$job.tex"
+              if [ -f "$job.idx" ]; then makeindex "$job.idx"; fi
+              pdflatex -file-line-error -halt-on-error -interaction=nonstopmode "$job.tex"
+              pdflatex -file-line-error -halt-on-error -interaction=nonstopmode "$job.tex"
+            ' > "$log" 2>&1
 
-          pdflatex -file-line-error -halt-on-error -interaction=nonstopmode "$job.tex" > COMPILATION_COURS6.log 2>&1
-          status=$?
-
-          if [ "$status" -eq 0 ] && [ -f "$job.idx" ]; then
-            makeindex "$job.idx" >> COMPILATION_COURS6.log 2>&1
-            status=$?
-          fi
-          if [ "$status" -eq 0 ]; then
-            pdflatex -file-line-error -halt-on-error -interaction=nonstopmode "$job.tex" >> COMPILATION_COURS6.log 2>&1
-            status=$?
-          fi
-          if [ "$status" -eq 0 ]; then
-            pdflatex -file-line-error -halt-on-error -interaction=nonstopmode "$job.tex" >> COMPILATION_COURS6.log 2>&1
-            status=$?
-          fi
-
-          if [ "$status" -eq 0 ]; then
-            printf 'SUCCESS\n' > COMPILATION_COURS6.txt
+      - name: Enregistrer le résultat
+        shell: bash
+        run: |
+          set -euo pipefail
+          course='06-Correction des Systèmes asservis/Cours'
+          if [ '${{ steps.compile.outcome }}' = 'success' ]; then
+            printf 'SUCCESS\nRUN_ID=%s\n' "$GITHUB_RUN_ID" > "$course/COMPILATION_COURS6.txt"
           else
-            printf 'FAILURE\n' > COMPILATION_COURS6.txt
+            printf 'FAILURE\nRUN_ID=%s\n' "$GITHUB_RUN_ID" > "$course/COMPILATION_COURS6.txt"
           fi
-          exit 0
+          if [ ! -s "$course/COMPILATION_COURS6.log" ]; then
+            printf 'Aucun journal de compilation n a été produit.\n' > "$course/COMPILATION_COURS6.log"
+          fi
 
       - name: Publier le résultat
         shell: bash
         run: |
           set -euo pipefail
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          course='06-Correction des Systèmes asservis/Cours'
+          cp "$course/COMPILATION_COURS6.txt" /tmp/COMPILATION_COURS6.txt
+          cp "$course/COMPILATION_COURS6.log" /tmp/COMPILATION_COURS6.log
+          if [ -f "$course/00_Correction_Systemes_Asservis.pdf" ]; then
+            cp "$course/00_Correction_Systemes_Asservis.pdf" /tmp/00_Correction_Systemes_Asservis.pdf
+          fi
+
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          course='06-Correction des Systèmes asservis/Cours'
+          git reset --hard HEAD
+          git pull --rebase origin main
+
+          cp /tmp/COMPILATION_COURS6.txt "$course/COMPILATION_COURS6.txt"
+          cp /tmp/COMPILATION_COURS6.log "$course/COMPILATION_COURS6.log"
+          if [ '${{ steps.compile.outcome }}' = 'success' ] && [ -f /tmp/00_Correction_Systemes_Asservis.pdf ]; then
+            cp /tmp/00_Correction_Systemes_Asservis.pdf "$course/00_Correction_Systemes_Asservis.pdf"
+          fi
+
           git add "$course/COMPILATION_COURS6.txt" "$course/COMPILATION_COURS6.log"
-          if grep -qx 'SUCCESS' "$course/COMPILATION_COURS6.txt"; then
-            git add "$course/00_Correction_Systemes_Asservis.pdf"
+          if [ '${{ steps.compile.outcome }}' = 'success' ] && [ -f "$course/00_Correction_Systemes_Asservis.pdf" ]; then
+            git add -f "$course/00_Correction_Systemes_Asservis.pdf"
           fi
           if ! git diff --cached --quiet; then
             git commit -m 'Met à jour le contrôle de compilation du cours 06 [skip ci]'
-            git push
+            git push origin HEAD:main
           fi
 
       - name: Signaler l’échec
-        shell: bash
-        run: |
-          grep -qx 'SUCCESS' '06-Correction des Systèmes asservis/Cours/COMPILATION_COURS6.txt'
+        if: steps.compile.outcome != 'success'
+        run: exit 1
