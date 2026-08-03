@@ -2,12 +2,12 @@
 % BIBLIOTHÈQUE TL — ÉLECTRONIQUE ET ACQUISITION DU SIGNAL
 % ============================================================================
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{TLElectronique}[2026/08/03 v2026.08.03d Electronique et acquisition]
+\ProvidesPackage{TLElectronique}[2026/08/03 v2026.08.03e Electronique et acquisition]
 \RequirePackage[siunitx,european]{circuitikz}
 \RequirePackage{xparse}
 \RequirePackage{tikz}
 \usetikzlibrary{positioning,arrows.meta,calc}
-\typeout{TL-ELECTRONIQUE-MARKER-20260803-D}
+\typeout{TL-ELECTRONIQUE-MARKER-20260803-E}
 
 \newcommand{\TLChaineAcquisition}{%
 \begin{center}
@@ -22,8 +22,6 @@
 \end{tikzpicture}
 \end{center}}
 
-% Version volontairement élémentaire du pont diviseur.
-% circuitikz reste chargé et utilisé dans les autres schémas de la bibliothèque.
 \newcommand{\TLPontDiviseur}{%
 \typeout{TL-PONT-DIVISEUR-VERSION-C}%
 \begin{center}
@@ -76,55 +74,97 @@
 \end{circuitikz}
 \end{center}}
 
+% AOP inverseur en TikZ élémentaire : aucune ancre op.+ ou op.-.
 \newcommand{\TLAOPInverseur}{%
+\typeout{TL-AOP-INVERSEUR-VERSION-E}%
 \begin{center}
-\begin{circuitikz}[american voltages]
-\draw (4,2) node[op amp] (op) {};
-\node[ocirc] at (0,1.5) {};
-\node[left] at (0,1.5) {$u_e$};
-\draw (0,1.5) -- (1,1.5) to[R,l=$R_1$] (op.-);
-\draw (op.+) -- ++(0,-1) node[ground]{};
-\draw (op.out) -- ++(1.5,0) coordinate (sortieinv);
-\node[ocirc] at (sortieinv) {};
-\node[right] at (sortieinv) {$u_s$};
-\draw (op.out) -- ++(0,1.5) to[R,l=$R_2$] ++(-3.5,0) |- (op.-);
-\end{circuitikz}
+\begin{tikzpicture}[line width=0.8pt,font=\small]
+  % Amplificateur opérationnel
+  \draw (3,0.8) -- (3,3.2) -- (5.4,2) -- cycle;
+  \node at (3.35,2.65) {$-$};
+  \node at (3.35,1.35) {$+$};
+
+  % Entrée inverseuse et résistance R1
+  \draw (0,2.65) circle (2.2pt);
+  \node[left] at (0,2.65) {$u_e$};
+  \draw (0,2.65) -- (1,2.65);
+  \draw (1,2.35) rectangle (2.2,2.95);
+  \node[above] at (1.6,2.95) {$R_1$};
+  \draw (2.2,2.65) -- (3,2.65);
+
+  % Entrée non inverseuse à la masse
+  \draw (3,1.35) -- (2.5,1.35) -- (2.5,0.55);
+  \draw (2.15,0.55) -- (2.85,0.55);
+  \draw (2.27,0.42) -- (2.73,0.42);
+  \draw (2.39,0.29) -- (2.61,0.29);
+
+  % Sortie
+  \draw (5.4,2) -- (6.8,2);
+  \draw (6.8,2) circle (2.2pt);
+  \node[right] at (6.8,2) {$u_s$};
+
+  % Boucle de rétroaction avec R2
+  \draw (5.9,2) -- (5.9,4);
+  \draw (4.2,3.7) rectangle (5.4,4.3);
+  \node[above] at (4.8,4.3) {$R_2$};
+  \draw (5.9,4) -- (5.4,4);
+  \draw (4.2,4) -- (2.55,4) -- (2.55,2.65);
+\end{tikzpicture}
 \end{center}}
 
+% AOP non inverseur en TikZ élémentaire : aucune ancre op.+ ou op.-.
 \newcommand{\TLAOPNonInverseur}{%
+\typeout{TL-AOP-NON-INVERSEUR-VERSION-E}%
 \begin{center}
-\begin{circuitikz}[american voltages]
-\draw (4,2) node[op amp] (op) {};
-\node[ocirc] at (0,2.5) {};
-\node[left] at (0,2.5) {$u_e$};
-\draw (0,2.5) -- (op.+);
-\draw (op.out) -- ++(1.5,0) coordinate (sortienoninv);
-\node[ocirc] at (sortienoninv) {};
-\node[right] at (sortienoninv) {$u_s$};
-\draw (op.-) -- ++(-1,0) coordinate (n);
-\draw (n) to[R,l_=$R_1$] ++(0,-2) node[ground]{};
-\draw (op.out) -- ++(0,1.5) to[R,l=$R_2$] ++(-3.5,0) |- (n);
-\end{circuitikz}
+\begin{tikzpicture}[line width=0.8pt,font=\small]
+  % Amplificateur opérationnel
+  \draw (3,0.8) -- (3,3.2) -- (5.4,2) -- cycle;
+  \node at (3.35,2.65) {$-$};
+  \node at (3.35,1.35) {$+$};
+
+  % Entrée non inverseuse
+  \draw (0,1.35) circle (2.2pt);
+  \node[left] at (0,1.35) {$u_e$};
+  \draw (0,1.35) -- (3,1.35);
+
+  % Sortie
+  \draw (5.4,2) -- (6.8,2);
+  \draw (6.8,2) circle (2.2pt);
+  \node[right] at (6.8,2) {$u_s$};
+
+  % Nœud inverseur
+  \draw (3,2.65) -- (2.4,2.65);
+  \fill (2.4,2.65) circle (1.3pt);
+
+  % Résistance R1 vers la masse
+  \draw (2.4,2.65) -- (2.4,1.9);
+  \draw (2.1,0.9) rectangle (2.7,1.9);
+  \node[left] at (2.1,1.4) {$R_1$};
+  \draw (2.4,0.9) -- (2.4,0.55);
+  \draw (2.05,0.55) -- (2.75,0.55);
+  \draw (2.17,0.42) -- (2.63,0.42);
+  \draw (2.29,0.29) -- (2.51,0.29);
+
+  % Résistance R2 de rétroaction
+  \draw (5.9,2) -- (5.9,4);
+  \draw (4.2,3.7) rectangle (5.4,4.3);
+  \node[above] at (4.8,4.3) {$R_2$};
+  \draw (5.9,4) -- (5.4,4);
+  \draw (4.2,4) -- (2.4,4) -- (2.4,2.65);
+\end{tikzpicture}
 \end{center}}
 
-% Pont de Wheatstone en TikZ élémentaire pour compatibilité MiKTeX ancienne.
-% circuitikz reste chargé et disponible dans la bibliothèque.
 \newcommand{\TLPontWheatstone}{%
 \typeout{TL-PONT-WHEATSTONE-VERSION-D}%
 \begin{center}
 \begin{tikzpicture}[line width=0.8pt,font=\small]
-  % Source
   \draw (0,0) -- (0,1.4);
   \draw (-0.45,1.4) -- (0.45,1.4);
   \draw (-0.25,1.7) -- (0.25,1.7);
   \draw (0,1.7) -- (0,4);
   \node[left] at (0,2.55) {$E$};
-
-  % Rails
   \draw (0,4) -- (5,4);
   \draw (0,0) -- (5,0);
-
-  % Branche gauche R1-R2
   \draw (2,4) -- (2,3.6);
   \draw (1.65,3.6) rectangle (2.35,2.6);
   \node[left] at (1.65,3.1) {$R_1$};
@@ -134,8 +174,6 @@
   \draw (1.65,1.6) rectangle (2.35,0.6);
   \node[left] at (1.65,1.1) {$R_2$};
   \draw (2,0.6) -- (2,0);
-
-  % Branche droite R3-R4
   \draw (5,4) -- (5,3.6);
   \draw (4.65,3.6) rectangle (5.35,2.6);
   \node[right] at (5.35,3.1) {$R_3$};
@@ -145,8 +183,6 @@
   \draw (4.65,1.6) rectangle (5.35,0.6);
   \node[right] at (5.35,1.1) {$R_4$};
   \draw (5,0.6) -- (5,0);
-
-  % Bornes A et B
   \draw (2,2) -- (3,2);
   \draw (3,2) circle (2.2pt);
   \node[below] at (3,2) {$A$};
