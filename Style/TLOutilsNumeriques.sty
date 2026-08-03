@@ -1,0 +1,47 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{TLOutilsNumeriques}[2026/08/03 Outils numeriques pour les cours ATS]
+\RequirePackage{tikz}
+\RequirePackage{amsmath}
+\RequirePackage{listings}
+\usetikzlibrary{arrows.meta,positioning,calc}
+
+\newcommand{\TLEulerGeometrique}{%
+\begin{tikzpicture}[>=Latex,scale=.9]
+  \draw[->] (-.2,0) -- (6.2,0) node[right] {$t$};
+  \draw[->] (0,-.2) -- (0,3.6) node[above] {$y$};
+  \draw[thick,domain=0:5.5,samples=80] plot (\x,{3*(1-exp(-.55*\x))});
+  \coordinate (A) at (1,1.27);
+  \coordinate (B) at (2.2,1.93);
+  \fill (A) circle (1.5pt) node[below right] {$M_k$};
+  \draw[dashed] (1,0)--(A);
+  \draw[very thick] ($(A)+(-.35,-.22)$)--($(A)+(1.65,1.04)$);
+  \draw[dashed] (B)--(2.2,0);
+  \fill (B) circle (1.5pt) node[above left] {$M_{k+1}$};
+  \draw[<->] (1,-.35)--node[below] {$h$}(2.2,-.35);
+\end{tikzpicture}}
+
+\newcommand{\TLAlgorithmeEuler}{%
+\begin{tikzpicture}[node distance=7mm,>=Latex,
+box/.style={draw,rounded corners,align=center,minimum width=4.4cm,minimum height=8mm},
+term/.style={draw,ellipse,align=center,minimum width=3cm}]
+\node[term] (d) {Données : $t_0,y_0,h,N$};
+\node[box,below=of d] (i) {$k\leftarrow0$};
+\node[box,below=of i] (c) {Calculer $y_{k+1}=y_k+h f(t_k,y_k)$};
+\node[box,below=of c] (t) {$t_{k+1}=t_k+h$};
+\node[box,below=of t] (inc) {$k\leftarrow k+1$};
+\node[term,below=of inc] (f) {Fin si $k=N$};
+\draw[->] (d)--(i);\draw[->](i)--(c);\draw[->](c)--(t);\draw[->](t)--(inc);\draw[->](inc)--(f);
+\draw[->] (inc.east)--++(1,0)|-(c.east);
+\end{tikzpicture}}
+
+\newcommand{\TLSchemaEtatOrdreDeux}{%
+\begin{tikzpicture}[>=Latex,node distance=13mm,
+box/.style={draw,rounded corners,minimum width=3cm,minimum height=9mm,align=center}]
+\node[box] (eq) {$\ddot q=F(t,q,\dot q)$};
+\node[box,right=of eq] (etat) {$y_0=q$\\$y_1=\dot q$};
+\node[box,right=of etat] (sys) {$\dot y_0=y_1$\\$\dot y_1=F(t,y_0,y_1)$};
+\node[box,right=of sys] (euler) {Euler explicite\\sur chaque état};
+\draw[->](eq)--(etat);\draw[->](etat)--(sys);\draw[->](sys)--(euler);
+\end{tikzpicture}}
+
+\lstdefinestyle{TLPython}{language=Python,basicstyle=\ttfamily\small,frame=single,columns=fullflexible,showstringspaces=false,breaklines=true}
