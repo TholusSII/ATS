@@ -1,0 +1,76 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{TLMachinesAlternatives}[2026/08/03 Machines alternatives]
+\RequirePackage{tikz}
+\RequirePackage{circuitikz}
+\usetikzlibrary{arrows.meta,positioning,calc,decorations.pathreplacing}
+
+\newcommand{\TLTriphasageVectoriel}{%
+\begin{tikzpicture}[>=Latex,scale=.9]
+  \draw[->] (-2.2,0)--(2.2,0) node[right]{$\Re$};
+  \draw[->] (0,-2.2)--(0,2.2) node[above]{$\Im$};
+  \foreach \a/\n in {0/U_1,120/U_2,240/U_3}{\draw[->,thick] (0,0)--(\a:1.7) node[pos=1.12]{$\underline{\n}$};}
+\end{tikzpicture}}
+
+\newcommand{\TLCouplagesEtoileTriangle}{%
+\begin{tikzpicture}[>=Latex,node distance=10mm]
+  \node (t1) at (0,1.2) {$U_1$}; \node (t2) at (0,0) {$V_1$}; \node (t3) at (0,-1.2) {$W_1$};
+  \node[circle,draw,inner sep=1.5pt] (n) at (2,0) {};
+  \foreach \a in {t1,t2,t3}{\draw (\a)--(n);}
+  \node at (1,-2){Couplage étoile};
+  \begin{scope}[xshift=5cm]
+    \coordinate (A) at (90:1.2); \coordinate (B) at (210:1.2); \coordinate (C) at (330:1.2);
+    \draw (A)--(B)--(C)--cycle;
+    \node[above] at (A) {$U$}; \node[below left] at (B) {$V$}; \node[below right] at (C) {$W$};
+    \node at (0,-2){Couplage triangle};
+  \end{scope}
+\end{tikzpicture}}
+
+\newcommand{\TLBilanPuissanceMAS}{%
+\begin{tikzpicture}[>=Latex,node distance=13mm]
+\node[draw,rounded corners,minimum width=22mm,minimum height=9mm] (pe) {$P_1$};
+\node[draw,rounded corners,right=of pe,minimum width=25mm,minimum height=9mm] (ptr) {$P_{tr}$};
+\node[draw,rounded corners,right=of ptr,minimum width=25mm,minimum height=9mm] (pm) {$P_m$};
+\node[draw,rounded corners,right=of pm,minimum width=25mm,minimum height=9mm] (pu) {$P_u$};
+\draw[->,thick] (pe)--node[above]{stator}(ptr);
+\draw[->,thick] (ptr)--node[above]{rotor}(pm);
+\draw[->,thick] (pm)--node[above]{mécanique}(pu);
+\draw[->] ($(pe.south)!0.5!(ptr.south)$)--++(0,-.8) node[below]{$P_{Js}+P_{fs}$};
+\draw[->] ($(ptr.south)!0.5!(pm.south)$)--++(0,-.8) node[below]{$P_{Jr}=gP_{tr}$};
+\draw[->] ($(pm.south)!0.5!(pu.south)$)--++(0,-.8) node[below]{$P_{méc}$};
+\end{tikzpicture}}
+
+\newcommand{\TLCoupleGlissementMAS}{%
+\begin{tikzpicture}[>=Latex]
+\draw[->] (-.2,0)--(6.2,0) node[right]{$\Omega$};
+\draw[->] (0,-2.2)--(0,2.4) node[above]{$C_{em}$};
+\draw[thick,smooth] plot coordinates{(0,1.5)(1,1.8)(2,2)(3,1.7)(4,1)(5,.35)(5.6,0)(6,-.7)};
+\draw[dashed] (5.6,-2)--(5.6,2) node[above]{$\Omega_s$};
+\node at (3.1,-1.4){zone moteur};
+\end{tikzpicture}}
+
+\newcommand{\TLCommandeVsurF}{%
+\begin{tikzpicture}[>=Latex,node distance=9mm]
+\node[draw,rounded corners] (r) {Consigne $\Omega^*$};
+\node[draw,rounded corners,right=of r] (loi) {Loi $V/f=\mathrm{cte}$};
+\node[draw,rounded corners,right=of loi] (ond) {Onduleur triphasé};
+\node[draw,rounded corners,right=of ond] (mas) {MAS};
+\draw[->,thick] (r)--(loi); \draw[->,thick] (loi)--node[above]{$V^*,f^*$}(ond); \draw[->,thick] (ond)--(mas);
+\end{tikzpicture}}
+
+\newcommand{\TLDiagrammeBehnEschenburg}{%
+\begin{tikzpicture}[>=Latex,scale=.9]
+\draw[->,thick] (0,0)--(4,0) node[right]{$\underline V$};
+\draw[->,thick] (0,0)--(2.8,1.6) node[above]{$\underline E$};
+\draw[->,thick] (2.8,1.6)--(4,0) node[midway,above right]{$jX_s\underline I$};
+\draw[dashed] (2.8,0)--(2.8,1.6);
+\draw (1,0) arc[start angle=0,end angle=30,radius=1] node[midway,right]{$\delta$};
+\end{tikzpicture}}
+
+\newcommand{\TLChaineBrushless}{%
+\begin{tikzpicture}[>=Latex,node distance=10mm]
+\node[draw,rounded corners] (c) {Commande};
+\node[draw,rounded corners,right=of c] (o) {Onduleur};
+\node[draw,rounded corners,right=of o] (m) {MS à aimants};
+\node[draw,rounded corners,below=of m] (p) {Capteur de position};
+\draw[->,thick] (c)--(o); \draw[->,thick] (o)--(m); \draw[->,thick] (m)--(p); \draw[->,thick] (p)-|(c);
+\end{tikzpicture}}
