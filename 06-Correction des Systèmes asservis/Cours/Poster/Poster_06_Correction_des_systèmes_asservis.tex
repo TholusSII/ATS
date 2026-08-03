@@ -6,25 +6,96 @@
 \def\input@path{{../../../Style/}}
 \makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{{TLCorrectionSystemesAsservis.sty}}{{\input{{TLCorrectionSystemesAsservis.sty}}}}{{}}
+\IfFileExists{TLCorrectionSystemesAsservis.sty}{\input{TLCorrectionSystemesAsservis.sty}}{}
+\IfFileExists{TLSystemesAsservis.sty}{\input{TLSystemesAsservis.sty}}{}
+\IfFileExists{Notations_Autom/Notations_Autom.sty}{\input{Notations_Autom/Notations_Autom.sty}}{}
+\IfFileExists{Notations_SLCI/Notations_SLCI.sty}{\input{Notations_SLCI/Notations_SLCI.sty}}{}
 \pagestyle{empty}
 \begin{document}
-\TLPosterTitre{{Correction des systèmes asservis}}{{Fiche résumé éditable}}
-\begin{multicols}{2}
-\begin{TLPosterBloc}{Objectifs}
-Précision, rapidité, stabilité et rejet des perturbations.
+\TLPosterTitre{Correction des systèmes asservis}{Choisir et régler un correcteur}
+\begin{multicols}{3}
+
+\begin{TLPosterBloc}{Pourquoi corriger ?}
+Un correcteur modifie la dynamique de la boucle afin d'améliorer la précision, la rapidité, la stabilité et le rejet des perturbations. Le réglage reste un compromis entre ces performances.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Correcteurs}
-P : gain ; PI : annulation de l'erreur statique ; PD : anticipation ; PID : compromis global.
+\begin{TLPosterBloc}{Position dans la boucle}
+Le correcteur $C(p)$ est placé en série dans la chaîne directe. La boucle ouverte devient
+\[
+L(p)=C(p)G(p)H(p),
+\]
+et la boucle fermée
+\[
+T(p)=\frac{C(p)G(p)}{1+C(p)G(p)H(p)}.
+\]
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Méthode}
-Identifier le besoin, choisir la structure, régler les paramètres, vérifier les marges et les performances.
+\begin{TLPosterBloc}{Correcteur proportionnel P}
+\[
+C(p)=K_p.
+\]
+Augmenter $K_p$ réduit généralement l'erreur et accélère la réponse, mais diminue les marges de stabilité et peut accroître le dépassement ou provoquer une saturation.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Points clés}
-Effet du gain, pôles dominants, marges de gain et de phase, saturation et robustesse.
+\begin{TLPosterBloc}{Correcteur intégral I}
+\[
+C(p)=\frac{K_i}{p}.
+\]
+L'intégrateur augmente la classe du système et peut annuler l'erreur statique pour certaines entrées. Il ajoute toutefois $-90^\circ$ de phase et fragilise la stabilité.
 \end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Correcteur PI}
+\[
+C(p)=K_p\left(1+\frac{1}{T_i p}\right)
+=K_p\frac{1+T_i p}{T_i p}.
+\]
+Il combine amélioration de la précision et action proportionnelle. Le zéro compense partiellement la phase perdue par l'intégrateur.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Correcteur dérivé D}
+\[
+C(p)=K_d p.
+\]
+L'action dérivée anticipe les variations, améliore l'amortissement et peut augmenter la marge de phase. Elle amplifie le bruit et n'est jamais utilisée seule en pratique.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Correcteur PD}
+\[
+C(p)=K_p(1+T_d p).
+\]
+Le zéro apporte de l'avance de phase. Le PD accélère souvent la réponse et réduit le dépassement, mais ne supprime pas à lui seul l'erreur statique.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Correcteur PID}
+\[
+C(p)=K_p\left(1+\frac{1}{T_i p}+T_d p\right).
+\]
+Il associe précision, rapidité et amortissement. Son réglage est plus délicat et doit tenir compte du bruit, des saturations et de la robustesse.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Avance et retard de phase}
+Un correcteur à avance de phase augmente localement la phase et améliore la marge de phase. Un correcteur à retard augmente le gain aux basses fréquences et améliore la précision, au prix d'une dynamique souvent plus lente.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Critères temporels}
+Vérifier le temps de réponse, le dépassement, le temps de montée, l'erreur finale et l'amortissement. Les pôles dominants doivent rester dans la zone compatible avec le cahier des charges.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Critères fréquentiels}
+Contrôler la pulsation de coupure, la marge de phase, la marge de gain et la pente du diagramme de Bode au voisinage de la coupure. Une bonne robustesse exige des marges suffisantes.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Saturation et anti-windup}
+En présence de saturation, l'intégrateur peut continuer à accumuler l'erreur : c'est le windup. Une stratégie anti-windup limite ou recalcule l'état intégral pour accélérer la récupération.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Démarche de réglage}
+1. Traduire le cahier des charges. 2. Étudier le système non corrigé. 3. Choisir la structure du correcteur. 4. Régler ses paramètres. 5. Vérifier temporel et fréquentiel. 6. Tester perturbations, bruit et saturation.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Contrôles indispensables}
+Ne pas conclure sur un seul indicateur. Vérifier simultanément précision, rapidité, stabilité, robustesse, effort de commande et sensibilité aux incertitudes du modèle.
+\end{TLPosterBloc}
+
 \end{multicols}
 \end{document}
