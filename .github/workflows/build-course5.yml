@@ -1,73 +1,16 @@
-name: Compiler le cours 05 systèmes asservis
+name: Arrêter le contrôle du cours 05
 
 on:
   push:
     paths:
       - .github/workflows/build-course5.yml
-      - '05-Modélisation Systèmes Asservis/Cours/**'
-      - 'Style/TLSystemesAsservis.sty'
-      - 'Style/schemabloc.sty'
-      - 'Style/bodegraph.sty'
-      - 'Style/Notations_SLCI/**'
-      - 'Style/Notations_Maths/**'
-
-permissions:
-  contents: write
 
 concurrency:
   group: build-course5-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build:
+  stop:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Compiler avec TeX Live
-        id: compile
-        continue-on-error: true
-        uses: xu-cheng/latex-action@v4
-        with:
-          root_file: 00_Systemes_Asservis.tex
-          working_directory: '05-Modélisation Systèmes Asservis/Cours'
-          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
-
-      - name: Enregistrer le diagnostic
-        shell: bash
-        run: |
-          set -euo pipefail
-          course='05-Modélisation Systèmes Asservis/Cours'
-          if [ '${{ steps.compile.outcome }}' = 'success' ]; then
-            printf 'SUCCESS\n' > "$course/COMPILATION_COURS5.txt"
-          else
-            printf 'FAILURE\n' > "$course/COMPILATION_COURS5.txt"
-          fi
-          if [ -f "$course/00_Systemes_Asservis.log" ]; then
-            cp "$course/00_Systemes_Asservis.log" "$course/COMPILATION_COURS5.log"
-          fi
-
-      - name: Publier le PDF ou le journal d’erreur
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add '05-Modélisation Systèmes Asservis/Cours/COMPILATION_COURS5.txt'
-          if [ -f '05-Modélisation Systèmes Asservis/Cours/COMPILATION_COURS5.log' ]; then
-            git add '05-Modélisation Systèmes Asservis/Cours/COMPILATION_COURS5.log'
-          fi
-          if [ '${{ steps.compile.outcome }}' = 'success' ]; then
-            git add '05-Modélisation Systèmes Asservis/Cours/00_Systemes_Asservis.pdf'
-          fi
-          if ! git diff --cached --quiet; then
-            git commit -m 'Met à jour le contrôle de compilation du cours 05 [skip ci]'
-            git push
-          fi
-
-      - name: Signaler l’échec
-        if: steps.compile.outcome != 'success'
-        run: exit 1
+      - run: echo "Ancien contrôle du cours 05 neutralisé."
