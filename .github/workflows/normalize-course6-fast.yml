@@ -1,0 +1,96 @@
+name: Normalisation rapide du cours 06
+
+on:
+  push:
+    paths:
+      - .github/workflows/normalize-course6-fast.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: normalize-course6-main
+  cancel-in-progress: true
+
+jobs:
+  normalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Construire les sources
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          from collections import Counter, defaultdict
+
+          root = Path('06-Correction des Systèmes asservis/Cours')
+          text = (root / 'pandoc' / 'contenu.tex').read_text(encoding='utf-8')
+          text = text.replace('./images/', 'pandoc/images/')
+
+          start = r'\hypertarget{introduction-uxe0-la-correction}{%'
+          anchor = r'\hypertarget{exercices-du-chapitre}{%'
+          heading = r'\subsection{Exercices du chapitre}\label{exercices-du-chapitre}}'
+          assert start in text and anchor in text and heading in text
+          text = text[text.index(start):]
+          course, block = text.split(anchor, 1)
+          exercises = block.split(heading, 1)[1]
+
+          course = course.replace(r'\subsubsection', r'\TLSixPromoteSubsection')
+          course = course.replace(r'\subsection', r'\section')
+          course = course.replace(r'\TLSixPromoteSubsection', r'\subsection')
+          course = course.replace(r'\subparagraph*', r'\subsubsection*')
+          course = course.replace('{subparagraph}', '{subsubsection}')
+          course = re.sub(r'\\includegraphics(?:\[[^\]]*\])?\{pandoc/images/image6\.jpeg\}', '', course, count=1)
+          course = course.replace('Diagramme temporelle Diagramme de Bode', '')
+
+          def add(text, label, command):
+              token = rf'\label{{{label}}}}}'
+              if token not in text:
+                  raise RuntimeError(label)
+              return text.replace(token, token + '\n\n' + command + '\n', 1)
+
+          for label, command in [
+              ('introduction-aux-correcteurs', r'\TLCorrecteurSerie'),
+              ('diffuxe9rentes-actions-de-correction', r'\TLTroisActionsCorrection'),
+              ('correcteur-proportionnel-p', r'\TLBodeCorrecteurP[10]'),
+              ('correcteur-intuxe9gral-i', r'\TLBodeCorrecteurI[1]'),
+              ('correcteur-proportionnel-intuxe9gral-pi', r'\TLBodeCorrecteurPI[1][1]'),
+              ('retard-de-phase-ou-correcteur-pi-ruxe9el', r'\TLBodeRetardPhase[1][10][1]'),
+              ('correcteur-uxe0-avance-de-phase-ou-correcteur-pd-ruxe9el', r'\TLBodeAvancePhase[1][0.1][1]'),
+              ('correcteur-proportionnel-intuxe9gral-duxe9rivuxe9-pid', r'\TLBodeCorrecteurPID[1][10][1][0.1]'),
+              ('ruxe9gulation-cascade-ou-boucles-imbriquuxe9es', r'\TLBouclesImbriquees'),
+          ]:
+              course = add(course, label, command)
+
+          out = root / 'sources'
+          out.mkdir(exist_ok=True)
+          (out / '06_Correction_SA_Cours.tex').write_text('% Partie cours issue de 10-CorrectionSA2022.docx.\n' + course.strip() + '\n', encoding='utf-8')
+          (out / '06_Correction_SA_Exercices.tex').write_text('% Exercices issus de 10-CorrectionSA2022.docx.\n' + exercises.strip() + '\n', encoding='utf-8')
+
+          counts = Counter()
+          samples = defaultdict(list)
+          for path in out.glob('*.tex'):
+              for n, line in enumerate(path.read_text(encoding='utf-8').splitlines(), 1):
+                  for ch in line:
+                      if ord(ch) > 127:
+                          counts[ch] += 1
+                          if len(samples[ch]) < 3:
+                              samples[ch].append(f'{path.name}:{n}')
+          report = [f'U+{ord(ch):04X}\t{ch!r}\t{count}\t{", ".join(samples[ch])}' for ch, count in sorted(counts.items(), key=lambda x: ord(x[0]))]
+          (root / 'UNICODE_COURS6.txt').write_text('\n'.join(report) + '\n', encoding='utf-8')
+          PY
+
+      - name: Publier
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add '06-Correction des Systèmes asservis/Cours/sources' \
+                  '06-Correction des Systèmes asservis/Cours/UNICODE_COURS6.txt'
+          git commit -m 'Normalise rapidement le cours 06 et ses exercices'
+          git push
