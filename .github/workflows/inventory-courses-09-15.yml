@@ -1,0 +1,37 @@
+name: Inventorier les sources des cours 09 à 15
+
+on:
+  push:
+    paths:
+      - .github/workflows/inventory-courses-09-15.yml
+
+permissions:
+  contents: write
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Construire l'inventaire
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            for d in 09-* 10-* 11-* 12-* 13-* 14-* 15-*; do
+              [ -d "$d" ] || continue
+              echo "=== $d ==="
+              find "$d" -maxdepth 4 -type f | sort
+              echo
+            done
+            echo '=== BIBLIOTHEQUES STYLE POTENTIELLEMENT UTILES ==='
+            find Style -maxdepth 2 -type f \( -iname '*.sty' -o -iname '*.tex' \) | sort
+          } > INVENTAIRE_COURS_09_15.txt
+      - name: Publier l'inventaire
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add INVENTAIRE_COURS_09_15.txt
+          git commit -m 'Ajoute l inventaire des cours 09 à 15' || exit 0
+          git push
