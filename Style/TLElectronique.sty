@@ -2,12 +2,12 @@
 % BIBLIOTHÈQUE TL — ÉLECTRONIQUE ET ACQUISITION DU SIGNAL
 % ============================================================================
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{TLElectronique}[2026/08/03 v2026.08.03c Electronique et acquisition]
+\ProvidesPackage{TLElectronique}[2026/08/03 v2026.08.03d Electronique et acquisition]
 \RequirePackage[siunitx,european]{circuitikz}
 \RequirePackage{xparse}
 \RequirePackage{tikz}
 \usetikzlibrary{positioning,arrows.meta,calc}
-\typeout{TL-ELECTRONIQUE-MARKER-20260803-C}
+\typeout{TL-ELECTRONIQUE-MARKER-20260803-D}
 
 \newcommand{\TLChaineAcquisition}{%
 \begin{center}
@@ -28,29 +28,20 @@
 \typeout{TL-PONT-DIVISEUR-VERSION-C}%
 \begin{center}
 \begin{tikzpicture}[line width=0.8pt,font=\small]
-  % Source représentée par une pile, sans calcul de coordonnées.
   \draw (0,0) -- (0,1.4);
   \draw (-0.45,1.4) -- (0.45,1.4);
   \draw (-0.25,1.7) -- (0.25,1.7);
   \draw (0,1.7) -- (0,4);
   \node[left] at (0,2.55) {$E$};
-
-  % Conducteur supérieur.
   \draw (0,4) -- (2.5,4);
-
-  % Résistance R1, symbole rectangulaire IEC.
   \draw (2.5,4) -- (2.5,3.6);
   \draw (2.15,3.6) rectangle (2.85,2.6);
   \node[right] at (2.85,3.1) {$R_1$};
   \draw (2.5,2.6) -- (2.5,2);
-
-  % Sortie.
   \fill (2.5,2) circle (1.3pt);
   \draw (2.5,2) -- (4.2,2);
   \draw (4.2,2) circle (2.2pt);
   \node[right] at (4.2,2) {$u_s$};
-
-  % Résistance R2.
   \draw (2.5,2) -- (2.5,1.6);
   \draw (2.15,1.6) rectangle (2.85,0.6);
   \node[right] at (2.85,1.1) {$R_2$};
@@ -116,24 +107,55 @@
 \end{circuitikz}
 \end{center}}
 
+% Pont de Wheatstone en TikZ élémentaire pour compatibilité MiKTeX ancienne.
+% circuitikz reste chargé et disponible dans la bibliothèque.
 \newcommand{\TLPontWheatstone}{%
+\typeout{TL-PONT-WHEATSTONE-VERSION-D}%
 \begin{center}
-\begin{circuitikz}[european resistors]
-\draw (0,0) -- (0,1.4);
-\draw (-0.45,1.4) -- (0.45,1.4);
-\draw (-0.25,1.7) -- (0.25,1.7);
-\draw (0,1.7) -- (0,4) -- (2,4);
-\node[left] at (0,2.55) {$E$};
-\draw (2,4) to[R,l=$R_1$] (2,2) to[R,l=$R_2$] (2,0) -- (0,0);
-\draw (2,4) -- (5,4) to[R,l=$R_3$] (5,2) to[R,l=$R_4$] (5,0) -- (2,0);
-\draw (2,2) -- (3,2);
-\node[ocirc] at (3,2) {};
-\node[below] at (3,2) {$A$};
-\draw (5,2) -- (4,2);
-\node[ocirc] at (4,2) {};
-\node[below] at (4,2) {$B$};
-\draw[<->] (3,2.35)--(4,2.35) node[midway,above]{$u_{AB}$};
-\end{circuitikz}
+\begin{tikzpicture}[line width=0.8pt,font=\small]
+  % Source
+  \draw (0,0) -- (0,1.4);
+  \draw (-0.45,1.4) -- (0.45,1.4);
+  \draw (-0.25,1.7) -- (0.25,1.7);
+  \draw (0,1.7) -- (0,4);
+  \node[left] at (0,2.55) {$E$};
+
+  % Rails
+  \draw (0,4) -- (5,4);
+  \draw (0,0) -- (5,0);
+
+  % Branche gauche R1-R2
+  \draw (2,4) -- (2,3.6);
+  \draw (1.65,3.6) rectangle (2.35,2.6);
+  \node[left] at (1.65,3.1) {$R_1$};
+  \draw (2,2.6) -- (2,2);
+  \fill (2,2) circle (1.3pt);
+  \draw (2,2) -- (2,1.6);
+  \draw (1.65,1.6) rectangle (2.35,0.6);
+  \node[left] at (1.65,1.1) {$R_2$};
+  \draw (2,0.6) -- (2,0);
+
+  % Branche droite R3-R4
+  \draw (5,4) -- (5,3.6);
+  \draw (4.65,3.6) rectangle (5.35,2.6);
+  \node[right] at (5.35,3.1) {$R_3$};
+  \draw (5,2.6) -- (5,2);
+  \fill (5,2) circle (1.3pt);
+  \draw (5,2) -- (5,1.6);
+  \draw (4.65,1.6) rectangle (5.35,0.6);
+  \node[right] at (5.35,1.1) {$R_4$};
+  \draw (5,0.6) -- (5,0);
+
+  % Bornes A et B
+  \draw (2,2) -- (3,2);
+  \draw (3,2) circle (2.2pt);
+  \node[below] at (3,2) {$A$};
+  \draw (5,2) -- (4,2);
+  \draw (4,2) circle (2.2pt);
+  \node[below] at (4,2) {$B$};
+  \draw[<->] (3,2.35) -- (4,2.35);
+  \node[above] at (3.5,2.35) {$u_{AB}$};
+\end{tikzpicture}
 \end{center}}
 
 \newcommand{\TLEchantillonnageSignal}{%
