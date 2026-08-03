@@ -1,0 +1,97 @@
+% ============================================================================
+% Bibliothèque Machine à courant continu — framework SI
+% ============================================================================
+\ProvidesPackage{TLMCC}[2026/08/03 Bibliotheque MCC]
+\RequirePackage{tikz}
+\RequirePackage{circuitikz}
+\usetikzlibrary{arrows.meta,positioning,calc}
+
+\newcommand{\TLSchemaInduitMCCPermanent}{%
+\begin{center}
+\begin{circuitikz}[european resistors]
+\draw (0,0) to[V,l_=$E=K_e\Omega$] (0,3)
+      to[R,l=$R$,i>^=$I$] (3,3)
+      -- (5,3) node[right]{$+$}
+      (5,0) node[right]{$-$} -- (0,0);
+\draw[<->] (5.2,0)--node[right]{$U$}(5.2,3);
+\end{circuitikz}
+\end{center}}
+
+\newcommand{\TLSchemaInduitMCCVariable}{%
+\begin{center}
+\begin{circuitikz}[european resistors]
+\draw (0,0) to[V,l_=$E=K_e\Omega$] (0,3)
+      to[R,l=$R$] (2.4,3)
+      to[L,l=$L$,i>^=$I$] (5,3)
+      -- (6.5,3) node[right]{$+$}
+      (6.5,0) node[right]{$-$} -- (0,0);
+\draw[<->] (6.7,0)--node[right]{$U$}(6.7,3);
+\end{circuitikz}
+\end{center}}
+
+\newcommand{\TLBilanPuissancesMCC}{%
+\begin{center}
+\begin{tikzpicture}[>=Latex,node distance=10mm,
+ bloc/.style={draw,rounded corners,minimum width=27mm,minimum height=11mm,align=center}]
+\node[bloc] (pa){$P_a=UI$};
+\node[bloc,right=of pa] (pem){$P_{em}=EI$\\$=C_{em}\Omega$};
+\node[bloc,right=of pem] (pu){$P_u=C_u\Omega$};
+\draw[->,thick] (pa)--node[above]{$P_J=RI^2$}(pem);
+\draw[->,thick] (pem)--node[above]{$P_c=C_p\Omega$}(pu);
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\TLQuadrantsMCC}{%
+\begin{center}
+\begin{tikzpicture}[scale=.9,>=Latex]
+\draw[->] (-3.3,0)--(3.5,0) node[right]{$\Omega$};
+\draw[->] (0,-3.1)--(0,3.3) node[above]{$C$};
+\node at (1.7,2.1){Moteur}; \node at (-1.7,-2.1){Moteur};
+\node at (1.8,-2.1){Génératrice}; \node at (-1.8,2.1){Génératrice};
+\node at (2.8,2.7){1}; \node at (2.8,-2.7){2};
+\node at (-2.8,-2.7){3}; \node at (-2.8,2.7){4};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\TLSchemaBlocMCC}{%
+\begin{center}
+\begin{tikzpicture}[>=Latex,node distance=11mm,
+ bloc/.style={draw,minimum width=23mm,minimum height=10mm,align=center},
+ somme/.style={draw,circle,inner sep=1pt}]
+\node[somme] (s1) {$\Sigma$};
+\node[bloc,right=of s1] (elec) {$\dfrac{1}{Lp+R}$};
+\node[bloc,right=of elec] (kc) {$K_c$};
+\node[somme,right=of kc] (s2) {$\Sigma$};
+\node[bloc,right=of s2] (meca) {$\dfrac{1}{Jp+f}$};
+\node[bloc,right=of meca] (ke) {$K_e$};
+\draw[->] (-1.5,0)--node[above]{$U$}(s1);
+\draw[->] (s1)--node[above]{$I$}(elec);
+\draw[->] (elec)--(kc); \draw[->] (kc)--node[above]{$C_{em}$}(s2);
+\draw[->] (s2)--(meca); \draw[->] (meca)--node[above]{$\Omega$}(ke);
+\draw[->] (ke.south)|-++(0,-1.1)-|node[pos=.25,below]{$-$}(s1.south);
+\draw[->] ($(s2)+(0,1.2)$)--node[right]{$-C_r$}(s2);
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\TLVariationVitesseMCC}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=.8cm,>=Latex]
+\draw[->] (0,0)--(5.7,0) node[right]{$\Omega$};
+\draw[->] (0,0)--(0,4.5) node[above]{$C_{em}$};
+\draw[thick] (0,4)--(5,0.5) node[right]{$U_1$};
+\draw[thick] (0,3.2)--(4,0.4) node[right]{$U_2$};
+\draw[thick] (0,2.4)--(3,0.3) node[right]{$U_3$};
+\node[align=center] at (3.3,4){$R$ et $\Phi$ constants\\variation de $U$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\TLEssaisIdentificationMCC}{%
+\begin{center}
+\begin{tikzpicture}[>=Latex,node distance=10mm,
+ bloc/.style={draw,rounded corners,minimum width=35mm,minimum height=12mm,align=center}]
+\node[bloc] (rb){Rotor bloqué\\$E=0$ : identification $R,L$};
+\node[bloc,right=of rb] (vide){Essai à vide\\identification $K_e,C_p$};
+\node[bloc,right=of vide] (charge){Essai en charge\\validation du modèle};
+\draw[->,thick] (rb)--(vide); \draw[->,thick] (vide)--(charge);
+\end{tikzpicture}
+\end{center}}
