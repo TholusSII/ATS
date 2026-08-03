@@ -1,0 +1,619 @@
+% ============================================================================
+% COURS 07 — PARTIES 5 À 10
+% Reprise du document 11-AcquisitionTraitementSignal2022.docx
+% ============================================================================
+
+\section{Représentation spectrale}\label{sec:elec-spectrale}
+
+\subsection{Intérêt de la représentation spectrale}
+
+La représentation temporelle décrit l'évolution d'un signal en fonction du temps. La représentation spectrale décrit la répartition de son contenu en fréquence. Ces deux descriptions sont complémentaires : un même signal peut être observé soit dans le domaine temporel, soit dans le domaine fréquentiel.
+
+La représentation spectrale permet notamment :
+\begin{itemize}
+  \item d'identifier la valeur moyenne d'un signal ;
+  \item de déterminer sa fréquence fondamentale ;
+  \item de repérer les harmoniques ;
+  \item de connaître la bande fréquentielle occupée ;
+  \item de prévoir l'effet d'un filtre sur le signal.
+\end{itemize}
+
+\subsection{Dualité temps-fréquence}
+
+À un signal temporel $s(t)$ correspond une représentation fréquentielle $S(f)$. Une variation rapide dans le temps nécessite généralement des composantes de fréquence élevée. À l'inverse, un signal lentement variable possède principalement des composantes de basse fréquence.
+
+Un signal sinusoïdal pur
+\[
+s(t)=A\cos(2\pi f_0t+\varphi)
+\]
+possède une seule fréquence $f_0$. Son spectre en amplitude comporte donc une raie à la fréquence $f_0$.
+
+Une composante continue $S_0$ correspond à une raie à la fréquence nulle.
+
+\subsection{Représentation spectrale d'un signal périodique}
+
+Tout signal périodique de période $T$ et de fréquence fondamentale
+\[
+f_0=\frac{1}{T}
+\]
+peut, sous certaines conditions, être décomposé en une somme de sinusoïdes : c'est la décomposition en série de Fourier.
+
+On peut écrire :
+\[
+s(t)=S_0+\sum_{n=1}^{+\infty}A_n\cos\left(2\pi n f_0t+\varphi_n\right).
+\]
+
+Dans cette expression :
+\begin{itemize}
+  \item $S_0$ est la valeur moyenne ;
+  \item la composante de fréquence $f_0$ est le fondamental ;
+  \item les composantes de fréquence $nf_0$ sont les harmoniques de rang $n$ ;
+  \item $A_n$ est l'amplitude de l'harmonique de rang $n$ ;
+  \item $\varphi_n$ est sa phase à l'origine.
+\end{itemize}
+
+Le spectre d'un signal périodique est un spectre discret : il est constitué de raies séparées de $f_0$.
+
+\subsubsection{Signal sinusoïdal avec valeur moyenne}
+
+Pour
+\[
+s(t)=S_0+A\cos(2\pi f_0t+\varphi),
+\]
+le spectre en amplitude contient :
+\begin{itemize}
+  \item une raie d'amplitude $S_0$ à $f=0$ ;
+  \item une raie d'amplitude $A$ à $f=f_0$.
+\end{itemize}
+
+\subsubsection{Signal carré symétrique}
+
+Un signal carré symétrique de valeur moyenne nulle contient uniquement des harmoniques impaires. Son développement comporte des termes aux fréquences
+\[
+f_0,\;3f_0,\;5f_0,\ldots
+\]
+avec des amplitudes décroissantes lorsque le rang augmente.
+
+\subsubsection{Lecture d'un spectre}
+
+À partir d'un spectre en amplitude, il faut savoir déterminer :
+\begin{itemize}
+  \item la valeur moyenne ;
+  \item la fréquence fondamentale ;
+  \item la période du signal ;
+  \item le rang de chaque harmonique ;
+  \item l'expression temporelle lorsque les phases sont connues ou nulles.
+\end{itemize}
+
+\begin{exemple}[Lecture d'un spectre]
+Un spectre présente une raie de $\SI{2}{\volt}$ à $f=0$, une raie de $\SI{3}{\volt}$ à $\SI{50}{\hertz}$ et une raie de $\SI{1}{\volt}$ à $\SI{150}{\hertz}$. En supposant les phases nulles :
+\[
+s(t)=2+3\cos(2\pi 50t)+\cos(2\pi 150t).
+\]
+La fréquence fondamentale est $\SI{50}{\hertz}$ et la raie à $\SI{150}{\hertz}$ est l'harmonique de rang 3.
+\end{exemple}
+
+\subsection{Représentation spectrale d'un signal non périodique}
+
+Un signal non périodique ne possède pas de fréquence fondamentale. Sa représentation fréquentielle est généralement continue : on parle de spectre continu.
+
+Plus un signal est bref dans le temps, plus son spectre est étendu. Cette propriété explique qu'une impulsion très courte nécessite une bande passante importante pour être transmise sans déformation.
+
+\begin{application}
+Donner la représentation spectrale en amplitude des signaux temporels proposés dans le document d'origine. Pour chaque signal, préciser la valeur moyenne, le fondamental et le rang des harmoniques visibles.
+\end{application}
+
+\begin{application}
+À partir des spectres en amplitude fournis, retrouver l'expression temporelle des signaux et indiquer leur valeur moyenne.
+\end{application}
+
+% ============================================================================
+\section{Filtrage des signaux}\label{sec:elec-filtrage-complet}
+
+\subsection{Définitions}
+
+Un filtre est un système qui modifie le contenu fréquentiel d'un signal. Il laisse passer certaines fréquences et en atténue d'autres.
+
+On distingue :
+\begin{itemize}
+  \item les filtres passifs, réalisés à partir de résistances, condensateurs et inductances ;
+  \item les filtres actifs, qui utilisent en plus des composants actifs, notamment des amplificateurs opérationnels ;
+  \item les filtres analogiques, qui agissent sur des signaux continus ;
+  \item les filtres numériques, qui agissent sur des suites d'échantillons.
+\end{itemize}
+
+\subsection{Comparaison des types de filtre}
+
+Les quatre types fondamentaux sont :
+\begin{description}
+  \item[Passe-bas :] transmet les basses fréquences et atténue les hautes fréquences.
+  \item[Passe-haut :] atténue les basses fréquences et transmet les hautes fréquences.
+  \item[Passe-bande :] transmet une bande de fréquences comprise entre deux fréquences de coupure.
+  \item[Coupe-bande :] atténue une bande de fréquences et transmet les fréquences situées de part et d'autre.
+\end{description}
+
+\subsection{Gabarit d'un filtre}
+
+Le gabarit définit les performances attendues du filtre. Il distingue :
+\begin{itemize}
+  \item la bande passante, dans laquelle le signal doit être peu atténué ;
+  \item la bande atténuée, dans laquelle l'atténuation minimale est imposée ;
+  \item la bande de transition, située entre les deux précédentes.
+\end{itemize}
+
+Pour un filtre passe-bas, on note généralement :
+\begin{itemize}
+  \item $f_p$ la limite de la bande passante ;
+  \item $f_a$ le début de la bande atténuée ;
+  \item $A_p$ l'atténuation maximale admise dans la bande passante ;
+  \item $A_a$ l'atténuation minimale exigée dans la bande atténuée.
+\end{itemize}
+
+\subsection{Détermination de l'ordre à partir du gabarit}
+
+L'ordre d'un filtre caractérise la rapidité avec laquelle son gain décroît dans la bande de transition. Pour un filtre passe-bas d'ordre $n$, la pente asymptotique est de
+\[
+-20n\ \text{dB par décade}.
+\]
+
+Une estimation de l'ordre minimal peut être obtenue à partir de la pente exigée entre deux points du gabarit :
+\[
+n\geq
+\frac{A_a-A_p}{20\log_{10}(f_a/f_p)}.
+\]
+
+L'ordre retenu est l'entier immédiatement supérieur.
+
+\subsection{Décibels}
+
+Le gain en amplitude d'un filtre est
+\[
+G(f)=\left|\frac{S(f)}{E(f)}\right|.
+\]
+
+Le gain en décibels est défini par
+\[
+G_{\mathrm{dB}}(f)=20\log_{10}G(f).
+\]
+
+Quelques valeurs importantes :
+\begin{center}
+\begin{tabular}{cc}
+\toprule
+Gain en amplitude & Gain en décibels \\
+\midrule
+$1$ & $0$ dB \\
+$\sqrt{2}$ & $+3$ dB \\
+$1/\sqrt{2}$ & $-3$ dB \\
+$10$ & $+20$ dB \\
+$0{,}1$ & $-20$ dB \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Pour une puissance, le rapport en décibels s'écrit
+\[
+G_{\mathrm{dB}}=10\log_{10}\left(\frac{P_s}{P_e}\right).
+\]
+
+\subsection{Bande passante et fréquences de coupure}
+
+La fréquence de coupure est généralement définie par une diminution de $\SI{3}{\decibel}$ par rapport au gain maximal. Elle correspond à un gain en amplitude divisé par $\sqrt{2}$.
+
+La bande passante à $-3$ dB est l'ensemble des fréquences pour lesquelles
+\[
+G_{\mathrm{dB}}\geq G_{\mathrm{dB,max}}-3.
+\]
+
+Pour un passe-bande, la largeur de bande vaut
+\[
+\Delta f=f_{c2}-f_{c1}.
+\]
+
+\subsection{Quadripôles}
+
+Un filtre peut être représenté comme un quadripôle possédant :
+\begin{itemize}
+  \item deux bornes d'entrée ;
+  \item deux bornes de sortie ;
+  \item une tension d'entrée $u_e(t)$ ;
+  \item une tension de sortie $u_s(t)$.
+\end{itemize}
+
+Le comportement fréquentiel est décrit par la fonction de transfert complexe
+\[
+H(j\omega)=\frac{\underline{U_s}}{\underline{U_e}}.
+\]
+
+\subsection{Représentation complexe d'un signal sinusoïdal}
+
+À la grandeur sinusoïdale
+\[
+u(t)=U_m\cos(\omega t+\varphi)
+\]
+on associe le nombre complexe
+\[
+\underline{U}=U_m e^{j\varphi}.
+\]
+
+La dérivation temporelle correspond à une multiplication par $j\omega$ :
+\[
+\frac{\mathrm d}{\mathrm dt}\longleftrightarrow j\omega.
+\]
+
+L'intégration correspond à une division par $j\omega$.
+
+\subsection{Impédance et admittance complexes}
+
+En régime sinusoïdal, l'impédance complexe d'un dipôle est définie par
+\[
+\underline{Z}=\frac{\underline{U}}{\underline{I}}.
+\]
+
+On écrit aussi
+\[
+\underline{Z}=R+jX,
+\]
+où $R$ est la résistance et $X$ la réactance.
+
+L'admittance complexe est
+\[
+\underline{Y}=\frac{1}{\underline{Z}}=G+jB,
+\]
+où $G$ est la conductance et $B$ la susceptance.
+
+Les impédances des dipôles élémentaires sont :
+\[
+\underline{Z_R}=R,
+\qquad
+\underline{Z_C}=\frac{1}{j\omega C},
+\qquad
+\underline{Z_L}=j\omega L.
+\]
+
+Les lois d'association restent valables avec les impédances complexes :
+\begin{itemize}
+  \item en série, les impédances s'ajoutent ;
+  \item en parallèle, les admittances s'ajoutent.
+\end{itemize}
+
+\subsection{Fonction de transfert d'un filtre}
+
+La fonction de transfert est
+\[
+H(j\omega)=\frac{\underline{U_s}}{\underline{U_e}}.
+\]
+
+Son module donne le gain en amplitude :
+\[
+G(\omega)=|H(j\omega)|.
+\]
+
+Son argument donne le déphasage de la sortie par rapport à l'entrée :
+\[
+\varphi(\omega)=\arg H(j\omega).
+\]
+
+\subsection{Méthode de détermination}
+
+Pour déterminer la fonction de transfert d'un filtre passif :
+\begin{enumerate}
+  \item remplacer chaque dipôle par son impédance complexe ;
+  \item repérer les associations série ou parallèle ;
+  \item appliquer un diviseur de tension ou les lois de Kirchhoff ;
+  \item former le rapport $\underline{U_s}/\underline{U_e}$ ;
+  \item simplifier et mettre le résultat sous une forme canonique ;
+  \item identifier le gain statique, la pulsation de coupure et l'ordre.
+\end{enumerate}
+
+\subsubsection{Filtre RC passe-bas}
+
+\TLFiltreRCPasseBas
+
+\[
+H(j\omega)=\frac{1}{1+j\omega RC}
+=\frac{1}{1+j\omega/\omega_c},
+\qquad
+\omega_c=\frac{1}{RC}.
+\]
+
+Le module et la phase sont :
+\[
+|H(j\omega)|=\frac{1}{\sqrt{1+(\omega RC)^2}},
+\]
+\[
+\arg H(j\omega)=-\arctan(\omega RC).
+\]
+
+\subsubsection{Filtre RC passe-haut}
+
+\TLFiltreRCPasseHaut
+
+\[
+H(j\omega)=\frac{j\omega RC}{1+j\omega RC}.
+\]
+
+\subsection{Prévision du comportement aux basses et hautes fréquences}
+
+Une méthode rapide consiste à remplacer les condensateurs et inductances par leurs comportements limites.
+
+Pour un condensateur :
+\begin{itemize}
+  \item à basse fréquence, $|Z_C|\to +\infty$ : il se comporte comme un circuit ouvert ;
+  \item à haute fréquence, $|Z_C|\to 0$ : il se comporte comme un court-circuit.
+\end{itemize}
+
+Pour une inductance :
+\begin{itemize}
+  \item à basse fréquence, $|Z_L|\to 0$ : elle se comporte comme un court-circuit ;
+  \item à haute fréquence, $|Z_L|\to +\infty$ : elle se comporte comme un circuit ouvert.
+\end{itemize}
+
+Cette étude permet d'identifier rapidement le type de filtre avant tout calcul détaillé.
+
+\subsection{Mise en cascade de cellules élémentaires}
+
+Lorsque plusieurs cellules sont mises en cascade sans interaction entre elles, la fonction de transfert globale est le produit des fonctions de transfert :
+\[
+H(j\omega)=H_1(j\omega)H_2(j\omega)\cdots H_n(j\omega).
+\]
+
+En décibels, les gains s'ajoutent :
+\[
+G_{\mathrm{dB}}=G_{1,\mathrm{dB}}+G_{2,\mathrm{dB}}+\cdots+G_{n,\mathrm{dB}}.
+\]
+
+Les phases s'ajoutent également.
+
+\begin{application}
+Donner les fonctions de transfert des filtres proposés dans le document d'origine, puis identifier leur type par l'étude des comportements aux basses et hautes fréquences.
+\end{application}
+
+% ============================================================================
+\section{Échantillonnage et numérisation}\label{sec:elec-numerisation}
+
+\subsection{Convertisseur analogique-numérique}
+
+Un CAN transforme une tension analogique en un mot binaire. Pour un convertisseur sur $n$ bits, le nombre de codes disponibles est
+\[
+N=2^n.
+\]
+
+Pour une plage de conversion comprise entre $U_{\min}$ et $U_{\max}$, le quantum vaut
+\[
+q=\frac{U_{\max}-U_{\min}}{2^n}.
+\]
+
+Selon la convention retenue dans la documentation, le dénominateur peut être $2^n-1$ lorsque les deux valeurs extrêmes sont représentées exactement. Il faut toujours vérifier la définition donnée par le constructeur.
+
+\subsection{Coder une information sur $n$ bits}
+
+Le code numérique associé à une tension $u_e$ peut être déterminé par
+\[
+N=\left\lfloor\frac{u_e-U_{\min}}{q}\right\rfloor.
+\]
+
+Le résultat doit être limité à l'intervalle des codes admissibles. Une tension hors plage entraîne une saturation.
+
+L'erreur de quantification est liée au remplacement d'une valeur continue par un niveau discret. Elle est généralement comprise entre
+\[
+-\frac{q}{2}\quad\text{et}\quad +\frac{q}{2}.
+\]
+
+\subsection{Technologies des CAN et choix}
+
+Les technologies courantes sont :
+\begin{itemize}
+  \item CAN flash : très rapide mais nécessitant beaucoup de comparateurs ;
+  \item CAN à approximations successives : bon compromis entre vitesse, résolution et coût ;
+  \item CAN double rampe : lent mais précis, utilisé dans les appareils de mesure ;
+  \item CAN sigma-delta : grande résolution pour des bandes passantes limitées.
+\end{itemize}
+
+Le choix dépend notamment :
+\begin{itemize}
+  \item du nombre de bits ;
+  \item de la plage d'entrée ;
+  \item du temps de conversion ;
+  \item de la fréquence maximale d'échantillonnage ;
+  \item de la précision ;
+  \item du coût et de la consommation.
+\end{itemize}
+
+\subsection{Convertisseur numérique-analogique}
+
+Un CNA transforme un mot binaire en une tension ou un courant analogique. Le quantum et la résolution se déterminent de manière analogue au CAN.
+
+Après conversion, la sortie présente souvent une allure en escalier. Un filtre de reconstruction peut être utilisé pour lisser le signal.
+
+\subsection{Échantillonnage}
+
+L'échantillonnage consiste à prélever la valeur d'un signal analogique à intervalles réguliers $T_e$.
+
+\[
+f_e=\frac{1}{T_e}.
+\]
+
+\TLEchantillonnageSignal
+
+Une fréquence d'échantillonnage élevée améliore la fidélité de la représentation, mais augmente la quantité de données et impose un temps de conversion plus court.
+
+\subsection{Échantillonneur-bloqueur}
+
+L'échantillonneur-bloqueur prélève la tension d'entrée puis la maintient constante pendant la durée nécessaire à la conversion. Il évite que la tension d'entrée varie pendant le fonctionnement du CAN.
+
+\subsection{Théorème de Shannon-Nyquist}
+
+Pour échantillonner sans ambiguïté un signal dont la fréquence maximale est $f_{\max}$, il faut respecter :
+\[
+\boxed{f_e>2f_{\max}}.
+\]
+
+Dans la pratique, on choisit souvent une fréquence sensiblement supérieure à cette limite.
+
+\subsection{Repliement de spectre}
+
+L'échantillonnage crée des répétitions du spectre autour des multiples de $f_e$. Si $f_e$ est insuffisante, ces répétitions se recouvrent : c'est le repliement de spectre. Des composantes hautes fréquences sont alors interprétées à tort comme des composantes de plus basse fréquence.
+
+\subsection{Filtre anti-repliement}
+
+Le filtre anti-repliement est un filtre passe-bas placé avant le CAN. Il élimine les composantes susceptibles de provoquer un recouvrement spectral.
+
+Son gabarit doit être défini conjointement avec la fréquence d'échantillonnage. À partir du gabarit, on identifie la fréquence maximale utile $f_{\max}$ puis on impose
+\[
+f_e>2f_{\max}.
+\]
+
+\subsection{Déterminer la fréquence d'échantillonnage}
+
+Le choix de $f_e$ doit satisfaire deux contraintes :
+\begin{itemize}
+  \item la condition de Shannon-Nyquist ;
+  \item le temps de conversion du CAN.
+\end{itemize}
+
+Si le temps de conversion est $t_c$, il faut disposer d'une période d'échantillonnage compatible :
+\[
+T_e\geq t_c,
+\qquad
+f_e\leq \frac{1}{t_c}.
+\]
+
+Pour un signal sinusoïdal pur de fréquence $f$, on prend $f_{\max}=f$.
+
+Pour un signal périodique non sinusoïdal, il faut considérer les harmoniques que l'on souhaite conserver. La fréquence maximale utile dépend alors du rang maximal retenu.
+
+% ============================================================================
+\section{Codage numérique des informations : numération}\label{sec:elec-numeration}
+
+\subsection{Systèmes de numération}
+
+Dans une base $b$, un nombre s'écrit à l'aide de chiffres compris entre $0$ et $b-1$. Sa valeur décimale est obtenue par
+\[
+(a_na_{n-1}\ldots a_0)_b=\sum_{k=0}^{n}a_kb^k.
+\]
+
+\subsection{Base binaire}
+
+La base 2 utilise les chiffres 0 et 1. Chaque chiffre binaire est appelé bit.
+
+Le bit de poids faible est le LSB et le bit de poids fort le MSB.
+
+Par exemple :
+\[
+(101101)_2=1\times2^5+0\times2^4+1\times2^3+1\times2^2+0\times2+1=45.
+\]
+
+\subsection{Base hexadécimale}
+
+La base 16 utilise les symboles
+\[
+0,1,\ldots,9,A,B,C,D,E,F.
+\]
+
+Chaque chiffre hexadécimal correspond exactement à quatre bits :
+\[
+(A)_{16}=(1010)_2,
+\qquad
+(F)_{16}=(1111)_2.
+\]
+
+\subsection{Notations}
+
+Les notations courantes sont :
+\begin{itemize}
+  \item suffixe $_2$ pour le binaire ;
+  \item suffixe $_{10}$ pour le décimal ;
+  \item suffixe $_{16}$ ou préfixe \,\texttt{0x} pour l'hexadécimal.
+\end{itemize}
+
+\subsection{Changement de base}
+
+Pour passer du binaire au décimal, on utilise les puissances de 2.
+
+Pour passer du décimal au binaire, on effectue des divisions successives par 2 et on lit les restes dans l'ordre inverse.
+
+Pour passer du binaire à l'hexadécimal, on regroupe les bits par paquets de quatre à partir de la droite.
+
+\subsection{Addition en base 2}
+
+Les règles élémentaires sont :
+\[
+0+0=0,
+\quad
+0+1=1,
+\quad
+1+1=10,
+\quad
+1+1+1=11.
+\]
+
+Une retenue dépassant le nombre de bits disponibles constitue un débordement.
+
+\subsection{Nombres signés et complément à deux}
+
+Sur $n$ bits, un nombre signé en complément à deux appartient à l'intervalle
+\[
+-2^{n-1}\leq N\leq 2^{n-1}-1.
+\]
+
+Pour coder l'opposé d'un nombre positif :
+\begin{enumerate}
+  \item écrire sa valeur binaire sur $n$ bits ;
+  \item inverser tous les bits ;
+  \item ajouter 1.
+\end{enumerate}
+
+Le bit de poids fort indique le signe : 0 pour un nombre positif, 1 pour un nombre négatif.
+
+\subsection{Multiplication et division par $2^n$}
+
+Un décalage de $n$ bits vers la gauche correspond, en l'absence de débordement, à une multiplication par $2^n$.
+
+Un décalage de $n$ bits vers la droite correspond à une division entière par $2^n$. Pour les nombres signés, un décalage arithmétique conserve le bit de signe.
+
+\subsection{Autres codes}
+
+D'autres représentations peuvent être utilisées :
+\begin{itemize}
+  \item code BCD, qui code séparément chaque chiffre décimal ;
+  \item code Gray, dans lequel deux valeurs successives ne diffèrent que d'un bit ;
+  \item code ASCII pour représenter des caractères.
+\end{itemize}
+
+% ============================================================================
+\section{Sources}\label{sec:elec-sources}
+
+Cette partie reprend les références et documentations techniques utilisées dans le document d'origine : documentations de capteurs, convertisseurs, filtres et composants électroniques. Les références détaillées seront conservées lors de l'intégration des figures et tableaux d'origine.
+
+% ============================================================================
+\section{Exercices du chapitre}\label{sec:elec-exercices}
+
+Les exercices du document source occupent les pages 93 à 135. Ils portent notamment sur :
+\begin{itemize}
+  \item l'analyse de chaînes d'acquisition ;
+  \item le choix et le conditionnement de capteurs ;
+  \item l'électrocinétique et les lois de Kirchhoff ;
+  \item la représentation spectrale ;
+  \item le calcul de fonctions de transfert de filtres ;
+  \item les gabarits et l'ordre des filtres ;
+  \item les CAN, CNA et l'échantillonnage ;
+  \item la numération et le complément à deux.
+\end{itemize}
+
+\begin{application}
+Les énoncés complets et leurs figures seront intégrés exercice par exercice à partir des pages 93 à 135 du document Word, afin de préserver les schémas et données numériques d'origine.
+\end{application}
+
+\section{Synthèse générale}\label{sec:elec-synthese-generale}
+
+\begin{itemize}
+  \item Un signal peut être étudié dans les domaines temporel et fréquentiel.
+  \item Un signal périodique possède un spectre discret constitué du fondamental et de ses harmoniques.
+  \item Un filtre est caractérisé par son gabarit, sa fonction de transfert, son gain et sa phase.
+  \item Le comportement limite des condensateurs et inductances permet d'identifier rapidement un filtre.
+  \item Le CAN quantifie et code les échantillons d'un signal analogique.
+  \item La fréquence d'échantillonnage doit respecter Shannon-Nyquist et le temps de conversion.
+  \item Le filtre anti-repliement limite le spectre avant le CAN.
+  \item Les bases 2 et 16 et le complément à deux sont indispensables au traitement numérique.
+\end{itemize}
