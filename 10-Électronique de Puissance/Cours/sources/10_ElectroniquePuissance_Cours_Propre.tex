@@ -1,0 +1,186 @@
+\chapter{Électronique de puissance}
+\labch{electronique-puissance}
+
+\begin{objectifs}
+\begin{itemize}
+\item Identifier la nature des sources et respecter leurs règles d'association.
+\item Modéliser les interrupteurs de puissance dans leurs états passant et bloqué.
+\item Étudier les hacheurs série, parallèle, deux quadrants et quatre quadrants.
+\item Déterminer valeurs moyenne et efficace, ondulation de courant et contraintes sur les composants.
+\item Analyser un redresseur monophasé non commandé et les puissances associées.
+\end{itemize}
+\end{objectifs}
+
+\section{Généralités sur l'électronique de puissance}
+L'énergie électrique se présente sous forme continue (DC) ou alternative (AC). L'électronique de puissance étudie les \textbf{convertisseurs statiques d'énergie} qui modifient la présentation de cette énergie sans pièce mobile : redresseurs, hacheurs, onduleurs et gradateurs.
+
+\begin{center}\TLChaineConvertisseursPuissance\end{center}
+
+Contrairement à l'électronique des courants faibles, qui traite principalement l'information, l'électronique de puissance traite la conversion et la distribution de l'énergie électrique.
+
+\subsection{Bras de pont et interrupteur idéal}
+Le composant élémentaire d'un convertisseur statique est l'interrupteur. Dans le modèle idéal :
+\[
+\begin{array}{c|cc}
+&u_K&i_K\\\hline
+\text{passant}&0&\text{imposé par le circuit}\\
+\text{bloqué}&\text{imposé par le circuit}&0
+\end{array}
+\]
+
+\begin{center}\TLBrasDePont\end{center}
+
+\subsection{Nature des sources}
+Une source de tension impose sa tension ; son courant dépend du circuit extérieur. Une source de courant impose son courant ; sa tension dépend du circuit extérieur.
+
+Les associations interdites sont :
+\begin{itemize}
+\item la mise en parallèle de deux sources de tension idéales de valeurs différentes ;
+\item la mise en série de deux sources de courant idéales de valeurs différentes ;
+\item l'ouverture brutale d'une source de courant ;
+\item le court-circuit d'une source de tension.
+\end{itemize}
+
+Une inductance tend à imposer la continuité du courant et un condensateur la continuité de la tension. Ils permettent donc de modifier la nature apparente d'une source.
+
+\subsection{Rapport cyclique}
+Pour un signal périodique de période $T$, passant à l'état haut pendant $\alpha T$, le rapport cyclique est :
+\[
+\alpha=\frac{t_{\mathrm{on}}}{T},\qquad 0\leq\alpha\leq1.
+\]
+\begin{center}\TLChronogrammePWM\end{center}
+
+\subsection{Valeur moyenne et valeur efficace}
+Pour une grandeur périodique $x(t)$ :
+\[
+X_{\mathrm{moy}}=\frac1T\int_0^T x(t)\,\mathrm dt,
+\qquad
+X_{\mathrm{eff}}=\sqrt{\frac1T\int_0^T x^2(t)\,\mathrm dt}.
+\]
+La valeur moyenne caractérise notamment la composante continue ; la valeur efficace traduit l'effet thermique dans une résistance.
+
+\section{Composants de puissance}
+Les composants usuels sont la diode, le transistor MOSFET, l'IGBT et le thyristor. On distingue :
+\begin{itemize}
+\item la caractéristique statique, qui décrit les états passant et bloqué ;
+\item la caractéristique dynamique, qui décrit les commutations spontanées ou commandées.
+\end{itemize}
+
+La diode commute spontanément selon les conditions électriques. Les transistors MOSFET et IGBT sont commandés à l'amorçage et au blocage. L'association d'un transistor et d'une diode antiparallèle donne un interrupteur réversible en courant.
+
+\subsection{Pertes et dimensionnement}
+Les pertes par conduction s'évaluent à partir de la chute de tension à l'état passant et du courant. Les pertes de commutation dépendent de la fréquence de découpage et des énergies dissipées à l'amorçage et au blocage :
+\[
+P_{\mathrm{com}}=f_s\left(E_{\mathrm{on}}+E_{\mathrm{off}}\right).
+\]
+Le dimensionnement impose de vérifier les contraintes maximales en tension, courant, puissance dissipée et température de jonction.
+
+\section{Méthode d'étude d'un convertisseur DC--DC}
+La démarche est systématique :
+\begin{enumerate}
+\item identifier les séquences de fonctionnement sur une période ;
+\item remplacer chaque interrupteur par son modèle passant ou bloqué ;
+\item écrire les lois électriques dans chaque séquence ;
+\item tracer tensions et courants ;
+\item appliquer la valeur moyenne nulle de la tension aux bornes d'une inductance en régime périodique ;
+\item calculer la valeur moyenne de sortie et l'ondulation du courant ;
+\item déterminer les contraintes sur les composants.
+\end{enumerate}
+
+\section{Hacheur série ou Buck}
+Le hacheur série convertit une tension continue en une tension moyenne plus faible.
+\begin{center}\TLHacheurBuck\end{center}
+
+Pour $0<t<\alpha T$, $K$ est passant et $u_L=E-u_s$. Pour $\alpha T<t<T$, $K$ est bloqué et la diode assure la continuité du courant : $u_L=-u_s$.
+En régime périodique :
+\[
+\langle u_L\rangle=0
+\quad\Longrightarrow\quad
+\boxed{U_s=\alpha E}.
+\]
+L'ondulation crête-à-crête du courant vaut :
+\[
+\Delta I=\frac{(E-U_s)\alpha T}{L}
+=\frac{E\alpha(1-\alpha)}{Lf_s}.
+\]
+Elle est maximale pour $\alpha=\tfrac12$.
+
+\section{Hacheur parallèle ou Boost}
+Le hacheur parallèle élève la tension moyenne de sortie.
+\begin{center}\TLHacheurBoost\end{center}
+
+Lorsque $K$ est passant, l'inductance emmagasine de l'énergie. Lorsqu'il est bloqué, l'inductance restitue cette énergie à la charge à travers la diode. En régime périodique idéal :
+\[
+\boxed{U_s=\frac{E}{1-\alpha}}.
+\]
+
+\section{Hacheur deux quadrants}
+Le hacheur deux quadrants permet une tension de sortie de signe fixé et un courant réversible. Il convient notamment aux phases motrices et génératrices d'une MCC.
+\begin{center}\TLHacheurDeuxQuadrants\end{center}
+
+Les commandes de $K_1$ et $K_2$ sont complémentaires afin d'éviter le court-circuit de la source. Selon le signe du courant, la conduction est assurée par un transistor ou par sa diode antiparallèle.
+
+\section{Hacheur quatre quadrants}
+Le pont complet autorise les deux signes de tension et de courant. Il permet donc le fonctionnement dans les quatre quadrants du plan $(u_s,i_s)$.
+\begin{center}\TLHacheurQuatreQuadrants\end{center}
+
+Avec une commande bipolaire, la tension moyenne de sortie peut s'écrire :
+\[
+\boxed{U_s=(2\alpha-1)E}.
+\]
+
+\section{Conversion indirecte}
+Les convertisseurs isolés utilisent un étage haute fréquence et un transformateur. Ils permettent l'adaptation du niveau de tension, l'isolement galvanique et parfois plusieurs sorties.
+
+\section{Convertisseurs AC--DC}
+Le redressement transforme une tension alternative en une tension unidirectionnelle. Le montage monophasé à pont de diodes, ou PD2, utilise quatre diodes.
+
+\begin{center}\TLPontDiodes\end{center}
+
+Pour une charge résistive idéale et une entrée sinusoïdale $u_e(t)=\widehat U\sin(\omega t)$ :
+\[
+u_s(t)=|u_e(t)|,
+\qquad
+U_{s,\mathrm{moy}}=\frac{2\widehat U}{\pi}.
+\]
+
+\section{Puissances en régime périodique}
+La puissance instantanée est $p(t)=u(t)i(t)$. La puissance active est :
+\[
+P=\frac1T\int_0^T u(t)i(t)\,\mathrm dt.
+\]
+En régime sinusoïdal :
+\[
+P=UI\cos\varphi,\qquad Q=UI\sin\varphi,\qquad S=UI.
+\]
+En présence d'harmoniques, la relation générale devient :
+\[
+S^2=P^2+Q^2+D^2,
+\]
+où $D$ est la puissance déformante. Le facteur de puissance est :
+\[
+\lambda=\frac{P}{S}.
+\]
+
+\section{Transformateur monophasé parfait}
+Pour un transformateur idéal :
+\[
+\frac{U_2}{U_1}=\frac{N_2}{N_1}=m,
+\qquad
+\frac{I_2}{I_1}=\frac1m,
+\qquad
+P_1=P_2.
+\]
+
+\section{Redresseur à absorption sinusoïdale}
+L'objectif est de rendre le courant absorbé quasi sinusoïdal et en phase avec la tension du réseau afin d'améliorer le facteur de puissance. Une structure classique associe un pont redresseur puis un étage Boost commandé. Des structures mono-étage réalisent simultanément redressement et correction du facteur de puissance.
+
+\section{Synthèse}
+\begin{itemize}
+\item Le respect de la nature des sources conditionne la structure du convertisseur.
+\item L'étude repose sur les séquences de commutation et les modèles équivalents.
+\item Le Buck abaisse la tension, le Boost l'élève.
+\item Les hacheurs deux et quatre quadrants rendent l'énergie réversible.
+\item Le pont PD2 réalise un redressement double alternance.
+\item Le dimensionnement doit intégrer contraintes électriques, pertes et thermique.
+\end{itemize}
