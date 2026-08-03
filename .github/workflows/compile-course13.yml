@@ -1,0 +1,25 @@
+name: Compiler le cours 13 MAS MS
+
+on:
+  push:
+    paths:
+      - '13-MAS-MS/Cours/**'
+      - 'Style/**'
+      - '.github/workflows/compile-course13.yml'
+  workflow_dispatch:
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Installer LaTeX
+        run: sudo apt-get update && sudo apt-get install -y texlive-latex-extra texlive-lang-french texlive-science latexmk
+      - name: Compiler
+        working-directory: 13-MAS-MS/Cours
+        run: latexmk -pdf -interaction=nonstopmode -halt-on-error 00_MAS_MS.tex
+      - name: Publier le PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: cours-13-mas-ms
+          path: 13-MAS-MS/Cours/00_MAS_MS.pdf
