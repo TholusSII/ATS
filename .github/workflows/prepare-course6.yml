@@ -1,0 +1,71 @@
+name: Préparer le cours 06 correction des systèmes asservis
+
+on:
+  push:
+    paths:
+      - .github/workflows/prepare-course6.yml
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Installer Pandoc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc
+
+      - name: Convertir le document Word
+        shell: bash
+        run: |
+          set -euo pipefail
+          course='06-Correction des Systèmes asservis/Cours'
+          rm -rf "$course/pandoc"
+          mkdir -p "$course/pandoc"
+          (
+            cd "$course/pandoc"
+            pandoc '../10-CorrectionSA2022.docx' \
+              --from=docx \
+              --to=latex \
+              --wrap=preserve \
+              --extract-media=. \
+              --output=contenu.tex
+            if [ -d media ]; then
+              mv media images
+              sed -i 's#media/#images/#g' contenu.tex
+            fi
+          )
+
+      - name: Analyser la structure
+        shell: bash
+        run: |
+          set -euo pipefail
+          course='06-Correction des Systèmes asservis/Cours'
+          tex="$course/pandoc/contenu.tex"
+          {
+            echo '=== STRUCTURE ==='
+            wc -l "$tex"
+            grep -nE '^\\(section|subsection|subsubsection|paragraph|subparagraph)' "$tex" || true
+            echo
+            echo '=== REPÈRES ==='
+            grep -nEi 'correcteur|proportionnel|intégral|integral|dériv|derive|avance|retard|phase|bode|marge|précision|rapidité|stabilité|exercice|question|source' "$tex" || true
+            echo
+            echo '=== IMAGES ==='
+            find "$course/pandoc/images" -type f 2>/dev/null | sort || true
+          } > "$course/STRUCTURE_COURS6.txt"
+
+      - name: Publier la première passe
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add '06-Correction des Systèmes asservis/Cours/pandoc' \
+                  '06-Correction des Systèmes asservis/Cours/STRUCTURE_COURS6.txt'
+          git commit -m 'Ajoute la première passe du cours 06'
+          git push
