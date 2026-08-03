@@ -2,15 +2,28 @@
 \usepackage[margin=8mm]{geometry}
 \usepackage[french]{babel}
 \usepackage{amsmath,amssymb}
-\makeatletter\def\input@path{{../../../Style/}}\makeatother
+\makeatletter
+\def\input@path{{../../../Style/}}
+\makeatother
 \input{TLPosterCarteMentale.sty}
 \IfFileExists{Notations_AF/Notations_AF.sty}{\input{Notations_AF/Notations_AF.sty}}{}
+\IfFileExists{rp-sysml.sty}{\input{rp-sysml.sty}}{}
 \pagestyle{empty}
+
 \begin{document}
 \begin{TLCarteMentale}{Analyse fonctionnelle}
-\TLBranche{Besoin}{Identifier le besoin, les utilisateurs, le contexte et la finalité du système.}
-\TLBranche{Exigences}{Décrire les fonctions de service, les contraintes, les critères et les niveaux attendus.}
-\TLBranche{SysML}{Exploiter les diagrammes de contexte, exigences, cas d'utilisation et blocs.}
-\TLBranche{Méthode}{Passer du besoin au cahier des charges puis vérifier la satisfaction des exigences.}
+\TLBranche{Besoin}{À qui le système rend-il service ? Sur quoi agit-il ? Dans quel but ?}
+\TLBranche{Frontière du système}{Délimiter ce qui appartient au système et identifier les éléments extérieurs.}
+\TLBranche{Parties prenantes}{Utilisateurs, opérateurs, mainteneurs, environnement et systèmes partenaires.}
+\TLBranche{Contexte}{Représenter les interactions externes : matière, énergie, information et contraintes.}
+\TLBranche{Cas d'utilisation}{Associer les acteurs aux services rendus par le système.}
+\TLBranche{Fonctions de service}{Décrire les services principaux et complémentaires sans imposer de solution.}
+\TLBranche{Contraintes}{Sécurité, réglementation, coût, ergonomie, énergie, environnement et maintenance.}
+\TLBranche{Exigences}{Formaliser ce que le système doit satisfaire et assurer la traçabilité.}
+\TLBranche{Critères et niveaux}{Rendre chaque fonction vérifiable par une grandeur mesurable et une valeur attendue.}
+\TLBranche{Cahier des charges}{Regrouper fonctions, contraintes, critères, niveaux, priorités et flexibilités.}
+\TLBranche{SysML}{Contexte, exigences, cas d'utilisation, définition de blocs et blocs internes.}
+\TLBranche{Vérification}{Contrôler que la solution respecte les exigences spécifiées.}
+\TLBranche{Validation}{S'assurer que le système répond réellement au besoin des parties prenantes.}
 \end{TLCarteMentale}
 \end{document}
