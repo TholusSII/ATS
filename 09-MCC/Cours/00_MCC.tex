@@ -1,0 +1,39 @@
+% ============================================================================
+% MOTEUR — COURS 09 : MACHINE À COURANT CONTINU
+% ============================================================================
+\RequirePackage{silence}
+\WarningFilter{xcolor}{Package option `usenames' is obsolete}
+\WarningFilter{french3.ldf}{Please load the "listings" package}
+\WarningFilter{french3.ldf}{footnotebackref package loaded}
+\WarningFilter{french3.ldf}{babel-french will NOT customise footnotes}
+
+\documentclass[fontsize=10pt,twoside=true,open=any]{kaobook}
+\usepackage[french]{babel}
+\newcommand{\TLCourseDefinitionFile}{09_MCC}
+
+\makeatletter
+\def\input@path{{../../Style/}}
+\makeatother
+\input{TLCours.sty}
+\input{Notations_Elec/Notations_Elec.sty}
+\input{Notations_Energetique/Notations_Energetique.sty}
+\input{Notations_Autom/Notations_Autom.sty}
+\input{TLElectromecanique.sty}
+\input{TLSystemesAsservis.sty}
+\input{TLMCC.sty}
+
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{array,booktabs}
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{3em}
+\makeindex[columns=3,title=Index alphabétique,intoc]
+
+\begin{document}
+\mainmatter
+\setchapterstyle{kao}
+\setcounter{margintocdepth}{\sectiontocdepth}
+\marginlayout
+\pagestyle{scrheadings}
+\input{\TLCourseDefinitionFile}
+\end{document}
