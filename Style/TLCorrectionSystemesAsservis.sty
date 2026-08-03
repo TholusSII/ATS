@@ -20,14 +20,14 @@
   \begin{tikzpicture}[auto,font=\small]
     \sbEntree{E}
     \sbComp[4]{Comp}{E}
-    \sbBlocL[4]{Cor}{Correcteur\\\(C(p)\)}{Comp}
-    \sbBlocL[4]{Proc}{Procédé\\\(G(p)\)}{Cor}
+    \sbBlocL[4]{Cor}{Correcteur \(C(p)\)}{Comp}
+    \sbBlocL[4]{Proc}{Procédé \(G(p)\)}{Cor}
     \sbSortie[4]{S}{Proc}
     \sbRelier[\(E(p)\)]{E}{Comp}
     \sbRelier[\(\varepsilon(p)\)]{Comp}{Cor}
     \sbRelier[\(U(p)\)]{Cor}{Proc}
     \sbRelier[\(S(p)\)]{Proc}{S}
-    \node[sbStyleBloc,below=2.3em of Proc] (Cap) {Capteur\\\(H(p)\)};
+    \node[sbStyleBloc,below=2.3em of Proc] (Cap) {Capteur \(H(p)\)};
     \draw[sbStyleLien] (Proc-S.south) |- (Cap.east);
     \draw[sbStyleLien] (Cap.west) -| node[pos=.27,below]{\(S_m(p)\)} (Comp.south);
     \node[font=\itshape,above=1.6em of Proc] (Pert) {Perturbation \(Q(p)\)};
@@ -71,9 +71,9 @@
   \begin{tikzpicture}[auto,font=\small]
     \sbEntree{E}
     \sbComp[4]{Cpos}{E}
-    \sbBlocL[4]{Kp}{Correcteur\\position}{Cpos}
+    \sbBlocL[4]{Kp}{Correcteur position}{Cpos}
     \sbComp[4]{Cvit}{Kp}
-    \sbBlocL[4]{Kv}{Correcteur\\vitesse}{Cvit}
+    \sbBlocL[4]{Kv}{Correcteur vitesse}{Cvit}
     \sbBlocL[4]{Mot}{Moteur}{Kv}
     \sbBlocL[4]{Int}{\(\dfrac{1}{p}\)}{Mot}
     \sbSortie[4]{S}{Int}
@@ -178,18 +178,18 @@
 }
 
 \NewDocumentCommand{\TLBodeCorrecteurPID}{O{1} O{10} O{1} O{0.1}}{%
-  % C(p)=K (1+Ti p)/(Ti p) (1+Td p)/(1+b Td p), avec Td=1 ici.
+  % C(p)=K (1+Ti p)/(Ti p) (1+Td p)/(1+b Td p).
   \begin{center}
   \begin{tikzpicture}[x=1.7cm,y=.04cm]
     \UnitedB\OrdBode{20}\semilog*{-2}{2}{-60}{60}
     \draw[Bode lines,domain=-2:2,samples=170,smooth]
-      plot (\x,{20*ln(abs(#1*sqrt(1+(#2*pow(10,\x))^2)/(#2*pow(10,\x))*sqrt(1+pow(10,\x)^2)/sqrt(1+(#4*pow(10,\x))^2)))/ln(10)});
+      plot (\x,{20*ln(abs(#1*sqrt(1+(#2*pow(10,\x))^2)/(#2*pow(10,\x))*sqrt(1+(#3*pow(10,\x))^2)/sqrt(1+(#4*#3*pow(10,\x))^2)))/ln(10)});
   \end{tikzpicture}
   \vspace{2mm}
   \begin{tikzpicture}[x=1.7cm,y=.022cm]
     \UniteDegre\OrdBode{45}\semilog*{-2}{2}{-180}{90}
     \draw[Bode lines,domain=-2:2,samples=170,smooth]
-      plot (\x,{atan(#2*pow(10,\x))-90+atan(pow(10,\x))-atan(#4*pow(10,\x))});
+      plot (\x,{atan(#2*pow(10,\x))-90+atan(#3*pow(10,\x))-atan(#4*#3*pow(10,\x))});
   \end{tikzpicture}
   \end{center}
 }
