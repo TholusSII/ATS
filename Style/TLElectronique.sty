@@ -21,62 +21,42 @@
 \end{tikzpicture}
 \end{center}}
 
-% Pont diviseur dessiné en TikZ pur pour éviter les incompatibilités
-% de syntaxe entre anciennes versions de circuitikz et MiKTeX.
+% Pont diviseur : composants conservés en circuitikz, bornes ouvertes explicites
+% pour compatibilité avec les anciennes versions de MiKTeX/circuitikz.
 \newcommand{\TLPontDiviseur}{%
 \begin{center}
-\begin{tikzpicture}[line width=0.8pt,font=\small]
-  % Générateur
-  \draw (0,0) -- (0,1.25);
-  \draw (0,2.75) -- (0,4);
-  \draw (0,2) circle (0.75);
-  \node at (0,2.28) {$+$};
-  \node at (0,1.72) {$-$};
-  \node[left] at (-0.75,2) {$E$};
-
-  % Conducteur supérieur et résistance R1
-  \draw (0,4) -- (2.3,4);
-  \draw (2.3,4) -- (2.3,3.55);
-  \draw (1.95,3.55) rectangle (2.65,2.45);
-  \node[right] at (2.65,3.0) {$R_1$};
-  \draw (2.3,2.45) -- (2.3,2);
-
-  % Nœud de sortie
-  \fill (2.3,2) circle (1.4pt);
-  \draw (2.3,2) -- (4.2,2);
-  \draw (4.2,2) circle (2.2pt);
-  \node[right] at (4.2,2) {$u_s$};
-
-  % Résistance R2 et retour
-  \draw (2.3,2) -- (2.3,1.55);
-  \draw (1.95,1.55) rectangle (2.65,0.45);
-  \node[right] at (2.65,1.0) {$R_2$};
-  \draw (2.3,0.45) -- (2.3,0);
-  \draw (2.3,0) -- (0,0);
-
-  % Masse
-  \draw (0,0) -- (0,-0.25);
-  \draw (-0.35,-0.25) -- (0.35,-0.25);
-  \draw (-0.23,-0.38) -- (0.23,-0.38);
-  \draw (-0.11,-0.51) -- (0.11,-0.51);
-\end{tikzpicture}
+\begin{circuitikz}[european resistors]
+\draw (0,0) node[ground]{} to[V,l=$E$] (0,4)
+      to[R,l=$R_1$] (3,4) -- (3,2)
+      to[R,l=$R_2$] (3,0) -- (0,0);
+\draw (3,2) -- (4.2,2);
+\node[ocirc] at (4.2,2) {};
+\node[right] at (4.2,2) {$u_s$};
+\end{circuitikz}
 \end{center}}
 
 \newcommand{\TLFiltreRCPasseBas}{%
 \begin{center}
 \begin{circuitikz}[european resistors]
-\draw (0,2) node[left]{$u_e$} to[short,o-] (1,2) to[R,l=$R$] (4,2)
-      to[short,-o] (5,2) node[right]{$u_s$};
+\node[ocirc] at (0,2) {};
+\node[left] at (0,2) {$u_e$};
+\draw (0,2) -- (1,2) to[R,l=$R$] (4,2) -- (5,2);
+\node[ocirc] at (5,2) {};
+\node[right] at (5,2) {$u_s$};
 \draw (4,2) to[C,l=$C$] (4,0) node[ground]{};
-\draw (1,0) node[ground]{} to[short,-o] (0,0);
+\draw (1,0) node[ground]{} -- (0,0);
+\node[ocirc] at (0,0) {};
 \end{circuitikz}
 \end{center}}
 
 \newcommand{\TLFiltreRCPasseHaut}{%
 \begin{center}
 \begin{circuitikz}[european resistors]
-\draw (0,2) node[left]{$u_e$} to[short,o-] (1,2) to[C,l=$C$] (4,2)
-      to[short,-o] (5,2) node[right]{$u_s$};
+\node[ocirc] at (0,2) {};
+\node[left] at (0,2) {$u_e$};
+\draw (0,2) -- (1,2) to[C,l=$C$] (4,2) -- (5,2);
+\node[ocirc] at (5,2) {};
+\node[right] at (5,2) {$u_s$};
 \draw (4,2) to[R,l=$R$] (4,0) node[ground]{};
 \end{circuitikz}
 \end{center}}
@@ -85,9 +65,13 @@
 \begin{center}
 \begin{circuitikz}[american voltages]
 \draw (4,2) node[op amp] (op) {};
-\draw (0,1.5) node[left]{$u_e$} to[short,o-] (1,1.5) to[R,l=$R_1$] (op.-);
+\node[ocirc] at (0,1.5) {};
+\node[left] at (0,1.5) {$u_e$};
+\draw (0,1.5) -- (1,1.5) to[R,l=$R_1$] (op.-);
 \draw (op.+) -- ++(0,-1) node[ground]{};
-\draw (op.out) to[short,-o] ++(1.5,0) node[right]{$u_s$};
+\draw (op.out) -- ++(1.5,0) coordinate (sortieinv);
+\node[ocirc] at (sortieinv) {};
+\node[right] at (sortieinv) {$u_s$};
 \draw (op.out) -- ++(0,1.5) to[R,l=$R_2$] ++(-3.5,0) |- (op.-);
 \end{circuitikz}
 \end{center}}
@@ -96,8 +80,12 @@
 \begin{center}
 \begin{circuitikz}[american voltages]
 \draw (4,2) node[op amp] (op) {};
-\draw (0,2.5) node[left]{$u_e$} to[short,o-] (op.+);
-\draw (op.out) to[short,-o] ++(1.5,0) node[right]{$u_s$};
+\node[ocirc] at (0,2.5) {};
+\node[left] at (0,2.5) {$u_e$};
+\draw (0,2.5) -- (op.+);
+\draw (op.out) -- ++(1.5,0) coordinate (sortienoninv);
+\node[ocirc] at (sortienoninv) {};
+\node[right] at (sortienoninv) {$u_s$};
 \draw (op.-) -- ++(-1,0) coordinate (n);
 \draw (n) to[R,l_=$R_1$] ++(0,-2) node[ground]{};
 \draw (op.out) -- ++(0,1.5) to[R,l=$R_2$] ++(-3.5,0) |- (n);
@@ -110,8 +98,12 @@
 \draw (0,0) to[V,l=$E$] (0,4) -- (2,4);
 \draw (2,4) to[R,l=$R_1$] (2,2) to[R,l=$R_2$] (2,0) -- (0,0);
 \draw (2,4) -- (5,4) to[R,l=$R_3$] (5,2) to[R,l=$R_4$] (5,0) -- (2,0);
-\draw (2,2) to[short,-o] (3,2) node[below]{$A$};
-\draw (5,2) to[short,-o] (4,2) node[below]{$B$};
+\draw (2,2) -- (3,2);
+\node[ocirc] at (3,2) {};
+\node[below] at (3,2) {$A$};
+\draw (5,2) -- (4,2);
+\node[ocirc] at (4,2) {};
+\node[below] at (4,2) {$B$};
 \draw[<->] (3,2.35)--(4,2.35) node[midway,above]{$u_{AB}$};
 \end{circuitikz}
 \end{center}}
