@@ -5,12 +5,26 @@
 \makeatletter\def\input@path{{../../../Style/}}\makeatother
 \input{TLPosterCarteMentale.sty}
 \IfFileExists{TLTransmetteurs.sty}{\input{TLTransmetteurs.sty}}{}
+\IfFileExists{Notations_Cinematique/Notations_Cinematique.sty}{\input{Notations_Cinematique/Notations_Cinematique.sty}}{}
+\IfFileExists{Notations_Energetique/Notations_Energetique.sty}{\input{Notations_Energetique/Notations_Energetique.sty}}{}
 \pagestyle{empty}
 \begin{document}
 \begin{TLCarteMentale}{Modélisation des transmetteurs}
-\TLBranche{Fonction}{Adapter vitesse, couple, effort ou mouvement dans une chaîne d'énergie.}
-\TLBranche{Transmetteurs}{Engrenages, poulies-courroies, chaînes, vis-écrou et trains épicycloïdaux.}
-\TLBranche{Rapports}{Déterminer le rapport de transmission avec une convention de signe cohérente.}
-\TLBranche{Puissance}{Relier efforts et vitesses en tenant compte du rendement et de la réversibilité.}
+\TLBranche{Fonction}{Adapter vitesse, couple, effort, sens ou nature du mouvement.}
+\TLBranche{Entrée / sortie}{Identifier clairement l'organe moteur, l'effecteur et les variables associées.}
+\TLBranche{Rapport}{Définir $r=\omega_s/\omega_e$ avec une convention de signe explicite.}
+\TLBranche{Engrenage}{Pour deux roues extérieures : $\omega_2/\omega_1=-Z_1/Z_2$.}
+\TLBranche{Train simple}{Multiplier les rapports élémentaires et contrôler le nombre d'inversions.}
+\TLBranche{Courroie}{Sans glissement : $R_1\omega_1=R_2\omega_2$.}
+\TLBranche{Chaîne}{Le rapport dépend des nombres de dents ; le sens est généralement conservé.}
+\TLBranche{Vis-écrou}{Une rotation de $2\pi$ produit une translation égale au pas $p$.}
+\TLBranche{Épicycloïdal}{Utiliser la relation de Willis et identifier l'organe fixe.}
+\TLBranche{Puissance}{Rotation : $P=C\omega$ ; translation : $P=Fv$.}
+\TLBranche{Rendement}{$\eta=P_{utile}/P_{absorbée}$ ; les pertes modifient le couple transmis.}
+\TLBranche{Réversibilité}{Vérifier si la sortie peut entraîner l'entrée.}
+\TLBranche{Frottement}{Il réduit le rendement et peut rendre certains mécanismes irréversibles.}
+\TLBranche{Sens de rotation}{Déduit des contacts extérieurs/intérieurs et du chemin de transmission.}
+\TLBranche{Contrôles}{Vérifier dimensions, signe, ordre de grandeur et cohérence énergétique.}
+\TLBranche{Méthode}{Identifier, modéliser, écrire les rapports, composer, puis valider.}
 \end{TLCarteMentale}
 \end{document}
