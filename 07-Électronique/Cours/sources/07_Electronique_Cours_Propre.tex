@@ -1,64 +1,227 @@
 % ============================================================================
-% COURS 07 — ACQUISITION ET TRAITEMENT DU SIGNAL
+% COURS 07 — ACQUISITION ET TRAITEMENT DE L'INFORMATION
+% Reprise fidèle du document 11-AcquisitionTraitementSignal2022.docx
 % ============================================================================
+
+\section*{Objectifs du cours}
+
+Ce cours donne les démarches et les outils nécessaires à l'étude des chaînes d'information.
+
+\subsection*{Savoirs}
+
+À l'issue du cours, il faut connaître :
+\begin{itemize}
+  \item la structure d'une chaîne d'acquisition : capteur, conditionneur, amplificateur, filtre, convertisseur analogique-numérique, unité de traitement et convertisseur numérique-analogique ;
+  \item la différence entre résolution et précision ;
+  \item les impédances et admittances des dipôles de base ;
+  \item les différents types de filtres ;
+  \item la méthode permettant de déterminer rapidement le comportement d'un filtre aux basses et aux hautes fréquences ;
+  \item le théorème de Shannon-Nyquist ;
+  \item le filtre anti-repliement et son utilité ;
+  \item la définition du quantum d'un CAN et d'un CNA ;
+  \item les méthodes permettant de déterminer la résolution d'un CAN ou d'un CNA ;
+  \item les bases 2, 10 et 16 et les méthodes de changement de base ;
+  \item le codage en complément à deux et ses particularités ;
+  \item les opérations simples en base 2 ;
+  \item la notion de temps de conversion d'un CAN et sa relation avec la période d'échantillonnage.
+\end{itemize}
+
+\subsection*{Savoir-faire}
+
+Il faut savoir :
+\begin{itemize}
+  \item identifier les capteurs utilisés dans la chaîne d'information d'un système ;
+  \item identifier les constituants matériels de la chaîne d'information et les fonctions techniques réalisées ;
+  \item définir la nature des informations d'entrée et de sortie d'un capteur ;
+  \item justifier le choix d'un capteur au regard du cahier des charges ;
+  \item extraire d'une documentation les valeurs numériques caractéristiques des solutions retenues ;
+  \item analyser et mettre en œuvre une association de fonctions électroniques réalisant le conditionnement d'un signal ;
+  \item décrire et représenter les évolutions temporelles et fréquentielles des signaux ;
+  \item tracer le spectre d'un signal à partir de son expression temporelle et réaliser l'opération inverse ;
+  \item déterminer la fonction de transfert d'un filtre passif ;
+  \item prévoir le comportement d'un filtre aux basses et hautes fréquences ;
+  \item tracer le spectre de sortie d'un filtre à partir du spectre d'entrée ;
+  \item tracer le gabarit d'un filtre et déterminer l'ordre minimal associé ;
+  \item déterminer la fréquence minimale d'échantillonnage ;
+  \item déterminer le quantum, la résolution et le nombre de bits d'un CAN ou d'un CNA ;
+  \item déterminer le gain d'un amplificateur permettant d'obtenir une résolution donnée ;
+  \item coder une valeur en bases 2, 10 et 16 ainsi qu'en complément à deux.
+\end{itemize}
 
 \section{Chaîne d'acquisition}\label{sec:elec-chaine}
 
-Une chaîne d'acquisition transforme une grandeur physique en une information exploitable par une unité de traitement. Elle comprend généralement un capteur, un conditionneur analogique, un dispositif d'échantillonnage, un convertisseur analogique-numérique et un traitement numérique.
+\subsection{Introduction}
+
+Tous les systèmes pluritechniques ont besoin de contrôler de nombreux paramètres physiques : température, force, vitesse, position, déplacement, pression ou luminosité. À chacune de ces grandeurs peuvent correspondre un ou plusieurs types de capteurs, fondés sur des phénomènes physiques différents : variation de résistance, variation d'induction magnétique, effet Hall, effet piézoélectrique, etc.
+
+Le capteur fournit un signal électrique — tension, courant ou variation d'impédance — image de la grandeur physique mesurée. Des circuits électroniques mettent ensuite en forme ce signal avant son exploitation par une unité de traitement : microcontrôleur, automate ou ordinateur.
 
 \TLChaineAcquisition
 
-Le capteur fournit une grandeur électrique, souvent une tension ou un courant, liée à la grandeur mesurée. Le conditionnement adapte ensuite ce signal : amplification, filtrage, décalage de niveau, linéarisation ou adaptation d'impédance.
+La chaîne d'acquisition peut comporter les fonctions suivantes :
+\begin{center}
+\textbf{capteur et conditionneur $\rightarrow$ amplification $\rightarrow$ filtrage $\rightarrow$ CAN $\rightarrow$ unité de traitement $\rightarrow$ CNA.}
+\end{center}
 
-\section{Signaux analogiques et numériques}\label{sec:elec-signaux}
+L'information fournie à l'unité de traitement peut se présenter sous trois formes :
+\begin{itemize}
+  \item signal analogique ;
+  \item signal logique ;
+  \item signal numérique.
+\end{itemize}
 
-Un signal analogique est continu en temps et en amplitude. Un signal numérique est décrit par une suite de nombres obtenus après échantillonnage et quantification.
+\subsection{Nature du signal : analogique, logique et numérique}
 
-Pour un signal périodique de période $T$, la fréquence vaut
-\[
-f=\frac{1}{T}.
-\]
-La pulsation associée est
-\[
-\omega=2\pi f.
-\]
+Toutes les grandeurs qui nous entourent sont initialement analogiques : leur valeur est définie à chaque instant et peut prendre une infinité de valeurs. Cette forme est incompatible avec les seuls états « 0 » et « 1 » compris par une unité numérique.
 
-Une tension sinusoïdale s'écrit sous la forme
-\[
-u(t)=U_m\cos(\omega t+\varphi).
-\]
-Sa valeur efficace est
-\[
-U_{\mathrm{eff}}=\frac{U_m}{\sqrt 2}.
-\]
+Deux conversions sont alors possibles :
+\begin{itemize}
+  \item convertir l'information en un signal logique, ou signal tout ou rien ;
+  \item convertir l'information en un signal numérique.
+\end{itemize}
 
-\section{Capteurs résistifs et ponts de mesure}\label{sec:elec-capteurs}
+\subsubsection{Signal logique ou tout ou rien}
 
-De nombreux capteurs modifient une résistance en fonction de la grandeur mesurée : thermistance, jauge de déformation, photorésistance ou potentiomètre.
+Un signal logique est obtenu en comparant le signal analogique à un seuil. Selon que la grandeur est inférieure ou supérieure à ce seuil, la sortie vaut « 0 » ou « 1 ». Cette transformation rend l'information directement exploitable par l'unité de traitement, mais elle fait perdre les détails relatifs aux variations de la grandeur analogique.
 
-\subsection{Pont diviseur de tension}
+\paragraph{Exemple du destructeur d'aiguilles.}
+Le destructeur d'aiguilles utilise un capteur infrarouge constitué d'une diode émettrice et d'une photodiode réceptrice. La présence ou l'absence de l'embase est interprétée par le microcontrôleur sous la forme d'un signal tout ou rien.
 
-\TLPontDiviseur
+\subsubsection{Signal numérique}
 
-Lorsque la sortie n'est pas chargée,
-\[
-u_s=E\frac{R_2}{R_1+R_2}.
-\]
-Si $R_2$ est un capteur résistif, la tension de sortie dépend directement de la grandeur mesurée. La présence d'une charge en sortie modifie cependant la relation : il faut vérifier que l'impédance d'entrée de l'étage suivant est suffisamment grande.
+Pour conserver davantage d'information qu'avec un signal logique, chaque valeur du signal analogique est codée par une suite de zéros et de uns appelée mot binaire.
 
-\subsection{Pont de Wheatstone}
+Le signal est prélevé à intervalles réguliers : c'est l'échantillonnage. Cette opération entraîne une perte d'information, qui peut être limitée en choisissant une fréquence d'échantillonnage suffisante. Un compromis reste nécessaire : une fréquence trop élevée augmente la quantité de données à traiter et à mémoriser.
 
-\TLPontWheatstone
+\subsection{Fonction « Traiter »}
 
-La tension de déséquilibre vaut
-\[
-u_{AB}=E\left(\frac{R_2}{R_1+R_2}-\frac{R_4}{R_3+R_4}\right).
-\]
-Le pont est équilibré lorsque
-\[
-R_1R_4=R_2R_3.
-\]
-Ce montage est particulièrement adapté aux jauges de déformation, car il permet de mesurer de faibles variations relatives de résistance tout en compensant certains effets communs, notamment la température.
+La fonction « Traiter » dépend de la nature des informations :
+\begin{itemize}
+  \item les systèmes logiques traitent des informations bit à bit à l'aide de tables de vérité ou de graphes d'états ;
+  \item les systèmes numériques traitent des mots binaires par programmation à partir d'algorithmes ou d'algorigrammes.
+\end{itemize}
+
+\section{Généralités sur les capteurs}\label{sec:elec-capteurs}
+
+\subsection{Structure d'un capteur et vocabulaire utilisé}
+
+Un capteur convertit une grandeur physique, appelée \emph{mesurande}, en un signal électrique image de ses variations. On parle aussi de transducteur. Dans la pratique, plusieurs conversions successives peuvent être nécessaires.
+
+Le vocabulaire utilisé est le suivant :
+\begin{description}
+  \item[Mesurande :] grandeur physique que l'on souhaite mesurer : température, pression, force, position, etc.
+  \item[Corps d'épreuve :] élément réagissant à la grandeur physique et fournissant une mesurande secondaire exploitable.
+  \item[Transducteur :] élément lié au corps d'épreuve et transformant la mesurande secondaire en tension, courant ou variation d'impédance.
+  \item[Conditionneur :] circuit électronique délivrant un signal exploitable à partir du signal brut du capteur. Il peut comporter une amplification, une mise en forme, un filtrage, un CAN ou un CNA.
+\end{description}
+
+\subsection{Différents capteurs}
+
+Les systèmes mettent en œuvre de nombreux capteurs :
+\begin{itemize}
+  \item déplacements : potentiomètres résistifs, capteurs inductifs ou capacitifs, capteurs de proximité ;
+  \item efforts et déformations : jauges d'extensiométrie, capteurs piézoélectriques ;
+  \item courant : capteurs à effet Hall ;
+  \item vitesse et position : génératrices tachymétriques, codeurs incrémentaux ou absolus, potentiomètres, résolveurs, tachymètres optiques ;
+  \item pression, humidité et couple ;
+  \item température : thermocouples, thermistances CTN et CTP, sondes Pt100 ;
+  \item optique : photorésistances et fibres optiques.
+\end{itemize}
+
+\subsubsection{Classification par la nature du signal de sortie}
+
+On distingue les capteurs analogiques, logiques et numériques. Un capteur analogique délivre un signal variant continûment. Un capteur intelligent peut intégrer toute la chaîne d'acquisition et communiquer directement avec un réseau ou un bus de terrain.
+
+\subsubsection{Classification par le principe de transduction}
+
+On distingue :
+\begin{itemize}
+  \item les capteurs passifs, pour lesquels la mesurande agit sur la résistance, l'inductance ou la capacité du transducteur ;
+  \item les capteurs actifs, qui produisent directement une tension, un courant ou une charge électrique.
+\end{itemize}
+
+Quelques effets physiques classiques sont résumés ci-dessous.
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Mesurande & Effet utilisé & Grandeur électrique obtenue \\
+\midrule
+Température & thermoélectricité & tension \\
+Flux optique & photoémission & courant \\
+Température & pyroélectricité & charge \\
+Force, pression, accélération & piézoélectricité & charge \\
+Position & effet Hall & tension \\
+Vitesse & induction électromagnétique & tension \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Caractéristiques d'un capteur}
+
+Le choix d'un capteur résulte d'un compromis entre plusieurs caractéristiques :
+\begin{itemize}
+  \item étendue de mesure ;
+  \item résolution ;
+  \item sensibilité ;
+  \item précision ;
+  \item rapidité ;
+  \item coût ;
+  \item bande passante.
+\end{itemize}
+
+\begin{description}
+  \item[Étendue de mesure :] valeurs extrêmes accessibles à la grandeur mesurée.
+  \item[Résolution :] plus petite variation de la grandeur d'entrée que le capteur peut déceler.
+  \item[Sensibilité :] variation du signal de sortie rapportée à une variation de la grandeur mesurée ; elle correspond localement à la dérivée de la caractéristique entrée-sortie.
+  \item[Précision :] aptitude du capteur à fournir une valeur proche de la valeur vraie.
+  \item[Rapidité :] temps nécessaire pour que la sortie réagisse à une variation de l'entrée.
+  \item[Bande passante :] intervalle de fréquences dans lequel le capteur fournit une mesure exploitable.
+\end{description}
+
+\begin{center}
+\fbox{\parbox{0.85\linewidth}{\centering\textbf{Il faut bien distinguer la résolution, qui caractérise la plus petite variation détectable, et la précision, qui caractérise la proximité de la valeur mesurée avec la valeur vraie.}}}
+\end{center}
+
+\subsection{Conditionnement}
+
+Les signaux issus des capteurs sont souvent faibles, parfois de l'ordre de quelques millivolts. Ils doivent être amplifiés avant d'être transmis à l'unité de traitement. Des convertisseurs peuvent aussi modifier la nature du signal : courant-tension, fréquence-tension, charge-tension, etc.
+
+\subsection{Capteurs et conditionneurs classiques}
+
+Quelques associations usuelles doivent être connues :
+\begin{itemize}
+  \item jauges de contraintes associées à un pont de Wheatstone ;
+  \item accéléromètres utilisés pour mesurer une accélération ou détecter le sens d'un mouvement ;
+  \item sondes de température Pt100, CTN ou CTP, parfois associées à des résistances de linéarisation ;
+  \item capteurs de courant à effet Hall, utiles pour réaliser une boucle d'asservissement en courant.
+\end{itemize}
+
+\subsubsection{Application : accéléromètre ADXL335}
+
+On utilise un accéléromètre ADXL335 pour mesurer une accélération maximale $\gamma_{nc,\max}=\SI{1.2}{\metre\per\second\squared}$. Le composant est alimenté sous $\SI{3}{\volt}$ et consomme $\SI{350}{\micro\ampere}$. Sa sensibilité est de $\SI{300}{\milli\volt\per g}$, sa plage de linéarité est de $\pm 3g$ et sa sortie vaut $\SI{1.5}{\volt}$ pour une accélération nulle.
+
+\begin{enumerate}
+  \item Déterminer la plage de tension correspondant au domaine de linéarité.
+  \item Convertir ce domaine de linéarité en $\si{\metre\per\second\squared}$.
+  \item Déterminer la tension mesurée pour une accélération de $\SI{1.2}{\metre\per\second\squared}$.
+  \item Calculer la puissance consommée par le dispositif.
+\end{enumerate}
+
+\subsubsection{Application : mesure de température}
+
+On souhaite mesurer la température d'une pièce entre $\SI{0}{\degreeCelsius}$ et $\SI{50}{\degreeCelsius}$ à l'aide d'un capteur donné pour une plage de $-\SI{50}{\degreeCelsius}$ à $\SI{100}{\degreeCelsius}$.
+
+\begin{enumerate}
+  \item Définir les caractéristiques nécessaires au choix de ce capteur.
+  \item Préciser les critères permettant de comparer plusieurs solutions.
+  \item À partir de la loi $R(T)$ fournie par la documentation du capteur, déterminer s'il s'agit d'une thermistance CTN ou CTP.
+\end{enumerate}
+
+% -----------------------------------------------------------------------------
+% La suite du cours reste provisoirement conservée ; elle sera reprise dans
+% l'ordre exact du document original lors des itérations suivantes.
+% -----------------------------------------------------------------------------
 
 \section{Amplificateur opérationnel}\label{sec:elec-aop}
 
@@ -70,154 +233,58 @@ u_+=u_-.
 \]
 
 \subsection{Montage inverseur}
-
 \TLAOPInverseur
-
-La loi des nœuds au niveau de l'entrée inverseuse conduit à
 \[
 \boxed{\frac{u_s}{u_e}=-\frac{R_2}{R_1}}.
 \]
-Le signe négatif traduit une opposition de phase entre l'entrée et la sortie.
 
 \subsection{Montage non-inverseur}
-
 \TLAOPNonInverseur
-
-Le gain est
 \[
 \boxed{\frac{u_s}{u_e}=1+\frac{R_2}{R_1}}.
 \]
-Ce montage présente une grande impédance d'entrée et convient donc bien à l'adaptation d'un capteur peu puissant.
-
-\subsection{Limites réelles}
-
-Un AOP réel est limité par ses tensions d'alimentation, son courant de sortie, sa bande passante et sa vitesse de balayage. La sortie sature si la tension demandée dépasse les possibilités du composant.
 
 \section{Filtrage analogique}\label{sec:elec-filtrage}
 
-Un filtre modifie le contenu fréquentiel d'un signal. On distingue les filtres passe-bas, passe-haut, passe-bande et coupe-bande.
-
 \subsection{Filtre RC passe-bas}
-
 \TLFiltreRCPasseBas
-
-La fonction de transfert est
 \[
-H(p)=\frac{U_s(p)}{U_e(p)}=\frac{1}{1+RCp}.
-\]
-La pulsation de coupure et la fréquence de coupure valent
-\[
-\omega_c=\frac{1}{RC},
+H(p)=\frac{1}{1+RCp},
 \qquad
 f_c=\frac{1}{2\pi RC}.
 \]
-À la fréquence de coupure, le gain vaut $-3$ dB. Au-delà, la pente asymptotique est de $-20$ dB par décade.
 
 \subsection{Filtre RC passe-haut}
-
 \TLFiltreRCPasseHaut
-
-La fonction de transfert est
 \[
 H(p)=\frac{RCp}{1+RCp}.
 \]
-La fréquence de coupure est identique :
-\[
-f_c=\frac{1}{2\pi RC}.
-\]
-Le filtre atténue les basses fréquences et transmet les hautes fréquences.
-
-\subsection{Choix d'un filtre anti-repliement}
-
-Avant un convertisseur analogique-numérique, un filtre passe-bas limite le spectre du signal afin d'éviter le repliement spectral. Sa fréquence de coupure doit être compatible avec la fréquence d'échantillonnage.
 
 \section{Échantillonnage}\label{sec:elec-echantillonnage}
 
-L'échantillonnage consiste à relever la valeur du signal à intervalles réguliers $T_e$. La fréquence d'échantillonnage est
-\[
-f_e=\frac{1}{T_e}.
-\]
-
 \TLEchantillonnageSignal
-
-Pour reconstruire sans ambiguïté un signal limité à une fréquence maximale $f_{\max}$, le théorème de Shannon impose
 \[
+f_e=\frac{1}{T_e},
+\qquad
 \boxed{f_e>2f_{\max}}.
 \]
-Dans la pratique, on choisit souvent une fréquence nettement plus élevée afin de faciliter le filtrage et d'améliorer la représentation temporelle.
-
-Lorsque cette condition n'est pas respectée, des composantes hautes fréquences apparaissent à tort dans la bande utile : c'est le repliement spectral.
 
 \section{Conversion analogique-numérique}\label{sec:elec-can}
 
-Un convertisseur analogique-numérique code une tension analogique sur $N$ bits. Le nombre de niveaux disponibles est
-\[
-2^N.
-\]
-Pour une pleine échelle comprise entre $U_{\min}$ et $U_{\max}$, le quantum vaut approximativement
+Pour un convertisseur sur $N$ bits et une plage $[U_{\min},U_{\max}]$,
 \[
 q=\frac{U_{\max}-U_{\min}}{2^N}.
 \]
-L'erreur de quantification est généralement comprise entre $-q/2$ et $+q/2$.
-
-La valeur numérique idéale associée à une tension $u_e$ est
-\[
-C=\left\lfloor\frac{u_e-U_{\min}}{q}\right\rfloor.
-\]
-Il faut également vérifier la saturation : une tension située hors de la plage admissible est codée sur la valeur minimale ou maximale.
 
 \section{Conversion numérique-analogique}\label{sec:elec-cna}
 
-Un convertisseur numérique-analogique produit une tension ou un courant proportionnel au mot binaire appliqué en entrée. Après conversion, un filtre de reconstruction permet de lisser le signal en supprimant les composantes liées au maintien d'ordre zéro.
-
-\section{Conditionnement d'un capteur}\label{sec:elec-conditionnement}
-
-La conception d'une chaîne de conditionnement suit une démarche systématique :
-\begin{enumerate}
-  \item identifier la plage du capteur ;
-  \item déterminer la plage admissible du convertisseur ;
-  \item supprimer une éventuelle composante continue ;
-  \item amplifier le signal utile ;
-  \item filtrer les fréquences indésirables ;
-  \item vérifier les saturations et les impédances ;
-  \item choisir la fréquence d'échantillonnage et la résolution du CAN.
-\end{enumerate}
-
-Pour adapter un signal compris entre $U_{e,\min}$ et $U_{e,\max}$ à une plage $[U_{s,\min},U_{s,\max}]$, on recherche une loi affine
-\[
-u_s=a u_e+b
-\]
-avec
-\[
-a=\frac{U_{s,\max}-U_{s,\min}}{U_{e,\max}-U_{e,\min}},
-\qquad
-b=U_{s,\min}-aU_{e,\min}.
-\]
-
-\section{Bruit et qualité de mesure}\label{sec:elec-bruit}
-
-Le bruit peut provenir du capteur, de l'électronique, de l'alimentation ou de l'environnement électromagnétique. Pour améliorer la qualité de mesure, on peut :
-\begin{itemize}
-  \item utiliser un câblage différentiel ;
-  \item réduire les boucles de masse ;
-  \item blinder les liaisons sensibles ;
-  \item filtrer les alimentations ;
-  \item limiter la bande passante au strict nécessaire ;
-  \item moyenner plusieurs mesures numériques.
-\end{itemize}
-
-Le rapport signal sur bruit est souvent exprimé en décibels :
-\[
-\mathrm{RSB}_{\mathrm{dB}}=20\log_{10}\left(\frac{U_{\mathrm{signal}}}{U_{\mathrm{bruit}}}\right).
-\]
+Un convertisseur numérique-analogique produit une tension ou un courant proportionnel au mot binaire appliqué en entrée.
 
 \section{À retenir}\label{sec:elec-retenir}
 
 \begin{itemize}
-  \item Une chaîne d'acquisition associe capteur, conditionnement, échantillonnage, conversion et traitement.
-  \item Les montages AOP permettent d'amplifier, sommer, décaler ou adapter un signal.
-  \item Les filtres RC du premier ordre possèdent une fréquence de coupure $f_c=1/(2\pi RC)$.
-  \item La fréquence d'échantillonnage doit être supérieure au double de la fréquence maximale du signal.
-  \item La résolution d'un CAN dépend du nombre de bits et de sa pleine échelle.
-  \item Les saturations, les impédances, le bruit et l'incertitude doivent être vérifiés sur la chaîne complète.
+  \item Une chaîne d'acquisition associe capteur, conditionnement, filtrage, conversion et traitement.
+  \item La nature analogique, logique ou numérique de l'information conditionne son traitement.
+  \item Le choix d'un capteur repose sur son étendue, sa résolution, sa précision, sa sensibilité, sa rapidité et sa bande passante.
+  \item Le conditionnement adapte le signal du capteur à l'unité de traitement.
 \end{itemize}
