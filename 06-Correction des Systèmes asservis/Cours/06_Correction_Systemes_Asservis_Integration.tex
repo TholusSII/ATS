@@ -1,0 +1,98 @@
+% Couche d'intégration de la conversion Word/Pandoc du cours 06.
+% Les sources normalisées restent lisibles ; les images sont sécurisées ici.
+
+\makeatletter
+\let\TLSixOriginalIncludeGraphics\includegraphics
+\newif\ifTLSixVectorGraphic
+
+\newcommand{\TLSixMissingGraphic}[1]{%
+  \begin{tikzpicture}[baseline=(current bounding box.center)]
+    \node[
+      draw=TLCoverBlue!55,
+      rounded corners=1mm,
+      fill=TLCoverBlue!4,
+      text=TLCoverBlue!80!black,
+      align=center,
+      font=\sffamily\scriptsize,
+      inner sep=2mm,
+      text width=27mm
+    ] {Illustration vectorielle\\non convertie\\\ttfamily #1};
+  \end{tikzpicture}%
+}
+
+\newcommand{\TLSixPlaceOriginal}[3]{%
+  \ifinner
+    \ifdim\linewidth<12mm
+      \TLSixOriginalIncludeGraphics[width=8mm,height=8mm,keepaspectratio]{#3}%
+    \else
+      \adjustbox{max width=.92\linewidth,max totalheight=.68\textheight}{%
+        \IfBooleanTF{#1}
+          {\TLSixOriginalIncludeGraphics*[#2]{#3}}
+          {\TLSixOriginalIncludeGraphics[#2]{#3}}%
+      }%
+    \fi
+  \else
+    \par\noindent
+    \makebox[\linewidth][c]{%
+      \adjustbox{max width=.95\linewidth,max totalheight=.76\textheight}{%
+        \IfBooleanTF{#1}
+          {\TLSixOriginalIncludeGraphics*[#2]{#3}}
+          {\TLSixOriginalIncludeGraphics[#2]{#3}}%
+      }%
+    }%
+    \par\noindent
+  \fi
+}
+
+\newcommand{\TLSixPlaceConverted}[1]{%
+  \ifinner
+    \ifdim\linewidth<12mm
+      \TLSixOriginalIncludeGraphics[width=8mm,height=8mm,keepaspectratio]{#1}%
+    \else
+      \adjustbox{max width=.92\linewidth,max totalheight=.68\textheight}{%
+        \TLSixOriginalIncludeGraphics[width=\linewidth,height=.68\textheight,keepaspectratio]{#1}%
+      }%
+    \fi
+  \else
+    \par\noindent
+    \makebox[\linewidth][c]{%
+      \adjustbox{max width=.95\linewidth,max totalheight=.76\textheight}{%
+        \TLSixOriginalIncludeGraphics[width=\linewidth,height=.74\textheight,keepaspectratio]{#1}%
+      }%
+    }%
+    \par\noindent
+  \fi
+}
+
+\RenewDocumentCommand{\includegraphics}{s O{} m}{%
+  \begingroup
+  \filename@parse{#3}%
+  \edef\TLSixGraphicExtension{\filename@ext}%
+  \edef\TLSixGraphicStem{\filename@area\filename@base}%
+
+  \TLSixVectorGraphicfalse
+  \ifdefstring{\TLSixGraphicExtension}{emf}{\TLSixVectorGraphictrue}{}
+  \ifdefstring{\TLSixGraphicExtension}{EMF}{\TLSixVectorGraphictrue}{}
+  \ifdefstring{\TLSixGraphicExtension}{wmf}{\TLSixVectorGraphictrue}{}
+  \ifdefstring{\TLSixGraphicExtension}{WMF}{\TLSixVectorGraphictrue}{}
+
+  \ifTLSixVectorGraphic
+    \IfFileExists{\TLSixGraphicStem.pdf}{%
+      \TLSixPlaceConverted{\TLSixGraphicStem.pdf}%
+    }{%
+      \IfFileExists{\TLSixGraphicStem.png}{%
+        \TLSixPlaceConverted{\TLSixGraphicStem.png}%
+      }{%
+        \ifinner
+          \TLSixMissingGraphic{\filename@base}%
+        \else
+          \par\noindent\makebox[\linewidth][c]{\TLSixMissingGraphic{\filename@base}}\par\noindent
+        \fi
+      }%
+    }%
+  \else
+    \TLSixPlaceOriginal{#1}{#2}{#3}%
+  \fi
+  \endgroup
+}
+\makeatother
