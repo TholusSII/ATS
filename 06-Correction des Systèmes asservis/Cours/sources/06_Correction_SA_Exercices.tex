@@ -1,0 +1,346 @@
+% Exercices issus de 10-CorrectionSA2022.docx.
+\includegraphics[width=5.46667in,height=8.37353in]{pandoc/images/image17.png}
+
+\hypertarget{ruxe9gler-un-correcteur-proportionnel}{%
+\subsection{Régler un correcteur proportionnel}\label{ruxe9gler-un-correcteur-proportionnel}}
+
+\includegraphics[width=1.35556in,height=0.38889in]{pandoc/images/image18.png}\textbf{~}\protect\hypertarget{_Toc120222132}{}{}\textbf{Marges de stabilité et correcteur P}
+
+Soit \(F(p)\) la FTBO d'un système bouclé à retour unitaire d'entrée \(x(t)\) et de sortie \(y(t)\). Les diagrammes de BODE de \(F(p)\) sont représentés ci-dessous.
+
+\includegraphics[width=4.6875in,height=2.8125in]{pandoc/images/image19.png}
+
+\includegraphics[width=4.75in,height=2.33333in]{pandoc/images/image20.png}
+
+Diagrammes de BODE de la FTBO
+
+Tracer le schéma-bloc du système asservi.
+
+Déterminer les marges de phase et de gain du système, puis conclure quant à sa stabilité.
+
+On décide d'ajouter au système un correcteur série de type proportionnel. On note K le gain de ce correcteur.
+
+Déterminer la valeur de K permettant d'obtenir une marge de gain \(M_{G} = 12\ dB\).
+
+Déterminer la nouvelle marge de phase du système et conclure quant à sa stabilité.
+
+En précisant la méthode permettant de le calculer, déterminer l'écart statique \(\varepsilon_{s}\) du système corrigé pour une entrée indicielle.
+
+\textbf{~}\protect\hypertarget{_Toc120222133}{}{}\textbf{Axe de robot}
+
+La commande d'axe d'un robot est décrite par le schéma-bloc ci-dessous.
+
+\includegraphics[width=7.22917in,height=1.85417in]{pandoc/images/image21.png}
+
+Schéma bloc de la commande d'un axe de robot
+
+avec :
+
+• \(C(p)\) : fonction de transfert du correcteur
+
+• \(M(p) = \frac{k}{RJp + k^{2}}\) : modélisation du moteur à courant continu
+
+--- \(R\) : résistance totale \(\lbrack\Omega\rbrack\)
+
+--- \(J\) : moment d'inertie équivalent ramené sur l'axe de rotation \(\lbrack kg.m^{2}\rbrack\)
+
+--- \(k\) : constante de couple {[}N.m/A{]} et constante de vitesse \(\lbrack V/(rad/s)\rbrack\)
+
+• \(\lambda\) : rapport de réduction
+
+• \(G_{T}\) : gain de la génératrice tachymétrique \(\lbrack V/(rad/s)\rbrack\)
+
+• \(K_{C}\) : gain de l'amplificateur de puissance
+
+• \(K_{\alpha}\) : gain du capteur de position \(\lbrack V/rad\rbrack\)
+
+Afin d'assurer une mise en position correcte, on ne veut aucun écart de position. Quant à l'écart de traînage il est limité à 1\%.
+
+Déterminer la fonction de transfert en boucle ouverte, notée \(B(p)\), de cette commande d'axe.
+
+Conclure sur la possibilité de pouvoir respecter les critères imposés par le cahier des charges en termes de précision avec un correcteur proportionnel.
+
+\textbf{~}\protect\hypertarget{_Toc120222134}{}{}\textbf{Asservissement de vitesse}
+
+On propose le schéma-bloc d'un asservissement d'un dispositif régulant la vitesse \(\omega\) d'un moteur perturbé par un couple résistant \(c_{r}(t)\).
+
+\includegraphics[width=7.22917in,height=1.64583in]{pandoc/images/image22.png}
+
+\includegraphics[width=3.67361in,height=2.46181in]{pandoc/images/image23.png}Schéma bloc de l'asservissement de vitesse
+
+Où~:
+
+\begin{itemize}
+\item
+  \(G_{T}\) : gain de la génératrice tachymétrique et du transducteur de consigne, avec \(G_{T} = 0,08\ V\text{/}\left( rad\text{/}s \right)\)
+\item
+  \(C(p)\) : fonction de transfert du correcteur
+\item
+  \(A\) : gain de l'amplificateur avec A = 30
+\item
+  \(K_{T}\) : constante de couple du moteur
+\item
+  \(K_{E}\) : constante de force contre électromotrice du moteur
+\item
+  \(R\) : résistance de l'induit
+\item
+  \(L\) : inductance de l'induit
+\item
+  \(J\) : moment d'inertie du rotor par rapport à son axe de rotation
+\item
+  \(f\) : paramètre de frottement visqueux
+\end{itemize}
+
+FIGURE 4 -- Réponse à un échelon de consigne : 10 rad/s
+
+La figure 4 fournit la réponse indicielle du dispositif non perturbé avec un correcteur proportionnel de gain \(K = 1\).
+
+Déterminer l'erreur statique et l'erreur statique relative en régime permanent.
+
+A partir de la réponse, déterminer le gain de la FTBO.
+
+On souhaite une erreur statique relative inférieure à 1 \% ; quelle valeur doit-on donner au gain du correcteur ? Quel problème peut poser la valeur du gain ainsi déterminée ?
+
+On considère à présent une perturbation en échelon d'amplitude \(C_{R0} = 100\ Nm\).
+
+La perturbation provoque-t-elle une erreur supplémentaire en régime permanent ? donner sa valeur.
+
+Quelle proposition peut-on faire pour améliorer la précision de cet asservissement de vitesse ?
+
+\protect\hypertarget{_Toc120222135}{}{}\textbf{Commande de gouverne}
+
+Le dispositif étudié régule la position angulaire d'une gouverne de profondeur d'avion. Il est schématisé sur la figure 1 ci-dessous~:
+
+\includegraphics[width=2.08333in,height=1.38472in]{pandoc/images/image24.png}\includegraphics[width=4.525in,height=1.96994in]{pandoc/images/image25.png}
+
+FIGURE 1 -- Gouverne en position horizontale
+
+La rotation de cette gouverne est assurée par le déplacement \(x\) de la tige d'un vérin hydraulique actif provoqué par un débit \(q\). Un vérin passif est chargé de l'amortissement du mouvement.
+
+Cette mise en position est perturbée par des effets aérodynamiques, modélisés par la force \(F_{A}\).
+
+Pour être dans le cadre des systèmes linéaires, on se place autour d'un point de fonctionnement, celui de la figure proposée.
+
+À partir de l'équation de débit du vérin actif et de l'équation obtenue par le théorème de l'énergie cinétique appliqué à l'ensemble \(\{ gouverne,\ vérins\}\), on peut tracer le schéma-bloc de la figure 2.
+
+\includegraphics[width=5.1875in,height=2.08333in]{pandoc/images/image26.png}
+
+FIGURE 2 -- Schéma-bloc de la commande non asservie de la position de la tige du vérin
+
+Sur ce schéma-bloc sont notés :
+
+• \(B\) : module de compressibilité du fluide
+
+• \(V_{0}\) : volume de la chambre du vérin
+
+\includegraphics[width=2.60833in,height=1.65903in]{pandoc/images/image27.png}• \(S\) : section utile du vérin
+
+• \(m\) : masse de la tige du vérin
+
+• \(\mu\) : paramètre d'amortissement visqueux
+
+• \(h = \overrightarrow{BC}.\overrightarrow{y}\)
+
+• \(H = \overrightarrow{BM}.\overrightarrow{x}\)
+
+Déterminer les fonctions de transfert \(G(p)\) et \(W(p)\) telles que le schéma proposé puisse se mettre sous la forme de la figure 3.
+
+\begin{quote}
+FIGURE 3 -- Schéma-bloc équivalent
+\end{quote}
+
+On réalise un asservissement de la position \(x\) de la tige tel que décrit sur la figure 4. Le débit est délivré par une servovalve commandée en courant. À partir de l'écart, un amplificateur proportionnel de gain \(C\) fournit le courant \(i\) d'alimentation de la bobine de la servovalve. La mesure de la position de la tige du vérin actif est réalisée par un capteur de gain \(K_{M}\).
+
+\includegraphics[width=5.875in,height=2.0625in]{pandoc/images/image28.png}
+
+FIGURE 4 -- Schéma-bloc de la commande asservie
+
+Le cahier des charges impose en régime permanent :
+
+• une erreur nulle pour une entrée de consigne en échelon ;
+
+• un écart inférieur ou égal à \(2mm\) si \(x_{c}(t)\  = \ 0,1\ t\).
+
+Quel nom donner au bloc contenant \(A(p)\) et quelle fonction de transfert faut-il y poser ? Justifier la réponse.
+
+Montrer qu'en régime permanent, le signal de sortie n'est pas affecté par une perturbation en échelon de force d'amplitude \(F_{0}\).
+
+En absence de perturbation, on peut modéliser l'asservissement de position par le schéma-bloc de la figure 5 ci-dessous.
+
+\includegraphics[width=5.45833in,height=0.875in]{pandoc/images/image29.png}
+
+FIGURE 5 -- Schéma-bloc sans perturbation
+
+Quelle expression doit prendre le gain de boucle afin de satisfaire aux exigences du cahier des charges concernant la précision ?
+
+\hypertarget{ruxe9gler-un-correcteur-intuxe9gral}{%
+\subsection{Régler un correcteur intégral}\label{ruxe9gler-un-correcteur-intuxe9gral}}
+
+\protect\hypertarget{_Toc120222136}{}{}\textbf{Asservissement en vitesse angulaire d'un moteur électrique}
+
+L'asservissement de vitesse d'un moteur électrique est représenté par le schéma fonctionnel ci-dessous :
+
+\includegraphics[width=4.58333in,height=0.875in]{pandoc/images/image30.png}
+
+Le gain \(A\ \)du hacheur est de \(A = 1\ V/(rad/s)\)
+
+La fonction de transfert du moteur est \(H(p) = \frac{1}{(1 + 0,08p)(1 + 0,002p)}\)
+
+Le cahier des charges impose :
+
+\begin{itemize}
+\item
+  une marge de phase de 45° ;
+\item
+  une erreur en régime permanent nulle, vis-à-vis d'une consigne en échelon.
+\end{itemize}
+
+Objectif :
+
+− évaluer les performances de cet asservissement ;
+
+− régler les paramètres d'un correcteur permettant le respect des critères du cahier des charges.
+
+Déterminer les marges du système non corrigé.
+
+Déterminer l'erreur en régime permanent du système non corrigé pour une consigne en échelon d'amplitude \(\omega_{c0}.\)
+
+Conclure.
+
+On utilise maintenant un correcteur \(C(p) = K_{p} + \frac{K_{i}}{p} = K_{p}\frac{1 + T_{i}p}{T_{i}p}\) avec \(T_{i} = \frac{K_{p}}{K_{i}}\).
+
+Quelle est la nature de ce correcteur ? Que peut-on attendre comme amélioration sur le système ?
+
+Tracer le diagramme de Bode asymptotique de ce correcteur pour \(K_{p} > 1\). Indiquer les caractéristiques~:
+
+\begin{itemize}
+\item
+  pentes des asymptotes ;
+\item
+  expressions de la pulsation, du gain en dB et de la phase au point de cassure.
+\end{itemize}
+
+\emph{Compléter avec l'allure des courbes réelles.}
+
+Le lieu de Bode de la fonction de transfert en boucle ouverte non corrigée est donné ci-après.
+
+Déterminer graphiquement puis analytiquement les paramètres \(K_{p} > 1\) et \(K_{i} > 1\) du correcteur par la méthode du placement fréquentiel.
+
+Déterminer les paramètres \(K_{p} > 1\) et \(K_{i} > 1\) du correcteur par la méthode de la compensation du pôle dominant.
+
+\includegraphics[width=4.14583in,height=2.8125in]{pandoc/images/image31.png}
+
+\includegraphics[width=4.20833in,height=2.33333in]{pandoc/images/image32.png}
+
+On construit le modèle causal du servomoteur~:
+
+\includegraphics[width=5.45833in,height=1.29167in]{pandoc/images/image33.png}
+
+On donne la réponse temporelle du système non corrigé et des réglages précédant~:
+
+\includegraphics[width=5.375in,height=3.25in]{pandoc/images/image34.png}
+
+Quel est le meilleur réglage.
+
+\hypertarget{reglage-dun-correcteur-pi}{%
+\subsection{~REGLAGE D'un correcteur pi}\label{reglage-dun-correcteur-pi}}
+
+Un système est corrigé par un correcteur de type P.I.
+
+\includegraphics[width=4.41181in,height=0.86806in]{pandoc/images/image35.jpeg}
+
+On suppose \(K_{p} > 0.\)
+
+Pour le réglage du correcteur, on hésite entre \(T_{i} = 0,5s\) et \(T_{i} = 5s\).
+
+Déterminer la FTBF dans les deux cas, mettre sous forme canonique puis exprimer les paramètres caractéristiques des fonctions de transfert.
+
+\textbf{Réglage en commençant par la stabilité}
+
+On souhaite un coefficient d'amortissement \(z = 0,5\).
+
+Déterminer \(K_{p}\) pour chacun des cas.
+
+Déterminer alors la largeur de la bande passante à -3dB pour chacun des cas.
+
+\includegraphics[width=3.45347in,height=2.59375in]{pandoc/images/image36.png}On donne la réponse temporelle pour un échelon d'amplitude 10 de ces 2 correcteurs ci-dessous~:
+
+\includegraphics[width=3.53333in,height=1.28194in]{pandoc/images/image37.png}
+
+Conclure.
+
+\textbf{Réglage en commençant par la rapidité}
+
+On souhaite une pulsation de coupure \(\omega_{- 3dB} = 1\ rad/s\).
+
+Déterminer \(K_{p}\) pour chacun des cas.
+
+Déterminer alors le coefficient d'amortissement pour chacun des cas.
+
+Conclure.
+
+\textbf{Comparaison}
+
+Conclure sur le réglage du correcteur PI.
+
+\hypertarget{ruxe9gler-un-correcteur-uxe0-avance-de-phase}{%
+\subsection{Régler un correcteur à avance de phase}\label{ruxe9gler-un-correcteur-uxe0-avance-de-phase}}
+
+\protect\hypertarget{_Toc120222138}{}{}\textbf{Correcteur a avance de phase du robovolc}
+
+(D'après E3A PSI 2017)
+
+\includegraphics[width=2.06319in,height=1.55139in]{pandoc/images/image38.png}On s'intéresse au véhicule Robovolc, un robot qui explore le flanc des volcans. Ce robot est capable de :
+
+\begin{itemize}
+\item
+  s\textquotesingle approcher d\textquotesingle un cratère actif ;
+\item
+  collecter des échantillons rocheux issus de rejets éruptifs ;
+\item
+  collecter des échantillons gazeux ;
+\item
+  collecter d\textquotesingle autres données physiques et chimiques.
+\end{itemize}
+
+~Tracer le diagramme de Bode asymptotique de la fonction \(H(p) = \frac{\delta\tau_{B}p + 1}{\tau_{B}p + 1}\) avec \(\delta > 1\)
+
+~Quel est l'intérêt de ce correcteur à avance de phase~?
+
+~En utilisant une moyenne logarithmique entre \(\frac{1}{\delta\tau_{B}}\) et \(\frac{1}{\tau_{B}}\) montrer que la valeur maximale de la phase à lieu pour \(\omega_{maxi} = \frac{1}{\sqrt{\delta}.\tau_{B}}\)
+
+Déterminer \(\delta\) tel que \(\varphi\left( \omega_{maxi} \right) = 45{^\circ}\)
+
+On étudie l'asservissement d'une MSAP, on donne la fonction suivante~:
+
+\[{FTBO}_{corr\Omega}(p) = K_{pi}\ \frac{\delta\ \tau_{B}\ p + 1}{\delta.\tau_{B}\ p}\frac{B}{p(1 + \tau_{B}p)}\]
+
+Avec \(\delta = 5,83\), \(B = 45\ (rad/s)^{2}/A\), \(\tau_{B} = 33,87\ ms\)
+
+Déterminer \(K_{pi}\) tel que \(G_{dB}\left( \omega_{maxi} \right) = 0dB\). Quel est l'intérêt~?
+
+\includegraphics[width=0.92361in,height=0.63819in]{pandoc/images/image39.jpeg}
+
+\textbf{Autour de la bande passante}
+
+\emph{(\ul{Source :} Marc Dérumaux)}
+
+On considère la FTBO dont le diagramme de Bode est tracé ci-dessous, à gauche pour une large gamme de fréquence et à droite pour une gamme de fréquence plus étroite :
+
+\includegraphics[width=4.24306in,height=3.1875in]{pandoc/images/image40.emf}\includegraphics[width=3.88889in,height=2.75694in]{pandoc/images/image41.emf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Quelle sont les valeurs des marges de gain et de phase ?
+\item
+  Quelle est la bande passante à 0dB ?
+\item
+  Quelle correction proportionnelle Kp1 faut-il choisir pour assurer une bande passante de 0.6 rad/s ?
+\item
+  Quelle correction proportionnelle Kp2 faut-il choisir pour assurer une marge de gain de 6dB ?
+\item
+  Quelle correction proportionnelle Kp3 faut-il choisir pour assurer une marge de phase de 60° ?
+\item
+  Si le cahier des charges impose une bande passante d\textquotesingle au moins 0.6 rad/s, une marge de gain d\textquotesingle au moins 12 dB et une marge de phase d\textquotesingle au moins 60°, quelle correction proportionnelle Kp faut-il choisir ?
+\end{enumerate}

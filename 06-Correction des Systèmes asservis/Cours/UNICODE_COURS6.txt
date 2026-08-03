@@ -1,0 +1,21 @@
+U+00AB	'«'	7	06_Correction_SA_Cours.tex:87, 06_Correction_SA_Cours.tex:110, 06_Correction_SA_Cours.tex:121
+U+00B0	'°'	19	06_Correction_SA_Cours.tex:214, 06_Correction_SA_Cours.tex:214, 06_Correction_SA_Cours.tex:216
+U+00B2	'²'	1	06_Correction_SA_Cours.tex:238
+U+00BB	'»'	7	06_Correction_SA_Cours.tex:87, 06_Correction_SA_Cours.tex:110, 06_Correction_SA_Cours.tex:121
+U+00C0	'À'	2	06_Correction_SA_Exercices.tex:124, 06_Correction_SA_Exercices.tex:152
+U+00C9	'É'	2	06_Correction_SA_Cours.tex:205, 06_Correction_SA_Cours.tex:455
+U+00E0	'à'	97	06_Correction_SA_Cours.tex:3, 06_Correction_SA_Cours.tex:14, 06_Correction_SA_Cours.tex:14
+U+00E7	'ç'	4	06_Correction_SA_Cours.tex:25, 06_Correction_SA_Cours.tex:25, 06_Correction_SA_Exercices.tex:258
+U+00E8	'è'	126	06_Correction_SA_Cours.tex:14, 06_Correction_SA_Cours.tex:18, 06_Correction_SA_Cours.tex:21
+U+00E9	'é'	721	06_Correction_SA_Cours.tex:8, 06_Correction_SA_Cours.tex:12, 06_Correction_SA_Cours.tex:12
+U+00EA	'ê'	16	06_Correction_SA_Cours.tex:23, 06_Correction_SA_Cours.tex:25, 06_Correction_SA_Cours.tex:55
+U+00EE	'î'	8	06_Correction_SA_Cours.tex:29, 06_Correction_SA_Cours.tex:55, 06_Correction_SA_Cours.tex:55
+U+00F4	'ô'	12	06_Correction_SA_Cours.tex:21, 06_Correction_SA_Cours.tex:44, 06_Correction_SA_Cours.tex:139
+U+00F9	'ù'	5	06_Correction_SA_Cours.tex:21, 06_Correction_SA_Cours.tex:192, 06_Correction_SA_Cours.tex:216
+U+00FB	'û'	1	06_Correction_SA_Cours.tex:81
+U+03B5	'ε'	1	06_Correction_SA_Cours.tex:210
+U+03BE	'ξ'	1	06_Correction_SA_Cours.tex:481
+U+03C9	'ω'	4	06_Correction_SA_Cours.tex:374, 06_Correction_SA_Cours.tex:374, 06_Correction_SA_Cours.tex:434
+U+03D5	'ϕ'	1	06_Correction_SA_Cours.tex:214
+U+2022	'•'	23	06_Correction_SA_Cours.tex:455, 06_Correction_SA_Cours.tex:457, 06_Correction_SA_Cours.tex:459
+U+2212	'−'	2	06_Correction_SA_Exercices.tex:200, 06_Correction_SA_Exercices.tex:202
