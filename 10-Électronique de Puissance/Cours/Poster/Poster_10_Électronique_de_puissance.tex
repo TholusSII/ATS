@@ -6,25 +6,101 @@
 \def\input@path{{../../../Style/}}
 \makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{{TLElectroniquePuissance.sty}}{{\input{{TLElectroniquePuissance.sty}}}}{{}}
+\IfFileExists{TLElectroniquePuissance.sty}{\input{TLElectroniquePuissance.sty}}{}
+\IfFileExists{Notations_Elec/Notations_Elec.sty}{\input{Notations_Elec/Notations_Elec.sty}}{}
+\IfFileExists{Notations_Energetique/Notations_Energetique.sty}{\input{Notations_Energetique/Notations_Energetique.sty}}{}
 \pagestyle{empty}
 \begin{document}
-\TLPosterTitre{{Électronique de puissance}}{{Fiche résumé éditable}}
-\begin{multicols}{2}
-\begin{TLPosterBloc}{Convertisseurs}
-DC-DC, AC-DC, DC-AC et AC-AC.
+\TLPosterTitre{Électronique de puissance}{Convertir et commander l'énergie électrique}
+\begin{multicols}{3}
+
+\begin{TLPosterBloc}{Rôle}
+Adapter la forme de l'énergie électrique avec un rendement élevé grâce à des composants fonctionnant principalement en commutation.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Interrupteurs}
-Diode, MOSFET, IGBT et thyristor ; états passant et bloqué.
+\begin{TLPosterBloc}{Familles de convertisseurs}
+\begin{itemize}
+\item AC--DC : redresseur ;
+\item DC--DC : hacheur ;
+\item DC--AC : onduleur ;
+\item AC--AC : gradateur ou convertisseur de fréquence.
+\end{itemize}
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Hacheurs}
-Buck, Boost, deux quadrants et quatre quadrants.
+\begin{TLPosterBloc}{Interrupteur idéal}
+Deux états : passant $(u=0)$ ou bloqué $(i=0)$. En régime idéal, la puissance dissipée est nulle dans les deux états.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Méthode}
-Identifier les séquences, tracer les grandeurs puis calculer valeurs moyennes et ondulations.
+\begin{TLPosterBloc}{Composants}
+Diode : commutation spontanée. MOSFET et IGBT : commande à l'ouverture et à la fermeture. Thyristor : amorçage commandé et blocage généralement naturel.
 \end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Règles de continuité}
+Le courant d'une inductance et la tension d'un condensateur ne peuvent pas varier instantanément :
+\[
+i_L(0^+)=i_L(0^-),\qquad u_C(0^+)=u_C(0^-).
+\]
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Rapport cyclique}
+Pour une période $T$, l'interrupteur est commandé pendant $\alpha T$, avec $0\leq\alpha\leq1$. La fréquence de découpage vaut $f=1/T$.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Hacheur série — Buck}
+En conduction continue et composants idéaux :
+\[
+\langle u_s\rangle=\alpha E.
+\]
+Il abaisse une tension continue et commande souvent la vitesse d'une MCC.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Hacheur parallèle — Boost}
+En conduction continue et composants idéaux :
+\[
+\langle u_s\rangle=\frac{E}{1-\alpha}.
+\]
+Il élève la tension continue.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Deux et quatre quadrants}
+Les structures réversibles autorisent le changement de signe de la tension, du courant ou des deux. Elles permettent freinage électrique et récupération d'énergie.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Redressement}
+Un pont de diodes transforme une tension alternative en tension redressée. Un filtrage capacitif réduit l'ondulation mais augmente les pointes de courant.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Onduleur}
+Un pont en H crée une tension alternative à partir d'une source continue. La MLI règle la valeur fondamentale et repousse les harmoniques vers la fréquence de découpage.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Valeurs moyennes}
+Pour une grandeur périodique :
+\[
+\langle x\rangle=\frac{1}{T}\int_0^T x(t)\,dt.
+\]
+Les bilans sur $L$ et $C$ en régime périodique donnent respectivement $\langle u_L\rangle=0$ et $\langle i_C\rangle=0$.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Ondulations}
+L'inductance limite l'ondulation du courant ; le condensateur limite celle de la tension. Leur dimensionnement dépend de $f$, de la charge et de l'ondulation admissible.
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Méthode d'étude}
+\begin{enumerate}
+\item repérer les états des interrupteurs ;
+\item établir le schéma de chaque séquence ;
+\item écrire les équations ;
+\item tracer les formes d'onde ;
+\item appliquer les bilans périodiques ;
+\item calculer moyennes, ondulations et puissances ;
+\item vérifier contraintes et signes.
+\end{enumerate}
+\end{TLPosterBloc}
+
+\begin{TLPosterBloc}{Pertes et protections}
+Pertes par conduction et commutation, temps morts, diode de roue libre, écrêtage, limitation de courant et dissipation thermique conditionnent la fiabilité réelle.
+\end{TLPosterBloc}
+
 \end{multicols}
 \end{document}
