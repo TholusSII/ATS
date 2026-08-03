@@ -1,0 +1,49 @@
+% ============================================================================
+% DÉFINITION DU COURS 06 : CORRECTION DES SYSTÈMES ASSERVIS
+% ============================================================================
+
+\titlehead{Thomas Lusseau - SII en ATS}
+\title[Correction des systèmes asservis]{Correction et réglage des systèmes asservis}
+\author[TL]{Thomas Lusseau}
+\date{\today}
+
+\TLCourseCoverSetup
+  {\repStyle/FondPoly.png}
+  {pandoc/images/image3.jpeg}
+  {Cycle 3 : Concevoir et régler la commande\\ d'un système asservi}
+  {Correction et réglage\\ des systèmes asservis}
+  {Lycée Robert Doisneau - ATS}
+  {Thomas Lusseau}
+
+\TLCourseCoverContents{%
+  \TLCourseContentsLine{6.1}{Introduction à la correction}{introduction-uxe0-la-correction}
+  \TLCourseContentsLine{6.2}{Actions proportionnelle, intégrale et dérivée}{diffuxe9rentes-actions-de-correction}
+  \TLCourseContentsLine{6.3}{Correcteur proportionnel P}{correcteur-proportionnel-p}
+  \TLCourseContentsLine{6.4}{Correcteurs I et PI}{correcteur-intuxe9gral-i}
+  \TLCourseContentsLine{6.5}{Retard de phase}{retard-de-phase-ou-correcteur-pi-ruxe9el}
+  \TLCourseContentsLine{6.6}{Avance de phase}{correcteur-uxe0-avance-de-phase-ou-correcteur-pd-ruxe9el}
+  \TLCourseContentsLine{6.7}{Correcteur PID}{correcteur-proportionnel-intuxe9gral-duxe9rivuxe9-pid}
+  \TLCourseContentsLine{6.8}{Bilan et boucles imbriquées}{bilan-des-performances-des-correcteurs}
+  \TLCourseContentsLine{6.9}{Exercices du chapitre}{exercices-correction-sa}
+}
+
+\TLCourseFooter
+\TLCourseCover
+\markboth{Correction des systèmes asservis}{Correction des systèmes asservis}
+\TLSetReflectionImage{pandoc/images/image5.png}
+
+\AtBeginEnvironment{corrige}{\small}
+\livrettrue
+\collefalse
+
+\setcounter{chapter}{5}
+\chapter*{Correction et réglage des systèmes asservis}
+\addcontentsline{toc}{chapter}{Correction et réglage des systèmes asservis}
+
+\input{06_Correction_Systemes_Asservis_Integration}
+
+\input{sources/06_Correction_SA_Cours}
+
+\clearpage
+\section{Exercices du chapitre}\label{exercices-correction-sa}
+\input{sources/06_Correction_SA_Exercices}
