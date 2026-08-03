@@ -1,0 +1,223 @@
+% ============================================================================
+% COURS 07 — ACQUISITION ET TRAITEMENT DU SIGNAL
+% ============================================================================
+
+\section{Chaîne d'acquisition}\label{sec:elec-chaine}
+
+Une chaîne d'acquisition transforme une grandeur physique en une information exploitable par une unité de traitement. Elle comprend généralement un capteur, un conditionneur analogique, un dispositif d'échantillonnage, un convertisseur analogique-numérique et un traitement numérique.
+
+\TLChaineAcquisition
+
+Le capteur fournit une grandeur électrique, souvent une tension ou un courant, liée à la grandeur mesurée. Le conditionnement adapte ensuite ce signal : amplification, filtrage, décalage de niveau, linéarisation ou adaptation d'impédance.
+
+\section{Signaux analogiques et numériques}\label{sec:elec-signaux}
+
+Un signal analogique est continu en temps et en amplitude. Un signal numérique est décrit par une suite de nombres obtenus après échantillonnage et quantification.
+
+Pour un signal périodique de période $T$, la fréquence vaut
+\[
+f=\frac{1}{T}.
+\]
+La pulsation associée est
+\[
+\omega=2\pi f.
+\]
+
+Une tension sinusoïdale s'écrit sous la forme
+\[
+u(t)=U_m\cos(\omega t+\varphi).
+\]
+Sa valeur efficace est
+\[
+U_{\mathrm{eff}}=\frac{U_m}{\sqrt 2}.
+\]
+
+\section{Capteurs résistifs et ponts de mesure}\label{sec:elec-capteurs}
+
+De nombreux capteurs modifient une résistance en fonction de la grandeur mesurée : thermistance, jauge de déformation, photorésistance ou potentiomètre.
+
+\subsection{Pont diviseur de tension}
+
+\TLPontDiviseur
+
+Lorsque la sortie n'est pas chargée,
+\[
+u_s=E\frac{R_2}{R_1+R_2}.
+\]
+Si $R_2$ est un capteur résistif, la tension de sortie dépend directement de la grandeur mesurée. La présence d'une charge en sortie modifie cependant la relation : il faut vérifier que l'impédance d'entrée de l'étage suivant est suffisamment grande.
+
+\subsection{Pont de Wheatstone}
+
+\TLPontWheatstone
+
+La tension de déséquilibre vaut
+\[
+u_{AB}=E\left(\frac{R_2}{R_1+R_2}-\frac{R_4}{R_3+R_4}\right).
+\]
+Le pont est équilibré lorsque
+\[
+R_1R_4=R_2R_3.
+\]
+Ce montage est particulièrement adapté aux jauges de déformation, car il permet de mesurer de faibles variations relatives de résistance tout en compensant certains effets communs, notamment la température.
+
+\section{Amplificateur opérationnel}\label{sec:elec-aop}
+
+Un amplificateur opérationnel idéal présente un gain différentiel infini, des courants d'entrée nuls et une résistance de sortie nulle. En régime linéaire avec contre-réaction négative,
+\[
+i_+=i_-=0
+\qquad\text{et}\qquad
+u_+=u_-.
+\]
+
+\subsection{Montage inverseur}
+
+\TLAOPInverseur
+
+La loi des nœuds au niveau de l'entrée inverseuse conduit à
+\[
+\boxed{\frac{u_s}{u_e}=-\frac{R_2}{R_1}}.
+\]
+Le signe négatif traduit une opposition de phase entre l'entrée et la sortie.
+
+\subsection{Montage non-inverseur}
+
+\TLAOPNonInverseur
+
+Le gain est
+\[
+\boxed{\frac{u_s}{u_e}=1+\frac{R_2}{R_1}}.
+\]
+Ce montage présente une grande impédance d'entrée et convient donc bien à l'adaptation d'un capteur peu puissant.
+
+\subsection{Limites réelles}
+
+Un AOP réel est limité par ses tensions d'alimentation, son courant de sortie, sa bande passante et sa vitesse de balayage. La sortie sature si la tension demandée dépasse les possibilités du composant.
+
+\section{Filtrage analogique}\label{sec:elec-filtrage}
+
+Un filtre modifie le contenu fréquentiel d'un signal. On distingue les filtres passe-bas, passe-haut, passe-bande et coupe-bande.
+
+\subsection{Filtre RC passe-bas}
+
+\TLFiltreRCPasseBas
+
+La fonction de transfert est
+\[
+H(p)=\frac{U_s(p)}{U_e(p)}=\frac{1}{1+RCp}.
+\]
+La pulsation de coupure et la fréquence de coupure valent
+\[
+\omega_c=\frac{1}{RC},
+\qquad
+f_c=\frac{1}{2\pi RC}.
+\]
+À la fréquence de coupure, le gain vaut $-3$ dB. Au-delà, la pente asymptotique est de $-20$ dB par décade.
+
+\subsection{Filtre RC passe-haut}
+
+\TLFiltreRCPasseHaut
+
+La fonction de transfert est
+\[
+H(p)=\frac{RCp}{1+RCp}.
+\]
+La fréquence de coupure est identique :
+\[
+f_c=\frac{1}{2\pi RC}.
+\]
+Le filtre atténue les basses fréquences et transmet les hautes fréquences.
+
+\subsection{Choix d'un filtre anti-repliement}
+
+Avant un convertisseur analogique-numérique, un filtre passe-bas limite le spectre du signal afin d'éviter le repliement spectral. Sa fréquence de coupure doit être compatible avec la fréquence d'échantillonnage.
+
+\section{Échantillonnage}\label{sec:elec-echantillonnage}
+
+L'échantillonnage consiste à relever la valeur du signal à intervalles réguliers $T_e$. La fréquence d'échantillonnage est
+\[
+f_e=\frac{1}{T_e}.
+\]
+
+\TLEchantillonnageSignal
+
+Pour reconstruire sans ambiguïté un signal limité à une fréquence maximale $f_{\max}$, le théorème de Shannon impose
+\[
+\boxed{f_e>2f_{\max}}.
+\]
+Dans la pratique, on choisit souvent une fréquence nettement plus élevée afin de faciliter le filtrage et d'améliorer la représentation temporelle.
+
+Lorsque cette condition n'est pas respectée, des composantes hautes fréquences apparaissent à tort dans la bande utile : c'est le repliement spectral.
+
+\section{Conversion analogique-numérique}\label{sec:elec-can}
+
+Un convertisseur analogique-numérique code une tension analogique sur $N$ bits. Le nombre de niveaux disponibles est
+\[
+2^N.
+\]
+Pour une pleine échelle comprise entre $U_{\min}$ et $U_{\max}$, le quantum vaut approximativement
+\[
+q=\frac{U_{\max}-U_{\min}}{2^N}.
+\]
+L'erreur de quantification est généralement comprise entre $-q/2$ et $+q/2$.
+
+La valeur numérique idéale associée à une tension $u_e$ est
+\[
+C=\left\lfloor\frac{u_e-U_{\min}}{q}\right\rfloor.
+\]
+Il faut également vérifier la saturation : une tension située hors de la plage admissible est codée sur la valeur minimale ou maximale.
+
+\section{Conversion numérique-analogique}\label{sec:elec-cna}
+
+Un convertisseur numérique-analogique produit une tension ou un courant proportionnel au mot binaire appliqué en entrée. Après conversion, un filtre de reconstruction permet de lisser le signal en supprimant les composantes liées au maintien d'ordre zéro.
+
+\section{Conditionnement d'un capteur}\label{sec:elec-conditionnement}
+
+La conception d'une chaîne de conditionnement suit une démarche systématique :
+\begin{enumerate}
+  \item identifier la plage du capteur ;
+  \item déterminer la plage admissible du convertisseur ;
+  \item supprimer une éventuelle composante continue ;
+  \item amplifier le signal utile ;
+  \item filtrer les fréquences indésirables ;
+  \item vérifier les saturations et les impédances ;
+  \item choisir la fréquence d'échantillonnage et la résolution du CAN.
+\end{enumerate}
+
+Pour adapter un signal compris entre $U_{e,\min}$ et $U_{e,\max}$ à une plage $[U_{s,\min},U_{s,\max}]$, on recherche une loi affine
+\[
+u_s=a u_e+b
+\]
+avec
+\[
+a=\frac{U_{s,\max}-U_{s,\min}}{U_{e,\max}-U_{e,\min}},
+\qquad
+b=U_{s,\min}-aU_{e,\min}.
+\]
+
+\section{Bruit et qualité de mesure}\label{sec:elec-bruit}
+
+Le bruit peut provenir du capteur, de l'électronique, de l'alimentation ou de l'environnement électromagnétique. Pour améliorer la qualité de mesure, on peut :
+\begin{itemize}
+  \item utiliser un câblage différentiel ;
+  \item réduire les boucles de masse ;
+  \item blinder les liaisons sensibles ;
+  \item filtrer les alimentations ;
+  \item limiter la bande passante au strict nécessaire ;
+  \item moyenner plusieurs mesures numériques.
+\end{itemize}
+
+Le rapport signal sur bruit est souvent exprimé en décibels :
+\[
+\mathrm{RSB}_{\mathrm{dB}}=20\log_{10}\left(\frac{U_{\mathrm{signal}}}{U_{\mathrm{bruit}}}\right).
+\]
+
+\section{À retenir}\label{sec:elec-retenir}
+
+\begin{itemize}
+  \item Une chaîne d'acquisition associe capteur, conditionnement, échantillonnage, conversion et traitement.
+  \item Les montages AOP permettent d'amplifier, sommer, décaler ou adapter un signal.
+  \item Les filtres RC du premier ordre possèdent une fréquence de coupure $f_c=1/(2\pi RC)$.
+  \item La fréquence d'échantillonnage doit être supérieure au double de la fréquence maximale du signal.
+  \item La résolution d'un CAN dépend du nombre de bits et de sa pleine échelle.
+  \item Les saturations, les impédances, le bruit et l'incertitude doivent être vérifiés sur la chaîne complète.
+\end{itemize}
