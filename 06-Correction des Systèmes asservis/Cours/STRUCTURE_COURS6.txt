@@ -1,0 +1,340 @@
+=== STRUCTURE ===
+1208 06-Correction des Systèmes asservis/Cours/pandoc/contenu.tex
+14:\section*{\texorpdfstring{\textbf{Table des matières}}{Table des matières}}\label{table-des-matiuxe8res}}
+168:\subsection{Introduction à la correction}\label{introduction-uxe0-la-correction}}
+171:\subsubsection{Exemple}\label{exemple}}
+215:\subsubsection{Introduction aux correcteurs}\label{introduction-aux-correcteurs}}
+263:\subsubsection{Différentes actions de correction}\label{diffuxe9rentes-actions-de-correction}}
+307:\subsection{Correcteur proportionnel P}\label{correcteur-proportionnel-p}}
+331:\subparagraph*{Stabilité}\label{stabilituxe9}}
+337:\subparagraph*{Rapidité}\label{rapidituxe9}}
+345:\subparagraph*{Précision}\label{pruxe9cision}}
+351:\subparagraph*{Réglage du correcteur}\label{ruxe9glage-du-correcteur}}
+459:\subsection{Correcteur intégral I}\label{correcteur-intuxe9gral-i}}
+481:\subparagraph*{Stabilité}\label{stabilituxe9-1}}
+487:\subparagraph*{Rapidité}\label{rapidituxe9-1}}
+493:\subparagraph*{Précision}\label{pruxe9cision-1}}
+499:\subsection{Correcteur proportionnel intégral PI}\label{correcteur-proportionnel-intuxe9gral-pi}}
+537:\subparagraph*{}\label{section}}
+541:\subparagraph*{}\label{section-1}}
+545:\subparagraph*{}\label{section-2}}
+549:\subparagraph*{Stabilité}\label{stabilituxe9-2}}
+555:\subparagraph*{Rapidité}\label{rapidituxe9-2}}
+563:\subparagraph*{Précision}\label{pruxe9cision-2}}
+569:\subparagraph*{Réglage d'un correcteur proportionnel-intégral}\label{ruxe9glage-dun-correcteur-proportionnel-intuxe9gral}}
+650:\subsection{\texorpdfstring{ retard de phase (ou correcteur PI réel)}{ retard de phase (ou correcteur PI réel)}}\label{retard-de-phase-ou-correcteur-pi-ruxe9el}}
+672:\subparagraph*{Stabilité}\label{stabilituxe9-3}}
+678:\subparagraph*{Rapidité}\label{rapidituxe9-3}}
+684:\subparagraph*{Précision}\label{pruxe9cision-3}}
+690:\subparagraph*{Réglage du correcteur}\label{ruxe9glage-du-correcteur-1}}
+698:\subsection{Correcteur dérivé D et proportionnel dérivé PD}\label{correcteur-duxe9rivuxe9-d-et-proportionnel-duxe9rivuxe9-pd}}
+705:\subsubsection{Correcteur à avance de phase (ou correcteur PD réel)}\label{correcteur-uxe0-avance-de-phase-ou-correcteur-pd-ruxe9el}}
+727:\subparagraph*{Stabilité}\label{stabilituxe9-4}}
+733:\subparagraph*{Rapidité}\label{rapidituxe9-4}}
+739:\subparagraph*{Précision}\label{pruxe9cision-4}}
+745:\subparagraph*{Réglage du correcteur}\label{ruxe9glage-du-correcteur-2}}
+758:\subsection{Correcteur proportionnel intégral dérivé PID}\label{correcteur-proportionnel-intuxe9gral-duxe9rivuxe9-pid}}
+782:\subparagraph*{Réglage du correcteur}\label{ruxe9glage-du-correcteur-3}}
+799:\subsection{Bilan des performances des correcteurs}\label{bilan-des-performances-des-correcteurs}}
+831:\subsection{Régulation cascade ou boucles imbriquées}\label{ruxe9gulation-cascade-ou-boucles-imbriquuxe9es}}
+857:\subsection{Sources}\label{sources}}
+862:\subsection{Exercices du chapitre}\label{exercices-du-chapitre}}
+867:\subsection{Régler un correcteur proportionnel}\label{ruxe9gler-un-correcteur-proportionnel}}
+1039:\subsection{Régler un correcteur intégral}\label{ruxe9gler-un-correcteur-intuxe9gral}}
+1108:\subsection{~REGLAGE D'un correcteur pi}\label{reglage-dun-correcteur-pi}}
+1149:\subsection{Régler un correcteur à avance de phase}\label{ruxe9gler-un-correcteur-uxe0-avance-de-phase}}
+
+=== REPÈRES ===
+19:\protect\hyperlink{introduction-aux-correcteurs}{2. Introduction à la correction \protect\hyperlink{introduction-aux-correcteurs}{5}}
+23:\protect\hyperlink{correcteur-proportionnel-p}{3. Correcteur proportionnel P \protect\hyperlink{correcteur-proportionnel-p}{7}}
+25:\protect\hyperlink{correcteur-intuxe9gral-i}{4. Correcteur intégral I \protect\hyperlink{correcteur-intuxe9gral-i}{11}}
+27:\protect\hyperlink{correcteur-proportionnel-intuxe9gral-pi}{5. Correcteur proportionnel intégral PI \protect\hyperlink{correcteur-proportionnel-intuxe9gral-pi}{12}}
+29:\protect\hyperlink{retard-de-phase-ou-correcteur-pi-ruxe9el}{6. retard de phase (ou correcteur PI réel) \protect\hyperlink{retard-de-phase-ou-correcteur-pi-ruxe9el}{17}}
+31:\protect\hyperlink{correcteur-duxe9rivuxe9-d-et-proportionnel-duxe9rivuxe9-pd}{7. Correcteur dérivé D et proportionnel dérivé PD \protect\hyperlink{correcteur-duxe9rivuxe9-d-et-proportionnel-duxe9rivuxe9-pd}{18}}
+33:\protect\hyperlink{correcteur-uxe0-avance-de-phase-ou-correcteur-pd-ruxe9el}{7.1. Correcteur à avance de phase (ou correcteur PD réel) \protect\hyperlink{correcteur-uxe0-avance-de-phase-ou-correcteur-pd-ruxe9el}{18}}
+35:\protect\hyperlink{_Toc120222127}{8. Correcteur proportionnel intégral dérivé PID \protect\hyperlink{_Toc120222127}{20}}
+37:\protect\hyperlink{bilan-des-performances-des-correcteurs}{9. Bilan des performances des correcteurs \protect\hyperlink{bilan-des-performances-des-correcteurs}{21}}
+41:\protect\hyperlink{sources}{11. Sources \protect\hyperlink{sources}{22}}
+43:\protect\hyperlink{_Toc120222131}{12. Exercices du chapitre \protect\hyperlink{_Toc120222131}{23}}
+45:\protect\hyperlink{_Toc120222132}{1. Marges de stabilité et correcteur P \protect\hyperlink{_Toc120222132}{24}}
+55:\protect\hyperlink{reglage-dun-correcteur-pi}{30. REGLAGE D'un correcteur pi \protect\hyperlink{reglage-dun-correcteur-pi}{31}}
+57:\protect\hyperlink{_Toc120222138}{35. Correcteur a avance de phase du robovolc \protect\hyperlink{_Toc120222138}{32}}
+82:  les fonctions de transfert des différents types de correcteurs (P, PI, PD, PID)~;
+120:  tracer les diagrammes de Bode de tous les correcteurs~;
+132:  régler un correcteur Proportionnel (P) à partir de différents critères (stabilité, dépassement, rapidité, précision)~;~
+138:  régler un correcteur Proportionnel-Intégral (PI) à partir de différents critères (stabilité, dépassement, rapidité, précision)~;~
+190:Dans un système asservi, la commande est élaborée de façon autonome à partir de l'écart entre la consigne et la réponse. Pour améliorer les performances, on ajoute un correcteur. Il peut être placé de plusieurs façons~:
+201:Nous allons étudier par la suite un correcteur série. Il corrige le système en amont de l'actionneur.
+203:Les 3 actions de base, proportionnelle, intégrale, dérivée, correspondent à 3 modifications réalisables sur une fonction de transfert~:
+214:\hypertarget{introduction-aux-correcteurs}{%
+215:\subsubsection{Introduction aux correcteurs}\label{introduction-aux-correcteurs}}
+217:\includegraphics[width=3in,height=1.39792in]{./images/image6.jpeg}Les correcteurs peuvent être placés à différents endroits de notre système (correction série ou cascade, correction parallèle, correction par anticipation, \ldots). Nous n'étudierons ici que les correcteurs de type série ou cascade qui correspondent au schéma suivant. Il peut ainsi corriger les perturbations qui peuvent apparaître dans la chaîne d'énergie.
+219:On peut également utiliser des filtres au niveau de l'entrée ou de la mesure pour améliorer le signal traité par le correcteur.
+236:Stabilité & Réalisé à partir des marges de gain et de phase \\
+237:Rapidité & Soit à partir du temps de réponse, soit à partir de la bande passante à 0dB de la FTBO puisque les deux sont liés par le temps de réponse réduit \\
+238:Précision & Classe de la FTBO \\
+239:(Dépasssement) & Eventuellement un critère de dépassement limite ou de non dépassement. Ce critère est lié à la stabilité \\
+243:Il faudra toujours garder à l'esprit que le critère principal est bien sûr la stabilité.
+249:  \textbf{La stabilité~:} il faut que notre système soit stable en boucle fermée. On cherchera à avoir un système «~robuste~» avec des marges de gains et de phases élevées.
+251:  \textbf{La précision~:} on veut annuler les écarts jusqu'à un certain ordre (annulation de l'écart d'ordre 1 pour la régulation, écart d'ordre 2 pour la poursuite,\ldots)
+253:  \textbf{La rapidité~}: on veut que le système réagisse le plus rapidement possible (t\textsubscript{r5\%} le plus faible possible)
+260:Malheureusement, \textbf{tous ces critères ne peuvent pas être menés de front~}\ldots{} La priorité sera \textbf{toujours d'avoir un système stable}. Il y aura alors des compromis à réaliser (stabilité/rapidité, précision/stabilité,\ldots).
+269:  \textbf{L'action proportionnelle~«~P~»:} , qui amplifie l'écart \(\epsilon(p)\), améliore la rapidité et la précision mais diminue la stabilité~;
+276:Plus K est grand, plus la correction est rapide et la précision élevée mais il peut apparaître un risque d'oscillations.
+280:  \textbf{L'action intégrale~«~I~»:} , qui intègre l'écart \(\epsilon(p)\), améliore la précision mais diminue la rapidité et la stabilité~;
+286:Cet effet permet de faire durer l'effet du correcteur tant qu'il subsiste un écart, ce qui favorise le critère de précision. Cependant si des écarts importants s'accumulent il y a risque d'instabilité. L'action intégrale permet d'améliorer la précision, en augmentant la classe du système.
+291:  \textbf{L'action dérivée~«~D~»:} , qui dérive l'écart \(\epsilon(p)\), améliore la stabilité d'un système et influe sur la rapidité du système.
+296:L'action dérivée permet d'anticiper les écarts à venir puisqu'elle utilise non pas la valeur de l'écart mais sa dérivée et donc ses fluctuations. L'action dérivée permet d'améliorer la stabilité, en augmentant les marges de stabilité. Afin d'éviter de réduire la classe du système (et donc la précision) elle est généralement associée à une correction proportionnelle.
+298:\textbf{Remarque~:} L'action dérivée n'est pas causale telle quelle. On parlera plutôt d'avance de phase ou d'action dérivée filtrée. La fonction de transfert est alors~:
+304:On distingue alors les correcteurs P, PI, PD et PID qui sont issus des différentes associations des 3 actions.
+306:\hypertarget{correcteur-proportionnel-p}{%
+307:\subsection{Correcteur proportionnel P}\label{correcteur-proportionnel-p}}
+309:Ce correcteur ajoute un gain K à la FTBO.
+311:Si on \textbf{augmente} le \textbf{correcteur proportionnel} \(C(p) = K\)~:
+315:  on \textbf{améliore la précision} mais on \textbf{dégrade la stabilité}~;
+317:  la phase du diagramme de Bode reste inchangée.
+323:Diagramme temporelle Diagramme de Bode
+326:On peut voir que l'action proportionnelle permet \textbf{d'augmenter la bande passante} et donc la rapidité de notre système. Elle permet aussi \textbf{d'améliorer la précision} (cf. chapitre sur la précision). Cependant, on peut observer sur les diagrammes précédents que \textbf{la stabilité diminue} avec l'augmentation du gain. L'augmentation du gain peut donc mener à l'instabilité dans certains cas.
+331:\subparagraph*{Stabilité}\label{stabilituxe9}}
+332:\addcontentsline{toc}{subparagraph}{Stabilité}
+334:Une augmentation de K réduit les marges, et donc peut faire apparaitre des oscillations, voir rendre le système instable.
+337:\subparagraph*{Rapidité}\label{rapidituxe9}}
+338:\addcontentsline{toc}{subparagraph}{Rapidité}
+340:Pour un 1\textsuperscript{er} ordre, on peut améliorer la rapidité en augmentant K.
+345:\subparagraph*{Précision}\label{pruxe9cision}}
+346:\addcontentsline{toc}{subparagraph}{Précision}
+348:Si l'on est dans un cas où le système n'est pas précis, augmenter K améliore la précision, par exemple pour une classe 0 soumis à un échelon, l'erreur statique est \(\frac{E_{0}}{1 + H_{BO}}\).
+350:\hypertarget{ruxe9glage-du-correcteur}{%
+351:\subparagraph*{Réglage du correcteur}\label{ruxe9glage-du-correcteur}}
+352:\addcontentsline{toc}{subparagraph}{Réglage du correcteur}
+356:  Valeurs max de K~: pour une marge de phase mini ou une marge de gain mini.
+368:  Si l'amélioration de la rapidité est souhaitée (\emph{t}\textsubscript{5\%} donné dans le cahier des charges), on détermine la FTBF et on essaie de se ramener à une fonction du premier ou du second ordre pour en déduire le temps de réponse à 5\%. Eventuellement, le critère de dépassement pourra y être associé pour un 2\textsuperscript{ème} ordre.
+370:  Si la marge de phase \emph{M\textsubscript{ϕ}} est donnée dans le cahier des charges (typiquement 45° à 70°), on détermine la phase avant correction, puis on relève la pulsation correspondant à cette phase (graphiquement de préférence). On détermine alors le gain correspondant et on en déduit la valeur de K.
+372:  Si la marge de gain \emph{M\textsubscript{G}} est donnée (typiquement 6dB à 12dB) la courbe de phase de la FTBO avant correction indique (pour la valeur -180°) où la marge de gain doit être mesurée et il suffit d'ajuster \emph{K} pour que la courbe de gain assure la marge de gain (le correcteur translate verticalement la courbe des gains et ne modifie pas la phase).
+384:\textbf{Réglage à partir de la rapidité}
+413:\textbf{Réglage à partir de la marge de phase}
+419:\includegraphics[width=6.18194in,height=4.11806in]{./images/image11.jpeg}Pour A = 1, on a tracé le diagramme de Bode du système en boucle ouverte
+421:\textbf{Mesurer la marge de phase du système.}
+423:\textbf{Déterminer la valeur A1 qui donne au système une marge de phase de 45 degrés.}
+425:\textbf{Indiquer la valeur A2 qui amène le système à la limite de l'instabilité.}
+442:\textbf{Réglage à partir de la précision}
+449:\textbf{Donner la valeur du gain du correcteur proportionnel K\textsubscript{1} permettant d'obtenir une erreur statique relative de 20 \%.}
+458:\hypertarget{correcteur-intuxe9gral-i}{%
+459:\subsection{Correcteur intégral I}\label{correcteur-intuxe9gral-i}}
+461:Ce correcteur augmente la classe de la FTBO.
+463:Le correcteur \textbf{intégral} \(C(p) = \frac{1}{\tau_{i}p}\)~:
+471:  diminue la phase de 90°~et donc rend souvent le système instable.
+477:Diagramme temporelle Diagramme de Bode
+481:\subparagraph*{Stabilité}\label{stabilituxe9-1}}
+482:\addcontentsline{toc}{subparagraph}{Stabilité}
+484:Ce correcteur est rarement utilisable car il diminue la phase de 90° et donc diminue les marges et peut rendre le système instable.
+487:\subparagraph*{Rapidité}\label{rapidituxe9-1}}
+488:\addcontentsline{toc}{subparagraph}{Rapidité}
+490:La bande passante diminue et donc la rapidité. Le temps de réponse 5\% augmente.
+493:\subparagraph*{Précision}\label{pruxe9cision-1}}
+494:\addcontentsline{toc}{subparagraph}{Précision}
+498:\hypertarget{correcteur-proportionnel-intuxe9gral-pi}{%
+499:\subsection{Correcteur proportionnel intégral PI}\label{correcteur-proportionnel-intuxe9gral-pi}}
+501:Ce correcteur combine les actions proportionnelles et intégrales.
+507:Le correcteur \textbf{proportionnel intégral} \(C(p) = \frac{K\left( 1 + \tau_{i}p \right)}{\tau_{i}p}\)~:
+511:  \textbf{améliore la précision mais dégrade la stabilité~;}
+520:Le correcteur «~PI~» comporte un intégrateur et sera donc utilisé pour annuler les écarts d'un certain ordre puisqu'il augment la classe du système. Il apparaît aussi un zéro qui permettra par exemple de compenser un pôle le plus lent de notre système (le pôle dominant).
+522:L'action intégrale permet une \textbf{amélioration de la précision} (augmentation de la classe du système) en contrepartie d'une \textbf{diminution de la stabilité} (retrait de 90° de phase). L'annulation de l'écart est d'autant plus «~rapide~» que T\textsubscript{i} est faible mais en contrepartie le dépassement est plus important et la stabilité moindre (effet déstabilisant de l'action intégrale).
+524:\includegraphics[width=3.42222in,height=2.08333in]{./images/image12.jpeg}Si T\textsubscript{i} est trop important (ω\textsubscript{i} \textless\textless{} ω\textsubscript{0dB}/10), on ralentit considérablement l'approche de la valeur finale. On retrouve un compromis entre rapidité et stabilité.
+526:Il se comporte comme un correcteur intégral pour les basses fréquences et comme un correcteur proportionnel pour les hautes fréquences. Bien réglé, il présente les avantages 2 correcteurs sans leurs inconvénients. Il peut parfois être utilisé pour compenser un pôle dominant.
+528:Diagramme de Bode du correcteur PI~:
+533:Diagramme temporelle Diagramme de Bode
+549:\subparagraph*{Stabilité}\label{stabilituxe9-2}}
+550:\addcontentsline{toc}{subparagraph}{Stabilité}
+552:On choisit \(\tau_{i}\) pour que la phase de la FTBO ne soit pas diminuée au voisinage du point critique, soit \(\frac{1}{\tau_{i}} \ll \omega_{0dB}\).
+555:\subparagraph*{Rapidité}\label{rapidituxe9-2}}
+556:\addcontentsline{toc}{subparagraph}{Rapidité}
+558:Ce correcteur tend à diminuer la rapidité. Contrairement au correcteur intégral pur, l'action intégrale est limitée aux basses fréquences, donc le ralentissement du système est limité.
+560:Une augmentation de K augmente la rapidité mais diminue la stabilité.
+563:\subparagraph*{Précision}\label{pruxe9cision-2}}
+564:\addcontentsline{toc}{subparagraph}{Précision}
+566:Idem correcteur I.
+568:\hypertarget{ruxe9glage-dun-correcteur-proportionnel-intuxe9gral}{%
+569:\subparagraph*{Réglage d'un correcteur proportionnel-intégral}\label{ruxe9glage-dun-correcteur-proportionnel-intuxe9gral}}
+570:\addcontentsline{toc}{subparagraph}{Réglage d'un correcteur proportionnel-intégral}
+572:La fonction de transfert du correcteur peut s'écrire \(C(p) = K_{p}.\frac{1 + T_{i}p}{T_{i}p}\).
+574:Comme il y a deux paramètres, on peut améliorer deux critères avec ce correcteur. Pour cela il est nécessaire de choisir les deux paramètres :
+587:  une fois la constante de temps choisie, on trace ou on calcule la nouvelle FTBO. Il ne reste plus qu'à déterminer le gain \emph{K\textsubscript{p}} et on se retrouve dans la situation de réglage d'un correcteur proportionnel (mais sur une FTBO plus compliquée).
+621:• Précision de température +/-0.5°C (1 \%)
+625:A partir d'une identification précise et en considérant la perturbation Q\textsubscript{p} nulle, on trouve la FTBO (\ul{sans correcteur}) de ce système égale à~:
+629:On considère maintenant le correcteur \(C(p) = \frac{K}{T_{i}p}(1 + T_{i}p)\).
+631:Le réglage du correcteur se fait par compensation du pôle le plus lent. Méthode qui consiste à choisir la constante de temps T\textsubscript{i} du correcteur égale à la constante de temps la plus grande du système à corriger. On réglera le gain K du correcteur afin que la réponse indicielle ne présente pas de dépassement (on choisit ξ = 1).
+633:\textbf{Donner les valeurs de K et T\textsubscript{i} pour régler le correcteur et permettant de respecter les critères énoncés ci-dessus.}
+637:On donne le diagramme de Bode en boucle ouverte du système non corrigé~\includegraphics[width=6.00972in,height=5.31181in]{./images/image15.jpeg}
+639:\textbf{En considérant uniquement le terme proportionnel du correcteur, déterminer, en le justifiant, la valeur de K permettant d'obtenir une marge de phase de 70°.}
+641:\textbf{Déterminer la valeur de T\textsubscript{i} pour que la marge de phase obtenue précédemment ne soit pas dégradée de plus de 5°.}
+649:\hypertarget{retard-de-phase-ou-correcteur-pi-ruxe9el}{%
+650:\subsection{\texorpdfstring{ retard de phase (ou correcteur PI réel)}{ retard de phase (ou correcteur PI réel)}}\label{retard-de-phase-ou-correcteur-pi-ruxe9el}}
+652:Le correcteur PI est censé avoir un gain infini aux basses fréquences. Si les puissances en jeu sont trop importantes, il est impossible de réaliser concrètement ce comportement théorique. Le correcteur à retard de phase exerce une action intégrale limitée à une plage de fréquence. Ce correcteur augmente le gain de la FTBO aux basses fréquences et modifie la précision du système. Le correcteur à retard de phase enlève de la phase.
+654:Le correcteur \textbf{à retard de phase} \(C(p) = K\frac{1 + \tau_{i}p}{1 + a\tau_{i}p}\)~, avec \(a > 1\) :
+658:  \textbf{améliore la précision mais dégrade la stabilité~;}
+663:Diagramme de Bode du correcteur à retard de phase~:
+665:La phase est minimale pour \(\omega_{\min} = \frac{1}{\sqrt{a}\tau_{i}}\) et vaut \(\sin\varphi_{\min} = \frac{1 - a}{1 + a}\) .
+672:\subparagraph*{Stabilité}\label{stabilituxe9-3}}
+673:\addcontentsline{toc}{subparagraph}{Stabilité}
+675:La stabilité est plutôt diminué vu que l'on enlève de la phase. Cependant, en choisissant bien K, on peut la préserver. Parfois même, on peut augmenter les marges en diminuant \(\omega_{0dB}\).
+678:\subparagraph*{Rapidité}\label{rapidituxe9-3}}
+679:\addcontentsline{toc}{subparagraph}{Rapidité}
+681:A l'inverse, la rapidité diminue.
+684:\subparagraph*{Précision}\label{pruxe9cision-3}}
+685:\addcontentsline{toc}{subparagraph}{Précision}
+687:La précision est améliorée sans changer la classe. Donc les écarts statiques sont réduits mais ne sont pas annulés.
+689:\hypertarget{ruxe9glage-du-correcteur-1}{%
+690:\subparagraph*{Réglage du correcteur}\label{ruxe9glage-du-correcteur-1}}
+691:\addcontentsline{toc}{subparagraph}{Réglage du correcteur}
+695:On règle ce correcteur pour augmenter le gain aux basses fréquences sans diminuer la phase au voisinage du point critique.
+697:\hypertarget{correcteur-duxe9rivuxe9-d-et-proportionnel-duxe9rivuxe9-pd}{%
+698:\subsection{Correcteur dérivé D et proportionnel dérivé PD}\label{correcteur-duxe9rivuxe9-d-et-proportionnel-duxe9rivuxe9-pd}}
+700:Le correcteur \textbf{dérivé} \(C(p) = K_{d}p\) et le correcteur \textbf{proportionnel dérivé} \(C(p) = K_{p} + K_{d}p\) ne sont pas réalisables technologiquement. Ils ont un degré du numérateur supérieur à celui du dénominateur. Ils ajoutent un zéro à la FTBO sans changer la classe. Pour réaliser ces correcteurs, il faut avoir une amplification très importante pour les très hautes fréquences, ce qu'aucun système physique ne permet. Les réalisations essayant d'approcher ces modèles théoriques amplifient tous les bruits et leurs grandeurs de sortie sont inexploitables.
+702:Correcteur PD théorique
+704:\hypertarget{correcteur-uxe0-avance-de-phase-ou-correcteur-pd-ruxe9el}{%
+705:\subsubsection{Correcteur à avance de phase (ou correcteur PD réel)}\label{correcteur-uxe0-avance-de-phase-ou-correcteur-pd-ruxe9el}}
+707:Le correcteur à avance de phase fait exactement l'inverse du correcteur à retard de phase. C'est la seule utilisation pratique de l'action dérivée.
+709:Il fait une action dérivée sur une plage de fréquence.
+711:Le correcteur à avance de phase ajoute de la phase.
+713:Le correcteur \textbf{à avance de phase} \(C(p) = K\frac{1 + T_{d}p}{1 + aT_{d}p}\)~, avec \(a < 1\) :
+717:  \textbf{augmente la stabilité mais introduit des vibrations et du bruit~;}
+719:  \textbf{améliore la rapidité}.
+722:Diagramme de Bode du correcteur à avance de phase~:
+724:La phase est maximale pour \(\omega_{\max} = \frac{1}{\sqrt{a}T_{d}}\ \ \) et vaut \(\sin\varphi_{\max} = \frac{1 - a}{1 + a}\) .
+727:\subparagraph*{Stabilité}\label{stabilituxe9-4}}
+728:\addcontentsline{toc}{subparagraph}{Stabilité}
+730:Ce correcteur augmente la marge de phase autour du point critique et peut stabiliser un système instable ou augmenter les marges.
+733:\subparagraph*{Rapidité}\label{rapidituxe9-4}}
+734:\addcontentsline{toc}{subparagraph}{Rapidité}
+736:Le gain des hautes fréquences est augmenté, donc la bande passante est plus large et la rapidité est amélioré.
+739:\subparagraph*{Précision}\label{pruxe9cision-4}}
+740:\addcontentsline{toc}{subparagraph}{Précision}
+742:La précision diminue en fonction des valeurs choisies.
+744:\hypertarget{ruxe9glage-du-correcteur-2}{%
+745:\subparagraph*{Réglage du correcteur}\label{ruxe9glage-du-correcteur-2}}
+746:\addcontentsline{toc}{subparagraph}{Réglage du correcteur}
+757:\hypertarget{correcteur-proportionnel-intuxe9gral-duxe9rivuxe9-pid}{%
+758:\subsection{Correcteur proportionnel intégral dérivé PID}\label{correcteur-proportionnel-intuxe9gral-duxe9rivuxe9-pid}}
+760:Il se comporte comme un correcteur intégral pour les basses fréquences et comme un correcteur proportionnel pour les fréquences intermédiaires et comme un correcteur dérivé pour les hautes fréquences. Bien réglé, il présente les avantages 3 correcteurs sans leurs inconvénients. Mais il est difficile à régler.
+762:Le correcteur \textbf{proportionnel intégral dérivé} \(C(p) = K_{p} + \frac{K_{i}}{p} + K_{d}p\)~:
+766:  Comme le correcteur PI, il améliore la précision~;
+768:  Comme le correcteur PD, il améliore la rapidité.
+771:Correcteur PID théorique
+773:Ce correcteur ne correspond à aucun système physique car le degré du numérateur est supérieur à celui du dénominateur.
+775:Les correcteurs réels que l'on utilise sont de la forme~:
+779:Diagramme de Bode du correcteur PID~:
+781:\hypertarget{ruxe9glage-du-correcteur-3}{%
+782:\subparagraph*{Réglage du correcteur}\label{ruxe9glage-du-correcteur-3}}
+783:\addcontentsline{toc}{subparagraph}{Réglage du correcteur}
+787:  On commence par la rapidité et de précision avec le correcteur PI.
+789:  Puis la stabilité avec l'avance de phase.
+794:La première méthode nécessite l\textquotesingle enregistrement de la réponse indicielle en boucle ouverte, alors que la deuxième demande d\textquotesingle amener le système bouclé à sa limite de stabilité.
+798:\hypertarget{bilan-des-performances-des-correcteurs}{%
+799:\subsection{Bilan des performances des correcteurs}\label{bilan-des-performances-des-correcteurs}}
+812:\textbf{Stabilité}
+814:\textbf{Rapidité}
+816:\textbf{Précision}
+822:Correcteur P & \(\searrow\) & \(\nearrow \nearrow\) & \(\nearrow\) \\
+823:Correcteur I & \(\searrow \searrow\) & \(\searrow\) & \(\nearrow \nearrow\) \\
+824:Correcteur PI & \(\searrow\) & \(\searrow\) & \(\nearrow \nearrow\) \\
+825:Correcteur à retard de phase & \(\searrow\) & \(\searrow\) & \(\nearrow\) \\
+826:Correcteur à avance de phase & \(\nearrow\) & \(\nearrow\) & \(\searrow\) \\
+827:Correcteur PID & \(\nearrow\) & \(\nearrow\) & \(\nearrow \nearrow\) \\
+833:Afin d'améliorer la robustesse de notre système, des boucles imbriquées ou régulation cascade sont souvent utilisées. Le principe est d'asservir une grandeur et sa dérivée comme par exemple la position et la vitesse. Pour cela il faut que le temps de réponse de la boucle interne soit négligeable devant la boucle externe.
+856:\hypertarget{sources}{%
+857:\subsection{Sources}\label{sources}}
+859:Ce cours a été élaboré à l'aide de nombreuses ressources~provenant de différents collègues~de l'UPSTI.\\
+861:\hypertarget{exercices-du-chapitre}{%
+862:\subsection{Exercices du chapitre}\label{exercices-du-chapitre}}
+866:\hypertarget{ruxe9gler-un-correcteur-proportionnel}{%
+867:\subsection{Régler un correcteur proportionnel}\label{ruxe9gler-un-correcteur-proportionnel}}
+869:\includegraphics[width=1.35556in,height=0.38889in]{./images/image18.png}\textbf{~}\protect\hypertarget{_Toc120222132}{}{}\textbf{Marges de stabilité et correcteur P}
+871:Soit \(F(p)\) la FTBO d'un système bouclé à retour unitaire d'entrée \(x(t)\) et de sortie \(y(t)\). Les diagrammes de BODE de \(F(p)\) sont représentés ci-dessous.
+877:Diagrammes de BODE de la FTBO
+881:Déterminer les marges de phase et de gain du système, puis conclure quant à sa stabilité.
+883:On décide d'ajouter au système un correcteur série de type proportionnel. On note K le gain de ce correcteur.
+885:Déterminer la valeur de K permettant d'obtenir une marge de gain \(M_{G} = 12\ dB\).
+887:Déterminer la nouvelle marge de phase du système et conclure quant à sa stabilité.
+901:• \(C(p)\) : fonction de transfert du correcteur
+923:Conclure sur la possibilité de pouvoir respecter les critères imposés par le cahier des charges en termes de précision avec un correcteur proportionnel.
+939:  \(C(p)\) : fonction de transfert du correcteur
+958:La figure 4 fournit la réponse indicielle du dispositif non perturbé avec un correcteur proportionnel de gain \(K = 1\).
+964:On souhaite une erreur statique relative inférieure à 1 \% ; quelle valeur doit-on donner au gain du correcteur ? Quel problème peut poser la valeur du gain ainsi déterminée ?
+970:Quelle proposition peut-on faire pour améliorer la précision de cet asservissement de vitesse ?
+1014:On réalise un asservissement de la position \(x\) de la tige tel que décrit sur la figure 4. Le débit est délivré par une servovalve commandée en courant. À partir de l'écart, un amplificateur proportionnel de gain \(C\) fournit le courant \(i\) d'alimentation de la bobine de la servovalve. La mesure de la position de la tige du vérin actif est réalisée par un capteur de gain \(K_{M}\).
+1036:Quelle expression doit prendre le gain de boucle afin de satisfaire aux exigences du cahier des charges concernant la précision ?
+1038:\hypertarget{ruxe9gler-un-correcteur-intuxe9gral}{%
+1039:\subsection{Régler un correcteur intégral}\label{ruxe9gler-un-correcteur-intuxe9gral}}
+1055:  une marge de phase de 45° ;
+1064:− régler les paramètres d'un correcteur permettant le respect des critères du cahier des charges.
+1066:Déterminer les marges du système non corrigé.
+1072:On utilise maintenant un correcteur \(C(p) = K_{p} + \frac{K_{i}}{p} = K_{p}\frac{1 + T_{i}p}{T_{i}p}\) avec \(T_{i} = \frac{K_{p}}{K_{i}}\).
+1074:Quelle est la nature de ce correcteur ? Que peut-on attendre comme amélioration sur le système ?
+1076:Tracer le diagramme de Bode asymptotique de ce correcteur pour \(K_{p} > 1\). Indiquer les caractéristiques~:
+1082:  expressions de la pulsation, du gain en dB et de la phase au point de cassure.
+1087:Le lieu de Bode de la fonction de transfert en boucle ouverte non corrigée est donné ci-après.
+1089:Déterminer graphiquement puis analytiquement les paramètres \(K_{p} > 1\) et \(K_{i} > 1\) du correcteur par la méthode du placement fréquentiel.
+1091:Déterminer les paramètres \(K_{p} > 1\) et \(K_{i} > 1\) du correcteur par la méthode de la compensation du pôle dominant.
+1107:\hypertarget{reglage-dun-correcteur-pi}{%
+1108:\subsection{~REGLAGE D'un correcteur pi}\label{reglage-dun-correcteur-pi}}
+1110:Un système est corrigé par un correcteur de type P.I.
+1116:Pour le réglage du correcteur, on hésite entre \(T_{i} = 0,5s\) et \(T_{i} = 5s\).
+1120:\textbf{Réglage en commençant par la stabilité}
+1128:\includegraphics[width=3.45347in,height=2.59375in]{./images/image36.png}On donne la réponse temporelle pour un échelon d'amplitude 10 de ces 2 correcteurs ci-dessous~:
+1134:\textbf{Réglage en commençant par la rapidité}
+1146:Conclure sur le réglage du correcteur PI.
+1148:\hypertarget{ruxe9gler-un-correcteur-uxe0-avance-de-phase}{%
+1149:\subsection{Régler un correcteur à avance de phase}\label{ruxe9gler-un-correcteur-uxe0-avance-de-phase}}
+1151:\protect\hypertarget{_Toc120222138}{}{}\textbf{Correcteur a avance de phase du robovolc}
+1168:~Tracer le diagramme de Bode asymptotique de la fonction \(H(p) = \frac{\delta\tau_{B}p + 1}{\tau_{B}p + 1}\) avec \(\delta > 1\)
+1170:~Quel est l'intérêt de ce correcteur à avance de phase~?
+1172:~En utilisant une moyenne logarithmique entre \(\frac{1}{\delta\tau_{B}}\) et \(\frac{1}{\tau_{B}}\) montrer que la valeur maximale de la phase à lieu pour \(\omega_{maxi} = \frac{1}{\sqrt{\delta}.\tau_{B}}\)
+1188:\emph{(\ul{Source :} Marc Dérumaux)}
+1190:On considère la FTBO dont le diagramme de Bode est tracé ci-dessous, à gauche pour une large gamme de fréquence et à droite pour une gamme de fréquence plus étroite :
+1197:  Quelle sont les valeurs des marges de gain et de phase ?
+1201:  Quelle correction proportionnelle Kp1 faut-il choisir pour assurer une bande passante de 0.6 rad/s ?
+1203:  Quelle correction proportionnelle Kp2 faut-il choisir pour assurer une marge de gain de 6dB ?
+1205:  Quelle correction proportionnelle Kp3 faut-il choisir pour assurer une marge de phase de 60° ?
+1207:  Si le cahier des charges impose une bande passante d\textquotesingle au moins 0.6 rad/s, une marge de gain d\textquotesingle au moins 12 dB et une marge de phase d\textquotesingle au moins 60°, quelle correction proportionnelle Kp faut-il choisir ?
+
+=== IMAGES ===
+06-Correction des Systèmes asservis/Cours/pandoc/images/image1.png
+06-Correction des Systèmes asservis/Cours/pandoc/images/image10.jpeg
+06-Correction des Systèmes asservis/Cours/pandoc/images/image11.jpeg
+06-Correction des Systèmes asservis/Cours/pandoc/images/image12.jpeg
+06-Correction des Systèmes asservis/Cours/pandoc/images/image13.png
+06-Correction des Systèmes asservis/Cours/pandoc/images/image14.wmf
+06-Correction des Systèmes asservis/Cours/pandoc/images/image15.jpeg
+06-Correction des Systèmes asservis/Cours/pandoc/images/image16.jpeg
+06-Correction des Systèmes asservis/Cours/pandoc/images/image17.png
+06-Correction des Systèmes asservis/Cours/pandoc/images/image18.png
+06-Correction des Systèmes asservis/Cours/pandoc/images/image19.png
+06-Correction des Systèmes asservis/Cours/pandoc/images/image20.png
+06-Correction des Systèmes asservis/Cours/pandoc/images/image21.png
+06-Correction des Systèmes asservis/Cours/pandoc/images/image22.png
+06-Correction des Systèmes asservis/Cours/pandoc/images/image23.png
+06-Correction des Systèmes asservis/Cours/pandoc/images/image24.png
+06-Correction des Systèmes asservis/Cours/pandoc/images/image25.png
+06-Correction des Systèmes asservis/Cours/pandoc/images/image26.png
+06-Correction des Systèmes asservis/Cours/pandoc/images/image27.png
+06-Correction des Systèmes asservis/Cours/pandoc/images/image28.png
+06-Correction des Systèmes asservis/Cours/pandoc/images/image29.png
+06-Correction des Systèmes asservis/Cours/pandoc/images/image3.jpeg
+06-Correction des Systèmes asservis/Cours/pandoc/images/image30.png
+06-Correction des Systèmes asservis/Cours/pandoc/images/image31.png
+06-Correction des Systèmes asservis/Cours/pandoc/images/image32.png
+06-Correction des Systèmes asservis/Cours/pandoc/images/image33.png
+06-Correction des Systèmes asservis/Cours/pandoc/images/image34.png
+06-Correction des Systèmes asservis/Cours/pandoc/images/image35.jpeg
+06-Correction des Systèmes asservis/Cours/pandoc/images/image36.png
+06-Correction des Systèmes asservis/Cours/pandoc/images/image37.png
+06-Correction des Systèmes asservis/Cours/pandoc/images/image38.png
+06-Correction des Systèmes asservis/Cours/pandoc/images/image39.jpeg
+06-Correction des Systèmes asservis/Cours/pandoc/images/image40.emf
+06-Correction des Systèmes asservis/Cours/pandoc/images/image41.emf
+06-Correction des Systèmes asservis/Cours/pandoc/images/image5.png
+06-Correction des Systèmes asservis/Cours/pandoc/images/image6.jpeg
+06-Correction des Systèmes asservis/Cours/pandoc/images/image7.png
+06-Correction des Systèmes asservis/Cours/pandoc/images/image8.jpeg
+06-Correction des Systèmes asservis/Cours/pandoc/images/image9.png
