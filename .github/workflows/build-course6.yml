@@ -115,7 +115,8 @@ jobs:
             cp /tmp/00_Correction_Systemes_Asservis.pdf "$course/00_Correction_Systemes_Asservis.pdf"
           fi
 
-          git add "$course/COMPILATION_COURS6.txt" "$course/COMPILATION_COURS6.log"
+          git add "$course/COMPILATION_COURS6.txt"
+          git add -f "$course/COMPILATION_COURS6.log"
           if [ '${{ steps.compile.outcome }}' = 'success' ] && [ -f "$course/00_Correction_Systemes_Asservis.pdf" ]; then
             git add -f "$course/00_Correction_Systemes_Asservis.pdf"
           fi
