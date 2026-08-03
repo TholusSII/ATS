@@ -1,0 +1,173 @@
+% ============================================================================
+% COURS 08 — ÉLECTROMÉCANIQUE
+% ============================================================================
+
+\section{Conversion électromécanique de l'énergie}\label{sec:em-conversion}
+
+L'électromécanique étudie les dispositifs qui convertissent l'énergie électrique
+en énergie mécanique, ou inversement. Les moteurs, génératrices, actionneurs
+linéaires et transformateurs reposent tous sur les interactions entre courants,
+champs magnétiques et mouvements.
+
+\TLChaineConversionElectromecanique
+
+Pour un convertisseur tournant :
+\[
+P_e=u i,\qquad P_m=C\Omega,\qquad \eta=\frac{P_{\mathrm{utile}}}{P_{\mathrm{absorbée}}}.
+\]
+
+\section{Grandeurs magnétiques}\label{sec:em-magnetisme}
+
+Le champ magnétique est caractérisé par le champ $\vec H$ et l'induction
+magnétique $\vec B$. Dans un matériau linéaire :
+\[
+\vec B=\mu\vec H=\mu_0\mu_r\vec H.
+\]
+Le flux traversant une surface $S$ vaut
+\[
+\Phi=\iint_S \vec B\cdot\mathrm d\vec S.
+\]
+
+\subsection{Circuit magnétique}
+
+\TLCircuitMagnetiqueSimple
+
+L'analogie avec un circuit électrique conduit aux relations
+\[
+\mathcal F=Ni,\qquad \mathcal R=\frac{\ell}{\mu S},\qquad
+\Phi=\frac{\mathcal F}{\mathcal R}.
+\]
+La force magnétomotrice $\mathcal F$ joue le rôle d'une tension, le flux $\Phi$
+celui d'un courant et la réluctance $\mathcal R$ celui d'une résistance.
+
+La présence d'un entrefer augmente fortement la réluctance totale :
+\[
+\mathcal R_{\mathrm{tot}}=\mathcal R_{\mathrm{fer}}+\mathcal R_{\mathrm{entrefer}}.
+\]
+
+\section{Induction électromagnétique}\label{sec:em-induction}
+
+La loi de Faraday-Lenz relie la variation du flux à la force électromotrice :
+\[
+e(t)=-N\frac{\mathrm d\Phi}{\mathrm dt}.
+\]
+Le signe traduit l'opposition du phénomène induit à la cause qui lui donne
+naissance.
+
+\subsection{Bobine réelle}
+
+Une bobine réelle possède une inductance $L$ et une résistance $R$.
+
+\TLBobineRL
+
+Son équation électrique est
+\[
+u(t)=Ri(t)+L\frac{\mathrm di(t)}{\mathrm dt}.
+\]
+Pour une alimentation continue par un échelon $U$, le courant s'établit selon
+\[
+i(t)=\frac{U}{R}\left(1-e^{-t/\tau}\right),\qquad \tau=\frac{L}{R}.
+\]
+L'énergie stockée dans le champ magnétique vaut
+\[
+E_m=\frac12Li^2.
+\]
+
+\section{Transformateur}\label{sec:em-transformateur}
+
+Un transformateur transfère une puissance alternative entre deux circuits grâce
+à un flux magnétique commun.
+
+\TLTransformateurIdeal
+
+Pour un transformateur idéal :
+\[
+\frac{u_2}{u_1}=\frac{N_2}{N_1}=m,
+\qquad
+\frac{i_2}{i_1}=\frac{N_1}{N_2}=\frac1m,
+\qquad
+P_1=P_2.
+\]
+En pratique, les pertes proviennent principalement des résistances des
+bobinages, des courants de Foucault, de l'hystérésis et des fuites de flux.
+
+\section{Forces et couples électromagnétiques}\label{sec:em-efforts}
+
+Un conducteur parcouru par un courant dans un champ magnétique subit la force de
+Laplace :
+\[
+\mathrm d\vec F=i\,\mathrm d\vec \ell\wedge\vec B.
+\]
+Dans une machine tournante, la somme de ces efforts produit un couple. Une forme
+générale du bilan énergétique conduit à
+\[
+C_{em}=\frac{\partial W'_m}{\partial\theta},
+\]
+où $W'_m$ est la coénergie magnétique.
+
+\section{Modèle élémentaire d'un moteur à courant continu}\label{sec:em-mcc}
+
+Même si l'étude détaillée de la machine à courant continu fait l'objet du cours
+suivant, son modèle élémentaire illustre directement la conversion
+électromécanique.
+
+\TLModeleMoteurCC
+
+Les équations sont
+\[
+u=Ri+L\frac{\mathrm di}{\mathrm dt}+e,
+\qquad e=K_e\Omega,
+\qquad C_{em}=K_t i.
+\]
+L'équation mécanique s'écrit
+\[
+J\frac{\mathrm d\Omega}{\mathrm dt}=C_{em}-C_r-f\Omega.
+\]
+Dans le système international et pour une machine idéale, les constantes $K_e$
+et $K_t$ ont la même valeur numérique.
+
+\section{Bilans de puissance et rendement}\label{sec:em-puissances}
+
+\TLBilanPuissancesElectromecanique
+
+Pour un moteur :
+\[
+P_e=ui,\qquad P_{em}=C_{em}\Omega=e i,\qquad P_u=C_u\Omega.
+\]
+Les pertes Joule valent
+\[
+P_J=Ri^2.
+\]
+Le rendement global est
+\[
+\eta=\frac{P_u}{P_e}.
+\]
+
+\section{Régimes transitoires et permanents}\label{sec:em-regimes}
+
+À court terme, l'inductance limite les variations du courant. À plus long terme,
+l'inertie mécanique limite les variations de vitesse. Une chaîne
+électromécanique possède donc généralement au moins deux constantes de temps :
+une constante électrique et une constante mécanique.
+
+En régime permanent :
+\[
+\frac{\mathrm di}{\mathrm dt}=0,
+\qquad
+\frac{\mathrm d\Omega}{\mathrm dt}=0.
+\]
+Les équations différentielles deviennent alors algébriques, ce qui facilite le
+tracé des caractéristiques couple--vitesse.
+
+\section{À retenir}\label{sec:em-retenir}
+
+\begin{itemize}
+  \item La force magnétomotrice $Ni$ crée un flux dans un circuit magnétique.
+  \item La réluctance augmente fortement lorsqu'un entrefer est introduit.
+  \item Une variation de flux induit une force électromotrice.
+  \item Une bobine stocke l'énergie $\frac12Li^2$.
+  \item Un transformateur adapte tension et courant sans changer la fréquence.
+  \item Dans une machine tournante, la puissance électromagnétique vérifie
+  $P_{em}=C_{em}\Omega$.
+  \item Les pertes électriques, magnétiques et mécaniques limitent le rendement.
+\end{itemize}
