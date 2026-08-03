@@ -1,173 +1,241 @@
 % ============================================================================
-% COURS 08 — ÉLECTROMÉCANIQUE
+% COURS 08 — GÉNÉRALITÉS SUR LA CONVERSION ÉLECTROMÉCANIQUE D'ÉNERGIE
+% Reprise fidèle du document 12-Electromecanique.docx
 % ============================================================================
 
-\section{Conversion électromécanique de l'énergie}\label{sec:em-conversion}
+\section{Généralités sur les machines électriques}\label{sec:em-generalites}
 
-L'électromécanique étudie les dispositifs qui convertissent l'énergie électrique
-en énergie mécanique, ou inversement. Les moteurs, génératrices, actionneurs
-linéaires et transformateurs reposent tous sur les interactions entre courants,
-champs magnétiques et mouvements.
+Les machines électriques assurent une conversion entre énergie électrique et énergie mécanique. Le cours se limite aux machines tournantes utilisées en moteur ou en génératrice.
 
 \TLChaineConversionElectromecanique
 
-Pour un convertisseur tournant :
+\subsection{Puissance utile, puissance absorbée et rendement}
+
+En fonctionnement moteur, la puissance électrique absorbée est convertie en puissance mécanique utile :
 \[
-P_e=u i,\qquad P_m=C\Omega,\qquad \eta=\frac{P_{\mathrm{utile}}}{P_{\mathrm{absorbée}}}.
+P_u=C_u\Omega_m.
 \]
-
-\section{Grandeurs magnétiques}\label{sec:em-magnetisme}
-
-Le champ magnétique est caractérisé par le champ $\vec H$ et l'induction
-magnétique $\vec B$. Dans un matériau linéaire :
+Le bilan de puissance s'écrit
 \[
-\vec B=\mu\vec H=\mu_0\mu_r\vec H.
+P_a=P_u+P_{\mathrm{pertes}}.
 \]
-Le flux traversant une surface $S$ vaut
+Le rendement au point de fonctionnement considéré vaut
 \[
-\Phi=\iint_S \vec B\cdot\mathrm d\vec S.
+\eta=\frac{P_u}{P_a}.
 \]
+En fonctionnement génératrice, l'entrée et la sortie sont inversées : la puissance mécanique est absorbée et une puissance électrique est fournie.
 
-\subsection{Circuit magnétique}
+\TLBilanPuissancesMachine
 
-\TLCircuitMagnetiqueSimple
+Le rendement indiqué sur une plaque signalétique correspond en général au point de fonctionnement nominal.
 
-L'analogie avec un circuit électrique conduit aux relations
+\subsection{Grandeurs nominales et plaque signalétique}
+
+Les grandeurs nominales sont celles pour lesquelles la machine a été conçue. La puissance indiquée sur les catalogues et plaques signalétiques est la puissance utile nominale. Le rendement indiqué correspond au point nominal, qui n'est pas nécessairement le point de rendement maximal.
+
+Les indices courants sont :
+\begin{itemize}
+  \item $n$ : nominal ;
+  \item $0$ ou $v$ : à vide ;
+  \item $em$ : électromagnétique ;
+  \item $r$ : résistant ;
+  \item $f$ : frottement ;
+  \item $p$ : pertes ;
+  \item $m$ : moteur ou maximum suivant le contexte.
+\end{itemize}
+
+\subsection{Couple électromagnétique et couple utile}
+
+Une machine tournante comprend un stator fixe, un rotor mobile et un entrefer. L'interaction des champs magnétiques crée le couple électromagnétique $C_{em}$.
+
+La puissance électromagnétique est
 \[
-\mathcal F=Ni,\qquad \mathcal R=\frac{\ell}{\mu S},\qquad
-\Phi=\frac{\mathcal F}{\mathcal R}.
+P_{em}=C_{em}\Omega_m.
 \]
-La force magnétomotrice $\mathcal F$ joue le rôle d'une tension, le flux $\Phi$
-celui d'un courant et la réluctance $\mathcal R$ celui d'une résistance.
-
-La présence d'un entrefer augmente fortement la réluctance totale :
+Les pertes mécaniques et électromagnétiques sont globalisées par un couple de pertes $C_p$ opposé au mouvement. Le couple disponible sur l'arbre est alors
 \[
-\mathcal R_{\mathrm{tot}}=\mathcal R_{\mathrm{fer}}+\mathcal R_{\mathrm{entrefer}}.
+C_u=C_{em}-C_p.
 \]
+Lorsque les pertes au rotor sont négligées, on peut assimiler $C_u$ et $C_{em}$.
 
-\section{Induction électromagnétique}\label{sec:em-induction}
+\subsection{Relations couple et vitesse dans la chaîne cinématique}
 
-La loi de Faraday-Lenz relie la variation du flux à la force électromotrice :
+Pour étudier le moteur, les grandeurs de la charge doivent être ramenées à l'arbre moteur. Chaque constituant de la transmission est traité comme un adaptateur cinématique et énergétique.
+
+\TLChaineCinematique
+
+Relations utiles :
 \[
-e(t)=-N\frac{\mathrm d\Phi}{\mathrm dt}.
-\]
-Le signe traduit l'opposition du phénomène induit à la cause qui lui donne
-naissance.
-
-\subsection{Bobine réelle}
-
-Une bobine réelle possède une inductance $L$ et une résistance $R$.
-
-\TLBobineRL
-
-Son équation électrique est
-\[
-u(t)=Ri(t)+L\frac{\mathrm di(t)}{\mathrm dt}.
-\]
-Pour une alimentation continue par un échelon $U$, le courant s'établit selon
-\[
-i(t)=\frac{U}{R}\left(1-e^{-t/\tau}\right),\qquad \tau=\frac{L}{R}.
-\]
-L'énergie stockée dans le champ magnétique vaut
-\[
-E_m=\frac12Li^2.
-\]
-
-\section{Transformateur}\label{sec:em-transformateur}
-
-Un transformateur transfère une puissance alternative entre deux circuits grâce
-à un flux magnétique commun.
-
-\TLTransformateurIdeal
-
-Pour un transformateur idéal :
-\[
-\frac{u_2}{u_1}=\frac{N_2}{N_1}=m,
+V=R\Omega,
 \qquad
-\frac{i_2}{i_1}=\frac{N_1}{N_2}=\frac1m,
+P=FV,
 \qquad
-P_1=P_2.
+P=C\Omega.
 \]
-En pratique, les pertes proviennent principalement des résistances des
-bobinages, des courants de Foucault, de l'hystérésis et des fuites de flux.
-
-\section{Forces et couples électromagnétiques}\label{sec:em-efforts}
-
-Un conducteur parcouru par un courant dans un champ magnétique subit la force de
-Laplace :
+Pour un réducteur de rapport $k=\Omega_s/\Omega_e$ et de rendement $\eta$ :
 \[
-\mathrm d\vec F=i\,\mathrm d\vec \ell\wedge\vec B.
-\]
-Dans une machine tournante, la somme de ces efforts produit un couple. Une forme
-générale du bilan énergétique conduit à
-\[
-C_{em}=\frac{\partial W'_m}{\partial\theta},
-\]
-où $W'_m$ est la coénergie magnétique.
-
-\section{Modèle élémentaire d'un moteur à courant continu}\label{sec:em-mcc}
-
-Même si l'étude détaillée de la machine à courant continu fait l'objet du cours
-suivant, son modèle élémentaire illustre directement la conversion
-électromécanique.
-
-\TLModeleMoteurCC
-
-Les équations sont
-\[
-u=Ri+L\frac{\mathrm di}{\mathrm dt}+e,
-\qquad e=K_e\Omega,
-\qquad C_{em}=K_t i.
-\]
-L'équation mécanique s'écrit
-\[
-J\frac{\mathrm d\Omega}{\mathrm dt}=C_{em}-C_r-f\Omega.
-\]
-Dans le système international et pour une machine idéale, les constantes $K_e$
-et $K_t$ ont la même valeur numérique.
-
-\section{Bilans de puissance et rendement}\label{sec:em-puissances}
-
-\TLBilanPuissancesElectromecanique
-
-Pour un moteur :
-\[
-P_e=ui,\qquad P_{em}=C_{em}\Omega=e i,\qquad P_u=C_u\Omega.
-\]
-Les pertes Joule valent
-\[
-P_J=Ri^2.
-\]
-Le rendement global est
-\[
-\eta=\frac{P_u}{P_e}.
-\]
-
-\section{Régimes transitoires et permanents}\label{sec:em-regimes}
-
-À court terme, l'inductance limite les variations du courant. À plus long terme,
-l'inertie mécanique limite les variations de vitesse. Une chaîne
-électromécanique possède donc généralement au moins deux constantes de temps :
-une constante électrique et une constante mécanique.
-
-En régime permanent :
-\[
-\frac{\mathrm di}{\mathrm dt}=0,
+\Omega_s=k\Omega_e,
 \qquad
-\frac{\mathrm d\Omega}{\mathrm dt}=0.
+C_s\Omega_s=\eta C_e\Omega_e.
 \]
-Les équations différentielles deviennent alors algébriques, ce qui facilite le
-tracé des caractéristiques couple--vitesse.
+Le rapport de vitesse n'est pas modifié par les pertes ; celles-ci se traduisent par une augmentation du couple demandé au moteur.
+
+\subsection{Rendement global de la chaîne cinématique}
+
+Pour une chaîne composée de plusieurs constituants :
+\[
+\eta_{\mathrm{global}}=\prod_i \eta_i.
+\]
+Le couple moteur nécessaire se détermine en écrivant le bilan de puissance de la charge vers le moteur.
+
+\section{Caractéristiques machine--charge}\label{sec:em-machine-charge}
+
+\subsection{Charge résistante, charge entraînante et réversibilité}
+
+Une charge est dite \textbf{résistante} lorsqu'elle s'oppose au mouvement : le transfert d'énergie va de la source vers la charge. Une charge est dite \textbf{entraînante} lorsqu'elle impose le mouvement : le transfert d'énergie est inverse et la machine fonctionne en génératrice.
+
+Une chaîne est réversible seulement si tous ses constituants, électriques et mécaniques, permettent le transfert d'énergie dans les deux sens.
+
+\subsection{Caractéristiques couple--vitesse des charges}
+
+Le couple résistant $C_r$ est ramené sur l'arbre moteur. Quatre familles classiques sont utilisées :
+\[
+C_r=C_0,
+\qquad
+C_r=k\Omega,
+\qquad
+C_r=\frac{k}{\Omega},
+\qquad
+C_r=k\Omega^2.
+\]
+
+\TLCourbesCharges
+
+Exemples :
+\begin{itemize}
+  \item couple constant : engins de levage, broyeurs ;
+  \item couple proportionnel à la vitesse : mélangeurs ;
+  \item couple inversement proportionnel à la vitesse : enrouleurs, certaines machines-outils ;
+  \item couple proportionnel au carré de la vitesse : pompes et ventilateurs.
+\end{itemize}
+
+\subsection{Expression du couple de frottement}
+
+Le couple de frottement peut être modélisé par
+\[
+C_f(t)=C_0+f\Omega_m(t)+a\Omega_m^2(t),
+\]
+avec :
+\begin{itemize}
+  \item $C_0$ : frottements secs ;
+  \item $f\Omega_m$ : frottements visqueux ;
+  \item $a\Omega_m^2$ : frottements fluides.
+\end{itemize}
+Il faut vérifier si les frottements sont inclus dans $C_r$, dans $C_p$, ou traités séparément.
+
+\subsection{Prise en compte des frottements}
+
+Avec frottements secs inclus dans le couple résistant :
+\[
+J_{eq}\frac{\mathrm d\Omega_m}{\mathrm dt}=C_{em}-C_r.
+\]
+Avec frottements visqueux explicités :
+\[
+J_{eq}\frac{\mathrm d\Omega_m}{\mathrm dt}=C_{em}-C_r-f\Omega_m.
+\]
+
+\subsection{Régimes de fonctionnement}
+
+Les profils de vitesse sont souvent trapézoïdaux : accélération, régime établi, décélération, éventuellement inversion du sens de rotation.
+
+\TLCycleTrapezoidal
+
+Le paramètre mécanique principal est le moment d'inertie équivalent ramené sur l'arbre moteur. Le principe fondamental de la dynamique donne
+\[
+J_{eq}\frac{\mathrm d\Omega_m}{\mathrm dt}=C_u-C_r.
+\]
+Ainsi :
+\begin{itemize}
+  \item en accélération, $C_u>C_r$ ;
+  \item en régime établi, $C_u=C_r$ ;
+  \item en décélération, $C_u<C_r$.
+\end{itemize}
+Le signe du couple moteur pendant une décélération permet de distinguer décélération naturelle, freinage moteur et freinage générateur.
+
+\subsection{Point de fonctionnement}
+
+En régime établi, le point de fonctionnement est l'intersection entre la caractéristique de la machine et celle de la charge :
+\[
+C_u(\Omega)=C_r(\Omega).
+\]
+
+\TLPointFonctionnement
+
+Le rendement dépend de ce point. Le point nominal correspond au fonctionnement prévu par le constructeur. Un point est stable si une petite perturbation de vitesse engendre une accélération qui ramène le système vers l'équilibre.
+
+\subsection{Variation de vitesse}
+
+Faire varier la vitesse revient à déplacer le point de fonctionnement. La charge imposant sa caractéristique, le variateur agit sur la caractéristique de la machine en modifiant tension, courant ou fréquence selon le type de machine.
+
+\subsection{Quadrants et modes de fonctionnement}
+
+Dans le plan couple--vitesse, la puissance mécanique est
+\[
+P_m=C\Omega.
+\]
+Lorsque $P_m>0$, la machine fonctionne en moteur. Lorsque $P_m<0$, elle fonctionne en génératrice ou en frein.
+
+\TLQuadrantsMachine
+
+Les applications peuvent nécessiter un fonctionnement 1, 2 ou 4 quadrants. Le nombre de quadrants dépend de la possibilité d'inverser le sens de rotation et de récupérer ou dissiper l'énergie de freinage.
+
+Trois modes de freinage sont distingués :
+\begin{itemize}
+  \item freinage mécanique ;
+  \item freinage électrique dissipatif ;
+  \item freinage électrique récupératif.
+\end{itemize}
+Lorsque la source n'est pas réversible, un module de freinage dissipe l'énergie récupérée dans une résistance.
+
+\TLFreinageDissipatif
+
+\section{Essais sur les machines}\label{sec:em-essais}
+
+\TLEssaisMachines
+
+\subsection{Essai à vide}
+
+La machine n'entraîne aucune charge : $C_r=0$. Au point de fonctionnement, $C_u=0$ et $C_{em}=C_p$. Cet essai permet d'estimer le couple de pertes et les pertes fer.
+
+\subsection{Essai en charge}
+
+La machine entraîne une charge connue, idéalement proche de son fonctionnement nominal. Cet essai permet de relever le rendement, les puissances et les pertes Joule.
+
+\subsection{Essai rotor bloqué}
+
+Le rotor est immobilisé : $\Omega=0$. L'essai est réalisé sous tension réduite et permet d'identifier certains paramètres électromagnétiques.
+
+\section{Applications et exercices du chapitre}\label{sec:em-applications}
+
+Le document d'origine s'appuie sur plusieurs applications : escalier mécanique, éolienne, borne rétractable, pilote automatique de bateau, véhicule de maison hantée, scooter électrique, préhenseur de cartons et tondeuse autonome.
+
+Les exercices de fin de chapitre portent notamment sur :
+\begin{itemize}
+  \item le calcul du couple pendant les phases d'accélération et de décélération d'un scooter ;
+  \item la détermination des signes de puissance et des quadrants de fonctionnement ;
+  \item le calcul du temps de parcours et des couples en montée et en descente pour le véhicule de maison hantée ;
+  \item la vitesse de coupe et le freinage du plateau de l'Automower.
+\end{itemize}
 
 \section{À retenir}\label{sec:em-retenir}
 
 \begin{itemize}
-  \item La force magnétomotrice $Ni$ crée un flux dans un circuit magnétique.
-  \item La réluctance augmente fortement lorsqu'un entrefer est introduit.
-  \item Une variation de flux induit une force électromotrice.
-  \item Une bobine stocke l'énergie $\frac12Li^2$.
-  \item Un transformateur adapte tension et courant sans changer la fréquence.
-  \item Dans une machine tournante, la puissance électromagnétique vérifie
-  $P_{em}=C_{em}\Omega$.
-  \item Les pertes électriques, magnétiques et mécaniques limitent le rendement.
+  \item $P_u=C_u\Omega$ et $\eta=P_u/P_a$ en fonctionnement moteur.
+  \item $C_u=C_{em}-C_p$.
+  \item Les vitesses se ramènent par les rapports cinématiques, les couples par les bilans de puissance et les rendements.
+  \item Le PFD ramené sur l'arbre moteur s'écrit $J_{eq}\dot\Omega=C_u-C_r$.
+  \item Le point de fonctionnement vérifie $C_u=C_r$.
+  \item Le signe de $C\Omega$ distingue fonctionnement moteur et génératrice.
+  \item La réversibilité doit être étudiée sur toute la chaîne d'énergie.
+  \item Les essais à vide, en charge et rotor bloqué n'identifient pas les mêmes pertes ni les mêmes paramètres.
 \end{itemize}
