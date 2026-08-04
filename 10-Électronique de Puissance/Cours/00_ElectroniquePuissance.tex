@@ -24,9 +24,23 @@
 \usepackage{../../Style/TLElectroniquePuissance}
 \usepackage{amsmath,amssymb,mathtools,array,booktabs}
 
-% Compatibilité avec l'ancien nom utilisé dans la source du cours : les
-% objectifs adoptent désormais la présentation commune « Savoir-faire ».
+% Compatibilité avec les anciens noms utilisés dans la source du cours.
 \newenvironment{objectifs}{\begin{savoirfaire}}{\end{savoirfaire}}
+\newenvironment{retenir}[1][]{%
+  \begin{tcolorbox}[
+    title={#1},
+    colback=blue!4,
+    colframe=blue!60!black,
+    boxrule=0.8pt,
+    arc=1mm,
+    left=3mm,
+    right=3mm,
+    top=2mm,
+    bottom=2mm
+  ]%
+}{%
+  \end{tcolorbox}%
+}
 
 \raggedbottom
 \setlength{\parindent}{0pt}
