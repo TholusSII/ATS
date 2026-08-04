@@ -1,5 +1,5 @@
 % ============================================================================
-% MOTEUR — COURS 07 : ÉLECTRONIQUE
+% MOTEUR GÉNÉRIQUE — COURS 07 : ÉLECTRONIQUE
 % ============================================================================
 \RequirePackage{silence}
 \WarningFilter{xcolor}{Package option `usenames' is obsolete}
@@ -12,8 +12,10 @@
 
 \usepackage[french]{babel}
 
+\newcommand{\TLCourseDefinitionFile}{07_Electronique}
+
 \makeatletter
-\def\input@path{{../../Style/}}
+\def\input@path{{../../Style/}{../../Style/Notations_Elec/}}
 \makeatother
 \input{TLCours.sty}
 \input{TLElectronique.sty}
@@ -24,118 +26,18 @@
   {\par\medskip\noindent\textbf{Application.}\enspace}
   {\par\medskip}
 
-% Métadonnées communes du polycopié.
-\renewcommand{\discipline}{Sciences Industrielles de l'Ingénieur}
-\renewcommand{\auteur}{Thomas Lusseau}
-
 \raggedbottom
 \setlength{\parindent}{0pt}
 \setlength{\emergencystretch}{3em}
 \makeindex[columns=3,title=Index alphabétique,intoc]
 
 \begin{document}
-
-% -----------------------------------------------------------------------------
-% Couverture dans la charte des autres polycopiés
-% -----------------------------------------------------------------------------
-\begin{titlepage}
-  \thispagestyle{empty}
-  \begin{tikzpicture}[remember picture,overlay]
-    \fill[TLCoverBlue]
-      (current page.north west)
-      rectangle ([yshift=-68mm]current page.north east);
-
-    \fill[TLCoverFooterBackground]
-      (current page.south west)
-      rectangle ([yshift=20mm]current page.south east);
-
-    \node[
-      anchor=north west,
-      xshift=15mm,
-      yshift=-17mm,
-      text=white,
-      align=left,
-      text width=175mm,
-      font=\sffamily\bfseries\fontsize{25}{30}\selectfont
-    ] at (current page.north west)
-      {Acquisition et traitement\\du signal};
-
-    \node[
-      anchor=north west,
-      xshift=16mm,
-      yshift=-75mm,
-      text=TLCoverOrange,
-      font=\sffamily\bfseries\fontsize{15}{18}\selectfont
-    ] at (current page.north west)
-      {Cours 07 — Électronique};
-
-    \node[
-      anchor=north west,
-      xshift=16mm,
-      yshift=-94mm,
-      text=TLCoverBlue,
-      align=left,
-      text width=170mm,
-      font=\sffamily\fontsize{12}{17}\selectfont
-    ] at (current page.north west)
-      {Chaîne d'acquisition — Capteurs — Électrocinétique\\
-       Représentation spectrale — Filtrage — Numérisation};
-
-    \draw[TLCoverGreen,line width=2.5pt]
-      ([xshift=16mm,yshift=-128mm]current page.north west)
-      --
-      ([xshift=-16mm,yshift=-128mm]current page.north east);
-
-    \node[
-      anchor=north west,
-      xshift=16mm,
-      yshift=-142mm,
-      text=TLCoverBlue,
-      align=left,
-      text width=170mm,
-      font=\sffamily\bfseries\fontsize{15}{19}\selectfont
-    ] at (current page.north west)
-      {ATS — Sciences Industrielles de l'Ingénieur};
-
-    \node[
-      anchor=south east,
-      xshift=-12mm,
-      yshift=8mm,
-      text=TLCoverBlue,
-      align=right,
-      font=\sffamily\bfseries\fontsize{11}{13}\selectfont
-    ] at (current page.south east)
-      {Lycée Robert Doisneau — Thomas Lusseau};
-  \end{tikzpicture}
-  \null
-\end{titlepage}
-
-% Pied de page commun à tous les polycopiés.
-\TLCourseFooter
-
-\frontmatter
-\tableofcontents
-\clearpage
-
 \mainmatter
 \setchapterstyle{kao}
 \setcounter{margintocdepth}{\sectiontocdepth}
 \marginlayout
 \pagestyle{scrheadings}
 
-\chapter{Acquisition et traitement du signal}
-\label{chap:electronique}
-\margintoc
+\input{\TLCourseDefinitionFile}
 
-% Parties 1 à 4 : chaîne d'acquisition, capteurs et électrocinétique.
-\input{sources/07_Electronique_Cours_Propre}
-
-% Parties 5 à 9 : spectre, filtrage, numérisation, numération et sources.
-\input{sources/07_Electronique_Parties_5_10}
-
-% Partie 10 : exercices du chapitre réécrits à partir du document source.
-\input{sources/07_Electronique_Exercices}
-\input{sources/07_Electronique_Exercices_Complement}
-
-\printindex
 \end{document}
