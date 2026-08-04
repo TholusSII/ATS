@@ -39,12 +39,20 @@
 
 \TLStartCourseChapter{11}{Détermination des actions mécaniques}{chap:actions-mecaniques}
 
-% Étiquetage automatique des sections pour le sommaire de la couverture.
+% Étiquetage automatique et robuste des sections pour le sommaire de couverture.
+\NewCommandCopy\TLAMBaseSection\section
 \newcounter{TLAMSectionLabel}
-\apptocmd{\section}{%
-  \stepcounter{TLAMSectionLabel}%
-  \label{sec:am-\arabic{TLAMSectionLabel}}%
-}{}{}
+\RenewDocumentCommand{\section}{s o m}{%
+  \IfBooleanTF{#1}{%
+    \TLAMBaseSection*{#3}%
+  }{%
+    \IfNoValueTF{#2}
+      {\TLAMBaseSection{#3}}
+      {\TLAMBaseSection[#2]{#3}}%
+    \stepcounter{TLAMSectionLabel}%
+    \label{sec:am-\arabic{TLAMSectionLabel}}%
+  }%
+}
 
 \input{sources/11_ActionsMecaniques_Partie_A}
 \input{sources/11_ActionsMecaniques_Partie_B}
