@@ -5,4 +5,16 @@
 
 \TLStartCourseChapter{10}{Électronique de puissance}{chap:electronique-puissance}
 
+% Le premier fichier contient désormais les parties 1 à 7. Lorsqu'il atteint
+% l'ancienne section synthétique « Conversion indirecte », on arrête sa lecture
+% et l'on poursuit avec la reprise développée des parties 8 à 11.
+\let\TLSectionOriginale\section
+\renewcommand{\section}[1]{%
+  \ifstrequal{#1}{Conversion indirecte}
+    {\endinput}
+    {\TLSectionOriginale{#1}}%
+}
 \input{sources/10_ElectroniquePuissance_Cours_Propre.tex}
+\let\section\TLSectionOriginale
+
+\input{sources/10_ElectroniquePuissance_Parties_8_11.tex}
