@@ -1,0 +1,178 @@
+% ============================================================================
+% COURS 11 — APPLICATIONS GUIDÉES ISSUES DU DOCUMENT D'ORIGINE
+% ============================================================================
+
+\section{Applications guidées et exemples technologiques}
+
+\subsection{Pilote automatique de bateau : modèle technologique}
+
+L'ensemble gouvernail--barre franche 1 est en liaison pivot d'axe
+$(A,\vec z)$ avec la coque 0. Lorsque le pilotage est automatique,
+l'ensemble 1 est actionné par un vérin constitué d'une tige 2 et d'un
+corps 3.
+
+\begin{center}
+\includegraphics[width=.86\linewidth]{image5.png}
+\end{center}
+
+Pour une étude purement cinématique, la liaison entre 1 et 0 peut être
+modélisée par une liaison pivot unique. Pour dimensionner les composants,
+le modèle doit être plus proche de la réalisation technologique : les
+deux roulements sont représentés séparément par une rotule de centre
+$A_1$ et une liaison linéaire annulaire de centre $A_2$, de direction
+$\vec z$.
+
+\begin{center}
+\includegraphics[width=.88\linewidth]{image6.png}
+\end{center}
+
+Le modèle d'actions mécaniques doit également faire apparaître :
+\begin{itemize}
+  \item l'action de l'eau sur le gouvernail, modélisée par une force
+        $\vec F_{\mathrm{eau}\rightarrow1}=-F\vec x$ appliquée au point $P$ ;
+  \item les actions de pression du fluide sur la tige et le corps du vérin ;
+  \item la pesanteur sur les ensembles dont la masse n'est pas négligée.
+\end{itemize}
+
+\begin{center}
+\includegraphics[width=.90\linewidth]{image7.png}
+\end{center}
+
+\begin{TLMethod}{Isolement du vérin complet $\Sigma=2+3$}
+Les actions entre la tige 2 et le corps 3 deviennent intérieures. Les
+actions extérieures restantes sont les actions de 0 sur 3, de 1 sur 2
+et, si elles ne sont pas négligées, les actions de pesanteur sur 2 et 3.
+Les torseurs doivent ensuite être transportés au même point avant leur
+sommation.
+\end{TLMethod}
+
+\subsection{Grue de port : stratégie d'isolement}
+
+On cherche à déterminer l'effort du vérin sur le bras 2 permettant de
+maintenir une grue en équilibre sous l'effet de la pesanteur.
+
+\begin{center}
+\includegraphics[width=.48\linewidth]{image13.png}
+\end{center}
+
+La stratégie efficace est la suivante :
+\begin{enumerate}
+  \item isoler d'abord la bielle ou le sous-ensemble soumis à deux
+        glisseurs, afin de déterminer immédiatement la direction de son
+        action ;
+  \item isoler ensuite le bras 2, qui est alors soumis à un nombre
+        d'inconnues compatible avec les équations du PFS ;
+  \item choisir un point de moment qui élimine les réactions de la
+        liaison avec le bâti ;
+  \item projeter le théorème du moment suivant l'axe normal au plan pour
+        obtenir directement l'effort du vérin.
+\end{enumerate}
+
+\begin{TLWarning}{Nombre d'inconnues}
+Une liaison possédant $I_c$ inconnues cinématiques transmet, dans le
+modèle parfait, $I_s=6-I_c$ inconnues statiques. Une liaison hélicoïdale
+ne possède qu'une mobilité indépendante : la translation et la rotation
+sont liées par le pas.
+\end{TLWarning}
+
+\subsection{Poussoir et coulisseau : préparer la résolution}
+
+Le mécanisme comporte un poussoir 1 en rotation par rapport au bâti et
+un coulisseau 2 maintenu en contact avec le poussoir. Le poussoir est
+soumis à un couple moteur $C_m$ et le coulisseau à l'action d'un fluide.
+
+\begin{center}
+\includegraphics[width=.43\linewidth]{image17.jpeg}
+\end{center}
+
+On associe au bâti le repère
+$R_0=(O,\vec x_0,\vec y_0,\vec z_0)$ et au poussoir le repère
+$R_1=(O,\vec x_1,\vec y_1,\vec z_1)$. Le point de contact $A$ est repéré
+par $\overrightarrow{BA}=\lambda\vec y_0$.
+
+L'objectif est d'établir une relation entre la force $F$ appliquée au
+coulisseau et le couple moteur $C_m$ lorsque le mécanisme est en
+équilibre.
+
+\begin{TLMethod}{Stratégie proposée}
+\begin{enumerate}
+  \item Isoler le coulisseau 2 pour déterminer la direction et
+        l'intensité de l'action de contact de 1 sur 2.
+  \item Utiliser le théorème des actions réciproques pour obtenir
+        l'action de 2 sur 1.
+  \item Isoler le poussoir 1.
+  \item Appliquer le théorème du moment statique au point $O$ suivant
+        $\vec z_0$ : les réactions de la liaison pivot sont éliminées et
+        l'équation relie directement $F$ et $C_m$.
+\end{enumerate}
+\end{TLMethod}
+
+\subsection{Vérin différentiel : action de la pression}
+
+Un vérin possède un piston de diamètre $D_p=\SI{50}{\milli\metre}$ et
+une tige de diamètre $D_t=\SI{18}{\milli\metre}$. La chambre arrière est
+alimentée sous une pression $p_H$ ; la chambre avant reste alimentée
+sous une pression $p_0=\SI{6}{\bar}$.
+
+Les surfaces utiles sont :
+\[
+S_p=\frac{\pi D_p^2}{4},
+\qquad
+S_t=\frac{\pi D_t^2}{4}.
+\]
+
+L'action globale de la pression sur la tige est un glisseur porté par
+l'axe du vérin :
+\[
+\left\{\mathcal T_{p\rightarrow\mathrm{tige}}\right\}=
+\left\{
+\begin{array}{c}
+\left[p_HS_p-p_0(S_p-S_t)\right]\vec y_3\\
+\vec0
+\end{array}
+\right\}.
+\]
+
+Pour un effort utile $F_v=\SI{220}{\newton}$ :
+\[
+p_H=\frac{F_v+p_0(S_p-S_t)}{S_p}.
+\]
+L'application numérique conduit à une pression voisine de
+$\SI{6.7}{\bar}$.
+
+\subsection{Rendement et puissances perdues}
+
+Pour une transmission recevant une puissance $\mathcal P_e>0$ et
+fournissant une puissance utile $\mathcal P_s>0$, le rendement est :
+\[
+\eta=\frac{\mathcal P_s}{\mathcal P_e},
+\qquad 0<\eta\leq1.
+\]
+
+La puissance dissipée vaut :
+\[
+\mathcal P_{\mathrm{perdue}}
+=\mathcal P_e-\mathcal P_s
+=(1-\eta)\mathcal P_e.
+\]
+
+Lorsqu'une transmission est utilisée en sens inverse, il ne faut pas
+inverser arbitrairement le rendement. On repart de la définition en
+identifiant la puissance entrante et la puissance sortante dans la
+situation étudiée.
+
+\subsection{Questions de synthèse}
+
+\begin{enumerate}
+  \item Expliquer pourquoi un modèle cinématique minimal peut être
+        insuffisant pour dimensionner les roulements d'un mécanisme.
+  \item Sur un graphe de structure, montrer comment distinguer les
+        actions intérieures et extérieures après un isolement.
+  \item Justifier le choix d'un point de réduction qui élimine une action
+        inconnue dans une équation de moment.
+  \item Établir le torseur global d'une pression uniforme appliquée sur
+        une surface plane.
+  \item Pour une chaîne comportant plusieurs solides, proposer les
+        isolements successifs permettant de déterminer un effort
+        d'actionneur avec le minimum d'équations.
+\end{enumerate}
