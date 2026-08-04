@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{TLCours}[2026/08/01 Socle commun des polycopiés de cours TL]
+\ProvidesPackage{TLCours}[2026/08/04 Socle commun des polycopiés de cours TL]
 
 % -----------------------------------------------------------------------------
 % Dépendances réellement communes aux cours
@@ -38,6 +38,76 @@
 \fi
 
 \graphicspath{{images/}{./}}
+
+% -----------------------------------------------------------------------------
+% Ouverture commune des polycopiés
+% #1 : numéro du cours ; #2 : titre ; #3 : label du chapitre.
+% Le compteur est placé juste avant la valeur souhaitée pour laisser \chapter
+% produire le grand numéro dans le style Kao.
+% -----------------------------------------------------------------------------
+\newcommand{\TLStartCourseChapter}[3]{%
+  \setcounter{chapter}{#1}%
+  \addtocounter{chapter}{-1}%
+  \chapter{#2}%
+  \label{#3}%
+  \margintoc%
+}
+
+% -----------------------------------------------------------------------------
+% Présentation commune des acquis attendus
+% -----------------------------------------------------------------------------
+\definecolor{TLSavoirsBlue}{RGB}{0,84,127}
+\definecolor{TLSavoirsBack}{RGB}{234,243,245}
+\definecolor{TLSavoirFaireOrange}{RGB}{221,112,18}
+\definecolor{TLSavoirFaireBack}{RGB}{255,243,226}
+
+\newtcolorbox{savoirs}[1][]{%
+  enhanced,
+  breakable,
+  before skip=1.2\baselineskip,
+  after skip=1.2\baselineskip,
+  boxrule=.8pt,
+  arc=1.5mm,
+  left=4mm,
+  right=4mm,
+  top=2.5mm,
+  bottom=3mm,
+  colback=TLSavoirsBack,
+  colframe=TLSavoirsBlue,
+  colbacktitle=TLSavoirsBlue,
+  coltitle=white,
+  fonttitle=\sffamily\bfseries,
+  title={Savoirs},
+  attach boxed title to top left={xshift=4mm,yshift*=-\tcboxedtitleheight/2},
+  boxed title style={arc=1.5mm,boxrule=0pt,left=3mm,right=3mm},
+  #1
+}
+
+\newtcolorbox{savoirfaire}[1][]{%
+  enhanced,
+  breakable,
+  before skip=1.2\baselineskip,
+  after skip=1.2\baselineskip,
+  boxrule=.8pt,
+  arc=1.5mm,
+  left=4mm,
+  right=4mm,
+  top=2.5mm,
+  bottom=3mm,
+  colback=TLSavoirFaireBack,
+  colframe=TLSavoirFaireOrange,
+  colbacktitle=TLSavoirFaireOrange,
+  coltitle=white,
+  fonttitle=\sffamily\bfseries,
+  title={Savoir-faire},
+  attach boxed title to top left={xshift=4mm,yshift*=-\tcboxedtitleheight/2},
+  boxed title style={arc=1.5mm,boxrule=0pt,left=3mm,right=3mm},
+  #1
+}
+
+% Commandes pratiques pour les listes courtes déjà écrites dans certains cours.
+\newcommand{\TLSavoirs}[1]{\begin{savoirs}#1\end{savoirs}}
+\newcommand{\TLSavoirFaire}[1]{\begin{savoirfaire}#1\end{savoirfaire}}
 
 % Éviter qu'un titre soit isolé en bas de page.
 \pretocmd{\section}{\Needspace{6\baselineskip}}{}{}
