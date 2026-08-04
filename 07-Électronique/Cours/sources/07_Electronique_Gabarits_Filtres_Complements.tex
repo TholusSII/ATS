@@ -1,0 +1,88 @@
+% ============================================================================
+% GABARITS COMPLÉMENTAIRES — PASSE-HAUT, PASSE-BANDE ET COUPE-BANDE
+% ============================================================================
+
+\clearpage
+\subsection{Gabarit d'un filtre passe-haut}\label{sec:elec-gabarit-passe-haut}
+
+Un filtre passe-haut atténue les basses fréquences et transmet les hautes fréquences. Le gabarit comporte une bande atténuée jusqu'à $f_a$, une bande de transition entre $f_a$ et $f_p$, puis une bande passante à partir de $f_p$.
+
+\begin{center}
+\begin{tikzpicture}[x=1.45cm,y=0.085cm]
+  \draw[->] (0,0) -- (6.2,0) node[right] {$\log f$};
+  \draw[->] (0,-66) -- (0,6) node[above] {$G_{\mathrm{dB}}$};
+  \draw[dashed] (0,-3) -- (6,-3) node[right] {$-A_p$};
+  \draw[dashed] (0,-40) -- (6,-40) node[right] {$-A_a$};
+  \draw[dashed] (2.0,0) -- (2.0,-66) node[below] {$f_a$};
+  \draw[dashed] (4.0,0) -- (4.0,-66) node[below] {$f_p$};
+  \fill[pattern=north east lines,pattern color=gray] (0,0) rectangle (2.0,-40);
+  \fill[pattern=north east lines,pattern color=gray] (4.0,-3) rectangle (6,-66);
+  \draw[densely dashed,line width=1pt] (0,-55) -- (2.0,-55) -- (4.0,0) -- (6,0);
+  \draw[line width=1.2pt] (0,-60) -- (2.0,-44) .. controls (2.8,-34) and (3.4,-12) .. (4.0,-2.5) -- (6,-0.5);
+  \node at (1.0,-18) {zone interdite};
+  \node at (5.0,-18) {zone interdite};
+  \node at (3.0,-12) {transition};
+\end{tikzpicture}
+\end{center}
+
+\subsection{Gabarit d'un filtre passe-bande}\label{sec:elec-gabarit-passe-bande}
+
+Un filtre passe-bande transmet une bande comprise entre deux fréquences de coupure et atténue les fréquences inférieures et supérieures. On distingue donc deux bandes atténuées, deux bandes de transition et une bande passante centrale.
+
+\begin{center}
+\begin{tikzpicture}[x=1.18cm,y=0.085cm]
+  \draw[->] (0,0) -- (7.2,0) node[right] {$\log f$};
+  \draw[->] (0,-66) -- (0,6) node[above] {$G_{\mathrm{dB}}$};
+  \draw[dashed] (0,-3) -- (7,-3) node[right] {$-A_p$};
+  \draw[dashed] (0,-40) -- (7,-40) node[right] {$-A_a$};
+  \foreach \x/\lab in {1.2/f_{a1},2.2/f_{p1},4.8/f_{p2},5.8/f_{a2}}
+    \draw[dashed] (\x,0) -- (\x,-66) node[below] {$\lab$};
+  \fill[pattern=north east lines,pattern color=gray] (0,0) rectangle (1.2,-40);
+  \fill[pattern=north east lines,pattern color=gray] (2.2,-3) rectangle (4.8,-66);
+  \fill[pattern=north east lines,pattern color=gray] (5.8,0) rectangle (7,-40);
+  \draw[densely dashed,line width=1pt] (0,-55) -- (1.2,-55) -- (2.2,0) -- (4.8,0) -- (5.8,-55) -- (7,-55);
+  \draw[line width=1.2pt] (0,-60) -- (1.2,-45) .. controls (1.7,-25) and (1.9,-8) .. (2.2,-2.5)
+    -- (4.8,-2.5) .. controls (5.1,-8) and (5.3,-25) .. (5.8,-45) -- (7,-60);
+  \node at (0.65,-18) {zone interdite};
+  \node at (3.5,-18) {zone interdite};
+  \node at (6.4,-18) {zone interdite};
+\end{tikzpicture}
+\end{center}
+
+La largeur de bande vaut
+\[
+B=f_{p2}-f_{p1},
+\]
+et la fréquence centrale est généralement définie par
+\[
+f_0=\sqrt{f_{p1}f_{p2}}.
+\]
+
+\subsection{Gabarit d'un filtre coupe-bande}\label{sec:elec-gabarit-coupe-bande}
+
+Un filtre coupe-bande, ou réjecteur de bande, transmet les basses et les hautes fréquences mais atténue une bande intermédiaire.
+
+\begin{center}
+\begin{tikzpicture}[x=1.18cm,y=0.085cm]
+  \draw[->] (0,0) -- (7.2,0) node[right] {$\log f$};
+  \draw[->] (0,-66) -- (0,6) node[above] {$G_{\mathrm{dB}}$};
+  \draw[dashed] (0,-3) -- (7,-3) node[right] {$-A_p$};
+  \draw[dashed] (0,-40) -- (7,-40) node[right] {$-A_a$};
+  \foreach \x/\lab in {1.5/f_{p1},2.5/f_{a1},4.5/f_{a2},5.5/f_{p2}}
+    \draw[dashed] (\x,0) -- (\x,-66) node[below] {$\lab$};
+  \fill[pattern=north east lines,pattern color=gray] (0,-3) rectangle (1.5,-66);
+  \fill[pattern=north east lines,pattern color=gray] (2.5,0) rectangle (4.5,-40);
+  \fill[pattern=north east lines,pattern color=gray] (5.5,-3) rectangle (7,-66);
+  \draw[densely dashed,line width=1pt] (0,0) -- (1.5,0) -- (2.5,-55) -- (4.5,-55) -- (5.5,0) -- (7,0);
+  \draw[line width=1.2pt] (0,-0.5) -- (1.5,-2.5) .. controls (1.9,-10) and (2.2,-30) .. (2.5,-44)
+    -- (4.5,-44) .. controls (4.8,-30) and (5.1,-10) .. (5.5,-2.5) -- (7,-0.5);
+  \node at (0.75,-18) {zone interdite};
+  \node at (3.5,-18) {zone interdite};
+  \node at (6.25,-18) {zone interdite};
+\end{tikzpicture}
+\end{center}
+
+La bande rejetée est comprise entre $f_{a1}$ et $f_{a2}$. La fréquence centrale de réjection est souvent prise égale à
+\[
+f_0=\sqrt{f_{a1}f_{a2}}.
+\]
