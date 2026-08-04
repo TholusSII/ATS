@@ -1,62 +1,234 @@
-\begin{objectifs}
+% ============================================================================
+% COURS 10 — ÉLECTRONIQUE DE PUISSANCE
+% Reprise progressive à partir de 14-ElectroniquePuissance.docx
+% ============================================================================
+
+\begin{savoirs}
 \begin{itemize}
-\item Identifier la nature des sources et respecter leurs règles d'association.
-\item Modéliser les interrupteurs de puissance dans leurs états passant et bloqué.
-\item Étudier les hacheurs série, parallèle, deux quadrants et quatre quadrants.
-\item Déterminer valeurs moyenne et efficace, ondulation de courant et contraintes sur les composants.
-\item Analyser un redresseur monophasé non commandé et les puissances associées.
+\item Les différentes natures de sources, courant et tension, ainsi que leurs règles d'association.
+\item Les caractéristiques d'un interrupteur à l'état passant, tension nulle, et à l'état bloqué, courant nul.
+\item La forme du courant de la charge d'un convertisseur statique pour les charges à courant constant, $L$--$E$ et $R$--$L$--$E$.
+\item La définition du rapport cyclique.
+\item Les définitions des valeurs moyenne et efficace.
+\item Les principaux composants utilisés en électronique de puissance : diode, MOSFET et IGBT.
+\item L'association transistor--diode antiparallèle permettant d'obtenir un interrupteur réversible en courant.
+\item Les schémas de principe des hacheurs série, deux quadrants et quatre quadrants.
+\item La démarche permettant de tracer les tensions et les courants d'un convertisseur.
+\item La démarche permettant de déterminer la relation entre la tension d'entrée et la tension de sortie par les valeurs moyennes.
+\item La démarche permettant de déterminer l'ondulation du courant et la valeur du rapport cyclique pour laquelle elle est maximale.
 \end{itemize}
-\end{objectifs}
+\end{savoirs}
+
+\begin{savoirfaire}
+\begin{itemize}
+\item Tracer l'allure du courant d'une charge à courant constant, $L$--$E$ ou $R$--$L$--$E$.
+\item Déterminer le rapport cyclique à partir d'un chronogramme.
+\item Calculer une valeur moyenne ou efficace à partir d'un chronogramme.
+\item Reconnaître une diode, un transistor MOSFET ou un IGBT sur un schéma électrique.
+\item Tracer les tensions et les courants d'un convertisseur DC--DC.
+\item Déterminer la relation entre les tensions d'entrée et de sortie d'un convertisseur DC--DC.
+\item Déterminer l'expression de l'ondulation de courant.
+\item Identifier les composants passants à partir des chronogrammes de tension et de courant dans la charge.
+\end{itemize}
+\end{savoirfaire}
 
 \section{Généralités sur l'électronique de puissance}
-L'énergie électrique se présente sous forme continue (DC) ou alternative (AC). L'électronique de puissance étudie les \textbf{convertisseurs statiques d'énergie} qui modifient la présentation de cette énergie sans pièce mobile : redresseurs, hacheurs, onduleurs et gradateurs.
 
-\begin{center}\TLChaineConvertisseursPuissance\end{center}
+\subsection{Introduction}
 
-Contrairement à l'électronique des courants faibles, qui traite principalement l'information, l'électronique de puissance traite la conversion et la distribution de l'énergie électrique.
+L'énergie électrique se présente sous deux formes :
+\begin{itemize}
+\item continue, ou DC, comme pour les piles et les batteries ;
+\item alternative, ou AC, comme pour les réseaux de distribution.
+\end{itemize}
 
-\subsection{Bras de pont et interrupteur idéal}
-Le composant élémentaire d'un convertisseur statique est l'interrupteur. Dans le modèle idéal :
+On parle d'\textbf{électronique de puissance} lorsqu'on étudie les \textbf{convertisseurs statiques d'énergie} permettant de modifier la présentation de l'énergie selon les besoins : chargeur de batterie, interconnexion de réseaux, variation de vitesse d'un moteur, alimentation électronique, etc.
+
+On distingue ainsi :
+\begin{itemize}
+\item l'électronique des courants faibles, qui traite des informations codées sous forme de signaux électriques ;
+\item l'électronique de puissance, ou courants forts, qui traite de la transformation et de la distribution de l'énergie électrique.
+\end{itemize}
+
+\begin{center}
+\TLChaineConvertisseursPuissance
+\end{center}
+
+\subsubsection*{Exemples d'utilisation}
+
+L'électronique de puissance est présente dans de nombreux systèmes, pour des puissances allant du milliwatt au mégawatt.
+
+\paragraph{Alimentation d'un ordinateur.}
+À partir du secteur $230\,\mathrm{V}$ alternatif, l'alimentation fournit plusieurs tensions continues destinées aux différents constituants électroniques.
+
+\paragraph{TGV PBKA.}
+Ce train doit pouvoir fonctionner sous plusieurs alimentations : $1500\,\mathrm{V}$ continu, $3000\,\mathrm{V}$ continu, $15\,\mathrm{kV}$ à $16\tfrac{2}{3}\,\mathrm{Hz}$ et $25\,\mathrm{kV}$ à $50\,\mathrm{Hz}$.
+
+\paragraph{Variation de vitesse d'une MCC.}
+Une solution résistive simple permettrait de faire varier la tension appliquée au moteur, mais elle présente deux défauts majeurs :
+\begin{itemize}
+\item la tension de sortie dépend de la charge ;
+\item le rendement est très faible, car une part importante de l'énergie est dissipée par effet Joule.
+\end{itemize}
+
+Pour obtenir un rendement élevé, les convertisseurs statiques utilisent des interrupteurs électroniques, commandés alternativement dans leurs états passant et bloqué.
+
+\subsection{Composants de base d'un convertisseur statique : bras de pont}
+
+Le composant élémentaire d'un convertisseur statique est l'\textbf{interrupteur}. Dans le modèle idéal :
 \[
 \begin{array}{c|cc}
-&u_K&i_K\\\hline
-\text{passant}&0&\text{imposé par le circuit}\\
-\text{bloqué}&\text{imposé par le circuit}&0
+ & u_K & i_K \\
+\hline
+\text{passant} & 0 & \text{imposé par le circuit} \\
+\text{bloqué} & \text{imposé par le circuit} & 0
 \end{array}
 \]
 
-\begin{center}\TLBrasDePont\end{center}
+\begin{center}
+\TLBrasDePont
+\end{center}
+
+L'interrupteur idéal ne dissipe donc aucune puissance dans ses deux états stables :
+\[
+p_K=u_K i_K=0.
+\]
+Les pertes réelles apparaissent pendant les conductions non idéales et surtout pendant les commutations.
 
 \subsection{Nature des sources}
-Une source de tension impose sa tension ; son courant dépend du circuit extérieur. Une source de courant impose son courant ; sa tension dépend du circuit extérieur.
+
+\paragraph{Source de tension.}
+Une source de tension impose sa tension ; le courant dépend du circuit extérieur. Elle ne doit jamais être court-circuitée.
+
+\begin{center}
+\begin{circuitikz}[european resistors]
+\draw (0,0) node[eground]{} to[V,l=$E$] (0,3) -- (2.2,3);
+\draw (2.2,0) -- (0,0);
+\draw[->] (2.2,2.7) -- (2.2,.3) node[midway,right]{$u=E$};
+\end{circuitikz}
+\end{center}
+
+\paragraph{Source de courant.}
+Une source de courant impose son courant ; la tension dépend du circuit extérieur. Elle ne doit jamais être ouverte brutalement.
+
+\begin{center}
+\begin{circuitikz}
+\draw (0,0) node[eground]{} to[I,l=$I$] (0,3) -- (2.2,3);
+\draw (2.2,0) -- (0,0);
+\draw[->] (1.1,3.25) -- (2.1,3.25) node[midway,above]{$i=I$};
+\end{circuitikz}
+\end{center}
+
+\subsection{Règles d'association des sources}
 
 Les associations interdites sont :
 \begin{itemize}
 \item la mise en parallèle de deux sources de tension idéales de valeurs différentes ;
 \item la mise en série de deux sources de courant idéales de valeurs différentes ;
-\item l'ouverture brutale d'une source de courant ;
-\item le court-circuit d'une source de tension.
+\item le court-circuit d'une source de tension ;
+\item l'ouverture d'une source de courant.
 \end{itemize}
 
-Une inductance tend à imposer la continuité du courant et un condensateur la continuité de la tension. Ils permettent donc de modifier la nature apparente d'une source.
+Dans un convertisseur statique, les commutations doivent donc toujours respecter la nature instantanée des sources placées de part et d'autre du convertisseur.
 
-\subsection{Rapport cyclique}
+\subsection{Modification de la nature apparente d'une source}
+
+Une inductance s'oppose aux variations brusques du courant :
+\[
+u_L(t)=L\frac{\mathrm d i_L}{\mathrm dt}.
+\]
+Le courant dans une inductance est continu. Placée en série avec une source de tension, elle donne à l'ensemble un comportement de source de courant sur la durée d'une commutation.
+
+\begin{center}
+\begin{circuitikz}[european resistors]
+\draw (0,0) node[eground]{} to[V,l=$E$] (0,3)
+      to[L,l=$L$,i>^=$i_L$] (3.5,3)
+      to[short,-o] (4.5,3);
+\draw (4.5,0) node[ocirc]{} -- (0,0);
+\draw[<->] (4.7,0)--node[right]{$u_s$}(4.7,3);
+\end{circuitikz}
+\end{center}
+
+Réciproquement, un condensateur s'oppose aux variations brusques de tension :
+\[
+i_C(t)=C\frac{\mathrm d u_C}{\mathrm dt}.
+\]
+La tension à ses bornes est continue. Placé en parallèle, il donne à l'ensemble un comportement de source de tension pendant la commutation.
+
+\subsection{Forme du courant pour différents modèles de charge}
+
+\paragraph{Charge à courant constant.}
+Le courant est supposé parfaitement constant. Ce modèle constitue l'approximation limite d'une charge très inductive.
+
+\paragraph{Charge $L$--$E$.}
+Une inductance $L$ est associée à une force électromotrice $E$. Ce modèle est adapté à une machine à courant continu lorsque la résistance d'induit est négligée.
+
+\begin{center}
+\begin{circuitikz}[european resistors]
+\draw (0,2.5) node[left]{$u_s$} to[short,o-] (1,2.5)
+      to[L,l=$L$,i>^=$i$] (3.5,2.5)
+      to[V,l=$E$] (3.5,0) -- (0,0) node[ocirc]{};
+\end{circuitikz}
+\end{center}
+
+La loi de la maille donne :
+\[
+u_s=L\frac{\mathrm di}{\mathrm dt}+E.
+\]
+Le courant évolue donc linéairement lorsque $u_s$ est constant.
+
+\paragraph{Charge $R$--$L$--$E$.}
+Le modèle complet d'une MCC ajoute la résistance d'induit :
+
+\begin{center}
+\begin{circuitikz}[european resistors]
+\draw (0,2.5) node[left]{$u_s$} to[short,o-] (1,2.5)
+      to[R,l=$R$] (2.8,2.5)
+      to[L,l=$L$,i>^=$i$] (5,2.5)
+      to[V,l=$E$] (5,0) -- (0,0) node[ocirc]{};
+\end{circuitikz}
+\end{center}
+
+La loi de la maille s'écrit :
+\[
+u_s=Ri+L\frac{\mathrm di}{\mathrm dt}+E.
+\]
+Le courant n'est plus affine par morceaux, mais suit une évolution exponentielle autour de sa valeur d'équilibre.
+
+\subsection{Commutations possibles}
+
+Une commutation est dite \textbf{spontanée} lorsqu'elle est imposée par l'évolution des grandeurs électriques. Elle est dite \textbf{commandée} lorsqu'un signal de commande impose le changement d'état du composant.
+
+Dans un bras de pont, les deux interrupteurs ne doivent jamais être passants simultanément, sous peine de court-circuiter la source de tension. Ils ne doivent pas non plus être simultanément bloqués lorsque la charge se comporte comme une source de courant.
+
+\subsection{Rapport cyclique et découpage}
+
 Pour un signal périodique de période $T$, passant à l'état haut pendant $\alpha T$, le rapport cyclique est :
 \[
 \alpha=\frac{t_{\mathrm{on}}}{T},\qquad 0\leq\alpha\leq1.
 \]
-\begin{center}\TLChronogrammePWM\end{center}
 
-\subsection{Valeur moyenne et valeur efficace}
-Pour une grandeur périodique $x(t)$ :
+\begin{center}
+\TLChronogrammePWM
+\end{center}
+
+\subsection{Valeur moyenne}
+
+Pour une grandeur périodique $x(t)$ de période $T$ :
 \[
-X_{\mathrm{moy}}=\frac1T\int_0^T x(t)\,\mathrm dt,
-\qquad
-X_{\mathrm{eff}}=\sqrt{\frac1T\int_0^T x^2(t)\,\mathrm dt}.
+X_{\mathrm{moy}}=\frac{1}{T}\int_0^T x(t)\,\mathrm dt.
 \]
-La valeur moyenne caractérise notamment la composante continue ; la valeur efficace traduit l'effet thermique dans une résistance.
+La valeur moyenne caractérise la composante continue du signal.
 
-\section{Composants de puissance}
+\subsection{Valeur efficace}
+
+La valeur efficace est définie par :
+\[
+X_{\mathrm{eff}}=\sqrt{\frac{1}{T}\int_0^T x^2(t)\,\mathrm dt}.
+\]
+Elle correspond à la valeur continue produisant le même effet thermique dans une résistance.
+
+\section{Composants en électronique de puissance}
 Les composants usuels sont la diode, le transistor MOSFET, l'IGBT et le thyristor. On distingue :
 \begin{itemize}
 \item la caractéristique statique, qui décrit les états passant et bloqué ;
