@@ -1,12 +1,21 @@
 % ============================================================================
 % Bibliothèque électromécanique — framework SI
 % ============================================================================
-\ProvidesPackage{TLElectromecanique}[2026/08/03 Bibliotheque electromecanique]
+\ProvidesPackage{TLElectromecanique}[2026/08/04 Bibliotheque electromecanique]
 \RequirePackage{tikz}
 \RequirePackage{pgfplots}
 \RequirePackage{circuitikz}
 \pgfplotsset{compat=1.18}
 \usetikzlibrary{arrows.meta,positioning,calc,patterns,decorations.pathmorphing}
+
+% Avec babel[french], le point-virgule peut être actif. PGFPlots l'utilise
+% pourtant pour terminer chaque commande \addplot. On désactive donc les
+% raccourcis français uniquement pendant les environnements axis.
+\AtBeginEnvironment{axis}{%
+  \ifdefined\shorthandoff
+    \shorthandoff{:;!?}%
+  \fi
+}
 
 \newcommand{\TLChaineConversionElectromecanique}{%
 \begin{center}
