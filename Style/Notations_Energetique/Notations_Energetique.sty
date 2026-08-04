@@ -16,12 +16,16 @@
 \RequirePackage{mathrsfs}		%Pour faire des maths (notamment le L de la transformée de Laplace)
 %\RequirePackage{color}
 %\RequirePackage{xspace}
-% Chargement robuste depuis l'arborescence du dépôt ATS. Le moteur des cours
-% charge normalement déjà cette bibliothèque ; ce test évite un second appel.
+
+% Dans le cours MCC, les deux éléments nécessaires (\f et le booléen associé)
+% sont fournis par le moteur afin d'éviter le chargement de l'ancienne
+% bibliothèque Notations_Maths, qui redéfinit notamment \j.
 \makeatletter
-\@ifpackageloaded{Notations_Maths}{}{%
-  \input{../../Style/Notations_Maths/Notations_Maths.sty}%
-}
+\@ifundefined{TLMCCMathCompatibilityReady}{%
+  \@ifpackageloaded{Notations_Maths}{}{%
+    \input{../../Style/Notations_Maths/Notations_Maths.sty}%
+  }%
+}{}
 \makeatother
 
 %Initialisation des booleens 
