@@ -1,0 +1,524 @@
+% ============================================================================
+% COURS 11 — DÉTERMINATION DES ACTIONS MÉCANIQUES
+% Partie A : démarche, modélisation, statique, contact et frottement
+% ============================================================================
+
+\begin{savoirs}
+\begin{itemize}
+  \item Les différents types d'actions mécaniques et leur représentation par un torseur.
+  \item Les torseurs particuliers : glisseur et couple.
+  \item Le théorème des actions réciproques et l'action de la pesanteur.
+  \item Les actions transmissibles par les liaisons usuelles.
+  \item Le principe fondamental de la statique et les théorèmes associés.
+  \item Les lois de Coulomb, les notions d'adhérence, de glissement et d'arc-boutement.
+\end{itemize}
+\end{savoirs}
+
+\begin{savoirfaire}
+\begin{itemize}
+  \item Représenter un système par un graphe de structure et un schéma d'architecture.
+  \item Choisir un isolement pertinent et dresser le bilan des actions mécaniques extérieures.
+  \item Écrire un torseur d'action mécanique et le simplifier dans le cas d'un problème plan.
+  \item Appliquer le principe fondamental de la statique et choisir un point de réduction efficace.
+  \item Passer d'une modélisation locale des efforts de contact à une modélisation globale.
+\end{itemize}
+\end{savoirfaire}
+
+\section{Introduction}
+
+L'étude cinématique permet de prévoir le mouvement d'un mécanisme à partir de sa géométrie et de ses liaisons. Elle ne permet cependant pas de déterminer les efforts qui provoquent ce mouvement ou qui sont transmis par les composants. L'étude des \textbf{actions mécaniques} complète donc la modélisation cinématique.
+
+Les objectifs sont notamment de :
+\begin{itemize}
+  \item dimensionner un actionneur, une liaison, une structure ou un roulement ;
+  \item vérifier qu'un système reste en équilibre ;
+  \item déterminer une loi de mouvement ;
+  \item évaluer les efforts internes et les puissances mises en jeu ;
+  \item prévoir les conséquences du frottement et de l'inertie.
+\end{itemize}
+
+Trois outils principaux seront utilisés dans ce chapitre :
+\begin{enumerate}
+  \item le \textbf{principe fondamental de la statique} pour les systèmes en équilibre ;
+  \item le \textbf{théorème de l'énergie cinétique} pour obtenir une équation scalaire reliant efforts et mouvement ;
+  \item le \textbf{principe fondamental de la dynamique} pour obtenir l'ensemble des équations vectorielles du mouvement.
+\end{enumerate}
+
+\section{Démarche de résolution pour déterminer les actions mécaniques}
+
+\subsection{Démarche générale}
+
+La démarche de résolution doit être menée dans un ordre rigoureux.
+
+\begin{TLMethod}{Démarche générale}
+\begin{enumerate}
+  \item \textbf{Analyser le système} : identifier les solides, le bâti, les liaisons, les actionneurs et les actions extérieures.
+  \item \textbf{Représenter} : réaliser le graphe de structure et, si nécessaire, un schéma d'architecture.
+  \item \textbf{Choisir le système isolé} : sélectionner le solide ou l'ensemble de solides qui permet d'accéder aux inconnues recherchées.
+  \item \textbf{Recenser les actions mécaniques extérieures} : dresser le BAME.
+  \item \textbf{Choisir le principe} : statique, énergie-puissance ou dynamique.
+  \item \textbf{Choisir le point de réduction et la base} : exploiter les propriétés géométriques du problème.
+  \item \textbf{Écrire les équations scalaires utiles}, résoudre puis vérifier les signes, les unités et les ordres de grandeur.
+\end{enumerate}
+\end{TLMethod}
+
+\subsection{Représenter le système : graphe de structure et schéma d'architecture}
+
+Le \textbf{graphe de structure} représente :
+\begin{itemize}
+  \item les solides par des nœuds ;
+  \item les liaisons par des arêtes ;
+  \item les actions extérieures par des flèches ou des branches supplémentaires ;
+  \item les actionneurs, ressorts, amortisseurs et contacts avec l'environnement.
+\end{itemize}
+
+\TLGrapheStructureSimple
+
+Le graphe doit permettre de distinguer clairement les actions \textbf{intérieures} à l'ensemble étudié des actions \textbf{extérieures}. Une action entre deux solides appartenant tous les deux au système isolé est intérieure. Elle devient extérieure dès que l'un des deux solides n'appartient pas au système isolé.
+
+\begin{TLWarning}{Repérage du bâti}
+Le bâti est généralement noté 0. Il sert de référence au mouvement. On évite en général de l'isoler seul, car les actions exercées par l'environnement sur le bâti ne sont pas toutes connues.
+\end{TLWarning}
+
+\subsection{Isoler une partie du système}
+
+Isoler consiste à définir une frontière fictive autour d'un solide ou d'un ensemble de solides. Toutes les actions traversant cette frontière deviennent des actions mécaniques extérieures.
+
+Un bon isolement doit :
+\begin{itemize}
+  \item faire apparaître les inconnues recherchées ;
+  \item limiter le nombre d'inconnues supplémentaires ;
+  \item exploiter les propriétés des solides soumis à deux ou trois glisseurs ;
+  \item supprimer les actions intérieures inutiles.
+\end{itemize}
+
+\subsection{Stratégie d'isolement}
+
+Lorsque plusieurs isolements sont nécessaires, leur ordre est essentiel.
+
+\begin{TLMethod}{Choisir l'ordre des isolements}
+\begin{itemize}
+  \item Commencer par un solide soumis à deux actions : leurs droites d'action sont alors immédiatement déterminées.
+  \item Rechercher ensuite un solide soumis à trois glisseurs, afin d'utiliser la concurrence des droites d'action.
+  \item Isoler un sous-ensemble lorsque cela permet de rendre intérieures plusieurs actions de liaison inconnues.
+  \item Terminer par les solides comportant le plus grand nombre d'inconnues.
+\end{itemize}
+\end{TLMethod}
+
+La stratégie peut être préparée sur le graphe de structure en indiquant, pour chaque isolement, les relations que l'on souhaite obtenir.
+
+\subsection{Recenser les actions mécaniques}
+
+Le bilan des actions mécaniques extérieures, ou \textbf{BAME}, doit être exhaustif. Il contient typiquement :
+\begin{itemize}
+  \item les actions transmises par les liaisons coupées par la frontière d'isolement ;
+  \item la pesanteur ;
+  \item les efforts d'un vérin, d'un moteur, d'un ressort ou d'un amortisseur ;
+  \item les actions d'un fluide, du vent ou d'un contact avec l'environnement ;
+  \item les couples moteurs et résistants.
+\end{itemize}
+
+\TLBAME
+
+Pour chaque action, on précise :
+\begin{itemize}
+  \item l'auteur et le receveur de l'action ;
+  \item le point de réduction ;
+  \item la base d'expression ;
+  \item les composantes connues, inconnues ou nulles ;
+  \item les éventuelles relations entre composantes.
+\end{itemize}
+
+\section{Actions mécaniques}
+
+\subsection{Définition}
+
+Une action mécanique exercée par un système matériel 1 sur un système matériel 2 modifie ou tend à modifier son mouvement ou sa déformation. Son effet global est modélisé par le torseur :
+\[
+\left\{\mathcal T_{1\rightarrow2}\right\}_A=
+\left\{
+\begin{array}{c}
+\vec R_{1\rightarrow2}\\[1mm]
+\vec M_A(1\rightarrow2)
+\end{array}
+\right\},
+\]
+où :
+\begin{itemize}
+  \item $\vec R_{1\rightarrow2}$ est la \textbf{résultante} de l'action mécanique ;
+  \item $\vec M_A(1\rightarrow2)$ est le \textbf{moment} de l'action mécanique au point $A$.
+\end{itemize}
+
+Dans une base $(\vec x,\vec y,\vec z)$, on écrit la forme canonique :
+\[
+\left\{\mathcal T_{1\rightarrow2}\right\}_A=
+\left\{
+\begin{array}{cc}
+X_{12} & L_{12}\\
+Y_{12} & M_{12}\\
+Z_{12} & N_{12}
+\end{array}
+\right\}_{A,(\vec x,\vec y,\vec z)}.
+\]
+
+Le changement de point suit la relation de transport des moments :
+\[
+\vec M_B(1\rightarrow2)=
+\vec M_A(1\rightarrow2)+\overrightarrow{BA}\wedge\vec R_{1\rightarrow2}.
+\]
+La résultante est indépendante du point de réduction.
+
+\subsection{Torseurs particuliers : glisseur et couple}
+
+\subsubsection{Glisseur}
+
+Un torseur est un \textbf{glisseur} lorsque sa résultante est non nulle et que son invariant scalaire est nul. Il existe alors une droite, appelée droite d'action, sur laquelle le moment est nul.
+
+Au point $A$ appartenant à la droite d'action :
+\[
+\left\{\mathcal G\right\}_A=
+\left\{
+\begin{array}{c}
+\vec R\\
+\vec 0
+\end{array}
+\right\}.
+\]
+Une force ponctuelle, le poids ou l'effort d'un vérin idéal sont modélisés par des glisseurs.
+
+\subsubsection{Couple}
+
+Un torseur est un \textbf{couple} lorsque sa résultante est nulle :
+\[
+\left\{\mathcal C\right\}_A=
+\left\{
+\begin{array}{c}
+\vec 0\\
+\vec C
+\end{array}
+\right\}.
+\]
+Le moment d'un couple est indépendant du point de réduction. Un moteur idéal peut exercer un couple pur entre deux solides.
+
+\subsection{Théorème des actions réciproques}
+
+Pour deux systèmes matériels 1 et 2 :
+\[
+\left\{\mathcal T_{1\rightarrow2}\right\}_A
+=-\left\{\mathcal T_{2\rightarrow1}\right\}_A.
+\]
+Cette relation est valable au même point de réduction et dans la même base. Elle traduit le principe d'action-réaction.
+
+\subsection{Action mécanique de la pesanteur}
+
+Dans un champ de pesanteur uniforme, l'action de la Terre sur un solide $S$ de masse $m$ est équivalente à un glisseur appliqué au centre d'inertie $G$ :
+\[
+\left\{\mathcal T_{\mathrm{pes}\rightarrow S}\right\}_G=
+\left\{
+\begin{array}{c}
+m\vec g\\
+\vec 0
+\end{array}
+\right\}.
+\]
+Avec un axe vertical ascendant $\vec z_0$, on écrit généralement $\vec g=-g\vec z_0$.
+
+Au point $A$ :
+\[
+\vec M_A(\mathrm{pes}\rightarrow S)=\overrightarrow{AG}\wedge m\vec g.
+\]
+
+\subsection{Actions mécaniques particulières à connaître}
+
+\subsubsection{Effort d'un vérin idéal}
+
+L'action d'un vérin idéal est portée par l'axe de sa tige. Elle est modélisée par un glisseur de résultante :
+\[
+\vec F_v=F_v\vec u_v.
+\]
+Le signe de $F_v$ indique si le vérin travaille en traction ou en compression.
+
+\subsubsection{Ressort linéaire}
+
+Pour un ressort de raideur $k$, de longueur à vide $\ell_0$ et de longueur $\ell$ :
+\[
+F_r=k(\ell-\ell_0).
+\]
+L'effort est porté par l'axe du ressort et s'oppose à son allongement.
+
+\subsubsection{Amortisseur visqueux}
+
+Pour un amortisseur linéaire de coefficient $c$ :
+\[
+F_a=c\,\dot\ell.
+\]
+L'effort s'oppose à la vitesse relative des deux extrémités.
+
+\subsubsection{Action de pression}
+
+Une pression $p(M)$ exercée sur une surface $S$ produit localement :
+\[
+\mathrm d\vec F=-p(M)\vec n\,\mathrm dS,
+\]
+avec $\vec n$ normale extérieure à la surface du système étudié. La résultante et le moment s'obtiennent par intégration.
+
+\subsection{Actions transmissibles par les liaisons usuelles}
+
+Une liaison parfaite ne transmet aucune puissance dans ses mobilités autorisées. Les composantes nulles du torseur d'action mécanique sont donc directement liées aux degrés de liberté de la liaison.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}l X X}
+\toprule
+Liaison & Mobilités principales & Composantes d'effort nulles dans sa base locale \\
+\midrule
+Encastrement & aucune & aucune composante imposée nulle \\
+Pivot d'axe $\vec x$ & rotation autour de $\vec x$ & $L_{12}=0$ \\
+Glissière de direction $\vec x$ & translation suivant $\vec x$ & $X_{12}=0$ \\
+Pivot glissant d'axe $\vec x$ & rotation et translation suivant $\vec x$ & $X_{12}=L_{12}=0$ \\
+Rotule de centre $A$ & trois rotations & $L_{12}=M_{12}=N_{12}=0$ au centre $A$ \\
+Appui plan de normale $\vec z$ & translations suivant $\vec x,\vec y$ et rotation autour de $\vec z$ & $X_{12}=Y_{12}=N_{12}=0$ \\
+Linéaire annulaire d'axe $\vec x$ & translation suivant $\vec x$ et trois rotations & $X_{12}=L_{12}=M_{12}=N_{12}=0$ \\
+Ponctuelle de normale $\vec z$ & cinq mobilités & seule $Z_{12}$ peut être non nulle \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{TLWarning}{Base locale de la liaison}
+La forme simple du torseur n'est valable que dans la base associée à la liaison et au point caractéristique indiqué. Après un changement de base ou de point, des composantes supplémentaires peuvent apparaître.
+\end{TLWarning}
+
+\subsection{Cas particulier d'un problème plan}
+
+Un problème est plan lorsque :
+\begin{itemize}
+  \item la géométrie et les mouvements sont contenus dans un plan, par exemple $(\vec x,\vec y)$ ;
+  \item les actions extérieures sont compatibles avec cette symétrie ;
+  \item les inconnues hors plan sont découplées de l'étude recherchée.
+\end{itemize}
+
+Pour un problème plan $(\vec x,\vec y)$, le torseur d'action mécanique utile s'écrit :
+\[
+\left\{\mathcal T_{1\rightarrow2}\right\}_A=
+\left\{
+\begin{array}{cc}
+X_{12} & 0\\
+Y_{12} & 0\\
+0 & N_{12}
+\end{array}
+\right\}_{A,(\vec x,\vec y,\vec z)}.
+\]
+On conserve donc deux composantes de résultante dans le plan et une composante de moment normale au plan.
+
+\section{Étude de l'équilibre d'un système}
+
+\subsection{Principe fondamental de la statique}
+
+Dans un référentiel galiléen, un système matériel $S$ en équilibre vérifie :
+\[
+\left\{\mathcal T_{\mathrm{ext}\rightarrow S}\right\}_A=\{0\}.
+\]
+Cette relation est équivalente à deux théorèmes vectoriels.
+
+\subsubsection{Théorème de la résultante statique}
+\[
+\sum \vec F_{\mathrm{ext}}=\vec 0.
+\]
+
+\subsubsection{Théorème du moment statique}
+\[
+\sum \vec M_A(\mathrm{ext})=\vec 0.
+\]
+
+Dans l'espace, on dispose au maximum de six équations scalaires indépendantes. Dans un problème plan, on dispose de trois équations scalaires indépendantes.
+
+\subsection{Démarche de résolution d'un problème d'équilibre}
+
+\TLChaineResolutionStatique
+
+\begin{TLMethod}{Résolution d'un problème de statique}
+\begin{enumerate}
+  \item Vérifier que le système est en équilibre dans un référentiel galiléen.
+  \item Isoler le solide ou l'ensemble de solides pertinent.
+  \item Réaliser le BAME.
+  \item Écrire les torseurs des actions mécaniques au même point et dans la même base.
+  \item Choisir les projections qui éliminent le plus d'inconnues.
+  \item Résoudre et interpréter les signes obtenus.
+\end{enumerate}
+\end{TLMethod}
+
+\subsection{Conseils pour le choix du point de réduction}
+
+Le point de réduction est choisi pour annuler le moment d'une ou plusieurs actions inconnues. On privilégie :
+\begin{itemize}
+  \item le centre d'une liaison pivot ou rotule ;
+  \item un point appartenant à la droite d'action d'un glisseur ;
+  \item le point de concours de plusieurs forces ;
+  \item un point permettant une projection simple des moments.
+\end{itemize}
+
+Le théorème du moment peut être projeté directement sur un axe. Toute action dont la droite d'action coupe cet axe possède alors un moment nul sur cet axe.
+
+\subsection{Inventaire des actions mécaniques extérieures}
+
+Le BAME peut être présenté sous la forme d'un tableau.
+
+\begin{center}
+\begin{tabularx}{\linewidth}{>{\bfseries}l X X}
+\toprule
+Action & Modèle & Données / inconnues \\
+\midrule
+Liaison avec le bâti & torseur compatible avec la liaison & composantes inconnues \\
+Pesanteur & glisseur appliqué en $G$ & $m$ et $\vec g$ connus \\
+Actionneur & glisseur ou couple & effort ou couple recherché \\
+Ressort & glisseur suivant son axe & $k$, $\ell$, $\ell_0$ \\
+Contact extérieur & force ou torseur de contact & direction, frottement, pression \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Systèmes soumis uniquement à des glisseurs}
+
+\subsubsection{Solide soumis à deux glisseurs}
+
+Si un solide en équilibre est soumis à deux glisseurs non nuls, leurs droites d'action sont confondues et leurs résultantes sont opposées :
+\[
+\vec F_1+\vec F_2=\vec 0.
+\]
+
+\subsubsection{Solide soumis à trois glisseurs}
+
+Si un solide en équilibre est soumis à trois glisseurs coplanaires :
+\begin{itemize}
+  \item si les droites d'action ne sont pas parallèles, elles sont concourantes ;
+  \item le triangle des forces est fermé ;
+  \item si deux directions sont connues, la troisième est déterminée géométriquement.
+\end{itemize}
+
+Cette propriété est particulièrement utile pour déterminer graphiquement les directions d'actions dans les mécanismes comportant des bielles et des vérins.
+
+\subsection{Synthèse de la démarche de résolution}
+
+La résolution doit toujours aboutir à une vérification :
+\begin{itemize}
+  \item cohérence du signe avec le sens physique supposé ;
+  \item homogénéité des unités ;
+  \item ordre de grandeur réaliste ;
+  \item respect des hypothèses de liaison parfaite ou de problème plan ;
+  \item nombre d'équations suffisant par rapport au nombre d'inconnues.
+\end{itemize}
+
+\section{Définir une action mécanique : point de vue local}
+
+\subsection{Du point de vue local au point de vue global}
+
+Une action répartie est décrite localement par une densité d'effort. Sur une surface de contact, le vecteur contrainte $\vec t(M)$ permet d'écrire :
+\[
+\mathrm d\vec F=\vec t(M)\,\mathrm dS.
+\]
+La résultante globale vaut :
+\[
+\vec R=\iint_S \vec t(M)\,\mathrm dS,
+\]
+et le moment au point $A$ :
+\[
+\vec M_A=\iint_S \overrightarrow{AM}\wedge\vec t(M)\,\mathrm dS.
+\]
+
+Pour une action volumique de densité $\vec f(M)$ :
+\[
+\vec R=\iiint_V \vec f(M)\,\mathrm dV,
+\qquad
+\vec M_A=\iiint_V \overrightarrow{AM}\wedge\vec f(M)\,\mathrm dV.
+\]
+
+\subsection{Torseur des actions mécaniques réparties}
+
+Le passage du modèle local au modèle global est indispensable lorsque l'on souhaite :
+\begin{itemize}
+  \item remplacer une pression répartie par une résultante équivalente ;
+  \item calculer la position du centre de poussée ;
+  \item déterminer le moment produit par une distribution d'efforts ;
+  \item relier les contraintes locales aux efforts transmis par une liaison réelle.
+\end{itemize}
+
+\section{Prise en compte du phénomène de frottement}
+
+\subsection{Frottement en translation}
+
+Au contact de deux solides, la réaction locale ou globale se décompose en une composante normale et une composante tangentielle :
+\[
+\vec R=\vec N+\vec T.
+\]
+
+\subsubsection{Adhérence}
+
+En l'absence de glissement :
+\[
+\|\vec T\|\leq f\|\vec N\|,
+\]
+où $f$ est le coefficient d'adhérence ou de frottement retenu par le modèle.
+
+La réaction reste à l'intérieur du cône de frottement de demi-angle $\varphi$, défini par :
+\[
+\tan\varphi=f.
+\]
+
+\TLConeFrottement
+
+\subsubsection{Glissement}
+
+À la limite du glissement ou pendant le glissement dans le modèle de Coulomb :
+\[
+\|\vec T\|=f\|\vec N\|.
+\]
+La composante tangentielle est opposée à la vitesse de glissement relative :
+\[
+\vec T=-f\|\vec N\|\frac{\vec V_g}{\|\vec V_g\|}.
+\]
+
+\begin{TLWarning}{Sens du frottement}
+Le frottement ne s'oppose pas nécessairement au mouvement absolu d'un solide. Il s'oppose au mouvement relatif, ou à la tendance au mouvement relatif, au niveau du contact.
+\end{TLWarning}
+
+\subsection{Frottement dans une liaison pivot}
+
+Dans une liaison pivot réelle, les pressions de contact engendrent un couple résistant. Une modélisation globale courante consiste à écrire :
+\[
+|C_f|\leq fN r_{\mathrm{eq}},
+\]
+où $N$ représente l'effort normal équivalent et $r_{\mathrm{eq}}$ un rayon de frottement équivalent.
+
+En glissement, le couple résistant s'oppose à la vitesse angulaire relative :
+\[
+C_f=-fN r_{\mathrm{eq}}\,\operatorname{sgn}(\omega_{2/1}).
+\]
+
+\subsection{Phénomène d'arc-boutement}
+
+L'arc-boutement est un blocage provoqué par le frottement. Il apparaît lorsque la géométrie impose une réaction de contact située à l'intérieur du cône d'adhérence, de sorte qu'aucun glissement n'est possible malgré l'action appliquée.
+
+L'étude de l'arc-boutement repose sur :
+\begin{itemize}
+  \item l'identification des contacts ;
+  \item le tracé des cônes de frottement ;
+  \item la détermination des droites d'action compatibles avec l'équilibre ;
+  \item la vérification que la réaction reste dans le domaine d'adhérence.
+\end{itemize}
+
+\section{Moment d'une force et bras de levier}
+
+Le moment au point $A$ d'une force $\vec F$ appliquée au point $B$ est :
+\[
+\vec M_A(\vec F)=\overrightarrow{AB}\wedge\vec F.
+\]
+
+Sa norme vaut :
+\[
+\|\vec M_A(\vec F)\|=F\,d,
+\]
+où $d$ est la distance entre le point $A$ et la droite d'action de $\vec F$. Cette distance est appelée \textbf{bras de levier}.
+
+\TLForceMoment
+
+Dans un problème plan, le signe du moment est déterminé par l'orientation de l'axe normal au plan. Le calcul par bras de levier est souvent plus rapide que le produit vectoriel, à condition d'identifier correctement la distance perpendiculaire à la droite d'action.
