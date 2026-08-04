@@ -313,24 +313,182 @@ L'ondulation est maximale pour $\alpha=\tfrac12$ :
 La tension de sortie est positive. Avec une diode de roue libre simple, le courant est positif : le convertisseur fonctionne dans le premier quadrant du plan $(u_s,i_s)$.
 
 \section{Hacheur parallèle ou Boost}
-Le hacheur parallèle élève la tension moyenne de sortie.
+
+\subsection{Schéma de principe}
+Le hacheur Boost est un convertisseur élévateur. L'inductance est placée en série avec la source d'entrée et la diode impose le sens du transfert d'énergie.
+
 \begin{center}\TLHacheurBoost\end{center}
-Lorsque $K$ est passant, l'inductance emmagasine de l'énergie. Lorsqu'il est bloqué, l'inductance restitue cette énergie à la charge à travers la diode. En régime périodique idéal :
+
+\subsection{Première séquence : $0<t<\alpha T$}
+L'interrupteur $K$ est passant et la diode est bloquée. La source charge l'inductance :
+\[
+u_L=E,\qquad \frac{\mathrm di_L}{\mathrm dt}=\frac{E}{L}.
+\]
+Le courant dans l'inductance augmente linéairement.
+
+\begin{center}
+\begin{circuitikz}
+\draw (0,0) node[eground]{} to[V] (0,3) -- (.8,3)
+      to[L] (3.2,3) -- (3.2,0) -- (0,0);
+\node at (.45,1.5) {$E$};
+\node at (2,3.45) {$L$};
+\draw[->] (.9,3.7)--(3,3.7) node[midway,above]{$i_L$};
+\end{circuitikz}
+\end{center}
+
+\subsection{Seconde séquence : $\alpha T<t<T$}
+L'interrupteur est bloqué et la diode conduit. La source et l'inductance alimentent ensemble la charge :
+\[
+u_L=E-U_s,
+\qquad
+\frac{\mathrm di_L}{\mathrm dt}=\frac{E-U_s}{L}<0.
+\]
+Le courant décroît.
+
+\begin{center}
+\begin{circuitikz}[european resistors]
+\draw (0,0) node[eground]{} to[V] (0,3) -- (.8,3)
+      to[L] (3.2,3) -- (4,3)
+      to[C] (4,0) -- (0,0);
+\draw (4,3) -- (5.5,3) to[R] (5.5,0) -- (4,0);
+\node at (.45,1.5) {$E$};
+\node at (2,3.45) {$L$};
+\node at (4.45,1.5) {$C$};
+\node at (5.95,1.5) {$R$};
+\draw[->] (.9,3.7)--(3.8,3.7) node[midway,above]{$i_L$};
+\end{circuitikz}
+\end{center}
+
+\subsection{Relation entrée--sortie}
+En régime périodique établi :
+\[
+\langle u_L\rangle
+=\alpha E+(1-\alpha)(E-U_s)=0.
+\]
+Ainsi :
 \[
 \boxed{U_s=\frac{E}{1-\alpha}}.
 \]
+Pour $0<\alpha<1$, on a bien $U_s>E$.
+
+\subsection{Ondulation du courant}
+Pendant la phase de charge :
+\[
+\Delta I_L=\frac{E}{L}\alpha T
+=\boxed{\frac{E\alpha}{Lf_s}}.
+\]
+
+\subsection{Quadrants du hacheur Boost}
+Avec la diode idéale, la tension et le courant de sortie restent positifs : le convertisseur fonctionne dans le premier quadrant.
 
 \section{Hacheur deux quadrants}
-Le hacheur deux quadrants permet une tension de sortie de signe fixé et un courant réversible.
+
+\subsection{Constitution}
+Le hacheur deux quadrants associe deux interrupteurs commandés avec leurs diodes antiparallèles. La tension de sortie reste positive, mais le courant peut changer de signe.
+
 \begin{center}\TLHacheurDeuxQuadrants\end{center}
-Les commandes de $K_1$ et $K_2$ sont complémentaires.
+
+\subsection{Commande complémentaire}
+Les commandes de $K_1$ et $K_2$ sont complémentaires :
+\[
+K_1=1\Longrightarrow K_2=0,
+\qquad
+K_1=0\Longrightarrow K_2=1.
+\]
+Cette règle évite le court-circuit de la source tout en garantissant un chemin permanent au courant de la charge inductive.
+
+\subsection{Formes d'onde}
+La tension de sortie vaut :
+\[
+u_s(t)=
+\begin{cases}
+E,&0<t<\alpha T,\\
+0,&\alpha T<t<T.
+\end{cases}
+\]
+Le courant peut être positif ou négatif. Selon son signe, la conduction est assurée par le transistor commandé ou par sa diode antiparallèle.
+
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=.7cm,>=Latex]
+\draw[->] (0,0)--(7,0) node[right]{$t$};
+\draw[->] (0,-2.2)--(0,2.7) node[above]{$i$};
+\draw[dashed] (0,0)--(6,0);
+\draw[thick] (0,-1)--(2.7,1.4)--(6,-1);
+\draw[dashed] (2.7,-2)--(2.7,2.2);
+\node[below] at (2.7,-2){$\alpha T$};
+\node[below] at (6,0){$T$};
+\end{tikzpicture}
+\end{center}
+
+\subsection{Tension moyenne et ondulation}
+La tension moyenne reste celle du Buck :
+\[
+\boxed{U_s=\alpha E}.
+\]
+Pour une charge $L$--$E_c$ :
+\[
+\boxed{\Delta I=\frac{E\alpha(1-\alpha)}{Lf_s}}.
+\]
+
+\subsection{Fonctionnement moteur et génératrice}
+Pour $i>0$, l'énergie est transférée de la source vers la machine : fonctionnement moteur. Pour $i<0$, la machine restitue de l'énergie vers la source : fonctionnement génératrice. Le convertisseur occupe donc les quadrants I et IV du plan $(u_s,i_s)$.
 
 \section{Hacheur quatre quadrants}
-Le pont complet autorise les deux signes de tension et de courant.
+
+\subsection{Constitution}
+Le hacheur quatre quadrants est un pont complet constitué de quatre interrupteurs réversibles en courant.
+
 \begin{center}\TLHacheurQuatreQuadrants\end{center}
+
+Deux diagonales sont commandées alternativement :
+\begin{itemize}
+\item $K_1$ et $K_4$ passants : $u_s=+E$ ;
+\item $K_2$ et $K_3$ passants : $u_s=-E$.
+\end{itemize}
+
+\subsection{Formes d'onde}
+Pour une commande bipolaire :
 \[
-\boxed{U_s=(2\alpha-1)E}.
+u_s(t)=
+\begin{cases}
++E,&0<t<\alpha T,\\
+-E,&\alpha T<t<T.
+\end{cases}
 \]
+
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=.8cm,>=Latex]
+\draw[->] (0,0)--(7,0) node[right]{$t$};
+\draw[->] (0,-2.5)--(0,2.7) node[above]{$u_s$};
+\draw[thick] (0,2)--(2.7,2)--(2.7,-2)--(6,-2);
+\draw[dashed] (2.7,-2.3)--(2.7,2.3);
+\node[left] at (0,2){$E$};
+\node[left] at (0,-2){$-E$};
+\node[below] at (2.7,-2.3){$\alpha T$};
+\node[below] at (6,0){$T$};
+\end{tikzpicture}
+\end{center}
+
+\subsection{Tension moyenne}
+\[
+U_s=\frac1T\left(\alpha TE-(1-\alpha)TE\right)
+=\boxed{(2\alpha-1)E}.
+\]
+La tension moyenne est positive pour $\alpha>\tfrac12$, nulle pour $\alpha=\tfrac12$ et négative pour $\alpha<\tfrac12$.
+
+\subsection{Ondulation du courant}
+Pour une charge inductive, la pente du courant change à chaque commutation. Dans le cas d'une charge $L$--$E_c$, pendant la phase $u_s=+E$ :
+\[
+\frac{\mathrm di}{\mathrm dt}=\frac{E-E_c}{L},
+\]
+et pendant la phase $u_s=-E$ :
+\[
+\frac{\mathrm di}{\mathrm dt}=\frac{-E-E_c}{L}.
+\]
+L'ondulation se détermine en intégrant l'une des deux pentes sur sa durée de conduction.
+
+\subsection{Quadrants de fonctionnement}
+La tension et le courant peuvent prendre les deux signes. Le pont complet permet donc les quatre régimes : rotation dans les deux sens, motricité et freinage régénératif.
 
 \section{Conversion indirecte}
 Les convertisseurs isolés utilisent un étage haute fréquence et un transformateur.
