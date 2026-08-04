@@ -35,286 +35,315 @@
 \section{Généralités sur l'électronique de puissance}
 
 \subsection{Introduction}
+L'énergie électrique se présente sous deux formes : continue, ou DC, et alternative, ou AC. L'\textbf{électronique de puissance} étudie les \textbf{convertisseurs statiques d'énergie} qui modifient la présentation de l'énergie : chargeur de batterie, variation de vitesse d'une machine, alimentation électronique, interconnexion de réseaux, etc.
 
-L'énergie électrique se présente sous deux formes :
-\begin{itemize}
-\item continue, ou DC, comme pour les piles et les batteries ;
-\item alternative, ou AC, comme pour les réseaux de distribution.
-\end{itemize}
+On distingue l'électronique des courants faibles, qui traite l'information, et l'électronique de puissance, qui traite la transformation de l'énergie.
 
-On parle d'\textbf{électronique de puissance} lorsqu'on étudie les \textbf{convertisseurs statiques d'énergie} permettant de modifier la présentation de l'énergie selon les besoins : chargeur de batterie, interconnexion de réseaux, variation de vitesse d'un moteur, alimentation électronique, etc.
-
-On distingue ainsi :
-\begin{itemize}
-\item l'électronique des courants faibles, qui traite des informations codées sous forme de signaux électriques ;
-\item l'électronique de puissance, ou courants forts, qui traite de la transformation et de la distribution de l'énergie électrique.
-\end{itemize}
-
-\begin{center}
-\TLChaineConvertisseursPuissance
-\end{center}
+\begin{center}\TLChaineConvertisseursPuissance\end{center}
 
 \subsubsection*{Exemples d'utilisation}
+\paragraph{Alimentation d'un ordinateur.} À partir du secteur $230\,\mathrm{V}$ alternatif, l'alimentation fournit plusieurs tensions continues.
 
-L'électronique de puissance est présente dans de nombreux systèmes, pour des puissances allant du milliwatt au mégawatt.
+\paragraph{TGV PBKA.} Ce train fonctionne sous $1500\,\mathrm{V}$ continu, $3000\,\mathrm{V}$ continu, $15\,\mathrm{kV}$ à $16\tfrac{2}{3}\,\mathrm{Hz}$ ou $25\,\mathrm{kV}$ à $50\,\mathrm{Hz}$.
 
-\paragraph{Alimentation d'un ordinateur.}
-À partir du secteur $230\,\mathrm{V}$ alternatif, l'alimentation fournit plusieurs tensions continues destinées aux différents constituants électroniques.
-
-\paragraph{TGV PBKA.}
-Ce train doit pouvoir fonctionner sous plusieurs alimentations : $1500\,\mathrm{V}$ continu, $3000\,\mathrm{V}$ continu, $15\,\mathrm{kV}$ à $16\tfrac{2}{3}\,\mathrm{Hz}$ et $25\,\mathrm{kV}$ à $50\,\mathrm{Hz}$.
-
-\paragraph{Variation de vitesse d'une MCC.}
-Une solution résistive simple permettrait de faire varier la tension appliquée au moteur, mais elle présente deux défauts majeurs :
-\begin{itemize}
-\item la tension de sortie dépend de la charge ;
-\item le rendement est très faible, car une part importante de l'énergie est dissipée par effet Joule.
-\end{itemize}
-
-Pour obtenir un rendement élevé, les convertisseurs statiques utilisent des interrupteurs électroniques, commandés alternativement dans leurs états passant et bloqué.
+\paragraph{Variation de vitesse d'une MCC.} Une solution résistive fait dépendre la tension de sortie de la charge et conduit à un rendement faible. Les convertisseurs statiques remplacent donc les résistances de réglage par des interrupteurs électroniques.
 
 \subsection{Composants de base d'un convertisseur statique : bras de pont}
-
-Le composant élémentaire d'un convertisseur statique est l'\textbf{interrupteur}. Dans le modèle idéal :
+Dans le modèle idéal :
 \[
 \begin{array}{c|cc}
- & u_K & i_K \\
-\hline
+ & u_K & i_K \\\hline
 \text{passant} & 0 & \text{imposé par le circuit} \\
 \text{bloqué} & \text{imposé par le circuit} & 0
 \end{array}
 \]
-
-\begin{center}
-\TLBrasDePont
-\end{center}
-
-L'interrupteur idéal ne dissipe donc aucune puissance dans ses deux états stables :
-\[
-p_K=u_K i_K=0.
-\]
-Les pertes réelles apparaissent pendant les conductions non idéales et surtout pendant les commutations.
+\begin{center}\TLBrasDePont\end{center}
+L'interrupteur idéal ne dissipe aucune puissance dans ses états stables : $p_K=u_Ki_K=0$.
 
 \subsection{Nature des sources}
-
-\paragraph{Source de tension.}
-Une source de tension impose sa tension ; le courant dépend du circuit extérieur. Elle ne doit jamais être court-circuitée.
-
-\begin{center}
-\begin{circuitikz}[european resistors]
-\draw (0,0) node[eground]{} to[V,l=$E$] (0,3) -- (2.2,3);
-\draw (2.2,0) -- (0,0);
-\draw[->] (2.2,2.7) -- (2.2,.3) node[midway,right]{$u=E$};
-\end{circuitikz}
-\end{center}
-
-\paragraph{Source de courant.}
-Une source de courant impose son courant ; la tension dépend du circuit extérieur. Elle ne doit jamais être ouverte brutalement.
-
-\begin{center}
-\begin{circuitikz}
-\draw (0,0) node[eground]{} to[I,l=$I$] (0,3) -- (2.2,3);
-\draw (2.2,0) -- (0,0);
-\draw[->] (1.1,3.25) -- (2.1,3.25) node[midway,above]{$i=I$};
-\end{circuitikz}
-\end{center}
+Une source de tension impose sa tension et ne doit jamais être court-circuitée. Une source de courant impose son courant et ne doit jamais être ouverte brutalement.
 
 \subsection{Règles d'association des sources}
-
-Les associations interdites sont :
-\begin{itemize}
-\item la mise en parallèle de deux sources de tension idéales de valeurs différentes ;
-\item la mise en série de deux sources de courant idéales de valeurs différentes ;
-\item le court-circuit d'une source de tension ;
-\item l'ouverture d'une source de courant.
-\end{itemize}
-
-Dans un convertisseur statique, les commutations doivent donc toujours respecter la nature instantanée des sources placées de part et d'autre du convertisseur.
+Sont interdites : la mise en parallèle de deux sources de tension idéales différentes, la mise en série de deux sources de courant idéales différentes, le court-circuit d'une source de tension et l'ouverture d'une source de courant.
 
 \subsection{Modification de la nature apparente d'une source}
-
 Une inductance s'oppose aux variations brusques du courant :
 \[
-u_L(t)=L\frac{\mathrm d i_L}{\mathrm dt}.
+u_L=L\frac{\mathrm di_L}{\mathrm dt}.
 \]
-Le courant dans une inductance est continu. Placée en série avec une source de tension, elle donne à l'ensemble un comportement de source de courant sur la durée d'une commutation.
+Son courant est continu. Placée en série avec une source de tension, elle confère à l'ensemble un comportement de source de courant pendant une commutation.
 
 \begin{center}
 \begin{circuitikz}[european resistors]
-\draw (0,0) node[eground]{} to[V,l=$E$] (0,3)
-      to[L,l=$L$,i>^=$i_L$] (3.5,3)
-      to[short,-o] (4.5,3);
-\draw (4.5,0) node[ocirc]{} -- (0,0);
-\draw[<->] (4.7,0)--node[right]{$u_s$}(4.7,3);
+\draw (0,0) node[eground]{} to[V] (0,3) -- (1,3)
+      to[L] (4,3) to[short,-o] (5,3);
+\draw (5,0) node[ocirc]{} -- (0,0);
+\node at (0.55,1.5) {$E$};
+\node at (2.5,3.45) {$L$};
+\draw[->] (1.3,3.65)--(3.7,3.65) node[midway,above]{$i_L$};
+\draw[<->] (5.25,0)--(5.25,3) node[midway,right]{$u_s$};
 \end{circuitikz}
 \end{center}
 
-Réciproquement, un condensateur s'oppose aux variations brusques de tension :
+Un condensateur s'oppose aux variations brusques de tension :
 \[
-i_C(t)=C\frac{\mathrm d u_C}{\mathrm dt}.
+i_C=C\frac{\mathrm du_C}{\mathrm dt}.
 \]
-La tension à ses bornes est continue. Placé en parallèle, il donne à l'ensemble un comportement de source de tension pendant la commutation.
+Sa tension est continue ; placé en parallèle, il donne à l'ensemble un comportement de source de tension pendant la commutation.
 
 \subsection{Forme du courant pour différents modèles de charge}
-
-\paragraph{Charge à courant constant.}
-Le courant est supposé parfaitement constant. Ce modèle constitue l'approximation limite d'une charge très inductive.
+\paragraph{Charge à courant constant.} Ce modèle correspond à la limite d'une charge très inductive.
 
 \paragraph{Charge $L$--$E$.}
-Une inductance $L$ est associée à une force électromotrice $E$. Ce modèle est adapté à une machine à courant continu lorsque la résistance d'induit est négligée.
-
 \begin{center}
 \begin{circuitikz}[european resistors]
 \draw (0,2.5) node[left]{$u_s$} to[short,o-] (1,2.5)
-      to[L,l=$L$,i>^=$i$] (3.5,2.5)
-      to[V,l=$E$] (3.5,0) -- (0,0) node[ocirc]{};
+      to[L] (3.7,2.5) to[V] (3.7,0) -- (0,0) node[ocirc]{};
+\node at (2.35,2.95) {$L$};
+\node at (4.15,1.25) {$E$};
+\draw[->] (1.1,3.15)--(3.5,3.15) node[midway,above]{$i$};
 \end{circuitikz}
 \end{center}
-
-La loi de la maille donne :
 \[
 u_s=L\frac{\mathrm di}{\mathrm dt}+E.
 \]
-Le courant évolue donc linéairement lorsque $u_s$ est constant.
 
 \paragraph{Charge $R$--$L$--$E$.}
-Le modèle complet d'une MCC ajoute la résistance d'induit :
-
 \begin{center}
 \begin{circuitikz}[european resistors]
 \draw (0,2.5) node[left]{$u_s$} to[short,o-] (1,2.5)
-      to[R,l=$R$] (2.8,2.5)
-      to[L,l=$L$,i>^=$i$] (5,2.5)
-      to[V,l=$E$] (5,0) -- (0,0) node[ocirc]{};
+      to[R] (2.8,2.5) to[L] (5,2.5)
+      to[V] (5,0) -- (0,0) node[ocirc]{};
+\node at (1.9,2.95) {$R$};
+\node at (3.9,2.95) {$L$};
+\node at (5.45,1.25) {$E$};
+\draw[->] (1.1,3.2)--(4.8,3.2) node[midway,above]{$i$};
 \end{circuitikz}
 \end{center}
-
-La loi de la maille s'écrit :
 \[
 u_s=Ri+L\frac{\mathrm di}{\mathrm dt}+E.
 \]
-Le courant n'est plus affine par morceaux, mais suit une évolution exponentielle autour de sa valeur d'équilibre.
 
 \subsection{Commutations possibles}
-
-Une commutation est dite \textbf{spontanée} lorsqu'elle est imposée par l'évolution des grandeurs électriques. Elle est dite \textbf{commandée} lorsqu'un signal de commande impose le changement d'état du composant.
-
-Dans un bras de pont, les deux interrupteurs ne doivent jamais être passants simultanément, sous peine de court-circuiter la source de tension. Ils ne doivent pas non plus être simultanément bloqués lorsque la charge se comporte comme une source de courant.
+Une commutation est \textbf{spontanée} lorsqu'elle est imposée par les grandeurs électriques, et \textbf{commandée} lorsqu'un signal de commande provoque le changement d'état. Dans un bras de pont, les deux interrupteurs ne doivent jamais être simultanément passants ; ils ne doivent pas non plus être simultanément bloqués lorsque la charge se comporte comme une source de courant.
 
 \subsection{Rapport cyclique et découpage}
-
-Pour un signal périodique de période $T$, passant à l'état haut pendant $\alpha T$, le rapport cyclique est :
 \[
 \alpha=\frac{t_{\mathrm{on}}}{T},\qquad 0\leq\alpha\leq1.
 \]
+\begin{center}\TLChronogrammePWM\end{center}
 
-\begin{center}
-\TLChronogrammePWM
-\end{center}
-
-\subsection{Valeur moyenne}
-
-Pour une grandeur périodique $x(t)$ de période $T$ :
+\subsection{Valeur moyenne et valeur efficace}
 \[
-X_{\mathrm{moy}}=\frac{1}{T}\int_0^T x(t)\,\mathrm dt.
+X_{\mathrm{moy}}=\frac1T\int_0^T x(t)\,\mathrm dt,
+\qquad
+X_{\mathrm{eff}}=\sqrt{\frac1T\int_0^T x^2(t)\,\mathrm dt}.
 \]
-La valeur moyenne caractérise la composante continue du signal.
-
-\subsection{Valeur efficace}
-
-La valeur efficace est définie par :
-\[
-X_{\mathrm{eff}}=\sqrt{\frac{1}{T}\int_0^T x^2(t)\,\mathrm dt}.
-\]
-Elle correspond à la valeur continue produisant le même effet thermique dans une résistance.
 
 \section{Composants en électronique de puissance}
-Les composants usuels sont la diode, le transistor MOSFET, l'IGBT et le thyristor. On distingue :
+
+\subsection{Introduction}
+Un composant de puissance est assimilé à un interrupteur. Sa caractéristique dans le plan $(u_K,i_K)$ détermine ses quadrants de fonctionnement et le type de commutation qu'il autorise.
+
+\subsection{Caractéristique statique}
+L'interrupteur idéal possède deux branches de fonctionnement :
 \begin{itemize}
-\item la caractéristique statique, qui décrit les états passant et bloqué ;
-\item la caractéristique dynamique, qui décrit les commutations spontanées ou commandées.
+\item état passant : $u_K=0$ ;
+\item état bloqué : $i_K=0$.
 \end{itemize}
 
-La diode commute spontanément selon les conditions électriques. Les transistors MOSFET et IGBT sont commandés à l'amorçage et au blocage. L'association d'un transistor et d'une diode antiparallèle donne un interrupteur réversible en courant.
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+\draw[->] (-3,0)--(3.2,0) node[right]{$u_K$};
+\draw[->] (0,-2.6)--(0,2.8) node[above]{$i_K$};
+\draw[line width=1.1pt] (0,0)--(0,2.2);
+\draw[line width=1.1pt] (0,0)--(2.5,0);
+\node[right] at (.15,1.6){passant};
+\node[above] at (1.8,.1){bloqué};
+\end{tikzpicture}
+\end{center}
 
-\subsection{Pertes et dimensionnement}
-Les pertes par conduction s'évaluent à partir de la chute de tension à l'état passant et du courant. Les pertes de commutation dépendent de la fréquence de découpage et des énergies dissipées à l'amorçage et au blocage :
+\paragraph{Diode.} La diode est un composant à commutation spontanée. Elle conduit lorsque son courant est positif et se bloque lorsque les conditions électriques imposent l'annulation du courant.
+
+\paragraph{MOSFET et IGBT.} Ces transistors sont commandés à l'amorçage et au blocage. Ils sont utilisés comme interrupteurs unidirectionnels en tension et en courant dans leur modèle élémentaire.
+
+\subsection{Caractéristique dynamique}
+Les transitions entre l'état bloqué et l'état passant ne sont pas instantanées. Pendant les commutations, tension et courant sont simultanément non nuls, ce qui entraîne des pertes.
+
+\subsection{Association de composants}
+L'association d'un transistor commandé et d'une diode antiparallèle donne un interrupteur réversible en courant.
+
+\begin{center}
+\begin{circuitikz}
+\draw (0,3) to[switch] (0,0);
+\draw (1.2,0) to[D*,invert] (1.2,3);
+\draw (0,3)--(1.2,3);
+\draw (0,0)--(1.2,0);
+\node[left] at (0,1.5) {$T$};
+\node[right] at (1.2,1.5) {$D$};
+\end{circuitikz}
+\end{center}
+
+\subsection{Pertes des composants de puissance}
+Les pertes par conduction s'évaluent à partir de la chute de tension à l'état passant. Les pertes de commutation sont proportionnelles à la fréquence de découpage :
 \[
 P_{\mathrm{com}}=f_s\left(E_{\mathrm{on}}+E_{\mathrm{off}}\right).
 \]
-Le dimensionnement impose de vérifier les contraintes maximales en tension, courant, puissance dissipée et température de jonction.
 
-\section{Méthode d'étude d'un convertisseur DC--DC}
-La démarche est systématique :
+\subsection{Dimensionnement}
+Le choix d'un composant impose de vérifier la tension maximale bloquée, le courant maximal et efficace, les énergies de commutation, la puissance dissipée et la température de jonction.
+
+\section{Méthode d'étude des convertisseurs DC--DC}
+La démarche utilisée dans le cours original est la suivante :
 \begin{enumerate}
-\item identifier les séquences de fonctionnement sur une période ;
-\item remplacer chaque interrupteur par son modèle passant ou bloqué ;
-\item écrire les lois électriques dans chaque séquence ;
-\item tracer tensions et courants ;
-\item appliquer la valeur moyenne nulle de la tension aux bornes d'une inductance en régime périodique ;
-\item calculer la valeur moyenne de sortie et l'ondulation du courant ;
-\item déterminer les contraintes sur les composants.
+\item repérer la période $T$ et les intervalles de conduction ;
+\item identifier, pour chaque intervalle, les composants passants et bloqués ;
+\item remplacer les interrupteurs par un court-circuit ou un circuit ouvert ;
+\item redessiner le schéma équivalent de chaque séquence ;
+\item écrire les lois électriques et déterminer les pentes des courants ;
+\item tracer les chronogrammes sur une période ;
+\item calculer la tension moyenne de sortie ;
+\item utiliser $\langle u_L\rangle=0$ en régime périodique ;
+\item calculer l'ondulation de courant et les contraintes sur les composants.
 \end{enumerate}
 
+\begin{retenir}[Régime périodique établi]
+Pour toute inductance en régime périodique :
+\[
+\frac1T\int_0^T u_L(t)\,\mathrm dt=0.
+\]
+La valeur du courant est identique au début et à la fin d'une période.
+\end{retenir}
+
 \section{Hacheur série ou Buck}
-Le hacheur série convertit une tension continue en une tension moyenne plus faible.
+
+\subsection{Schéma de principe}
+Le hacheur série est un convertisseur abaisseur. Il alimente une charge de type $L$--$E$ ou $R$--$L$--$E$ à partir d'une source de tension continue.
+
 \begin{center}\TLHacheurBuck\end{center}
 
-Pour $0<t<\alpha T$, $K$ est passant et $u_L=E-u_s$. Pour $\alpha T<t<T$, $K$ est bloqué et la diode assure la continuité du courant : $u_L=-u_s$.
-En régime périodique :
+\subsection{Première séquence : $0<t<\alpha T$}
+L'interrupteur $K$ est passant et la diode est bloquée. Le schéma équivalent est :
+
+\begin{center}
+\begin{circuitikz}[european resistors]
+\draw (0,0) node[eground]{} to[V] (0,3) -- (1.3,3)
+      to[L] (4,3) to[V] (4,0) -- (0,0);
+\node at (.45,1.5) {$E$};
+\node at (2.65,3.45) {$L$};
+\node at (4.45,1.5) {$E_c$};
+\draw[->] (1.4,3.7)--(3.8,3.7) node[midway,above]{$i$};
+\end{circuitikz}
+\end{center}
+
+On a :
 \[
-\langle u_L\rangle=0
-\quad\Longrightarrow\quad
-\boxed{U_s=\alpha E}.
+u_s=E,\qquad u_L=E-E_c,
+\qquad \frac{\mathrm di}{\mathrm dt}=\frac{E-E_c}{L}.
 \]
-L'ondulation crête-à-crête du courant vaut :
+Le courant augmente linéairement.
+
+\subsection{Seconde séquence : $\alpha T<t<T$}
+L'interrupteur $K$ est bloqué et la diode de roue libre conduit pour assurer la continuité du courant.
+
+\begin{center}
+\begin{circuitikz}[european resistors]
+\draw (0,0) node[eground]{} -- (0,3)
+      to[L] (3,3) to[V] (3,0) -- (0,0);
+\node at (1.5,3.45) {$L$};
+\node at (3.45,1.5) {$E_c$};
+\draw[->] (.2,3.7)--(2.8,3.7) node[midway,above]{$i$};
+\end{circuitikz}
+\end{center}
+
+On a :
 \[
-\Delta I=\frac{(E-U_s)\alpha T}{L}
-=\frac{E\alpha(1-\alpha)}{Lf_s}.
+u_s=0,\qquad u_L=-E_c,
+\qquad \frac{\mathrm di}{\mathrm dt}=-\frac{E_c}{L}.
 \]
-Elle est maximale pour $\alpha=\tfrac12$.
+Le courant diminue linéairement.
+
+\subsection{Chronogrammes}
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=.8cm,>=Latex]
+\draw[->] (0,0)--(7,0) node[right]{$t$};
+\draw[->] (0,-.2)--(0,2.5) node[above]{$u_s$};
+\draw[thick] (0,0)--(0,2)--(2.8,2)--(2.8,0)--(6,0);
+\draw[dashed] (2.8,-.2)--(2.8,2.3);
+\node[left] at (0,2){$E$};
+\node[below] at (2.8,0){$\alpha T$};
+\node[below] at (6,0){$T$};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=.8cm,>=Latex]
+\draw[->] (0,0)--(7,0) node[right]{$t$};
+\draw[->] (0,.2)--(0,3.2) node[above]{$i$};
+\draw[thick] (0,1)--(2.8,2.6)--(6,1);
+\draw[dashed] (2.8,0)--(2.8,2.8);
+\draw[dashed] (0,1.8)--(6,1.8);
+\node[left] at (0,1.8){$I_{\mathrm{moy}}$};
+\node[right] at (6,1){$I_{\min}$};
+\node[right] at (2.8,2.6){$I_{\max}$};
+\end{tikzpicture}
+\end{center}
+
+\subsection{Tension moyenne de sortie}
+\[
+U_s=\frac1T\left(\int_0^{\alpha T}E\,\mathrm dt+\int_{\alpha T}^{T}0\,\mathrm dt\right)
+=\boxed{\alpha E}.
+\]
+
+\subsection{Ondulation de courant}
+Pendant la phase montante :
+\[
+\Delta I=\frac{E-U_s}{L}\alpha T.
+\]
+En utilisant $U_s=\alpha E$ et $f_s=1/T$ :
+\[
+\boxed{\Delta I=\frac{E\alpha(1-\alpha)}{Lf_s}}.
+\]
+L'ondulation est maximale pour $\alpha=\tfrac12$ :
+\[
+\Delta I_{\max}=\frac{E}{4Lf_s}.
+\]
+
+\subsection{Quadrants du hacheur Buck}
+La tension de sortie est positive. Avec une diode de roue libre simple, le courant est positif : le convertisseur fonctionne dans le premier quadrant du plan $(u_s,i_s)$.
 
 \section{Hacheur parallèle ou Boost}
 Le hacheur parallèle élève la tension moyenne de sortie.
 \begin{center}\TLHacheurBoost\end{center}
-
 Lorsque $K$ est passant, l'inductance emmagasine de l'énergie. Lorsqu'il est bloqué, l'inductance restitue cette énergie à la charge à travers la diode. En régime périodique idéal :
 \[
 \boxed{U_s=\frac{E}{1-\alpha}}.
 \]
 
 \section{Hacheur deux quadrants}
-Le hacheur deux quadrants permet une tension de sortie de signe fixé et un courant réversible. Il convient notamment aux phases motrices et génératrices d'une MCC.
+Le hacheur deux quadrants permet une tension de sortie de signe fixé et un courant réversible.
 \begin{center}\TLHacheurDeuxQuadrants\end{center}
-
-Les commandes de $K_1$ et $K_2$ sont complémentaires afin d'éviter le court-circuit de la source. Selon le signe du courant, la conduction est assurée par un transistor ou par sa diode antiparallèle.
+Les commandes de $K_1$ et $K_2$ sont complémentaires.
 
 \section{Hacheur quatre quadrants}
-Le pont complet autorise les deux signes de tension et de courant. Il permet donc le fonctionnement dans les quatre quadrants du plan $(u_s,i_s)$.
+Le pont complet autorise les deux signes de tension et de courant.
 \begin{center}\TLHacheurQuatreQuadrants\end{center}
-
-Avec une commande bipolaire, la tension moyenne de sortie peut s'écrire :
 \[
 \boxed{U_s=(2\alpha-1)E}.
 \]
 
 \section{Conversion indirecte}
-Les convertisseurs isolés utilisent un étage haute fréquence et un transformateur. Ils permettent l'adaptation du niveau de tension, l'isolement galvanique et parfois plusieurs sorties.
+Les convertisseurs isolés utilisent un étage haute fréquence et un transformateur.
 
 \section{Convertisseurs AC--DC}
-Le redressement transforme une tension alternative en une tension unidirectionnelle. Le montage monophasé à pont de diodes, ou PD2, utilise quatre diodes.
-
+Le redressement transforme une tension alternative en une tension unidirectionnelle.
 \begin{center}\TLPontDiodes\end{center}
-
-Pour une charge résistive idéale et une entrée sinusoïdale $u_e(t)=\widehat U\sin(\omega t)$ :
+Pour une entrée sinusoïdale $u_e(t)=\widehat U\sin(\omega t)$ :
 \[
-u_s(t)=|u_e(t)|,
-\qquad
-U_{s,\mathrm{moy}}=\frac{2\widehat U}{\pi}.
+u_s(t)=|u_e(t)|,\qquad U_{s,\mathrm{moy}}=\frac{2\widehat U}{\pi}.
 \]
 
 \section{Puissances en régime périodique}
-La puissance instantanée est $p(t)=u(t)i(t)$. La puissance active est :
 \[
 P=\frac1T\int_0^T u(t)i(t)\,\mathrm dt.
 \]
@@ -322,34 +351,26 @@ En régime sinusoïdal :
 \[
 P=UI\cos\varphi,\qquad Q=UI\sin\varphi,\qquad S=UI.
 \]
-En présence d'harmoniques, la relation générale devient :
+En présence d'harmoniques :
 \[
-S^2=P^2+Q^2+D^2,
-\]
-où $D$ est la puissance déformante. Le facteur de puissance est :
-\[
-\lambda=\frac{P}{S}.
+S^2=P^2+Q^2+D^2,\qquad \lambda=\frac{P}{S}.
 \]
 
 \section{Transformateur monophasé parfait}
-Pour un transformateur idéal :
 \[
 \frac{U_2}{U_1}=\frac{N_2}{N_1}=m,
-\qquad
-\frac{I_2}{I_1}=\frac1m,
-\qquad
-P_1=P_2.
+\qquad \frac{I_2}{I_1}=\frac1m,
+\qquad P_1=P_2.
 \]
 
 \section{Redresseur à absorption sinusoïdale}
-L'objectif est de rendre le courant absorbé quasi sinusoïdal et en phase avec la tension du réseau afin d'améliorer le facteur de puissance. Une structure classique associe un pont redresseur puis un étage Boost commandé. Des structures mono-étage réalisent simultanément redressement et correction du facteur de puissance.
+L'objectif est de rendre le courant absorbé quasi sinusoïdal et en phase avec la tension du réseau. Une structure classique associe un pont redresseur et un étage Boost commandé.
 
 \section{Synthèse}
 \begin{itemize}
 \item Le respect de la nature des sources conditionne la structure du convertisseur.
-\item L'étude repose sur les séquences de commutation et les modèles équivalents.
-\item Le Buck abaisse la tension, le Boost l'élève.
+\item L'étude repose sur les séquences de commutation et les schémas équivalents.
+\item Le Buck abaisse la tension et le Boost l'élève.
 \item Les hacheurs deux et quatre quadrants rendent l'énergie réversible.
 \item Le pont PD2 réalise un redressement double alternance.
-\item Le dimensionnement doit intégrer contraintes électriques, pertes et thermique.
 \end{itemize}
