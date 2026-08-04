@@ -1,0 +1,278 @@
+% ============================================================================
+% COURS 10 — PARTIES 8 À 11
+% Reprise structurée d'après 14-ElectroniquePuissance.docx
+% ============================================================================
+
+\section{Hacheur à conversion indirecte}
+
+Les convertisseurs étudiés précédemment assurent une conversion directe : pendant chaque séquence, l'énergie passe directement de la source vers la charge ou vers un élément de stockage. Une conversion indirecte ajoute un stockage intermédiaire, généralement magnétique, et peut assurer un isolement galvanique.
+
+\subsection{Principe}
+
+La chaîne d'énergie comprend successivement :
+\begin{enumerate}
+\item un découpage de la tension continue d'entrée ;
+\item un transfert d'énergie dans une inductance ou un transformateur haute fréquence ;
+\item un redressement secondaire ;
+\item un filtrage de la tension de sortie.
+\end{enumerate}
+
+\begin{center}
+\begin{tikzpicture}[node distance=8mm,>=Latex,
+bloc/.style={draw,rounded corners,minimum width=27mm,minimum height=11mm,align=center}]
+\node[bloc] (dec) {Découpage\\haute fréquence};
+\node[bloc,right=of dec] (mag) {Stockage ou\\transformateur};
+\node[bloc,right=of mag] (red) {Redressement\\secondaire};
+\node[bloc,right=of red] (fil) {Filtrage\\de sortie};
+\draw[->] (dec)--(mag);
+\draw[->] (mag)--(red);
+\draw[->] (red)--(fil);
+\end{tikzpicture}
+\end{center}
+
+L'augmentation de la fréquence permet de réduire la taille du transformateur et des éléments de filtrage. En contrepartie, les pertes de commutation augmentent et la compatibilité électromagnétique devient plus contraignante.
+
+\subsection{Transformateur haute fréquence}
+
+Pour un transformateur parfait de rapport
+\[
+m=\frac{N_2}{N_1},
+\]
+on a, avec les conventions adaptées :
+\[
+\frac{u_2}{u_1}=m,
+\qquad
+\frac{i_2}{i_1}=\frac{1}{m},
+\qquad
+p_1=p_2.
+\]
+Le transformateur permet l'adaptation du niveau de tension et l'isolement galvanique entre l'entrée et la sortie.
+
+\section{Généralités sur les convertisseurs AC--DC}
+
+Un convertisseur AC--DC transforme une tension alternative en une grandeur continue ou unidirectionnelle. On distingue :
+\begin{itemize}
+\item les redresseurs non commandés, réalisés avec des diodes ;
+\item les redresseurs commandés, utilisant des thyristors ou des interrupteurs commandables ;
+\item les redresseurs à absorption sinusoïdale, destinés à améliorer le courant prélevé sur le réseau.
+\end{itemize}
+
+La nature de la charge joue un rôle essentiel. Une charge résistive impose un courant de même forme que la tension redressée, tandis qu'une charge fortement inductive tend à maintenir le courant continu.
+
+\section{Redressement monophasé non commandé}
+
+\subsection{Diode de puissance}
+
+La diode de puissance est un interrupteur à commutation spontanée :
+\begin{itemize}
+\item elle conduit lorsque sa tension directe devient positive et qu'un courant peut s'établir ;
+\item elle se bloque lorsque le courant s'annule ou devient incompatible avec son sens passant.
+\end{itemize}
+
+Dans le modèle idéal :
+\[
+\begin{cases}
+u_D=0,& i_D>0,\\
+i_D=0,& u_D<0.
+\end{cases}
+\]
+
+\subsection{Montage PD2}
+
+Le pont monophasé à quatre diodes réalise un redressement double alternance.
+
+\begin{center}
+\TLPontDiodes
+\end{center}
+
+Pour une charge résistive et une tension d'entrée
+\[
+u_e(t)=\widehat U\sin(\omega t),
+\]
+les deux diodes d'une diagonale conduisent pendant l'alternance positive et les deux diodes de l'autre diagonale pendant l'alternance négative. La tension de sortie vaut :
+\[
+\boxed{u_s(t)=|u_e(t)|}.
+\]
+
+\begin{center}
+\begin{tikzpicture}[x=.85cm,y=.8cm,>=Latex]
+\draw[->] (0,0)--(8,0) node[right]{$\omega t$};
+\draw[->] (0,-2.3)--(0,2.5) node[above]{$u$};
+\draw[domain=0:7.2,samples=180,smooth] plot(\x,{1.8*sin(50*\x)});
+\draw[thick,domain=0:7.2,samples=180,smooth] plot(\x,{abs(1.8*sin(50*\x))});
+\node at (6.6,-1.45){$u_e$};
+\node at (6.6,1.45){$u_s$};
+\end{tikzpicture}
+\end{center}
+
+La valeur moyenne de sortie est :
+\[
+U_{s,\mathrm{moy}}
+=\frac{1}{\pi}\int_0^{\pi}\widehat U\sin\theta\,\mathrm d\theta
+=\boxed{\frac{2\widehat U}{\pi}}.
+\]
+Sa valeur efficace reste égale à celle de la tension sinusoïdale d'entrée :
+\[
+U_{s,\mathrm{eff}}=\frac{\widehat U}{\sqrt2}.
+\]
+
+\subsection{Charge inductive}
+
+Avec une inductance de lissage suffisamment grande, le courant de sortie varie peu. La conduction des diodes se prolonge pour respecter la continuité du courant. L'inductance réduit l'ondulation mais modifie la forme du courant absorbé au réseau.
+
+\begin{center}
+\begin{circuitikz}[european resistors]
+\draw (0,2.5) node[left]{$u_r$} to[short,o-] (.8,2.5)
+      to[L] (3.2,2.5) to[R] (5.2,2.5)
+      -- (5.2,0) -- (0,0) node[ocirc]{};
+\node at (2,3){$L$};
+\node at (4.2,3){$R$};
+\draw[->] (.9,3.25)--(5,3.25) node[midway,above]{$i_s$};
+\end{circuitikz}
+\end{center}
+
+\subsection{Contraintes sur les diodes}
+
+Le dimensionnement impose de déterminer :
+\begin{itemize}
+\item le courant moyen et le courant efficace dans chaque diode ;
+\item le courant de pointe ;
+\item la tension inverse maximale ;
+\item les pertes et la température de jonction.
+\end{itemize}
+
+\section{Puissances en régime périodique}
+
+\subsection{Puissance instantanée et puissance active}
+
+La puissance instantanée est :
+\[
+p(t)=u(t)i(t).
+\]
+La puissance active est la valeur moyenne de la puissance instantanée :
+\[
+\boxed{P=\frac1T\int_0^T u(t)i(t)\,\mathrm dt}.
+\]
+Elle correspond à l'énergie effectivement convertie ou dissipée par unité de temps.
+
+\subsection{Régime sinusoïdal}
+
+Pour
+\[
+u(t)=\sqrt2U\sin(\omega t),
+\qquad
+i(t)=\sqrt2I\sin(\omega t-\varphi),
+\]
+on obtient :
+\[
+\boxed{P=UI\cos\varphi}.
+\]
+La puissance réactive et la puissance apparente sont définies par :
+\[
+\boxed{Q=UI\sin\varphi},
+\qquad
+\boxed{S=UI}.
+\]
+Elles vérifient en régime sinusoïdal :
+\[
+S^2=P^2+Q^2.
+\]
+
+\subsection{Facteur de puissance}
+
+Le facteur de puissance est :
+\[
+\boxed{\lambda=\frac{P}{S}=\frac{P}{UI}}.
+\]
+En régime sinusoïdal pur, $\lambda=\cos\varphi$. En présence de courants déformés, le facteur de puissance dépend à la fois du déphasage et de la distorsion harmonique.
+
+\subsection{Décomposition en série de Fourier}
+
+Une grandeur périodique non sinusoïdale peut s'écrire sous la forme :
+\[
+x(t)=X_0+\sum_{n=1}^{\infty}\left(a_n\cos n\omega t+b_n\sin n\omega t\right).
+\]
+Sa valeur efficace vérifie :
+\[
+X_{\mathrm{eff}}^2=X_0^2+\sum_{n=1}^{\infty}X_n^2.
+\]
+Seules les composantes de même rang de la tension et du courant contribuent à la puissance active moyenne.
+
+\subsection{Puissance déformante}
+
+Lorsque les grandeurs ne sont pas sinusoïdales, on introduit la puissance déformante $D$ :
+\[
+\boxed{S^2=P^2+Q^2+D^2}.
+\]
+La puissance déformante traduit l'effet des harmoniques qui augmentent les valeurs efficaces sans participer utilement à la conversion d'énergie.
+
+\subsection{Transformateur monophasé parfait}
+
+Pour un transformateur idéal :
+\[
+\frac{U_2}{U_1}=\frac{N_2}{N_1}=m,
+\qquad
+\frac{I_2}{I_1}=\frac1m,
+\qquad
+P_1=P_2.
+\]
+Les ampères-tours se compensent et la puissance apparente est conservée dans le modèle parfait.
+
+\section{Redresseur à absorption sinusoïdale}
+
+\subsection{Objectif}
+
+Un pont de diodes suivi d'un condensateur de forte capacité absorbe généralement un courant très déformé, concentré autour des crêtes de la tension secteur. Cela dégrade le facteur de puissance et augmente les harmoniques injectés sur le réseau.
+
+L'objectif d'un redresseur à absorption sinusoïdale est d'obtenir un courant :
+\begin{itemize}
+\item quasi sinusoïdal ;
+\item en phase avec la tension du réseau ;
+\item présentant une faible distorsion harmonique.
+\end{itemize}
+
+Dans ces conditions, le facteur de puissance se rapproche de l'unité.
+
+\subsection{Structure à deux étages}
+
+Une structure classique associe :
+\begin{enumerate}
+\item un pont redresseur monophasé ;
+\item un hacheur Boost commandé ;
+\item un condensateur de bus continu ;
+\item la charge ou un second convertisseur.
+\end{enumerate}
+
+\begin{center}
+\begin{tikzpicture}[node distance=8mm,>=Latex,
+bloc/.style={draw,rounded corners,minimum width=25mm,minimum height=11mm,align=center}]
+\node[bloc] (pd2) {Pont\\de diodes};
+\node[bloc,right=of pd2] (boost) {Boost\\commandé};
+\node[bloc,right=of boost] (bus) {Bus continu\\filtré};
+\node[bloc,right=of bus] (load) {Charge};
+\draw[->] (pd2)--(boost);
+\draw[->] (boost)--(bus);
+\draw[->] (bus)--(load);
+\end{tikzpicture}
+\end{center}
+
+La commande impose une référence de courant proportionnelle à la tension redressée :
+\[
+i_{\mathrm{ref}}(t)=k\,|u_e(t)|.
+\]
+Une boucle rapide de courant pilote le rapport cyclique du Boost, tandis qu'une boucle lente régule la tension du bus continu.
+
+\subsection{Structure mono-étage}
+
+Les structures mono-étage réalisent simultanément la correction du facteur de puissance et la régulation de la sortie. Elles réduisent le nombre de composants, mais leur commande et leur dimensionnement sont plus couplés.
+
+\section{Synthèse}
+
+\begin{itemize}
+\item La conversion indirecte utilise un stockage intermédiaire et peut assurer l'isolement galvanique.
+\item Le pont PD2 réalise un redressement double alternance avec $u_s=|u_e|$.
+\item La puissance active est la valeur moyenne de $u(t)i(t)$.
+\item En régime déformé, la puissance apparente vérifie $S^2=P^2+Q^2+D^2$.
+\item Le facteur de puissance tient compte du déphasage et de la distorsion harmonique.
+\item Le redresseur à absorption sinusoïdale vise un courant réseau sinusoïdal et en phase avec la tension.
+\end{itemize}
