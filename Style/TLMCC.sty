@@ -1,31 +1,53 @@
 % ============================================================================
 % Bibliothèque Machine à courant continu — framework SI
 % ============================================================================
-\ProvidesPackage{TLMCC}[2026/08/03 Bibliotheque MCC]
+\ProvidesPackage{TLMCC}[2026/08/04 Bibliotheque MCC]
 \RequirePackage{tikz}
 \RequirePackage{circuitikz}
 \usetikzlibrary{arrows.meta,positioning,calc}
 
+% Protection contre les caractères actifs de babel[french] dans circuitikz.
+\AtBeginEnvironment{circuitikz}{%
+  \ifdefined\shorthandoff
+    \shorthandoff{:;!?}%
+  \fi
+}
+
 \newcommand{\TLSchemaInduitMCCPermanent}{%
 \begin{center}
 \begin{circuitikz}[european resistors]
-\draw (0,0) to[V,l_=$E=K_e\Omega$] (0,3)
-      to[R,l=$R$,i>^=$I$] (3,3)
-      -- (5,3) node[right]{$+$}
-      (5,0) node[right]{$-$} -- (0,0);
-\draw[<->] (5.2,0)--node[right]{$U$}(5.2,3);
+  \draw (0,0) to[V] (0,3)
+        to[R] (3,3)
+        -- (5,3);
+  \draw (5,0) -- (0,0);
+  \draw[->] (2.1,3.35) -- (3.1,3.35);
+  \draw[<->] (5.35,0.15) -- (5.35,2.85);
+  \node[left]  at (0,1.5) {$E=K_e\Omega$};
+  \node[above] at (1.5,3) {$R$};
+  \node[above] at (2.6,3.35) {$I$};
+  \node[right] at (5,3) {$+$};
+  \node[right] at (5,0) {$-$};
+  \node[right] at (5.35,1.5) {$U$};
 \end{circuitikz}
 \end{center}}
 
 \newcommand{\TLSchemaInduitMCCVariable}{%
 \begin{center}
 \begin{circuitikz}[european resistors]
-\draw (0,0) to[V,l_=$E=K_e\Omega$] (0,3)
-      to[R,l=$R$] (2.4,3)
-      to[L,l=$L$,i>^=$I$] (5,3)
-      -- (6.5,3) node[right]{$+$}
-      (6.5,0) node[right]{$-$} -- (0,0);
-\draw[<->] (6.7,0)--node[right]{$U$}(6.7,3);
+  \draw (0,0) to[V] (0,3)
+        to[R] (2.4,3)
+        to[L] (5,3)
+        -- (6.5,3);
+  \draw (6.5,0) -- (0,0);
+  \draw[->] (3.6,3.35) -- (4.6,3.35);
+  \draw[<->] (6.85,0.15) -- (6.85,2.85);
+  \node[left]  at (0,1.5) {$E=K_e\Omega$};
+  \node[above] at (1.2,3) {$R$};
+  \node[above] at (3.7,3) {$L$};
+  \node[above] at (4.1,3.35) {$I$};
+  \node[right] at (6.5,3) {$+$};
+  \node[right] at (6.5,0) {$-$};
+  \node[right] at (6.85,1.5) {$U$};
 \end{circuitikz}
 \end{center}}
 
