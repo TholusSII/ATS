@@ -40,8 +40,29 @@
 
 \TLStartCourseChapter{11}{Détermination des actions mécaniques}{chap:actions-mecaniques}
 
-% Les labels du sommaire sont placés directement dans les fichiers de contenu.
-% La commande \section de kaobook ne doit pas être redéfinie ou patchée.
+% La copie réelle de \section fournie par TL.sty évite toute récursion avec
+% les commandes robustes de kaobook. Les sections 8 à 12 possèdent déjà leurs
+% labels explicites dans la partie B ; le wrapper complète les sections 1 à 7
+% et la section 13.
+\newcounter{TLAMSectionLabel}
+\RenewDocumentCommand{\section}{s o m}{%
+  \IfBooleanTF{#1}{%
+    \TLBaseSection*{#3}%
+  }{%
+    \IfNoValueTF{#2}
+      {\TLBaseSection{#3}}
+      {\TLBaseSection[#2]{#3}}%
+    \stepcounter{TLAMSectionLabel}%
+    \ifnum\value{TLAMSectionLabel}<8
+      \label{sec:am-\arabic{TLAMSectionLabel}}%
+    \else
+      \ifnum\value{TLAMSectionLabel}=13
+        \label{sec:am-13}%
+      \fi
+    \fi
+  }%
+}
+
 \input{sources/11_ActionsMecaniques_Partie_A}
 \input{sources/11_ActionsMecaniques_Partie_B2}
 \input{sources/11_ActionsMecaniques_Applications}
