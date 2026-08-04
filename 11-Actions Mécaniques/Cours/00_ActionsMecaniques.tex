@@ -3,20 +3,27 @@
 \documentclass[fontsize=10pt,twoside=true,open=any]{kaobook}
 \usepackage[french]{babel}
 \newcommand{\TLCourseDefinitionFile}{11_ActionsMecaniques}
+
 \makeatletter
 \def\input@path{{../../Style/}}
 \makeatother
+
 \input{TLCours.sty}
-\input{Notations_Torseurs/Notations_Torseurs.sty}
-\input{Notations_Actions-Meca/Notations_Actions-Meca.sty}
-\input{Notations_Dynamique/Notations_Dynamique.sty}
-\input{Notations_Cinematique/Notations_Cinematique.sty}
+
+% Le contenu propre du cours utilise les commandes du socle TLCours et les
+% outils graphiques dédiés ci-dessous. Les anciennes bibliothèques
+% Notations_Torseurs, Notations_Actions-Meca, Notations_Dynamique et
+% Notations_Cinematique ne sont pas nécessaires ici ; leur chargement indirect
+% cherchait Notations_Maths hors du chemin TeX et redéfinissait plusieurs
+% commandes déjà fournies par macros_SII_v2.
 \input{TLActionsMecaniques.sty}
+
 \usepackage{amsmath,amssymb,mathtools,array,booktabs}
 \raggedbottom
 \setlength{\parindent}{0pt}
 \setlength{\emergencystretch}{3em}
 \makeindex[columns=3,title=Index alphabétique,intoc]
+
 \begin{document}
 \mainmatter
 \setchapterstyle{kao}
