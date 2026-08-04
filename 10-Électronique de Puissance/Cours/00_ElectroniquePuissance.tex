@@ -4,10 +4,6 @@
 \usepackage[french]{babel}
 \newcommand{\TLCourseDefinitionFile}{10_ElectroniquePuissance}
 
-% Toutes les options de circuitikz doivent être déclarées avant le premier
-% chargement, effectué ici indirectement par Notations_Elec.
-\PassOptionsToPackage{siunitx,european}{circuitikz}
-
 \makeatletter
 \def\input@path{{../../Style/}}
 \makeatother
@@ -20,7 +16,9 @@
 \providecommand{\f}[2]{\ensuremath{#1\!\left(#2\right)}}
 \newcommand{\TLMCCMathCompatibilityReady}{}
 
-\usepackage{../../Style/Notations_Elec/Notations_Elec}
+% TLElectronique effectue l'unique chargement de circuitikz avec les options
+% siunitx et european. Notations_Elec n'est pas nécessaire dans ce cours et
+% provoquait un second chargement incompatible.
 \usepackage{../../Style/Notations_Energetique/Notations_Energetique}
 \usepackage{../../Style/TLElectronique}
 \usepackage{../../Style/TLElectroniquePuissance}
