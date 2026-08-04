@@ -4,15 +4,17 @@
 \usepackage[french]{babel}
 \newcommand{\TLCourseDefinitionFile}{10_ElectroniquePuissance}
 
+% Toutes les options de circuitikz doivent être déclarées avant le premier
+% chargement, effectué ici indirectement par Notations_Elec.
+\PassOptionsToPackage{siunitx,european}{circuitikz}
+
 \makeatletter
 \def\input@path{{../../Style/}}
 \makeatother
-
 \usepackage{../../Style/TLCours}
 
-% Compatibilité minimale requise par Notations_Energetique.
-% On évite le chargement de l'ancienne bibliothèque Notations_Maths,
-% qui redéfinit notamment \j et entre en conflit avec LaTeX.
+% Compatibilité minimale requise par Notations_Energetique, sans charger
+% l'ancienne bibliothèque Notations_Maths qui redéfinit notamment \j.
 \provideboolean{boolRaccourcisMaths}
 \setboolean{boolRaccourcisMaths}{true}
 \providecommand{\f}[2]{\ensuremath{#1\!\left(#2\right)}}
@@ -22,13 +24,11 @@
 \usepackage{../../Style/Notations_Energetique/Notations_Energetique}
 \usepackage{../../Style/TLElectronique}
 \usepackage{../../Style/TLElectroniquePuissance}
-
 \usepackage{amsmath,amssymb,mathtools,array,booktabs}
 \raggedbottom
 \setlength{\parindent}{0pt}
 \setlength{\emergencystretch}{3em}
 \makeindex[columns=3,title=Index alphabétique,intoc]
-
 \begin{document}
 \mainmatter
 \setchapterstyle{kao}
