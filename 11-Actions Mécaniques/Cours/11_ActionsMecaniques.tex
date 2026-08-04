@@ -1,9 +1,52 @@
-\title{Actions mécaniques, statique et dynamique}
-\author{Thomas Lusseau}
-\date{}
+% ============================================================================
+% DÉFINITION DU COURS 11 : DÉTERMINATION DES ACTIONS MÉCANIQUES
+% ============================================================================
 
-\maketitle
+\titlehead{Thomas Lusseau - SII en ATS}
+\title[Actions mécaniques]{Détermination des actions mécaniques}
+\author[TL]{Thomas Lusseau}
+\date{\today}
 
-\TLStartCourseChapter{11}{Actions mécaniques, statique et dynamique}{chap:actions-mecaniques}
+\TLCourseCoverSetup
+  {\repStyle/FondPoly.png}
+  {\repStyle/FondPoly.png}
+  {Cycle 6 : Analyser, modéliser, expérimenter et résoudre les performances\\de systèmes de solides d'une chaîne d'énergie}
+  {Détermination des\\actions mécaniques}
+  {Lycée Robert Doisneau - ATS}
+  {Thomas Lusseau}
 
-\input{sources/11_ActionsMecaniques_Cours_Propre.tex}
+\TLCourseCoverContents{%
+  \TLCourseContentsLine{11.1}{Introduction}{sec:am-1}
+  \TLCourseContentsLine{11.2}{Démarche de résolution}{sec:am-2}
+  \TLCourseContentsLine{11.3}{Actions mécaniques et torseurs}{sec:am-3}
+  \TLCourseContentsLine{11.4}{Étude de l'équilibre}{sec:am-4}
+  \TLCourseContentsLine{11.5}{Point de vue local}{sec:am-5}
+  \TLCourseContentsLine{11.6}{Frottement et arc-boutement}{sec:am-6}
+  \TLCourseContentsLine{11.7}{Moment d'une force}{sec:am-7}
+  \TLCourseContentsLine{11.8}{Masse et centre d'inertie}{sec:am-8}
+  \TLCourseContentsLine{11.9}{Opérateur d'inertie}{sec:am-9}
+  \TLCourseContentsLine{11.10}{Théorème de l'énergie cinétique}{sec:am-10}
+  \TLCourseContentsLine{11.11}{Principe fondamental de la dynamique}{sec:am-11}
+  \TLCourseContentsLine{11.12}{Synthèse générale}{sec:am-12}
+}
+
+\TLCourseFooter
+\TLCourseCover
+\markboth{Détermination des actions mécaniques}{Détermination des actions mécaniques}
+
+\livrettrue
+\collefalse
+
+\TLStartCourseChapter{11}{Détermination des actions mécaniques}{chap:actions-mecaniques}
+
+% Étiquetage automatique des sections pour le sommaire de la couverture.
+\newcounter{TLAMSectionLabel}
+\apptocmd{\section}{%
+  \stepcounter{TLAMSectionLabel}%
+  \label{sec:am-\arabic{TLAMSectionLabel}}%
+}{}{}
+
+\input{sources/11_ActionsMecaniques_Partie_A}
+\input{sources/11_ActionsMecaniques_Partie_B}
+
+\printindex
