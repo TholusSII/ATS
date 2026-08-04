@@ -111,41 +111,117 @@ n\geq\frac{40-3}{20\log_{10}(1000/100)}=\frac{37}{20}=1{,}85.
 \]
 Il faut donc un filtre d'ordre au moins 2.
 
-\subsection{Double filtre RC passe-bas}\label{sec:elec-double-filtre-rc}
+\subsection{Double filtre RC passe-bas sans suiveur}\label{sec:elec-double-filtre-rc}
 
-Deux cellules RC passe-bas mises en cascade ne peuvent être multipliées directement que si la seconde cellule ne charge pas la première, par exemple grâce à un suiveur entre les deux cellules.
+On considère deux cellules RC mises directement en cascade. La seconde cellule charge la première : la fonction de transfert globale n'est donc pas le produit de deux fonctions de transfert du premier ordre.
 
 \begin{center}
 \begin{circuitikz}[american voltages]
   \draw
-  (0,0) node[left] {$u_e$}
-    to[R,l=$R_1$] (2,0) coordinate (A)
-    to[short] (2.8,0)
-    node[draw,minimum width=1.2cm,minimum height=.8cm] (B) {suiveur}
-    (B.east) to[R,l=$R_2$] (5.2,0) coordinate (C)
-    to[short] (6,0) node[right] {$u_s$};
-  \draw (A) to[C,l_=$C_1$] (2,-2) node[ground]{};
-  \draw (C) to[C,l_=$C_2$] (5.2,-2) node[ground]{};
+  (0,0) node[left] {$\underline{U_e}$}
+    to[R,l=$R_1$] (2.4,0) coordinate (A)
+    to[R,l=$R_2$] (5.0,0) coordinate (B)
+    to[short] (6.0,0) node[right] {$\underline{U_s}$};
+  \draw (A) to[C,l_=$C_1$] (2.4,-2.2) node[ground]{};
+  \draw (B) to[C,l_=$C_2$] (5.0,-2.2) node[ground]{};
+  \node[above] at (A) {$\underline{U_1}$};
 \end{circuitikz}
 \end{center}
 
-Avec découplage parfait :
+En régime sinusoïdal forcé, les admittances des condensateurs sont :
 \[
-H(p)=H_1(p)H_2(p)
-=\frac{1}{(1+R_1C_1p)(1+R_2C_2p)}.
+Y_{C_1}=j\omega C_1,
+\qquad
+Y_{C_2}=j\omega C_2.
 \]
-Si les deux cellules sont identiques, $R_1=R_2=R$ et $C_1=C_2=C$ :
-\[
-H(p)=\frac{1}{(1+RCp)^2}.
-\]
-Le filtre est d'ordre 2. Sa pente asymptotique en haute fréquence vaut $-40$ dB/décade. À la fréquence $f_c=1/(2\pi RC)$ de chaque cellule, le module total vaut
-\[
-|H(j\omega_c)|=\left(\frac{1}{\sqrt{2}}\right)^2=\frac12,
-\]
-soit un gain de $-6$ dB.
 
-\paragraph{Attention au chargement.}
-Sans suiveur, la deuxième cellule modifie la première : la fonction de transfert n'est plus le simple produit des deux fonctions de transfert élémentaires. Il faut alors écrire les équations du circuit complet.
+Au nœud de sortie, le théorème de Millman donne :
+\[
+\underline{U_s}
+=
+\frac{\dfrac{\underline{U_1}}{R_2}}
+{\dfrac{1}{R_2}+j\omega C_2}.
+\]
+D'où :
+\[
+\underline{U_1}
+=
+\underline{U_s}\left(1+j\omega R_2C_2\right).
+\]
+
+Au nœud intermédiaire de potentiel $\underline{U_1}$, le théorème de Millman s'écrit :
+\[
+\underline{U_1}
+=
+\frac{\dfrac{\underline{U_e}}{R_1}+\dfrac{\underline{U_s}}{R_2}}
+{\dfrac{1}{R_1}+\dfrac{1}{R_2}+j\omega C_1}.
+\]
+En remplaçant $\underline{U_1}$ par l'expression précédente puis en regroupant, on obtient :
+\[
+\underline{U_e}
+=
+\underline{U_s}
+\left[
+1+j\omega\left(R_1C_1+R_1C_2+R_2C_2\right)
+-\omega^2R_1R_2C_1C_2
+\right].
+\]
+
+La fonction de transfert complexe du montage complet vaut donc :
+\[
+\boxed{
+H(j\omega)
+=
+\frac{\underline{U_s}}{\underline{U_e}}
+=
+\frac{1}
+{1-\omega^2R_1R_2C_1C_2
++j\omega\left(R_1C_1+R_1C_2+R_2C_2\right)}
+}
+\]
+
+Le terme $R_1C_2$ traduit le chargement de la première cellule par la seconde.
+
+\paragraph{Cas de deux cellules identiques.}
+Pour $R_1=R_2=R$ et $C_1=C_2=C$ :
+\[
+\boxed{
+H(j\omega)
+=
+\frac{1}{1-(RC\omega)^2+j\,3RC\omega}
+}
+\]
+Le module s'écrit :
+\[
+\boxed{
+\left|H(j\omega)\right|
+=
+\frac{1}
+{\sqrt{\left[1-(RC\omega)^2\right]^2+9(RC\omega)^2}}
+}
+\]
+et la phase :
+\[
+\boxed{
+\varphi(\omega)
+=-\arctan\!\left(
+\frac{3RC\omega}{1-(RC\omega)^2}
+\right)
+}
+\]
+avec prise en compte du quadrant lorsque $1-(RC\omega)^2<0$.
+
+À basse fréquence :
+\[
+\lim_{\omega\to 0}H(j\omega)=1.
+\]
+À haute fréquence :
+\[
+\left|H(j\omega)\right|
+\sim
+\frac{1}{R^2C^2\omega^2},
+\]
+ce qui correspond à une pente asymptotique de $-40\ \mathrm{dB/décade}$.
 
 \subsection{Spectre d'un signal échantillonné et repliement}\label{sec:elec-repliement-spectre}
 
