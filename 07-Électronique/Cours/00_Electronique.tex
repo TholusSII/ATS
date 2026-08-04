@@ -24,6 +24,11 @@
 % Bibliothèque utilisée pour les zones hachurées des gabarits de filtrage.
 \usetikzlibrary{patterns}
 
+% Dans ce cours, les références de potentiel sont des masses électriques et
+% non des prises de terre : toute ancienne occurrence node[ground] est rendue
+% avec le symbole eground de circuitikz.
+\tikzset{ground/.style={eground}}
+
 % Environnement utilisé dans les sources du cours.
 \newenvironment{application}
   {\par\medskip\noindent\textbf{Application.}\enspace}
