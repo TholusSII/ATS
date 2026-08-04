@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{TLActionsMecaniques}[2026/08/04 Outils graphiques actions mecaniques]
 \RequirePackage{tikz}
-\usetikzlibrary{arrows.meta,calc,positioning,patterns,decorations.pathmorphing,shapes.geometric}
+\usetikzlibrary{arrows.meta,babel,calc,positioning,patterns,decorations.pathmorphing,shapes.geometric}
 
 \newcommand{\TLGrapheStructureSimple}{%
 \begin{center}\begin{tikzpicture}[>=Latex,node distance=20mm,
@@ -9,7 +9,10 @@ solide/.style={draw,rounded corners,minimum width=23mm,minimum height=9mm,fill=b
 liaison/.style={draw,ellipse,minimum width=20mm,minimum height=8mm,fill=orange!10}]
 \node[solide] (b) {Bâti 0};
 \node[solide,right=42mm of b] (s) {Solide 1};
-\node[liaison] at ($(b)!0.5!(s)$) (l) {Liaison};
+% Placement au milieu du segment sans la syntaxe calc « !0.5! », qui entre
+% en conflit avec les caractères actifs de babel français sur certaines
+% installations MiKTeX.
+\path (b) -- (s) node[midway,liaison] (l) {Liaison};
 \draw[->] (b)--(l); \draw[->] (l)--(s);
 \end{tikzpicture}\end{center}}
 
