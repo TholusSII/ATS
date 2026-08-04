@@ -4,18 +4,12 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1999/01/01]
-\ProvidesPackage{Notations_Energetique}[2016/08/16]
- 
-%chargement des extensions requises au bon fonctionnement de l'extension et des documents
+\ProvidesPackage{Notations_Energetique}[2026/08/04]
 
-%\RequirePackage{color}%Pour mettre de la couleur
-\RequirePackage{ifthen}%pour utiliser les booléens, à mettre avec les autres RequirePackage's
-\RequirePackage{xargs}%Pour arguments optionnels multiples
-%\RequirePackage{amsfonts}		%Pour faire des maths (ensemble des reels, notamment)
-%\RequirePackage{amsmath}		%Plein de trucs, notamment les arcs
-\RequirePackage{mathrsfs}		%Pour faire des maths (notamment le L de la transformée de Laplace)
-%\RequirePackage{color}
-%\RequirePackage{xspace}
+% Chargement des extensions requises
+\RequirePackage{ifthen}
+\RequirePackage{xargs}
+\RequirePackage{mathrsfs}
 
 % Dans le cours MCC, les deux éléments nécessaires (\f et le booléen associé)
 % sont fournis par le moteur afin d'éviter le chargement de l'ancienne
@@ -28,83 +22,68 @@
 }{}
 \makeatother
 
-%Initialisation des booleens 
-\newboolean{boolRaccourcisEnergetique}%création du booléen
-\setboolean{boolRaccourcisEnergetique}{true}%affectation de la valeur false
+% Initialisation des booléens
+\newboolean{boolRaccourcisEnergetique}
+\setboolean{boolRaccourcisEnergetique}{true}
 
+% Option de désactivation des raccourcis, sans commande interne contenant @.
+\newif\ifTLEnergRaccourcis
+\TLEnergRaccourcistrue
+\DeclareOption{noRaccourci}{\TLEnergRaccourcisfalse}
+\ProcessOptions\relax
 
+\newcommand*{\RafEnergRac}[1]{%
+  \ifthenelse{\boolean{boolRaccourcisMaths}}{#1}{}%
+}
 
-\newif\if@RafNotEnergRac	\@RafNotEnergRactrue
-\DeclareOption{noRaccourci}	{\@RafNotEnergRacfalse}
-%\DeclareOption{noRaccourci}{\setboolean{boolRaccourcisMaths}{false}}
-\ProcessOptions
-
-
-%%%Une commande juste pour moi :
-\newcommand*{\RafEnergRac}[1]{\ifthenelse{\boolean{boolRaccourcisMaths}}{#1}{}}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%commandes et/ou environnements personnalisés
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Commandes et environnements personnalisés
 
 % PUISSANCE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\PCallig}	{\ensuremath{\mathscr{P}}}
-\newcommandx{\puissance}[4][2=,4=]	{{
-                    \ifthenelse{\equal{#2}{}}
-                        {\newcommand*{\notationActionMecaniquePourP}{\ensuremath{#1}}}
-                        {\newcommand*{\notationActionMecaniquePourP}{\ensuremath{#1\mapsto#2}}}
-%
-                    \ifthenelse{\equal{#3}{}}
-                        {\newcommand*{\notationFinIndicePuissanceCommeParExempleReferentiel}{}}
-                        {\newcommand*{\notationFinIndicePuissanceCommeParExempleReferentiel}{\ensuremath{,#3}}}
-%
-                    \ifthenelse{\equal{#4}{}}
-                        {
-                            \ensuremath{
-                                \PCallig_{
-                                    \notationActionMecaniquePourP
-                                    \notationFinIndicePuissanceCommeParExempleReferentiel
-                                }
-                            }
-                        }
-                        {
-                            \f {
-                                \PCallig_{
-                                    \notationActionMecaniquePourP
-                                    \notationFinIndicePuissanceCommeParExempleReferentiel
-                                }
-                            }
-                            {#4}
-                        }
-				}}
+\newcommand{\PCallig}{\ensuremath{\mathscr{P}}}
+\newcommandx{\puissance}[4][2=,4=]{{%
+  \ifthenelse{\equal{#2}{}}
+    {\newcommand*{\notationActionMecaniquePourP}{\ensuremath{#1}}}
+    {\newcommand*{\notationActionMecaniquePourP}{\ensuremath{#1\mapsto#2}}}%
+  \ifthenelse{\equal{#3}{}}
+    {\newcommand*{\notationFinIndicePuissanceCommeParExempleReferentiel}{}}
+    {\newcommand*{\notationFinIndicePuissanceCommeParExempleReferentiel}{\ensuremath{,#3}}}%
+  \ifthenelse{\equal{#4}{}}
+    {\ensuremath{\PCallig_{\notationActionMecaniquePourP\notationFinIndicePuissanceCommeParExempleReferentiel}}}
+    {\f{\PCallig_{\notationActionMecaniquePourP\notationFinIndicePuissanceCommeParExempleReferentiel}}{#4}}%
+}}
+
 \newcommand*{\puissanceMutuelle}[2]{\ensuremath{\PCallig_{#1\leftrightarrow#2}}}
 \newcommand*{\puissanceMutuelles}{\puissanceMutuelle}
 \newcommand*{\pMutuelle}{\puissanceMutuelle}
 \newcommand*{\pMutuelles}{\puissanceMutuelle}
 
-\newcommand*{\Pint}[1]{\ensuremath{\ifthenelse{\equal{#1}{}}
-                            {\PCallig_{int}}
-                            {\f {\PCallig_{int}}{#1}}
-                            }}
+\newcommand*{\Pint}[1]{%
+  \ensuremath{%
+    \ifthenelse{\equal{#1}{}}
+      {\PCallig_{int}}
+      {\f{\PCallig_{int}}{#1}}%
+  }%
+}
 
-\if@RafNotEnergRac
-	\renewcommand{\P}	{\puissance}	%Redéfini (anciennement : symbole paragraphe)
+\ifTLEnergRaccourcis
+  \renewcommand{\P}{\puissance}
 \fi
 
-
-% TRAVAIL / ENERGIE
+% TRAVAIL / ÉNERGIE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommandx{\travail}[3][3=]	{\ensuremath{W_{#1\ifthenelse{\equal{#2}{}}{}{,#2\ifthenelse{\equal{#3}{}}{}{\rightarrow#3}}}}}
+\newcommandx{\travail}[3][3=]{%
+  \ensuremath{W_{#1\ifthenelse{\equal{#2}{}}{}{,#2\ifthenelse{\equal{#3}{}}{}{\rightarrow#3}}}}%
+}
 
 \newcommand*{\eCinetique}[2]{\ensuremath{T_{(#1/#2)}}}
-\newcommand*{\eCin} {\eCinetique}
+\newcommand*{\eCin}{\eCinetique}
 
-
-\if@RafNotEnergRac
-	\newcommand{\Wk}	{\travail}	%Redéfini (anciennement : symbole paragraphe)
+\ifTLEnergRaccourcis
+  \newcommand{\Wk}{\travail}
 \fi
 
 \endinput
