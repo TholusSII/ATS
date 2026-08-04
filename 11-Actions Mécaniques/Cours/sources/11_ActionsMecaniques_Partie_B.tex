@@ -1,0 +1,526 @@
+% ============================================================================
+% COURS 11 — DÉTERMINATION DES ACTIONS MÉCANIQUES
+% Partie B : masse, inertie, énergie-puissance et dynamique
+% ============================================================================
+
+\section{Masse et centre d'inertie}
+
+\subsection{Masse}
+
+La masse d'un solide $S$ occupant un volume $V$ et de masse volumique $\rho(M)$ est :
+\[
+m=\iiint_V \rho(M)\,\mathrm dV.
+\]
+
+Pour un solide homogène, $\rho$ est constante et :
+\[
+m=\rho V.
+\]
+
+Pour une plaque mince d'épaisseur négligeable, on utilise une masse surfacique $\sigma$ :
+\[
+m=\iint_S \sigma(M)\,\mathrm dS.
+\]
+Pour une ligne matérielle, on utilise une masse linéique $\mu$ :
+\[
+m=\int_L \mu(M)\,\mathrm d\ell.
+\]
+
+\subsection{Centre d'inertie}
+
+Le centre d'inertie $G$ d'un solide $S$ est défini par :
+\[
+\overrightarrow{OG}=\frac{1}{m}\iiint_V \overrightarrow{OM}\,\rho(M)\,\mathrm dV.
+\]
+Cette définition est indépendante du point $O$ choisi.
+
+Pour un ensemble de solides $S_i$ de masses $m_i$ et de centres d'inertie $G_i$ :
+\[
+\overrightarrow{OG}=
+\frac{\displaystyle\sum_i m_i\overrightarrow{OG_i}}
+{\displaystyle\sum_i m_i}.
+\]
+
+Dans une base cartésienne :
+\[
+x_G=\frac{\sum_i m_i x_{G_i}}{\sum_i m_i},
+\qquad
+y_G=\frac{\sum_i m_i y_{G_i}}{\sum_i m_i},
+\qquad z_G=\frac{\sum_i m_i z_{G_i}}{\sum_i m_i}.
+\]
+
+\begin{TLMethod}{Déterminer un centre d'inertie}
+\begin{enumerate}
+  \item Décomposer le solide en formes simples, éventuellement en utilisant des masses négatives pour les évidements.
+  \item Choisir un repère adapté aux symétries.
+  \item Écrire les masses et les coordonnées des centres d'inertie de chaque partie.
+  \item Appliquer la relation barycentrique.
+  \item Vérifier que le point obtenu respecte les symétries matérielles.
+\end{enumerate}
+\end{TLMethod}
+
+\section{Opérateur d'inertie et effets d'inertie}
+
+\subsection{Moment d'inertie}
+
+Le moment d'inertie d'un solide $S$ par rapport à un axe $\Delta$ est :
+\[
+I_\Delta(S)=\iiint_V d^2(M,\Delta)\,\rho(M)\,\mathrm dV,
+\]
+où $d(M,\Delta)$ est la distance entre le point matériel $M$ et l'axe $\Delta$.
+
+Le moment d'inertie caractérise la difficulté à modifier la vitesse de rotation du solide autour de l'axe considéré. Son unité est le kilogramme mètre carré : $\si{kg.m^2}$.
+
+Par exemple, dans un repère $(O,\vec x,\vec y,\vec z)$ :
+\[
+I_{Ox}=\iiint_V (y^2+z^2)\,\mathrm dm,
+\]
+\[
+I_{Oy}=\iiint_V (x^2+z^2)\,\mathrm dm,
+\qquad
+I_{Oz}=\iiint_V (x^2+y^2)\,\mathrm dm.
+\]
+
+\subsection{Produits d'inertie}
+
+Les produits d'inertie traduisent le couplage entre les directions :
+\[
+D=\iiint_V yz\,\mathrm dm,
+\qquad
+E=\iiint_V xz\,\mathrm dm,
+\qquad
+F=\iiint_V xy\,\mathrm dm.
+\]
+
+Suivant la convention utilisée pour écrire la matrice, les termes hors diagonale sont les opposés des produits d'inertie.
+
+\subsection{Matrice d'inertie d'un solide}
+
+Dans la base $(\vec x,\vec y,\vec z)$, la matrice de l'opérateur d'inertie au point $O$ s'écrit :
+\[
+\left[\mathbf I_O(S)\right]_{(\vec x,\vec y,\vec z)}=
+\begin{pmatrix}
+A & -F & -E\\
+-F & B & -D\\
+-E & -D & C
+\end{pmatrix},
+\]
+avec :
+\[
+A=\iiint_V (y^2+z^2)\,\mathrm dm,
+\quad
+B=\iiint_V (x^2+z^2)\,\mathrm dm,
+\quad
+C=\iiint_V (x^2+y^2)\,\mathrm dm.
+\]
+
+La matrice est symétrique. Les termes diagonaux sont positifs ou nuls. Elle dépend du point et de la base d'expression.
+
+\subsection{Symétries matérielles}
+
+Les symétries permettent d'annuler certains produits d'inertie sans calcul intégral.
+
+\begin{itemize}
+  \item Si $(O,\vec x,\vec y)$ est un plan de symétrie matérielle, alors $E=D=0$.
+  \item Si $(O,\vec x,\vec z)$ est un plan de symétrie matérielle, alors $F=D=0$.
+  \item Si $(O,\vec y,\vec z)$ est un plan de symétrie matérielle, alors $F=E=0$.
+  \item Si deux plans coordonnés sont plans de symétrie, la matrice est diagonale dans la base associée.
+\end{itemize}
+
+Une direction normale à un plan de symétrie matérielle est une direction principale d'inertie en tout point de ce plan.
+
+\begin{TLWarning}{Point et base}
+Une matrice diagonale au centre d'inertie dans une base principale ne reste pas nécessairement diagonale après un changement de point ou un changement de base quelconque.
+\end{TLWarning}
+
+\subsection{Théorème de Huygens généralisé}
+
+Soit $G$ le centre d'inertie d'un solide de masse $m$. L'opérateur d'inertie en un point $O$ est relié à celui en $G$ par :
+\[
+\mathbf I_O(S)=\mathbf I_G(S)
++m\left(\|\overrightarrow{OG}\|^2\mathbf 1
+-\overrightarrow{OG}\otimes\overrightarrow{OG}\right).
+\]
+
+Sous forme matricielle, si :
+\[
+\overrightarrow{OG}=a\vec x+b\vec y+c\vec z,
+\]
+alors le terme de transport vaut :
+\[
+m
+\begin{pmatrix}
+b^2+c^2 & -ab & -ac\\
+-ab & a^2+c^2 & -bc\\
+-ac & -bc & a^2+b^2
+\end{pmatrix}.
+\]
+
+Pour un axe $\Delta_O$ parallèle à un axe $\Delta_G$ passant par $G$ :
+\[
+I_{\Delta_O}=I_{\Delta_G}+md^2,
+\]
+où $d$ est la distance entre les deux axes.
+
+\subsection{Matrices d'inertie classiques}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}l X}
+\toprule
+Solide homogène, centre $G$ & Matrice principale au centre $G$ \\
+\midrule
+Parallélépipède de dimensions $a,b,c$ &
+$\displaystyle\operatorname{diag}\!\left(\frac{m(b^2+c^2)}{12},\frac{m(a^2+c^2)}{12},\frac{m(a^2+b^2)}{12}\right)$ \\
+Cylindre plein, axe $\vec x$, rayon $R$, longueur $L$ &
+$\displaystyle\operatorname{diag}\!\left(\frac{mR^2}{2},\frac{m(3R^2+L^2)}{12},\frac{m(3R^2+L^2)}{12}\right)$ \\
+Disque mince, axe $\vec x$, rayon $R$ &
+$\displaystyle\operatorname{diag}\!\left(\frac{mR^2}{2},\frac{mR^2}{4},\frac{mR^2}{4}\right)$ \\
+Sphère pleine, rayon $R$ &
+$\displaystyle\frac{2mR^2}{5}\,\mathbf 1$ \\
+Tige mince, longueur $L$, axe de la tige $\vec x$ &
+$\displaystyle\operatorname{diag}\!\left(0,\frac{mL^2}{12},\frac{mL^2}{12}\right)$ \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Détermination d'une matrice à partir de résultats classiques}
+
+\begin{TLMethod}{Construire une matrice d'inertie}
+\begin{enumerate}
+  \item Décomposer le solide en solides élémentaires homogènes.
+  \item Écrire chaque matrice au centre d'inertie dans une base principale.
+  \item Effectuer les changements de base nécessaires.
+  \item Transporter chaque matrice au point commun avec le théorème de Huygens.
+  \item Additionner les matrices ; soustraire celles correspondant aux évidements.
+  \item Contrôler les symétries du résultat.
+\end{enumerate}
+\end{TLMethod}
+
+\subsection{Équilibrage dynamique}
+
+Un solide en rotation autour d'un axe fixe est équilibré lorsque les efforts dynamiques transmis au bâti ne présentent pas de composantes variables indésirables.
+
+Deux conditions sont recherchées :
+\begin{itemize}
+  \item \textbf{équilibrage statique} : le centre d'inertie appartient à l'axe de rotation ;
+  \item \textbf{équilibrage dynamique} : l'axe de rotation est aussi un axe principal d'inertie.
+\end{itemize}
+
+Un défaut d'équilibrage produit des vibrations, augmente les charges dans les paliers et réduit la durée de vie des composants.
+
+\section{Théorème de l'énergie cinétique galiléenne}
+
+\subsection{Introduction}
+
+La méthode énergétique permet d'obtenir une équation scalaire reliant les actions mécaniques au mouvement. Elle est particulièrement efficace lorsque l'on cherche :
+\begin{itemize}
+  \item un couple moteur ou un effort d'actionneur ;
+  \item une accélération généralisée ;
+  \item une inertie ou une masse équivalente ;
+  \item une loi de mouvement pour un mécanisme à un seul degré de liberté.
+\end{itemize}
+
+Elle ne fournit cependant pas directement toutes les actions inconnues dans les liaisons.
+
+\subsection{Énoncé du théorème}
+
+Dans un référentiel galiléen $R_g$, pour un système matériel $S$ :
+\[
+\frac{\mathrm d E_c(S/R_g)}{\mathrm dt}
+=\mathcal P_{\mathrm{ext}}(S/R_g)
++\mathcal P_{\mathrm{int}}(S).
+\]
+
+\TLEnergiePuissance
+
+Pour un solide indéformable isolé, les puissances intérieures sont nulles. Pour un ensemble de solides, elles peuvent provenir des liaisons imparfaites, des frottements, des ressorts, des amortisseurs ou des actionneurs placés entre deux solides de l'ensemble.
+
+\subsection{Démarche de résolution}
+
+\begin{TLMethod}{Appliquer le théorème de l'énergie cinétique}
+\begin{enumerate}
+  \item Choisir le système matériel et le référentiel galiléen.
+  \item Paramétrer le mouvement et établir les relations cinématiques.
+  \item Calculer l'énergie cinétique de chaque solide puis de l'ensemble.
+  \item Calculer les puissances extérieures.
+  \item Calculer les puissances intérieures non nulles.
+  \item Appliquer le théorème et exprimer toutes les grandeurs en fonction du paramètre généralisé choisi.
+  \item Vérifier l'homogénéité énergétique de l'équation.
+\end{enumerate}
+\end{TLMethod}
+
+\subsection{Torseur cinétique}
+
+Le torseur cinétique d'un solide $S$ en mouvement par rapport à $R_g$ est :
+\[
+\left\{\mathcal C(S/R_g)\right\}_A=
+\left\{
+\begin{array}{c}
+\vec R_c=m\vec V_G(S/R_g)\\[1mm]
+\vec\sigma_A(S/R_g)
+\end{array}
+\right\},
+\]
+où $\vec\sigma_A$ est le moment cinétique au point $A$.
+
+Au centre d'inertie :
+\[
+\vec\sigma_G(S/R_g)=\mathbf I_G(S)\vec\Omega(S/R_g).
+\]
+
+Au point $A$ :
+\[
+\vec\sigma_A=\vec\sigma_G+\overrightarrow{AG}\wedge m\vec V_G.
+\]
+
+\subsection{Énergie cinétique d'un solide}
+
+L'énergie cinétique d'un solide indéformable s'écrit :
+\[
+E_c(S/R_g)=
+\frac12 m\|\vec V_G\|^2
++\frac12\vec\Omega\cdot\mathbf I_G(S)\vec\Omega.
+\]
+
+\subsubsection{Translation}
+
+Pour un solide en translation :
+\[
+E_c(S/R_g)=\frac12 mV_G^2.
+\]
+
+\subsubsection{Rotation autour d'un axe fixe}
+
+Si le solide tourne autour d'un axe fixe $\Delta$ :
+\[
+E_c(S/R_g)=\frac12 I_\Delta\omega^2.
+\]
+
+\subsubsection{Mouvement plan}
+
+Pour un mouvement plan, avec $\vec\Omega=\omega\vec z$ :
+\[
+E_c(S/R_g)=\frac12 mV_G^2+rac12 I_{Gz}\omega^2.
+\]
+
+\subsection{Moment d'inertie équivalent et masse équivalente}
+
+Pour un mécanisme à un seul paramètre généralisé $q$, toutes les vitesses peuvent être exprimées en fonction de $\dot q$. L'énergie cinétique totale se met alors sous la forme :
+\[
+E_c=\frac12 M_{\mathrm{eq}}(q)\dot q^2.
+\]
+
+Si $q$ est un angle, on note souvent :
+\[
+E_c=\frac12 J_{\mathrm{eq}}(q)\dot q^2.
+\]
+
+Si $q$ est une longueur :
+\[
+E_c=\frac12 m_{\mathrm{eq}}(q)\dot q^2.
+\]
+
+Pour des rapports cinématiques constants, par exemple $\omega_i=k_i\omega_m$ :
+\[
+J_{\mathrm{eq},m}=\sum_i J_i k_i^2
++\sum_j m_j\left(\frac{V_{G_j}}{\omega_m}\right)^2.
+\]
+
+\begin{TLWarning}{Carré des rapports de vitesse}
+Une inertie ou une masse ramenée à un axe ou à une coordonnée se multiplie par le carré du rapport de vitesse, et non par le rapport lui-même.
+\end{TLWarning}
+
+\subsection{Notion de puissance mécanique}
+
+La puissance d'une action mécanique $\{\mathcal T\}$ sur un mouvement décrit par un torseur cinématique $\{\mathcal V\}$ est leur comoment :
+\[
+\mathcal P=\{\mathcal T\}\otimes\{\mathcal V\}.
+\]
+
+Au point $A$ :
+\[
+\mathcal P(1\rightarrow2/R)=
+\vec R_{1\rightarrow2}\cdot\vec V_A(2/R)
++\vec M_A(1\rightarrow2)\cdot\vec\Omega(2/R).
+\]
+
+Le résultat est indépendant du point choisi, à condition que les deux torseurs soient réduits au même point.
+
+\subsection{Puissance extérieure}
+
+La puissance extérieure est la somme des puissances de toutes les actions exercées par l'extérieur sur le système isolé.
+
+Cas usuels :
+\begin{itemize}
+  \item force $\vec F$ appliquée en $A$ : $\mathcal P=\vec F\cdot\vec V_A$ ;
+  \item couple $\vec C$ : $\mathcal P=\vec C\cdot\vec\Omega$ ;
+  \item poids : $\mathcal P_{\mathrm{pes}}=m\vec g\cdot\vec V_G$ ;
+  \item moteur en rotation : $\mathcal P_m=C_m\omega$ ;
+  \item vérin : $\mathcal P_v=F_v\dot\ell$.
+\end{itemize}
+
+Une liaison parfaite avec le bâti développe une puissance nulle lorsque le torseur d'effort est réciproque du torseur cinématique autorisé.
+
+\subsection{Puissance des actions mutuelles entre deux solides}
+
+Pour deux solides 1 et 2 appartenant au système étudié, la puissance intérieure de leurs actions mutuelles vaut :
+\[
+\mathcal P_{\mathrm{int}}(1\leftrightarrow2)
+=\left\{\mathcal T_{1\rightarrow2}\right\}
+\otimes\left\{\mathcal V(2/1)\right\}.
+\]
+
+Dans une liaison parfaite, cette puissance est nulle. Dans une liaison avec frottement, elle est généralement négative et traduit une dissipation d'énergie.
+
+Pour un ressort idéal entre 1 et 2 :
+\[
+\mathcal P_r=-k(\ell-\ell_0)\dot\ell.
+\]
+Pour un amortisseur visqueux :
+\[
+\mathcal P_a=-c\dot\ell^2\leq0.
+\]
+
+\subsection{Travail, énergie potentielle et puissance}
+
+Le travail d'une action mécanique entre $t_1$ et $t_2$ est :
+\[
+W_{t_1\rightarrow t_2}=\int_{t_1}^{t_2}\mathcal P(t)\,\mathrm dt.
+\]
+
+Une action est conservative lorsqu'il existe une énergie potentielle $E_p$ telle que :
+\[
+\mathcal P=-\frac{\mathrm d E_p}{\mathrm dt}.
+\]
+
+Pour la pesanteur dans un champ uniforme :
+\[
+E_{p,g}=mgz_G+\text{constante}.
+\]
+
+Pour un ressort linéaire :
+\[
+E_{p,r}=\frac12 k(\ell-\ell_0)^2.
+\]
+
+En l'absence d'actions non conservatives :
+\[
+E_c+E_p=\text{constante}.
+\]
+
+\section{Principe fondamental de la dynamique}
+
+\subsection{Énoncé du PFD}
+
+Dans un référentiel galiléen $R_g$, le torseur des actions mécaniques extérieures appliquées à un système matériel $S$ est égal à son torseur dynamique :
+\[
+\left\{\mathcal T_{\mathrm{ext}\rightarrow S}\right\}_A
+=\left\{\mathcal D(S/R_g)\right\}_A.
+\]
+
+Cette relation est équivalente au théorème de la résultante dynamique et au théorème du moment dynamique.
+
+\subsubsection{Théorème de la résultante dynamique}
+\[
+\sum\vec F_{\mathrm{ext}}=m\vec a_G.
+\]
+
+\subsubsection{Théorème du moment dynamique}
+\[
+\sum\vec M_A(\mathrm{ext})=\vec\delta_A(S/R_g).
+\]
+
+\subsection{Torseur dynamique}
+
+Le torseur dynamique s'écrit :
+\[
+\left\{\mathcal D(S/R_g)\right\}_A=
+\left\{
+\begin{array}{c}
+m\vec a_G\\[1mm]
+\vec\delta_A(S/R_g)
+\end{array}
+\right\}.
+\]
+
+Au centre d'inertie :
+\[
+\vec\delta_G=
+\frac{\mathrm d}{\mathrm dt}_{R_g}
+\left(\mathbf I_G\vec\Omega\right).
+\]
+
+Dans une base liée au solide :
+\[
+\vec\delta_G=\mathbf I_G\dot{\vec\Omega}
++\vec\Omega\wedge\left(\mathbf I_G\vec\Omega\right).
+\]
+
+Au point $A$ :
+\[
+\vec\delta_A=ec\delta_G+\overrightarrow{AG}\wedge m\vec a_G.
+\]
+
+\subsection{Cas simplifiés}
+
+\subsubsection{Translation}
+
+Pour un solide en translation :
+\[
+\vec\Omega=\vec0,
+\qquad
+\vec\delta_G=\vec0,
+\qquad
+\sum\vec F_{\mathrm{ext}}=m\vec a_G.
+\]
+
+\subsubsection{Rotation autour d'un axe fixe principal passant par $G$}
+
+Si le solide tourne autour d'un axe principal fixe $\Delta=(G,\vec z)$ :
+\[
+\sum M_{Gz}(\mathrm{ext})=I_{Gz}\dot\omega.
+\]
+
+\subsubsection{Mouvement plan}
+
+Pour un mouvement plan $(\vec x,\vec y)$ :
+\[
+\sum F_x=m a_{Gx},
+\qquad
+\sum F_y=m a_{Gy},
+\qquad
+\sum M_{Gz}=I_{Gz}\dot\omega.
+\]
+
+\begin{TLMethod}{Appliquer le PFD}
+\begin{enumerate}
+  \item Choisir le système isolé et le référentiel galiléen.
+  \item Réaliser le BAME complet.
+  \item Déterminer la cinématique du centre d'inertie et la vitesse angulaire.
+  \item Calculer le torseur dynamique au point le plus commode.
+  \item Écrire l'égalité des torseurs, puis sélectionner les équations scalaires utiles.
+  \item Résoudre et vérifier la cohérence avec les hypothèses cinématiques et mécaniques.
+\end{enumerate}
+\end{TLMethod}
+
+\section{Synthèse générale}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}l X X}
+\toprule
+Principe & Intérêt principal & Limites \\
+\midrule
+Statique & déterminer les actions dans un système en équilibre & ne traite pas directement l'accélération \\
+Énergie cinétique & obtenir rapidement une équation de mouvement ou un effort moteur & ne donne pas toutes les actions de liaison \\
+Dynamique & obtenir l'ensemble des équations d'effort et de mouvement & calculs vectoriels plus lourds \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+La résolution d'un problème d'actions mécaniques suit toujours la même logique :
+\begin{quote}
+\centering
+\textbf{représenter $\rightarrow$ isoler $\rightarrow$ recenser $\rightarrow$ choisir le principe $\rightarrow$ écrire $\rightarrow$ résoudre $\rightarrow$ vérifier.}
+\end{quote}
