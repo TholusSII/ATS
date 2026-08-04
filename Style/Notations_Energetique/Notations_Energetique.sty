@@ -16,7 +16,13 @@
 \RequirePackage{mathrsfs}		%Pour faire des maths (notamment le L de la transformée de Laplace)
 %\RequirePackage{color}
 %\RequirePackage{xspace}
-\RequirePackage{Notations_Maths}	%Pour les fonctions (notamment)
+% Chargement robuste depuis l'arborescence du dépôt ATS. Le moteur des cours
+% charge normalement déjà cette bibliothèque ; ce test évite un second appel.
+\makeatletter
+\@ifpackageloaded{Notations_Maths}{}{%
+  \input{../../Style/Notations_Maths/Notations_Maths.sty}%
+}
+\makeatother
 
 %Initialisation des booleens 
 \newboolean{boolRaccourcisEnergetique}%création du booléen
