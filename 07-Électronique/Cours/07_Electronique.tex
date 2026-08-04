@@ -17,13 +17,15 @@
 
 \TLCourseCoverContents{%
   \TLCourseContentsLine{7.1}{Chaîne d'acquisition}{sec:elec-chaine}
-  \TLCourseContentsLine{7.2}{Signaux analogiques et numériques}{sec:elec-signaux}
-  \TLCourseContentsLine{7.3}{Capteurs résistifs et ponts de mesure}{sec:elec-capteurs}
-  \TLCourseContentsLine{7.4}{Amplificateur opérationnel}{sec:elec-aop}
-  \TLCourseContentsLine{7.5}{Filtrage analogique}{sec:elec-filtrage}
-  \TLCourseContentsLine{7.6}{Échantillonnage}{sec:elec-echantillonnage}
-  \TLCourseContentsLine{7.7}{Conversion analogique-numérique}{sec:elec-can}
-  \TLCourseContentsLine{7.8}{Conditionnement et qualité de mesure}{sec:elec-conditionnement}
+  \TLCourseContentsLine{7.2}{Généralités sur les capteurs}{sec:elec-capteurs}
+  \TLCourseContentsLine{7.3}{Outils mathématiques : électrocinétique}{sec:elec-electrocinetique}
+  \TLCourseContentsLine{7.4}{Lois de l'électrocinétique}{sec:elec-lois}
+  \TLCourseContentsLine{7.5}{Représentation spectrale}{sec:elec-spectre}
+  \TLCourseContentsLine{7.6}{Filtrage des signaux}{sec:elec-filtrage-complet}
+  \TLCourseContentsLine{7.7}{Échantillonnage et numérisation}{sec:elec-numerisation}
+  \TLCourseContentsLine{7.8}{Codage numérique et numération}{sec:elec-numeration}
+  \TLCourseContentsLine{7.9}{Sources}{sec:elec-sources}
+  \TLCourseContentsLine{7.10}{Exercices du chapitre}{sec:elec-exercices}
 }
 
 \TLCourseFooter
@@ -37,4 +39,14 @@
 \chapter*{Acquisition et traitement du signal}
 \addcontentsline{toc}{chapter}{Acquisition et traitement du signal}
 
+% Parties 1 à 4 : chaîne d'acquisition, capteurs et électrocinétique.
 \input{sources/07_Electronique_Cours_Propre}
+
+% Parties 5 à 9 : spectre, filtrage, numérisation, numération et sources.
+\input{sources/07_Electronique_Parties_5_10}
+
+% Partie 10 : exercices du chapitre.
+\input{sources/07_Electronique_Exercices}
+\input{sources/07_Electronique_Exercices_Complement}
+
+\printindex
