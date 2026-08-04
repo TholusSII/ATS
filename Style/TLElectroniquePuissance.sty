@@ -1,8 +1,11 @@
 % Bibliothèque de schémas pour le cours d'électronique de puissance
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{TLElectroniquePuissance}[2026/08/03]
+\ProvidesPackage{TLElectroniquePuissance}[2026/08/04]
 \RequirePackage{tikz}
-\RequirePackage[european,europeanvoltages,europeancurrents]{circuitikz}
+% circuitikz est déjà chargé par Notations_Elec/TLElectronique avec les
+% options communes définies dans le moteur du cours. Ne pas redonner ici
+% d'options, sinon LaTeX déclenche un option clash.
+\RequirePackage{circuitikz}
 \usetikzlibrary{arrows.meta,positioning,calc}
 
 \newcommand{\TLChaineConvertisseursPuissance}{%
