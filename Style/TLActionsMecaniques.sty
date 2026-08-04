@@ -1,7 +1,53 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{TLActionsMecaniques}[2026/08/04 Outils graphiques actions mecaniques]
+
 \RequirePackage{tikz}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{xparse}
 \usetikzlibrary{arrows.meta,babel,calc,positioning,patterns,decorations.pathmorphing,shapes.geometric}
+
+\definecolor{TLAMBlue}{RGB}{0,84,127}
+\definecolor{TLAMBlueBack}{RGB}{234,243,245}
+\definecolor{TLAMOrange}{RGB}{221,112,18}
+\definecolor{TLAMOrangeBack}{RGB}{255,243,226}
+\definecolor{TLAMRed}{RGB}{170,45,45}
+\definecolor{TLAMRedBack}{RGB}{253,238,238}
+
+\NewTColorBox{TLMethod}{m}{%
+  enhanced,
+  breakable,
+  colback=TLAMBlueBack,
+  colframe=TLAMBlue,
+  colbacktitle=TLAMBlue,
+  coltitle=white,
+  fonttitle=\sffamily\bfseries,
+  title={Méthode — #1},
+  boxrule=.8pt,
+  arc=1.5mm,
+  left=4mm,right=4mm,top=2.5mm,bottom=3mm,
+  before skip=1.1\baselineskip,
+  after skip=1.1\baselineskip,
+  attach boxed title to top left={xshift=4mm,yshift*=-\tcboxedtitleheight/2},
+  boxed title style={arc=1.5mm,boxrule=0pt,left=3mm,right=3mm}
+}
+
+\NewTColorBox{TLWarning}{m}{%
+  enhanced,
+  breakable,
+  colback=TLAMRedBack,
+  colframe=TLAMRed,
+  colbacktitle=TLAMRed,
+  coltitle=white,
+  fonttitle=\sffamily\bfseries,
+  title={Attention — #1},
+  boxrule=.8pt,
+  arc=1.5mm,
+  left=4mm,right=4mm,top=2.5mm,bottom=3mm,
+  before skip=1.1\baselineskip,
+  after skip=1.1\baselineskip,
+  attach boxed title to top left={xshift=4mm,yshift*=-\tcboxedtitleheight/2},
+  boxed title style={arc=1.5mm,boxrule=0pt,left=3mm,right=3mm}
+}
 
 \newcommand{\TLGrapheStructureSimple}{%
 \begin{center}\begin{tikzpicture}[>=Latex,node distance=20mm,
@@ -46,7 +92,7 @@ liaison/.style={draw,ellipse,minimum width=20mm,minimum height=8mm,fill=orange!1
 
 \newcommand{\TLChaineResolutionStatique}{%
 \begin{center}\begin{tikzpicture}[>=Latex,node distance=7mm,
-bloc/.style={draw,rounded corners,align=center,minimum width=32mm,minimum height=9mm,fill=blue!5}]
+bloc/.style={draw,rounded corners,align=center,minimum width=30mm,minimum height=9mm,fill=blue!5}]
 \node[bloc] (a) {Choisir le système\\à isoler};
 \node[bloc,right=of a] (b) {Établir le BAME};
 \node[bloc,right=of b] (c) {Écrire le PFS};
