@@ -13,11 +13,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: xu-cheng/latex-action@v3
+
+      - name: Compiler le cours 11
+        uses: xu-cheng/latex-action@v4
         with:
           root_file: 00_ActionsMecaniques.tex
           working_directory: 11-Actions Mécaniques/Cours
           latexmk_use_xelatex: false
+          extra_system_packages: git
+          pre_compile: |
+            rm -rf /tmp/kaobook
+            git clone --depth 1 https://github.com/fmarotta/kaobook.git /tmp/kaobook
+        env:
+          TEXINPUTS: ".:/tmp/kaobook//:"
+
       - uses: actions/upload-artifact@v4
         with:
           name: cours-11-actions-mecaniques
