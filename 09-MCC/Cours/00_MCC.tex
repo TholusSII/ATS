@@ -15,6 +15,15 @@
 \def\input@path{{../../Style/}}
 \makeatother
 \input{TLCours.sty}
+
+% Compatibilité minimale requise par Notations_Energetique.
+% On évite de charger l'ancienne bibliothèque Notations_Maths, qui redéfinit
+% notamment \j et entre en conflit avec les commandes déjà présentes.
+\provideboolean{boolRaccourcisMaths}
+\setboolean{boolRaccourcisMaths}{true}
+\providecommand{\f}[2]{\ensuremath{#1\!\left(#2\right)}}
+\newcommand{\TLMCCMathCompatibilityReady}{}
+
 \input{Notations_Elec/Notations_Elec.sty}
 \input{Notations_Energetique/Notations_Energetique.sty}
 \input{Notations_Autom/Notations_Autom.sty}
