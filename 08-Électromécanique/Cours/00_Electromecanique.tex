@@ -17,8 +17,10 @@
 
 \newcommand{\TLCourseDefinitionFile}{08_Electromecanique}
 
+% Les extensions de notations se chargent parfois mutuellement avec
+% \RequirePackage. Chaque sous-dossier doit donc être présent dans input@path.
 \makeatletter
-\def\input@path{{../../Style/}}
+\def\input@path{{../../Style/}{../../Style/Notations_Elec/}{../../Style/Notations_Energetique/}{../../Style/Notations_Maths/}}
 \makeatother
 \input{TLCours.sty}
 \input{Notations_Elec/Notations_Elec.sty}
