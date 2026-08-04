@@ -11,25 +11,34 @@
 \usepackage[french]{babel}
 \newcommand{\TLCourseDefinitionFile}{09_MCC}
 
+% Les bibliothèques historiques contiennent des commandes internes avec @.
+% Elles doivent être chargées comme de vrais packages, et non avec \input.
 \makeatletter
-\def\input@path{{../../Style/}}
+\def\input@path{%
+  {../../Style/}%
+  {../../Style/Notations_Elec/}%
+  {../../Style/Notations_Energetique/}%
+  {../../Style/Notations_Autom/}%
+  {../../Style/Notations_Maths/}%
+}
 \makeatother
-\input{TLCours.sty}
 
-% Compatibilité minimale requise par Notations_Energetique.
-% On évite de charger l'ancienne bibliothèque Notations_Maths, qui redéfinit
-% notamment \j et entre en conflit avec les commandes déjà présentes.
+\usepackage{TLCours}
+
+% Compatibilité minimale requise par Notations_Energetique dans le cours MCC.
+% On évite ainsi le chargement de l'ancienne bibliothèque Notations_Maths,
+% qui redéfinit notamment \j.
 \provideboolean{boolRaccourcisMaths}
 \setboolean{boolRaccourcisMaths}{true}
 \providecommand{\f}[2]{\ensuremath{#1\!\left(#2\right)}}
 \newcommand{\TLMCCMathCompatibilityReady}{}
 
-\input{Notations_Elec/Notations_Elec.sty}
-\input{Notations_Energetique/Notations_Energetique.sty}
-\input{Notations_Autom/Notations_Autom.sty}
-\input{TLElectromecanique.sty}
-\input{TLSystemesAsservis.sty}
-\input{TLMCC.sty}
+\usepackage{Notations_Elec}
+\usepackage{Notations_Energetique}
+\usepackage{Notations_Autom}
+\usepackage{TLElectromecanique}
+\usepackage{TLSystemesAsservis}
+\usepackage{TLMCC}
 
 \usepackage{amsmath,amssymb,mathtools}
 \usepackage{array,booktabs}
