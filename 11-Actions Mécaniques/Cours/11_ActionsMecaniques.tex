@@ -40,13 +40,14 @@
 
 \TLStartCourseChapter{11}{Détermination des actions mécaniques}{chap:actions-mecaniques}
 
-% Étiquetage des sections pour le sommaire de couverture, sans redéfinir
-% \section : une redéfinition entrait en récursion avec les adaptations Kao.
+% Étiquetage des sections pour le sommaire de couverture. La commande
+% etoolbox complète la commande existante sans la redéfinir et sans utiliser
+% les hooks de commande, incompatibles avec cette version de kaobook.
 \newcounter{TLAMSectionLabel}
-\AddToHook{cmd/section/after}{%
+\apptocmd{\section}{%
   \stepcounter{TLAMSectionLabel}%
   \label{sec:am-\arabic{TLAMSectionLabel}}%
-}
+}{}{}
 
 \input{sources/11_ActionsMecaniques_Partie_A}
 \input{sources/11_ActionsMecaniques_Partie_B}
