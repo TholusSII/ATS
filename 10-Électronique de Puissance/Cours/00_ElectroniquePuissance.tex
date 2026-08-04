@@ -3,19 +3,32 @@
 \documentclass[fontsize=10pt,twoside=true,open=any]{kaobook}
 \usepackage[french]{babel}
 \newcommand{\TLCourseDefinitionFile}{10_ElectroniquePuissance}
+
 \makeatletter
 \def\input@path{{../../Style/}}
 \makeatother
-\input{TLCours.sty}
-\input{Notations_Elec/Notations_Elec.sty}
-\input{Notations_Energetique/Notations_Energetique.sty}
-\input{TLElectronique.sty}
-\input{TLElectroniquePuissance.sty}
+
+\usepackage{../../Style/TLCours}
+
+% Compatibilité minimale requise par Notations_Energetique.
+% On évite le chargement de l'ancienne bibliothèque Notations_Maths,
+% qui redéfinit notamment \j et entre en conflit avec LaTeX.
+\provideboolean{boolRaccourcisMaths}
+\setboolean{boolRaccourcisMaths}{true}
+\providecommand{\f}[2]{\ensuremath{#1\!\left(#2\right)}}
+\newcommand{\TLMCCMathCompatibilityReady}{}
+
+\usepackage{../../Style/Notations_Elec/Notations_Elec}
+\usepackage{../../Style/Notations_Energetique/Notations_Energetique}
+\usepackage{../../Style/TLElectronique}
+\usepackage{../../Style/TLElectroniquePuissance}
+
 \usepackage{amsmath,amssymb,mathtools,array,booktabs}
 \raggedbottom
 \setlength{\parindent}{0pt}
 \setlength{\emergencystretch}{3em}
 \makeindex[columns=3,title=Index alphabétique,intoc]
+
 \begin{document}
 \mainmatter
 \setchapterstyle{kao}
