@@ -17,6 +17,14 @@
   \fi
 }
 
+% Circuitikz utilise également des caractères rendus actifs par babel[french]
+% dans sa syntaxe interne. On les désactive uniquement dans cet environnement.
+\AtBeginEnvironment{circuitikz}{%
+  \ifdefined\shorthandoff
+    \shorthandoff{:;!?}%
+  \fi
+}
+
 \newcommand{\TLChaineConversionElectromecanique}{%
 \begin{center}
 \begin{tikzpicture}[>=Latex,node distance=9mm,
