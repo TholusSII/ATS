@@ -35,9 +35,14 @@
 
 \livrettrue
 \collefalse
-\setcounter{chapter}{6}
-\chapter*{Acquisition et traitement du signal}
-\addcontentsline{toc}{chapter}{Acquisition et traitement du signal}
+
+% Le compteur est placé à 5 afin que le chapitre suivant porte le numéro 6.
+% L'utilisation de \chapter (et non \chapter*) rétablit le grand numéro
+% affiché par le style de chapitre Kao.
+\setcounter{chapter}{5}
+\chapter{Acquisition et traitement du signal}
+\label{chap:electronique}
+\margintoc
 
 % Parties 1 à 4 : chaîne d'acquisition, capteurs et électrocinétique.
 \input{sources/07_Electronique_Cours_Propre}
