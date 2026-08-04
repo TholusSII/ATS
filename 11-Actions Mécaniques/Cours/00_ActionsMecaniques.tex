@@ -9,16 +9,15 @@
 \makeatother
 
 \input{TLCours.sty}
-
-% Le contenu propre du cours utilise les commandes du socle TLCours et les
-% outils graphiques dédiés ci-dessous. Les anciennes bibliothèques
-% Notations_Torseurs, Notations_Actions-Meca, Notations_Dynamique et
-% Notations_Cinematique ne sont pas nécessaires ici ; leur chargement indirect
-% cherchait Notations_Maths hors du chemin TeX et redéfinissait plusieurs
-% commandes déjà fournies par macros_SII_v2.
 \input{TLActionsMecaniques.sty}
 
-\usepackage{amsmath,amssymb,mathtools,array,booktabs}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{array,booktabs,tabularx,longtable}
+\usepackage{siunitx}
+\sisetup{locale=FR,per-mode=symbol}
+
+\graphicspath{{images/}{pandoc/media/}{../../Style/}}
+
 \raggedbottom
 \setlength{\parindent}{0pt}
 \setlength{\emergencystretch}{3em}
