@@ -2,6 +2,12 @@
 \RequirePackage{tikz}
 \usetikzlibrary{arrows.meta,calc,patterns,decorations.pathreplacing,positioning,babel}
 
+% Environnement historique utilisé dans les cours Word convertis.
+% Il est raccordé à la boîte méthodologique du framework commun.
+\newenvironment{objectifs}
+  {\begin{TLMethod}{Objectifs du cours}}
+  {\end{TLMethod}}
+
 \newcommand{\TLPoutreReperee}{%
 \begin{center}\begin{tikzpicture}[>=Latex,scale=.9]
 \draw[fill=gray!10,very thick] (0,-.28) rectangle (8,.28);
@@ -39,11 +45,11 @@
 \node[below] at (2.25,-.8) {avant déformation};
 \begin{scope}[xshift=6cm]
 \draw[very thick] (0,0) .. controls (1.4,-.15) and (3.1,-.8) .. (4.5,-1.1);
-\foreach \t in {.12,.34,.56,.78,1}{%
-  \path (0,0) .. controls (1.4,-.15) and (3.1,-.8) .. (4.5,-1.1) coordinate[pos=\t] (P);
-  \path (0,0) .. controls (1.4,-.15) and (3.1,-.8) .. (4.5,-1.1) coordinate[pos=\t-.01] (Q);
-  \draw[thick] ($(P)!-.55cm!90:(Q)$)--($(P)!.55cm!90:(Q)$);
-}
+\draw[thick,rotate around={-4:(.55,-.05)}] (.55,-.60)--(.55,.50);
+\draw[thick,rotate around={-10:(1.55,-.22)}] (1.55,-.77)--(1.55,.33);
+\draw[thick,rotate around={-15:(2.55,-.50)}] (2.55,-1.05)--(2.55,.05);
+\draw[thick,rotate around={-18:(3.55,-.82)}] (3.55,-1.37)--(3.55,-.27);
+\draw[thick,rotate around={-20:(4.45,-1.08)}] (4.45,-1.63)--(4.45,-.53);
 \node[below] at (2.25,-1.75) {après déformation};
 \end{scope}
 \end{tikzpicture}\end{center}}
