@@ -1,8 +1,43 @@
-\def\TLCourseTitle{Résistance des matériaux}
-\def\TLCourseSubtitle{Poutres droites, traction et flexion}
-\def\TLCourseAuthor{Thomas Lusseau}
-\def\TLCourseInstitution{Lycée Robert Doisneau -- ATS}
+% ============================================================================
+% DÉFINITION DU COURS 12 : RÉSISTANCE DES MATÉRIAUX
+% ============================================================================
+
+\titlehead{Thomas Lusseau - SII en ATS}
+\title[RDM]{Résistance des matériaux}
+\author[TL]{Thomas Lusseau}
+\date{\today}
+
+\TLCourseCoverSetup
+  {\repStyle/FondPoly.png}
+  {\repStyle/FondPoly.png}
+  {Cycle 7 : Dimensionner les pièces d'un mécanisme}
+  {Résistance des\\matériaux}
+  {Lycée Robert Doisneau - ATS}
+  {Thomas Lusseau}
+
+\TLCourseCoverContents{%
+  \TLCourseContentsLine{12.1}{Besoin rempli par la RdM}{sec:rdm-1}
+  \TLCourseContentsLine{12.2}{Hypothèses de la résistance des matériaux}{sec:rdm-2}
+  \TLCourseContentsLine{12.3}{Actions mécaniques extérieures}{sec:rdm-3}
+  \TLCourseContentsLine{12.4}{Torseur de cohésion}{sec:rdm-4}
+  \TLCourseContentsLine{12.5}{Traction et compression}{sec:rdm-5}
+  \TLCourseContentsLine{12.6}{Flexion}{sec:rdm-6}
+  \TLCourseContentsLine{12.7}{Sources}{sec:rdm-7}
+  \TLCourseContentsLine{12.8}{Exercices du chapitre}{sec:rdm-8}
+}
+
+\TLCourseFooter
+\TLCourseCover
+\markboth{Résistance des matériaux}{Résistance des matériaux}
+
+\livrettrue
+\collefalse
 
 \TLStartCourseChapter{12}{Résistance des matériaux}{chap:rdm}
 
-\input{sources/12_RDM_Cours_Propre.tex}
+\input{sources/12_RDM_Partie_A}
+\input{sources/12_RDM_Partie_B}
+\input{sources/12_RDM_Exercices_A}
+\input{sources/12_RDM_Exercices_B}
+
+\printindex
