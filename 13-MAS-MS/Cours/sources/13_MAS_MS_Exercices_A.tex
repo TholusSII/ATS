@@ -1,0 +1,131 @@
+% ============================================================================
+% COURS 13 — EXERCICES, PARTIE A
+% Source : 17-MAS_MS.docx
+% ============================================================================
+
+\section{Exercices du chapitre}
+\label{sec:masms-8}
+
+\subsection{Banc BALAFRE}
+
+\textit{Source : concours ATS 2019.}
+
+\begin{center}
+\TLMAInlineImage[.28\linewidth]{image79.png}\hfill
+\TLMAInlineImage[.62\linewidth]{image80.png}
+\end{center}
+
+Le banc BALAFRE (BAnc d'essais à LAmes Fluides à haut REynolds) permet d'identifier le comportement dynamique de joints annulaires utilisés dans les turbomachines. Un moteur asynchrone triphasé entraîne le rotor du banc. Pendant l'essai, sa vitesse doit être stabilisée à $6000\ \mathrm{tr\,min^{-1}}$ malgré un couple résistant estimé à $C_{res}=300\ \mathrm{N\,m}$.
+
+Le réseau fournit $230/400\ \mathrm V$ à $50\ \mathrm{Hz}$. La machine est commandée par un variateur fonctionnant à $U_s/f$ constant. Les pertes Joule statoriques, les pertes fer et les pertes mécaniques sont négligées.
+
+\TLMAImage[.45\linewidth]{image81.png}
+
+\begin{enumerate}
+  \item À partir de la plaque signalétique, déterminer le couplage, le nombre de paires de pôles, la vitesse de synchronisme, le glissement nominal et le couple utile nominal.
+  \item Le modèle équivalent d'une phase comporte une inductance de magnétisation $L_0$, une inductance de fuite totale $L_c$ et une résistance rotorique ramenée au stator $R/g$. Établir :
+  \[
+  C_u=\frac{3pU_s^2}{\omega}\,
+  \frac{R/g}{(R/g)^2+(L_c\omega)^2}.
+  \]
+  \item Identifier sur la caractéristique couple--vitesse le démarrage, le point nominal, le synchronisme et la zone instable.
+  \item Déterminer le glissement $g_M$ correspondant au couple maximal et exprimer $C_M$.
+  \item Le constructeur indique $C_M/C_N=3{,}5$. Déterminer $L_c$, puis estimer $R$ à partir du point nominal.
+  \item À l'aide des courbes fournies pour des fréquences comprises entre $90$ et $110\ \mathrm{Hz}$, déterminer la fréquence à imposer pour maintenir $6000\ \mathrm{tr\,min^{-1}}$ sous $300\ \mathrm{N\,m}$.
+  \item Vérifier que la durée d'accélération imposée par le cahier des charges reste inférieure à $5\ \mathrm s$.
+\end{enumerate}
+
+\subsection{Panneaux publicitaires déroulants}
+
+\textit{Source : concours ATS 2011.}
+
+\begin{minipage}{.73\linewidth}
+Le panneau déroulant de type Senior utilise deux moteurs asynchrones commandés par des variateurs scalaires. Les affiches défilent à $1\ \mathrm{m\,s^{-1}}$ avec des rampes d'accélération et de décélération d'une seconde.
+
+En régime permanent, le couple moteur nécessaire vaut $C_m=0{,}28\ \mathrm{N\,m}$ pour une vitesse $\Omega_m=139\ \mathrm{rad\,s^{-1}}$. Le motoréducteur possède les caractéristiques nominales suivantes sous $50\ \mathrm{Hz}$ :
+\[
+P_N=120\ \mathrm W,\quad N_N=1300\ \mathrm{tr\,min^{-1}},\quad
+C_N=0{,}88\ \mathrm{N\,m},\quad C_{max}/C_N=1{,}9.
+\]
+\end{minipage}\hfill
+\begin{minipage}{.23\linewidth}
+\TLMAInlineImage[\linewidth]{image86.jpeg}
+\end{minipage}
+
+Le couple est modélisé par :
+\[
+C_m=\frac{2C_{max}}{g_0/g+g/g_0}.
+\]
+
+\begin{enumerate}
+  \item Calculer la puissance mécanique nécessaire et montrer que le moteur est surdimensionné.
+  \item Déterminer $p$, $\Omega_s$, $N_s$ et le glissement nominal.
+  \item Calculer $g_0$, puis tracer $C_m(g)$ pour $0<g<1$ en repérant la zone stable.
+  \item Pour le couple réel $C_{maff}=0{,}30\ \mathrm{N\,m}$, utiliser l'approximation de faible glissement pour déterminer $g_{aff}$.
+  \item Montrer que, dans cette zone, $C_m=\lambda(\Omega_s-\Omega_m)$ et préciser $\lambda$.
+  \item La commande est réalisée à $U/f$ constant et l'on prendra $\lambda=0{,}0453\ \mathrm{N\,m\,s\,rad^{-1}}$. Déterminer la vitesse de synchronisme puis la fréquence à programmer pour obtenir $\Omega_m=139\ \mathrm{rad\,s^{-1}}$.
+\end{enumerate}
+
+\subsection{Entraînement de la broche d'un centre d'usinage}
+
+\textit{Source : concours CCP TSI 2002.}
+
+\begin{minipage}{.72\linewidth}
+Le centre d'usinage horizontal étudié possède une broche entraînée par une machine asynchrone triphasée et un onduleur de tension. Les caractéristiques nominales sous $50\ \mathrm{Hz}$ sont :
+\[
+P_N=5{,}35\ \mathrm{kW},\quad C_N=35\ \mathrm{N\,m},\quad
+N_N=1460\ \mathrm{tr\,min^{-1}},\quad I_N=9{,}5\ \mathrm A,
+\]
+avec $C_D/C_N=2{,}4$ et $C_{max}=89{,}3\ \mathrm{N\,m}$.
+\end{minipage}\hfill
+\begin{minipage}{.24\linewidth}
+\TLMAInlineImage[\linewidth]{image88.jpeg}
+\end{minipage}
+
+Toutes les pertes sont négligées sauf les pertes Joule rotoriques. Le moteur fonctionne à couple maximal constant jusqu'à $1500\ \mathrm{tr\,min^{-1}}$, puis à puissance utile maximale constante jusqu'à $6000\ \mathrm{tr\,min^{-1}}$.
+
+\begin{enumerate}
+  \item Déterminer $p$, $N_s$, $g_N$, $P_{tr}$, les pertes Joule rotoriques, le rendement et le facteur de puissance au point nominal.
+  \item Tracer l'enveloppe couple--vitesse autorisée du moteur.
+  \item Reporter sur le même graphe les couples résistants ramenés au moteur pour les deux rapports de boîte :
+  \[
+  C_{r1}=12+0{,}15\Omega,
+  \qquad
+  C_{r2}=1+0{,}0125\Omega.
+  \]
+  \item Déterminer les points de fonctionnement et les couples accélérateurs disponibles.
+  \item L'onduleur est commandé à $U/f$ constant et délivre $400\ \mathrm V$ entre phases à $50\ \mathrm{Hz}$. Tracer le coefficient de modulation en fonction de la fréquence jusqu'à $80\ \mathrm{Hz}$.
+  \item À partir du schéma équivalent simplifié, établir l'expression de $C_{em}$, calculer $C_{max}$ à $50\ \mathrm{Hz}$ et rechercher la fréquence donnant le couple accélérateur maximal au démarrage.
+\end{enumerate}
+
+\subsection{Maison hantée}
+
+\textit{Source : concours ATS 2009.}
+
+\begin{center}
+\TLMAInlineImage[.28\linewidth]{image92.png}\hfill
+\TLMAInlineImage[.62\linewidth]{image93.jpeg}
+\end{center}
+
+Seize véhicules circulent sur une piste guidée. Chaque véhicule est entraîné par un moteur asynchrone triphasé associé à un variateur. La vitesse de translation doit rester comprise entre $1$ et $1{,}3\ \mathrm{m\,s^{-1}}$, avec une variation maximale tolérée de $10\,\%$. Le moteur SEW DV100M4, connecté en triangle, possède sous $50\ \mathrm{Hz}$ :
+\[
+P_N=2{,}2\ \mathrm{kW},\quad C_N=15\ \mathrm{N\,m},\quad
+N_N=1410\ \mathrm{tr\,min^{-1}},\quad C_{max}=40\ \mathrm{N\,m}.
+\]
+
+Le couple électromagnétique est modélisé par :
+\[
+C_{em}=\frac{3U^2}{\Omega_s}\frac{R_2g}{R_2^2+(X_2g)^2}.
+\]
+
+\begin{enumerate}
+  \item Déterminer $g_M$ et $C_M$, puis écrire la relation réduite :
+  \[
+  C_{em}=2C_M\frac{x}{1+x^2},\qquad x=\frac{g}{g_M}.
+  \]
+  \item Déterminer $p$ et le glissement nominal. Utiliser les données constructeur pour calculer $g_M$.
+  \item Linéariser la caractéristique autour du synchronisme et exprimer $C_{em}$ en fonction de $f$, $p$ et $\Omega_m$.
+  \item Déterminer la fréquence qui assure $1{,}3\ \mathrm{m\,s^{-1}}$ pour un couple moteur de $10\ \mathrm{N\,m}$.
+  \item Étudier la réversibilité du convertisseur et préciser le trajet de l'énergie lorsque le couple devient négatif.
+  \item Calculer la vitesse lorsque le couple passe de $10$ à $-4\ \mathrm{N\,m}$ et conclure sur la nécessité d'une régulation de vitesse.
+\end{enumerate}
