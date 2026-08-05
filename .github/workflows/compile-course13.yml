@@ -13,11 +13,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Installer LaTeX
-        run: sudo apt-get update && sudo apt-get install -y texlive-latex-extra texlive-lang-french texlive-science latexmk
-      - name: Compiler
-        working-directory: 13-MAS-MS/Cours
-        run: latexmk -pdf -interaction=nonstopmode -halt-on-error 00_MAS_MS.tex
+
+      - name: Compiler le cours 13
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: 00_MAS_MS.tex
+          working_directory: 13-MAS-MS/Cours
+          latexmk_use_xelatex: false
+          extra_system_packages: git
+          pre_compile: |
+            rm -rf /tmp/kaobook
+            git clone --depth 1 https://github.com/fmarotta/kaobook.git /tmp/kaobook
+        env:
+          TEXINPUTS: ".:/tmp/kaobook//:"
+
       - name: Publier le PDF
         uses: actions/upload-artifact@v4
         with:
