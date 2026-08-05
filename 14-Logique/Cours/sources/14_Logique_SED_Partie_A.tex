@@ -1,0 +1,360 @@
+% ============================================================================
+% COURS 14 — LOGIQUE, SED ET COMMUNICATION
+% Partie A : logique combinatoire
+% Source : 18-Logique_SED.docx
+% ============================================================================
+
+\newcommand{\TLLogicCheck}{\ensuremath{\square}}
+\newcommand{\TLLogicImage}[2][.78\linewidth]{%
+  \IfFileExists{pandoc/media/#2}{%
+    \begin{center}\includegraphics[width=#1]{pandoc/media/#2}\end{center}%
+  }{}%
+}
+\newcommand{\TLLogicInlineImage}[2][.30\linewidth]{%
+  \IfFileExists{pandoc/media/#2}{\includegraphics[width=#1]{pandoc/media/#2}}{}%
+}
+
+\begin{TLLogicMethod}{Objectifs du cours}
+Ce cours rassemble les outils nécessaires à l'analyse et à la conception des systèmes logiques combinatoires, des systèmes à événements discrets, des capteurs numériques de position et des réseaux de communication industriels.
+\end{TLLogicMethod}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}p{1.9cm}X c}
+\toprule
+Je connais & Compétences et connaissances attendues & \\
+\midrule
+& Les variables booléennes, les tables de vérité et les opérateurs NON, ET, OU et OU exclusif. & \TLLogicCheck\\
+& Les règles de l'algèbre de Boole, les formes canoniques et les tableaux de Karnaugh. & \TLLogicCheck\\
+& Les fonctions particulières : codeurs, décodeurs, comparateurs, additionneurs et multiplexeurs. & \TLLogicCheck\\
+& Les éléments d'un diagramme d'état et d'un diagramme de séquence SysML. & \TLLogicCheck\\
+& Le fonctionnement des codeurs incrémentaux et absolus. & \TLLogicCheck\\
+& Les caractéristiques d'un réseau, le modèle OSI, les supports et les protocoles. & \TLLogicCheck\\
+\midrule
+Je sais & Traduire un cahier des charges en table de vérité puis en équation logique. & \TLLogicCheck\\
+& Simplifier et synthétiser une fonction logique. & \TLLogicCheck\\
+& Construire et vérifier un graphe d'états. & \TLLogicCheck\\
+& Exploiter les voies A, B et Z d'un codeur et calculer une résolution. & \TLLogicCheck\\
+& Décoder une trame série et vérifier une parité ou un CRC. & \TLLogicCheck\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Généralités sur les systèmes logiques combinatoires}
+\label{sec:logique-combinatoire}
+
+\subsection{Variables et systèmes logiques}
+
+\begin{TLLogicDefinition}{Système combinatoire}
+Un système logique combinatoire associe à chaque combinaison de ses entrées une combinaison unique de ses sorties. Il ne possède aucune mémoire : les sorties ne dépendent que des valeurs présentes des entrées.
+\end{TLLogicDefinition}
+
+Une variable logique, binaire ou booléenne ne peut prendre que deux valeurs, notées $0$ et $1$. Selon le contexte, ces valeurs peuvent représenter : ouvert ou fermé, absent ou présent, faux ou vrai, tension basse ou tension haute.
+
+Pour un système à $n$ entrées binaires, le nombre de combinaisons possibles est :
+\[
+\boxed{N_c=2^n.}
+\]
+
+\TLLogicImage[.50\linewidth]{image5.jpeg}
+
+Les opérateurs fondamentaux sont :
+\begin{center}\TLPortesLogiques\end{center}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}l c X}
+\toprule
+Opérateur & Écriture & Interprétation \\
+\midrule
+NON & $s=\overline a$ & inverse la variable logique.\\
+ET & $s=a\cdot b$ & la sortie vaut 1 lorsque toutes les entrées valent 1.\\
+OU & $s=a+b$ & la sortie vaut 1 lorsqu'au moins une entrée vaut 1.\\
+OU exclusif & $s=a\oplus b$ & la sortie vaut 1 lorsque les entrées sont différentes.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Démarche de synthèse}
+
+À partir du cahier des charges, la conception d'un circuit combinatoire suit une démarche structurée :
+\begin{center}\TLDemarcheCombinatoire\end{center}
+
+\begin{TLLogicMethod}{Synthétiser une fonction combinatoire}
+\begin{enumerate}
+  \item Définir clairement la frontière du système.
+  \item Nommer les variables d'entrée et de sortie et préciser leur état actif.
+  \item Construire la table de vérité, y compris les états indifférents.
+  \item Établir une équation logique sous forme canonique.
+  \item Simplifier l'équation par l'algèbre de Boole ou un tableau de Karnaugh.
+  \item Choisir une implantation : portes élémentaires, NAND/NOR, multiplexeur ou circuit programmable.
+  \item Vérifier le résultat sur toutes les combinaisons utiles.
+\end{enumerate}
+\end{TLLogicMethod}
+
+\subsection{Table de vérité}
+
+La table de vérité fait correspondre l'état de chaque sortie à toutes les combinaisons d'entrées. Pour deux entrées $a$ et $b$ :
+\begin{center}\TLTableVeriteDeuxEntrees\end{center}
+
+Une combinaison impossible ou non pertinente peut être déclarée \textbf{indifférente}, notée $X$ ou $-$. Lors de la simplification, elle peut être choisie égale à $0$ ou à $1$ selon ce qui réduit le plus l'expression.
+
+L'équation d'une sortie peut être obtenue en listant les lignes pour lesquelles la sortie vaut $1$. À chaque ligne correspond un produit logique, appelé \textbf{minterme}. Les mintermes sont reliés par un OU.
+
+Exemple :
+\[
+S=1\quad\text{pour}\quad(a,b)=(0,1)\ \text{ou}\ (1,1)
+\]
+donne :
+\[
+S=\overline a\,b+ab=b(\overline a+a)=\boxed b.
+\]
+
+\TLLogicImage[.55\linewidth]{image8.png}
+
+\begin{TLLogicApplication}{Store Somfy}
+Le store possède comme entrées l'information vent, l'information soleil, une commande de montée, une commande de descente et le choix du mode manuel ou automatique. Le vent est prioritaire sur toutes les autres commandes ; les commandes manuelles sont prioritaires sur le soleil.
+\begin{enumerate}
+  \item Recenser les entrées et sorties du traitement logique.
+  \item Établir la table de vérité de la commande de descente.
+  \item Déterminer puis simplifier son équation logique.
+  \item Vérifier explicitement la priorité de la sécurité vent.
+\end{enumerate}
+\TLLogicImage[.63\linewidth]{image13.jpeg}
+\end{TLLogicApplication}
+
+\subsection{Algèbre de Boole}
+
+Les propriétés usuelles sont :
+\[
+\begin{aligned}
+a+0&=a, & a\cdot1&=a,\\
+a+1&=1, & a\cdot0&=0,\\
+a+a&=a, & a\cdot a&=a,\\
+a+\overline a&=1, & a\cdot\overline a&=0.
+\end{aligned}
+\]
+
+Les opérateurs sont commutatifs, associatifs et distributifs :
+\[
+a+b=b+a,\qquad ab=ba,
+\]
+\[
+a+(b+c)=(a+b)+c,\qquad a(bc)=(ab)c,
+\]
+\[
+a(b+c)=ab+ac,
+\]
+\[
+a+bc=(a+b)(a+c).
+\]
+
+Les théorèmes de De Morgan donnent :
+\[
+\boxed{\overline{a+b}=\overline a\,\overline b,}
+\qquad
+\boxed{\overline{ab}=\overline a+\overline b.}
+\]
+
+Les absorptions les plus utiles sont :
+\[
+a+ab=a,
+\qquad
+a(a+b)=a,
+\]
+\[
+a+\overline a b=a+b,
+\qquad
+a(\overline a+b)=ab.
+\]
+
+\begin{TLLogicApplication}{Simplification algébrique}
+Simplifier :
+\[
+L=a\overline bc+a\overline b\overline c+abc.
+\]
+On regroupe les deux premiers termes :
+\[
+L=a\overline b(c+\overline c)+abc=a\overline b+abc.
+\]
+Puis :
+\[
+L=a(\overline b+bc)=a(\overline b+c)=\boxed{a\overline b+ac}.
+\]
+\end{TLLogicApplication}
+
+\subsection{Représentations des opérateurs}
+
+Une même fonction logique peut être représentée par :
+\begin{itemize}
+  \item une équation booléenne ;
+  \item une table de vérité ;
+  \item un logigramme selon les normes IEC ou ANSI ;
+  \item un schéma à contacts ;
+  \item un chronogramme.
+\end{itemize}
+
+\begin{center}
+\small
+\begin{tabular}{cc|cccccccc}
+$a$&$b$&$\overline a$&$ab$&$a+b$&$\overline{ab}$&$\overline{a+b}$&$a\oplus b$&$\overline{a\oplus b}$\\\hline
+0&0&1&0&0&1&1&0&1\\
+0&1&1&0&1&1&0&1&0\\
+1&0&0&0&1&1&0&1&0\\
+1&1&0&1&1&0&0&0&1
+\end{tabular}
+\end{center}
+
+Dans un schéma à contacts, un ET correspond à des contacts en série et un OU à des contacts en parallèle.
+
+\subsection{Optimisation par tableau de Karnaugh}
+
+Un tableau de Karnaugh réorganise les cases de la table de vérité selon le code Gray : deux cases adjacentes ne diffèrent que d'un bit. Les cases contenant des $1$ sont regroupées par puissances de deux : $1$, $2$, $4$, $8$, etc.
+
+\begin{center}\TLKarnaughQuatre\end{center}
+
+Les bords opposés sont adjacents. Les regroupements doivent être les plus grands possibles ; ils peuvent se chevaucher et inclure des états indifférents. Dans chaque regroupement, seules les variables qui restent constantes sont conservées.
+
+\begin{TLLogicMethod}{Utiliser un tableau de Karnaugh}
+\begin{enumerate}
+  \item Reporter les valeurs $0$, $1$ et $X$ de la table de vérité.
+  \item Former des regroupements rectangulaires de $2^k$ cases adjacentes.
+  \item Privilégier les groupes les plus grands et couvrir chaque $1$ au moins une fois.
+  \item Pour chaque groupe, conserver les variables dont la valeur ne change pas.
+  \item Relier les termes obtenus par un OU.
+\end{enumerate}
+\end{TLLogicMethod}
+
+\subsection{Synthèse matérielle}
+
+\paragraph{Synthèse directe.}
+Chaque opérateur de l'équation est réalisé par une porte correspondante. La construction se fait de la sortie vers les entrées en identifiant l'opérateur principal puis ses opérandes.
+
+\paragraph{Synthèse universelle.}
+Les portes NAND et NOR sont dites universelles : toute fonction logique peut être réalisée uniquement avec des NAND ou uniquement avec des NOR. Les théorèmes de De Morgan servent à transformer l'équation.
+
+\paragraph{Synthèse programmable.}
+Pour une fonction complexe, le traitement est confié à un automate, un microcontrôleur, un FPGA ou un circuit logique programmable. La fonction est décrite par un langage ou un programme mais doit toujours être validée par rapport au cahier des charges.
+
+\subsection{Fonctions combinatoires particulières}
+
+\subsubsection{Additionneur}
+
+Le demi-additionneur additionne deux bits $a$ et $b$ :
+\[
+\boxed{S=a\oplus b,}
+\qquad
+\boxed{R=ab.}
+\]
+L'additionneur complet ajoute aussi une retenue entrante $R_e$ :
+\[
+S=a\oplus b\oplus R_e,
+\]
+\[
+R_s=ab+R_e(a\oplus b).
+\]
+
+\subsubsection{Comparateur}
+
+Pour un comparateur un bit :
+\[
+A=B=\overline{A\oplus B},
+\]
+\[
+A>B=A\overline B,
+\qquad
+A<B=\overline A B.
+\]
+Les comparateurs de plusieurs bits examinent les bits depuis le poids fort vers le poids faible.
+
+\subsubsection{Codeur, décodeur et transcodeur}
+
+Un décodeur $n$ vers $2^n$ active une sortie correspondant au mot binaire d'entrée. Un codeur réalise l'opération inverse. Un transcodeur convertit un code numérique en un autre.
+
+Le code Gray est construit de sorte que deux valeurs successives ne diffèrent que d'un bit. Pour convertir un mot Gray $G_{n-1}\ldots G_0$ en binaire $B_{n-1}\ldots B_0$ :
+\[
+\boxed{B_{n-1}=G_{n-1},}
+\]
+\[
+\boxed{B_i=B_{i+1}\oplus G_i.}
+\]
+
+\begin{TLLogicApplication}{Conditionneuse de comprimés}
+Un codeur absolu 8 bits mesure la position d'un vérin commandant une trappe. La course utile est $50\ \mathrm{mm}$ et le pas de la vis est $1\ \mathrm{mm}$.
+\begin{enumerate}
+  \item Déterminer la résolution angulaire puis linéaire du codeur.
+  \item Établir les équations d'un transcodeur Gray vers binaire sur quatre bits.
+  \item Dessiner le logigramme à l'aide d'opérateurs OU exclusif.
+\end{enumerate}
+\TLLogicImage[.58\linewidth]{image37.jpeg}
+\end{TLLogicApplication}
+
+\subsubsection{Multiplexeur et démultiplexeur}
+
+Un multiplexeur est un aiguilleur de données. Avec $n$ entrées de sélection, il peut choisir une donnée parmi $2^n$ entrées :
+\begin{center}\TLMuxQuatreVersUn\end{center}
+
+Un démultiplexeur distribue une donnée unique vers une sortie choisie par les entrées de sélection. Ces circuits sont utilisés pour partager une ressource, convertir une transmission série/parallèle et synthétiser des fonctions logiques.
+
+Une fonction de $n$ variables peut être implantée directement par un multiplexeur en utilisant les variables comme sélection et en recopiant les valeurs de la table de vérité sur les entrées de données.
+
+\TLLogicImage[.52\linewidth]{image43.jpeg}
+
+\section{Technologie des circuits intégrés logiques}
+\label{sec:technologie-logique}
+
+\subsection{Familles technologiques et niveaux électriques}
+
+Les familles TTL, CMOS et ECL se distinguent notamment par :
+\begin{itemize}
+  \item les tensions d'alimentation ;
+  \item les seuils associés aux niveaux logiques ;
+  \item les courants d'entrée et de sortie ;
+  \item le temps de propagation ;
+  \item la consommation et l'immunité au bruit.
+\end{itemize}
+
+Les niveaux électriques réels ne sont pas des valeurs uniques mais des plages. Une zone interdite sépare le niveau bas garanti du niveau haut garanti. La marge de bruit doit rester suffisante entre la sortie d'une porte et l'entrée suivante.
+
+\TLLogicImage[.42\linewidth]{image44.jpeg}
+
+\subsection{Temps de propagation, sortance et consommation}
+
+Le temps de propagation est le retard entre une transition d'entrée et la transition correspondante en sortie. On distingue $t_{pLH}$ et $t_{pHL}$, puis on utilise souvent :
+\[
+\boxed{t_p=\frac{t_{pLH}+t_{pHL}}{2}.}
+\]
+
+La sortance, ou \textit{fan-out}, est le nombre maximal d'entrées qu'une sortie peut commander tout en respectant les niveaux électriques. La consommation statique dépend de la famille ; en CMOS, la consommation dynamique croît avec la fréquence :
+\[
+P_{dyn}\simeq C_LV_{DD}^2f.
+\]
+
+\subsection{Entrées flottantes et résistances de rappel}
+
+Une entrée non connectée possède un potentiel indéterminé. Une résistance de rappel impose un état de repos :
+\begin{itemize}
+  \item \textbf{pull-up} vers $V_{CC}$ : état de repos haut ;
+  \item \textbf{pull-down} vers la masse : état de repos bas.
+\end{itemize}
+
+\TLLogicImage[.40\linewidth]{image46.jpeg}
+
+\begin{TLLogicWarning}{Entrée logique flottante}
+Une entrée logique ne doit jamais être laissée flottante. Elle peut basculer sous l'effet du bruit, augmenter la consommation et provoquer un comportement non déterministe.
+\end{TLLogicWarning}
+
+\subsection{Structures de sortie}
+
+\begin{center}\TLSortiesLogiques\end{center}
+
+Une sortie standard impose activement les niveaux $0$ et $1$ mais ne doit pas être reliée directement à une autre sortie standard. Une sortie à collecteur ouvert n'impose que le niveau bas et nécessite une résistance de pull-up ; plusieurs sorties peuvent alors réaliser un ET câblé. Une sortie trois états ajoute l'état haute impédance Hi-Z, indispensable au partage d'un bus.
+
+\begin{TLLogicApplication}{Choix d'une interface logique}
+Pour chacun des cas suivants, choisir la structure de sortie adaptée et justifier :
+\begin{enumerate}
+  \item plusieurs capteurs doivent partager une ligne d'alarme ;
+  \item plusieurs mémoires sont raccordées au même bus de données ;
+  \item une porte commande directement une unique entrée logique.
+\end{enumerate}
+\end{TLLogicApplication}
