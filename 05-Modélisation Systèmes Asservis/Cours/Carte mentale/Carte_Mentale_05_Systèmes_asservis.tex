@@ -1,5 +1,5 @@
-\documentclass[a3paper,landscape,10pt]{article}
-\usepackage[margin=6mm]{geometry}
+\documentclass[10pt]{article}
+\usepackage[a3paper,landscape,margin=6mm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
@@ -48,7 +48,6 @@
 ]
   \path[use as bounding box] (-19.4,-12.2) rectangle (19.4,12.2);
 
-  % Fond décoratif très léger
   \begin{scope}[on background layer]
     \fill[CMblue!3] (-19.4,-12.2) rectangle (19.4,12.2);
     \fill[CMblue!5] (-18.2,10.7) circle (1.2);
@@ -57,17 +56,14 @@
     \fill[CMteal!6] (-17.6,-10.3) circle (1.6);
   \end{scope}
 
-  % Nœud central
+  % Centre
   \node[center] (C) at (0,0) {Systèmes\\asservis};
   \node[rounded corners=2mm,fill=CMblue,text=white,font=\bfseries\small,
-    inner xsep=4mm,inner ysep=1.5mm] at (0,-2.45)
-    {$e(t)=r(t)-m(t)$};
+    inner xsep=4mm,inner ysep=1.5mm] at (0,-2.45) {$e(t)=r(t)-m(t)$};
   \node[font=\small,text=CMgray,align=center] at (0,-3.25)
     {Comparer la consigne à la mesure\\pour agir sur le procédé};
 
-  % --------------------------------------------------------------------------
-  % Structure - haut gauche
-  % --------------------------------------------------------------------------
+  % Structure
   \node[main,draw=CMblue2,fill=CMblueLight,text=CMblue] (S) at (-8.6,6.6) {Structure};
   \draw[branch,draw=CMblue2] (C.north west) to[out=145,in=-25] (S.south east);
   \node[dot,fill=CMblue2] at ($(S.south east)+(.04,-.02)$) {};
@@ -82,9 +78,7 @@
     \node[dot,fill=CMblue2] at (\n.east) {};
   }
 
-  % --------------------------------------------------------------------------
-  % Grandeurs - haut droite
-  % --------------------------------------------------------------------------
+  % Grandeurs
   \node[main,draw=CMgreen,fill=CMgreenLight,text=CMgreen!70!black] (G) at (8.6,6.6) {Grandeurs};
   \draw[branch,draw=CMgreen] (C.north east) to[out=35,in=205] (G.south west);
   \node[dot,fill=CMgreen] at ($(G.south west)+(-.04,-.02)$) {};
@@ -99,9 +93,7 @@
     \node[dot,fill=CMgreen] at (\n.west) {};
   }
 
-  % --------------------------------------------------------------------------
-  % Exemples - milieu gauche
-  % --------------------------------------------------------------------------
+  % Exemples
   \node[main,draw=CMyellow,fill=CMyellowLight,text=CMyellow!65!black] (E) at (-9.6,0.0) {Exemples};
   \draw[branch,draw=CMyellow] (C.west) to[out=180,in=0] (E.east);
   \node[dot,fill=CMyellow] at (E.east) {};
@@ -114,9 +106,7 @@
     \node[dot,fill=CMyellow] at (\n.east) {};
   }
 
-  % --------------------------------------------------------------------------
-  % Performances - milieu droite
-  % --------------------------------------------------------------------------
+  % Performances
   \node[main,draw=CMpurple,fill=CMpurpleLight,text=CMpurple] (P) at (9.6,0.0) {Performances};
   \draw[branch,draw=CMpurple] (C.east) to[out=0,in=180] (P.west);
   \node[dot,fill=CMpurple] at (P.west) {};
@@ -129,9 +119,7 @@
     \node[dot,fill=CMpurple] at (\n.west) {};
   }
 
-  % --------------------------------------------------------------------------
-  % Représentations - bas gauche
-  % --------------------------------------------------------------------------
+  % Représentations
   \node[main,draw=CMteal,fill=CMtealLight,text=CMteal!75!black] (R) at (-8.6,-6.6) {Représentations};
   \draw[branch,draw=CMteal] (C.south west) to[out=215,in=25] (R.north east);
   \node[dot,fill=CMteal] at ($(R.north east)+(.04,.02)$) {};
@@ -145,9 +133,7 @@
     \node[dot,fill=CMteal] at (\n.east) {};
   }
 
-  % --------------------------------------------------------------------------
-  % Correcteurs - bas droite
-  % --------------------------------------------------------------------------
+  % Correcteurs
   \node[main,draw=CMorange,fill=CMorangeLight,text=CMorange!75!black] (K) at (8.6,-6.6) {Correcteurs};
   \draw[branch,draw=CMorange] (C.south east) to[out=325,in=155] (K.north west);
   \node[dot,fill=CMorange] at ($(K.north west)+(-.04,.02)$) {};
@@ -161,14 +147,13 @@
     \node[dot,fill=CMorange] at (\n.west) {};
   }
 
-  % Encadré méthode au bas de la page
+  % Démarche
   \node[rounded corners=4mm,draw=CMblue,line width=1.2pt,fill=white,
     minimum width=12.7cm,minimum height=1.55cm,align=center,
     font=\bfseries\normalsize,blur shadow,text=CMblue] at (0,-9.7)
     {Identifier $\rightarrow$ modéliser $\rightarrow$ réduire $\rightarrow$
      calculer $\rightarrow$ analyser $\rightarrow$ conclure};
 
-  % Petits repères graphiques autour du centre
   \foreach \a in {20,70,110,160,200,250,290,340}{
     \draw[CMblue,line width=1.6pt] (\a:4.35)--(\a:4.75);
   }
