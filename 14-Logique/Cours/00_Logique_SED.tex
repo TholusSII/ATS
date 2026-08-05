@@ -3,19 +3,23 @@
 \documentclass[fontsize=10pt,twoside=true,open=any]{kaobook}
 \usepackage[french]{babel}
 \newcommand{\TLCourseDefinitionFile}{14_Logique_SED}
+
 \makeatletter
 \def\input@path{{../../Style/}}
 \makeatother
+
 \input{TLCours.sty}
-\IfFileExists{../../Style/rp-sysml.sty}{\input{rp-sysml.sty}}{}
-\IfFileExists{../../Style/TLLogique.sty}{\input{TLLogique.sty}}{}
-\IfFileExists{../../Style/TLGrafcet.sty}{\input{TLGrafcet.sty}}{}
 \input{TLLogiqueSED.sty}
-\usepackage{amsmath,amssymb,mathtools,array,booktabs}
+
+\usepackage{amsmath,amssymb,mathtools,array,booktabs,tabularx}
+\usepackage{siunitx}
+\sisetup{locale=FR,per-mode=symbol}
+
 \raggedbottom
 \setlength{\parindent}{0pt}
 \setlength{\emergencystretch}{3em}
 \makeindex[columns=3,title=Index alphabétique,intoc]
+
 \begin{document}
 \mainmatter
 \setchapterstyle{kao}
