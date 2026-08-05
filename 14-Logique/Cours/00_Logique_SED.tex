@@ -11,6 +11,40 @@
 \input{TLCours.sty}
 \input{TLLogiqueSED.sty}
 
+% Corrections robustes des diagrammes utilisant les caractères actifs de
+% babel-french. Elles seront réintégrées dans la prochaine version du style.
+\renewcommand{\TLGrapheEtatDetaille}{%
+\begin{tikzpicture}[>=Latex,node distance=34mm,
+  etat/.style={draw,rounded corners,minimum width=36mm,minimum height=22mm,align=left,font=\small}]
+\node[etat] (e0) {\textbf{Repos}\\entry / voyant=0\\do / surveiller};
+\node[etat,right=of e0] (e1) {\textbf{Fonctionnement}\\entry / moteur=1\\exit / moteur=0};
+\draw[->,thick] ([xshift=-12mm]e0.west)--(e0.west);
+\draw[->,bend left=18] (e0) to node[above,align=center]{appuiDépart [porteFermée] / compteur=0} (e1);
+\draw[->,bend left=18] (e1) to node[below]{after(10 s)} (e0);
+\draw[->] (e1) edge[loop above] node{défaut / alarme=1} (e1);
+\end{tikzpicture}}
+
+\renewcommand{\TLPseudoEtats}{%
+\begin{tikzpicture}[>=Latex,node distance=13mm,
+  etat/.style={draw,rounded corners,minimum width=22mm,minimum height=9mm,align=center}]
+\coordinate (init) at (0,0);
+\fill (init) circle (2.5pt);
+\node[etat,right=13mm of init] (a) {A};
+\draw[->] (init)--(a);
+\node[diamond,draw,right=18mm of a,aspect=1.7,inner sep=1pt] (ch) {};
+\draw[->] (a)--(ch);
+\node[etat,above right=9mm and 18mm of ch] (b) {B};
+\node[etat,below right=9mm and 18mm of ch] (c) {C};
+\draw[->] (ch)--node[above left]{$[x]$}(b);
+\draw[->] (ch)--node[below left]{$[\overline x]$}(c);
+\node[draw,circle,double,minimum size=7mm,right=18mm of b] (fin) {};
+\draw[->] (b)--(fin);
+\node[circle,draw,minimum size=5mm,fill=white,right=18mm of c] (j) {};
+\draw[->] (c)--(j);
+\node[below=3mm of j]{jonction};
+\node[below=3mm of ch]{choix};
+\end{tikzpicture}}
+
 \usepackage{amsmath,amssymb,mathtools,array,booktabs,tabularx}
 \usepackage{siunitx}
 \sisetup{locale=FR,per-mode=symbol}
