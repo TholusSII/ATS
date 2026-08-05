@@ -1,0 +1,167 @@
+% ============================================================================
+% COURS 12 — EXERCICES, PARTIE A
+% Source : 16_Rdm_2026.docx
+% ============================================================================
+
+\section{Exercices du chapitre}
+\label{sec:rdm-8}
+
+\begin{center}
+\IfFileExists{pandoc/media/image59.png}{\includegraphics[width=.52\linewidth]{pandoc/media/image59.png}}{}
+\end{center}
+
+\subsection{Traction -- compression}
+
+\subsubsection{Exercice 1 : choix d'un câble}
+
+\begin{center}
+\begin{tabular}{cc}
+\IfFileExists{pandoc/media/image61.png}{\includegraphics[width=.43\linewidth]{pandoc/media/image61.png}}{} &
+\IfFileExists{pandoc/media/image62.png}{\includegraphics[width=.43\linewidth]{pandoc/media/image62.png}}{}
+\end{tabular}
+\end{center}
+
+On souhaite soulever une poutre de béton armé de longueur $6\ \mathrm m$ et de masse $2\ \mathrm t$. Deux sangles sont disposées symétriquement et reliées à une élingue constituée de deux brins de longueur $l=4\ \mathrm m$.
+
+Chaque câble est constitué de six torons de dix-neuf fils de diamètre $0{,}8\ \mathrm{mm}$, entourant une âme textile dont la résistance mécanique est négligée. La limite d'élasticité d'un fil est $R_e=1770\ \mathrm{N/mm^2}$.
+
+\begin{enumerate}
+  \item Déterminer la tension maximale dans un brin de câble en fonction de la géométrie de l'élingue.
+  \item Le coefficient de sécurité imposé aux structures de levage étant $s=6$, déterminer le diamètre minimal du câble à choisir.
+  \item Déterminer le coefficient de sécurité effectif du câble retenu.
+\end{enumerate}
+
+\subsubsection{Exercice 2 : câble de puits de mine}
+
+\begin{minipage}{.72\linewidth}
+On cherche la forme d'égale résistance d'un câble soumis à son propre poids et supportant à son extrémité une nacelle d'effort $F=2\times10^3\ \mathrm{daN}$.
+
+Données :
+\begin{itemize}
+  \item poids volumique : $\omega=7{,}8\ \mathrm{daN/dm^3}$ ;
+  \item résistance pratique : $R_{pe}=100\ \mathrm{MPa}$ ;
+  \item longueur : $L=500\ \mathrm m$.
+\end{itemize}
+\end{minipage}\hfill
+\begin{minipage}{.24\linewidth}
+\IfFileExists{pandoc/media/image63.png}{\includegraphics[width=\linewidth]{pandoc/media/image63.png}}{}
+\end{minipage}
+
+Pour un câble d'égale résistance, la section varie suivant :
+\[
+S(x)=\frac{F}{R_{pe}}\exp\!\left(\frac{\omega x}{R_{pe}}\right),
+\]
+avec des unités cohérentes.
+
+\begin{enumerate}
+  \item Déterminer les diamètres aux deux extrémités du câble d'égale résistance.
+  \item Déterminer le diamètre d'un câble de section constante supportant la même nacelle.
+  \item Calculer et comparer les masses des deux câbles.
+\end{enumerate}
+
+\subsubsection{Exercice 3 : bielle de moteur Diesel et chemise mince}
+
+\paragraph{Compression de la bielle.}
+Une bielle de moteur Diesel est soumise à un effort maximal de compression de $150\times10^3\ \mathrm N$. Sa partie centrale est modélisée par un prisme de section $S=300\ \mathrm{mm^2}$ et de longueur $L=180\ \mathrm{mm}$.
+
+\begin{enumerate}
+  \item Avec un coefficient de sécurité $s=1{,}2$, déterminer la limite d'élasticité minimale de l'acier spécial utilisé.
+  \item Le module d'Young étant $E=2\times10^5\ \mathrm{MPa}$, calculer le raccourcissement maximal de la bielle.
+\end{enumerate}
+
+\paragraph{Paroi mince de la chemise.}
+Le piston a un diamètre intérieur $d=155\ \mathrm{mm}$ et la pression effective dans la chambre vaut $p=8\ \mathrm{MPa}$. La chemise est assimilée à un tube de longueur $L$, de diamètre intérieur $d$ et d'épaisseur $e$ faible devant $d$. La fonte utilisée possède $R_{pe}=50\ \mathrm{MPa}$.
+
+La coupure diamétrale conduit à un effort normal :
+\[
+N=pLd,
+\]
+et la section résistante vaut approximativement $2eL$.
+
+\begin{enumerate}[resume]
+  \item Déterminer l'épaisseur minimale de la chemise.
+\end{enumerate}
+
+\subsubsection{Exercice 4 : maillon de chaîne}
+
+\begin{minipage}{.66\linewidth}
+La plaquette d'une chaîne à rouleaux est soumise à la traction. Le perçage du plan $A-A$ produit un coefficient de concentration $K_{tp}=1{,}6$ ; la réduction de section du plan $B-B$ est associée à $K_{tr}=1{,}05$.
+
+Caractéristiques de l'acier :
+\[
+R_m=1300\ \mathrm{MPa},\qquad
+R_e=1100\ \mathrm{MPa},\qquad
+E=2{,}2\times10^5\ \mathrm{MPa}.
+\]
+\end{minipage}\hfill
+\begin{minipage}{.30\linewidth}
+\IfFileExists{pandoc/media/image65.png}{\includegraphics[width=\linewidth]{pandoc/media/image65.png}}{}
+\end{minipage}
+
+\begin{enumerate}
+  \item Évaluer la charge limite de rupture statique $F_{\mathrm{lim}}$ en recherchant la section la plus critique.
+  \item Pour un fonctionnement dynamique avec $s=3$, déterminer la charge maximale de service $F_{\max}$.
+\end{enumerate}
+
+\subsection{Fardeleuse}
+
+\textit{Source : concours commun PT-SI 2011.}
+
+\begin{center}
+\begin{tabular}{cc}
+\IfFileExists{pandoc/media/image66.jpeg}{\includegraphics[width=.36\linewidth]{pandoc/media/image66.jpeg}}{} &
+\IfFileExists{pandoc/media/image67.png}{\includegraphics[width=.52\linewidth]{pandoc/media/image67.png}}{}
+\end{tabular}
+\end{center}
+
+Le fardelage consiste à déposer un film plastique thermo-rétractable autour d'un produit puis à le chauffer. Le produit est déplacé par un tapis entraîné par adhérence entre un cylindre moteur et un cylindre tendeur.
+
+La tension initiale $T_0$ est réglée en translatant l'axe du cylindre tendeur. Le cylindre est guidé par deux roulements qui exercent, en $B$ et $C$, deux efforts :
+\[
+\vec F=-F\vec y,
+\qquad F=230\ \mathrm N.
+\]
+L'axe est modélisé par une poutre cylindrique de diamètre $d$, reposant sur deux appuis en $A$ et $D$.
+
+\begin{center}
+\begin{tabular}{cc}
+\IfFileExists{pandoc/media/image68.png}{\includegraphics[width=.38\linewidth]{pandoc/media/image68.png}}{} &
+\IfFileExists{pandoc/media/image69.png}{\includegraphics[width=.50\linewidth]{pandoc/media/image69.png}}{}
+\end{tabular}
+\end{center}
+
+\subsubsection{Dimensionnement de l'axe}
+
+\begin{enumerate}
+  \item Établir la relation entre la tension $T_0$ du tapis et la norme $F$ des efforts en $B$ et $C$.
+  \item Déterminer les réactions des appuis en $A$ et $D$ en fonction de $F$.
+  \item Exprimer les composantes du torseur de cohésion le long de la poutre et tracer les diagrammes correspondants. Identifier la sollicitation.
+  \item En négligeant l'effort tranchant, localiser la zone la plus sollicitée.
+  \item Déterminer la contrainte normale maximale $\sigma_{xx,\max}$.
+  \item Avec un coefficient de sécurité $s_c=2$, établir l'expression du diamètre minimal $d_{\min}$.
+\end{enumerate}
+
+\subsubsection{Choix du matériau}
+
+Les barres disponibles ont un diamètre compris entre $3$ et $50\ \mathrm{mm}$.
+
+\begin{center}
+\small
+\begin{tabular}{lllrr}
+\toprule
+Acier & État & & $R_e$ (MPa) & $R_m$ (MPa)\\
+\midrule
+C22 & normalisé && 240 & 430\\
+C22 & trempé et revenu && 340 & 650\\
+C55 & normalisé && 370 & 680\\
+C55 & trempé et revenu && 550 & 950\\
+15 Cr Ni 6 & trempé et revenu && 650 & 1000\\
+25 Cr Mo 4 & trempé et revenu && 550 & 850\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{enumerate}[resume]
+  \item Choisir un acier et un état métallurgique compatibles avec le diamètre disponible et le coefficient de sécurité.
+  \item Pour l'acier choisi, calculer $d_{\min}$ puis sélectionner le diamètre commercial immédiatement supérieur.
+\end{enumerate}
