@@ -1,0 +1,395 @@
+% ============================================================================
+% COURS 14 — LOGIQUE, SED ET COMMUNICATION
+% Partie D : réseaux et bus de terrain
+% Source : 18-Logique_SED.docx
+% ============================================================================
+
+\section{Réseaux et bus de terrain}
+\label{sec:reseaux}
+
+\subsection{Données et qualité de service}
+
+Un réseau permet l'échange d'informations entre plusieurs équipements. Les données peuvent être des ordres logiques, des mesures, des fichiers, de la voix, des images ou des flux multimédias.
+
+La qualité de service, ou QoS, est décrite par plusieurs critères :
+\begin{itemize}
+  \item la disponibilité du moyen de communication ;
+  \item le débit utile ;
+  \item le délai de transmission et sa variation, appelée gigue ;
+  \item le taux d'erreur ;
+  \item la priorité de certaines trames ;
+  \item le déterminisme, c'est-à-dire la capacité à garantir un temps maximal de réponse.
+\end{itemize}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}p{2.4cm}XXXX}
+\toprule
+Donnée & Disponibilité & Taux d'erreur & Débit & Délai \\
+\midrule
+Voix & important & modéré & modéré & faible et régulier\\
+Images animées & modérée & modéré & très important & faible\\
+Texte et commandes & important & très faible & faible & dépend de l'application\\
+Sécurité industrielle & très important & très faible & souvent faible & borné et déterministe\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{TLLogicWarning}{Débit maximal et débit utile}
+Le débit annoncé d'un support inclut les bits de service, les en-têtes, les contrôles d'erreur, les acquittements et les temps d'attente. Le débit réellement disponible pour les données applicatives est toujours inférieur.
+\end{TLLogicWarning}
+
+\subsection{Étendue des réseaux}
+
+Selon la zone couverte, on distingue :
+\begin{itemize}
+  \item PAN : réseau personnel sur quelques mètres ;
+  \item LAN : réseau local d'un bâtiment ou d'un site ;
+  \item MAN : réseau métropolitain ;
+  \item WAN : réseau étendu à l'échelle d'un pays ou d'un continent.
+\end{itemize}
+
+\TLLogicImage[.65\linewidth]{image128.png}
+
+Dans une installation industrielle, les réseaux peuvent aussi être classés par niveau : capteurs-actionneurs, commande, supervision et gestion. Les contraintes de temps réel sont généralement les plus fortes près du procédé.
+
+\subsection{Modèle OSI}
+
+Le modèle OSI organise les fonctions de communication en sept couches :
+\begin{center}\TLModeleOSI\end{center}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}c p{2.6cm}X}
+\toprule
+Couche & Nom & Rôle principal \\
+\midrule
+7 & Application & services visibles par les applications.\\
+6 & Présentation & format, conversion, chiffrement, compression.\\
+5 & Session & ouverture, maintien et fermeture d'un dialogue.\\
+4 & Transport & transport de bout en bout, segmentation et fiabilité.\\
+3 & Réseau & adressage logique et routage.\\
+2 & Liaison & trames, adressage local, accès au support et détection d'erreurs.\\
+1 & Physique & niveaux électriques ou optiques, connecteurs, codage du signal.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Un protocole industriel ne met pas toujours en œuvre séparément les sept couches. Certains bus de terrain regroupent plusieurs fonctions afin de réduire le temps de traitement et la complexité.
+
+\subsection{Supports de transmission}
+
+Les principales caractéristiques d'un support sont :
+\begin{itemize}
+  \item le débit binaire $D_b$, en bit/s ;
+  \item la rapidité de modulation $R$, en baud, qui compte les symboles par seconde ;
+  \item la bande passante ;
+  \item l'atténuation ;
+  \item l'immunité aux perturbations ;
+  \item la distance maximale ;
+  \item le coût et les contraintes de pose.
+\end{itemize}
+
+Si chaque symbole peut prendre $M$ états, il transporte $\log_2(M)$ bits et :
+\[
+\boxed{D_b=R\log_2(M).}
+\]
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}p{2.8cm}X X}
+\toprule
+Support & Atouts & Limites \\
+\midrule
+Paire torsadée & économique, souple, adaptée aux réseaux locaux et industriels & sensible à l'atténuation et aux perturbations si elle n'est pas blindée.\\
+Câble coaxial & bon blindage et bande passante élevée & plus rigide, moins utilisé dans les réseaux locaux modernes.\\
+Fibre optique & très haut débit, faible atténuation, isolation galvanique, insensible aux champs électromagnétiques & coût des interfaces et délicatesse de raccordement.\\
+Radio & mobilité et absence de câble & partage du spectre, obstacles, sécurité et variabilité du canal.\\
+CPL & réutilisation des conducteurs de puissance & bruit, atténuation et compatibilité électromagnétique.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Multiplexage}
+
+Le multiplexage permet de partager un même support entre plusieurs communications.
+
+\paragraph{Multiplexage fréquentiel.}
+La bande passante est découpée en sous-bandes. Chaque voie module une porteuse différente ; à la réception, des filtres séparent les canaux.
+
+\TLLogicImage[.62\linewidth]{image138.jpeg}
+
+\paragraph{Multiplexage temporel.}
+Les voies utilisent successivement le support pendant des créneaux temporels réservés. Une synchronisation commune est nécessaire pour retrouver les créneaux à la réception.
+
+\paragraph{Multiplexage statistique.}
+La ressource est attribuée dynamiquement aux équipements qui ont effectivement des données à transmettre. Il améliore l'utilisation moyenne du support mais peut introduire un délai variable.
+
+\subsection{Erreurs de transmission}
+
+Le bruit, l'atténuation, les distorsions et les perturbations électromagnétiques peuvent supprimer, ajouter ou inverser des bits. Les mécanismes de protection ajoutent de la redondance.
+
+Le taux d'erreur binaire est :
+\[
+\boxed{BER=\frac{N_{bits\ erronés}}{N_{bits\ transmis}}.}
+\]
+
+\subsubsection{Contrôle de parité}
+
+Pour une parité paire, le bit de parité rend pair le nombre total de bits à $1$ :
+\[
+\boxed{B_p=d_0\oplus d_1\oplus\cdots\oplus d_{n-1}.}
+\]
+Pour une parité impaire :
+\[
+\boxed{B_p=\overline{d_0\oplus d_1\oplus\cdots\oplus d_{n-1}}.}
+\]
+
+Une parité détecte toute erreur affectant un nombre impair de bits, mais ne localise pas l'erreur et ne détecte pas toutes les erreurs multiples.
+
+\begin{TLLogicApplication}{Bit de parité}
+Pour le mot $11001011$ :
+\begin{enumerate}
+  \item déterminer le bit de parité paire ;
+  \item déterminer le bit de parité impaire ;
+  \item expliquer pourquoi deux inversions de bits peuvent ne pas être détectées.
+\end{enumerate}
+\end{TLLogicApplication}
+
+\subsubsection{Contrôle de redondance cyclique}
+
+Le CRC interprète les données comme un polynôme binaire $P(X)$. Pour un polynôme générateur $G(X)$ de degré $r$, l'émetteur calcule le reste $R(X)$ de la division de $X^rP(X)$ par $G(X)$ et transmet les données suivies des $r$ bits du reste.
+
+\begin{center}\TLMecanismeCRC\end{center}
+
+À la réception, la division de la trame complète par $G(X)$ doit donner un reste nul. Les additions et soustractions sont réalisées modulo 2, donc par OU exclusif et sans retenue.
+
+\begin{TLLogicMethod}{Calculer un CRC simple}
+\begin{enumerate}
+  \item Écrire les données sous forme d'un mot binaire ou d'un polynôme $P(X)$.
+  \item Ajouter $r$ zéros, où $r$ est le degré de $G(X)$.
+  \item Effectuer la division binaire modulo 2.
+  \item Placer le reste dans les $r$ positions ajoutées.
+  \item Vérifier que la division de la trame obtenue par $G(X)$ donne un reste nul.
+\end{enumerate}
+\end{TLLogicMethod}
+
+\subsubsection{Acquittement et retransmission}
+
+Un acquittement positif, noté ACK, confirme la réception correcte. Un acquittement négatif ou l'absence d'ACK après un délai provoque une retransmission. Cette stratégie améliore la fiabilité au prix d'un délai et d'un trafic supplémentaires.
+
+\subsection{Topologies}
+
+La topologie décrit l'organisation physique ou logique des liaisons.
+
+\begin{center}\TLTopologiesReseau\end{center}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}p{2cm}X X}
+\toprule
+Topologie & Avantages & Limites \\
+\midrule
+Étoile & panne d'une station localisée, administration simple & dépendance au concentrateur, câblage important.\\
+Anneau & accès ordonné, débit prévisible & rupture ou station défaillante à gérer par contournement.\\
+Bus & peu de câbles, implantation simple & collisions ou arbitrage, rupture du bus critique, longueur limitée.\\
+Maillée & redondance des chemins et forte disponibilité & coût, configuration et routage plus complexes.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Organisation des échanges}
+
+\paragraph{Client-serveur.}
+Un serveur fournit une ressource ou un service ; les clients émettent des requêtes. Cette organisation centralise les données et les droits d'accès.
+
+\paragraph{Pair à pair.}
+Chaque équipement peut être à la fois client et serveur. La ressource est distribuée mais l'administration est plus délicate.
+
+\paragraph{Maître-esclave.}
+Le maître organise les échanges et interroge les esclaves. Le comportement est simple et déterministe, mais le maître peut constituer un point unique de défaillance.
+
+\paragraph{Producteur-consommateur.}
+Une donnée publiée par un producteur peut être reçue par plusieurs consommateurs. Cette organisation est fréquente dans les réseaux industriels temps réel.
+
+\subsection{Chaîne de transmission}
+
+\begin{center}\TLChaineTransmission\end{center}
+
+La source génère les données. L'émetteur adapte leur forme au canal : codage, modulation, niveaux électriques ou optiques. Le récepteur réalise les opérations inverses et fournit le message au destinataire.
+
+Une transmission est caractérisée par :
+\begin{itemize}
+  \item le sens des échanges ;
+  \item le mode série ou parallèle ;
+  \item la synchronisation ;
+  \item le codage de ligne ;
+  \item le format des trames ;
+  \item le protocole et le mécanisme d'accès au support.
+\end{itemize}
+
+\subsection{Sens, mode et synchronisation}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}p{2.5cm}X}
+\toprule
+Mode & Description \\
+\midrule
+Simplex & transmission dans un seul sens.\\
+Half-duplex & transmission dans les deux sens, mais pas simultanément.\\
+Full-duplex & transmission simultanée dans les deux sens.\\
+Parallèle & plusieurs bits sont transmis simultanément sur plusieurs conducteurs.\\
+Série & les bits sont transmis successivement sur une ou plusieurs lignes.\\
+Synchrone & une horloge commune ou récupérée cadence la transmission.\\
+Asynchrone & chaque caractère est resynchronisé par un bit de start.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Une liaison parallèle est rapide sur une courte distance mais exige de nombreux conducteurs et subit des décalages entre voies. La liaison série est aujourd'hui privilégiée pour les distances plus longues et les hauts débits.
+
+\subsection{Codages de ligne}
+
+Le codage de ligne associe une forme d'onde aux bits transmis.
+
+\paragraph{NRZ.}
+Le niveau reste constant pendant tout le temps bit. Le codage est simple mais une longue suite de bits identiques rend la récupération d'horloge difficile.
+
+\paragraph{Manchester.}
+Chaque bit contient une transition au milieu du temps bit. La synchronisation est facilitée au prix d'une bande passante plus importante.
+
+\paragraph{Miller.}
+Une transition centrale est associée aux bits à $1$ et des transitions supplémentaires évitent les longues suites de zéros.
+
+\paragraph{Bipolaire.}
+Les bits à $1$ utilisent alternativement des niveaux positifs et négatifs, tandis que les bits à $0$ utilisent le niveau nul. La composante continue est réduite.
+
+\TLLogicImage[.55\linewidth]{image154.jpeg}
+
+\subsection{Trame et protocole}
+
+Un protocole définit les règles d'échange : adressage, début et fin de trame, ordre des bits, débit, contrôle d'erreur, accusé de réception, priorité et reprise après erreur.
+
+Une trame comporte généralement :
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{En-tête} & \textbf{Données applicatives} & \textbf{Terminateur}\\\hline
+synchronisation, adresse, type & informations utiles & contrôle d'erreur, fin\\\hline
+\end{tabular}
+\end{center}
+
+L'encapsulation ajoute successivement les informations de service propres aux couches traversées.
+
+\TLLogicImage[.76\linewidth]{image153.png}
+
+\subsection{Liaison série asynchrone}
+
+Une trame UART ou RS232 typique comprend un état de repos haut, un bit de start bas, les bits de données souvent transmis du poids faible au poids fort, un bit de parité optionnel et un ou plusieurs bits de stop.
+
+\begin{center}\TLTrameSerie\end{center}
+
+Pour un débit $D_b$, le temps bit vaut :
+\[
+\boxed{T_b=\frac{1}{D_b}.}
+\]
+Pour une trame de $N_t$ bits, le temps de transmission d'un caractère est :
+\[
+\boxed{T_c=N_tT_b=\frac{N_t}{D_b}.}
+\]
+Le rendement de trame, pour $N_d$ bits utiles, est :
+\[
+\boxed{\eta_t=\frac{N_d}{N_t}.}
+\]
+
+\begin{TLLogicApplication}{Décodage d'une trame série}
+Une liaison est configurée en 8 bits de données, parité paire et un bit de stop.
+\begin{enumerate}
+  \item Repérer le bit de start, les huit bits de données, la parité et le stop.
+  \item Reconstituer l'octet en tenant compte de l'ordre d'émission.
+  \item Vérifier la parité.
+  \item Convertir l'octet en hexadécimal puis en caractère ASCII.
+  \item Calculer le temps de transmission pour un débit de $9600\ \mathrm{bit\,s^{-1}}$.
+\end{enumerate}
+\TLLogicImage[.72\linewidth]{image164.jpeg}
+\end{TLLogicApplication}
+
+\subsection{Principaux bus et réseaux industriels}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}p{2.2cm}p{2.3cm}X}
+\toprule
+Liaison & Organisation & Caractéristiques essentielles \\
+\midrule
+UART / RS232 & point à point & série asynchrone, niveaux référencés à la masse, courte distance.\\
+RS485 & bus multipoint & transmission différentielle, bonne immunité au bruit, souvent half-duplex.\\
+I\textsuperscript{2}C & maître-esclaves & deux lignes, horloge et données, adressage intégré, courte distance sur carte.\\
+SPI & maître-esclaves & horloge, données montante et descendante, sélection d'esclave, débit élevé sur carte.\\
+CAN & multi-maître & arbitrage non destructif par priorité, trames protégées, forte robustesse.\\
+Modbus RTU & maître-esclaves & protocole applicatif fréquemment transporté sur RS485, adressage et CRC.\\
+Ethernet industriel & commuté & haut débit, trames Ethernet, variantes temps réel selon le protocole.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsubsection{Bus CAN}
+
+Le CAN utilise une paire différentielle et un accès multi-maître. L'identifiant de la trame définit son contenu et sa priorité. Lors de l'arbitrage, un bit dominant l'emporte sur un bit récessif ; un émetteur perdant l'arbitrage s'arrête sans détruire la trame gagnante.
+
+Le protocole prévoit plusieurs contrôles : surveillance du bit émis, contrôle de forme, CRC, acquittement et confinement des nœuds défaillants.
+
+\subsubsection{Modbus RTU}
+
+Une requête Modbus RTU contient typiquement :
+\[
+\boxed{\text{adresse esclave} + \text{code fonction} + \text{données} + \text{CRC}.}
+\]
+Le code fonction indique l'opération : lecture ou écriture de bits, de registres ou de mots. Les champs numériques sont décodés en tenant compte de l'ordre des octets défini par le protocole.
+
+\begin{TLLogicApplication}{Décodage partiel d'une transaction Modbus}
+À partir d'une trame fournie :
+\begin{enumerate}
+  \item identifier l'adresse de l'esclave ;
+  \item identifier le code fonction ;
+  \item déterminer l'adresse du premier registre et le nombre de registres concernés ;
+  \item vérifier la longueur attendue de la réponse ;
+  \item expliquer le rôle du CRC final.
+\end{enumerate}
+\TLLogicImage[.66\linewidth]{image165.jpeg}
+\end{TLLogicApplication}
+
+\section{Synthèse générale}
+\label{sec:logique-synthese}
+
+\begin{TLLogicMethod}{Choisir le bon outil de modélisation}
+\begin{enumerate}
+  \item Utiliser une table de vérité lorsque la sortie dépend uniquement des entrées présentes.
+  \item Utiliser un graphe d'états lorsque le comportement dépend de l'histoire et d'événements.
+  \item Utiliser un diagramme de séquence pour détailler un scénario d'échanges entre composants.
+  \item Utiliser un chronogramme pour vérifier l'ordre temporel des signaux.
+  \item Utiliser un modèle de trame pour analyser une communication numérique.
+  \item Toujours confronter le modèle aux contraintes de sécurité, de temps et de fiabilité.
+\end{enumerate}
+\end{TLLogicMethod}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}p{3cm}X X}
+\toprule
+Problème & Représentation adaptée & Vérifications principales \\
+\midrule
+Commande sans mémoire & table de vérité, équation, Karnaugh & complétude, simplification, niveaux électriques.\\
+Commande séquentielle & diagramme d'état & événements, gardes, priorités, blocages.\\
+Interaction entre blocs & diagramme de séquence & ordre, synchronisme, alternatives, retours.\\
+Mesure de position & chronogramme A/B/Z ou mot absolu & résolution, sens, prise d'origine, erreurs.\\
+Communication & architecture, trame, chronogramme & débit, délai, adressage, contrôle d'erreur.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Sources}
+\label{sec:logique-sources}
+
+Ce cours a été établi à partir du document pédagogique original, de ressources de collègues de l'UPSTI et d'extraits de sujets de concours cités dans les applications et exercices.
