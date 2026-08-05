@@ -1,58 +1,334 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{TLLogiqueSED}[2026/08/03 Logique combinatoire et SED]
+\ProvidesPackage{TLLogiqueSED}[2026/08/05 Logique combinatoire, SED et réseaux]
+
 \RequirePackage{tikz}
-\usetikzlibrary{arrows.meta,positioning,calc,shapes.geometric,fit}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{xparse}
+\usetikzlibrary{arrows.meta,positioning,calc,shapes.geometric,fit,matrix,backgrounds,babel,decorations.pathreplacing}
+
+\definecolor{TLLogicBlue}{RGB}{0,84,127}
+\definecolor{TLLogicBlueBack}{RGB}{234,243,245}
+\definecolor{TLLogicOrange}{RGB}{221,112,18}
+\definecolor{TLLogicOrangeBack}{RGB}{255,243,226}
+\definecolor{TLLogicRed}{RGB}{170,45,45}
+\definecolor{TLLogicRedBack}{RGB}{253,238,238}
+\definecolor{TLLogicGreen}{RGB}{50,120,85}
+\definecolor{TLLogicGreenBack}{RGB}{235,247,240}
+
+\NewTColorBox{TLLogicDefinition}{m}{%
+  enhanced,breakable,
+  colback=TLLogicGreenBack,colframe=TLLogicGreen,
+  colbacktitle=TLLogicGreen,coltitle=white,
+  fonttitle=\sffamily\bfseries,
+  title={Définition — #1},
+  boxrule=.8pt,arc=1.5mm,
+  left=4mm,right=4mm,top=2.5mm,bottom=3mm,
+  before skip=1.1\baselineskip,after skip=1.1\baselineskip,
+  attach boxed title to top left={xshift=4mm,yshift*=-\tcboxedtitleheight/2},
+  boxed title style={arc=1.5mm,boxrule=0pt,left=3mm,right=3mm}
+}
+
+\NewTColorBox{TLLogicMethod}{m}{%
+  enhanced,breakable,
+  colback=TLLogicBlueBack,colframe=TLLogicBlue,
+  colbacktitle=TLLogicBlue,coltitle=white,
+  fonttitle=\sffamily\bfseries,
+  title={Méthode — #1},
+  boxrule=.8pt,arc=1.5mm,
+  left=4mm,right=4mm,top=2.5mm,bottom=3mm,
+  before skip=1.1\baselineskip,after skip=1.1\baselineskip,
+  attach boxed title to top left={xshift=4mm,yshift*=-\tcboxedtitleheight/2},
+  boxed title style={arc=1.5mm,boxrule=0pt,left=3mm,right=3mm}
+}
+
+\NewTColorBox{TLLogicWarning}{m}{%
+  enhanced,breakable,
+  colback=TLLogicRedBack,colframe=TLLogicRed,
+  colbacktitle=TLLogicRed,coltitle=white,
+  fonttitle=\sffamily\bfseries,
+  title={Attention — #1},
+  boxrule=.8pt,arc=1.5mm,
+  left=4mm,right=4mm,top=2.5mm,bottom=3mm,
+  before skip=1.1\baselineskip,after skip=1.1\baselineskip,
+  attach boxed title to top left={xshift=4mm,yshift*=-\tcboxedtitleheight/2},
+  boxed title style={arc=1.5mm,boxrule=0pt,left=3mm,right=3mm}
+}
+
+\NewTColorBox{TLLogicApplication}{m}{%
+  enhanced,breakable,
+  colback=TLLogicOrangeBack,colframe=TLLogicOrange,
+  colbacktitle=TLLogicOrange,coltitle=white,
+  fonttitle=\sffamily\bfseries,
+  title={Application — #1},
+  boxrule=.8pt,arc=1.5mm,
+  left=4mm,right=4mm,top=2.5mm,bottom=3mm,
+  before skip=1.1\baselineskip,after skip=1.1\baselineskip,
+  attach boxed title to top left={xshift=4mm,yshift*=-\tcboxedtitleheight/2},
+  boxed title style={arc=1.5mm,boxrule=0pt,left=3mm,right=3mm}
+}
 
 \newcommand{\TLPortesLogiques}{%
-\begin{tikzpicture}[>=Latex,node distance=13mm]
-\node[draw,rounded corners,minimum width=18mm,minimum height=9mm] (and) {ET};
-\node[draw,rounded corners,right=of and,minimum width=18mm,minimum height=9mm] (or) {OU};
-\node[draw,rounded corners,right=of or,minimum width=18mm,minimum height=9mm] (not) {NON};
-\node[left=8mm of and] (a) {$a,b$}; \draw[->] (a)--(and);
-\node[below=4mm of and] {$s=a\cdot b$};
-\node[below=4mm of or] {$s=a+b$};
-\node[below=4mm of not] {$s=\overline a$};
+\begin{tikzpicture}[>=Latex,node distance=12mm,
+  porte/.style={draw,rounded corners,minimum width=21mm,minimum height=10mm,align=center,font=\small\bfseries}]
+\node[porte] (non) {NON};
+\node[porte,right=of non] (et) {ET};
+\node[porte,right=of et] (ou) {OU};
+\node[porte,right=of ou] (xor) {OU exclusif};
+\node[below=4mm of non] {$s=\overline a$};
+\node[below=4mm of et] {$s=a\cdot b$};
+\node[below=4mm of ou] {$s=a+b$};
+\node[below=4mm of xor] {$s=a\oplus b$};
 \end{tikzpicture}}
 
 \newcommand{\TLDemarcheCombinatoire}{%
-\begin{tikzpicture}[>=Latex,node distance=8mm]
-\foreach \n/\t in {1/Cahier des charges,2/Table de vérité,3/Équation logique,4/Simplification,5/Implantation}{
-\node[draw,rounded corners,minimum width=32mm,minimum height=8mm] (n\n) at (0,-1.15*\n) {\t};}
-\foreach \a/\b in {1/2,2/3,3/4,4/5}{\draw[->] (n\a)--(n\b);}
+\begin{tikzpicture}[>=Latex,node distance=8mm,
+  bloc/.style={draw,rounded corners,minimum width=38mm,minimum height=9mm,align=center}]
+\node[bloc] (cdc) {Cahier des charges};
+\node[bloc,below=of cdc] (tv) {Table de vérité};
+\node[bloc,below=of tv] (eq) {Équation logique};
+\node[bloc,below=of eq] (opt) {Optimisation};
+\node[bloc,below=of opt] (syn) {Synthèse matérielle\\ou programmée};
+\draw[->,thick] (cdc)--(tv);
+\draw[->,thick] (tv)--(eq);
+\draw[->,thick] (eq)--(opt);
+\draw[->,thick] (opt)--(syn);
+\draw[->,dashed] (syn.east) -- ++(1.2,0) |- (tv.east) node[pos=.25,right]{validation};
+\end{tikzpicture}}
+
+\newcommand{\TLTableVeriteDeuxEntrees}{%
+\begin{tabular}{cc|c}
+$a$&$b$&$s$\\\hline
+0&0&$s_{00}$\\
+0&1&$s_{01}$\\
+1&0&$s_{10}$\\
+1&1&$s_{11}$
+\end{tabular}}
+
+\newcommand{\TLKarnaughQuatre}{%
+\begin{tikzpicture}[scale=.82]
+\draw (0,0) grid (4,4);
+\node at (-.7,3.5) {$ab$};
+\node at (.5,4.35) {$cd$};
+\foreach \x/\lab in {.5/00,1.5/01,2.5/11,3.5/10}{\node at (\x,4.35){\lab};}
+\foreach \y/\lab in {3.5/00,2.5/01,1.5/11,.5/10}{\node at (-.45,\y){\lab};}
+\node[fit={(0,2)(2,4)},draw=TLLogicOrange,very thick,rounded corners,inner sep=1.5pt] {};
+\node[fit={(2,0)(4,2)},draw=TLLogicBlue,very thick,rounded corners,inner sep=1.5pt] {};
+\node at (2,-.55) {cases adjacentes selon le code Gray};
+\end{tikzpicture}}
+
+\newcommand{\TLMuxQuatreVersUn}{%
+\begin{tikzpicture}[>=Latex]
+\node[draw,trapezium,trapezium left angle=75,trapezium right angle=105,minimum height=35mm,minimum width=24mm,align=center] (mux) {MUX\\$4\rightarrow1$};
+\foreach \y/\n in {1.2/0,.4/1,-.4/2,-1.2/3}{\draw[->] (-2.2,\y)--(mux.west |- 0,\y) node[pos=.05,above]{$D_\n$};}
+\draw[->] (mux.east)--++(1.8,0) node[right]{$S$};
+\draw[->] (-.5,-2.6)--(-.5,-1.75) node[pos=.1,left]{$A_1$};
+\draw[->] (.5,-2.6)--(.5,-1.75) node[pos=.1,right]{$A_0$};
+\node at (0,2.35) {$S=D_{(A_1A_0)_2}$};
+\end{tikzpicture}}
+
+\newcommand{\TLSortiesLogiques}{%
+\begin{tikzpicture}[>=Latex,node distance=16mm,
+  bloc/.style={draw,minimum width=24mm,minimum height=12mm,align=center}]
+\node[bloc] (std) {sortie\\standard};
+\node[bloc,right=of std] (oc) {collecteur\\ouvert};
+\node[bloc,right=of oc] (tri) {sortie\\trois états};
+\draw[->] (std.south)--++(0,-.8) node[below,align=center]{$0$ ou $1$\\pas de mise en commun};
+\draw[->] (oc.south)--++(0,-.8) node[below,align=center]{niveau bas imposé\\pull-up nécessaire};
+\draw[->] (tri.south)--++(0,-.8) node[below,align=center]{$0$, $1$ ou Hi-Z\\bus partagé};
 \end{tikzpicture}}
 
 \newcommand{\TLGrapheEtatsSimple}{%
-\begin{tikzpicture}[>=Latex,node distance=30mm]
-\node[draw,circle,minimum size=16mm] (e0) {Attente};
-\node[draw,circle,right=of e0,minimum size=16mm] (e1) {Marche};
-\draw[->] ([xshift=-13mm]e0.west)--(e0.west);
-\draw[->,bend left=18] (e0) to node[above]{départ} (e1);
-\draw[->,bend left=18] (e1) to node[below]{arrêt} (e0);
+\begin{tikzpicture}[>=Latex,node distance=34mm,
+  etat/.style={draw,rounded corners,minimum width=27mm,minimum height=14mm,align=center}]
+\node[etat] (e0) {Attente};
+\node[etat,right=of e0] (e1) {Marche};
+\draw[->,thick] ([xshift=-13mm]e0.west)--(e0.west);
+\draw[->,bend left=18] (e0) to node[above]{départ [sécurité]} (e1);
+\draw[->,bend left=18] (e1) to node[below]{arrêt / moteur=0} (e0);
+\end{tikzpicture}}
+
+\newcommand{\TLGrapheEtatDetaille}{%
+\begin{tikzpicture}[>=Latex,node distance=34mm,
+  etat/.style={draw,rounded corners,minimum width=36mm,minimum height=22mm,align=left,font=\small}]
+\node[etat] (e0) {\textbf{Repos}\\entry / voyant=0\\do / surveiller};
+\node[etat,right=of e0] (e1) {\textbf{Fonctionnement}\\entry / moteur=1\\exit / moteur=0};
+\draw[->,thick] ([xshift=-12mm]e0.west)--(e0.west);
+\draw[->,bend left=18] (e0) to node[above,align=center]{appuiDépart\\[porteFermée] / compteur=0} (e1);
+\draw[->,bend left=18] (e1) to node[below]{after(10 s)} (e0);
+\draw[->] (e1) edge[loop above] node{défaut / alarme=1} (e1);
+\end{tikzpicture}}
+
+\newcommand{\TLPseudoEtats}{%
+\begin{tikzpicture}[>=Latex,node distance=13mm,
+  etat/.style={draw,rounded corners,minimum width=22mm,minimum height=9mm,align=center}]
+\fill (0,0) circle (2.5pt);
+\node[etat,right=of {$(0,0)$}] (a) {A};
+\draw[->] (0,0)--(a);
+\node[diamond,draw,right=18mm of a,aspect=1.7,inner sep=1pt] (ch) {};
+\draw[->] (a)--(ch);
+\node[etat,above right=9mm and 18mm of ch] (b) {B};
+\node[etat,below right=9mm and 18mm of ch] (c) {C};
+\draw[->] (ch)--node[above left]{$[x]$}(b);
+\draw[->] (ch)--node[below left]{$[\overline x]$}(c);
+\node[draw,circle,double,minimum size=7mm,right=18mm of b] (fin) {};
+\draw[->] (b)--(fin);
+\node[circle,draw,minimum size=5mm,fill=white,right=18mm of c] (j) {};
+\draw[->] (c)--(j);
+\node[below=3mm of j]{jonction};
+\node[below=3mm of ch]{choix};
+\end{tikzpicture}}
+
+\newcommand{\TLEtatComposite}{%
+\begin{tikzpicture}[>=Latex,
+  etat/.style={draw,rounded corners,minimum width=23mm,minimum height=10mm,align=center}]
+\node[draw,rounded corners,minimum width=95mm,minimum height=43mm,label={[anchor=north west]north west:\textbf{Cycle}}] (comp) {};
+\node[etat] (a) at ([xshift=-25mm,yshift=-4mm]comp.center) {Préparation};
+\node[etat,right=22mm of a] (b) {Exécution};
+\fill ([xshift=-42mm,yshift=-4mm]comp.center) circle (2pt);
+\draw[->] ([xshift=-42mm,yshift=-4mm]comp.center)--(a);
+\draw[->] (a)--node[above]{prêt}(b);
+\draw[->] (b) edge[loop below] node{cycleSuivant} (b);
+\node[below=2mm of comp.south]{état composite : les sous-états sont exclusifs};
+\end{tikzpicture}}
+
+\newcommand{\TLEtatOrthogonal}{%
+\begin{tikzpicture}[>=Latex,
+  etat/.style={draw,rounded corners,minimum width=27mm,minimum height=9mm,align=center}]
+\node[draw,rounded corners,minimum width=100mm,minimum height=52mm,label={[anchor=north west]north west:\textbf{Fonctionnement}}] (comp) {};
+\draw[dashed] ([xshift=-48mm]comp.center)--([xshift=48mm]comp.center);
+\node[etat] (a1) at ([xshift=-24mm,yshift=11mm]comp.center) {Commander};
+\node[etat,right=18mm of a1] (a2) {Réguler};
+\draw[->] (a1)--(a2);
+\node[etat] (b1) at ([xshift=-24mm,yshift=-13mm]comp.center) {Surveiller};
+\node[etat,right=18mm of b1] (b2) {Diagnostiquer};
+\draw[->] (b1)--(b2);
+\node[below=2mm of comp.south]{deux régions orthogonales actives en parallèle};
 \end{tikzpicture}}
 
 \newcommand{\TLDiagrammeSequenceSimple}{%
 \begin{tikzpicture}[>=Latex]
-\foreach \x/\t in {0/Utilisateur,3/Commande,6/Actionneur}{
-\node[draw,minimum width=22mm] (h\x) at (\x,0) {\t};
-\draw[dashed] (\x,-.35)--(\x,-4);}
-\draw[->] (0,-1)--node[above]{ordre}(3,-1);
-\draw[->] (3,-2)--node[above]{commander}(6,-2);
-\draw[->,dashed] (6,-3)--node[above]{retour}(3,-3);
+\foreach \x/\t in {0/Utilisateur,3/Commande,6/Actionneur}{%
+\node[draw,minimum width=23mm,minimum height=8mm] (h\x) at (\x,0) {\t};
+\draw[dashed] (\x,-.4)--(\x,-4.5);}
+\draw[->,thick] (0,-1)--node[above]{ordre()}(3,-1);
+\draw[->,thick] (3,-2)--node[above]{commander()}(6,-2);
+\draw[->,dashed] (6,-3)--node[above]{compteRendu}(3,-3);
+\draw[->,thick] (3,-4)--node[above]{afficher()}(0,-4);
+\end{tikzpicture}}
+
+\newcommand{\TLFragmentsSequence}{%
+\begin{tikzpicture}[>=Latex]
+\draw (0,0) rectangle (7,-4.6);
+\draw (0,-.55)--(7,-.55);
+\node[anchor=west,font=\bfseries] at (.15,-.28) {alt};
+\node[anchor=west] at (1.05,-.28) {$[\text{condition}]$};
+\draw[dashed] (0,-2.45)--(7,-2.45);
+\node[anchor=west] at (.15,-2.25) {$[\text{sinon}]$};
+\node at (3.5,-1.45) {séquence 1};
+\node at (3.5,-3.45) {séquence 2};
+\node[right] at (7.2,-1.45) {fragment alternatif};
 \end{tikzpicture}}
 
 \newcommand{\TLCodeurIncremental}{%
 \begin{tikzpicture}[>=Latex]
-\draw[thick] (0,0) circle (1.25);
-\foreach \a in {0,30,...,330}{\draw[thick] (0,0)--(\a:1.25);}
-\draw[fill=white] (0,0) circle (.45);
-\node[right] at (1.6,.35) {voie A};
-\node[right] at (1.6,-.35) {voie B};
-\draw[->] (1.45,.35)--(1,.35);
-\draw[->] (1.45,-.35)--(1,-.35);
+\draw[thick] (0,0) circle (1.45);
+\foreach \a in {0,22.5,...,337.5}{\draw[thick] (\a:.7)--(\a:1.45);}
+\draw[fill=white] (0,0) circle (.55);
+\draw[->,very thick,TLLogicBlue] (1.7,.45)--(.9,.45) node[pos=0,left]{voie A};
+\draw[->,very thick,TLLogicOrange] (1.7,-.2)--(.9,-.2) node[pos=0,left]{voie B};
+\draw[->,very thick,TLLogicGreen] (1.7,-.85)--(.55,-.85) node[pos=0,left]{index Z};
+\node[below=8mm] at (0,-1.45) {$N$ périodes par tour};
+\end{tikzpicture}}
+
+\newcommand{\TLChronogrammeCodeur}{%
+\begin{tikzpicture}[x=8mm,y=7mm,>=Latex]
+\draw[->] (0,0)--(11,0) node[right]{$t$};
+\node[left] at (0,3){A}; \node[left] at (0,1.5){B}; \node[left] at (0,.35){Z};
+\draw[thick,TLLogicBlue] (0,2.6)--(1,2.6)--(1,3.4)--(3,3.4)--(3,2.6)--(5,2.6)--(5,3.4)--(7,3.4)--(7,2.6)--(9,2.6)--(9,3.4)--(10.5,3.4);
+\draw[thick,TLLogicOrange] (0,1.1)--(2,1.1)--(2,1.9)--(4,1.9)--(4,1.1)--(6,1.1)--(6,1.9)--(8,1.9)--(8,1.1)--(10,1.1)--(10,1.9)--(10.5,1.9);
+\draw[thick,TLLogicGreen] (0,.15)--(.5,.15)--(.5,.75)--(1,.75)--(1,.15)--(10.5,.15);
+\draw[dashed] (1,0)--(1,3.7);
+\node[below] at (5,-.35){le déphasage de A et B donne le sens};
+\end{tikzpicture}}
+
+\newcommand{\TLCodeurAbsolu}{%
+\begin{tikzpicture}[scale=.9]
+\draw[thick] (0,0) circle (1.6);
+\draw[thick] (0,0) circle (1.2);
+\draw[thick] (0,0) circle (.8);
+\draw[thick] (0,0) circle (.4);
+\foreach \a in {0,45,...,315}{\draw[gray] (0,0)--(\a:1.6);}
+\foreach \a in {0,90,180,270}{\fill[TLLogicBlue!35] (\a:.4) -- (\a:.8) arc[start angle=\a,end angle=\a+45,radius=.8] -- (\a+45:.4) arc[start angle=\a+45,end angle=\a,radius=.4];}
+\node[right=20mm] at (0,.65) {une piste par bit};
+\node[right=20mm] at (0,0) {code Gray : une seule transition};
+\node[right=20mm] at (0,-.65) {$2^n$ positions pour $n$ pistes};
 \end{tikzpicture}}
 
 \newcommand{\TLModeleOSI}{%
-\begin{tikzpicture}
-\foreach \i/\t in {1/Physique,2/Liaison,3/Réseau,4/Transport,5/Session,6/Présentation,7/Application}{
-\node[draw,minimum width=36mm,minimum height=6.5mm] at (0,.7*\i) {\i\ -- \t};}
+\begin{tikzpicture}[node distance=0mm]
+\foreach \i/\t/\c in {7/Application/TLLogicOrangeBack,6/Présentation/TLLogicOrangeBack,5/Session/TLLogicOrangeBack,4/Transport/TLLogicBlueBack,3/Réseau/TLLogicBlueBack,2/Liaison/TLLogicGreenBack,1/Physique/TLLogicGreenBack}{%
+\node[draw,minimum width=48mm,minimum height=7mm,fill=\c] (c\i) at (0,.75*\i) {\i\ -- \t};}
+\draw[decorate,decoration={brace,amplitude=5pt}] (2.8,.75)--(2.8,2.25) node[midway,right=6pt]{support et accès};
+\draw[decorate,decoration={brace,amplitude=5pt}] (2.8,3)--(2.8,5.25) node[midway,right=6pt]{services de communication};
+\end{tikzpicture}}
+
+\newcommand{\TLTopologiesReseau}{%
+\begin{tikzpicture}[>=Latex,station/.style={draw,circle,minimum size=5mm,inner sep=0pt}]
+\begin{scope}[xshift=-4.5cm]
+\node[station] (c) at (0,0) {};
+\foreach \a in {0,72,...,288}{\node[station] (n\a) at (\a:1.35) {}; \draw (c)--(n\a);}
+\node at (0,-1.9){étoile};
+\end{scope}
+\begin{scope}[xshift=-1.5cm]
+\foreach \a in {0,72,...,288}{\node[station] (r\a) at (\a:1.35) {};}
+\draw (r0)--(r72)--(r144)--(r216)--(r288)--cycle;
+\node at (0,-1.9){anneau};
+\end{scope}
+\begin{scope}[xshift=1.5cm]
+\draw[thick] (-1.35,0)--(1.35,0);
+\foreach \x in {-1,-.5,0,.5,1}{\node[station] at (\x,.75) {}; \draw (\x,0)--(\x,.75);}
+\node at (0,-1.9){bus};
+\end{scope}
+\begin{scope}[xshift=4.5cm]
+\foreach \a in {0,72,...,288}{\node[station] (m\a) at (\a:1.35) {};}
+\foreach \a/\b in {0/72,0/144,0/216,72/144,72/288,144/216,216/288}{\draw (m\a)--(m\b);}
+\node at (0,-1.9){maillée};
+\end{scope}
+\end{tikzpicture}}
+
+\newcommand{\TLChaineTransmission}{%
+\begin{tikzpicture}[>=Latex,node distance=8mm,
+  bloc/.style={draw,rounded corners,minimum width=24mm,minimum height=10mm,align=center}]
+\node[bloc] (s) {Source};
+\node[bloc,right=of s] (e) {Émetteur\\codage};
+\node[bloc,right=of e] (c) {Canal\\support};
+\node[bloc,right=of c] (r) {Récepteur\\décodage};
+\node[bloc,right=of r] (d) {Destinataire};
+\draw[->,thick] (s)--(e);
+\draw[->,thick] (e)--node[above]{signal adapté}(c);
+\draw[->,thick] (c)--node[above]{signal bruité}(r);
+\draw[->,thick] (r)--(d);
+\draw[->,TLLogicRed] ([yshift=7mm]c.north)--++(0,8mm) node[above]{bruit};
+\end{tikzpicture}}
+
+\newcommand{\TLTrameSerie}{%
+\begin{tikzpicture}[x=7mm,y=7mm]
+\draw[->] (0,0)--(13,0) node[right]{$t$};
+\foreach \x/\lab/\fillcol in {0/Repos/gray!15,1/Start/TLLogicRedBack,2/$b_0$/TLLogicBlueBack,3/$b_1$/TLLogicBlueBack,4/$b_2$/TLLogicBlueBack,5/$b_3$/TLLogicBlueBack,6/$b_4$/TLLogicBlueBack,7/$b_5$/TLLogicBlueBack,8/$b_6$/TLLogicBlueBack,9/$b_7$/TLLogicBlueBack,10/Parité/TLLogicOrangeBack,11/Stop/TLLogicGreenBack,12/Repos/gray!15}{%
+\fill[\fillcol] (\x,.25) rectangle ++(1,1);
+\draw (\x,.25) rectangle ++(1,1);
+\node[rotate=90,font=\scriptsize] at (\x+.5,.75){\lab};}
+\node at (6.5,1.7){trame asynchrone 8 bits, parité, 1 stop};
+\end{tikzpicture}}
+
+\newcommand{\TLMecanismeCRC}{%
+\begin{tikzpicture}[>=Latex,node distance=9mm,
+  bloc/.style={draw,rounded corners,minimum width=27mm,minimum height=10mm,align=center}]
+\node[bloc] (d) {Données\\$P(X)$};
+\node[bloc,right=of d] (c) {Calcul CRC\\division par $G(X)$};
+\node[bloc,right=of c] (t) {Trame\\données + reste};
+\node[bloc,right=of t] (v) {Vérification\\reste nul ?};
+\draw[->,thick] (d)--(c);
+\draw[->,thick] (c)--(t);
+\draw[->,thick] (t)--(v);
 \end{tikzpicture}}
