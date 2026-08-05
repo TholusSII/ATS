@@ -4,8 +4,7 @@ on:
   push:
     paths:
       - '12-RDM/Cours/**'
-      - 'Style/TLRDM.sty'
-      - 'Style/TLCours.sty'
+      - 'Style/**'
       - '.github/workflows/compile-course12.yml'
   workflow_dispatch:
 
@@ -14,13 +13,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Compiler le document
-        uses: xu-cheng/latex-action@v3
+
+      - name: Compiler le cours 12
+        uses: xu-cheng/latex-action@v4
         with:
           root_file: 00_RDM.tex
           working_directory: 12-RDM/Cours
           latexmk_use_xelatex: false
-          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+          extra_system_packages: git
+          pre_compile: |
+            rm -rf /tmp/kaobook
+            git clone --depth 1 https://github.com/fmarotta/kaobook.git /tmp/kaobook
+        env:
+          TEXINPUTS: ".:/tmp/kaobook//:"
+
       - name: Publier le PDF
         uses: actions/upload-artifact@v4
         with:
