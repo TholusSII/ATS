@@ -1,0 +1,322 @@
+% ============================================================================
+% COURS 13 — MACHINES ASYNCHRONES ET SYNCHRONES
+% Partie A : triphasé, onduleur et généralités
+% Source : 17-MAS_MS.docx
+% ============================================================================
+
+\newcommand{\TLMACheck}{\ensuremath{\square}}
+\newcommand{\TLMAImage}[2][.78\linewidth]{%
+  \IfFileExists{pandoc/media/#2}{%
+    \begin{center}\includegraphics[width=#1]{pandoc/media/#2}\end{center}%
+  }{}%
+}
+\newcommand{\TLMAInlineImage}[2][.30\linewidth]{%
+  \IfFileExists{pandoc/media/#2}{\includegraphics[width=#1]{pandoc/media/#2}}{}%
+}
+
+\begin{TLMachineMethod}{Objectifs du cours}
+Donner les démarches et les outils nécessaires à l'étude des machines alternatives : réseau triphasé, onduleur, machine asynchrone, machine synchrone et commande à vitesse variable.
+\end{TLMachineMethod}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}p{2.0cm}X c}
+\toprule
+Je connais & Compétences et connaissances attendues & \\
+\midrule
+& La relation entre tension simple et tension composée et la définition d'un système triphasé équilibré. & \TLMACheck\\
+& Les représentations vectorielle et complexe d'une grandeur sinusoïdale ainsi que les impédances de base. & \TLMACheck\\
+& Les puissances active, réactive et apparente et le théorème de Boucherot. & \TLMACheck\\
+& Les couplages étoile et triangle d'une machine triphasée. & \TLMACheck\\
+& La vitesse de synchronisme, le glissement, le bilan de puissance et le couple d'une MAS. & \TLMACheck\\
+& Le modèle et le diagramme de Behn--Eschenburg d'une machine synchrone. & \TLMACheck\\
+& Le principe d'une commande $V/f$ constante et de l'autopilotage d'une MS. & \TLMACheck\\
+\midrule
+Je sais & Déterminer les grandeurs de ligne, les puissances et le facteur de puissance d'un réseau triphasé. & \TLMACheck\\
+& Choisir le couplage d'une machine à partir de sa plaque signalétique et du réseau. & \TLMACheck\\
+& Déterminer vitesse de synchronisme, glissement, rendement et couple électromagnétique. & \TLMACheck\\
+& Tracer et exploiter un diagramme vectoriel et une caractéristique couple--vitesse. & \TLMACheck\\
+& Vérifier une contrainte thermique et sélectionner une loi de variation de vitesse. & \TLMACheck\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Distribution en triphasé et utilisation des complexes}
+\label{sec:masms-1}
+
+\subsection{Tensions simples et composées}
+
+Une installation triphasée comporte trois conducteurs de ligne identiques, appelés \textbf{phases}, et éventuellement un quatrième conducteur appelé \textbf{neutre}. Un système triphasé équilibré est formé de trois grandeurs sinusoïdales de même valeur efficace $V$, de même fréquence $f$ et déphasées de $120^\circ$.
+
+Pour le système direct :
+\[
+\begin{aligned}
+v_1(t)&=V\sqrt2\sin(\omega t),\\
+v_2(t)&=V\sqrt2\sin\left(\omega t-\frac{2\pi}{3}\right),\\
+v_3(t)&=V\sqrt2\sin\left(\omega t-\frac{4\pi}{3}\right),
+\end{aligned}
+\qquad \omega=2\pi f.
+\]
+
+Le système est équilibré lorsque :
+\[
+\boxed{v_1(t)+v_2(t)+v_3(t)=0.}
+\]
+
+La \textbf{tension simple} $v_i$ est mesurée entre la phase $i$ et le neutre. Sa valeur efficace est notée $V$. La \textbf{tension composée} $u_{ij}=v_i-v_j$ est mesurée entre deux phases et sa valeur efficace est notée $U$.
+
+\begin{center}\TLTriphasageSimpleCompose\end{center}
+
+Pour un réseau équilibré :
+\[
+\boxed{U=\sqrt3\,V.}
+\]
+Ainsi, dans un réseau noté $230/400\ \mathrm V$, la tension simple vaut $230\ \mathrm V$ et la tension composée $400\ \mathrm V$.
+
+\TLMAImage[.56\linewidth]{image5.png}
+\TLMAImage[.50\linewidth]{image7.png}
+
+\begin{TLMachineExercise}{Tensions d'un réseau triphasé}
+Un réseau est annoncé $230/400\ \mathrm V$. Déterminer les valeurs efficaces des tensions phase--neutre et phase--phase. Représenter les trois tensions simples puis la tension composée $\underline U_{12}$.
+\end{TLMachineExercise}
+
+\subsection{Représentation vectorielle et complexe}
+
+Une grandeur sinusoïdale
+\[
+s(t)=S\sqrt2\sin(\omega t+\varphi)
+\]
+est représentée par le complexe :
+\[
+\boxed{\underline S=S\,e^{j\varphi}.}
+\]
+La norme est la valeur efficace, directement mesurable, et l'argument est la phase par rapport à une grandeur choisie comme référence.
+
+\begin{center}\TLTriphasageVectoriel\end{center}
+
+La représentation de Fresnel transforme les équations différentielles en équations algébriques. Pour les dipôles de base :
+\[
+\underline Z_R=R,
+\qquad
+\underline Z_L=jL\omega,
+\qquad
+\underline Z_C=\frac{1}{jC\omega}.
+\]
+Les associations série et parallèle s'étudient respectivement par addition des impédances et des admittances.
+
+\TLMAImage[.48\linewidth]{image11.png}
+\TLMAImage[.38\linewidth]{image14.png}
+
+\subsection{Puissances active, réactive et apparente}
+
+Pour un récepteur monophasé :
+\[
+P=UI\cos\varphi,
+\qquad
+Q=UI\sin\varphi,
+\qquad
+S=UI,
+\qquad
+S^2=P^2+Q^2.
+\]
+
+Pour un récepteur triphasé équilibré, avec $U$ tension composée et $I$ courant de ligne :
+\[
+\boxed{P=\sqrt3\,UI\cos\varphi,}
+\qquad
+\boxed{Q=\sqrt3\,UI\sin\varphi,}
+\qquad
+\boxed{S=\sqrt3\,UI.}
+\]
+
+Le facteur de puissance vaut :
+\[
+f_p=\frac{P}{S}.
+\]
+Lorsque les tensions et courants sont sinusoïdaux, $f_p=\cos\varphi$.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}l c c X}
+\toprule
+Comportement & Déphasage & Puissance réactive & Interprétation \\
+\midrule
+Résistif & $\varphi=0$ & $Q=0$ & courant en phase avec la tension.\\
+Inductif & $0<\varphi\leq\pi/2$ & $Q>0$ & courant en retard.\\
+Capacitif & $-\pi/2\leq\varphi<0$ & $Q<0$ & courant en avance.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Pour les dipôles idéaux :
+\[
+\begin{array}{c|c|c}
+\text{résistance} & \text{inductance} & \text{condensateur}\\ \hline
+P=RI^2=U^2/R & P=0 & P=0\\
+Q=0 & Q=L\omega I^2=U^2/(L\omega) & Q=-C\omega U^2=-I^2/(C\omega)
+\end{array}
+\]
+
+Le \textbf{théorème de Boucherot} indique que, pour des grandeurs sinusoïdales de même fréquence, les puissances actives et réactives totales sont les sommes algébriques des puissances de chaque récepteur.
+
+\begin{TLMachineWarning}{Machine synchrone et puissance réactive}
+Selon son excitation, une machine synchrone peut présenter un comportement inductif ou capacitif. Surexcitée, elle peut fournir de la puissance réactive et être utilisée comme compensateur synchrone.
+\end{TLMachineWarning}
+
+\begin{TLMachineExercise}{Puissances en triphasé}
+Un réseau $230/400\ \mathrm V$, $50\ \mathrm{Hz}$ alimente un récepteur triphasé constitué par phase d'une résistance $R=20\ \Omega$ et d'une inductance $L=1\ \mathrm H$. Déterminer $\underline Z$, le courant de ligne, $P$, $Q$, $S$ et le facteur de puissance.
+\end{TLMachineExercise}
+
+\section{Onduleur triphasé}
+\label{sec:masms-2}
+
+Pour modifier la vitesse d'une MAS ou d'une MS, il faut agir sur la fréquence d'alimentation. L'\textbf{onduleur triphasé} recrée un système triphasé à partir d'une tension continue, appelée \textbf{bus continu}, fournie par une batterie ou par un redresseur.
+
+\begin{center}\TLOnduleurTriphas\end{center}
+
+Il comporte trois bras. Dans chaque bras, les deux interrupteurs sont commandés de manière complémentaire afin d'éviter le court-circuit du bus continu. La commande fixe la fréquence du fondamental et sa valeur efficace.
+
+\TLMAImage[.70\linewidth]{image17.png}
+\TLMAImage[.72\linewidth]{image18.png}
+
+Une commande en créneaux produit des harmoniques de basse fréquence. Une modulation de largeur d'impulsions, ou \textbf{MLI}, repousse les premiers harmoniques autour de la fréquence de porteuse. Les inductances de la machine jouent alors le rôle d'un filtre passe-bas et le courant reste presque sinusoïdal.
+
+\begin{center}
+\begin{tabular}{cc}
+\TLMAInlineImage[.42\linewidth]{image21.png} & \TLMAInlineImage[.42\linewidth]{image22.png}
+\end{tabular}
+\end{center}
+\TLMAImage[.72\linewidth]{image23.png}
+
+La puissance active moyenne est transportée par le fondamental de la tension et du courant. Pour une phase :
+\[
+P_\varphi=V_1 I_1\cos\varphi_1,
+\]
+et pour les trois phases équilibrées :
+\[
+P=3V_1I_1\cos\varphi_1.
+\]
+
+\begin{TLMachineExercise}{Étude d'un onduleur}
+À partir des formes d'onde de la tension $v_{AN}$ et du courant $i_a$ :
+\begin{enumerate}
+  \item identifier un bras d'onduleur et justifier la complémentarité de ses commandes ;
+  \item déterminer la fréquence du fondamental et la valeur efficace de sa première harmonique ;
+  \item expliquer pourquoi le courant est presque sinusoïdal ;
+  \item déterminer $P$ et $Q$ à partir du fondamental de la tension et du courant.
+\end{enumerate}
+\end{TLMachineExercise}
+
+\section{Généralités sur les machines alternatives}
+\label{sec:masms-3}
+
+\subsection{Constitution d'une machine triphasée}
+
+Une machine alternative triphasée, asynchrone ou synchrone, comporte :
+\begin{itemize}
+  \item un \textbf{stator}, partie fixe, portant trois enroulements décalés de $120^\circ$ électriques ;
+  \item un \textbf{rotor}, partie tournante : cage d'écureuil ou bobinage pour une MAS, aimants permanents ou enroulement d'excitation pour une MS ;
+  \item une \textbf{plaque à bornes} à six bornes permettant le couplage des enroulements ;
+  \item une \textbf{plaque signalétique} donnant les conditions nominales d'utilisation.
+\end{itemize}
+
+\TLMAImage[.42\linewidth]{image28.jpeg}
+
+\subsection{Création du champ tournant}
+
+Les trois enroulements statoriques, décalés dans l'espace de $120^\circ$ et alimentés par un système triphasé équilibré, créent un champ magnétique tournant de norme pratiquement constante.
+
+\begin{center}\TLChampTournant\end{center}
+
+\paragraph{Théorème de Leblanc.}
+Un courant sinusoïdal parcourant une bobine fixe peut être remplacé par deux champs tournants de même amplitude, tournant en sens opposés à la vitesse $\Omega=\omega/p$.
+
+\paragraph{Théorème de Ferraris.}
+Trois courants triphasés équilibrés parcourant trois bobines décalées de $120^\circ$ créent un champ tournant unique, de vitesse constante :
+\[
+\boxed{\Omega_s=\frac{\omega}{p}.}
+\]
+
+Pour une MS, le rotor s'accroche au champ et tourne exactement à sa vitesse. Pour une MAS, les courants rotoriques induits produisent un couple de poursuite : le rotor tourne à une vitesse différente de celle du champ.
+
+\TLMAImage[.65\linewidth]{image30.png}
+
+\subsection{Vitesse de synchronisme}
+
+Avec $p$ paires de pôles et une alimentation de fréquence $f$ :
+\[
+\boxed{\Omega_s=\frac{2\pi f}{p}\ \mathrm{rad\,s^{-1}},}
+\qquad
+\boxed{n_s=\frac{f}{p}\ \mathrm{tr\,s^{-1}},}
+\qquad
+\boxed{N_s=\frac{60f}{p}\ \mathrm{tr\,min^{-1}}.}
+\]
+
+\begin{TLMachineExercise}{Pôles et vitesse de synchronisme}
+Déterminer :
+\begin{enumerate}
+  \item la vitesse de synchronisme d'une machine tétrapolaire alimentée à $50\ \mathrm{Hz}$ ;
+  \item celle d'une machine bipolaire alimentée à $100\ \mathrm{Hz}$ ;
+  \item le nombre de paires de pôles d'une MS tournant à $2400\ \mathrm{tr\,min^{-1}}$ sous $80\ \mathrm{Hz}$ ;
+  \item le nombre de paires de pôles d'une MAS tournant à $950\ \mathrm{tr\,min^{-1}}$ sous $50\ \mathrm{Hz}$.
+\end{enumerate}
+\end{TLMachineExercise}
+
+\subsection{Plaque signalétique et couplages}
+
+La plaque signalétique précise notamment l'indice de protection, les tensions et courants nominaux, la fréquence, la vitesse nominale, le facteur de puissance et la puissance utile mécanique.
+
+La plus petite tension portée sur la plaque correspond à la tension nominale d'un enroulement. Le couplage doit donc être choisi pour appliquer cette tension à chaque enroulement.
+
+\begin{center}\TLCouplagesEtoileTriangle\end{center}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}l X X}
+\toprule
+Couplage & Tension sur un enroulement & Courants \\
+\midrule
+Étoile $Y$ & tension simple $V=U/\sqrt3$ & courant d'enroulement égal au courant de ligne.\\
+Triangle $\Delta$ & tension composée $U$ & courant d'enroulement $J=I/\sqrt3$.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\TLMAImage[.66\linewidth]{image41.png}
+\TLMAImage[.32\linewidth]{image42.jpeg}
+
+\begin{TLMachineMethod}{Choisir le couplage}
+\begin{enumerate}
+  \item Lire la tension composée du réseau.
+  \item Lire les deux tensions de la plaque moteur ; la plus petite est la tension nominale d'un enroulement.
+  \item Choisir $Y$ si la tension composée du réseau est égale à la plus grande tension de la plaque.
+  \item Choisir $\Delta$ si elle est égale à la plus petite tension de la plaque.
+\end{enumerate}
+\end{TLMachineMethod}
+
+\begin{TLMachineExercise}{Couplage d'un moteur $400/690\ \mathrm V$}
+Déterminer le couplage sur un réseau $230/400\ \mathrm V$, puis sur un réseau $400/690\ \mathrm V$.
+\end{TLMachineExercise}
+
+\subsection{Puissances et couple thermique équivalent}
+
+Un récepteur triphasé équilibré est assimilable à trois récepteurs monophasés identiques. Les puissances sont donc données par les relations établies à la section~\ref{sec:masms-1}.
+
+Lorsqu'un moteur délivre un couple cyclique, sa capacité thermique est évaluée par le \textbf{couple thermique équivalent} :
+\[
+\boxed{C_{th}=\sqrt{\frac{1}{T}\int_0^T C^2(t)\,\mathrm dt}.}
+\]
+Pour un cycle à couples constants par morceaux :
+\[
+\boxed{C_{th}=\sqrt{\frac{\sum_i C_i^2t_i}{\sum_i t_i}}.}
+\]
+La condition de choix est :
+\[
+\boxed{C_{th}\leq C_N.}
+\]
+
+\TLMAImage[.72\linewidth]{image48.png}
+
+\begin{TLMachineWarning}{Dimensionnement thermique}
+Le couple maximal admissible pendant un court instant et le couple nominal permanent sont deux caractéristiques différentes. Un cycle doit être vérifié par le couple thermique équivalent et par les surcharges maximales admissibles.
+\end{TLMachineWarning}
