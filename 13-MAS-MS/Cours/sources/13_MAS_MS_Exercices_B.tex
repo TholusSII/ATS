@@ -1,0 +1,166 @@
+% ============================================================================
+% COURS 13 — EXERCICES, PARTIE B
+% Source : 17-MAS_MS.docx
+% ============================================================================
+
+\subsection{Télésiège débrayable six places}
+
+\textit{Source : concours CCP TSI 2016.}
+
+\TLMAImage[.70\linewidth]{image97.jpeg}
+
+Le télésiège « Biollay » possède deux moteurs de secours asynchrones triphasés de $75\ \mathrm{kW}$. Ils entraînent la poulie motrice de rayon $R_p=2{,}45\ \mathrm m$ par un premier réducteur de rapport $r_1=32{,}7$, puis un engrenage comportant une couronne de $220$ dents et un pignon de $16$ dents.
+
+Un moteur possède les caractéristiques :
+\[
+U=400\ \mathrm V,\quad I=133\ \mathrm A,\quad f=50\ \mathrm{Hz},\quad
+N_N=2978\ \mathrm{tr\,min^{-1}},\quad \eta=93{,}8\,\%,\quad \cos\varphi=0{,}87.
+\]
+
+\begin{enumerate}
+  \item Exprimer le couple d'un moteur en fonction des tensions du câble $T_A$, $T_B$, du rayon de la poulie et des rapports de transmission. Calculer ce couple au début puis à la fin de l'évacuation.
+  \item Déterminer $N_s$, $p$ et le glissement nominal.
+  \item Le modèle rotorique est défini par $V_1=230\ \mathrm V$, $R_2'=10{,}5\ \mathrm{m\Omega}$ et $X_2'=0{,}23\ \Omega$. Exprimer le courant $I_2'$, la puissance transmise et le couple électromagnétique.
+  \item Déterminer le glissement $g_M$ du couple maximal.
+  \item En mode dégradé, un seul moteur doit fournir $420\ \mathrm{N\,m}$ au début et $120\ \mathrm{N\,m}$ à la fin. Calculer les glissements et les vitesses du câble correspondantes.
+  \item Vérifier que la vitesse reste entre $0{,}8$ et $1{,}8\ \mathrm{m\,s^{-1}}$ et valider le choix du moteur.
+\end{enumerate}
+
+\subsection{Véhicule autoguidé hospitalier}
+
+\textit{Source : concours ATS 2014.}
+
+\TLMAImage[.68\linewidth]{image100.png}
+
+Le véhicule autonome à guidage laser est entraîné par un moteur-roue asynchrone. La roue a un rayon $r=105\ \mathrm{mm}$ et le réducteur possède un rapport $r_1$. La vitesse de translation doit pouvoir varier entre $0{,}1$ et $1{,}2\ \mathrm{m\,s^{-1}}$.
+
+Le moteur, couplé en étoile, possède les caractéristiques nominales :
+\[
+f_s=110\ \mathrm{Hz},\quad U_n=14{,}5\ \mathrm V,\quad
+N_n=3100\ \mathrm{tr\,min^{-1}},\quad P_u=850\ \mathrm W,
+\]
+\[
+\cos\varphi=0{,}79,\qquad \eta_n=0{,}76.
+\]
+La source continue du variateur vaut $24\ \mathrm V$.
+
+\begin{enumerate}
+  \item Établir la relation entre $N_s$, $f$ et $p$, puis déterminer $p$ et $N_s$.
+  \item Calculer le glissement nominal et le couple nominal.
+  \item Établir la relation entre la vitesse du véhicule, la fréquence et le glissement.
+  \item Pour $g=6\,\%$, mettre la loi entrée--sortie sous la forme $V_A=Kf$ et déterminer la plage de fréquence nécessaire.
+  \item La consigne de vitesse du variateur est codée sur un mot signé de 16 bits avec un pas de $0{,}25\ \mathrm{tr\,min^{-1}}$. Déterminer le mot de commande correspondant à $2620\ \mathrm{tr\,min^{-1}}$.
+  \item La commande maintient $U/f$ constant. Déterminer la plage de tension efficace nécessaire et vérifier sa compatibilité avec la batterie.
+\end{enumerate}
+
+\subsection{Dépose bagage automatique}
+
+\textit{Source : concours Centrale--Supélec TSI 2018.}
+
+Le basculeur d'un système de dépose bagage automatique est entraîné par une MAS triphasée, un variateur et un réducteur de rapport $1/107{,}7$. La plaque indique :
+\[
+P_u=730\ \mathrm W,\quad 230/400\ \mathrm V,\quad f=50\ \mathrm{Hz},\quad
+N_N=1430\ \mathrm{tr\,min^{-1}},\quad C_N=4{,}9\ \mathrm{N\,m},
+\]
+avec $C_D/C_N=1{,}16$ et $C_{max}/C_N=2{,}6$.
+
+Le modèle simplifié comporte $R/g$ en série avec $X=L\omega$.
+
+\begin{enumerate}
+  \item Déterminer la tension d'un enroulement, le couplage, $p$ et $N_s$.
+  \item Montrer que :
+  \[
+  C_m=\frac{3V^2}{\Omega_s}\frac{R/g}{(R/g)^2+X^2}.
+  \]
+  \item Déterminer $g_{max}$ et $C_{max}$, puis calculer $L$ à partir du rapport $C_{max}/C_N$.
+  \item Utiliser le couple de démarrage pour déterminer la plus petite valeur admissible de $R$.
+  \item Le couple résistant est assimilé à $C_r=K_r\omega_{mot}$. Identifier $K_r$ à partir du chronogramme fourni.
+  \item Dans la partie utile, utiliser $C_m=(p/\omega)(3V^2/R)g$ et $V/f=\mathrm{cte}$ pour déterminer la fréquence imposant $135{,}3\ \mathrm{rad\,s^{-1}}$.
+  \item Comparer ce résultat avec la résolution numérique obtenue par minimisation de $C_m-C_r$.
+\end{enumerate}
+
+\TLMAImage[.70\linewidth]{image109.png}
+
+\subsection{Débourreuse de noyaux de fonderie}
+
+\textit{Source : concours Centrale--Supélec TSI 2009.}
+
+Deux moteurs asynchrones à balourds transmettent des vibrations à des culasses en aluminium afin de désagréger les noyaux de sable. La masse mise en mouvement vaut $4940\ \mathrm{kg}$ et l'accélération minimale imposée est $16\ \mathrm{m\,s^{-2}}$ entre $20$ et $25\ \mathrm{Hz}$.
+
+Chaque moteur possède :
+\[
+P_N=7{,}75\ \mathrm{kW},\quad I_N=13\ \mathrm A,\quad 230/400\ \mathrm V,\quad
+f=50\ \mathrm{Hz},\quad N_N=1440\ \mathrm{tr\,min^{-1}}.
+\]
+Le moment d'inertie ramené sur l'arbre vaut $J=0{,}33\ \mathrm{kg\,m^2}$ et le frottement visqueux $f_v=5\times10^{-2}\ \mathrm{N\,m\,s}$.
+
+\begin{enumerate}
+  \item Justifier le choix de deux moteurs à balourds et calculer l'action dynamique demandée à chacun.
+  \item Vérifier le choix d'un variateur de $20\ \mathrm{kW}$.
+  \item Après coupure de l'alimentation, établir et résoudre l'équation $J\dot\Omega+f_v\Omega=0$. Calculer le temps pour atteindre $1\,\%$ de la vitesse initiale et conclure sur la nécessité d'un freinage.
+  \item Déterminer le nombre de paires de pôles.
+  \item À partir du modèle comportant $L$, $\ell_{fr}$ et $R_r/g$, établir $P_{tr}$ puis le couple électromagnétique.
+  \item Exploiter l'essai au synchronisme, $V=230\ \mathrm V$, $Q=800\ \mathrm{var}$, pour déterminer $L$.
+  \item Exploiter l'essai rotor bloqué, $V_{cc}=76\ \mathrm V$, $I_{cc}=13\ \mathrm A$, $P_{cc}=350\ \mathrm W$, pour déterminer $R_r$ et $\ell_{fr}$.
+  \item Tracer $C(g)$ pour $-1\leq g\leq1$ et identifier les zones moteur et frein.
+\end{enumerate}
+
+\subsection{Tramway de Strasbourg}
+
+\textit{Source : concours troisième année ENS Cachan 2002.}
+
+\TLMAImage[.42\linewidth]{image117.jpeg}
+\TLMAImage[.75\linewidth]{image118.png}
+
+Une rame possède douze moteurs asynchrones de traction. Un moteur, couplé en étoile, est caractérisé par :
+\[
+U_N=585\ \mathrm V,\quad f_N=88\ \mathrm{Hz},\quad I_N=35{,}4\ \mathrm A,\quad
+\cos\varphi_N=0{,}732,
+\]
+\[
+N_s=2640\ \mathrm{tr\,min^{-1}},\qquad N_N=2610\ \mathrm{tr\,min^{-1}}.
+\]
+Le modèle simplifié utilise $R=0{,}138\ \Omega$, $L_t=2{,}38\ \mathrm{mH}$ et $L_M=26{,}55\ \mathrm{mH}$.
+
+\begin{enumerate}
+  \item Déterminer $p$, $g_N$, la puissance absorbée, $P_{tr}$, le couple nominal, les pertes Joule rotoriques et la puissance utile.
+  \item Établir le couple en fonction de $V$, $L_t$, $R$, $g$, $p$ et $\omega$.
+  \item Déterminer le glissement et la valeur du couple maximal.
+  \item Tracer $C(N)$ pour $0<N<2N_s$ et préciser les parties stables, moteur et génératrice.
+  \item Montrer qu'à faible glissement $C\simeq Kg$ avec $K=8972\ \mathrm{N\,m}$, puis calculer les vitesses pour $C=90\ \mathrm{N\,m}$ et $C=-90\ \mathrm{N\,m}$.
+  \item Expliquer l'inversion du sens de rotation et compléter les diagrammes des quatre quadrants mécaniques.
+\end{enumerate}
+
+\subsection{Table de radiologie D²RS}
+
+\textit{Source : concours ATS 2018.}
+
+La table radiologique est alimentée par le réseau triphasé $400\ \mathrm V$, $50\ \mathrm{Hz}$. Son mouvement de chariotage est perturbé par des instabilités à basse vitesse.
+
+Le modèle par phase comporte $R_1$, $L_1$, l'inductance de magnétisation $L_m$, puis la branche rotorique $R_2/g$ et $L_2$. Les essais conduisent aux valeurs retenues :
+\[
+L_m=0{,}382\ \mathrm H,\qquad L_2=29{,}4\ \mathrm{mH},\qquad R_2=9{,}08\ \Omega.
+\]
+
+\begin{enumerate}
+  \item À partir de la plaque signalétique, déterminer couplage, $p$, glissement, puissance absorbée, pertes et rendement nominal.
+  \item Exploiter l'essai à vide sous $230\ \mathrm V$, $Q_0=1322\ \mathrm{var}$ pour retrouver $L_m$.
+  \item Exploiter l'essai rotor bloqué sous $15\ \mathrm V$, $I=2{,}49\ \mathrm A$, $S=245\ \mathrm{VA}$ et $f_p=0{,}69$ pour retrouver $R_2$ et $L_2$.
+  \item Établir l'expression de $C_{em}$, déterminer $g_{max}$ et $C_{max}$.
+  \item Justifier la commande scalaire $V_1/f$ constante à partir du courant magnétisant.
+  \item Calculer la chute de tension statorique avec $R_1=0{,}85\ \Omega$ et $L_1=3{,}24\ \mathrm{mH}$.
+  \item Expliquer les instabilités à basse fréquence et proposer une commande vectorielle avec compensation des chutes statoriques.
+\end{enumerate}
+
+\subsection{Éolienne à génératrice synchrone}
+
+\textit{Source : CAPET SII 2010.}
+
+Une éolienne doit fournir au moins $5\ \mathrm{kW}$ au logement d'un camping. À $240\ \mathrm{tr\,min^{-1}}$, la génératrice synchrone débite $I=8{,}38\ \mathrm A$ avec un déphasage $\varphi=18^\circ$. La f.é.m. interne vaut $E=311\ \mathrm V$ à $f=48\ \mathrm{Hz}$. La puissance mécanique récupérée est $6{,}1\ \mathrm{kW}$.
+
+\begin{enumerate}
+  \item En convention générateur, écrire $\underline V_1$ en fonction de $\underline E$, $\underline I$, $r_1$, $L_1$ et $\omega$.
+  \item Construire le diagramme de Behn--Eschenburg et déterminer graphiquement $V_1$.
+  \item Calculer la puissance active triphasée fournie au réseau.
+  \item Vérifier la couverture du besoin de $5\ \mathrm{kW}$ et calculer le rendement de la génératrice.
+\end{enumerate}
