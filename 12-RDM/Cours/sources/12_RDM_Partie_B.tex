@@ -1,0 +1,270 @@
+% ============================================================================
+% COURS 12 — RÉSISTANCE DES MATÉRIAUX
+% Partie B : traction, flexion et déformée
+% Source : 16_Rdm_2026.docx
+% ============================================================================
+
+\section{Traction et compression}
+\label{sec:rdm-5}
+
+\subsection{Définition}
+
+Une poutre est sollicitée en \textbf{traction simple} lorsque les actions appliquées à ses extrémités se réduisent à deux forces égales, opposées et portées par la ligne moyenne. L'effort intérieur associé est l'\textbf{effort normal} $N$.
+
+\TLDiagrammeTraction
+
+Dans toute section droite :
+\[
+\left\{\mathcal T_{\mathrm{coh}}\right\}_G
+=\left\{\begin{array}{c}N\vec x\\\vec0\end{array}\right\}_G.
+\]
+
+Par convention :
+\[
+N>0\quad\text{en traction},
+\qquad
+N<0\quad\text{en compression}.
+\]
+
+\subsection{Contrainte normale}
+
+Sous l'hypothèse d'une répartition uniforme sur une section droite d'aire $S$ :
+\[
+N=\iint_S\sigma\,\mathrm dS,
+\qquad
+\boxed{\sigma=\frac{N}{S}.}
+\]
+
+La contrainte est positive en traction et négative en compression. Dans une zone comportant un accident géométrique, la contrainte maximale est évaluée avec un coefficient de concentration de contrainte $K_t$ :
+\[
+\sigma_{\max}=K_t\frac{|N|}{S_{\mathrm{nette}}}.
+\]
+
+\subsection{Condition de résistance}
+
+On note :
+\begin{itemize}
+  \item $R_e$ la limite d'élasticité du matériau ;
+  \item $s>1$ le coefficient de sécurité ;
+  \item $R_{pe}=R_e/s$ la résistance pratique à l'extension ;
+  \item $K_t$ le coefficient de concentration de contrainte.
+\end{itemize}
+
+La condition de résistance s'écrit :
+\[
+\boxed{\sigma_{\max}=K_t\frac{|N|}{S_{\mathrm{nette}}}
+\leq R_{pe}=\frac{R_e}{s}.}
+\]
+
+Le coefficient de sécurité effectif est :
+\[
+s_{\mathrm{eff}}=\frac{R_e}{\sigma_{\max}}.
+\]
+
+\subsection{Déformations longitudinales et transversales}
+
+Pour une poutre de longueur initiale $L_0$ et de longueur déformée $L$ :
+\[
+\Delta L=L-L_0,
+\qquad
+\boxed{\varepsilon_L=\frac{\Delta L}{L_0}.}
+\]
+
+Le coefficient de Poisson $\nu$ relie la déformation transversale à la déformation longitudinale :
+\[
+\boxed{\varepsilon_T=-\nu\varepsilon_L.}
+\]
+
+Pour l'acier, on utilise fréquemment $\nu\simeq0{,}3$.
+
+\subsection{Loi de Hooke}
+
+Dans le domaine élastique linéaire :
+\[
+\boxed{\sigma=E\varepsilon_L,}
+\]
+où $E$ est le module d'Young. On en déduit, pour une poutre prismatique soumise à un effort normal constant :
+\[
+\boxed{\Delta L=\frac{NL_0}{ES}.}
+\]
+
+Pour l'acier, $E$ est voisin de $210\,000\ \mathrm{MPa}$.
+
+\begin{center}
+\IfFileExists{pandoc/media/image43.png}{\includegraphics[width=.48\linewidth]{pandoc/media/image43.png}}{}
+\end{center}
+
+\begin{TLWarning}{Domaine de validité}
+La loi de Hooke ne décrit que le domaine élastique linéaire. Au-delà de la limite d'élasticité, la déformation devient en partie permanente et la superposition n'est plus applicable.
+\end{TLWarning}
+
+\subsection{Application guidée : tirant}
+
+\begin{TLMethod}{Dimensionner un tirant en acier}
+Un tirant de longueur $L=2\ \mathrm m$ supporte un effort normal de traction $N=5\,000\ \mathrm N$. Le matériau possède $R_e=300\ \mathrm{MPa}$ et $E=200\,000\ \mathrm{MPa}$. On retient $s=1{,}7$.
+
+\begin{enumerate}
+  \item La section minimale vérifie $N/S\leq R_e/s$, donc :
+  \[
+  S_{\min}=\frac{sN}{R_e}.
+  \]
+  \item Pour une section circulaire :
+  \[
+  d_{\min}=\sqrt{\frac{4S_{\min}}{\pi}}.
+  \]
+  \item L'allongement est ensuite calculé avec :
+  \[
+  \Delta L=\frac{NL}{ES}.
+  \]
+\end{enumerate}
+\end{TLMethod}
+
+\section{Flexion}
+\label{sec:rdm-6}
+
+\subsection{Définition et cinématique}
+
+Une poutre est soumise à de la \textbf{flexion pure} lorsque le torseur de cohésion se réduit à un moment fléchissant. En flexion simple, un effort tranchant accompagne le moment fléchissant.
+
+Sous l'hypothèse de Navier--Bernoulli, une section droite reste plane et normale à la ligne moyenne. Les fibres longitudinales situées d'un côté de la fibre neutre s'allongent, tandis que celles situées de l'autre côté se raccourcissent.
+
+Pour une courbure $1/\rho$ et une fibre située à l'ordonnée $y$ :
+\[
+\varepsilon_{xx}(y)=-\frac{y}{\rho}.
+\]
+
+Avec la loi de Hooke :
+\[
+\sigma_{xx}(y)=E\varepsilon_{xx}(y)=-E\frac{y}{\rho}.
+\]
+
+\TLDistributionContrainteFlexion
+
+\subsection{Contrainte normale de flexion}
+
+Le moment fléchissant est le moment de la répartition des contraintes normales :
+\[
+M_{fz}=\iint_S -y\sigma_{xx}(y)\,\mathrm dS.
+\]
+
+En introduisant le moment quadratique :
+\[
+I_{Gz}=\iint_S y^2\,\mathrm dS,
+\]
+on obtient :
+\[
+\boxed{\sigma_{xx}(y)=-\frac{M_{fz}}{I_{Gz}}y.}
+\]
+
+La relation moment--courbure est :
+\[
+\boxed{M_{fz}=\frac{E I_{Gz}}{\rho}.}
+\]
+
+La contrainte maximale est atteinte sur la fibre la plus éloignée de l'axe neutre :
+\[
+|\sigma_{\max}|=\frac{|M_{fz}|}{I_{Gz}}y_{\max}.
+\]
+
+En introduisant le module de flexion $W_z=I_{Gz}/y_{\max}$ :
+\[
+\boxed{|\sigma_{\max}|=\frac{|M_{fz}|}{W_z}.}
+\]
+
+\subsection{Condition de résistance}
+
+Avec un coefficient de concentration de contrainte $K_f$ :
+\[
+\boxed{K_f\frac{|M_{fz}|}{W_z}\leq R_{pe}=\frac{R_e}{s}.}
+\]
+
+Lorsque la fonction impose également une limite de déplacement, on vérifie :
+\[
+\boxed{|f_{\max}|\leq f_{\mathrm{limite}}.}
+\]
+
+\begin{TLWarning}{Résistance et rigidité}
+Le dimensionnement en flexion est gouverné soit par la contrainte maximale, soit par la flèche maximale. Le critère le plus contraignant dépend de la géométrie, du matériau et du cahier des charges.
+\end{TLWarning}
+
+\subsection{Équation différentielle de la déformée}
+
+Pour de petites rotations, la courbure est assimilée à la dérivée seconde de la déformée $y(x)$ :
+\[
+\frac{1}{\rho}\simeq y''(x).
+\]
+
+Avec la convention de signe retenue dans le problème :
+\[
+\boxed{E I_{Gz}\,y''(x)=M_{fz}(x).}
+\]
+
+L'intégration conduit successivement à la rotation et à la flèche :
+\[
+y'(x)=\int\frac{M_{fz}(x)}{EI_{Gz}}\,\mathrm dx+C_1,
+\]
+\[
+y(x)=\iint\frac{M_{fz}(x)}{EI_{Gz}}\,\mathrm dx^2+C_1x+C_2.
+\]
+
+Les constantes sont déterminées à partir des conditions aux limites :
+\begin{itemize}
+  \item encastrement en $x=0$ : $y(0)=0$ et $y'(0)=0$ ;
+  \item appui simple en $x=a$ : $y(a)=0$ ;
+  \item continuité en $x=a$ : $y_1(a)=y_2(a)$ et $y'_1(a)=y'_2(a)$.
+\end{itemize}
+
+\TLDiagrammeFlexion
+
+\subsection{Résultats classiques de déformée}
+
+Les formules ci-dessous supposent $E$ et $I_{Gz}$ constants.
+
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.55}
+\begin{tabularx}{\linewidth}{>{\bfseries}p{3.4cm} X X}
+\toprule
+Chargement & Moment fléchissant maximal & Flèche maximale \\
+\midrule
+Poutre sur deux appuis, charge ponctuelle $F$ au milieu &
+$\displaystyle |M_{\max}|=\frac{FL}{4}$ &
+$\displaystyle |f_{\max}|=\frac{FL^3}{48EI_{Gz}}$ \\
+Poutre sur deux appuis, charge répartie uniforme $q$ &
+$\displaystyle |M_{\max}|=\frac{qL^2}{8}$ &
+$\displaystyle |f_{\max}|=\frac{5qL^4}{384EI_{Gz}}$ \\
+Poutre encastrée, charge ponctuelle $F$ à l'extrémité &
+$\displaystyle |M_{\max}|=FL$ &
+$\displaystyle |f_{\max}|=\frac{FL^3}{3EI_{Gz}}$ \\
+Poutre encastrée, charge répartie uniforme $q$ &
+$\displaystyle |M_{\max}|=\frac{qL^2}{2}$ &
+$\displaystyle |f_{\max}|=\frac{qL^4}{8EI_{Gz}}$ \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{center}
+\begin{tabular}{cc}
+\IfFileExists{pandoc/media/image47.png}{\includegraphics[width=.42\linewidth]{pandoc/media/image47.png}}{} &
+\IfFileExists{pandoc/media/image50.png}{\includegraphics[width=.42\linewidth]{pandoc/media/image50.png}}{}\\[2mm]
+\IfFileExists{pandoc/media/image53.png}{\includegraphics[width=.42\linewidth]{pandoc/media/image53.png}}{} &
+\IfFileExists{pandoc/media/image56.png}{\includegraphics[width=.42\linewidth]{pandoc/media/image56.png}}{}
+\end{tabular}
+\end{center}
+
+\begin{TLMethod}{Résoudre un problème de flexion}
+\begin{enumerate}
+  \item Modéliser la poutre, les appuis et les charges.
+  \item Déterminer les réactions de liaison par le PFS.
+  \item Calculer $T_y(x)$ et $M_{fz}(x)$ sur chaque intervalle.
+  \item Tracer les diagrammes et localiser $|M_{fz}|_{\max}$.
+  \item Vérifier la contrainte maximale avec $\sigma=M_{fz}y/I_{Gz}$.
+  \item Intégrer $EI_{Gz}y''=M_{fz}$ et appliquer les conditions aux limites.
+  \item Vérifier le critère de flèche du cahier des charges.
+\end{enumerate}
+\end{TLMethod}
+
+\section{Sources}
+\label{sec:rdm-7}
+
+Ce cours a été élaboré à partir de documents industriels publics et d'activités pédagogiques de collègues de l'UPSTI. Les exercices de synthèse conservent les références indiquées dans le document d'origine, notamment Jérôme Letard et le concours commun PT-SI 2011.
