@@ -6,100 +6,25 @@
 \def\input@path{{../../../Style/}}
 \makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{TLRDM.sty}{\input{TLRDM.sty}}{}
+\IfFileExists{{TLRDM.sty}}{{\input{{TLRDM.sty}}}}{{}}
 \pagestyle{empty}
 \begin{document}
-\TLPosterTitre{Résistance des matériaux}{Poutres, contraintes, déformations et dimensionnement}
-\begin{multicols}{3}
-
-\begin{TLPosterBloc}{Objectifs}
-Vérifier qu'une pièce résiste aux sollicitations, que ses déformations restent admissibles et que sa stabilité est assurée.
+\TLPosterTitre{{Résistance des matériaux}}{{Fiche résumé éditable}}
+\begin{multicols}{2}
+\begin{TLPosterBloc}{Hypothèses}
+Poutres droites, petites déformations, Saint-Venant et Navier-Bernoulli.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Modèle poutre}
-Une poutre possède une longueur grande devant les dimensions de sa section. Sa ligne moyenne est décrite par une abscisse $x$ et une section droite $S$.
+\begin{TLPosterBloc}{Cohésion}
+La coupure fait apparaître le torseur des efforts intérieurs.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Hypothèses usuelles}
-Matériau homogène et isotrope, petites perturbations, principe de Saint-Venant et hypothèse de Navier--Bernoulli pour la flexion des poutres élancées.
+\begin{TLPosterBloc}{Traction}
+sigma = N/S et allongement gouverné par la loi de Hooke.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Torseur de cohésion}
-Une coupure en une section fait apparaître les efforts intérieurs : effort normal $N$, efforts tranchants $T_y,T_z$, moment de torsion $M_t$ et moments fléchissants $M_{fy},M_{fz}$.
+\begin{TLPosterBloc}{Flexion}
+sigma = -M_f y/I et courbure liée à M_f/(EI).
 \end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Sollicitations simples}
-Traction-compression : $N$. Cisaillement : $T$. Torsion : $M_t$. Flexion : $M_f$. Une sollicitation composée associe plusieurs composantes.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Contrainte et déformation}
-La contrainte traduit l'intensité des efforts internes. La déformation normale vaut $\varepsilon=\Delta L/L$ et la distorsion est notée $\gamma$.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Loi de Hooke}
-Dans le domaine élastique linéaire :
-\[
-\sigma=E\varepsilon,\qquad \tau=G\gamma,
-\]
-où $E$ est le module de Young et $G$ le module de cisaillement.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Traction-compression}
-Pour une section sollicitée uniformément :
-\[
-\sigma=\frac{N}{S},\qquad \Delta L=\frac{NL}{ES}.
-\]
-Le signe de $N$ distingue traction et compression.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Cisaillement simple}
-Une estimation moyenne est donnée par
-\[
-\tau_{\mathrm{moy}}=\frac{T}{S}.
-\]
-La répartition réelle dépend de la géométrie de la section.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Torsion d'une section circulaire}
-Pour un arbre circulaire :
-\[
-\tau(r)=\frac{M_t r}{J},\qquad
-\theta=\frac{M_t L}{GJ},
-\]
-où $J$ est le moment quadratique polaire.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Flexion simple}
-La contrainte normale varie linéairement dans la section :
-\[
-\sigma=-\frac{M_f y}{I}.
-\]
-Elle est maximale sur les fibres les plus éloignées de la fibre neutre.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Déformée en flexion}
-Pour de petites déformations :
-\[
-EI\,y''(x)=M_f(x).
-\]
-Deux intégrations, complétées par les conditions aux limites, donnent rotation et flèche.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Moments quadratiques}
-Le moment quadratique $I$ dépend de la géométrie et de l'axe considéré. Le théorème de Huygens permet de transporter un axe : $I=I_G+Sd^2$.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Critères de résistance}
-En sollicitation simple, vérifier $|\sigma_{\max}|\leq \sigma_{\mathrm{adm}}$ ou $|\tau_{\max}|\leq \tau_{\mathrm{adm}}$. En état multiaxial, utiliser un critère adapté comme Tresca ou von Mises.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Rigidité et sécurité}
-Le dimensionnement doit satisfaire à la fois la résistance, la rigidité et un coefficient de sécurité tenant compte des incertitudes, dispersions et conditions d'usage.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Démarche d'étude}
-Modéliser la poutre, déterminer les actions extérieures, calculer les réactions, établir le torseur de cohésion, tracer les diagrammes, calculer contraintes et déformations, puis conclure sur les critères.
-\end{TLPosterBloc}
-
 \end{multicols}
 \end{document}

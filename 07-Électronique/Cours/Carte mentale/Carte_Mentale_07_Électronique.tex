@@ -6,30 +6,13 @@
 \def\input@path{{../../../Style/}}
 \makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{TLElectronique.sty}{\input{TLElectronique.sty}}{}
-\IfFileExists{Notations_Elec/Notations_Elec.sty}{\input{Notations_Elec/Notations_Elec.sty}}{}
+\IfFileExists{{TLElectronique.sty}}{{\input{{TLElectronique.sty}}}}{{}}
 \pagestyle{empty}
 \begin{document}
-\begin{TLCarteMentale}{Électronique}
-\TLBranche{Tension}{Différence de potentiel entre deux points ; fixer l'orientation de $u_{AB}$.}
-\TLBranche{Courant}{Débit de charges ; fixer un sens positif avant d'écrire les lois.}
-\TLBranche{Puissance}{$p=ui$ en convention récepteur ; distinguer énergie reçue et fournie.}
-\TLBranche{Nœuds}{La somme algébrique des courants en un nœud est nulle.}
-\TLBranche{Mailles}{La somme algébrique des tensions le long d'une maille est nulle.}
-\TLBranche{Résistance}{$u=Ri$ ; associations série et parallèle.}
-\TLBranche{Condensateur}{$i=C\,du/dt$ ; tension continue ; stockage électrostatique.}
-\TLBranche{Inductance}{$u=L\,di/dt$ ; courant continu ; stockage magnétique.}
-\TLBranche{Premier ordre}{$x(t)=x_\infty+[x(0^+)-x_\infty]e^{-t/\tau}$.}
-\TLBranche{Conditions initiales}{Déterminer $u_C(0^+)$ et $i_L(0^+)$ par continuité.}
-\TLBranche{Régime permanent}{Remplacer le condensateur par un circuit ouvert et l'inductance par un court-circuit en continu établi.}
-\TLBranche{Thévenin}{Source de tension idéale en série avec une résistance équivalente.}
-\TLBranche{Norton}{Source de courant idéale en parallèle avec la même résistance équivalente.}
-\TLBranche{Diode}{Composant unidirectionnel ; états passant et bloqué.}
-\TLBranche{Transistor}{Interrupteur commandé ; blocage, conduction et limites de fonctionnement.}
-\TLBranche{Sinusoïdal}{Utiliser les impédances complexes $R$, $j\omega L$ et $1/(j\omega C)$.}
-\TLBranche{Filtrage}{Étudier gain, phase, coupure et comportement basse/haute fréquence.}
-\TLBranche{Puissances AC}{$P=UI\cos\varphi$, $Q=UI\sin\varphi$, $S=UI$.}
-\TLBranche{Méthode}{Schéma, conventions, lois, résolution, unités et contrôle physique.}
-\TLBranche{Validation}{Vérifier continuités, limites, signes, dimensions et ordre de grandeur.}
+\begin{TLCarteMentale}{{Électronique}}
+\TLBranche{Grandeurs}{Tension, courant, puissance et énergie dans les dipôles.}
+\TLBranche{Composants}{Résistance, condensateur, inductance, diode et transistor.}
+\TLBranche{Méthodes}{Lois de Kirchhoff, équivalents de Thévenin/Norton et analyse temporelle.}
+\TLBranche{Points clés}{Régimes transitoires, filtrage, adaptation et commande des composants.}
 \end{TLCarteMentale}
 \end{document}

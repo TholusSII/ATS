@@ -6,31 +6,13 @@
 \def\input@path{{../../../Style/}}
 \makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{TLActionsMecaniques.sty}{\input{TLActionsMecaniques.sty}}{}
+\IfFileExists{{TLActionsMecaniques.sty}}{{\input{{TLActionsMecaniques.sty}}}}{{}}
 \pagestyle{empty}
 \begin{document}
-\begin{TLCarteMentale}{Actions mécaniques}
-\TLBranche{Objectif}{Modéliser l'influence d'un système matériel sur un autre.}
-\TLBranche{Action à distance}{Poids, actions électriques ou magnétiques sans contact direct.}
-\TLBranche{Poids}{$\vec P=m\vec g$, appliqué au centre de gravité.}
-\TLBranche{Action de contact}{Action ponctuelle, linéique ou surfacique.}
-\TLBranche{Résultante}{$\vec R$ décrit l'effet global de translation.}
-\TLBranche{Moment}{$\vec M_A$ décrit l'effet de rotation autour du point $A$.}
-\TLBranche{Torseur}{Association d'une résultante et d'un moment en un point donné.}
-\TLBranche{Transport}{$\vec M_B=\vec M_A+\overrightarrow{BA}\wedge\vec R$.}
-\TLBranche{Action-réaction}{$\mathcal T_{1\rightarrow2}=-\mathcal T_{2\rightarrow1}$.}
-\TLBranche{Liaison parfaite}{Elle ne transmet que les composantes associées aux mouvements interdits.}
-\TLBranche{Pivot}{Moment nul suivant l'axe de rotation libre.}
-\TLBranche{Glissière}{Effort nul suivant la translation libre.}
-\TLBranche{Contact sans frottement}{Action normale à la surface de contact.}
-\TLBranche{Frottement}{Composante tangentielle opposée au glissement relatif.}
-\TLBranche{Coulomb}{Adhérence : $T\leq\mu N$ ; glissement : $T=\mu N$.}
-\TLBranche{Action répartie}{Intégrer la densité d'effort pour obtenir résultante et moment.}
-\TLBranche{Isolement}{Choisir la frontière du système étudié.}
-\TLBranche{BAME}{Recenser toutes les actions mécaniques extérieures.}
-\TLBranche{Point de réduction}{Exprimer les torseurs au même point avant de les sommer.}
-\TLBranche{Symétries}{Exploiter les plans et axes de symétrie pour annuler des composantes.}
-\TLBranche{Méthode}{Isoler, modéliser, transporter, projeter, résoudre et vérifier.}
-\TLBranche{Vérifications}{Unités, signes, direction des forces et ordre de grandeur.}
+\begin{TLCarteMentale}{{Actions mécaniques}}
+\TLBranche{Modélisation}{Une action mécanique est représentée par un torseur.}
+\TLBranche{Statique}{Isoler, dresser le BAME puis appliquer le principe fondamental de la statique.}
+\TLBranche{Dynamique}{Utiliser le PFD ou le théorème de l'énergie cinétique selon le problème.}
+\TLBranche{Points clés}{Frottement, moment d'une force, centre d'inertie et opérateur d'inertie.}
 \end{TLCarteMentale}
 \end{document}

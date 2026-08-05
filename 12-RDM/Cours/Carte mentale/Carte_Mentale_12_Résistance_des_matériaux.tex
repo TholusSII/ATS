@@ -6,33 +6,13 @@
 \def\input@path{{../../../Style/}}
 \makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{TLRDM.sty}{\input{TLRDM.sty}}{}
+\IfFileExists{{TLRDM.sty}}{{\input{{TLRDM.sty}}}}{{}}
 \pagestyle{empty}
 \begin{document}
-\begin{TLCarteMentale}{Résistance des matériaux}
-\TLBranche{Finalités}{Résistance, rigidité, stabilité et sécurité du dimensionnement.}
-\TLBranche{Modèle poutre}{Ligne moyenne, sections droites, longueur grande devant les dimensions transversales.}
-\TLBranche{Hypothèses}{Petites perturbations, élasticité linéaire, Saint-Venant et Navier--Bernoulli.}
-\TLBranche{Actions extérieures}{Charges ponctuelles, réparties, moments et réactions d'appui.}
-\TLBranche{Coupure}{Séparer la poutre et faire apparaître les efforts intérieurs dans une section.}
-\TLBranche{Torseur de cohésion}{$N$, $T_y$, $T_z$, $M_t$, $M_{fy}$ et $M_{fz}$.}
-\TLBranche{Traction-compression}{$\sigma=N/S$ et $\Delta L=NL/(ES)$.}
-\TLBranche{Cisaillement}{$\tau_{\mathrm{moy}}=T/S$ ; répartition dépendante de la section.}
-\TLBranche{Torsion}{$\tau=M_t r/J$ et angle de torsion $\theta=M_tL/(GJ)$.}
-\TLBranche{Flexion}{$\sigma=-M_fy/I$ ; contrainte maximale sur les fibres extrêmes.}
-\TLBranche{Déformée}{$EIy''(x)=M_f(x)$ avec conditions aux limites.}
-\TLBranche{Contrainte normale}{Effort interne par unité de surface, associé à l'allongement ou au raccourcissement.}
-\TLBranche{Contrainte tangentielle}{Effort tangent par unité de surface, associé à la distorsion.}
-\TLBranche{Déformations}{$\varepsilon=\Delta L/L$ et distorsion $\gamma$.}
-\TLBranche{Hooke}{$\sigma=E\varepsilon$ et $\tau=G\gamma$ dans le domaine élastique linéaire.}
-\TLBranche{Géométrie des sections}{Aire $S$, moments quadratiques $I$ et moment polaire $J$.}
-\TLBranche{Huygens}{$I=I_G+Sd^2$ pour transporter un axe parallèle.}
-\TLBranche{Diagrammes}{Évolutions de $N(x)$, $T(x)$, $M_t(x)$ et $M_f(x)$ le long de la poutre.}
-\TLBranche{Résistance}{Comparer contraintes maximales et contraintes admissibles.}
-\TLBranche{Sollicitations composées}{Superposer les effets puis appliquer un critère adapté.}
-\TLBranche{Critères}{Tresca ou von Mises pour un état multiaxial.}
-\TLBranche{Rigidité}{Limiter flèches, rotations, allongements et angles de torsion.}
-\TLBranche{Sécurité}{Introduire un coefficient tenant compte des incertitudes et conditions d'utilisation.}
-\TLBranche{Méthode}{Actions extérieures, réactions, cohésion, diagrammes, contraintes, déformations, conclusion.}
+\begin{TLCarteMentale}{{Résistance des matériaux}}
+\TLBranche{Hypothèses}{Poutres droites, petites déformations, Saint-Venant et Navier-Bernoulli.}
+\TLBranche{Cohésion}{La coupure fait apparaître le torseur des efforts intérieurs.}
+\TLBranche{Traction}{sigma = N/S et allongement gouverné par la loi de Hooke.}
+\TLBranche{Flexion}{sigma = -M_f y/I et courbure liée à M_f/(EI).}
 \end{TLCarteMentale}
 \end{document}

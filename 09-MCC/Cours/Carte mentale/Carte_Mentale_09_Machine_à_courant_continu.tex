@@ -6,36 +6,13 @@
 \def\input@path{{../../../Style/}}
 \makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{TLMCC.sty}{\input{TLMCC.sty}}{}
-\IfFileExists{Notations_Elec/Notations_Elec.sty}{\input{Notations_Elec/Notations_Elec.sty}}{}
-\IfFileExists{Notations_Energetique/Notations_Energetique.sty}{\input{Notations_Energetique/Notations_Energetique.sty}}{}
+\IfFileExists{{TLMCC.sty}}{{\input{{TLMCC.sty}}}}{{}}
 \pagestyle{empty}
 \begin{document}
-\begin{TLCarteMentale}{Machine à courant continu}
-\TLBranche{Constitution}{Inducteur, induit, collecteur, balais et arbre mécanique.}
-\TLBranche{Flux constant}{Les constantes $K_e$ et $K_t$ sont constantes ; en unités SI, $K_e=K_t$.}
-\TLBranche{Équation électrique}{$u=Ri+L\,di/dt+e$.}
-\TLBranche{F.c.é.m.}{$e=K_e\omega$ ; elle traduit l'effet de la rotation sur le circuit électrique.}
-\TLBranche{Couple}{$C_{em}=K_t i$ ; le courant commande directement le couple.}
-\TLBranche{Équation mécanique}{$J\,d\omega/dt=C_{em}-C_r-f\omega$.}
-\TLBranche{Régime permanent}{$u=Ri+K_e\omega$ et $C_{em}=C_r+f\omega$.}
-\TLBranche{Caractéristique}{$\omega=u/K_e-RC_{em}/(K_eK_t)$.}
-\TLBranche{Puissance électrique}{$P_{elec}=ui$.}
-\TLBranche{Pertes Joule}{$P_J=Ri^2$.}
-\TLBranche{Puissance électromagnétique}{$P_{em}=ei=C_{em}\omega$.}
-\TLBranche{Puissance utile}{Puissance mécanique disponible sur l'arbre après les pertes mécaniques.}
-\TLBranche{Rendement}{$\eta=P_{utile}/P_{absorbee}$.}
-\TLBranche{Mode moteur}{Conversion électrique vers mécanique.}
-\TLBranche{Mode génératrice}{Conversion mécanique vers électrique.}
-\TLBranche{Quadrant I}{$\omega>0$, $C_{em}>0$ : moteur direct.}
-\TLBranche{Quadrant II}{$\omega>0$, $C_{em}<0$ : freinage direct.}
-\TLBranche{Quadrant III}{$\omega<0$, $C_{em}<0$ : moteur inverse.}
-\TLBranche{Quadrant IV}{$\omega<0$, $C_{em}>0$ : freinage inverse.}
-\TLBranche{Commande vitesse}{Variation de la tension d'induit à flux constant.}
-\TLBranche{Commande couple}{Action sur le courant d'induit.}
-\TLBranche{Démarrage}{À $\omega=0$, $e=0$ : le courant doit être limité.}
-\TLBranche{Freinage}{Dissipatif ou régénératif selon le convertisseur et le quadrant.}
-\TLBranche{Vérifications}{Signes, unités, bilan de puissance, quadrant et ordre de grandeur.}
-\TLBranche{Démarche}{Conventions, modèle électrique, modèle mécanique, couplage, bilan et validation.}
+\begin{TLCarteMentale}{{Machine à courant continu}}
+\TLBranche{Modèle}{u = Ri + L di/dt + e, avec e = K_e omega.}
+\TLBranche{Couple}{C_em = K_t i ; à flux constant K_e = K_t en unités SI.}
+\TLBranche{Bilan}{Puissance électrique, pertes Joule, puissance électromagnétique et puissance utile.}
+\TLBranche{Commande}{Variation de vitesse par la tension d'induit et fonctionnement dans les quatre quadrants.}
 \end{TLCarteMentale}
 \end{document}

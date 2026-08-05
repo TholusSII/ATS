@@ -6,33 +6,13 @@
 \def\input@path{{../../../Style/}}
 \makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{TLOutilsNumeriques.sty}{\input{TLOutilsNumeriques.sty}}{}
+\IfFileExists{{TLOutilsNumeriques.sty}}{{\input{{TLOutilsNumeriques.sty}}}}{{}}
 \pagestyle{empty}
 \begin{document}
-\begin{TLCarteMentale}{Outils numériques}
-\TLBranche{Discrétisation}{Remplacer une fonction continue par une suite $y_k\simeq y(t_k)$ avec $t_k=t_0+kh$.}
-\TLBranche{Pas de calcul}{Le pas $h$ règle le compromis entre précision, stabilité et temps de calcul.}
-\TLBranche{Différence avant}{Approximation $y'(t_k)\simeq (y_{k+1}-y_k)/h$.}
-\TLBranche{Différence arrière}{Approximation $y'(t_k)\simeq (y_k-y_{k-1})/h$.}
-\TLBranche{Différence centrée}{Approximation plus précise $y'(t_k)\simeq (y_{k+1}-y_{k-1})/(2h)$.}
-\TLBranche{Dérivée seconde}{Utiliser $y''(t_k)\simeq (y_{k+1}-2y_k+y_{k-1})/h^2$.}
-\TLBranche{Euler explicite}{Mettre à jour par $y_{k+1}=y_k+h f(t_k,y_k)$.}
-\TLBranche{Euler implicite}{Calculer $y_{k+1}$ à partir de $f(t_{k+1},y_{k+1})$ pour gagner en robustesse.}
-\TLBranche{Ordre deux}{Poser $z=y'$ puis transformer l'équation en deux équations du premier ordre.}
-\TLBranche{Heun}{Corriger la pente d'Euler en moyennant une prédiction et une correction.}
-\TLBranche{Runge--Kutta}{Employer plusieurs évaluations de la pente pour améliorer la précision.}
-\TLBranche{Rectangles}{Approcher une intégrale par des aires rectangulaires.}
-\TLBranche{Trapèzes}{Approcher l'intégrale par des segments reliant les points successifs.}
-\TLBranche{Simpson}{Utiliser des arcs paraboliques pour obtenir une meilleure précision.}
-\TLBranche{Dichotomie}{Encadrer une racine puis réduire progressivement l'intervalle.}
-\TLBranche{Newton}{Itérer avec $x_{k+1}=x_k-f(x_k)/f'(x_k)$.}
-\TLBranche{Systèmes linéaires}{Résoudre $A\mathbf{x}=\mathbf{b}$ sans former inutilement $A^{-1}$.}
-\TLBranche{Conditionnement}{Évaluer la sensibilité de la solution aux erreurs sur les données.}
-\TLBranche{Interpolation}{Construire une fonction passant exactement par les données.}
-\TLBranche{Régression}{Ajuster un modèle approché en minimisant une erreur.}
-\TLBranche{Erreurs}{Distinguer erreurs de modèle, de discrétisation et d'arrondi.}
-\TLBranche{Convergence}{Vérifier que la solution numérique se stabilise lorsque $h$ diminue.}
-\TLBranche{Stabilité}{S'assurer que les erreurs ne sont pas amplifiées au fil des itérations.}
-\TLBranche{Validation}{Comparer à une solution analytique, à des mesures et aux lois physiques.}
+\begin{TLCarteMentale}{{Outils numériques}}
+\TLBranche{Discrétisation}{t_k = t_0 + kh et approximation numérique des dérivées.}
+\TLBranche{Euler explicite}{y_{k+1} = y_k + h f(t_k,y_k).}
+\TLBranche{Ordre deux}{Transformer l'équation en système de deux équations du premier ordre.}
+\TLBranche{Validation}{Étudier convergence, stabilité, influence du pas et cohérence physique.}
 \end{TLCarteMentale}
 \end{document}

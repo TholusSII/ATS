@@ -6,136 +6,25 @@
 \def\input@path{{../../../Style/}}
 \makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{TLMCC.sty}{\input{TLMCC.sty}}{}
-\IfFileExists{Notations_Elec/Notations_Elec.sty}{\input{Notations_Elec/Notations_Elec.sty}}{}
-\IfFileExists{Notations_Energetique/Notations_Energetique.sty}{\input{Notations_Energetique/Notations_Energetique.sty}}{}
+\IfFileExists{{TLMCC.sty}}{{\input{{TLMCC.sty}}}}{{}}
 \pagestyle{empty}
 \begin{document}
-\TLPosterTitre{Machine à courant continu}{Modèle, bilans et commande}
-\begin{multicols}{3}
-
-\begin{TLPosterBloc}{Constitution}
-La machine comporte un inducteur créant le flux magnétique, un induit parcouru par le courant, un collecteur et des balais assurant la commutation.
+\TLPosterTitre{{Machine à courant continu}}{{Fiche résumé éditable}}
+\begin{multicols}{2}
+\begin{TLPosterBloc}{Modèle}
+u = Ri + L di/dt + e, avec e = K_e omega.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Hypothèse à flux constant}
-Lorsque le flux est constant, les constantes électromécaniques sont constantes :
-\[
-e=K_e\omega,\qquad C_{em}=K_t i.
-\]
-En unités SI, on utilise souvent $K_e=K_t=K$.
+\begin{TLPosterBloc}{Couple}
+C_em = K_t i ; à flux constant K_e = K_t en unités SI.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Équation électrique}
-Pour l'induit :
-\[
-u=Ri+L\frac{di}{dt}+e.
-\]
-En régime permanent :
-\[
-u=Ri+K_e\omega.
-\]
+\begin{TLPosterBloc}{Bilan}
+Puissance électrique, pertes Joule, puissance électromagnétique et puissance utile.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Équation mécanique}
-La dynamique de rotation s'écrit :
-\[
-J\frac{d\omega}{dt}=C_{em}-C_r-f\omega.
-\]
-Le couple résistant $C_r$ et les frottements s'opposent au mouvement.
+\begin{TLPosterBloc}{Commande}
+Variation de vitesse par la tension d'induit et fonctionnement dans les quatre quadrants.
 \end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Force contre-électromotrice}
-La f.c.é.m. est proportionnelle à la vitesse :
-\[
-e=K_e\omega.
-\]
-En fonctionnement moteur, elle s'oppose à la tension d'alimentation.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Couple électromagnétique}
-À flux constant :
-\[
-C_{em}=K_t i.
-\]
-Le courant d'induit fixe donc directement le couple produit.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Caractéristique mécanique}
-En régime permanent :
-\[
-\omega=\frac{u-Ri}{K_e}
-=\frac{u}{K_e}-\frac{R}{K_eK_t}C_{em}.
-\]
-La vitesse diminue lorsque le couple demandé augmente.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Puissance électrique}
-La puissance absorbée par l'induit vaut :
-\[
-P_{elec}=ui.
-\]
-Elle se répartit entre pertes Joule et puissance électromagnétique.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Puissance électromagnétique}
-\[
-P_{em}=ei=C_{em}\omega.
-\]
-Cette égalité relie directement les grandeurs électriques et mécaniques.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Pertes et rendement}
-Les pertes comprennent principalement :
-\[
-P_J=Ri^2,
-\]
-ainsi que les pertes mécaniques et magnétiques. Le rendement est :
-\[
-\eta=\frac{P_{utile}}{P_{absorbee}}.
-\]
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Fonctionnement moteur}
-La machine reçoit de l'énergie électrique et fournit de l'énergie mécanique. On a généralement $P_{elec}>0$ et $P_{meca}>0$ selon la convention récepteur.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Fonctionnement génératrice}
-La machine reçoit de l'énergie mécanique et restitue de l'énergie électrique. Le signe de la puissance électromagnétique s'inverse.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Quatre quadrants}
-Le plan $(\omega,C_{em})$ distingue :
-\begin{itemize}
-\item moteur direct ;
-\item freinage direct ;
-\item moteur inverse ;
-\item freinage inverse.
-\end{itemize}
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Commande en vitesse}
-À flux constant, la vitesse se règle principalement par la tension d'induit. Le couple se règle par le courant.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Démarrage}
-À l'arrêt, $e=0$. Le courant initial peut être très élevé :
-\[
-i(0^+)\simeq \frac{u}{R}.
-\]
-Il faut donc limiter le courant de démarrage.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Méthode d'étude}
-\begin{enumerate}
-\item Fixer les conventions de signe.
-\item Écrire le modèle électrique.
-\item Écrire le modèle mécanique.
-\item Relier $e$, $C_{em}$, $i$ et $\omega$.
-\item Établir les bilans de puissance.
-\item Vérifier le quadrant et la cohérence physique.
-\end{enumerate}
-\end{TLPosterBloc}
-
 \end{multicols}
 \end{document}

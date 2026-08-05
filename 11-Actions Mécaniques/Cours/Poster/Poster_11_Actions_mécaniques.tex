@@ -1,115 +1,30 @@
 \documentclass[a3paper,landscape,10pt]{article}
-\usepackage[margin=9mm]{geometry}
+\usepackage[margin=10mm]{geometry}
 \usepackage[french]{babel}
 \usepackage{amsmath,amssymb}
 \makeatletter
 \def\input@path{{../../../Style/}}
 \makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{TLActionsMecaniques.sty}{\input{TLActionsMecaniques.sty}}{}
+\IfFileExists{{TLActionsMecaniques.sty}}{{\input{{TLActionsMecaniques.sty}}}}{{}}
 \pagestyle{empty}
 \begin{document}
-\TLPosterTitre{Actions mécaniques}{Modéliser, isoler et déterminer les actions exercées sur un système}
-\begin{multicols}{3}
-
-\begin{TLPosterBloc}{Action mécanique}
-Une action mécanique traduit l'influence d'un système matériel sur un autre. Elle peut modifier le mouvement ou provoquer une déformation.
+\TLPosterTitre{{Actions mécaniques}}{{Fiche résumé éditable}}
+\begin{multicols}{2}
+\begin{TLPosterBloc}{Modélisation}
+Une action mécanique est représentée par un torseur.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Actions à distance}
-Les actions gravitationnelles, électriques ou magnétiques ne nécessitent pas de contact. Le poids s'écrit
-\[
-\vec P=m\vec g
-\]
-et s'applique au centre de gravité du solide.
+\begin{TLPosterBloc}{Statique}
+Isoler, dresser le BAME puis appliquer le principe fondamental de la statique.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Actions de contact}
-Elles sont réparties sur une surface ou une ligne de contact. On les remplace souvent par une action globale équivalente composée d'une résultante et d'un moment.
+\begin{TLPosterBloc}{Dynamique}
+Utiliser le PFD ou le théorème de l'énergie cinétique selon le problème.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Torseur d'action mécanique}
-Au point $A$ :
-\[
-\left\{\mathcal T_{1\rightarrow2}\right\}_A=
-\left\{\begin{array}{c}
-\vec R_{1\rightarrow2}\\
-\vec M_A(1\rightarrow2)
-\end{array}\right\}.
-\]
+\begin{TLPosterBloc}{Points clés}
+Frottement, moment d'une force, centre d'inertie et opérateur d'inertie.
 \end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Transport du moment}
-Pour passer du point $A$ au point $B$ :
-\[
-\vec M_B=\vec M_A+\overrightarrow{BA}\wedge\vec R.
-\]
-La résultante ne dépend pas du point de réduction.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Action-réaction}
-Les actions mutuelles entre deux systèmes vérifient
-\[
-\left\{\mathcal T_{1\rightarrow2}\right\}=-\left\{\mathcal T_{2\rightarrow1}\right\}.
-\]
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Liaisons parfaites}
-Une liaison parfaite transmet uniquement les composantes compatibles avec les mouvements qu'elle interdit. Les composantes associées aux mobilités libres sont nulles.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Pivot et glissière}
-Une pivot parfaite ne transmet pas de moment selon son axe. Une glissière parfaite ne transmet pas d'effort selon sa direction de translation.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Contact ponctuel parfait}
-Sans frottement, l'action est portée par la normale commune au contact. Avec frottement, une composante tangentielle apparaît et doit respecter la loi de Coulomb.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Frottement de Coulomb}
-En adhérence :
-\[
-\|\vec T\|\leq \mu N.
-\]
-Au glissement :
-\[
-\|\vec T\|=\mu N,
-\]
-avec une direction opposée à la vitesse relative.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Bilan des actions mécaniques}
-Après isolement, dresser le BAME : poids, actions des liaisons, efforts imposés, couples moteurs, actions de ressorts et éventuelles actions réparties.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Isolement}
-Choisir la frontière du système isolé de façon à faire apparaître les inconnues recherchées tout en limitant le nombre d'actions extérieures à modéliser.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Moment d'une force}
-Pour une force $\vec F$ appliquée en $B$ :
-\[
-\vec M_A(\vec F)=\overrightarrow{AB}\wedge\vec F.
-\]
-Le bras de levier mesure la distance entre $A$ et la droite d'action.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Résultante d'une action répartie}
-Une densité surfacique $\vec t(M)$ donne
-\[
-\vec R=\iint_S \vec t(M)\,\mathrm dS,
-\qquad
-\vec M_A=\iint_S \overrightarrow{AM}\wedge\vec t(M)\,\mathrm dS.
-\]
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Méthode de résolution}
-1. Choisir le système isolé. 2. Faire le bilan des actions. 3. Écrire les torseurs au même point. 4. Exploiter les symétries. 5. Appliquer le théorème adapté. 6. Vérifier unités, signes et ordre de grandeur.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Points de vigilance}
-Toujours préciser le système qui agit, celui qui reçoit l'action, le point de réduction et la base d'expression. Ne pas confondre force appliquée et composante d'un torseur de liaison.
-\end{TLPosterBloc}
-
 \end{multicols}
 \end{document}

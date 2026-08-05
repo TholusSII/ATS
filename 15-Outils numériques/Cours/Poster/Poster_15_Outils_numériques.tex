@@ -6,119 +6,25 @@
 \def\input@path{{../../../Style/}}
 \makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{TLOutilsNumeriques.sty}{\input{TLOutilsNumeriques.sty}}{}
+\IfFileExists{{TLOutilsNumeriques.sty}}{{\input{{TLOutilsNumeriques.sty}}}}{{}}
 \pagestyle{empty}
 \begin{document}
-\TLPosterTitre{Outils numériques}{Discrétisation, calcul scientifique et validation}
+\TLPosterTitre{{Outils numériques}}{{Fiche résumé éditable}}
 \begin{multicols}{2}
-
-\begin{TLPosterBloc}{Pourquoi discrétiser ?}
-Un ordinateur manipule des valeurs à des instants discrets. On remplace une fonction continue par une suite de valeurs $y_k\simeq y(t_k)$ avec
-\[
-t_k=t_0+kh.
-\]
-Le pas $h$ gouverne le compromis entre précision, stabilité et coût de calcul.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Dérivée première}
-Les différences finies les plus courantes sont
-\[
-y'(t_k)\simeq \frac{y_{k+1}-y_k}{h}
-\quad\text{ou}\quad
- y'(t_k)\simeq \frac{y_k-y_{k-1}}{h}.
-\]
-La différence centrée
-\[
-y'(t_k)\simeq \frac{y_{k+1}-y_{k-1}}{2h}
-\]
-est généralement plus précise.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Dérivée seconde}
-Une approximation classique est
-\[
-y''(t_k)\simeq \frac{y_{k+1}-2y_k+y_{k-1}}{h^2}.
-\]
-Elle intervient dans les modèles mécaniques, thermiques et vibratoires.
+\begin{TLPosterBloc}{Discrétisation}
+t_k = t_0 + kh et approximation numérique des dérivées.
 \end{TLPosterBloc}
 
 \begin{TLPosterBloc}{Euler explicite}
-Pour
-\[
-y'=f(t,y),\qquad y(t_0)=y_0,
-\]
-le schéma d'Euler explicite s'écrit
-\[
-y_{k+1}=y_k+h f(t_k,y_k).
-\]
-Il est simple mais peut devenir instable lorsque le pas est trop grand.
+y_{k+1} = y_k + h f(t_k,y_k).
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Euler implicite}
-Le schéma implicite utilise
-\[
-y_{k+1}=y_k+h f(t_{k+1},y_{k+1}).
-\]
-Il nécessite souvent de résoudre une équation à chaque pas, mais il est généralement plus robuste pour les systèmes raides.
+\begin{TLPosterBloc}{Ordre deux}
+Transformer l'équation en système de deux équations du premier ordre.
 \end{TLPosterBloc}
 
-\begin{TLPosterBloc}{Équation d'ordre deux}
-Pour
-\[
-y''=g(t,y,y'),
-\]
-on pose $z=y'$ afin d'obtenir
-\[
-\begin{cases}
-y'=z,\\
-z'=g(t,y,z).
-\end{cases}
-\]
-On applique ensuite un schéma d'intégration aux deux variables d'état.
+\begin{TLPosterBloc}{Validation}
+Étudier convergence, stabilité, influence du pas et cohérence physique.
 \end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Méthodes plus précises}
-Le schéma de Heun corrige la pente d'Euler en moyennant deux évaluations. Les méthodes de Runge--Kutta, notamment RK4, offrent une meilleure précision pour un coût de calcul supérieur.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Intégration numérique}
-Pour calculer
-\[
-I=\int_a^b f(x)\,\mathrm dx,
-\]
-on peut utiliser les rectangles, les trapèzes ou Simpson. Avec les trapèzes,
-\[
-I\simeq h\left(\frac{f_0+f_n}{2}+\sum_{k=1}^{n-1}f_k\right).
-\]
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Recherche de zéro}
-La dichotomie encadre une racine et réduit l'intervalle à chaque itération. Newton utilise
-\[
-x_{k+1}=x_k-\frac{f(x_k)}{f'(x_k)}.
-\]
-Newton est rapide près de la solution mais dépend du point initial.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Résolution d'un système linéaire}
-Un système $A\mathbf{x}=\mathbf{b}$ peut être résolu par élimination de Gauss, factorisation ou méthode itérative. Il faut surveiller le conditionnement de $A$ et éviter, autant que possible, le calcul explicite de $A^{-1}$.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Interpolation et régression}
-L'interpolation construit une courbe passant par les données. La régression recherche un modèle approché, par exemple une droite $y=ax+b$, en minimisant un critère d'erreur.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Erreur numérique}
-Distinguer l'erreur de modèle, l'erreur de discrétisation et l'erreur d'arrondi. Une diminution de $h$ doit conduire à une stabilisation du résultat avant que les arrondis ne deviennent dominants.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Convergence et stabilité}
-Un schéma convergent se rapproche de la solution exacte lorsque $h\to0$. La stabilité signifie que les erreurs ne sont pas amplifiées de manière incontrôlée au cours des itérations.
-\end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Démarche de validation}
-Définir les unités et les conditions initiales, choisir le pas, tester plusieurs valeurs de $h$, comparer à une solution analytique ou à des mesures, puis vérifier ordres de grandeur, conservation et cohérence physique.
-\end{TLPosterBloc}
-
 \end{multicols}
 \end{document}

@@ -5,26 +5,12 @@
 \makeatletter\def\input@path{{../../../Style/}}\makeatother
 \input{TLPosterCarteMentale.sty}
 \IfFileExists{TLCinematique.sty}{\input{TLCinematique.sty}}{}
-\IfFileExists{cinematique.sty}{\input{cinematique.sty}}{}
-\IfFileExists{Notations_Cinematique/Notations_Cinematique.sty}{\input{Notations_Cinematique/Notations_Cinematique.sty}}{}
 \pagestyle{empty}
 \begin{document}
 \begin{TLCarteMentale}{Modélisation des mécanismes}
-\TLBranche{Objectif}{Construire un modèle simple mais suffisant pour analyser les mouvements et la structure du mécanisme.}
-\TLBranche{Solide indéformable}{La distance entre deux points d'un même solide reste constante.}
-\TLBranche{Classes d'équivalence}{Regrouper les pièces sans mouvement relatif.}
-\TLBranche{Bâti}{Choisir le solide de référence $S_0$ et lui associer le repère fixe.}
-\TLBranche{Repères}{Associer un repère $\mathcal{R}_i$ à chaque solide mobile.}
-\TLBranche{Contacts}{Identifier les surfaces, lignes ou points de contact entre solides.}
-\TLBranche{Liaisons}{Remplacer les contacts par des liaisons normalisées cohérentes avec les mouvements possibles.}
-\TLBranche{Degrés de liberté}{Décrire les translations et rotations autorisées par chaque liaison.}
-\TLBranche{Graphe de liaisons}{Sommets : solides ; arêtes : liaisons ; repérage des chaînes et des boucles.}
-\TLBranche{Schéma cinématique}{Placer solides, symboles de liaisons, axes, centres et paramètres géométriques.}
-\TLBranche{Paramétrage}{Choisir les angles et translations indépendants, leurs sens positifs et leurs domaines.}
-\TLBranche{Mobilité}{Compter les paramètres indépendants nécessaires pour définir la configuration.}
-\TLBranche{Chaîne ouverte}{Pas de boucle cinématique ; mouvements décrits successivement de solide en solide.}
-\TLBranche{Chaîne fermée}{Présence d'une boucle ; nécessité d'écrire des fermetures géométriques ou cinématiques.}
-\TLBranche{Validation}{Vérifier la cohérence du modèle avec le mécanisme réel et avec l'objectif de l'étude.}
-\TLBranche{Démarche}{Identifier, regrouper, modéliser les liaisons, tracer le graphe, dessiner le schéma, paramétrer et contrôler la mobilité.}
+\TLBranche{Solides et liaisons}{Définir les classes d'équivalence cinématique et les liaisons entre solides.}
+\TLBranche{Représentations}{Construire graphe de liaisons, schéma cinématique et paramétrage géométrique.}
+\TLBranche{Mobilité}{Analyser les degrés de liberté, les chaînes fermées et les mouvements possibles.}
+\TLBranche{Méthode}{Isoler les solides, identifier les contacts puis choisir une modélisation adaptée.}
 \end{TLCarteMentale}
 \end{document}
