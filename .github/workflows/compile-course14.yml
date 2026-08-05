@@ -1,10 +1,10 @@
-name: Compiler le cours 14
+name: Compiler le cours 14 logique SED
 
 on:
   push:
     paths:
       - '14-Logique/Cours/**'
-      - 'Style/TLLogiqueSED.sty'
+      - 'Style/**'
       - '.github/workflows/compile-course14.yml'
   workflow_dispatch:
 
@@ -13,15 +13,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Installer TeX Live
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y texlive-latex-extra texlive-lang-french texlive-pictures latexmk
-      - name: Compiler
-        working-directory: '14-Logique/Cours'
-        run: latexmk -pdf -interaction=nonstopmode -halt-on-error 00_Logique_SED.tex
+
+      - name: Compiler le cours 14
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: 00_Logique_SED.tex
+          working_directory: 14-Logique/Cours
+          latexmk_use_xelatex: false
+          extra_system_packages: git
+          pre_compile: |
+            rm -rf /tmp/kaobook
+            git clone --depth 1 https://github.com/fmarotta/kaobook.git /tmp/kaobook
+        env:
+          TEXINPUTS: ".:/tmp/kaobook//:"
+
       - name: Publier le PDF
         uses: actions/upload-artifact@v4
         with:
           name: cours-14-logique-sed
-          path: '14-Logique/Cours/00_Logique_SED.pdf'
+          path: 14-Logique/Cours/00_Logique_SED.pdf
