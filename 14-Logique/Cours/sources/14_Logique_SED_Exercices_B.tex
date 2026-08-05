@@ -1,0 +1,142 @@
+% ============================================================================
+% COURS 14 — EXERCICES, PARTIE B
+% Réseaux, bus de terrain et transmission numérique
+% Source : 18-Logique_SED.docx
+% ============================================================================
+
+\subsection{Choix d'une architecture de communication}
+
+Une ligne de production comporte vingt capteurs tout-ou-rien, huit variateurs, quatre automates, une supervision et une passerelle vers le réseau de l'entreprise. Les informations de sécurité doivent être transmises en moins de $10\ \mathrm{ms}$, tandis que les historiques de production peuvent supporter un délai de plusieurs secondes.
+
+\begin{enumerate}
+  \item Classer les informations selon leurs contraintes de débit, délai, disponibilité et taux d'erreur.
+  \item Proposer une architecture hiérarchisée séparant terrain, commande, supervision et gestion.
+  \item Choisir une topologie adaptée à chaque niveau.
+  \item Justifier le choix entre paire torsadée, fibre optique et radio dans les différentes zones de l'installation.
+  \item Identifier les conséquences de la panne d'un concentrateur ou de la rupture d'un bus.
+\end{enumerate}
+
+\subsection{Liaison série RS232 et caractères ASCII}
+
+Une carte transmet au PC des caractères ASCII sur une liaison asynchrone configurée à $9600\ \mathrm{bit\,s^{-1}}$, huit bits de données, parité paire et un bit de stop. L'état de repos est au niveau logique $1$ et les bits de données sont émis du poids faible vers le poids fort.
+
+\TLLogicImage[.68\linewidth]{image170.jpeg}
+
+\begin{enumerate}
+  \item Calculer le temps bit.
+  \item Déterminer le nombre total de bits nécessaires pour transmettre un caractère.
+  \item Calculer le rendement de la trame et le débit utile maximal.
+  \item À partir du relevé fourni, repérer le start, les huit bits de données, la parité et le stop.
+  \item Reconstituer les octets, les convertir en hexadécimal puis identifier les caractères ASCII.
+  \item Calculer la durée totale du message et expliquer l'effet d'une erreur sur le bit de parité.
+\end{enumerate}
+
+\TLLogicImage[.62\linewidth]{image171.jpeg}
+
+\subsection{Contrôle de parité et CRC}
+
+On souhaite transmettre la donnée $P=1001$ avec le polynôme générateur :
+\[
+G(X)=X^3+X+1,
+\]
+soit le mot binaire $1011$.
+
+\begin{enumerate}
+  \item Déterminer le bit de parité paire de la donnée initiale.
+  \item Ajouter trois zéros à la donnée et effectuer la division modulo 2 par $G$.
+  \item Déterminer le reste et la trame complète à transmettre.
+  \item Vérifier que la division de la trame complète donne un reste nul.
+  \item Inverser un bit de la trame et vérifier si l'erreur est détectée.
+  \item Comparer les capacités et le coût de la parité et du CRC.
+\end{enumerate}
+
+\subsection{Transaction Modbus RTU}
+
+Une requête Modbus RTU est transmise par un automate maître à un contrôleur de boucle. La trame contient l'adresse de l'esclave, un code fonction, l'adresse du premier registre, le nombre de registres demandés et un CRC.
+
+\TLLogicImage[.72\linewidth]{image165.jpeg}
+
+\begin{enumerate}
+  \item Identifier l'adresse de l'esclave destinataire.
+  \item Identifier le code fonction et préciser l'opération demandée.
+  \item Déterminer l'adresse du premier registre et le nombre de mots lus.
+  \item Donner le nombre d'octets de données attendu dans la réponse positive.
+  \item Reconstituer les mots de seize bits à partir des octets reçus.
+  \item Expliquer le rôle des silences entre trames en Modbus RTU.
+  \item Préciser la couche physique couramment utilisée pour relier plusieurs esclaves industriels.
+\end{enumerate}
+
+\subsection{Communication SPI d'un objectif photographique}
+
+Un boîtier d'appareil photo commande un objectif par une liaison SPI. Le boîtier est maître et l'objectif esclave. Les données sont interprétées sur les fronts montants de SCK et le bit de poids fort est transmis en premier. L'ordre de déplacement de la lentille est codé sur un entier signé de seize bits ; l'octet de poids fort est transmis en premier.
+
+\TLLogicImage[.68\linewidth]{image168.png}
+
+\begin{enumerate}
+  \item Identifier les rôles des lignes SCK, MOSI, MISO et sélection d'esclave.
+  \item À partir du chronogramme, relever les deux octets transmis sur MOSI.
+  \item Reconstituer l'entier signé sur seize bits en complément à deux.
+  \item Déterminer le déplacement demandé si un point de commande correspond à $2\ \mu\mathrm m$.
+  \item Déterminer la fréquence d'horloge à partir du chronogramme.
+  \item Calculer la durée d'une transaction de trois octets et vérifier la contrainte de $0{,}5\ \mathrm{ms}$.
+  \item Expliquer l'intérêt du fonctionnement full-duplex de SPI.
+\end{enumerate}
+
+\TLLogicImage[.70\linewidth]{image169.png}
+
+\subsection{Bus CAN automobile}
+
+Quatre équipements de confort sont reliés sur un bus CAN basse vitesse à $125\ \mathrm{kbit\,s^{-1}}$ : deux moteurs de lève-vitre, une console de commande et un tableau de bord. Plusieurs équipements peuvent demander l'accès au bus au même instant.
+
+\TLLogicImage[.62\linewidth]{image172.png}
+
+\begin{enumerate}
+  \item Expliquer pourquoi le CAN est un bus multi-maître.
+  \item Rappeler la signification des bits dominant et récessif.
+  \item Deux trames d'identifiants binaires $0011010$ et $0010111$ commencent simultanément. Déterminer celle qui gagne l'arbitrage.
+  \item Expliquer pourquoi l'arbitrage est non destructif.
+  \item Calculer le temps minimal de transmission d'une trame de $108$ bits, sans bourrage de bits.
+  \item Citer les mécanismes de détection d'erreurs intégrés au CAN.
+  \item Justifier l'utilisation d'une paire différentielle torsadée dans l'environnement automobile.
+\end{enumerate}
+
+\subsection{Codage Manchester}
+
+La suite binaire à transmettre est :
+\[
+1\quad0\quad1\quad1\quad0\quad0\quad1.
+\]
+La convention retenue associe au bit $0$ un front montant au milieu du temps bit et au bit $1$ un front descendant.
+
+\begin{enumerate}
+  \item Tracer le signal Manchester correspondant.
+  \item Montrer qu'une transition centrale existe pour chaque bit.
+  \item Expliquer comment le récepteur récupère l'horloge.
+  \item Comparer la bande passante nécessaire à celle d'un codage NRZ.
+  \item Déterminer le signal obtenu par OU exclusif entre les données et l'horloge selon la convention choisie.
+\end{enumerate}
+
+\subsection{Multiplexage de mesures}
+
+Huit capteurs analogiques de bande passante $2\ \mathrm{kHz}$ doivent partager une liaison. Deux solutions sont étudiées : multiplexage fréquentiel et multiplexage temporel.
+
+\begin{enumerate}
+  \item Proposer un découpage fréquentiel en prévoyant une bande de garde de $500\ \mathrm{Hz}$ entre voies.
+  \item Estimer la bande passante minimale du support.
+  \item Pour le multiplexage temporel, chaque échantillon est codé sur douze bits et chaque voie est échantillonnée à $5\ \mathrm{kHz}$. Calculer le débit utile.
+  \item Ajouter $20\,\%$ de bits de service et déterminer le débit brut minimal.
+  \item Comparer les avantages des deux solutions pour une application industrielle numérique.
+\end{enumerate}
+
+\subsection{Transmission de données d'un hydroplaneur}
+
+Un hydroplaneur remonte périodiquement à la surface et transmet ses mesures par une liaison radio. Les données comprennent la position, la profondeur, la température, l'état des batteries et des alarmes. La liaison peut être interrompue et son débit varie avec les conditions de propagation.
+
+\begin{enumerate}
+  \item Hiérarchiser les données selon leur criticité et leur délai admissible.
+  \item Proposer une structure de trame avec adresse, numéro de séquence, longueur, données et CRC.
+  \item Définir une stratégie d'acquittement et de retransmission.
+  \item Expliquer l'intérêt d'un numéro de séquence après une coupure de liaison.
+  \item Proposer le comportement du diagramme d'état en cas d'échec répété de transmission.
+  \item Choisir entre transmission immédiate, stockage local et envoi différé selon la nature des informations.
+\end{enumerate}
