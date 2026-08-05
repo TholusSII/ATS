@@ -1,0 +1,236 @@
+% ============================================================================
+% COURS 14 — LOGIQUE, SED ET COMMUNICATION
+% Partie B : systèmes à événements discrets et diagrammes SysML
+% Source : 18-Logique_SED.docx
+% ============================================================================
+
+\section{Systèmes à événements discrets}
+\label{sec:sed}
+
+\subsection{Du combinatoire au séquentiel}
+
+Considérons l'ouverture motorisée d'un hayon. Les entrées sont la commande $t_0$ et le capteur de position haute $p_h$. La sortie $M^+$ commande le moteur d'ouverture. Le hayon doit continuer à s'ouvrir après le relâchement de la commande jusqu'à atteindre la position haute.
+
+Une fonction purement combinatoire ne suffit donc pas : il faut mémoriser l'état présent de la sortie. L'équation d'évolution peut s'écrire :
+\[
+{M^+}_{n+1}=\overline{p_h}\left(t_0+{M^+}_n\right).
+\]
+
+\TLLogicImage[.72\linewidth]{image55.jpeg}
+\TLLogicImage[.40\linewidth]{image57.jpeg}
+
+\begin{TLLogicDefinition}{Système séquentiel}
+Dans un système séquentiel, les sorties dépendent des entrées présentes, de l'état interne antérieur et éventuellement du temps. Une même combinaison d'entrées peut donc conduire à des sorties différentes selon l'histoire du système.
+\end{TLLogicDefinition}
+
+La table de vérité est remplacée par une \textbf{table d'états}. Elle relie l'état futur $Q_{n+1}$ à l'état présent $Q_n$ et aux entrées :
+\[
+Q_{n+1}=f(Q_n,e_1,\ldots,e_p).
+\]
+
+Les systèmes à événements discrets se distinguent des systèmes continus : leur évolution est constituée de changements d'état ponctuels déclenchés par des événements.
+
+\subsection{Diagramme d'état SysML}
+
+Le diagramme d'état, noté \texttt{stm}, décrit le comportement d'un bloc SysML. Il représente les états stables du système et les transitions qui les relient.
+
+\begin{center}\TLGrapheEtatsSimple\end{center}
+
+Un diagramme d'état doit être interprété de manière fonctionnelle : il décrit ce que fait le système et dans quelles conditions il change de comportement, sans imposer nécessairement la technologie de réalisation.
+
+\TLLogicImage[.74\linewidth]{image61.png}
+
+\begin{TLLogicMethod}{Construire un graphe d'états}
+\begin{enumerate}
+  \item Définir la frontière du système et les variables observées ou commandées.
+  \item Recenser les situations stables et les nommer par des états.
+  \item Tracer les transitions possibles entre états.
+  \item Associer à chaque transition un événement, une garde et éventuellement un effet.
+  \item Associer aux états les activités d'entrée, continues ou de sortie.
+  \item Ajouter l'état initial, les éventuels états finaux et les pseudo-états nécessaires.
+  \item Vérifier la complétude, l'absence de contradiction et les scénarios limites.
+\end{enumerate}
+\end{TLLogicMethod}
+
+\subsection{État et activités associées}
+
+Un état est représenté par un rectangle aux coins arrondis. Il peut contenir un nom et des activités :
+\begin{itemize}
+  \item \texttt{entry} : activité exécutée une fois lors de l'entrée dans l'état ;
+  \item \texttt{do} : activité exécutée tant que l'état reste actif, éventuellement interruptible ;
+  \item \texttt{exit} : activité exécutée lors de la sortie de l'état.
+\end{itemize}
+
+\begin{center}\TLGrapheEtatDetaille\end{center}
+
+Un état vide représente une attente. Si aucun mot réservé n'est précisé devant une activité, elle est généralement interprétée comme une activité de type \texttt{do}.
+
+\begin{TLLogicApplication}{Lave-linge}
+Un cycle simple comporte les états prélavage, lavage, rinçage, essorage et arrêt.
+\begin{enumerate}
+  \item Identifier l'état initial et les transitions principales.
+  \item Associer à chaque état les actionneurs actifs.
+  \item Ajouter les temporisations et les conditions de niveau d'eau.
+  \item Prévoir une transition prioritaire en cas d'ouverture de porte ou de défaut.
+\end{enumerate}
+\TLLogicImage[.30\linewidth]{image63.jpeg}
+\end{TLLogicApplication}
+
+\subsection{Transitions}
+
+Une transition est instantanée. Elle n'est évaluée que si son état source est actif. Sa notation générale est :
+\[
+\boxed{\text{événement }[\text{garde}]\,/\,\text{effet}.}
+\]
+
+L'état de départ est l'état source et l'état d'arrivée l'état cible. Une transition réflexive quitte l'état puis y revient : les activités \texttt{exit} et \texttt{entry} sont donc exécutées.
+
+\subsubsection{Événement}
+
+Un événement correspond à une occurrence ponctuelle : appui sur un bouton, front d'un capteur, dépassement d'un seuil, réception d'un message. Il n'est pas mémorisé s'il n'est pas traité au moment où il survient.
+
+Les événements temporels usuels sont :
+\begin{itemize}
+  \item \texttt{after(T)} : déclenchement après une durée $T$ passée dans l'état ;
+  \item \texttt{at(D)} : déclenchement à une date absolue $D$ ;
+  \item \texttt{when(condition)} : déclenchement lorsque la condition interne change et devient vraie.
+\end{itemize}
+
+Sans événement explicite, la fin de l'activité \texttt{do} peut constituer l'événement implicite.
+
+\subsubsection{Garde}
+
+La garde est une condition logique évaluée lorsque l'événement se produit. Contrairement à l'événement, elle décrit un état qui persiste dans le temps. Sans garde, la condition est considérée vraie.
+
+Exemple :
+\[
+\text{appuiDépart }[\text{porteFermée}\cdot\overline{défaut}].
+\]
+
+Une garde doit être mutuellement exclusive avec les autres gardes issues du même choix, sauf lorsqu'une priorité est explicitement définie.
+
+\subsubsection{Effet}
+
+Un effet est une action instantanée réalisée au franchissement de la transition, par exemple :
+\[
+/\,N:=0,
+\qquad
+/\,alarme:=1.
+\]
+Il se distingue des activités associées aux états, qui durent pendant l'activation d'un état.
+
+\begin{TLLogicApplication}{Feu tricolore}
+Construire le graphe d'états d'un feu tricolore comportant les états rouge, vert et orange. Ajouter :
+\begin{itemize}
+  \item les temporisations nominales ;
+  \item un mode clignotant orange ;
+  \item un retour sécurisé au rouge après un défaut ;
+  \item les activités de commande des lampes dans chaque état.
+\end{itemize}
+\TLLogicImage[.16\linewidth]{image65.jpeg}
+\end{TLLogicApplication}
+
+\subsection{Pseudo-états}
+
+Un pseudo-état ne possède pas d'activité. Il organise les chemins du graphe :
+\begin{itemize}
+  \item initial : point d'entrée obligatoire dans une région ;
+  \item final : fin de l'exécution d'une région ;
+  \item choix : sélection dynamique d'un chemin selon des gardes ;
+  \item jonction : factorisation ou réunion de chemins ;
+  \item fork : séparation vers plusieurs régions parallèles ;
+  \item join : synchronisation de plusieurs régions ;
+  \item historique : reprise du dernier sous-état actif d'un état composite.
+\end{itemize}
+
+\begin{center}\TLPseudoEtats\end{center}
+
+\begin{TLLogicWarning}{Choix incomplet ou contradictoire}
+Pour un pseudo-état de choix, les gardes sortantes doivent couvrir tous les cas possibles et ne pas être vraies simultanément, sauf priorité explicitement définie. Une branche \texttt{else} permet de garantir la complétude.
+\end{TLLogicWarning}
+
+\subsection{États composites}
+
+Un état composite contient des sous-états. Dans un état composite séquentiel, un seul sous-état de la région est actif à la fois.
+
+\begin{center}\TLEtatComposite\end{center}
+
+Une transition entrant directement dans l'état composite active son pseudo-état initial, sauf si elle cible explicitement un sous-état ou un pseudo-état historique.
+
+Le pseudo-état historique superficiel mémorise le dernier sous-état actif au premier niveau. L'historique profond mémorise l'ensemble de la configuration imbriquée.
+
+\subsection{États composites orthogonaux}
+
+Un état composite orthogonal est découpé en plusieurs régions actives simultanément. Chaque région possède sa propre machine à états.
+
+\begin{center}\TLEtatOrthogonal\end{center}
+
+La sortie de l'état composite peut nécessiter une synchronisation par un pseudo-état de jonction. Cette représentation convient aux comportements parallèles : commande et surveillance, déplacement et signalisation, régulation et diagnostic.
+
+\begin{TLLogicMethod}{Vérifier un graphe d'états}
+\begin{enumerate}
+  \item Chaque région possède un pseudo-état initial.
+  \item Aucun état ne doit être inaccessible.
+  \item Chaque situation doit conduire à un comportement défini.
+  \item Les gardes concurrentes doivent être non contradictoires.
+  \item Les boucles sans temporisation ou sans événement doivent être évitées.
+  \item Les priorités de sécurité doivent être explicites.
+  \item Les régions parallèles doivent être synchronisées avant une sortie commune.
+\end{enumerate}
+\end{TLLogicMethod}
+
+\begin{TLLogicApplication}{Démarrage d'une turbine à gaz}
+Le moteur de lancement entraîne la turbine jusqu'à la vitesse d'autonomie. Le cycle comprend l'embrayage, l'accélération, l'allumage, la détection de la vitesse autonome et le débrayage.
+\begin{enumerate}
+  \item Identifier les états du cycle et leurs activités.
+  \item Compléter les événements et gardes à partir des capteurs de vitesse et d'embrayage.
+  \item Construire le chronogramme des variables $E$, $D$, $AV$ et $C$.
+  \item Déterminer le temps total de démarrage et le comparer au cahier des charges.
+\end{enumerate}
+\TLLogicImage[.70\linewidth]{image101.png}
+\end{TLLogicApplication}
+
+\section{Diagramme de séquence}
+\label{sec:sequence}
+
+Le diagramme de séquence, noté \texttt{sd}, décrit dans l'ordre chronologique les messages échangés entre acteurs, blocs ou composants pour un scénario précis.
+
+\begin{center}\TLDiagrammeSequenceSimple\end{center}
+
+Les éléments essentiels sont :
+\begin{itemize}
+  \item la ligne de vie de chaque participant ;
+  \item la période d'activité, représentée par une bande verticale ;
+  \item le message synchrone ou asynchrone ;
+  \item le message de retour, souvent en pointillés ;
+  \item le message réflexif ;
+  \item les fragments combinés.
+\end{itemize}
+
+\subsection{Messages}
+
+Un message est une interaction dirigée d'un émetteur vers un récepteur. Son arrivée peut constituer un événement pour le diagramme d'état du récepteur. Un message synchrone bloque l'émetteur jusqu'au retour ; un message asynchrone permet la poursuite de l'exécution.
+
+\subsection{Fragments combinés}
+
+Les fragments encadrent une portion du scénario :
+\begin{itemize}
+  \item \texttt{alt} : alternatives conditionnelles ;
+  \item \texttt{opt} : séquence optionnelle ;
+  \item \texttt{loop} : répétition tant qu'une garde est vraie ;
+  \item \texttt{par} : séquences exécutées en parallèle ;
+  \item \texttt{break} : interruption du reste du scénario.
+\end{itemize}
+
+\begin{center}\TLFragmentsSequence\end{center}
+
+\begin{TLLogicApplication}{Vente de repas en ligne}
+Décrire le scénario nominal entre client, interface web, service de paiement et cuisine : sélection du repas, validation du panier, paiement, confirmation et préparation.
+\begin{enumerate}
+  \item Placer les lignes de vie et les messages.
+  \item Ajouter un fragment \texttt{alt} pour le paiement accepté ou refusé.
+  \item Ajouter un fragment \texttt{loop} pour la sélection de plusieurs articles.
+  \item Ajouter un message asynchrone de notification lorsque le repas est prêt.
+\end{enumerate}
+\TLLogicImage[.64\linewidth]{image108.png}
+\end{TLLogicApplication}
