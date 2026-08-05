@@ -1,95 +1,284 @@
-\documentclass[a3paper,landscape,10pt]{article}
+\documentclass[a3paper,portrait,11pt]{article}
 \usepackage[margin=10mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
 \usepackage{amsmath,amssymb}
-\makeatletter\def\input@path{{../../../Style/}}\makeatother
-\input{TLPosterCarteMentale.sty}
-\IfFileExists{TLSystemesAsservis.sty}{\input{TLSystemesAsservis.sty}}{}
-\IfFileExists{Notations_Autom/Notations_Autom.sty}{\input{Notations_Autom/Notations_Autom.sty}}{}
-\IfFileExists{Notations_SLCI/Notations_SLCI.sty}{\input{Notations_SLCI/Notations_SLCI.sty}}{}
-\IfFileExists{schemabloc.sty}{\input{schemabloc.sty}}{}
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{ragged2e}
+\usetikzlibrary{arrows.meta,positioning,calc,shapes.geometric,shadows.blur,backgrounds,fit}
+
 \pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlist[itemize]{leftmargin=5mm,itemsep=1.2mm,topsep=1mm}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ----------------------------------------------------------------------------
+% Palette
+% ----------------------------------------------------------------------------
+\definecolor{SAblue}{HTML}{0B3B78}
+\definecolor{SAblue2}{HTML}{1769AA}
+\definecolor{SAsky}{HTML}{EAF4FB}
+\definecolor{SAgreen}{HTML}{5A9D4B}
+\definecolor{SAgreenlight}{HTML}{EEF7EA}
+\definecolor{SAorange}{HTML}{D88A22}
+\definecolor{SAorangelight}{HTML}{FFF4E3}
+\definecolor{SApurple}{HTML}{7251A8}
+\definecolor{SApurplelight}{HTML}{F3EEFA}
+\definecolor{SAred}{HTML}{C94747}
+\definecolor{SAgray}{HTML}{4B5563}
+\definecolor{SAlightgray}{HTML}{F5F7FA}
+
+\newtcolorbox{SAbox}[2][]{
+  enhanced,breakable,
+  colback=white,colframe=#2,
+  boxrule=1.1pt,arc=3mm,
+  left=4mm,right=4mm,top=3.5mm,bottom=3.5mm,
+  drop fuzzy shadow,
+  #1
+}
+
+\newtcolorbox{SAtitlebox}[2][]{
+  enhanced,
+  colback=white,colframe=#2,
+  colbacktitle=#2,coltitle=white,
+  title={#1},fonttitle=\bfseries\Large,
+  boxrule=1pt,arc=3mm,
+  left=4mm,right=4mm,top=3mm,bottom=3mm,
+  attach boxed title to top left={xshift=4mm,yshift*=-\tcboxedtitleheight/2},
+  boxed title style={arc=2mm,boxrule=0pt,left=4mm,right=4mm},
+  drop fuzzy shadow
+}
+
+\newcommand{\SApill}[2]{%
+  \tikz[baseline=-0.55ex]\node[rounded corners=2mm,fill=#1!12,draw=#1,
+  text=#1!80!black,inner xsep=3mm,inner ysep=1.2mm,font=\bfseries] {#2};%
+}
+
 \begin{document}
-\TLPosterTitre{Systèmes asservis}{Structure, modélisation et performances}
-\begin{multicols}{3}
 
-\begin{TLPosterBloc}{Système asservi}
-Un système asservi compare une consigne $r(t)$ à une mesure $y_m(t)$ et agit sur le procédé afin de réduire l'écart $\varepsilon(t)=r(t)-y_m(t)$.
-\end{TLPosterBloc}
+% ----------------------------------------------------------------------------
+% Bandeau supérieur
+% ----------------------------------------------------------------------------
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[SAblue] (current page.north west) rectangle ([yshift=-44mm]current page.north east);
+  \fill[SAblue2] ([xshift=-26mm,yshift=-44mm]current page.north east)
+    circle[radius=42mm];
+  \fill[white,opacity=.08] ([xshift=-5mm,yshift=-8mm]current page.north west)
+    circle[radius=23mm];
+  \draw[white,opacity=.22,line width=1.2pt]
+    ([xshift=18mm,yshift=-13mm]current page.north west) circle[radius=7mm];
+  \draw[white,opacity=.22,line width=1.2pt]
+    ([xshift=29mm,yshift=-23mm]current page.north west) circle[radius=4mm];
+\end{tikzpicture}
 
-\begin{TLPosterBloc}{Chaîne fonctionnelle}
-Comparateur $\rightarrow$ correcteur $\rightarrow$ préactionneur $\rightarrow$ procédé $\rightarrow$ capteur. La chaîne de retour fournit l'image mesurée de la sortie.
-\end{TLPosterBloc}
+\vspace*{3mm}
+\begin{minipage}[c]{0.74\textwidth}
+  {\color{white}\fontsize{31}{34}\selectfont\bfseries Systèmes asservis}\par
+  \vspace{2mm}
+  {\color{white!88}\fontsize{15}{18}\selectfont
+  Comprendre la boucle fermée, la modéliser et évaluer ses performances}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.22\textwidth}
+\begin{tikzpicture}[scale=.9,>=Latex]
+  \draw[white,line width=1.8pt] (0,0) circle (1.55);
+  \draw[white,line width=1.2pt] (0,0) circle (.85);
+  \draw[white,line width=1.2pt] (-2,0)--(2,0);
+  \draw[white,line width=1.2pt] (0,-2)--(0,2);
+  \draw[white,line width=2pt,-{Stealth[length=4mm]}] (-1.55,-1.15)--(-.3,-.15);
+  \fill[white] (0,0) circle (2.2pt);
+\end{tikzpicture}
+\end{minipage}
 
-\begin{TLPosterBloc}{Boucle ouverte et boucle fermée}
-La boucle ouverte décrit l'action sans correction par le retour. La boucle fermée prend en compte la mesure et permet d'améliorer précision, rejet des perturbations et robustesse.
-\end{TLPosterBloc}
+\vspace{13mm}
 
-\begin{TLPosterBloc}{Transformée de Laplace}
-Sous conditions initiales nulles, une équation différentielle devient une relation algébrique. La fonction de transfert est
-\[
-H(p)=\frac{S(p)}{E(p)}.
-\]
-\end{TLPosterBloc}
+% ----------------------------------------------------------------------------
+% Définition + relation fondamentale
+% ----------------------------------------------------------------------------
+\begin{minipage}[t]{0.58\textwidth}
+\begin{SAtitlebox}[1. Définition]{SAblue2}
+\justifying
+Un \textbf{système asservi} ajuste automatiquement son action à partir d'une
+\textbf{consigne} et d'une \textbf{mesure} de la sortie. Son objectif est de
+réduire l'écart entre les deux, tout en restant performant malgré les
+perturbations et les incertitudes du procédé.
+\end{SAtitlebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.39\textwidth}
+\begin{SAbox}[colback=SAsky,halign=center,valign=center,height=47mm]{SAblue2}
+{\color{SAblue}\Large\bfseries Relation fondamentale}\par\vspace{4mm}
+{\fontsize{22}{25}\selectfont\bfseries
+\(e(t)=r(t)-m(t)\)}\par\vspace{3mm}
+{\color{SAgray}erreur = consigne $-$ mesure}
+\end{SAbox}
+\end{minipage}
 
-\begin{TLPosterBloc}{Schémas-blocs}
-Les blocs représentent les fonctions de transfert. Les sommateurs traduisent les additions ou soustractions de signaux. Les points de prélèvement dupliquent un signal sans le modifier.
-\end{TLPosterBloc}
+\vspace{5mm}
 
-\begin{TLPosterBloc}{Réduction d'un schéma-blocs}
-Blocs en série : produit des fonctions de transfert. Blocs en parallèle : somme. Retour négatif :
-\[
-H_{BF}(p)=\frac{G(p)}{1+G(p)H(p)}.
-\]
-\end{TLPosterBloc}
+% ----------------------------------------------------------------------------
+% Schéma-bloc principal
+% ----------------------------------------------------------------------------
+\begin{SAtitlebox}[2. Structure d'une boucle fermée]{SAblue}
+\begin{center}
+\begin{tikzpicture}[
+  >=Latex,
+  block/.style={draw,rounded corners=2mm,minimum height=14mm,minimum width=35mm,
+    align=center,font=\bfseries,blur shadow},
+  signal/.style={-{Stealth[length=3.2mm]},line width=1.15pt,draw=SAgray},
+  lab/.style={font=\bfseries\small,text=SAblue},
+  sum/.style={circle,draw=SAblue,line width=1.2pt,minimum size=13mm,fill=SAsky}
+]
+  \node[lab] (r) at (-9.3,0) {Consigne\\$r(t)$};
+  \node[sum] (s) at (-7.1,0) {};
+  \node[block,fill=SAgreenlight,draw=SAgreen] (c) at (-3.8,0)
+    {Correcteur\\$C(p)$};
+  \node[block,fill=SAorangelight,draw=SAorange,minimum width=43mm] (g) at (1.0,0)
+    {Actionneur + procédé\\$G(p)$};
+  \node[lab] (y) at (6.0,0) {Sortie\\$y(t)$};
+  \node[block,fill=SAsky,draw=SAblue2] (h) at (-1.1,-2.6)
+    {Capteur\\$H(p)$};
+  \node[lab,text=SAred] (d) at (1.0,2.0) {Perturbation\\$d(t)$};
 
-\begin{TLPosterBloc}{Fonction de transfert en boucle ouverte}
-La FTBO est le produit des fonctions rencontrées sur la boucle. Elle conditionne directement stabilité, précision et comportement fréquentiel de la boucle fermée.
-\end{TLPosterBloc}
+  \draw[signal] (r.east)--(s.west);
+  \draw[signal] (s.east)--node[above,font=\bfseries]{$e(t)$}(c.west);
+  \draw[signal] (c.east)--node[above,font=\small]{commande}(g.west);
+  \draw[signal] (g.east)--coordinate (pick)(y.west);
+  \draw[signal,draw=SAred] (d.south)--(g.north);
+  \draw[signal] (pick) |- (h.east);
+  \draw[signal] (h.west) -| node[pos=.17,below,font=\small\bfseries,text=SAblue2]{mesure $m(t)$} (s.south);
 
-\begin{TLPosterBloc}{Pôles et zéros}
-Les pôles sont les racines du dénominateur et gouvernent la dynamique. Les zéros sont les racines du numérateur et modifient la forme de la réponse.
-\end{TLPosterBloc}
+  \node at ($(s.center)+(-.27,.28)$) {\bfseries +};
+  \node at ($(s.center)+(-.25,-.30)$) {\bfseries --};
 
-\begin{TLPosterBloc}{Systèmes du premier ordre}
-Forme canonique :
-\[
-H(p)=\frac{K}{1+\tau p}.
-\]
-La constante de temps $\tau$ caractérise la rapidité ; à $t=3\tau$, la réponse atteint environ $95\%$ de sa valeur finale.
-\end{TLPosterBloc}
+  \node[draw=SAblue2,dashed,rounded corners=2mm,fit=(s)(c)(g)(h),
+    inner xsep=5mm,inner ysep=4mm,label={[text=SAblue2,font=\bfseries]below:la mesure referme la boucle}] {};
+\end{tikzpicture}
+\end{center}
 
-\begin{TLPosterBloc}{Systèmes du second ordre}
-Forme canonique :
-\[
-H(p)=\frac{K\omega_0^2}{p^2+2\xi\omega_0p+\omega_0^2}.
-\]
-$\xi$ règle l'amortissement ; $\omega_0$ règle l'échelle de temps.
-\end{TLPosterBloc}
+\vspace{1mm}
+\begin{center}
+\SApill{SAblue2}{Comparer}\quad
+\SApill{SAgreen}{Corriger}\quad
+\SApill{SAorange}{Agir}\quad
+\SApill{SAblue}{Mesurer}\quad
+\SApill{SAred}{Rejeter les perturbations}
+\end{center}
+\end{SAtitlebox}
 
-\begin{TLPosterBloc}{Précision}
-L'erreur statique dépend du gain en basse fréquence et du nombre d'intégrateurs de la boucle ouverte. Une intégration améliore la précision pour une consigne en échelon.
-\end{TLPosterBloc}
+\vspace{5mm}
 
-\begin{TLPosterBloc}{Rapidité}
-On utilise notamment le temps de réponse à $5\%$, le temps de montée et la bande passante. Une augmentation du gain accélère souvent la réponse mais peut réduire la stabilité.
-\end{TLPosterBloc}
+% ----------------------------------------------------------------------------
+% Performances
+% ----------------------------------------------------------------------------
+\begin{center}
+{\color{SAblue}\LARGE\bfseries 3. Les trois performances fondamentales}
+\end{center}
+\vspace{2mm}
 
-\begin{TLPosterBloc}{Stabilité}
-Un système continu est asymptotiquement stable si tous les pôles de la boucle fermée ont une partie réelle strictement négative.
-\end{TLPosterBloc}
+\begin{minipage}[t]{0.32\textwidth}
+\begin{SAbox}[height=59mm,colback=SAgreenlight]{SAgreen}
+\begin{center}
+\begin{tikzpicture}
+  \draw[SAgreen,line width=1.6pt,rounded corners=1mm] (-.8,-.9)--(-.8,.75)--(0,1.1)--(.8,.75)--(.8,-.9);
+  \draw[SAgreen,line width=1.6pt] (-.5,.05)--(-.1,-.35)--(.55,.45);
+\end{tikzpicture}\par
+{\color{SAgreen!70!black}\Large\bfseries Stabilité}\par\vspace{2mm}
+Le système reste borné et rejoint un régime permanent après une sollicitation.
+\end{center}
+\end{SAbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\begin{SAbox}[height=59mm,colback=SAsky]{SAblue2}
+\begin{center}
+\begin{tikzpicture}
+  \draw[SAblue2,line width=1.6pt] (0,0) circle (1);
+  \draw[SAblue2,line width=1.6pt] (0,0) circle (.58);
+  \draw[SAblue2,line width=1.6pt] (0,0) circle (.18);
+  \draw[SAblue2,line width=1.6pt,-{Stealth[length=3mm]}] (-1.2,-1.0)--(-.1,-.1);
+\end{tikzpicture}\par
+{\color{SAblue2}\Large\bfseries Précision}\par\vspace{2mm}
+La sortie atteint la consigne avec une erreur statique aussi faible que possible.
+\end{center}
+\end{SAbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\begin{SAbox}[height=59mm,colback=SApurplelight]{SApurple}
+\begin{center}
+\begin{tikzpicture}
+  \draw[SApurple,line width=1.6pt] (0,0) circle (.95);
+  \draw[SApurple,line width=1.6pt] (0,.95)--(0,1.25);
+  \draw[SApurple,line width=1.6pt] (-.25,1.25)--(.25,1.25);
+  \draw[SApurple,line width=1.6pt,-{Stealth[length=2.5mm]}] (0,0)--(.45,.48);
+  \draw[SApurple,line width=1.4pt] (0,0)--(0,-.55);
+\end{tikzpicture}\par
+{\color{SApurple}\Large\bfseries Rapidité}\par\vspace{2mm}
+Le temps de montée et le temps de réponse restent compatibles avec le besoin.
+\end{center}
+\end{SAbox}
+\end{minipage}
 
-\begin{TLPosterBloc}{Analyse fréquentielle}
-Les diagrammes de Bode représentent gain et phase en fonction de la pulsation. Les marges de gain et de phase mesurent l'éloignement à l'instabilité.
-\end{TLPosterBloc}
+\vspace{5mm}
 
-\begin{TLPosterBloc}{Perturbations}
-Une perturbation peut agir en entrée ou dans la chaîne d'énergie. La boucle fermée limite son effet si le gain de boucle est suffisamment élevé dans la bande considérée.
-\end{TLPosterBloc}
+% ----------------------------------------------------------------------------
+% Modèles + démarche
+% ----------------------------------------------------------------------------
+\begin{minipage}[t]{0.49\textwidth}
+\begin{SAtitlebox}[4. Modèles essentiels]{SApurple}
+\begin{tabular}{@{}p{.34\linewidth}p{.60\linewidth}@{}}
+\textbf{Fonction de transfert} & $H(p)=\dfrac{S(p)}{E(p)}$\\[3mm]
+\textbf{Boucle fermée} & $H_{BF}(p)=\dfrac{G(p)}{1+G(p)H(p)}$\\[3mm]
+\textbf{Premier ordre} & $H(p)=\dfrac{K}{1+\tau p}$\\[3mm]
+\textbf{Second ordre} & $H(p)=\dfrac{K\omega_0^2}{p^2+2\xi\omega_0p+\omega_0^2}$
+\end{tabular}
+\end{SAtitlebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\begin{SAtitlebox}[5. Démarche d'étude]{SAorange}
+\begin{enumerate}[leftmargin=8mm,itemsep=1.4mm,topsep=0mm]
+  \item Identifier consigne, sortie, perturbations et capteur.
+  \item Construire le schéma-bloc et déterminer la FTBO.
+  \item Calculer la FTBF et repérer pôles et zéros.
+  \item Étudier les réponses temporelle et fréquentielle.
+  \item Conclure sur stabilité, précision, rapidité et robustesse.
+\end{enumerate}
+\end{SAtitlebox}
+\end{minipage}
 
-\begin{TLPosterBloc}{Démarche d'étude}
-Identifier les signaux, construire le schéma-blocs, déterminer FTBO et FTBF, étudier pôles et réponses, puis conclure sur précision, rapidité, stabilité et rejet des perturbations.
-\end{TLPosterBloc}
+\vspace{5mm}
 
-\end{multicols}
+% ----------------------------------------------------------------------------
+% Exemples
+% ----------------------------------------------------------------------------
+\begin{SAtitlebox}[6. Exemples de systèmes asservis]{SAgreen}
+\begin{center}
+\begin{tikzpicture}[
+  ex/.style={rounded corners=3mm,draw=SAgreen,fill=SAgreenlight,
+    minimum width=70mm,minimum height=22mm,align=center,font=\bfseries},
+  arr/.style={-{Stealth[length=3mm]},line width=1.2pt,draw=SAgreen}
+]
+  \node[ex] (a) at (-8,0) {Régulateur de vitesse\\\small maintenir une vitesse malgré la pente};
+  \node[ex] (b) at (0,0) {Thermostat\\\small maintenir une température malgré les pertes};
+  \node[ex] (c) at (8,0) {Axe robotisé\\\small atteindre une position malgré la charge};
+  \draw[arr] ($(a.south)+(-1,-.35)$)--($(a.south)+(1,-.35)$);
+  \draw[arr] ($(b.south)+(-1,-.35)$)--($(b.south)+(1,-.35)$);
+  \draw[arr] ($(c.south)+(-1,-.35)$)--($(c.south)+(1,-.35)$);
+\end{tikzpicture}
+\end{center}
+\end{SAtitlebox}
+
+\vfill
+\begin{tcolorbox}[
+  enhanced,colback=SAblue,colframe=SAblue,arc=3mm,boxrule=0pt,
+  left=6mm,right=6mm,top=3.5mm,bottom=3.5mm]
+\begin{center}
+{\color{white}\Large\bfseries À retenir : atteindre la consigne avec le meilleur compromis}
+\quad
+{\color{white!90}\large stabilité -- précision -- rapidité}
+\end{center}
+\end{tcolorbox}
+
 \end{document}
