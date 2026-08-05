@@ -1,6 +1,10 @@
 from pathlib import Path
 
 # Générateur des posters et cartes mentales des cours 01 à 05.
+# Le cours 05 possède désormais un poster et une carte mentale dessinés à la
+# main en TikZ. Ils ne doivent pas être remplacés par les gabarits génériques.
+HANDCRAFTED = {"05"}
+
 COURSES = [
     ("01", "Analyse fonctionnelle", "Notations_AF/Notations_AF.sty", [
         ("Besoin", "Identifier le besoin, les utilisateurs, le contexte et la finalité du système."),
@@ -60,11 +64,13 @@ BRANCHES
 \end{document}
 '''
 
+
 def find_course(prefix: str) -> Path:
     matches = sorted(p for p in Path('.').glob(f'{prefix}-*') if p.is_dir())
     if len(matches) != 1:
         raise RuntimeError(f'Préfixe {prefix}: {len(matches)} dossier(s) trouvé(s): {matches}')
     return matches[0]
+
 
 for prefix, title, style, blocks in COURSES:
     folder = find_course(prefix)
@@ -72,10 +78,28 @@ for prefix, title, style, blocks in COURSES:
     mind_dir = folder / 'Cours' / 'Carte mentale'
     poster_dir.mkdir(parents=True, exist_ok=True)
     mind_dir.mkdir(parents=True, exist_ok=True)
-    pblocks = '\n\n'.join(f'\\begin{{TLPosterBloc}}{{{h}}}\n{b}\n\\end{{TLPosterBloc}}' for h,b in blocks)
-    branches = '\n'.join(f'\\TLBranche{{{h}}}{{{b}}}' for h,b in blocks)
+
     safe = ''.join(c if c.isalnum() else '_' for c in title)
-    (poster_dir / f'Poster_{prefix}_{safe}.tex').write_text(POSTER.replace('STYLE',style).replace('TITLE',title).replace('BLOCKS',pblocks), encoding='utf-8')
-    (mind_dir / f'Carte_Mentale_{prefix}_{safe}.tex').write_text(MIND.replace('STYLE',style).replace('TITLE',title).replace('BRANCHES',branches), encoding='utf-8')
+    poster_file = poster_dir / f'Poster_{prefix}_{safe}.tex'
+    mind_file = mind_dir / f'Carte_Mentale_{prefix}_{safe}.tex'
+
+    if prefix in HANDCRAFTED and poster_file.exists() and mind_file.exists():
+        print(f'Cours {prefix}: visuels spécifiques conservés.')
+        continue
+
+    pblocks = '\n\n'.join(
+        f'\\begin{{TLPosterBloc}}{{{h}}}\n{b}\n\\end{{TLPosterBloc}}'
+        for h, b in blocks
+    )
+    branches = '\n'.join(f'\\TLBranche{{{h}}}{{{b}}}' for h, b in blocks)
+
+    poster_file.write_text(
+        POSTER.replace('STYLE', style).replace('TITLE', title).replace('BLOCKS', pblocks),
+        encoding='utf-8',
+    )
+    mind_file.write_text(
+        MIND.replace('STYLE', style).replace('TITLE', title).replace('BRANCHES', branches),
+        encoding='utf-8',
+    )
 
 print('Création terminée pour les cours 01 à 05.')
