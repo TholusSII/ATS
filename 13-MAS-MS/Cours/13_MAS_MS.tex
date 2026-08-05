@@ -1,7 +1,44 @@
-\def\CourseTitle{Machines asynchrones et synchrones}
-\def\CourseShortTitle{MAS et MS}
-\def\CourseNumber{13}
+% ============================================================================
+% DÉFINITION DU COURS 13 : MACHINES ASYNCHRONES ET SYNCHRONES
+% ============================================================================
+
+\titlehead{Thomas Lusseau - SII en ATS}
+\title[MAS et MS]{Machines asynchrones et synchrones}
+\author[TL]{Thomas Lusseau}
+\date{\today}
+
+\TLCourseCoverSetup
+  {\repStyle/FondPoly.png}
+  {\repStyle/FondPoly.png}
+  {Cycle 7 : Analyser, modéliser, expérimenter et résoudre la distribution\\et la conversion d'énergie en alternatif}
+  {Machines asynchrones\\et synchrones}
+  {Lycée Robert Doisneau - ATS}
+  {Thomas Lusseau}
+
+\TLCourseCoverContents{%
+  \TLCourseContentsLine{13.1}{Distribution triphasée et complexes}{sec:masms-1}
+  \TLCourseContentsLine{13.2}{Onduleur triphasé}{sec:masms-2}
+  \TLCourseContentsLine{13.3}{Généralités sur les machines alternatives}{sec:masms-3}
+  \TLCourseContentsLine{13.4}{Machine asynchrone}{sec:masms-4}
+  \TLCourseContentsLine{13.5}{Machine synchrone}{sec:masms-5}
+  \TLCourseContentsLine{13.6}{Synthèse et démarche d'étude}{sec:masms-6}
+  \TLCourseContentsLine{13.7}{Sources}{sec:masms-7}
+  \TLCourseContentsLine{13.8}{Exercices du chapitre}{sec:masms-8}
+}
+
+\TLCourseFooter
+\TLCourseCover
+\markboth{Machines asynchrones et synchrones}{Machines asynchrones et synchrones}
+
+\livrettrue
+\collefalse
 
 \TLStartCourseChapter{13}{Machines asynchrones et synchrones}{chap:mas-ms}
 
-\input{sources/13_MAS_MS_Cours_Propre.tex}
+\input{sources/13_MAS_MS_Partie_A}
+\input{sources/13_MAS_MS_Partie_B}
+\input{sources/13_MAS_MS_Partie_C}
+\input{sources/13_MAS_MS_Exercices_A}
+\input{sources/13_MAS_MS_Exercices_B}
+
+\printindex
