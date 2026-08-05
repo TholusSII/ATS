@@ -1,0 +1,155 @@
+% ============================================================================
+% COURS 14 — EXERCICES, PARTIE A
+% Logique combinatoire, systèmes séquentiels et codeurs
+% Source : 18-Logique_SED.docx
+% ============================================================================
+
+\section{Exercices du chapitre}
+\label{sec:logique-exercices}
+
+\subsection{Store automatique Somfy}
+
+Le store comporte les entrées suivantes :
+\begin{itemize}
+  \item $V$ : vent supérieur au seuil ;
+  \item $S$ : soleil supérieur au seuil ;
+  \item $M$ : commande manuelle de montée ;
+  \item $D$ : commande manuelle de descente ;
+  \item $A$ : mode automatique actif.
+\end{itemize}
+Les sorties sont $CM$ pour la montée et $CD$ pour la descente. Le vent impose la montée et est prioritaire sur toutes les autres fonctions. Sans vent, les commandes manuelles sont prioritaires. En mode automatique, le soleil commande la descente lorsqu'aucune commande manuelle n'est active.
+
+\TLLogicImage[.60\linewidth]{image13.jpeg}
+
+\begin{enumerate}
+  \item Établir la table de vérité de $CM$ et $CD$.
+  \item Identifier les combinaisons interdites ou indifférentes.
+  \item Déterminer les formes canoniques des deux sorties.
+  \item Simplifier les équations par l'algèbre de Boole puis par Karnaugh.
+  \item Proposer une synthèse directe avec des portes élémentaires.
+  \item Proposer une synthèse uniquement avec des portes NAND.
+  \item Vérifier que les deux commandes moteur ne peuvent jamais être actives simultanément.
+\end{enumerate}
+
+\subsection{Transcodeur Gray vers binaire}
+
+Un codeur absolu fournit un mot Gray sur quatre bits $G_3G_2G_1G_0$. Le système de commande utilise le binaire naturel $B_3B_2B_1B_0$.
+
+\begin{enumerate}
+  \item Compléter la table de correspondance pour les seize positions.
+  \item Établir les équations $B_3$, $B_2$, $B_1$ et $B_0$.
+  \item Montrer que :
+  \[
+  B_3=G_3,
+  \qquad B_i=B_{i+1}\oplus G_i.
+  \]
+  \item Dessiner le logigramme du transcodeur.
+  \item Déterminer le mot binaire correspondant à $G=1101$.
+  \item Établir la conversion inverse du binaire vers Gray.
+\end{enumerate}
+
+\subsection{Décodeur d'afficheur sept segments}
+
+Un afficheur sept segments reçoit un chiffre décimal codé en BCD sur quatre bits $A_3A_2A_1A_0$. Les segments sont actifs à l'état haut.
+
+\begin{enumerate}
+  \item Établir la table de vérité des sept sorties $a$ à $g$ pour les chiffres 0 à 9.
+  \item Déclarer indifférentes les combinaisons 10 à 15.
+  \item Simplifier l'équation du segment central $g$ par Karnaugh.
+  \item Simplifier l'équation du segment supérieur $a$.
+  \item Proposer une implantation par circuit logique programmable.
+  \item Indiquer les modifications nécessaires pour un afficheur à anode commune.
+\end{enumerate}
+
+\subsection{Commande séquentielle d'un hayon}
+
+L'ouverture du hayon est commandée par une impulsion $t_0$. Le moteur $M^+$ reste actif jusqu'au capteur de position haute $p_h$. Une commande d'arrêt $a_0$ doit interrompre immédiatement le mouvement. Un défaut d'effort $d$ doit provoquer l'arrêt puis une courte réouverture inverse.
+
+\begin{enumerate}
+  \item Expliquer pourquoi le système n'est pas combinatoire.
+  \item Établir l'équation de mémorisation du mouvement d'ouverture sans le défaut.
+  \item Proposer les états nécessaires pour prendre en compte l'arrêt et le défaut.
+  \item Construire le diagramme d'état complet avec événements, gardes et effets.
+  \item Ajouter une temporisation de $500\ \mathrm{ms}$ pour le dégagement après défaut.
+  \item Vérifier que l'appui sur la commande pendant un mouvement ne crée pas de transition non prévue.
+\end{enumerate}
+
+\subsection{Cycle de lave-linge}
+
+Le cycle comporte les états : arrêt, remplissage, chauffage, lavage, vidange, rinçage et essorage. Les entrées sont la commande départ, le capteur de porte, le niveau bas, le niveau haut, la température et un défaut moteur.
+
+\begin{enumerate}
+  \item Définir les activités associées à chaque état.
+  \item Construire le graphe nominal avec les temporisations nécessaires.
+  \item Ajouter trois rinçages successifs à l'aide d'un compteur.
+  \item Ajouter une transition prioritaire vers un état de sécurité lors de l'ouverture de porte ou d'un défaut moteur.
+  \item Utiliser un état composite pour regrouper le cycle de lavage.
+  \item Ajouter une région orthogonale assurant la surveillance des défauts pendant tout le cycle.
+\end{enumerate}
+
+\subsection{Démarrage d'une turbine à gaz}
+
+Le système de lancement électrique embraye un moteur sur l'arbre de la turbine, augmente progressivement la vitesse, autorise l'injection et l'allumage, puis débraye lorsque la vitesse d'autonomie est atteinte.
+
+Les variables sont :
+\begin{itemize}
+  \item $E$ : embrayage actif ;
+  \item $D$ : débrayage actif ;
+  \item $AV$ : augmentation de vitesse commandée ;
+  \item $C$ : vitesse d'autonomie atteinte ;
+  \item $F$ : présence de flamme ;
+  \item $AU$ : arrêt d'urgence.
+\end{itemize}
+
+\begin{enumerate}
+  \item Recenser les états nécessaires au démarrage.
+  \item Construire le graphe d'états nominal.
+  \item Ajouter une temporisation maximale d'allumage et une transition vers l'arrêt en absence de flamme.
+  \item Ajouter une transition prioritaire depuis tous les états vers l'arrêt d'urgence.
+  \item Compléter le chronogramme de $E$, $D$, $AV$, $C$ et $F$.
+  \item Calculer le temps maximal du cycle de démarrage.
+\end{enumerate}
+
+\TLLogicImage[.72\linewidth]{image101.png}
+
+\subsection{Système de vente de repas en ligne}
+
+Les participants sont le client, l'interface web, le service d'authentification, le service de paiement et la cuisine.
+
+\begin{enumerate}
+  \item Construire le diagramme de séquence du scénario nominal.
+  \item Utiliser un fragment \texttt{loop} pour l'ajout de plusieurs articles.
+  \item Utiliser un fragment \texttt{alt} pour les cas paiement accepté et refusé.
+  \item Ajouter un fragment \texttt{opt} pour un code promotionnel.
+  \item Ajouter en parallèle la préparation du repas et l'émission du justificatif.
+  \item Faire correspondre les principaux messages aux événements d'un diagramme d'état de la commande.
+\end{enumerate}
+
+\TLLogicImage[.62\linewidth]{image108.png}
+
+\subsection{Codeur incrémental d'un simulateur de moto}
+
+Le codeur possède $N=500$ périodes par tour et ses voies A et B sont exploitées sur les quatre fronts. Il est monté sur le moteur d'un vérin par l'intermédiaire d'une vis de pas $p=5\ \mathrm{mm}$ et d'un réducteur de rapport $k=1/4$.
+
+\begin{enumerate}
+  \item Calculer le nombre de points de mesure par tour moteur.
+  \item Déterminer la résolution angulaire de l'arbre moteur puis la résolution linéaire du vérin.
+  \item À partir du chronogramme fourni, déterminer le sens et l'évolution du compteur.
+  \item Construire le diagramme d'état de décodage en quadrature.
+  \item Proposer une stratégie de détection des transitions invalides.
+  \item Calculer la vitesse du vérin si $320$ fronts sont comptés pendant $20\ \mathrm{ms}$.
+\end{enumerate}
+
+\TLLogicImage[.75\linewidth]{image124.png}
+
+\subsection{Codeur absolu d'un axe rotatif}
+
+Un axe est équipé d'un codeur absolu Gray sur 12 bits et entraîne une table par un réducteur de rapport $1/100$.
+
+\begin{enumerate}
+  \item Calculer la résolution angulaire du codeur et celle de la table.
+  \item Convertir le code Gray $101101001110$ en binaire puis en décimal.
+  \item Déterminer l'angle de la table correspondant.
+  \item Expliquer l'intérêt du code Gray près d'une frontière entre secteurs.
+  \item Comparer les procédures de remise en service après une coupure pour ce codeur et un codeur incrémental.
+\end{enumerate}
