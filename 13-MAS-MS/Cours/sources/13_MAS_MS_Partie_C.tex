@@ -1,0 +1,222 @@
+% ============================================================================
+% COURS 13 — MACHINES ASYNCHRONES ET SYNCHRONES
+% Partie C : machine synchrone
+% Source : 17-MAS_MS.docx
+% ============================================================================
+
+\section{Machine synchrone}
+\label{sec:masms-5}
+
+Une machine synchrone est un convertisseur électromécanique réversible. Elle fonctionne en moteur ou en génératrice, appelée alors \textbf{alternateur}. Le rotor crée un champ magnétique par aimants permanents ou par un enroulement d'excitation. En régime établi, il tourne exactement à la vitesse du champ tournant statorique :
+\[
+\boxed{\Omega=\Omega_s=\frac{\omega}{p}.}
+\]
+
+\subsection{Domaines d'emploi}
+
+Les machines synchrones couvrent une très large gamme de puissances :
+\begin{itemize}
+  \item petites puissances : modélisme, ventilateurs, dispositifs médicaux et micromécanismes ;
+  \item puissances moyennes : machines-outils, véhicules électriques, entraînements directs, alternateurs automobiles ;
+  \item fortes puissances : traction ferroviaire, propulsion navale et production d'électricité.
+\end{itemize}
+
+L'absence de glissement permet une relation directe entre fréquence électrique et vitesse mécanique. Les aimants permanents offrent une forte densité de puissance ; l'excitation bobinée permet d'agir sur le flux et la puissance réactive.
+
+\subsection{Modèle simplifié d'une phase}
+
+Le modèle monophasé équivalent comporte une f.é.m. interne $\underline E$, la résistance statorique $R_s$ et la réactance synchrone $X_s=L_s\omega$.
+
+\begin{center}\TLSchemaEquivalentMS\end{center}
+
+En convention récepteur, pour un moteur :
+\[
+\boxed{\underline V=\underline E+(R_s+jX_s)\underline I.}
+\]
+En négligeant la résistance :
+\[
+\boxed{\underline V=\underline E+jX_s\underline I.}
+\]
+
+La f.é.m. est proportionnelle au flux et à la vitesse :
+\[
+\boxed{E=K_e\Omega_s=p\Phi\Omega_s.}
+\]
+
+\begin{TLMachineWarning}{Domaine de validité}
+Le modèle à inductance synchrone unique est établi en régime permanent et convient surtout aux machines à pôles lisses. Les machines saillantes demandent généralement deux réactances, directe et transverse.
+\end{TLMachineWarning}
+
+\subsection{Diagramme de Behn--Eschenburg}
+
+Le diagramme de Behn--Eschenburg est le diagramme de Fresnel associé à la loi des mailles.
+
+\begin{center}\TLDiagrammeBehnEschenburg\end{center}
+
+Les angles utilisés sont :
+\begin{itemize}
+  \item $\varphi$ : déphasage entre $\underline I$ et $\underline V$ ;
+  \item $\delta$ : angle interne entre $\underline E$ et $\underline V$ ;
+  \item $\psi$ : déphasage entre $\underline I$ et $\underline E$.
+\end{itemize}
+
+Lorsque $R_s$ est négligée, le vecteur $jX_s\underline I$ est orthogonal au courant. La valeur de $E$, réglée par l'excitation pour une machine bobinée, modifie le facteur de puissance :
+\begin{itemize}
+  \item machine sous-excitée : comportement généralement inductif ;
+  \item machine surexcitée : comportement capacitif possible ;
+  \item excitation adaptée : facteur de puissance proche de l'unité.
+\end{itemize}
+
+\begin{TLMachineMethod}{Construire un diagramme de Behn--Eschenburg}
+\begin{enumerate}
+  \item Choisir la grandeur de référence, souvent $\underline E$ ou $\underline V$.
+  \item Placer le courant avec le déphasage imposé.
+  \item Construire $R_s\underline I$, colinéaire au courant.
+  \item Construire $jX_s\underline I$, en quadrature avance.
+  \item Fermer le polygone vectoriel avec la loi des mailles.
+  \item Lire les angles $\varphi$, $\psi$ et $\delta$ ainsi que les modules recherchés.
+\end{enumerate}
+\end{TLMachineMethod}
+
+\subsection{Puissance et couple électromagnétiques}
+
+La puissance électrique active absorbée par une machine triphasée équilibrée est :
+\[
+P=3VI\cos\varphi.
+\]
+La puissance électromagnétique peut également s'écrire :
+\[
+\boxed{P_{em}=3EI\cos\psi.}
+\]
+On en déduit :
+\[
+\boxed{C_{em}=\frac{P_{em}}{\Omega_s}=3K_eI\cos\psi.}
+\]
+
+Si la résistance statorique est négligée et pour une machine non saillante :
+\[
+\boxed{P_{em}=3\frac{VE}{X_s}\sin\delta,}
+\qquad
+\boxed{C_{em}=\frac{3VE}{X_s\Omega_s}\sin\delta.}
+\]
+
+Le couple est maximal pour $|\delta|=\pi/2$. Au-delà, la machine entre dans une zone instable et risque le \textbf{décrochage}.
+
+L'angle géométrique $\theta$ entre le champ rotorique et le champ statorique est complémentaire de $\psi$ :
+\[
+\theta+\psi=\frac{\pi}{2},
+\qquad
+\sin\theta=\cos\psi.
+\]
+Ainsi :
+\[
+C_{em}=3K_eI\sin\theta.
+\]
+
+\begin{TLMachineWarning}{Décrochage}
+Une machine synchrone directement alimentée par un réseau ne peut pas accepter un couple résistant supérieur à son couple maximal. Le rotor décroche du champ tournant et la machine doit être arrêtée puis redémarrée.
+\end{TLMachineWarning}
+
+\begin{TLMachineExercise}{Identification d'une MS à aimants permanents}
+Une MS possède huit pôles, des enroulements couplés en étoile et un courant nominal $I_N=155\ \mathrm A$. Les essais donnent :
+\begin{itemize}
+  \item résistance mesurée entre deux phases : $r=0{,}06\ \Omega$ ;
+  \item à vide, à $1500\ \mathrm{tr\,min^{-1}}$ : $E=37\ \mathrm V$ par phase ;
+  \item en moteur, à $1500\ \mathrm{tr\,min^{-1}}$ : $I=185\ \mathrm A$, $V=49\ \mathrm V$ et $\psi=0$.
+\end{itemize}
+Déterminer $f$, la résistance d'une phase, la constante $K_e$, l'inductance synchrone puis construire le diagramme vectoriel pour un fonctionnement à $5000\ \mathrm{tr\,min^{-1}}$.
+\end{TLMachineExercise}
+
+\subsection{Bilan de puissance}
+
+Les pertes d'une machine synchrone sont :
+\begin{itemize}
+  \item pertes Joule statoriques : $P_{Js}=3R_sI^2$ ;
+  \item pertes fer $P_{fe}$ ;
+  \item pertes mécaniques $P_m$ ;
+  \item pertes d'excitation $P_e=U_eI_e=R_eI_e^2$ lorsque le rotor est bobiné.
+\end{itemize}
+
+\begin{center}\TLBilanPuissanceMS\end{center}
+
+En fonctionnement moteur :
+\[
+P_{em}=P_a-P_{Js}-P_{fe},
+\qquad
+P_u=P_{em}-P_m,
+\qquad
+\boxed{\eta=\frac{P_u}{P_a+P_e}.}
+\]
+Pour une machine à aimants permanents, $P_e=0$.
+
+\subsection{Variation de vitesse}
+
+La vitesse étant imposée par la fréquence, la variation de vitesse exige une alimentation à fréquence variable. Le contrôle peut agir sur :
+\begin{itemize}
+  \item le flux ou l'excitation, si le rotor est bobiné ;
+  \item l'amplitude du courant statorique ;
+  \item l'angle $\psi$ entre courant et f.é.m.
+\end{itemize}
+
+Pour une machine à aimants, l'objectif usuel est de maximiser le couple par ampère en imposant $\psi=0$, donc $\cos\psi=1$.
+
+\subsection{Moteur brushless et autopilotage}
+
+Une machine synchrone autopilotée associe :
+\begin{itemize}
+  \item un onduleur triphasé ;
+  \item une mesure ou une estimation de la position rotorique ;
+  \item une commande qui synchronise les courants statoriques avec le rotor.
+\end{itemize}
+
+\begin{center}\TLChaineBrushless\end{center}
+
+La commande impose une référence d'amplitude $I_{ref}$ et un angle d'autopilotage $\psi_{ref}$. La fonction assurée par l'électronique est comparable à celle du collecteur mécanique d'une machine à courant continu, d'où le nom \textbf{brushless}.
+
+\begin{TLMachineExercise}{Unité de vissage brushless}
+Une MS possède $p=3$, $L=7{,}5\ \mathrm{mH}$ et $K_e=0{,}13\ \mathrm{V/(rad\,s^{-1})}$. Elle tourne à $3600\ \mathrm{tr\,min^{-1}}$.
+\begin{enumerate}
+  \item Calculer $\omega$ et $f$ des grandeurs statoriques.
+  \item Montrer que $C=K_cI\cos\psi$ et déterminer $K_c$.
+  \item Choisir $\psi$ pour minimiser le courant en mode moteur puis en freinage.
+  \item Tracer les diagrammes de Behn--Eschenburg correspondants.
+  \item Pour $N=3000\ \mathrm{tr\,min^{-1}}$ et $I=6{,}7\ \mathrm A$, déterminer le facteur de puissance, la tension simple et le couple.
+\end{enumerate}
+\end{TLMachineExercise}
+
+\section{Synthèse et démarche d'étude}
+\label{sec:masms-6}
+
+\begin{TLMachineMethod}{Analyser une machine alternative}
+\begin{enumerate}
+  \item Lire la plaque signalétique et identifier le couplage.
+  \item Déterminer $p$, $\Omega_s$ et les grandeurs triphasées.
+  \item Pour une MAS, calculer le glissement et exploiter le schéma équivalent.
+  \item Pour une MS, établir le diagramme de Behn--Eschenburg.
+  \item Construire le bilan de puissance et calculer le rendement.
+  \item Déterminer le couple et le point de fonctionnement avec la charge.
+  \item Vérifier les contraintes thermiques et le domaine stable.
+  \item Choisir la stratégie de variation de vitesse : $V/f$, commande vectorielle ou autopilotage.
+\end{enumerate}
+\end{TLMachineMethod}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}p{3.2cm}X X}
+\toprule
+Critère & Machine asynchrone & Machine synchrone \\
+\midrule
+Vitesse & différente de $\Omega_s$ ; dépend du glissement & égale à $\Omega_s$ en régime établi\\
+Rotor & cage ou rotor bobiné & aimants ou excitation bobinée\\
+Couple & créé par courants rotoriques induits & interaction entre champs statorique et rotorique\\
+Commande simple & robuste, loi $V/f$ & nécessite synchronisation avec le rotor\\
+Risque principal & échauffement, zone instable & décrochage\\
+Atouts & simplicité, coût, robustesse & rendement, précision de vitesse, densité de puissance\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Sources}
+\label{sec:masms-7}
+
+Ce cours a été élaboré à partir du document pédagogique original et de ressources de collègues de l'UPSTI. Les exercices conservent les références de concours indiquées dans le document source.
