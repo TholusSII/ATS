@@ -1,0 +1,206 @@
+% ============================================================================
+% COURS 14 — LOGIQUE, SED ET COMMUNICATION
+% Partie C : codeurs incrémentaux et absolus
+% Source : 18-Logique_SED.docx
+% ============================================================================
+
+\section{Codeurs incrémentaux et absolus}
+\label{sec:codeurs}
+
+\subsection{Familles de capteurs}
+
+Pour contrôler une chaîne d'énergie, la fonction acquérir transforme une grandeur physique en information exploitable. On distingue :
+\begin{itemize}
+  \item les \textbf{capteurs analogiques}, dont la sortie évolue continûment avec la grandeur mesurée ;
+  \item les \textbf{codeurs numériques}, qui délivrent un mot ou une suite d'impulsions ;
+  \item les \textbf{détecteurs logiques}, dont la sortie ne prend que deux états.
+\end{itemize}
+
+Exemples : potentiomètre, tachymètre ou jauge de déformation pour les capteurs analogiques ; codeur incrémental ou absolu pour les codeurs ; fin de course, capteur à effet Hall ou bouton pour les détecteurs.
+
+\subsection{Vocabulaire de métrologie}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}p{2.7cm}X}
+\toprule
+Caractéristique & Définition \\
+\midrule
+Étendue de mesure & Intervalle des valeurs mesurables.\\
+Résolution & Plus petite variation de la grandeur d'entrée produisant une variation détectable en sortie.\\
+Sensibilité & Rapport entre la variation du signal de sortie et la variation de la grandeur mesurée.\\
+Justesse & Proximité entre la moyenne des mesures et la valeur vraie.\\
+Fidélité & Faible dispersion de mesures répétées dans les mêmes conditions.\\
+Précision & Aptitude globale à fournir une valeur proche de la valeur vraie.\\
+Linéarité & Proximité de la caractéristique réelle avec une droite de référence.\\
+Hystérésis & Écart de réponse selon que la grandeur croît ou décroît.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\TLLogicImage[.36\linewidth]{image109.png}
+
+\begin{TLLogicWarning}{Résolution et précision}
+Une résolution fine ne garantit pas une mesure juste. Elle indique seulement la plus petite variation discernable ; les erreurs de zéro, de gain, de non-linéarité et le bruit doivent aussi être pris en compte.
+\end{TLLogicWarning}
+
+\subsection{Placement d'un codeur dans une chaîne de transmission}
+
+Le codeur est généralement placé sur l'arbre moteur, en amont du réducteur. Pour un même déplacement de l'organe de sortie, l'arbre moteur effectue davantage de tours et fournit donc davantage d'impulsions.
+
+Pour un réducteur défini par :
+\[
+k=\frac{\Omega_s}{\Omega_m},
+\]
+et un codeur de $N$ périodes par tour moteur, la résolution angulaire en sortie, en comptage simple, est :
+\[
+\boxed{\Delta\theta_s=k\frac{2\pi}{N}.}
+\]
+En comptage des quatre fronts des voies A et B :
+\[
+\boxed{\Delta\theta_s=k\frac{2\pi}{4N}.}
+\]
+
+\subsection{Codeur incrémental}
+
+Un codeur incrémental optique comporte un disque percé de secteurs opaques et transparents, une source lumineuse et des photorécepteurs. Il fournit généralement :
+\begin{itemize}
+  \item la voie A ;
+  \item la voie B, déphasée de $90^\circ$ électriques par rapport à A ;
+  \item la voie Z, ou index, qui fournit une impulsion de référence par tour.
+\end{itemize}
+
+\begin{center}\TLCodeurIncremental\end{center}
+\TLLogicImage[.56\linewidth]{image112.jpeg}
+
+Le nombre $N$ de périodes correspond au nombre d'impulsions de la voie A pour un tour mécanique. La résolution angulaire de base est :
+\[
+\boxed{\Delta\theta=\frac{2\pi}{N}=\frac{360^\circ}{N}.}
+\]
+
+Selon le mode de comptage :
+\begin{center}
+\small
+\begin{tabular}{lcc}
+\toprule
+Mode & Nombre de points par tour & Résolution \\
+\midrule
+un front de A & $N$ & $360^\circ/N$\\
+deux fronts de A & $2N$ & $360^\circ/(2N)$\\
+quatre fronts de A et B & $4N$ & $360^\circ/(4N)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection{Sens de rotation}
+
+Le déphasage des voies permet de déterminer le sens :
+\begin{itemize}
+  \item si A est en avance sur B, le compteur est incrémenté ;
+  \item si B est en avance sur A, le compteur est décrémenté.
+\end{itemize}
+
+\begin{center}\TLChronogrammeCodeur\end{center}
+
+La logique de décodage peut être décrite par un diagramme d'état à quatre états correspondant aux couples $(A,B)=(00),(01),(11),(10)$. Toute transition sautant un état peut être considérée comme une erreur ou un parasite.
+
+\subsubsection{Position et vitesse}
+
+La position relative est obtenue par comptage :
+\[
+\boxed{\theta=\frac{2\pi}{N_c}C,}
+\]
+où $C$ est le compteur signé et $N_c=N$, $2N$ ou $4N$ selon le mode de décodage.
+
+La vitesse peut être estimée de deux façons :
+\begin{itemize}
+  \item comptage du nombre $\Delta C$ d'impulsions pendant une fenêtre $T_e$ :
+  \[
+  \boxed{\Omega\simeq\frac{2\pi}{N_c}\frac{\Delta C}{T_e}};
+  \]
+  \item mesure de la période $T_p$ entre deux fronts successifs :
+  \[
+  \boxed{\Omega\simeq\frac{2\pi}{N_cT_p}}.
+  \]
+\end{itemize}
+La première méthode convient mieux aux vitesses élevées ; la seconde est plus précise à basse vitesse.
+
+\subsubsection{Avantages et limites}
+
+Le codeur incrémental est économique, rapide et facilement raccordable aux compteurs matériels des automates. Il fournit naturellement le sens et la vitesse.
+
+En revanche, il perd l'information de position lors d'une coupure d'alimentation. Une prise d'origine est donc nécessaire au redémarrage, généralement avec la voie Z et un détecteur de référence.
+
+\begin{TLLogicApplication}{Comptage en quadrature}
+Un codeur de $1024$ périodes par tour est décodé sur les quatre fronts et monté sur l'arbre moteur d'un réducteur de rapport $k=1/50$.
+\begin{enumerate}
+  \item Calculer le nombre de points par tour moteur.
+  \item Déterminer la résolution angulaire de l'arbre de sortie.
+  \item Calculer le déplacement linéaire minimal si l'arbre de sortie entraîne une vis de pas $5\ \mathrm{mm}$.
+  \item Déterminer le nombre d'impulsions observées en $10\ \mathrm{ms}$ pour une vitesse de sortie de $30\ \mathrm{tr\,min^{-1}}$.
+\end{enumerate}
+\end{TLLogicApplication}
+
+\subsection{Codeur absolu}
+
+Un codeur absolu possède plusieurs pistes concentriques. Avec $n$ pistes, il distingue $2^n$ positions et délivre directement un mot numérique représentant la position.
+
+\begin{center}\TLCodeurAbsolu\end{center}
+\TLLogicImage[.30\linewidth]{image120.png}
+
+La résolution théorique est :
+\[
+\boxed{\Delta\theta=\frac{360^\circ}{2^n}.}
+\]
+
+Le binaire naturel est facile à exploiter mais plusieurs bits peuvent changer simultanément entre deux positions. Au voisinage d'une frontière, des décalages de capteurs peuvent alors produire un code intermédiaire erroné.
+
+Le code Gray évite ce problème : deux valeurs successives ne diffèrent que d'un bit. La conversion binaire vers Gray s'écrit :
+\[
+\boxed{G_{n-1}=B_{n-1},}
+\]
+\[
+\boxed{G_i=B_{i+1}\oplus B_i.}
+\]
+La conversion Gray vers binaire s'écrit :
+\[
+\boxed{B_{n-1}=G_{n-1},}
+\qquad
+\boxed{B_i=B_{i+1}\oplus G_i.}
+\]
+
+\begin{center}
+\small
+\begin{tabular}{c|ccc|ccc}
+\toprule
+Décimal & \multicolumn{3}{c|}{Binaire} & \multicolumn{3}{c}{Gray}\\
+&$b_2$&$b_1$&$b_0$&$g_2$&$g_1$&$g_0$\\
+\midrule
+0&0&0&0&0&0&0\\
+1&0&0&1&0&0&1\\
+2&0&1&0&0&1&1\\
+3&0&1&1&0&1&0\\
+4&1&0&0&1&1&0\\
+5&1&0&1&1&1&1\\
+6&1&1&0&1&0&1\\
+7&1&1&1&1&0&0\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection{Avantages et limites}
+
+Le codeur absolu conserve la position après une coupure et ne nécessite pas de prise d'origine. Chaque secteur possède un code unique. Il est en revanche plus coûteux et demande davantage de voies ou une interface série dédiée.
+
+Les codeurs absolus modernes transmettent souvent le mot de position par SSI, BiSS, CANopen, EtherCAT ou une autre liaison série industrielle.
+
+\begin{TLLogicApplication}{Simulateur de moto}
+Le vérin d'un simulateur est équipé d'un codeur incrémental à deux voies. Le diagramme d'état du compteur utilise les quatre états $00$, $01$, $11$ et $10$.
+\begin{enumerate}
+  \item Compléter le chronogramme de la valeur mesurée à partir des voies A et B.
+  \item Associer chaque front aux transitions du diagramme d'état.
+  \item Identifier le sens de rotation et les éventuelles transitions invalides.
+  \item Déterminer le gain $K_{cap}$ exprimé en impulsions par radian, puis en radians par impulsion.
+\end{enumerate}
+\TLLogicImage[.72\linewidth]{image124.png}
+\end{TLLogicApplication}
