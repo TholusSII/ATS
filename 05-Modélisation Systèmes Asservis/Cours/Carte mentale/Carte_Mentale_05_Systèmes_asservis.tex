@@ -1,34 +1,177 @@
 \documentclass[a3paper,landscape,10pt]{article}
-\usepackage[margin=8mm]{geometry}
+\usepackage[margin=6mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
 \usepackage{amsmath,amssymb}
-\makeatletter\def\input@path{{../../../Style/}}\makeatother
-\input{TLPosterCarteMentale.sty}
-\IfFileExists{TLSystemesAsservis.sty}{\input{TLSystemesAsservis.sty}}{}
-\IfFileExists{Notations_Autom/Notations_Autom.sty}{\input{Notations_Autom/Notations_Autom.sty}}{}
-\IfFileExists{Notations_SLCI/Notations_SLCI.sty}{\input{Notations_SLCI/Notations_SLCI.sty}}{}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,shapes.geometric,shadows.blur,backgrounds,fit}
+
 \pagestyle{empty}
+\setlength{\parindent}{0pt}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ----------------------------------------------------------------------------
+% Palette
+% ----------------------------------------------------------------------------
+\definecolor{CMblue}{HTML}{0B3B78}
+\definecolor{CMblue2}{HTML}{2B78C5}
+\definecolor{CMblueLight}{HTML}{EAF3FC}
+\definecolor{CMgreen}{HTML}{4A9B3E}
+\definecolor{CMgreenLight}{HTML}{EEF8EB}
+\definecolor{CMpurple}{HTML}{7651A8}
+\definecolor{CMpurpleLight}{HTML}{F3EEFA}
+\definecolor{CMorange}{HTML}{E48A18}
+\definecolor{CMorangeLight}{HTML}{FFF4E3}
+\definecolor{CMteal}{HTML}{16969A}
+\definecolor{CMtealLight}{HTML}{E9F8F8}
+\definecolor{CMyellow}{HTML}{D9A20B}
+\definecolor{CMyellowLight}{HTML}{FFF8DA}
+\definecolor{CMgray}{HTML}{4B5563}
+
 \begin{document}
-\begin{TLCarteMentale}{Systèmes asservis}
-\TLBranche{Consigne}{Grandeur de référence imposée au système.}
-\TLBranche{Comparateur}{Produit l'écart $\varepsilon=r-y_m$.}
-\TLBranche{Correcteur}{Transforme l'écart pour améliorer les performances.}
-\TLBranche{Procédé}{Partie physique commandée du système.}
-\TLBranche{Capteur}{Mesure la sortie et fournit le signal de retour.}
-\TLBranche{Boucle ouverte}{Produit des fonctions de transfert parcourant la boucle.}
-\TLBranche{Boucle fermée}{$H_{BF}=G/(1+GH)$ pour un retour négatif.}
-\TLBranche{Laplace}{Transforme les équations différentielles en relations algébriques.}
-\TLBranche{Schéma-blocs}{Blocs, sommateurs et points de prélèvement décrivent les échanges de signaux.}
-\TLBranche{Pôles}{Déterminent stabilité et dynamique.}
-\TLBranche{Zéros}{Modifient la forme de la réponse.}
-\TLBranche{Premier ordre}{$K/(1+\tau p)$ : gain statique et constante de temps.}
-\TLBranche{Second ordre}{$K\omega_0^2/(p^2+2\xi\omega_0p+\omega_0^2)$.}
-\TLBranche{Précision}{Étude de l'erreur statique et du gain basse fréquence.}
-\TLBranche{Rapidité}{Temps de réponse, temps de montée et bande passante.}
-\TLBranche{Stabilité}{Pôles de la FTBF à partie réelle négative.}
-\TLBranche{Fréquentiel}{Diagrammes de Bode, marges de gain et de phase.}
-\TLBranche{Perturbations}{Le retour doit limiter leur influence sur la sortie.}
-\TLBranche{Compromis}{Augmenter le gain améliore souvent précision et rapidité, mais peut dégrader la stabilité.}
-\TLBranche{Méthode}{Identifier, modéliser, réduire, calculer, analyser puis conclure.}
-\end{TLCarteMentale}
+
+\begin{tikzpicture}[
+  x=1cm,y=1cm,
+  main/.style={rounded corners=5mm,minimum width=5.2cm,minimum height=1.45cm,
+    align=center,font=\bfseries\Large,blur shadow},
+  sub/.style={rounded corners=3mm,minimum width=4.5cm,minimum height=.95cm,
+    align=center,font=\bfseries\normalsize,inner xsep=3mm,blur shadow},
+  center/.style={ellipse,minimum width=7.4cm,minimum height=3.6cm,
+    align=center,font=\bfseries\fontsize{25}{28}\selectfont,
+    draw=CMblue,line width=2.2pt,fill=white,blur shadow},
+  branch/.style={line width=4.5pt,rounded corners=6mm},
+  twig/.style={line width=1.8pt,rounded corners=5mm},
+  dot/.style={circle,inner sep=2.2pt,draw=white,line width=.7pt}
+]
+  \path[use as bounding box] (-19.4,-12.2) rectangle (19.4,12.2);
+
+  % Fond décoratif très léger
+  \begin{scope}[on background layer]
+    \fill[CMblue!3] (-19.4,-12.2) rectangle (19.4,12.2);
+    \fill[CMblue!5] (-18.2,10.7) circle (1.2);
+    \fill[CMgreen!6] (17.8,10.4) circle (1.7);
+    \fill[CMorange!7] (17.4,-10.3) circle (1.5);
+    \fill[CMteal!6] (-17.6,-10.3) circle (1.6);
+  \end{scope}
+
+  % Nœud central
+  \node[center] (C) at (0,0) {Systèmes\\asservis};
+  \node[rounded corners=2mm,fill=CMblue,text=white,font=\bfseries\small,
+    inner xsep=4mm,inner ysep=1.5mm] at (0,-2.45)
+    {$e(t)=r(t)-m(t)$};
+  \node[font=\small,text=CMgray,align=center] at (0,-3.25)
+    {Comparer la consigne à la mesure\\pour agir sur le procédé};
+
+  % --------------------------------------------------------------------------
+  % Structure - haut gauche
+  % --------------------------------------------------------------------------
+  \node[main,draw=CMblue2,fill=CMblueLight,text=CMblue] (S) at (-8.6,6.6) {Structure};
+  \draw[branch,draw=CMblue2] (C.north west) to[out=145,in=-25] (S.south east);
+  \node[dot,fill=CMblue2] at ($(S.south east)+(.04,-.02)$) {};
+
+  \node[sub,draw=CMblue2,fill=white,text=CMblue] (s1) at (-15.5,9.0) {Boucle ouverte};
+  \node[sub,draw=CMblue2,fill=white,text=CMblue] (s2) at (-15.5,7.7) {Boucle fermée};
+  \node[sub,draw=CMblue2,fill=white,text=CMblue] (s3) at (-15.5,6.4) {Comparateur};
+  \node[sub,draw=CMblue2,fill=white,text=CMblue] (s4) at (-15.5,5.1) {Correcteur};
+  \node[sub,draw=CMblue2,fill=white,text=CMblue] (s5) at (-15.5,3.8) {Capteur et procédé};
+  \foreach \n in {s1,s2,s3,s4,s5}{
+    \draw[twig,draw=CMblue2] (S.west) to[out=180,in=0] (\n.east);
+    \node[dot,fill=CMblue2] at (\n.east) {};
+  }
+
+  % --------------------------------------------------------------------------
+  % Grandeurs - haut droite
+  % --------------------------------------------------------------------------
+  \node[main,draw=CMgreen,fill=CMgreenLight,text=CMgreen!70!black] (G) at (8.6,6.6) {Grandeurs};
+  \draw[branch,draw=CMgreen] (C.north east) to[out=35,in=205] (G.south west);
+  \node[dot,fill=CMgreen] at ($(G.south west)+(-.04,-.02)$) {};
+
+  \node[sub,draw=CMgreen,fill=white,text=CMgreen!70!black] (g1) at (15.5,9.0) {Consigne $r(t)$};
+  \node[sub,draw=CMgreen,fill=white,text=CMgreen!70!black] (g2) at (15.5,7.7) {Erreur $e(t)$};
+  \node[sub,draw=CMgreen,fill=white,text=CMgreen!70!black] (g3) at (15.5,6.4) {Sortie $y(t)$};
+  \node[sub,draw=CMgreen,fill=white,text=CMgreen!70!black] (g4) at (15.5,5.1) {Mesure $m(t)$};
+  \node[sub,draw=CMgreen,fill=white,text=CMgreen!70!black] (g5) at (15.5,3.8) {Perturbation $d(t)$};
+  \foreach \n in {g1,g2,g3,g4,g5}{
+    \draw[twig,draw=CMgreen] (G.east) to[out=0,in=180] (\n.west);
+    \node[dot,fill=CMgreen] at (\n.west) {};
+  }
+
+  % --------------------------------------------------------------------------
+  % Exemples - milieu gauche
+  % --------------------------------------------------------------------------
+  \node[main,draw=CMyellow,fill=CMyellowLight,text=CMyellow!65!black] (E) at (-9.6,0.0) {Exemples};
+  \draw[branch,draw=CMyellow] (C.west) to[out=180,in=0] (E.east);
+  \node[dot,fill=CMyellow] at (E.east) {};
+
+  \node[sub,draw=CMyellow,fill=white,text=CMyellow!65!black] (e1) at (-16.0,1.7) {Régulateur de vitesse};
+  \node[sub,draw=CMyellow,fill=white,text=CMyellow!65!black] (e2) at (-16.0,0.0) {Thermostat};
+  \node[sub,draw=CMyellow,fill=white,text=CMyellow!65!black] (e3) at (-16.0,-1.7) {Servo-positionnement};
+  \foreach \n in {e1,e2,e3}{
+    \draw[twig,draw=CMyellow] (E.west) to[out=180,in=0] (\n.east);
+    \node[dot,fill=CMyellow] at (\n.east) {};
+  }
+
+  % --------------------------------------------------------------------------
+  % Performances - milieu droite
+  % --------------------------------------------------------------------------
+  \node[main,draw=CMpurple,fill=CMpurpleLight,text=CMpurple] (P) at (9.6,0.0) {Performances};
+  \draw[branch,draw=CMpurple] (C.east) to[out=0,in=180] (P.west);
+  \node[dot,fill=CMpurple] at (P.west) {};
+
+  \node[sub,draw=CMpurple,fill=white,text=CMpurple] (p1) at (16.0,1.7) {Stabilité};
+  \node[sub,draw=CMpurple,fill=white,text=CMpurple] (p2) at (16.0,0.0) {Précision};
+  \node[sub,draw=CMpurple,fill=white,text=CMpurple] (p3) at (16.0,-1.7) {Rapidité};
+  \foreach \n in {p1,p2,p3}{
+    \draw[twig,draw=CMpurple] (P.east) to[out=0,in=180] (\n.west);
+    \node[dot,fill=CMpurple] at (\n.west) {};
+  }
+
+  % --------------------------------------------------------------------------
+  % Représentations - bas gauche
+  % --------------------------------------------------------------------------
+  \node[main,draw=CMteal,fill=CMtealLight,text=CMteal!75!black] (R) at (-8.6,-6.6) {Représentations};
+  \draw[branch,draw=CMteal] (C.south west) to[out=215,in=25] (R.north east);
+  \node[dot,fill=CMteal] at ($(R.north east)+(.04,.02)$) {};
+
+  \node[sub,draw=CMteal,fill=white,text=CMteal!75!black] (r1) at (-15.5,-4.2) {Schéma-bloc};
+  \node[sub,draw=CMteal,fill=white,text=CMteal!75!black] (r2) at (-15.5,-5.8) {Réponse temporelle};
+  \node[sub,draw=CMteal,fill=white,text=CMteal!75!black] (r3) at (-15.5,-7.4) {Diagrammes de Bode};
+  \node[sub,draw=CMteal,fill=white,text=CMteal!75!black] (r4) at (-15.5,-9.0) {Pôles et zéros};
+  \foreach \n in {r1,r2,r3,r4}{
+    \draw[twig,draw=CMteal] (R.west) to[out=180,in=0] (\n.east);
+    \node[dot,fill=CMteal] at (\n.east) {};
+  }
+
+  % --------------------------------------------------------------------------
+  % Correcteurs - bas droite
+  % --------------------------------------------------------------------------
+  \node[main,draw=CMorange,fill=CMorangeLight,text=CMorange!75!black] (K) at (8.6,-6.6) {Correcteurs};
+  \draw[branch,draw=CMorange] (C.south east) to[out=325,in=155] (K.north west);
+  \node[dot,fill=CMorange] at ($(K.north west)+(-.04,.02)$) {};
+
+  \node[sub,draw=CMorange,fill=white,text=CMorange!75!black] (k1) at (15.5,-4.2) {Proportionnel P};
+  \node[sub,draw=CMorange,fill=white,text=CMorange!75!black] (k2) at (15.5,-5.8) {Proportionnel intégral PI};
+  \node[sub,draw=CMorange,fill=white,text=CMorange!75!black] (k3) at (15.5,-7.4) {Proportionnel dérivé PD};
+  \node[sub,draw=CMorange,fill=white,text=CMorange!75!black] (k4) at (15.5,-9.0) {PID};
+  \foreach \n in {k1,k2,k3,k4}{
+    \draw[twig,draw=CMorange] (K.east) to[out=0,in=180] (\n.west);
+    \node[dot,fill=CMorange] at (\n.west) {};
+  }
+
+  % Encadré méthode au bas de la page
+  \node[rounded corners=4mm,draw=CMblue,line width=1.2pt,fill=white,
+    minimum width=12.7cm,minimum height=1.55cm,align=center,
+    font=\bfseries\normalsize,blur shadow,text=CMblue] at (0,-9.7)
+    {Identifier $\rightarrow$ modéliser $\rightarrow$ réduire $\rightarrow$
+     calculer $\rightarrow$ analyser $\rightarrow$ conclure};
+
+  % Petits repères graphiques autour du centre
+  \foreach \a in {20,70,110,160,200,250,290,340}{
+    \draw[CMblue,line width=1.6pt] (\a:4.35)--(\a:4.75);
+  }
+\end{tikzpicture}
+
 \end{document}
