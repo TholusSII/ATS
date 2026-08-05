@@ -1,0 +1,296 @@
+% ============================================================================
+% COURS 12 — RÉSISTANCE DES MATÉRIAUX
+% Partie A : objectifs, hypothèses, actions extérieures et cohésion
+% Source : 16_Rdm_2026.docx
+% ============================================================================
+
+\newcommand{\TLRDMCheck}{\ensuremath{\square}}
+\newcommand{\TLRDMImage}[2][0.82\linewidth]{%
+  \IfFileExists{pandoc/media/#2}{%
+    \begin{center}\includegraphics[width=#1]{pandoc/media/#2}\end{center}%
+  }{}%
+}
+
+\begin{objectifs}
+Définir les notions de poutre et les hypothèses fondamentales de la résistance des matériaux. Identifier et caractériser les sollicitations simples. Déterminer un torseur de cohésion, associer un modèle de contraintes à une sollicitation, vérifier la résistance d'une poutre droite et déterminer sa déformée en flexion.
+\end{objectifs}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}p{2.1cm}X c}
+\toprule
+Je connais & Compétences et connaissances attendues & \\
+\midrule
+& Les principales sollicitations : traction--compression, cisaillement, torsion, flexion pure et flexion simple. & \TLRDMCheck\\
+& L'expression des contraintes et des déformations. & \TLRDMCheck\\
+& Le torseur de cohésion. & \TLRDMCheck\\
+& Les notions de coefficient de sécurité et de résistance mécanique. & \TLRDMCheck\\
+\midrule
+Je sais & Poser les hypothèses nécessaires à une étude de RdM : modèle poutre, Saint-Venant, Navier--Bernoulli et linéarité. & \TLRDMCheck\\
+& Identifier les contraintes, les déformations et les sollicitations d'un solide. & \TLRDMCheck\\
+& Choisir un modèle de solide, indéformable ou déformable, en fonction de l'objectif visé. & \TLRDMCheck\\
+& Déterminer le torseur de cohésion dans une poutre. & \TLRDMCheck\\
+& Proposer ou justifier les conditions aux limites d'un modèle par éléments finis. & \TLRDMCheck\\
+& Déterminer la répartition des contraintes dans une section droite. & \TLRDMCheck\\
+& Vérifier la résistance mécanique et le coefficient de sécurité. & \TLRDMCheck\\
+& Déterminer l'équation de la flèche d'une poutre droite soumise à un chargement ponctuel ou réparti. & \TLRDMCheck\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Besoin rempli par la résistance des matériaux}
+\label{sec:rdm-1}
+
+La statique étudie l'équilibre de systèmes de solides supposés indéformables. Cette hypothèse est très restrictive : les pièces réelles se déforment sous l'action des charges et certains problèmes hyperstatiques ne peuvent pas être résolus par la seule statique.
+
+La \textbf{résistance des matériaux}, ou \textbf{RdM}, introduit l'étude des solides déformables lorsqu'ils peuvent être modélisés par des éléments longilignes appelés \textbf{poutres}. Elle établit les relations entre les actions extérieures, les efforts intérieurs, les contraintes, les déformations et les déplacements.
+
+Elle permet notamment :
+\begin{itemize}
+  \item de calculer ou de vérifier le dimensionnement d'un élément de structure ;
+  \item de choisir un matériau à partir de ses caractéristiques mécaniques ;
+  \item de contrôler simultanément la résistance et la rigidité ;
+  \item d'évaluer l'influence de défauts géométriques ou d'un montage hyperstatique.
+\end{itemize}
+
+\begin{center}
+\begin{tabular}{ccc}
+\IfFileExists{pandoc/media/image5.png}{\includegraphics[width=.29\linewidth]{pandoc/media/image5.png}}{} &
+\IfFileExists{pandoc/media/image6.png}{\includegraphics[width=.29\linewidth]{pandoc/media/image6.png}}{} &
+\IfFileExists{pandoc/media/image7.png}{\includegraphics[width=.29\linewidth]{pandoc/media/image7.png}}{}\\
+\small Géométrie et maillage & \small Déplacements & \small Contraintes
+\end{tabular}
+\end{center}
+
+\begin{TLWarning}{Deux critères complémentaires}
+Une pièce peut ne pas rompre et pourtant être inutilisable si sa déformation est trop importante. Une étude de RdM vérifie donc généralement un critère de \textbf{résistance} et un critère de \textbf{rigidité}.
+\end{TLWarning}
+
+\section{Hypothèses de la résistance des matériaux}
+\label{sec:rdm-2}
+
+\subsection{Théorie des poutres droites}
+
+Les résultats établis dans ce cours concernent des solides ayant une forme de \textbf{poutre}. Une poutre droite est caractérisée par :
+\begin{itemize}
+  \item une \textbf{ligne moyenne} continue passant par les barycentres des sections droites ;
+  \item une longueur $L$ au moins quatre à cinq fois supérieure à la plus grande dimension $D$ de la section ;
+  \item une section constante ou variant progressivement, sans trou ni épaulement brutal dans la zone étudiée ;
+  \item un plan de symétrie commun à la géométrie et au chargement dans les problèmes plans.
+\end{itemize}
+
+\TLPoutreReperee
+
+\begin{TLWarning}{Poutres constituées de plusieurs tronçons}
+Lorsqu'un solide est formé de plusieurs poutres droites, l'étude est décomposée en autant de tronçons rectilignes. Les conditions de continuité relient ensuite les résultats obtenus sur chaque tronçon.
+\end{TLWarning}
+
+\subsection{Matériaux de construction}
+
+Dans le modèle de base, le matériau est supposé :
+\begin{description}
+  \item[homogène :] sa constitution est identique en chaque point ;
+  \item[isotrope :] ses propriétés mécaniques sont identiques dans toutes les directions ;
+  \item[continu :] les discontinuités microscopiques sont négligées ;
+  \item[élastique et linéaire :] après déchargement, la pièce reprend sa forme initiale et les contraintes sont proportionnelles aux déformations.
+\end{description}
+
+L'isotropie est une bonne approximation pour de nombreux aciers non fibrés. Elle n'est pas adaptée, sans précaution, au bois, aux matériaux composites ou aux matériaux fortement texturés par laminage ou forgeage.
+
+\subsection{Efforts invariants}
+
+Les déplacements sont supposés petits. Les actions extérieures sont donc exprimées dans le repère lié à la poutre \textbf{non déformée} et sont considérées comme invariantes avant et après application progressive du chargement.
+
+Autrement dit, les calculs sont menés dans la configuration initiale, supposée très proche de la configuration déformée. Cette hypothèse exclut les grandes rotations et les grandes déformations.
+
+\subsection{Hypothèse de Barré de Saint-Venant}
+
+Dans une section située suffisamment loin d'une zone d'application locale des charges, l'état des sollicitations ne dépend que du \textbf{torseur résultant} de ces charges et non de leur répartition détaillée.
+
+Par « suffisamment loin », on entend généralement une distance au moins égale à la plus grande dimension de la section transversale.
+
+\TLRDMSaintVenant
+
+Cette hypothèse permet de remplacer une répartition complexe par un système statiquement équivalent, à condition de ne pas étudier les contraintes au voisinage immédiat de la zone de chargement.
+
+\subsection{Hypothèse de Navier--Bernoulli}
+
+Les sections droites, planes et normales à la ligne moyenne avant chargement, restent planes et normales à la ligne moyenne après déformation. Il n'y a donc pas de gauchissement des sections droites dans le modèle de poutre d'Euler--Bernoulli.
+
+\TLRDMNavierBernoulli
+
+Cette hypothèse convient aux poutres élancées en traction, compression et flexion. Elle devient moins précise pour les poutres courtes, lorsque le cisaillement est important, ou pour la torsion de sections non circulaires.
+
+\subsection{Principe de superposition}
+
+Dans le domaine élastique linéaire, l'effet mécanique d'un ensemble de chargements est égal à la somme des effets produits séparément par chacun d'eux :
+\[
+\mathcal E(F_1+F_2)=\mathcal E(F_1)+\mathcal E(F_2).
+\]
+
+\TLRDMSuperposition
+
+Ce principe peut être appliqué aux réactions d'appui, aux efforts de cohésion, aux contraintes, aux rotations et aux déplacements, tant que les hypothèses de linéarité restent vérifiées.
+
+\section{Modélisation des actions mécaniques extérieures}
+\label{sec:rdm-3}
+
+\subsection{Actions mécaniques extérieures}
+
+La modélisation d'un solide par une poutre transforme un problème tridimensionnel en un problème unidimensionnel porté par la ligne moyenne. Les actions mécaniques extérieures sont transposées de la même manière.
+
+Elles peuvent être représentées par :
+\begin{itemize}
+  \item des \textbf{forces concentrées} appliquées en un point ;
+  \item des \textbf{couples concentrés} ;
+  \item des \textbf{charges réparties} volumiques, surfaciques ou, après réduction, linéiques ;
+  \item les \textbf{actions de liaison} transmises par les appuis et les encastrements.
+\end{itemize}
+
+\TLRDMChargesExterieures
+
+\begin{TLWarning}{Répartition des charges}
+En RdM, deux systèmes de charges statiquement équivalents ne produisent pas nécessairement le même champ local de contraintes. Le remplacement d'un chargement par un chargement équivalent n'est légitime que dans le domaine d'application de l'hypothèse de Saint-Venant.
+\end{TLWarning}
+
+\subsection{Les liaisons}
+
+Les liaisons avec le bâti suppriment certains déplacements et certaines rotations. Elles fournissent à la fois des actions de liaison inconnues et des conditions aux limites utiles à la détermination de la déformée.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{c >{\bfseries}l X}
+\toprule
+Schéma & Liaison & Conséquences dans un problème plan \\
+\midrule
+\IfFileExists{pandoc/media/image17.png}{\includegraphics[height=9mm]{pandoc/media/image17.png}}{} & Encastrement & bloque les deux translations et la rotation ; transmet deux composantes de force et un moment.\\
+\IfFileExists{pandoc/media/image18.png}{\includegraphics[height=9mm]{pandoc/media/image18.png}}{} & Rotule / appui fixe & bloque les translations ; transmet deux composantes de force.\\
+\IfFileExists{pandoc/media/image19.png}{\includegraphics[height=9mm]{pandoc/media/image19.png}}{} & Pivot / articulation & bloque les translations du point de liaison ; laisse libre la rotation.\\
+\IfFileExists{pandoc/media/image20.png}{\includegraphics[height=9mm]{pandoc/media/image20.png}}{} & Appui simple & bloque la translation normale à l'appui ; transmet une seule réaction normale.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Actions mécaniques intérieures : torseur de cohésion}
+\label{sec:rdm-4}
+
+\subsection{Coupure dans une poutre}
+
+Considérons une poutre $E$ en équilibre sous l'effet d'actions mécaniques extérieures. Une \textbf{coupure imaginaire}, réalisée dans un plan perpendiculaire à la ligne moyenne, sépare la poutre en deux tronçons :
+\[
+E=E_1\cup E_2.
+\]
+
+Les actions exercées par $E_2$ sur $E_1$ à travers la section droite $S$ sont des actions mécaniques intérieures. Leur résultante est représentée, au barycentre $G$ de la section, par le \textbf{torseur de cohésion} :
+\[
+\left\{\mathcal T_{\mathrm{coh}}\right\}_G
+=\left\{\mathcal T_{E_2\rightarrow E_1}\right\}_G.
+\]
+
+\TLCoupurePoutre
+
+\subsection{Détermination du torseur de cohésion}
+
+Deux isolements sont possibles.
+
+\paragraph{Isolement du tronçon gauche $E_1$.}
+Le principe fondamental de la statique donne :
+\[
+\left\{\mathcal T_{\mathrm{ext}\rightarrow E_1}\right\}_G
++\left\{\mathcal T_{E_2\rightarrow E_1}\right\}_G=\{0\},
+\]
+d'où :
+\[
+\boxed{\left\{\mathcal T_{\mathrm{coh}}\right\}_G
+=-\left\{\mathcal T_{\mathrm{ext}\rightarrow E_1}\right\}_G.}
+\]
+
+\paragraph{Isolement du tronçon droit $E_2$.}
+Par actions réciproques et équilibre de $E_2$ :
+\[
+\boxed{\left\{\mathcal T_{\mathrm{coh}}\right\}_G
+=\left\{\mathcal T_{\mathrm{ext}\rightarrow E_2}\right\}_G.}
+\]
+
+Les notations $E_1/E_2$, gauche/droite ou $x^-/x^+$ sont équivalentes. Le torseur est toujours réduit au barycentre $G$ de la section considérée.
+
+\begin{TLMethod}{Déterminer le torseur de cohésion}
+\begin{enumerate}
+  \item Déterminer les réactions de liaison par l'équilibre global de la poutre.
+  \item Définir les intervalles d'étude et effectuer une coupure à l'abscisse $x$.
+  \item Isoler le tronçon qui contient le moins de charges.
+  \item Transporter toutes les actions extérieures au point $G$ de la coupure.
+  \item Appliquer le PFS et identifier les six composantes du torseur de cohésion.
+  \item Vérifier la continuité des diagrammes et les sauts produits par les charges concentrées.
+\end{enumerate}
+\end{TLMethod}
+
+Dans la base locale $(\vec x,\vec y,\vec z)$ liée à la poutre :
+\[
+\left\{\mathcal T_{\mathrm{coh}}\right\}_G=
+\left\{
+\begin{array}{c}
+N\vec x+T_y\vec y+T_z\vec z\\[1mm]
+M_t\vec x+M_{fy}\vec y+M_{fz}\vec z
+\end{array}
+\right\}_G.
+\]
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}c X}
+\toprule
+Composante & Signification \\
+\midrule
+$N$ & effort normal, perpendiculaire à la section droite ; $N>0$ en traction et $N<0$ en compression.\\
+$T_y$, $T_z$ & efforts tranchants, contenus dans le plan de la section.\\
+$M_t$ & moment de torsion, porté par l'axe de la poutre.\\
+$M_{fy}$, $M_{fz}$ & moments fléchissants autour des axes principaux de la section.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Nature des sollicitations}
+
+Une \textbf{sollicitation simple} correspond à un torseur de cohésion ne comportant qu'une composante principale. Une \textbf{sollicitation composée} associe plusieurs sollicitations simples.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}l c c c c X}
+\toprule
+Sollicitation & $N$ & $T$ & $M_t$ & $M_f$ & Commentaire \\
+\midrule
+Traction / compression & $\neq0$ & 0 & 0 & 0 & $N>0$ en traction, $N<0$ en compression.\\
+Cisaillement simple & 0 & $\neq0$ & 0 & 0 & modèle idéal où le moment parasite est négligé.\\
+Torsion simple & 0 & 0 & $\neq0$ & 0 & rotation des sections autour de la ligne moyenne.\\
+Flexion pure & 0 & 0 & 0 & $\neq0$ & moment fléchissant constant, effort tranchant nul.\\
+Flexion simple & 0 & $\neq0$ & 0 & $\neq0$ & cas courant des poutres chargées transversalement.\\
+Sollicitation composée & variable & variable & variable & variable & combinaison de plusieurs composantes.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Vision locale : contrainte en un point}
+
+Le torseur de cohésion donne une vision globale des actions transmises par une section. La vision locale décrit leur répartition sur chaque élément de surface $\mathrm dS$.
+
+Au point $M$ d'une section orientée par la normale extérieure $\vec n$, le \textbf{vecteur contrainte} est défini par :
+\[
+\vec t(M,\vec n)=\lim_{\Delta S\to0}\frac{\Delta\vec f}{\Delta S}.
+\]
+
+Il se décompose en une composante normale et une composante tangentielle :
+\[
+\vec t=\sigma\vec n+\vec\tau,
+\qquad
+\sigma=\vec t\cdot\vec n,
+\qquad
+\vec\tau=\vec t-(\vec t\cdot\vec n)\vec n.
+\]
+
+\TLRDMVecteurContrainte
+
+Une contrainte s'exprime en pascals. En pratique :
+\[
+\boxed{1\ \mathrm{MPa}=1\ \mathrm{N/mm^2}.}
+\]
