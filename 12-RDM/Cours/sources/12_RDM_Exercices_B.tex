@@ -1,0 +1,212 @@
+% ============================================================================
+% COURS 12 — EXERCICES, PARTIE B
+% Questions de cours, autocontraintes et QCM
+% Source : 16_Rdm_2026.docx
+% ============================================================================
+
+\subsection{Questions de cours}
+
+\begin{enumerate}
+  \item Préciser la signification de l'acronyme RdM et citer les deux objectifs principaux d'une étude de résistance des matériaux.
+  \item Citer les cinq principales hypothèses qui permettent de simplifier une étude de poutre.
+  \item Écrire le torseur de cohésion complet et donner le nom de ses six composantes.
+  \item Donner la définition du vecteur contrainte $\vec t(M,\vec n)$.
+  \item Écrire la condition de résistance d'une pièce soumise à la traction et préciser tous les termes utilisés.
+  \item Citer six sollicitations simples ou usuelles.
+  \item Écrire les lois de Hooke en contrainte normale et en cisaillement. Donner le nom des modules $E$ et $G$ ainsi que leur relation pour un matériau isotrope :
+  \[
+  G=\frac{E}{2(1+\nu)}.
+  \]
+  \item Compléter le vocabulaire associé aux symboles suivants : $\nu$, $\theta$, $\varepsilon$, $\rho$, $\sigma$, $\tau$ et $\gamma$.
+  \item Associer chaque sollicitation à la déformation et au torseur de cohésion correspondants.
+  \item Dans un schéma de chargement, préciser le nom de l'action $F$ et son unité.
+  \item Écrire l'expression de la contrainte normale en traction puis en flexion.
+  \item Donner le nom et l'unité de $I_{Gz}$, $y$, $M_{fz}$ et $R_{pe}$.
+  \item Donner l'équation différentielle de la déformée en flexion.
+  \item Donner les conditions aux limites usuelles :
+  \begin{itemize}
+    \item encastrement en $x=0$ ;
+    \item appui simple en $x=a$ ;
+    \item continuité entre deux tronçons au point $x=a$.
+  \end{itemize}
+\end{enumerate}
+
+\subsection{Défauts géométriques et autocontraintes}
+
+L'arbre 2 est lié au carter 1 par deux roulements. En $O_1$, un roulement à deux rangées de billes à contacts obliques est modélisé par une liaison pivot d'axe $\vec x_1$. En $A$, un roulement à billes à contact radial dont la bague extérieure est libre axialement est modélisé par une liaison linéaire annulaire.
+
+Après fabrication, les deux alésages du carter présentent un défaut de coaxialité radial $\delta_r$. Le montage force l'arbre à se déformer et crée des actions de liaison sans qu'aucune charge extérieure ne soit appliquée : ce sont des \textbf{autocontraintes}.
+
+\begin{center}
+\IfFileExists{pandoc/media/image80.png}{\includegraphics[width=.70\linewidth]{pandoc/media/image80.png}}{}
+\end{center}
+
+On suppose le problème plan. Le plan est choisi de sorte que la composante hors plan du défaut soit nulle. Les composantes des torseurs de liaison sont notées $X_O$, $Y_O$, $N_O$ au point $O_1$ et $Y_A$ au point $A$.
+
+\subsubsection{Étude statique et hyperstatisme}
+
+\begin{enumerate}
+  \item Écrire, dans le problème plan, les torseurs des actions de liaison du carter sur l'arbre aux points $O_1$ et $A$.
+  \item Faire le bilan des inconnues et déterminer le degré d'hyperstatisme interne de la liaison équivalente entre l'arbre et le carter.
+  \item Aucune charge extérieure n'agissant sur l'arbre, appliquer le PFS et établir les trois relations entre les inconnues de liaison.
+\end{enumerate}
+
+\subsubsection{Déformée de l'arbre}
+
+La section de l'arbre possède un moment quadratique $I_{Gz}$ et le matériau un module d'Young $E$.
+
+\begin{enumerate}[resume]
+  \item Montrer que le moment fléchissant, pour $0\leq x\leq L$, peut s'écrire :
+  \[
+  M_{fz}(x)=-N_O+xY_O.
+  \]
+  \item En utilisant les conditions d'encastrement équivalent au point $O_1$, déterminer l'expression de la déformée $y(x)$.
+  \item Utiliser la condition géométrique $y(L)=\delta_r$ pour lever l'hyperstaticité et montrer que :
+  \[
+  \boxed{Y_A=\frac{3EI_{Gz}\delta_r}{L^3}.}
+  \]
+  Déterminer ensuite $Y_O$ et $N_O$.
+  \item En déduire l'expression complète de $y(x)$ en fonction de $E$, $I_{Gz}$, $L$ et $\delta_r$.
+\end{enumerate}
+
+\subsubsection{Application numérique}
+
+On donne :
+\[
+D=20\ \mathrm{mm},\qquad L=300\ \mathrm{mm},\qquad
+E=2\times10^5\ \mathrm{MPa},\qquad \delta_r=0{,}05\ \mathrm{mm}.
+\]
+
+\begin{enumerate}[resume]
+  \item Calculer le moment quadratique :
+  \[
+  I_{Gz}=\frac{\pi D^4}{64}.
+  \]
+  \item Calculer les actions de liaison.
+  \item Déterminer le moment fléchissant maximal puis l'autocontrainte normale maximale dans l'arbre.
+\end{enumerate}
+
+\subsection{QCM de synthèse}
+
+Une seule réponse est attendue pour chaque question. Pour les applications numériques, on pourra prendre $\pi=3$ et $g=10\ \mathrm{m/s^2}$ lorsque cela simplifie les calculs.
+
+\begin{enumerate}
+  \item Comment s'appelle le diagramme représentant la contrainte en fonction de la déformation lors d'un essai de traction ?
+  \begin{itemize}
+    \item loi de Hooke ; essai de traction ; diagramme contrainte--déformation ; module d'Young.
+  \end{itemize}
+
+  \item Sur une courbe de traction conventionnelle, comment nomme-t-on la zone comprise entre la limite d'élasticité et la rupture ?
+  \begin{itemize}
+    \item domaine élastique ; domaine plastique ; striction ; écrouissage.
+  \end{itemize}
+
+  \item Parmi les affirmations suivantes, laquelle caractérise correctement un acier dont la limite d'élasticité vaut $295\ \mathrm{MPa}$ ?
+  \begin{itemize}
+    \item au-delà de cette contrainte, les déformations peuvent devenir permanentes ;
+    \item la contrainte est alors nécessairement tangentielle ;
+    \item la loi $\sigma=E\varepsilon$ reste valable jusqu'à la rupture.
+  \end{itemize}
+
+  \item Quel est l'ordre de grandeur du module d'Young du plexiglas ?
+  \begin{itemize}
+    \item $3{,}1\ \mathrm{GPa}$ ; $62\ \mathrm{GPa}$ ; $210\ \mathrm{GPa}$.
+  \end{itemize}
+
+  \item Déterminer la coordonnée du centre d'aire de la section composée représentée ci-dessous.
+  \begin{center}
+  \IfFileExists{pandoc/media/image82.png}{\includegraphics[width=.30\linewidth]{pandoc/media/image82.png}}{}
+  \end{center}
+
+  \item Quelle affirmation concernant le torseur de cohésion est fausse ?
+  \begin{itemize}
+    \item $M_f$ désigne un moment fléchissant ;
+    \item $T_z$ est l'effort tranchant suivant $\vec z$ ;
+    \item $N$ est l'effort tranchant suivant $\vec y$ ;
+    \item $M_t$ désigne le moment de torsion.
+  \end{itemize}
+
+  \item Une poutre dont le torseur de cohésion ne comporte que $M_{fz}$ est soumise à :
+  \begin{itemize}
+    \item traction ; compression ; cisaillement ; torsion ; flexion pure ; flexion simple.
+  \end{itemize}
+
+  \item Quel terme n'est pas une grandeur ou une notion usuelle de RdM ?
+  \begin{itemize}
+    \item résistance mécanique ; contrainte tangentielle ; moment fléchissant ; module de Coulomb ; pression uniforme.
+  \end{itemize}
+
+  \item Dans un torseur de cohésion, que représente $N$ ?
+  \begin{itemize}
+    \item un effort normal ; un moment nominal ; une unité en newtons.
+  \end{itemize}
+
+  \item Identifier la sollicitation principale de la pièce représentée.
+  \begin{center}
+  \IfFileExists{pandoc/media/image84.png}{\includegraphics[width=.48\linewidth]{pandoc/media/image84.png}}{}
+  \end{center}
+
+  \item Associer chacune des déformations usuelles au torseur de cohésion réduit correspondant : traction, cisaillement, torsion, flexion pure et flexion simple.
+
+  \item En quelle unité s'exprime un moment quadratique ou un moment polaire de section ?
+  \begin{itemize}
+    \item $\mathrm{mm^2}$ ; $\mathrm{mm^3}$ ; $\mathrm{mm^4}$ ; $\mathrm{N/mm^2}$.
+  \end{itemize}
+
+  \item Une éprouvette reçoit une force normale de $52\ \mathrm{kN}$ sur une section de $260\ \mathrm{mm^2}$. Son module d'Young vaut $40\ \mathrm{GPa}$. Calculer la déformation relative.
+  \begin{itemize}
+    \item $0{,}3\ \%$ ; $0{,}5\ \%$ ; $1{,}5\ \%$ ; $2\ \%$.
+  \end{itemize}
+
+  \item Quelle lettre désigne le premier coefficient de Lamé ?
+  \begin{itemize}
+    \item $\nu$ ; $\varepsilon$ ; $\lambda$ ; $\theta$ ; $\rho$ ; $\tau$ ; $\gamma$ ; $\sigma$.
+  \end{itemize}
+
+  \item Dans une section droite soumise à de la flexion pure, le torseur de cohésion est :
+  \begin{itemize}
+    \item nul ; un glisseur ; un couple ; un torseur quelconque.
+  \end{itemize}
+
+  \item Une force normale de $48\ \mathrm N$ est uniformément répartie sur une section circulaire de rayon $12\ \mathrm{cm}$. Calculer la contrainte moyenne.
+  \begin{itemize}
+    \item $120\ \mathrm{Pa}$ ; $1{,}1\ \mathrm{kPa}$ ; $6{,}7\ \mathrm{kPa}$ ; $280\ \mathrm{kPa}$.
+  \end{itemize}
+
+  \item Une poutre horizontale de longueur $L$, encastrée à une extrémité, reçoit une force verticale $F$ à l'autre extrémité. Quel est le moment fléchissant maximal ?
+  \begin{itemize}
+    \item $FL$ ; $FL/2$ ; $FL/4$ ; $FL^2/2$.
+  \end{itemize}
+
+  \item Une section circulaire de diamètre $100\ \mathrm{mm}$ reçoit un moment fléchissant de $75\ \mathrm{N\,m}$. Calculer la contrainte normale maximale.
+  \begin{itemize}
+    \item $160\ \mathrm{Pa}$ ; $400\ \mathrm{kPa}$ ; $0{,}8\ \mathrm{MPa}$ ; $12{,}8\ \mathrm{MPa}$.
+  \end{itemize}
+
+  \item Comment modélise-t-on le poids propre d'une poutre droite homogène ?
+  \begin{itemize}
+    \item par un glisseur unique au centre de gravité ;
+    \item par une densité linéique de force ;
+    \item par des moments appliqués aux appuis.
+  \end{itemize}
+
+  \item Parmi les propositions suivantes, laquelle correspond à une sollicitation composée ?
+  \begin{itemize}
+    \item extension ; cisaillement ; flexion déviée ; torsion simple.
+  \end{itemize}
+
+  \item Dans un essai idéal de cisaillement suivant $\vec y$, quelle composante parasite du torseur de cohésion doit être négligée pour parler de cisaillement simple ?
+  \begin{itemize}
+    \item $N$ ; $T_y$ ; $T_z$ ; $M_t$ ; $M_{fy}$ ; $M_{fz}$.
+  \end{itemize}
+
+  \item Une poutre circulaire de rayon $12\ \mathrm{mm}$ reçoit un moment de torsion de $9\ \mathrm{N\,m}$. Calculer la contrainte tangentielle maximale avec :
+  \[
+  \tau_{\max}=\frac{M_tR}{J},
+  \qquad
+  J=\frac{\pi R^4}{2}.
+  \]
+  \begin{itemize}
+    \item $3{,}5\ \mathrm{kPa}$ ; $3{,}5\ \mathrm{MPa}$ ; $6{,}9\ \mathrm{MPa}$ ; $27{,}8\ \mathrm{MPa}$.
+  \end{itemize}
+\end{enumerate}
