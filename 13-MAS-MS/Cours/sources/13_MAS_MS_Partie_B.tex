@@ -1,0 +1,224 @@
+% ============================================================================
+% COURS 13 — MACHINES ASYNCHRONES ET SYNCHRONES
+% Partie B : machine asynchrone
+% Source : 17-MAS_MS.docx
+% ============================================================================
+
+\section{Machine asynchrone}
+\label{sec:masms-4}
+
+\subsection{Principe et glissement}
+
+Dans une machine asynchrone, le champ tournant statorique balaie les conducteurs du rotor et y induit des forces électromotrices. Les circuits rotoriques étant fermés, des courants induits apparaissent. L'action du champ statorique sur ces courants crée le couple électromagnétique.
+
+Le rotor ne peut pas atteindre la vitesse du champ : au synchronisme, il ne verrait plus de variation de flux, la f.é.m. rotorique et le couple deviendraient nuls.
+
+On définit le \textbf{glissement} :
+\[
+\boxed{g=\frac{\Omega_s-\Omega}{\Omega_s}=\frac{N_s-N}{N_s}.}
+\]
+
+La fréquence des courants rotoriques est :
+\[
+\boxed{f_r=g f,}
+\qquad
+\boxed{\omega_r=g\omega.}
+\]
+
+Les principaux domaines de fonctionnement sont :
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}c c X}
+\toprule
+Glissement & Vitesse & Fonctionnement \\
+\midrule
+$0<g<1$ & $0<\Omega<\Omega_s$ & moteur.\\
+$g<0$ & $\Omega>\Omega_s$ & génératrice ou freinage hypersynchrone.\\
+$g>1$ & $\Omega<0$ avec champ direct & freinage par contre-courant.\\
+$g=1$ & $\Omega=0$ & démarrage, rotor bloqué.\\
+$g=0$ & $\Omega=\Omega_s$ & couple nul.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{TLMachineWarning}{Pertes rotoriques}
+Plus le glissement est élevé, plus les pertes Joule rotoriques sont importantes. Le point nominal d'une MAS industrielle se situe généralement à faible glissement.
+\end{TLMachineWarning}
+
+\subsection{Schéma monophasé équivalent}
+
+En régime permanent triphasé équilibré, la MAS peut être étudiée par un schéma équivalent monophasé. Les grandeurs rotoriques sont ramenées au stator.
+
+\begin{center}\TLSchemaEquivalentMAS\end{center}
+
+Les éléments du modèle sont :
+\begin{itemize}
+  \item $R_1$ : résistance d'une phase statorique ;
+  \item $X_1=L_1\omega$ : réactance de fuite statorique ;
+  \item $R_f$ : résistance modélisant les pertes fer ;
+  \item $X_0=L_0\omega$ : réactance de magnétisation ;
+  \item $R$ et $X=L\omega$ : résistance et réactance de fuite rotoriques ramenées au stator ;
+  \item $R/g$ : résistance fictive traduisant la puissance transmise au rotor.
+\end{itemize}
+
+La puissance transmise du stator au rotor vaut :
+\[
+\boxed{P_{tr}=3\frac{R}{g}{I_1'}^2.}
+\]
+Les pertes fer statoriques sont modélisées par :
+\[
+\boxed{P_{fs}=3\frac{V_1^2}{R_f}.}
+\]
+
+\TLMAImage[.54\linewidth]{image52.png}
+
+\subsection{Bilan de puissance et rendement}
+
+\begin{center}\TLBilanPuissanceMAS\end{center}
+
+Le bilan de puissance s'écrit :
+\[
+P_1-P_{Js}-P_{fs}=P_{tr},
+\]
+\[
+\boxed{P_{Jr}=gP_{tr},}
+\qquad
+\boxed{P_{em}=(1-g)P_{tr}=C_{em}\Omega.}
+\]
+Après retrait des pertes mécaniques :
+\[
+P_u=P_{em}-P_{méc},
+\qquad
+\boxed{\eta=\frac{P_u}{P_1}.}
+\]
+
+La relation $P_{tr}=C_{em}\Omega_s$ est particulièrement utile :
+\[
+\boxed{C_{em}=\frac{P_{tr}}{\Omega_s}.}
+\]
+
+\TLMAImage[.82\linewidth]{image53.png}
+
+\begin{TLMachineExercise}{Bilan nominal d'une MAS}
+Une machine porte les indications $230/400\ \mathrm V$, $50\ \mathrm{Hz}$, $15\ \mathrm{kW}$, $1440\ \mathrm{tr\,min^{-1}}$. À charge nominale, le courant de ligne vaut $19{,}4\ \mathrm A$ et la puissance absorbée $11\ \mathrm{kW}$. Les pertes fer et mécaniques sont négligées.
+\begin{enumerate}
+  \item Déterminer le nombre de paires de pôles et le glissement.
+  \item Calculer la puissance réactive et le facteur de puissance.
+  \item Déterminer le couple nominal et les pertes Joule rotoriques.
+  \item Identifier les paramètres du schéma équivalent à partir d'un essai à vide et d'un essai rotor bloqué.
+\end{enumerate}
+\end{TLMachineExercise}
+
+\subsection{Couple électromagnétique}
+
+Pour l'étude du couple, les chutes de tension dans $R_1$ et $X_1$ sont souvent négligées. La branche rotorique est alors alimentée sous $V_1$ :
+\[
+\underline Z_1=\frac{R}{g}+jX,
+\qquad
+I_1'=\frac{V_1}{\sqrt{(R/g)^2+X^2}}.
+\]
+
+En utilisant $P_{tr}=3(R/g){I_1'}^2=C_{em}\Omega_s$ :
+\[
+\boxed{C_{em}=\frac{3V_1^2}{\Omega_s}\frac{Rg}{R^2+(Xg)^2}.}
+\]
+Une écriture équivalente est :
+\[
+C_{em}=\frac{p}{\omega}\,
+\frac{3V_1^2(R/g)}{(R/g)^2+X^2}.
+\]
+
+\begin{center}\TLCoupleGlissementMAS\end{center}
+\TLMAImage[.68\linewidth]{image56.png}
+
+Le couple maximal est obtenu pour :
+\[
+\boxed{g_M=\frac{R}{X}.}
+\]
+Sa valeur est indépendante de $R$ :
+\[
+\boxed{C_M=\frac{3V_1^2}{2\Omega_sX}.}
+\]
+Au démarrage, $g=1$ :
+\[
+\boxed{C_D=\frac{3V_1^2}{\Omega_s}\frac{R}{R^2+X^2}.}
+\]
+
+Au voisinage du synchronisme, $g\ll g_M$, la caractéristique est presque linéaire :
+\[
+\boxed{C_{em}\simeq\frac{3V_1^2}{\Omega_sR}\,g.}
+\]
+
+\begin{TLMachineMethod}{Étudier une MAS à partir du schéma équivalent}
+\begin{enumerate}
+  \item Déterminer $p$, $\Omega_s$ et $g$.
+  \item Identifier les paramètres par essai à vide et rotor bloqué.
+  \item Calculer $P_{tr}$ puis $C_{em}=P_{tr}/\Omega_s$.
+  \item Rechercher $g_M$ et $C_M$.
+  \item Placer le point de fonctionnement par l'intersection entre couple moteur et couple résistant.
+  \item Vérifier les courants, le rendement et la stabilité.
+\end{enumerate}
+\end{TLMachineMethod}
+
+\begin{TLMachineExercise}{Expression et maximum du couple}
+À partir du schéma simplifié comportant $R/g$ et $l\omega$, montrer que :
+\[
+C=\frac{3pV^2}{\omega}\frac{R/g}{(R/g)^2+(l\omega)^2}.
+\]
+Déterminer $g_M$, $C_M$, la vitesse correspondante et tracer la caractéristique pour une machine dont la vitesse de synchronisme vaut $1500\ \mathrm{tr\,min^{-1}}$.
+\end{TLMachineExercise}
+
+\subsection{Variation de vitesse}
+
+La vitesse mécanique est :
+\[
+\boxed{\Omega=\frac{\omega}{p}(1-g).}
+\]
+Elle peut être modifiée en agissant sur :
+\begin{itemize}
+  \item le glissement, notamment par la tension ;
+  \item la fréquence statorique ;
+  \item le nombre de paires de pôles.
+\end{itemize}
+
+La solution moderne consiste à alimenter la machine par un onduleur et à modifier la fréquence. Pour conserver le flux magnétique approximativement constant, on maintient :
+\[
+\boxed{\frac{V_1}{f}=\mathrm{constante}.}
+\]
+
+\begin{center}\TLCommandeVsurF\end{center}
+
+Sous la fréquence nominale, le flux et le couple maximal restent presque constants. Au-delà de la fréquence nominale, la tension ne peut plus augmenter : le fonctionnement se poursuit à puissance approximativement constante et le couple disponible diminue.
+
+\TLMAImage[.56\linewidth]{image58.png}
+\TLMAImage[.56\linewidth]{image59.png}
+
+Dans la zone utile et pour un faible glissement, la caractéristique peut s'écrire sous forme affine :
+\[
+C_{em}\simeq K(\Omega_s-\Omega).
+\]
+Cette propriété explique la translation des courbes couple--vitesse lorsque la fréquence varie.
+
+\begin{TLMachineWarning}{Limites de la commande scalaire}
+La loi $V/f=\mathrm{cte}$ compense correctement le flux à vitesse moyenne et élevée. À basse fréquence, la chute de tension statorique devient comparable à la tension appliquée : une compensation ou une commande vectorielle est alors nécessaire.
+\end{TLMachineWarning}
+
+\begin{TLMachineExercise}{Identification et commande $V/f$}
+Une MAS $230/400\ \mathrm V$, $50\ \mathrm{Hz}$, $1440\ \mathrm{tr\,min^{-1}}$ est caractérisée par :
+\begin{itemize}
+  \item essai à vide : $V=230\ \mathrm V$, $I_0=9{,}5\ \mathrm A$, $P_0=630\ \mathrm W$ ;
+  \item essai rotor bloqué : $V_{cc}=50\ \mathrm V$, $I_{cc}=30\ \mathrm A$, $P_{cc}=830\ \mathrm W$.
+\end{itemize}
+Déterminer les paramètres du modèle, établir l'expression du couple et montrer l'effet d'une commande $V/f$ constante sur les caractéristiques couple--vitesse.
+\end{TLMachineExercise}
+
+\subsection{Fonctionnement dans les quatre quadrants}
+
+Une association onduleur--MAS réversible peut fonctionner en moteur ou en génératrice dans les deux sens de rotation. Le signe de la puissance mécanique est donné par :
+\[
+P_m=C\Omega.
+\]
+
+\begin{center}\TLQuadrantsMachine\end{center}
+
+La permutation de deux phases inverse le sens du champ tournant. Pour permettre le freinage régénératif, la chaîne d'énergie doit être réversible jusqu'à la source ; sinon, l'énergie est dissipée dans une résistance de freinage.
