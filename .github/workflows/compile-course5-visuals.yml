@@ -1,0 +1,35 @@
+name: Compiler les visuels du cours 5
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '05-Modélisation Systèmes Asservis/Cours/Poster/**'
+      - '05-Modélisation Systèmes Asservis/Cours/Carte mentale/**'
+      - '.github/workflows/compile-course5-visuals.yml'
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compiler le poster A3
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: Poster_05_Systèmes_asservis.tex
+          working_directory: 05-Modélisation Systèmes Asservis/Cours/Poster
+
+      - name: Compiler la carte mentale A3
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: Carte_Mentale_05_Systèmes_asservis.tex
+          working_directory: 05-Modélisation Systèmes Asservis/Cours/Carte mentale
+
+      - name: Publier les PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: visuels-course5-systemes-asservis
+          path: |
+            05-Modélisation Systèmes Asservis/Cours/Poster/Poster_05_Systèmes_asservis.pdf
+            05-Modélisation Systèmes Asservis/Cours/Carte mentale/Carte_Mentale_05_Systèmes_asservis.pdf
