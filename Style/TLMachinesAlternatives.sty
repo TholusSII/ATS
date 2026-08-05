@@ -134,7 +134,7 @@
 \draw[->,thick] (pm)--node[above]{mécanique}(pu);
 \draw[->] ($(pe.south)!0.5!(ptr.south)$)--++(0,-.8) node[below]{$P_{Js}+P_{fs}$};
 \draw[->] ($(ptr.south)!0.5!(pm.south)$)--++(0,-.8) node[below]{$P_{Jr}=gP_{tr}$};
-\draw[->] ($(pm.south)!0.5!(pu.south)$)--++(0,-.8) node[below]{$P_{méc}$};
+\draw[->] ($(pm.south)!0.5!(pu.south)$)--++(0,-.8) node[below]{$P_{\mathrm{mec}}$};
 \end{tikzpicture}}
 
 \newcommand{\TLCoupleGlissementMAS}{%
@@ -188,7 +188,7 @@
 
 \newcommand{\TLChaineBrushless}{%
 \begin{tikzpicture}[>=Latex,node distance=10mm]
-\node[draw,rounded corners] (c) {Commande\\$I^*,\psi^*$};
+\node[draw,rounded corners,align=center] (c) {Commande\\$I^*,\psi^*$};
 \node[draw,rounded corners,right=of c] (o) {Onduleur};
 \node[draw,rounded corners,right=of o] (m) {MS à aimants};
 \node[draw,rounded corners,below=of m] (p) {Capteur de position};
