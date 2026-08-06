@@ -1,0 +1,152 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{TLPortableCours}[2026/08/06 Compilation portable des cours]
+
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[french]{babel}
+\RequirePackage{lmodern}
+\RequirePackage{microtype}
+\RequirePackage[a4paper,margin=20mm,headheight=15pt]{geometry}
+\RequirePackage{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{amsmath,amssymb,mathtools}
+\RequirePackage{booktabs,tabularx,array}
+\RequirePackage{enumitem}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{tikz}
+\RequirePackage{fancyhdr}
+\RequirePackage{hyperref}
+\RequirePackage{xparse}
+\usetikzlibrary{arrows.meta,calc,positioning,shapes.geometric,fit}
+
+\definecolor{TLCoverBlue}{RGB}{0,82,155}
+\definecolor{TLBlueBack}{RGB}{238,245,251}
+\definecolor{TLGreen}{RGB}{48,132,91}
+\definecolor{TLGreenBack}{RGB}{237,248,242}
+\definecolor{TLOrange}{RGB}{218,112,24}
+\definecolor{TLOrangeBack}{RGB}{255,246,232}
+\definecolor{TLRed}{RGB}{177,55,55}
+\definecolor{TLRedBack}{RGB}{253,239,239}
+
+\hypersetup{colorlinks=true,linkcolor=TLCoverBlue,urlcolor=TLCoverBlue,pdftitle={Cours de sciences industrielles de l'ingénieur},pdfauthor={Thomas Lusseau}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt plus 1pt minus 1pt}
+\setlength{\emergencystretch}{3em}
+\raggedbottom
+\setlist[itemize]{itemsep=2pt,topsep=4pt}
+\setlist[enumerate]{itemsep=2pt,topsep=4pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sffamily\small Thomas Lusseau -- SII en ATS}
+\fancyhead[R]{\sffamily\small\leftmark}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{.4pt}
+
+\newcommand{\TLPortableTitlePage}[4]{%
+\begin{titlepage}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[TLCoverBlue] (current page.north west) rectangle ([yshift=-44mm]current page.north east);
+  \fill[TLCoverBlue!10] ([yshift=15mm]current page.south west) rectangle (current page.south east);
+  \draw[TLCoverBlue,line width=2pt] ([xshift=16mm,yshift=-58mm]current page.north west) -- ([xshift=-16mm,yshift=-58mm]current page.north east);
+\end{tikzpicture}
+\vspace*{11mm}
+{\color{white}\sffamily\bfseries\Large Sciences industrielles de l'ingénieur\par}
+\vspace{34mm}
+{\sffamily\bfseries\color{TLCoverBlue}\fontsize{25}{30}\selectfont #2\par}
+\vspace{8mm}
+{\sffamily\Large #3\par}
+\vfill
+\begin{tcolorbox}[enhanced,colback=white,colframe=TLCoverBlue,boxrule=1pt,arc=2mm,left=6mm,right=6mm,top=5mm,bottom=5mm]
+\sffamily\large\textbf{Chapitre #1}\hfill Lycée Robert Doisneau -- ATS\\[2mm]
+\normalsize #4
+\end{tcolorbox}
+\vspace{12mm}
+{\sffamily Thomas Lusseau\hfill\today\par}
+\end{titlepage}}
+
+\newtcolorbox{savoirs}{enhanced,breakable,colback=TLBlueBack,colframe=TLCoverBlue,title={Savoirs},fonttitle=\sffamily\bfseries,coltitle=white,colbacktitle=TLCoverBlue,boxrule=.8pt,arc=1.5mm,left=4mm,right=4mm,top=3mm,bottom=3mm}
+\newtcolorbox{savoirfaire}{enhanced,breakable,colback=TLGreenBack,colframe=TLGreen,title={Savoir-faire},fonttitle=\sffamily\bfseries,coltitle=white,colbacktitle=TLGreen,boxrule=.8pt,arc=1.5mm,left=4mm,right=4mm,top=3mm,bottom=3mm}
+\newtcolorbox{TLExercise}[1]{enhanced,breakable,colback=white,colframe=TLCoverBlue,title={#1},fonttitle=\sffamily\bfseries,coltitle=white,colbacktitle=TLCoverBlue,boxrule=.8pt,arc=1.5mm,left=4mm,right=4mm,top=3mm,bottom=3mm,before skip=9pt,after skip=9pt}
+
+\newtcolorbox{SAdefinition}[1][]{enhanced,breakable,colback=TLBlueBack,colframe=TLCoverBlue,boxrule=.8pt,arc=1.5mm,left=4mm,right=4mm,top=3mm,bottom=3mm,title={Définition},fonttitle=\sffamily\bfseries,coltitle=white,colbacktitle=TLCoverBlue,before skip=8pt,after skip=8pt,#1}
+\newtcolorbox{SAmethode}[1][]{enhanced,breakable,colback=TLGreenBack,colframe=TLGreen,boxrule=.8pt,arc=1.5mm,left=4mm,right=4mm,top=3mm,bottom=3mm,title={Méthode},fonttitle=\sffamily\bfseries,coltitle=white,colbacktitle=TLGreen,before skip=8pt,after skip=8pt,#1}
+\newtcolorbox{SAattention}[1][]{enhanced,breakable,colback=TLRedBack,colframe=TLRed,boxrule=.8pt,arc=1.5mm,left=4mm,right=4mm,top=3mm,bottom=3mm,title={Point de vigilance},fonttitle=\sffamily\bfseries,coltitle=white,colbacktitle=TLRed,before skip=8pt,after skip=8pt,#1}
+\newtcolorbox{SAapplication}[1][]{enhanced,breakable,colback=TLOrangeBack,colframe=TLOrange,boxrule=.8pt,arc=1.5mm,left=4mm,right=4mm,top=3mm,bottom=3mm,title={Application},fonttitle=\sffamily\bfseries,coltitle=white,colbacktitle=TLOrange,before skip=8pt,after skip=8pt,#1}
+
+\tikzset{SAbloc/.style={draw,rounded corners,fill=TLBlueBack,minimum width=25mm,minimum height=10mm,align=center,font=\small},SAsum/.style={draw,circle,minimum size=7mm,inner sep=0pt,font=\small},SAlink/.style={->,thick,>=Latex}}
+
+\newcommand{\SASchemaEtuve}{%
+\begin{center}\begin{tikzpicture}[node distance=8mm and 12mm]
+\node[SAbloc] (comp) {Comparateur};\node[SAbloc,right=of comp] (corr) {Correcteur};\node[SAbloc,right=of corr] (heat) {Chauffage};\node[SAbloc,right=of heat] (oven) {Étuve};\node[SAbloc,below=of heat] (sensor) {Sonde};
+\draw[SAlink] ([xshift=-16mm]comp.west)--node[above]{consigne}(comp);\draw[SAlink] (comp)--(corr)--(heat)--(oven);\draw[SAlink] (oven.east)--++(14mm,0) node[right]{température};\draw[SAlink] (oven.south)|-(sensor.east);\draw[SAlink] (sensor.west)-|(comp.south);
+\end{tikzpicture}\end{center}}
+
+\newcommand{\SAChaineFonctionnelle}{%
+\begin{center}\resizebox{.96\linewidth}{!}{\begin{tikzpicture}[node distance=7mm]
+\node[SAbloc] (cap) {Capteurs};\node[SAbloc,right=of cap] (pc) {Partie commande};\node[SAbloc,right=of pc] (pre) {Préactionneur};\node[SAbloc,right=of pre] (act) {Actionneur};\node[SAbloc,right=of act] (eff) {Effecteur};
+\draw[SAlink] (cap)--node[above]{mesures}(pc);\draw[SAlink] (pc)--node[above]{ordres}(pre);\draw[SAlink] (pre)--(act)--(eff);\draw[SAlink] (eff.east)--++(12mm,0) node[right]{action};
+\end{tikzpicture}}\end{center}}
+
+\newcommand{\SASchemaBoucleGenerale}{%
+\begin{center}\resizebox{.96\linewidth}{!}{\begin{tikzpicture}[node distance=9mm and 13mm]
+\node[SAsum] (sum) {$\sum$};\node[SAbloc,right=of sum] (c) {Commande\\$C(p)$};\node[SAbloc,right=of c] (p) {Procédé\\$P(p)$};\node[SAbloc,below=of c] (h) {Capteur\\$H(p)$};
+\draw[SAlink] ([xshift=-18mm]sum.west)--node[above]{$E(p)$}(sum);\draw[SAlink] (sum)--node[above]{$\varepsilon(p)$}(c);\draw[SAlink] (c)--(p);\draw[SAlink] (p.east)--++(18mm,0) coordinate (out) node[right]{$S(p)$};\draw[SAlink] (out)|-(h.east);\draw[SAlink] (h.west)-|(sum.south);\node at ([xshift=-3mm,yshift=3mm]sum.south){$-$};\node at ([xshift=-3mm,yshift=-1mm]sum.west){$+$};
+\end{tikzpicture}}\end{center}}
+\let\SAChaineAsservie\SASchemaBoucleGenerale
+
+\newcommand{\TLSchemaPerturbe}{%
+\begin{center}\resizebox{.96\linewidth}{!}{\begin{tikzpicture}[node distance=9mm and 12mm]
+\node[SAsum] (s1) {$\sum$};\node[SAbloc,right=of s1] (c) {$C(p)$};\node[SAsum,right=of c] (s2) {$\sum$};\node[SAbloc,right=of s2] (p) {$P(p)$};\node[SAbloc,below=of c] (h) {$H(p)$};
+\draw[SAlink] ([xshift=-16mm]s1.west)--node[above]{$E(p)$}(s1);\draw[SAlink] (s1)--(c)--(s2)--(p);\draw[SAlink] ([yshift=14mm]s2.north)--node[right]{$Q(p)$}(s2);\draw[SAlink] (p.east)--++(16mm,0) coordinate(out) node[right]{$S(p)$};\draw[SAlink] (out)|-(h.east);\draw[SAlink] (h.west)-|(s1.south);\node at ([xshift=-3mm,yshift=3mm]s1.south){$-$};
+\end{tikzpicture}}\end{center}}
+
+\newcommand{\SASchemaElementsBase}{%
+\begin{center}\begin{tikzpicture}[node distance=12mm]
+\node[SAbloc] (b) {$H(p)$};\draw[SAlink] ([xshift=-15mm]b.west)--node[above]{$E$}(b);\draw[SAlink] (b.east)--++(15mm,0) node[above]{$S$};
+\node[SAsum,right=35mm of b] (sum) {$\sum$};\draw[SAlink] ([xshift=-14mm,yshift=4mm]sum.west)--(sum);\draw[SAlink] ([xshift=-14mm,yshift=-4mm]sum.west)--(sum);\draw[SAlink] (sum.east)--++(14mm,0);
+\end{tikzpicture}\end{center}}
+
+\newcommand{\TLReglesBlocs}{%
+\begin{center}\begin{tabularx}{\linewidth}{>{\bfseries}p{.20\linewidth}X>{\centering\arraybackslash}p{.30\linewidth}}
+\toprule Montage & Relation & Équivalent\\\midrule
+Série & $S=H_2H_1E$ & $H_{eq}=H_1H_2$\\
+Parallèle & $S=(H_1+H_2)E$ & $H_{eq}=H_1+H_2$\\
+Retour négatif & $S=D(E-RS)$ & $H_{eq}=D/(1+DR)$\\\bottomrule
+\end{tabularx}\end{center}}
+
+\newcommand{\SAReperePerformances}{%
+\begin{center}\begin{tikzpicture}[font=\small]
+\node[SAbloc] (sys) {Système asservi};\node[SAbloc,above=12mm of sys] (stab) {Stabilité};\node[SAbloc,below left=12mm and 8mm of sys] (rap) {Rapidité};\node[SAbloc,below right=12mm and 8mm of sys] (prec) {Précision};\node[SAbloc,right=18mm of sys] (dep) {Dépassement};\foreach \n in {stab,rap,prec,dep}{\draw[SAlink] (sys)--(\n);}
+\end{tikzpicture}\end{center}}
+
+\newcommand{\SASignauxTests}{%
+\begin{center}\begin{tikzpicture}[x=.9cm,y=.75cm,>=Latex,font=\scriptsize]
+\foreach \x/\titre in {0/Échelon,4/Impulsion,8/Rampe}{\draw[->](\x,0)--++(3,0);\draw[->](\x,0)--++(0,2.2);\node[font=\bfseries] at (\x+1.5,2.5){\titre};}
+\draw[very thick,TLCoverBlue](0,0)--(.7,0)--(.7,1.6)--(2.8,1.6);\draw[very thick,TLCoverBlue](4,0)--(4.8,0)--(4.8,1.8)--(4.8,0)--(6.8,0);\draw[very thick,TLCoverBlue](8,0)--(8.7,0)--(10.8,1.7);
+\end{tikzpicture}\end{center}}
+
+\newcommand{\SAReponsePremierOrdre}{%
+\begin{center}\begin{tikzpicture}[x=1.2cm,y=4cm,>=Latex,font=\scriptsize]
+\draw[->](0,0)--(5.3,0)node[right]{$t/\tau$};\draw[->](0,0)--(0,1.17)node[above]{$s/K$};\draw[dotted,TLOrange](0,1)--(5.1,1);\draw[dashed,TLRed](0,.95)--(5.1,.95);\draw[dashed](3,0)--(3,.95);\draw[very thick,TLCoverBlue,domain=0:5,samples=100,smooth,variable=\t]plot({\t},{1-exp(-\t)});\node[left]at(0,1){1};\node[below]at(3,0){3};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\SAReponseSecondOrdre}{%
+\begin{center}\begin{tikzpicture}[x=.58cm,y=3cm,>=Latex,font=\scriptsize]
+\draw[->](0,0)--(12.5,0)node[right]{$\omega_0t$};\draw[->](0,0)--(0,1.65)node[above]{$s/K$};\draw[dashed,TLOrange](0,1)--(12.2,1);\draw[dotted,TLRed](0,.95)--(12.2,.95);\draw[dotted,TLRed](0,1.05)--(12.2,1.05);\draw[very thick,TLCoverBlue,domain=0:12,samples=220,smooth,variable=\t]plot({\t},{1-exp(-.3*\t)*(cos(54.654*\t)+.3145*sin(54.654*\t))});\node[left]at(0,1){1};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\SACarteModelisation}{%
+\begin{center}\resizebox{.98\linewidth}{!}{\begin{tikzpicture}[node distance=8mm and 14mm]
+\node[SAbloc](p){Système physique};\node[SAbloc,right=of p](e){Équations différentielles};\node[SAbloc,right=of e](l){Transformée de Laplace};\node[SAbloc,below=of l](f){Fonction de transfert};\node[SAbloc,left=of f](r){Réponses};\node[SAbloc,left=of r](v){Validation};\draw[SAlink](p)--(e)--(l)--(f)--(r)--(v)--(p);
+\end{tikzpicture}}\end{center}}
+
+\newcommand{\TLPortableBode}[3]{%
+\begin{center}\begin{tikzpicture}[x=2cm,y=.09cm,>=Latex,font=\scriptsize]
+\draw[->](-2,-45)--(2.2,-45)node[right]{$\log\omega$};\draw[->](-2,-45)--(-2,45)node[above]{dB};\draw[very thick,TLCoverBlue](-2,#1)--(0,#1)--(2,{#1+#2*2});\node[above right]at(0,#1){$\omega_c$};\node at (0,-38){#3};
+\end{tikzpicture}\end{center}}
+\newcommand{\TLBodeIntegrateur}[1][]{\TLPortableBode{20}{-20}{Intégrateur : pente $-20$ dB/décade}}
+\newcommand{\TLBodePremierOrdre}[2][]{\TLPortableBode{0}{-20}{Premier ordre}}
+\newcommand{\TLBodeSecondOrdre}[3][]{\TLPortableBode{0}{-40}{Second ordre}}
+
+\endinput
