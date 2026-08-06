@@ -1,0 +1,251 @@
+% ============================================================================
+% COURS 03 — LOIS ENTRÉE-SORTIE — PARTIE B
+% Source : 3-LoiES20222.docx
+% ============================================================================
+
+\section{Modèles géométriques et contraintes de position}
+\label{sec:les-modeles}
+
+Le modèle géométrique direct d'une chaîne ouverte s'obtient généralement
+par une succession de relations de Chasles. L'objectif est d'exprimer le
+vecteur position de l'effecteur dans la base du bâti.
+
+Pour un point $P$ :
+\[
+\overrightarrow{AP}=x_P\vec x_0+y_P\vec y_0+z_P\vec z_0.
+\]
+Les coordonnées sont obtenues en projetant sur les vecteurs de la base :
+\[
+x_P=\overrightarrow{AP}\cdot\vec x_0,
+\quad y_P=\overrightarrow{AP}\cdot\vec y_0,
+\quad z_P=\overrightarrow{AP}\cdot\vec z_0.
+\]
+
+\subsection{Contraintes géométriques}
+
+Une contrainte de position limite l'ensemble des positions possibles de
+l'effecteur. Elle peut s'écrire sous forme vectorielle ou scalaire.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}p{3.3cm}X}
+\toprule
+Contrainte & Écriture possible \\
+\midrule
+Distance à un point $A$ & $\|\overrightarrow{AP}\|\leq d$ \\
+Appartenance à un plan de normale $\vec n$ & $\overrightarrow{AP}\cdot\vec n=h$ \\
+Appartenance à une droite & deux coordonnées ou deux projections sont imposées \\
+Trajectoire paramétrée & $\mathbf X=\mathbf X(u)$ avec $u$ paramètre de trajectoire \\
+Orientation imposée & produits scalaires entre les vecteurs des repères \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{TLThreeApp}{Position d'un robot série}
+Écrire le vecteur position de l'effecteur par une relation de Chasles,
+le projeter dans la base du bâti et déterminer les coordonnées
+opérationnelles. Identifier ensuite les configurations articulaires
+permettant d'atteindre un point imposé.
+\end{TLThreeApp}
+
+\section{Déterminer une loi en position par fermeture géométrique}
+\label{sec:les-fermeture}
+
+Dans une chaîne fermée, le graphe des liaisons comporte au moins une
+boucle. L'équation vectorielle de fermeture fournit deux équations
+scalaires dans un problème plan et trois dans un problème spatial.
+
+\begin{TLThreeMethod}{Démarche générale}
+\begin{enumerate}
+  \item Identifier le paramètre d'entrée $q_e$ et le paramètre de sortie $q_s$.
+  \item Choisir une boucle et écrire la fermeture géométrique.
+  \item Exprimer chaque vecteur à l'aide des paramètres géométriques et cinématiques.
+  \item Projeter dans une base adaptée.
+  \item Éliminer les paramètres intermédiaires.
+  \item Mettre en évidence une relation ne contenant que $q_e$, $q_s$ et les constantes géométriques.
+  \item Vérifier l'homogénéité, les positions particulières et le domaine de validité.
+\end{enumerate}
+\end{TLThreeMethod}
+
+\subsection{Exemple du bielle-manivelle}
+
+On note $e=OA$ la longueur de la manivelle, $L=AB$ la longueur de la
+bielle, $x=OB$ la position du piston, $\alpha$ l'angle de la manivelle et
+$\beta$ l'angle de la bielle.
+
+\TLBielleManivelleGeometry
+
+La fermeture s'écrit :
+\[
+\overrightarrow{OA}+\overrightarrow{AB}+\overrightarrow{BO}=\vec0,
+\]
+soit :
+\[
+e\vec x_1+L\vec x_2-x\vec x_0=\vec0.
+\]
+Les projections sur $\vec x_0$ et $\vec y_0$ donnent :
+\[
+\left\{\begin{aligned}
+e\cos\alpha+L\cos\beta-x&=0,\\
+e\sin\alpha+L\sin\beta&=0.
+\end{aligned}\right.
+\]
+
+\subsection{Méthode 1 : élimination par identité trigonométrique}
+
+On isole les termes en $\beta$ :
+\[
+L\cos\beta=x-e\cos\alpha,
+\qquad
+L\sin\beta=-e\sin\alpha.
+\]
+En élevant au carré et en additionnant :
+\[
+\boxed{L^2=x^2+e^2-2ex\cos\alpha.}
+\]
+Cette relation constitue une loi entrée-sortie implicite entre $x$ et
+$\alpha$.
+
+Pour éliminer une distance commune, on peut diviser deux équations afin
+de faire apparaître une tangente :
+\[
+\tan\beta=\frac{-e\sin\alpha}{x-e\cos\alpha}.
+\]
+
+\subsection{Méthode 2 : norme au carré}
+
+Après isolement d'un vecteur de norme connue :
+\[
+L\vec x_2=x\vec x_0-e\vec x_1.
+\]
+On prend la norme au carré :
+\[
+L^2=\|x\vec x_0-e\vec x_1\|^2
+=x^2+e^2-2ex\,\vec x_0\cdot\vec x_1,
+\]
+d'où le même résultat puisque
+$\vec x_0\cdot\vec x_1=\cos\alpha$.
+
+\subsection{Méthode 3 : théorème d'Al-Kashi}
+
+Lorsque la boucle forme directement un triangle, la loi des cosinus
+permet d'écrire sans projection :
+\[
+\boxed{L^2=x^2+e^2-2ex\cos\alpha.}
+\]
+Cette méthode est rapide mais exige d'identifier sans ambiguïté le
+triangle et l'angle opposé au côté considéré.
+
+\subsection{Méthode 4 : orthogonalité}
+
+Lorsqu'une géométrie impose deux directions perpendiculaires, on peut
+écrire :
+\[
+\vec u\cdot\vec v=0.
+\]
+Cette méthode est particulièrement efficace pour certains renvois
+d'angle, mécanismes à cardan et dispositifs de type Sinusmatic.
+
+\begin{TLThreeApp}{Échelle EPAS}
+Avec $\overline{O_0A}=a$, $\overline{AC}=c$,
+$\overline{O_0B}=b$ et $\overline{BC}=r$, la géométrie conduit à :
+\[
+\overrightarrow{O_0A}+\overrightarrow{AC}
+=\overrightarrow{O_0B}+\overrightarrow{BC}.
+\]
+En utilisant le triangle $O_0BC$ et les positions de $A$ et $C$ dans
+le repère de l'échelle, établir $r=f(\theta)$, puis calculer
+$|r(50^\circ)-r(10^\circ)|$ pour $a=2\ \mathrm m$,
+$b=3\ \mathrm m$ et $c=2{,}6\ \mathrm m$.
+\end{TLThreeApp}
+
+\section{Loi entrée-sortie en vitesse}
+\label{sec:les-vitesse}
+
+\begin{TLThreeDef}{Définition}
+La loi entrée-sortie en vitesse est la relation entre la dérivée du
+paramètre de sortie et celle du paramètre d'entrée :
+\[
+\dot q_s=J(q_e,q_s)\,\dot q_e.
+\]
+Le coefficient $J$ est le rapport instantané de transmission. Il peut
+dépendre de la configuration.
+\end{TLThreeDef}
+
+Deux démarches sont possibles :
+\begin{itemize}
+  \item dériver la loi en position déjà établie ;
+  \item écrire directement une fermeture cinématique à l'aide des
+  torseurs cinématiques ou des vitesses de points.
+\end{itemize}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}p{3.5cm}X}
+\toprule
+Démarche & Enchaînement \\
+\midrule
+Fermeture géométrique & loi en position $\rightarrow$ dérivation temporelle $\rightarrow$ loi en vitesse \\
+Fermeture cinématique & composition des vitesses ou des torseurs $\rightarrow$ élimination des paramètres internes \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Rappels de dérivation :
+\[
+\frac{\mathrm d}{\mathrm dt}\sin\alpha
+=\dot\alpha\cos\alpha,
+\qquad
+\frac{\mathrm d}{\mathrm dt}\cos\alpha
+=-\dot\alpha\sin\alpha.
+\]
+
+Pour la loi implicite du bielle-manivelle :
+\[
+L^2=x^2+e^2-2ex\cos\alpha,
+\]
+la dérivation donne :
+\[
+0=2x\dot x-2e\dot x\cos\alpha
++2ex\dot\alpha\sin\alpha.
+\]
+Ainsi :
+\[
+\boxed{\frac{\dot x}{\dot\alpha}
+=-\frac{ex\sin\alpha}{x-e\cos\alpha}.}
+\]
+
+\begin{TLThreeMethod}{Contrôler une loi entrée-sortie}
+\begin{enumerate}
+  \item Vérifier les unités : un rapport rotation--rotation est sans dimension ; un rapport translation--rotation est une longueur.
+  \item Tester une position de référence facile à interpréter.
+  \item Vérifier le signe avec les sens positifs du paramétrage.
+  \item Repérer les configurations singulières où le dénominateur s'annule.
+  \item Comparer l'évolution obtenue avec une animation ou une construction géométrique.
+\end{enumerate}
+\end{TLThreeMethod}
+
+\section{Synthèse pour les mécanismes non linéaires}
+\label{sec:les-synthese}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}p{3.2cm}X X}
+\toprule
+Structure & Modèle recherché & Outil privilégié \\
+\midrule
+Chaîne ouverte & position de l'effecteur & Chasles, projections, modèle direct \\
+Chaîne ouverte, position imposée & paramètres articulaires & modèle inverse, résolution analytique ou numérique \\
+Chaîne fermée plane & relation entre deux paramètres & fermeture géométrique, Al-Kashi, orthogonalité \\
+Loi en vitesse & rapport instantané & dérivation ou fermeture cinématique \\
+Transmetteur usuel & rapport constant ou loi simple & roulement sans glissement, engrènement, hélicoïdale \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Sources de la partie lois entrée-sortie}
+\label{sec:les-sources}
+
+Cette partie reprend le document de cours original, des ressources
+pédagogiques de collègues de l'UPSTI et les systèmes issus de sujets de
+concours mentionnés dans les exercices.
