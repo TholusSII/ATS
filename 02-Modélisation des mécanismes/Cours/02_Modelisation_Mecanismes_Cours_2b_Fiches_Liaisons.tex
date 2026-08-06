@@ -1,0 +1,271 @@
+% ============================================================================
+% COURS 02 — FICHES DÉTAILLÉES DES LIAISONS
+% Contenu restauré à partir du Word original.
+% ============================================================================
+
+\subsection{Fiches détaillées des dix liaisons usuelles}
+
+Pour identifier une liaison, il faut toujours préciser son \textbf{nom} et ses
+\textbf{éléments géométriques caractéristiques} : centre, axe, direction ou
+normale. Le symbole normalisé ne décrit pas la solution constructive ; il
+représente uniquement les mouvements relatifs autorisés.
+
+\newtcolorbox{TLLiaisonCard}[2][]{
+  enhanced,breakable,
+  colback=white,colframe=TLCoverBlue,
+  colbacktitle=TLCoverBlue,coltitle=white,
+  title={#2},fonttitle=\bfseries,
+  boxrule=.75pt,arc=2mm,
+  left=4mm,right=4mm,top=3mm,bottom=3mm,
+  before skip=.9\baselineskip,after skip=.9\baselineskip,
+  #1
+}
+
+\begin{TLLiaisonCard}{Liaison pivot d'axe \((O,\vec z)\)}
+\begin{minipage}[c]{.18\linewidth}\centering
+\TLSymPivot
+\end{minipage}\hfill
+\begin{minipage}[c]{.77\linewidth}
+\textbf{Mouvement autorisé :} une rotation autour de l'axe \((O,\vec z)\).
+
+\textbf{Mobilité :} \(R_z\), soit un degré de liberté.
+
+\[
+\left\{\mathcal V_{2/1}\right\}_O=
+\left\{\begin{array}{cc}
+0&0\\0&0\\\omega_z&0
+\end{array}\right\}_{\mathcal B}.
+\]
+
+\textbf{Exemples technologiques :} arbre guidé par deux roulements, charnière,
+axe dans deux paliers. La forme du torseur est valable en tout point de l'axe.
+\end{minipage}
+\end{TLLiaisonCard}
+
+\begin{TLLiaisonCard}{Liaison glissière de direction \(\vec z\)}
+\begin{minipage}[c]{.18\linewidth}\centering
+\TLSymGlissiere
+\end{minipage}\hfill
+\begin{minipage}[c]{.77\linewidth}
+\textbf{Mouvement autorisé :} une translation rectiligne suivant \(\vec z\).
+
+\textbf{Mobilité :} \(T_z\), soit un degré de liberté.
+
+\[
+\left\{\mathcal V_{2/1}\right\}_P=
+\left\{\begin{array}{cc}
+0&0\\0&0\\0&v_z
+\end{array}\right\}_{\mathcal B}.
+\]
+
+\textbf{Paramètre de mouvement :} \(\lambda(t)\), avec
+\(\vec{OP}=\lambda(t)\vec z\) et \(v_z=\dot\lambda\).
+\end{minipage}
+\end{TLLiaisonCard}
+
+\begin{TLLiaisonCard}{Liaison pivot glissant d'axe \((O,\vec z)\)}
+\begin{minipage}[c]{.18\linewidth}\centering
+\TLSymPivotGlissant
+\end{minipage}\hfill
+\begin{minipage}[c]{.77\linewidth}
+\textbf{Mouvements autorisés :} rotation autour de \(\vec z\) et translation
+suivant \(\vec z\), indépendantes l'une de l'autre.
+
+\textbf{Mobilités :} \(R_z\) et \(T_z\), soit deux degrés de liberté.
+
+\[
+\left\{\mathcal V_{2/1}\right\}_P=
+\left\{\begin{array}{cc}
+0&0\\0&0\\\omega_z&v_z
+\end{array}\right\}_{\mathcal B}.
+\]
+
+\textbf{Exemples :} arbre coulissant dans un coussinet, douille à billes ronde.
+\end{minipage}
+\end{TLLiaisonCard}
+
+\begin{TLLiaisonCard}{Liaison hélicoïdale d'axe \((O,\vec z)\)}
+\begin{minipage}[c]{.18\linewidth}\centering
+\TLSymHelicoidale
+\end{minipage}\hfill
+\begin{minipage}[c]{.77\linewidth}
+La rotation et la translation sont \textbf{liées} par le pas de l'hélice.
+Cette liaison ne possède donc qu'un seul degré de liberté.
+
+Pour un pas géométrique \(h\) :
+\[
+\lambda=\frac{h}{2\pi}\theta,
+\qquad
+v_z=\frac{h}{2\pi}\omega_z.
+\]
+
+\[
+\left\{\mathcal V_{2/1}\right\}_O=
+\left\{\begin{array}{cc}
+0&0\\0&0\\\omega_z&\dfrac{h}{2\pi}\omega_z
+\end{array}\right\}_{\mathcal B}.
+\]
+
+\textbf{Exemples :} système vis-écrou, vis à billes, mécanisme de réglage.
+\end{minipage}
+\end{TLLiaisonCard}
+
+\begin{TLLiaisonCard}{Liaison sphérique de centre \(O\)}
+\begin{minipage}[c]{.18\linewidth}\centering
+\TLSymSpherique
+\end{minipage}\hfill
+\begin{minipage}[c]{.77\linewidth}
+\textbf{Mouvements autorisés :} trois rotations indépendantes autour du centre
+\(O\). Aucune translation du centre n'est possible.
+
+\textbf{Mobilités :} \(R_x,R_y,R_z\), soit trois degrés de liberté.
+
+\[
+\left\{\mathcal V_{2/1}\right\}_O=
+\left\{\begin{array}{cc}
+\omega_x&0\\\omega_y&0\\\omega_z&0
+\end{array}\right\}_{\mathcal B}.
+\]
+
+\textbf{Exemples :} rotule lisse, embout à rotule, roulement à rotule.
+La forme ci-dessus n'est valable qu'au centre de la liaison.
+\end{minipage}
+\end{TLLiaisonCard}
+
+\begin{TLLiaisonCard}{Liaison sphérique à doigt de centre \(O\)}
+\begin{minipage}[c]{.18\linewidth}\centering
+\TLSymSpheriqueDoigt
+\end{minipage}\hfill
+\begin{minipage}[c]{.77\linewidth}
+Une rotation de la liaison sphérique est supprimée par un doigt. Avec la
+rotation autour de \(\vec z\) interdite :
+
+\textbf{Mobilités :} \(R_x,R_y\), soit deux degrés de liberté.
+
+\[
+\left\{\mathcal V_{2/1}\right\}_O=
+\left\{\begin{array}{cc}
+\omega_x&0\\\omega_y&0\\0&0
+\end{array}\right\}_{\mathcal B}.
+\]
+
+Le doigt doit être défini par sa direction ; une autre orientation conduit à
+une autre composante de rotation annulée.
+\end{minipage}
+\end{TLLiaisonCard}
+
+\begin{TLLiaisonCard}{Liaison appui-plan de normale \(\vec z\)}
+\begin{minipage}[c]{.18\linewidth}\centering
+\TLSymAppuiPlan
+\end{minipage}\hfill
+\begin{minipage}[c]{.77\linewidth}
+Le contact plan sur plan interdit la translation suivant la normale et les
+rotations qui modifieraient le parallélisme des plans.
+
+\textbf{Mobilités :} \(T_x,T_y,R_z\), soit trois degrés de liberté.
+
+\[
+\left\{\mathcal V_{2/1}\right\}_P=
+\left\{\begin{array}{cc}
+0&v_x\\0&v_y\\\omega_z&0
+\end{array}\right\}_{\mathcal B}.
+\]
+
+La forme est valable en tout point du plan de contact.
+\end{minipage}
+\end{TLLiaisonCard}
+
+\begin{TLLiaisonCard}{Liaison sphère-plan de normale \(\vec z\)}
+\begin{minipage}[c]{.18\linewidth}\centering
+\TLSymSpherePlan
+\end{minipage}\hfill
+\begin{minipage}[c]{.77\linewidth}
+Le contact ponctuel interdit uniquement la translation suivant la normale au
+plan au point de contact \(P\).
+
+\textbf{Mobilités :} \(T_x,T_y,R_x,R_y,R_z\), soit cinq degrés de liberté.
+
+\[
+\left\{\mathcal V_{2/1}\right\}_P=
+\left\{\begin{array}{cc}
+\omega_x&v_x\\\omega_y&v_y\\\omega_z&0
+\end{array}\right\}_{\mathcal B}.
+\]
+
+\textbf{Autre désignation :} liaison ponctuelle de normale \(\vec z\).
+\end{minipage}
+\end{TLLiaisonCard}
+
+\begin{TLLiaisonCard}{Liaison cylindre-plan d'axe \(\vec x\), normale \(\vec z\)}
+\begin{minipage}[c]{.18\linewidth}\centering
+\TLSymCylindrePlan
+\end{minipage}\hfill
+\begin{minipage}[c]{.77\linewidth}
+Le contact linéique rectiligne interdit la translation suivant la normale et
+la rotation qui ferait perdre le parallélisme entre la ligne de contact et le
+plan.
+
+\textbf{Mobilités :} \(T_x,T_y,R_x,R_z\), soit quatre degrés de liberté.
+
+\[
+\left\{\mathcal V_{2/1}\right\}_P=
+\left\{\begin{array}{cc}
+\omega_x&v_x\\0&v_y\\\omega_z&0
+\end{array}\right\}_{\mathcal B}.
+\]
+
+\textbf{Autre désignation :} liaison linéaire rectiligne.
+\end{minipage}
+\end{TLLiaisonCard}
+
+\begin{TLLiaisonCard}{Liaison sphère-cylindre d'axe \((O,\vec z)\)}
+\begin{minipage}[c]{.18\linewidth}\centering
+\TLSymSphereCylindre
+\end{minipage}\hfill
+\begin{minipage}[c]{.77\linewidth}
+Le contact linéique annulaire conserve les trois rotations et la translation
+suivant l'axe du cylindre.
+
+\textbf{Mobilités :} \(R_x,R_y,R_z,T_z\), soit quatre degrés de liberté.
+
+\[
+\left\{\mathcal V_{2/1}\right\}_O=
+\left\{\begin{array}{cc}
+\omega_x&0\\\omega_y&0\\\omega_z&v_z
+\end{array}\right\}_{\mathcal B}.
+\]
+
+\textbf{Autre désignation :} liaison linéaire annulaire. La forme est valable
+au centre du cercle de contact.
+\end{minipage}
+\end{TLLiaisonCard}
+
+\begin{TLRemark}[Lecture rapide d'un torseur cinématique]
+Chaque composante non nulle de la colonne de gauche correspond à une rotation
+autorisée ; chaque composante non nulle de la colonne de droite correspond à
+une translation autorisée au point d'expression. Le nombre de paramètres
+indépendants donne le nombre de degrés de liberté.
+\end{TLRemark}
+
+\subsection{Du contact réel à la liaison modélisée}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{|>{\bfseries}p{.27\linewidth}|X|p{.22\linewidth}|}
+\hline
+\rowcolor{TLTableHeader}
+Géométrie du contact & Liaison usuelle associée & Nombre de ddl\\ \hline
+Plan sur plan & Appui-plan & 3\\ \hline
+Sphère sur plan & Sphère-plan ou ponctuelle & 5\\ \hline
+Cylindre sur plan & Cylindre-plan ou linéaire rectiligne & 4\\ \hline
+Sphère dans cylindre & Sphère-cylindre ou linéaire annulaire & 4\\ \hline
+Sphère dans sphère & Sphérique & 3\\ \hline
+Cylindre dans cylindre coaxial & Pivot glissant & 2\\ \hline
+Association de contacts & Pivot, glissière, hélicoïdale ou sphérique à doigt & 1 ou 2\\ \hline
+\end{tabularx}
+\end{center}
+
+\begin{TLQuoteBox}
+Le nom d'une liaison seul est insuffisant. Écrire par exemple
+« pivot d'axe \((A,\vec x)\) » ou « appui-plan de normale \(\vec z\) ».
+\end{TLQuoteBox}
