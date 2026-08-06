@@ -1,0 +1,247 @@
+% ============================================================================
+% COURS 03 — MODÉLISATION DES TRANSMETTEURS — PARTIE B
+% Source : 4-ModelisationTransmetteurs2022.docx
+% ============================================================================
+
+\section{Transmetteurs avec transformation de mouvement}
+\label{sec:trans-avec}
+
+\subsection{Pignon-crémaillère}
+
+Le pignon est guidé en rotation et la crémaillère en translation. Le
+roulement sans glissement entre le cercle primitif et la ligne de
+référence impose :
+
+\begin{center}\TLPignonCremaillere\end{center}
+
+\[
+\boxed{v=\pm R\omega=\pm\frac{mZ}{2}\,\omega.}
+\]
+Le signe dépend des orientations choisies. Le dispositif est réversible
+et transforme une rotation continue en translation continue.
+
+\begin{TLThreeApp}{Borne rétractable}
+Une borne est actionnée par un moteur, un réducteur de rapport $1/60$ et
+un pignon-crémaillère de rayon primitif $R$.
+\[
+v_{\text{borne}}=R\,\omega_{\text{pignon}}
+=\frac{R}{60}\,\omega_{\text{moteur}}.
+\]
+Déterminer la vitesse du moteur nécessaire pour une vitesse de levée
+imposée.
+\end{TLThreeApp}
+
+\subsection{Cylindre roulant sans glisser sur un plan}
+
+Un cylindre de rayon $R$ roulant sans glisser se comporte
+cinématiquement comme un pignon sur une crémaillère :
+\[
+\boxed{|v_O|=R|\omega|.}
+\]
+Le point de contact avec le plan a une vitesse nulle. Cette relation ne
+doit pas être confondue avec la vitesse d'un point quelconque de la
+périphérie.
+
+\subsection{Courroie ou chaîne utilisée comme organe linéaire}
+
+Lorsque deux poulies de même diamètre déplacent un brin rectiligne, la
+translation du brin est reliée à la rotation d'une poulie par :
+\[
+\boxed{v=R\omega.}
+\]
+La solution est réversible, économique pour les grands entraxes et
+courante dans les convoyeurs, imprimantes, portiques et machines-outils.
+
+\subsection{Vis-écrou}
+
+La liaison hélicoïdale couple une rotation et une translation suivant le
+même axe.
+
+\begin{center}\TLVisEcrou\end{center}
+
+Pour un pas $p$ correspondant à l'avance par tour :
+\[
+\boxed{x=\frac{p}{2\pi}\theta,}
+\qquad
+\boxed{v=\frac{p}{2\pi}\omega.}
+\]
+Le signe dépend du sens de l'hélice et du solide immobilisé. Une vis à
+billes réduit les frottements, améliore le rendement et peut rendre le
+système réversible ; une vis trapézoïdale peut être irréversible.
+
+\begin{TLThreeApp}{Pilote automatique de bateau}
+Une vis de pas $p=4\ \mathrm{mm}$ est entraînée par une machine à courant
+continu à travers un réducteur de rapport $r$. La vitesse de la tige est :
+\[
+v_{4/0}=\frac{p}{2\pi}\,r\,\omega_{15/0}.
+\]
+Identifier tous les étages de la chaîne et déterminer le coefficient
+global en $\mathrm{m\,rad^{-1}}$.
+\end{TLThreeApp}
+
+\section{Train d'engrenages épicycloïdal}
+\label{sec:trans-epi}
+
+Un train épicycloïdal permet d'obtenir un rapport important dans un
+faible encombrement, avec des arbres d'entrée et de sortie souvent
+coaxiaux.
+
+\begin{center}\TLTrainEpicycloidal\end{center}
+
+\subsection{Constituants}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}p{3cm}X}
+\toprule
+Constituant & Définition \\
+\midrule
+Porte-satellite & pièce en rotation d'axe fixe par rapport au bâti, portant les axes des satellites \\
+Satellite & roue dentée dont l'axe est fixe par rapport au porte-satellite mais mobile par rapport au bâti \\
+Planétaire & roue ou couronne d'axe fixe par rapport au bâti, engrenant avec les satellites \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Plusieurs satellites identiques ne modifient pas la loi cinématique ; ils
+répartissent les efforts et augmentent la puissance transmissible.
+
+\subsection{Raison de base}
+
+On imagine le porte-satellite bloqué. Le train devient un train simple à
+axes fixes. La \textbf{raison de base} est alors :
+\[
+\boxed{\lambda=
+\left.\frac{\omega_A}{\omega_B}\right|_{\omega_{PS}=0}.}
+\]
+Elle se calcule avec la formule des trains simples en tenant compte des
+contacts intérieurs et extérieurs.
+
+\subsection{Formule de Willis}
+
+La relation générale entre les deux planétaires $A$, $B$ et le
+porte-satellite $PS$ est :
+\[
+\boxed{\frac{\omega_A-\omega_{PS}}
+{\omega_B-\omega_{PS}}=\lambda.}
+\]
+Une forme développée particulièrement pratique est :
+\[
+\boxed{\omega_A-\lambda\omega_B+(\lambda-1)\omega_{PS}=0.}
+\]
+La somme des coefficients de cette équation est nulle, propriété utile
+pour vérifier l'écriture.
+
+\begin{TLThreeMethod}{Étudier un train épicycloïdal}
+\begin{enumerate}
+  \item Repérer les deux planétaires, le ou les satellites et le porte-satellite.
+  \item Immobiliser mentalement le porte-satellite et calculer $\lambda$ comme pour un train simple.
+  \item Écrire la formule de Willis.
+  \item Introduire la condition de fonctionnement : planétaire bloqué, porte-satellite bloqué ou vitesse imposée.
+  \item Résoudre pour obtenir le rapport demandé.
+  \item Vérifier le signe, l'ordre de grandeur et les cas limites.
+\end{enumerate}
+\end{TLThreeMethod}
+
+\subsection{Configurations usuelles}
+
+Un train simple comporte trois arbres cinématiques possibles : les deux
+planétaires et le porte-satellite. Pour obtenir une transmission à un
+degré de liberté, il faut imposer deux vitesses parmi les trois, souvent
+en bloquant l'un des arbres.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}p{3.6cm}X}
+\toprule
+Élément bloqué & Conséquence \\
+\midrule
+Planétaire intérieur & entrée et sortie possibles entre l'autre planétaire et le porte-satellite \\
+Planétaire extérieur / couronne & architecture fréquente de réducteur coaxial \\
+Porte-satellite & retour à un train simple à axes fixes \\
+Aucun élément bloqué & différentiel ou sommateur de vitesses à deux entrées indépendantes \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{TLThreeApp}{Trois configurations}
+Pour un train de raison de base $\lambda$, déterminer successivement :
+\begin{enumerate}
+  \item $\omega_{PS}/\omega_A$ lorsque $B$ est bloqué ;
+  \item $\omega_B/\omega_A$ lorsque $PS$ est bloqué ;
+  \item $\omega_{PS}/\omega_B$ lorsque $A$ est bloqué.
+\end{enumerate}
+Les résultats doivent être déduits de la même équation de Willis, sans
+reconstruire la cinématique à chaque fois.
+\end{TLThreeApp}
+
+\subsection{Différentiel}
+
+Dans un différentiel, aucune des trois branches n'est nécessairement
+bloquée. Une vitesse d'entrée est distribuée entre deux sorties dont les
+vitesses peuvent être différentes. L'équation de Willis impose leur
+relation moyenne. Le couple est réparti selon l'architecture et les
+frottements internes.
+
+\section{Dispositifs complémentaires}
+\label{sec:trans-complementaires}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}p{3cm}p{3.5cm}p{2.2cm}X}
+\toprule
+Dispositif & Transformation & Réversibilité & Usages \\
+\midrule
+Bielle-manivelle & rotation continue $\leftrightarrow$ translation alternative & parfois & moteurs, compresseurs, pompes \\
+Pignon-crémaillère & rotation continue $\leftrightarrow$ translation continue & toujours & direction, portes, axes linéaires \\
+Vis-écrou & rotation continue $\leftrightarrow$ translation continue & selon technologie & vérins électriques, machines-outils \\
+Croix de Malte & rotation continue $\rightarrow$ rotation intermittente & non & indexage de plateaux \\
+Excentrique & rotation continue $\rightarrow$ translation alternative & généralement non & pompes, ablocage, taille-haie \\
+Came axiale & rotation continue $\rightarrow$ translation programmée & non & pompes et automatismes \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{TLThreeDef}{Bielle-manivelle et approximation de grande bielle}
+Pour une manivelle d'excentration $e$ et une bielle de longueur $L$, la
+translation est non sinusoïdale. Lorsque $L\gg e$, typiquement
+$L>5e$, le mouvement se rapproche d'une loi sinusoïdale et certaines
+expressions peuvent être simplifiées.
+\end{TLThreeDef}
+
+\begin{TLThreeDef}{Croix de Malte}
+L'ergot moteur entraîne la roue à rainures pendant une fraction du tour,
+puis la roue reste immobile pendant le reste de la rotation. L'angle
+entre rainures fixe le nombre de positions d'indexage.
+\end{TLThreeDef}
+
+\section{Synthèse des lois usuelles}
+\label{sec:trans-synthese}
+
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{>{\bfseries}p{3cm}p{4.8cm}X}
+\toprule
+Transmetteur & Loi cinématique & Point de vigilance \\
+\midrule
+Roues de friction & $\omega_2/\omega_1=-D_1/D_2$ & adhérence et effort presseur \\
+Engrenage extérieur & $\omega_2/\omega_1=-Z_1/Z_2$ & même module \\
+Engrenage intérieur & $\omega_2/\omega_1=+Z_1/Z_2$ & même sens de rotation \\
+Train simple & $(-1)^n\prod Z_m/\prod Z_M$ & roues folles et contacts intérieurs \\
+Roue-vis sans fin & $|r|=Z_v/Z_r$ & rendement et irréversibilité \\
+Poulies / chaîne & $\omega_2/\omega_1=D_1/D_2$ & glissement possible pour courroie \\
+Pignon-crémaillère & $v=R\omega$ & signe selon paramétrage \\
+Vis-écrou & $v=p\omega/(2\pi)$ & pas, sens de l'hélice, réversibilité \\
+Train épicycloïdal & $(\omega_A-\omega_{PS})/(\omega_B-\omega_{PS})=\lambda$ & identifier correctement les constituants \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Sources de la partie transmetteurs}
+\label{sec:trans-sources}
+
+Cette partie reprend le cours original consacré aux transmetteurs, des
+ressources techniques publiques et des activités de collègues de
+l'UPSTI. Les exercices conservent les systèmes et les données du
+document Word.
