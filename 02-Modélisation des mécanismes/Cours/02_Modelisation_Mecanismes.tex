@@ -46,4 +46,10 @@
 % la dernière page du cours, puis on retire son bandeau avant les exercices.
 \clearpage
 \ClearShipoutPictureFG
+
+% TLCours fournit déjà un environnement historique nommé TLExercise. Le fichier
+% d'exercices du cours 2 redéfinit volontairement ce nom avec une boîte sécable
+% adaptée aux exercices longs ; on libère donc proprement les deux commandes.
+\let\TLExercise\relax
+\let\endTLExercise\relax
 \input{02_Modelisation_Mecanismes_Exercices}
