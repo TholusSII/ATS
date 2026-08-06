@@ -8,6 +8,10 @@ on:
       - '.github/workflows/compile-course5.yml'
   workflow_dispatch:
 
+concurrency:
+  group: compile-course5-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   compile:
     runs-on: ubuntu-latest
