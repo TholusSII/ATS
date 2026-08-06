@@ -1,7 +1,6 @@
 % ============================================================================
 % DÉFINITION DU COURS 03 FUSIONNÉ
-% Ordre : cours lois E/S, cours transmetteurs, exercices lois E/S,
-% puis exercices transmetteurs.
+% Lois entrée-sortie et modélisation des transmetteurs.
 % ============================================================================
 
 \titlehead{Thomas Lusseau - SII en ATS}
@@ -12,60 +11,76 @@
 \TLCourseCoverSetup
   {\repStyle/FondPoly.png}
   {images/image3.png}
-  {Cycle 2 : Modéliser et déterminer les lois de\\ mouvement d'un mécanisme}
-  {Lois entrée-sortie et\\ modélisation des transmetteurs}
+  {Cycle 2 : Modéliser et déterminer les lois de\\mouvement d'un mécanisme}
+  {Lois entrée-sortie et\\modélisation des transmetteurs}
   {Lycée Robert Doisneau - ATS}
   {Thomas Lusseau}
 
 \TLCourseCoverContents{%
-  \TLCourseContentsLine{3.1}{Lois entrée-sortie}{cours-lois-entree-sortie}
-  \TLCourseContentsLine{3.2}{Modélisation des transmetteurs}{cours-modelisation-transmetteurs}
-  \TLCourseContentsLine{3.3}{Exercices — lois entrée-sortie}{exercices-lois-entree-sortie}
-  \TLCourseContentsLine{3.4}{Exercices — modélisation des transmetteurs}{exercices-modelisation-transmetteurs}
+  \TLCourseContentsLine{3.1}{Objectifs et mises en situation}{sec:les-objectifs}
+  \TLCourseContentsLine{3.2}{Structures fermées et ouvertes}{sec:les-fermees}
+  \TLCourseContentsLine{3.3}{Vecteurs et modèles géométriques}{sec:les-vecteurs}
+  \TLCourseContentsLine{3.4}{Fermeture géométrique et lois en vitesse}{sec:les-fermeture}
+  \TLCourseContentsLine{3.5}{Modélisation des transmetteurs}{sec:trans-objectifs}
+  \TLCourseContentsLine{3.6}{Transmetteurs sans transformation}{sec:trans-sans}
+  \TLCourseContentsLine{3.7}{Transformation et trains épicycloïdaux}{sec:trans-avec}
+  \TLCourseContentsLine{3.8}{Exercices du chapitre}{sec:ex-les}
 }
 
 \TLCourseFooter
 \TLCourseCover
-\markboth{Lois E/S et transmetteurs}{Lois E/S et transmetteurs}
+\markboth{Lois entrée-sortie et transmetteurs}{Lois entrée-sortie et transmetteurs}
 
-\AtBeginEnvironment{corrige}{\small}
 \livrettrue
 \collefalse
 
+% ----------------------------------------------------------------------------
+% Éléments graphiques propres à ce cours
+% ----------------------------------------------------------------------------
+\definecolor{TLThreeBlue}{RGB}{0,84,127}
+\definecolor{TLThreeGreen}{RGB}{74,145,70}
+\definecolor{TLThreeOrange}{RGB}{214,125,25}
+
+\newtcolorbox{TLThreeMethod}[1]{
+  enhanced,breakable,colback=TLThreeBlue!6,colframe=TLThreeBlue,
+  colbacktitle=TLThreeBlue,coltitle=white,title={Méthode — #1},
+  fonttitle=\bfseries,boxrule=.8pt,arc=1.5mm,
+  left=4mm,right=4mm,top=3mm,bottom=3mm,
+  before skip=.9\baselineskip,after skip=.9\baselineskip
+}
+\newtcolorbox{TLThreeDef}[1]{
+  enhanced,breakable,colback=TLThreeGreen!6,colframe=TLThreeGreen!80!black,
+  colbacktitle=TLThreeGreen!80!black,coltitle=white,title={Définition — #1},
+  fonttitle=\bfseries,boxrule=.8pt,arc=1.5mm,
+  left=4mm,right=4mm,top=3mm,bottom=3mm,
+  before skip=.9\baselineskip,after skip=.9\baselineskip
+}
+\newtcolorbox{TLThreeApp}[1]{
+  enhanced,breakable,colback=TLThreeOrange!7,colframe=TLThreeOrange,
+  colbacktitle=TLThreeOrange,coltitle=white,title={Application — #1},
+  fonttitle=\bfseries,boxrule=.8pt,arc=1.5mm,
+  left=4mm,right=4mm,top=3mm,bottom=3mm,
+  before skip=.9\baselineskip,after skip=.9\baselineskip
+}
+
+\newcommand{\TLThreeImage}[2][.78\linewidth]{%
+  \IfFileExists{#2}{\includegraphics[width=#1,keepaspectratio]{#2}}{}%
+}
+\newcommand{\TLFourImage}[2][.78\linewidth]{%
+  \IfFileExists{../Cours4/images/#2}{%
+    \includegraphics[width=#1,keepaspectratio]{../Cours4/images/#2}%
+  }{}%
+}
+
 \TLStartCourseChapter{3}{Lois entrée-sortie et modélisation des transmetteurs}{chap:lois-es-transmetteurs}
 
-% -----------------------------------------------------------------------------
-% 1. COURS — LOIS ENTRÉE-SORTIE
-% -----------------------------------------------------------------------------
-\section{Lois entrée-sortie}\label{cours-lois-entree-sortie}
-\input{03_Lois_Entree_Sortie_Cours}
+\input{sources/03_Lois_ES_Partie_A}
+\input{sources/03_Lois_ES_Partie_B}
+\input{sources/03_Transmetteurs_Partie_A}
+\input{sources/03_Transmetteurs_Partie_B}
 
 \clearpage
+\input{sources/03_Exercices_Lois_ES}
+\input{sources/03_Exercices_Transmetteurs}
 
-% -----------------------------------------------------------------------------
-% 2. COURS — MODÉLISATION DES TRANSMETTEURS
-% -----------------------------------------------------------------------------
-\section{Modélisation des transmetteurs}\label{cours-modelisation-transmetteurs}
-\begingroup
-\def\TLFourSourcePrefix{../Cours4/}
-\input{../Cours4/04_Modelisation_Transmetteurs_Cours.tex}
-\endgroup
-
-\clearpage
-
-% -----------------------------------------------------------------------------
-% 3. EXERCICES — LOIS ENTRÉE-SORTIE
-% -----------------------------------------------------------------------------
-\section{Exercices — lois entrée-sortie}\label{exercices-lois-entree-sortie}
-\input{03_Lois_Entree_Sortie_Exercices}
-
-\clearpage
-
-% -----------------------------------------------------------------------------
-% 4. EXERCICES — MODÉLISATION DES TRANSMETTEURS
-% -----------------------------------------------------------------------------
-\section{Exercices — modélisation des transmetteurs}\label{exercices-modelisation-transmetteurs}
-\begingroup
-\def\TLFourSourcePrefix{../Cours4/}
-\input{../Cours4/04_Modelisation_Transmetteurs_Exercices.tex}
-\endgroup
+\printindex
