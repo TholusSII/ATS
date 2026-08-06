@@ -1,0 +1,166 @@
+% ============================================================================
+% COURS 04 — EXERCICES DE CINÉMATIQUE — PARTIE A
+% Source : 5-Cinematique2022.docx
+% ============================================================================
+
+\section{Exercices du chapitre}
+\label{sec:cine-exercices}
+
+\subsection{Lecture d'une loi en trapèze}
+
+Le profil d'accélération d'un mobile est défini par morceaux entre
+$0$ et $3{,}2\ \mathrm s$. La position et la vitesse initiales sont
+nulles.
+
+\TLCineImage[.76\linewidth]{images/image102.png}
+
+\begin{enumerate}
+  \item Tracer la vitesse en intégrant graphiquement l'accélération.
+  \item Tracer la position en calculant les aires sous la courbe de vitesse.
+  \item Indiquer les valeurs maximales de vitesse et de déplacement.
+  \item Vérifier la continuité de $x(t)$ et $v(t)$ aux changements de phase.
+\end{enumerate}
+
+\subsection{Maison DÔME}
+
+Une maison circulaire de diamètre $16\ \mathrm m$ s'oriente afin de
+suivre ou d'éviter le soleil. Lors de la coupure du moteur, sa vitesse
+de rotation décroît linéairement jusqu'à zéro en $T_a=8\ \mathrm s$.
+La fréquence initiale vaut $30\times10^{-3}\ \mathrm{tr\,min^{-1}}$.
+
+\TLCineImage[.48\linewidth]{images/image103.pdf}
+
+\begin{enumerate}
+  \item Expliquer pourquoi la maison continue de tourner après la coupure.
+  \item Calculer l'accélération angulaire en $\mathrm{rad\,s^{-2}}$.
+  \item Déterminer l'angle parcouru pendant l'arrêt.
+  \item Calculer la distance parcourue au niveau de la porte, située à $8\ \mathrm m$ de l'axe.
+  \item Vérifier le critère de distance d'arrêt inférieure à $15\ \mathrm{cm}$.
+\end{enumerate}
+
+\subsection{Véhicule électrique F-City}
+
+La F-City atteint $30\ \mathrm{km\,h^{-1}}$ en $5{,}5\ \mathrm s$, sa
+vitesse maximale vaut $65\ \mathrm{km\,h^{-1}}$ et son autonomie
+minimale est $80\ \mathrm{km}$.
+
+\TLCineImage[.52\linewidth]{images/image104.pdf}
+
+\begin{enumerate}
+  \item Calculer l'accélération moyenne entre 0 et $30\ \mathrm{km\,h^{-1}}$.
+  \item Calculer la durée maximale d'un trajet de $80\ \mathrm{km}$ à vitesse maximale.
+  \item À partir du profil de vitesse fourni, déterminer les distances de chaque phase.
+  \item Calculer la distance totale du parcours et vérifier l'autonomie.
+\end{enumerate}
+
+\subsection{Éolienne à pales orientables}
+
+Le rotor 1 tourne autour de $(O,\vec x_0)$ avec l'angle $\theta$. Une
+pale 2 pivote par rapport au rotor avec l'angle de calage $\alpha$.
+On donne :
+\[
+\overrightarrow{OA}=a\vec y_1,
+\qquad
+\overrightarrow{AG}=x\vec x_2+y\vec y_2+z\vec z_2.
+\]
+
+\TLCineImage[.48\linewidth]{images/image105.jpeg}
+
+\begin{enumerate}
+  \item Tracer les deux figures de changement de base et donner les vecteurs rotation.
+  \item Déterminer $\vec V(A\in1/0)$.
+  \item Déterminer $\vec V(G\in2/0)$ par composition.
+  \item Déterminer $\vec A(A\in1/0)$ puis $\vec A(G\in2/0)$ par dérivation.
+  \item Identifier les termes centrifuge, tangentiel et de Coriolis.
+\end{enumerate}
+
+\subsection{Centrifugeuse d'entraînement}
+
+Le bras 1 tourne autour de l'axe vertical $(O,\vec z)$ avec l'angle
+$\alpha$. La cabine 2 pivote autour de $(A,\vec y_1)$ avec l'angle
+$\beta$. On donne $\overrightarrow{OA}=a\vec x_1$ et
+$\overrightarrow{AG}=b\vec z_2$.
+
+\TLCineImage[.58\linewidth]{images/image106.png}
+
+\begin{enumerate}
+  \item Tracer les figures de changement de base et les vecteurs rotation.
+  \item Déterminer $\vec\Omega_{2/0}$.
+  \item Déterminer $\vec V(G\in2/0)$ par composition.
+  \item Déterminer $\vec A(G\in2/0)$ par dérivation du résultat précédent.
+  \item Interpréter les composantes de l'accélération ressentie par le pilote.
+\end{enumerate}
+
+\subsection{Robot manipulateur à deux axes}
+
+Le corps 2 tourne par rapport au socle 1 autour de
+$(O_1,\vec z_1)$ avec l'angle $\varphi$. Le bras 3 coulisse suivant
+$\vec y_2=\vec y_3$ avec
+$\overrightarrow{AG_3}=y(t)\vec y_3$ et
+$\overrightarrow{O_1A}=a\vec x_2$.
+
+\TLCineImage[.50\linewidth]{images/image109.jpeg}
+
+\begin{enumerate}
+  \item Donner la figure de changement de base et $\vec\Omega_{2/1}$.
+  \item Écrire le torseur de la glissière 3/2.
+  \item Déterminer $\vec V(G_3\in3/1)$.
+  \item Déterminer $\vec A(G_3\in3/1)$.
+  \item Repérer le terme de Coriolis lorsque $\dot y\neq0$ et $\dot\varphi\neq0$.
+\end{enumerate}
+
+\subsection{Transporteur horizontal}
+
+Un chariot 2 se déplace suivant $\vec x_1$ avec la coordonnée $x(t)$.
+Un bras 3 de longueur $L_3$ est articulé en $B$ sur le chariot ; son
+centre de gravité est tel que
+$\overrightarrow{BG_3}=L_3\vec y_3$ et son orientation est $\theta$.
+
+\TLCineImage[.50\linewidth]{images/image110.jpeg}
+
+\begin{enumerate}
+  \item Donner les torseurs $\{\mathcal V_{2/1}\}_A$ et $\{\mathcal V_{3/2}\}_A$.
+  \item Déterminer $\vec A(A\in2/1)$.
+  \item Déterminer $\vec V(G_3\in3/1)$ puis $\vec A(G_3\in3/1)$.
+  \item Exprimer les résultats en fonction de $\dot x$, $\ddot x$, $\dot\theta$, $\ddot\theta$ et $L_3$.
+\end{enumerate}
+
+\subsection{Centre d'usinage cinq axes HSM 600U}
+
+Le centre possède trois translations $x(t)$, $y(t)$, $z(t)$ et deux
+rotations $\alpha(t)$ et $\beta(t)$. Les axes linéaires atteignent
+$40\ \mathrm{m\,min^{-1}}$ ; les axes rotatifs atteignent respectivement
+$150$ et $250\ \mathrm{tr\,min^{-1}}$.
+
+\begin{center}
+\TLCineImage[.29\linewidth]{images/image111.jpeg}\hfill
+\TLCineImage[.31\linewidth]{images/image112.png}\hfill
+\TLCineImage[.34\linewidth]{images/image113.png}
+\end{center}
+
+\begin{enumerate}
+  \item Identifier la nature des cinq mouvements d'axes.
+  \item Déterminer les relations entre les bases des solides en translation.
+  \item Écrire le vecteur position de l'extrémité d'outil $P$ dans $R_0$.
+  \item Déterminer $\vec V(P\in5/0)$ et sa norme maximale.
+  \item Déterminer la position, la vitesse et l'accélération du point $O_3$ porté par la table orientable.
+  \item Retrouver la vitesse par composition des torseurs cinématiques.
+  \item Écrire la vitesse relative de l'outil par rapport à un point de la pièce usinée.
+\end{enumerate}
+
+\subsection{Échelle pivotante automatique EPAS}
+
+Le berceau 2 tourne par rapport à la tourelle 1 avec l'angle $\theta$.
+L'échelle 3 se déploie suivant $\vec x_2$ avec la course $\lambda(t)$.
+Pendant le dressage, la tourelle reste fixe.
+
+\TLCineImage[.65\linewidth]{images/image172.png}
+
+\begin{enumerate}
+  \item Donner la nature des mouvements 2/0, 3/2 et 3/0.
+  \item Décrire les trajectoires d'un point de l'échelle dans ces trois mouvements.
+  \item Déterminer $\vec\Omega_{3/0}$.
+  \item Déterminer la vitesse d'un point $G$ de la nacelle.
+  \item Déterminer son accélération et identifier les termes liés à $\lambda$, $\theta$ et leurs dérivées.
+  \item Vérifier le critère d'accélération maximale du cahier des charges.
+\end{enumerate}
