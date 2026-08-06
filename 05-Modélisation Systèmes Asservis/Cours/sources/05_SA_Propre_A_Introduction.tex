@@ -1,0 +1,185 @@
+% ==========================================================================
+% COURS 05 -- PARTIE A : INTRODUCTION AUX SYSTÈMES ASSERVIS
+% ==========================================================================
+
+\section{Mise en situation}\label{sec:sa-mise-situation}
+
+Un grand nombre de systèmes techniques doivent maintenir une grandeur autour d'une valeur souhaitée malgré les variations de fonctionnement et les perturbations extérieures. Une étuve doit conserver une température donnée, un véhicule doit respecter une vitesse de consigne, un robot doit rejoindre une position imposée et une nacelle stabilisée doit maintenir son orientation.
+
+Dans tous ces cas, la commande ne peut pas être déterminée une fois pour toutes. Le système doit observer son propre comportement, comparer le résultat à l'objectif et corriger son action.
+
+\begin{SAapplication}[title={Trois situations typiques}]
+\begin{itemize}
+  \item \textbf{Étuve thermique :} la puissance de chauffe est adaptée à l'écart entre température demandée et température mesurée.
+  \item \textbf{Régulateur de vitesse :} le couple moteur varie lorsque la pente, le vent ou la charge du véhicule changent.
+  \item \textbf{Robot de chirurgie :} la position réelle de l'organe terminal est mesurée pour garantir précision et sécurité.
+\end{itemize}
+\end{SAapplication}
+
+\SASchemaEtuve
+
+\section{Systèmes automatisés et systèmes bouclés}\label{sec:sa-definitions}
+
+\subsection{Système automatisé}
+
+\begin{SAdefinition}
+Un \textbf{système automatisé} réalise une suite d'opérations sans intervention humaine permanente. Il comporte généralement une partie commande, une partie opérative, des interfaces d'entrée et des capteurs.
+\end{SAdefinition}
+
+La partie commande élabore les ordres. La partie opérative transforme l'énergie et agit sur la matière d'œuvre. Les capteurs transmettent des informations relatives à l'état du système ou de son environnement.
+
+\SAChaineFonctionnelle
+
+Un automatisme séquentiel peut fonctionner sans mesurer précisément la grandeur obtenue. À l'inverse, un système asservi repose sur une comparaison continue entre une consigne et une mesure.
+
+\subsection{Boucle ouverte et boucle fermée}
+
+\begin{SAdefinition}[title={Commande en boucle ouverte}]
+Dans une commande en \textbf{boucle ouverte}, l'action de commande ne dépend pas de la sortie effectivement obtenue. Une perturbation ou une variation du procédé n'est donc pas corrigée automatiquement.
+\end{SAdefinition}
+
+Exemple : alimenter un moteur pendant une durée prédéterminée pour déplacer un chariot. La distance obtenue dépend alors de la charge, des frottements et de la tension d'alimentation.
+
+\begin{SAdefinition}[title={Commande en boucle fermée}]
+Dans une commande en \textbf{boucle fermée}, la sortie est mesurée puis comparée à la consigne. L'écart, appelé \textbf{erreur}, est utilisé pour élaborer la commande.
+\end{SAdefinition}
+
+\SASchemaBoucleGenerale
+
+On note généralement :
+\[
+\varepsilon(t)=e(t)-m(t),
+\]
+où $e(t)$ est la consigne et $m(t)$ la mesure ramenée au comparateur.
+
+\begin{SAattention}
+La mesure et la consigne doivent être de même nature et exprimées avec la même échelle au niveau du comparateur. Un capteur et son conditionneur peuvent donc être nécessaires pour adapter la grandeur physique mesurée.
+\end{SAattention}
+
+\subsection{Asservissement et régulation}
+
+\begin{itemize}
+  \item Un \textbf{asservissement} vise à faire suivre une consigne variable à la sortie : position d'un axe, trajectoire d'un robot, vitesse d'un véhicule.
+  \item Une \textbf{régulation} vise à maintenir une grandeur autour d'une valeur constante malgré les perturbations : température, pression, niveau, tension électrique.
+\end{itemize}
+
+Dans les deux cas, la structure mathématique est identique. La distinction porte principalement sur la nature de la consigne et sur l'objectif d'utilisation.
+
+\section{Structure générale d'un système asservi}\label{sec:sa-structure}
+
+\SAChaineAsservie
+
+Les principaux constituants sont :
+
+\begin{description}
+  \item[Comparateur :] calcule l'erreur entre consigne et mesure.
+  \item[Correcteur :] transforme l'erreur en commande afin d'améliorer les performances.
+  \item[Procédé :] système physique commandé, parfois associé à un préactionneur et à un actionneur.
+  \item[Capteur :] mesure la sortie ou une grandeur qui lui est liée.
+  \item[Chaîne de retour :] adapte la mesure avant son retour au comparateur.
+\end{description}
+
+La perturbation agit sur le procédé sans être choisie par la commande. Elle peut être une force extérieure, un couple résistant, une variation de température ambiante ou une fluctuation de tension.
+
+\TLSchemaPerturbe
+
+\subsection{Grandeurs usuelles}
+
+Dans le domaine de Laplace, on note souvent :
+\[
+E(p)\text{ la consigne},\qquad S(p)\text{ la sortie},\qquad
+\varepsilon(p)\text{ l'erreur},\qquad Q(p)\text{ la perturbation}.
+\]
+
+Pour une chaîne directe $D(p)$ et une chaîne de retour $R(p)$ :
+\[
+\varepsilon(p)=E(p)-R(p)S(p),\qquad S(p)=D(p)\varepsilon(p).
+\]
+
+On obtient alors :
+\[
+\boxed{\frac{S(p)}{E(p)}=\frac{D(p)}{1+D(p)R(p)}}.
+\]
+
+Le produit $D(p)R(p)$ est la \textbf{fonction de transfert en boucle ouverte}. Le quotient précédent est la \textbf{fonction de transfert en boucle fermée}.
+
+\section{Performances attendues}\label{sec:sa-performances}
+
+Un système asservi n'est pas seulement jugé sur sa capacité à fonctionner. Il doit respecter des critères quantifiés issus du cahier des charges.
+
+\SAReperePerformances
+
+\subsection{Stabilité}
+
+\begin{SAdefinition}
+Un système est \textbf{stable} si une entrée bornée conduit à une sortie bornée et si, après une perturbation transitoire, la réponse revient vers un régime permanent.
+\end{SAdefinition}
+
+Une réponse qui diverge ou dont les oscillations augmentent est instable. Une réponse dont les oscillations persistent sans décroître est à la limite de stabilité.
+
+\subsection{Rapidité}
+
+La rapidité est caractérisée par un temps de réponse. Pour une réponse à un échelon, on utilise fréquemment le \textbf{temps de réponse à 5\%}, noté $t_{5\%}$.
+
+\begin{SAdefinition}
+Le temps de réponse à 5\% est le premier instant à partir duquel la sortie reste définitivement dans le tube compris entre $95\%$ et $105\%$ de sa valeur finale.
+\end{SAdefinition}
+
+\begin{SAattention}
+Le tube à 5\% est construit autour de la \textbf{valeur finale de la sortie}, et non autour de la valeur de la consigne lorsque le système présente une erreur statique.
+\end{SAattention}
+
+\subsection{Précision}
+
+La précision traduit l'écart entre la sortie et la consigne en régime permanent. On définit l'erreur statique :
+\[
+\varepsilon_s=\lim_{t\to+\infty}\varepsilon(t).
+\]
+
+Pour une consigne constante, un système est parfaitement précis si $\varepsilon_s=0$.
+
+\subsection{Dépassement}
+
+Le dépassement relatif du premier maximum est défini par :
+\[
+D_1=100\,\frac{s_{\max}-s_\infty}{s_\infty}\quad(\%).
+\]
+
+Un dépassement important peut être incompatible avec la sécurité ou avec les contraintes mécaniques. Il n'existe pas pour un système du premier ordre idéal, mais apparaît fréquemment pour les systèmes du second ordre sous-amortis.
+
+\subsection{Robustesse}
+
+La robustesse est la capacité à conserver des performances acceptables lorsque le modèle varie : masse transportée, frottements, température, vieillissement ou imprécision des paramètres.
+
+\begin{SAmethode}[title={Lecture d'un cahier des charges}]
+Pour chaque exigence, identifier :
+\begin{enumerate}
+  \item la grandeur observée et son unité ;
+  \item le scénario d'essai et le signal d'entrée ;
+  \item le critère : stabilité, temps de réponse, erreur, dépassement ;
+  \item la valeur limite et la tolérance.
+\end{enumerate}
+\end{SAmethode}
+
+\section{Signaux tests}\label{sec:sa-signaux-tests}
+
+Pour comparer les systèmes, on les sollicite avec des entrées normalisées.
+
+\SASignauxTests
+
+\begin{itemize}
+  \item L'\textbf{impulsion} met en évidence la dynamique propre du système.
+  \item L'\textbf{échelon} représente un changement brusque de consigne et permet d'étudier rapidité, dépassement et erreur statique.
+  \item La \textbf{rampe} représente une consigne évoluant à vitesse constante et permet d'étudier l'erreur de traînage.
+\end{itemize}
+
+Dans le domaine de Laplace, pour une amplitude $E_0$ :
+\[
+\delta(t)\longleftrightarrow 1,\qquad
+E_0u(t)\longleftrightarrow \frac{E_0}{p},\qquad
+E_0t\,u(t)\longleftrightarrow \frac{E_0}{p^2}.
+\]
+
+\begin{SAapplication}[title={Choisir le bon essai}]
+Pour mesurer un temps de réponse et un dépassement, on impose un échelon. Pour évaluer le suivi d'une trajectoire à vitesse constante, on impose une rampe. Pour identifier rapidement une dynamique, un essai indiciel est souvent le plus simple à réaliser expérimentalement.
+\end{SAapplication}
