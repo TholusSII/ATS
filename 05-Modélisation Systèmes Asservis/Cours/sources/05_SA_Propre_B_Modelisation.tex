@@ -1,0 +1,258 @@
+% ==========================================================================
+% COURS 05 -- PARTIE B : MODÉLISATION DES SLCI
+% ==========================================================================
+
+\section{Modéliser un système continu linéaire invariant}\label{sec:sa-slci}
+
+L'objectif de la modélisation est de relier les grandeurs d'entrée et de sortie par un modèle suffisamment simple pour prévoir le comportement, dimensionner les composants et choisir un correcteur.
+
+\SACarteModelisation
+
+\subsection{Hypothèses d'un SLCI}
+
+Un système est dit \textbf{continu, linéaire et invariant} lorsque :
+
+\begin{itemize}
+  \item ses grandeurs évoluent continûment avec le temps ;
+  \item le principe de superposition est applicable ;
+  \item ses paramètres ne dépendent pas explicitement du temps.
+\end{itemize}
+
+La linéarité implique que, si les entrées $e_1$ et $e_2$ produisent les sorties $s_1$ et $s_2$, alors l'entrée $\alpha e_1+\beta e_2$ produit $\alpha s_1+\beta s_2$.
+
+\begin{SAattention}
+Les systèmes réels présentent souvent des non-linéarités : saturation, jeu, seuil, frottement sec, hystérésis ou limitation de course. Le modèle linéaire n'est valable que dans un domaine de fonctionnement précisé.
+\end{SAattention}
+
+\subsection{Modélisation de connaissance}
+
+La modélisation de connaissance est obtenue à partir des lois physiques : lois de Newton, relations électriques, bilans thermiques, conservation de la matière ou relations hydrauliques.
+
+\begin{SAapplication}[title={Moteur à courant continu simplifié}]
+Pour un moteur sans frottement sec :
+\[
+\begin{aligned}
+ u(t)&=R i(t)+L\frac{di(t)}{dt}+e(t),\\
+ e(t)&=K_e\omega(t),\\
+ J\frac{d\omega(t)}{dt}+f\omega(t)&=K_t i(t)-C_r(t).
+\end{aligned}
+\]
+Ces équations couplent la partie électrique et la partie mécanique. Elles permettent d'établir une fonction de transfert entre tension, couple résistant et vitesse.
+\end{SAapplication}
+
+\subsection{Linéarisation autour d'un point de fonctionnement}
+
+Pour une relation non linéaire $s=f(e)$, on choisit un point de fonctionnement $(e_0,s_0)$ et on étudie les petites variations :
+\[
+\Delta e=e-e_0,\qquad \Delta s=s-s_0.
+\]
+Au premier ordre :
+\[
+\Delta s\simeq f'(e_0)\Delta e.
+\]
+Le gain local $f'(e_0)$ dépend du point de fonctionnement. La validité du modèle doit donc être vérifiée sur le domaine d'utilisation.
+
+\section{Transformée de Laplace}\label{sec:sa-laplace}
+
+La transformée de Laplace remplace les équations différentielles par des équations algébriques en la variable complexe $p$.
+
+\begin{SAdefinition}
+Pour une fonction causale $f(t)$, sa transformée de Laplace est :
+\[
+F(p)=\mathcal{L}\{f(t)\}=\int_0^{+\infty}f(t)e^{-pt}\,dt.
+\]
+\end{SAdefinition}
+
+\subsection{Propriétés utiles}
+
+Sous l'hypothèse de conditions initiales nulles :
+\[
+\mathcal{L}\left\{\frac{df}{dt}\right\}=pF(p),\qquad
+\mathcal{L}\left\{\frac{d^n f}{dt^n}\right\}=p^nF(p).
+\]
+
+Plus généralement :
+\[
+\mathcal{L}\left\{\frac{df}{dt}\right\}=pF(p)-f(0^+).
+\]
+
+Les transformées usuelles sont :
+\[
+1\longleftrightarrow \frac1p,\qquad
+t\longleftrightarrow \frac1{p^2},\qquad
+e^{-at}\longleftrightarrow \frac1{p+a},
+\]
+\[
+\sin(\omega t)\longleftrightarrow \frac{\omega}{p^2+\omega^2},\qquad
+\cos(\omega t)\longleftrightarrow \frac{p}{p^2+\omega^2}.
+\]
+
+\begin{SAmethode}[title={Passage d'une équation différentielle à Laplace}]
+\begin{enumerate}
+  \item Écrire l'équation différentielle en séparant entrée et sortie.
+  \item Préciser les conditions initiales.
+  \item Transformer chaque dérivée en puissance de $p$.
+  \item Regrouper les termes en $S(p)$ et en $E(p)$.
+  \item Former le rapport $S(p)/E(p)$ pour conditions initiales nulles.
+\end{enumerate}
+\end{SAmethode}
+
+\section{Fonction de transfert}\label{sec:sa-fonction-transfert}
+
+\begin{SAdefinition}
+La \textbf{fonction de transfert} d'un SLCI est le rapport entre la transformée de Laplace de la sortie et celle de l'entrée, pour des conditions initiales nulles :
+\[
+H(p)=\frac{S(p)}{E(p)}.
+\]
+\end{SAdefinition}
+
+Pour une équation différentielle générale :
+\[
+a_n s^{(n)}+\cdots+a_1\dot{s}+a_0s
+=b_m e^{(m)}+\cdots+b_1\dot{e}+b_0e,
+\]
+on obtient :
+\[
+H(p)=\frac{b_mp^m+\cdots+b_1p+b_0}{a_np^n+\cdots+a_1p+a_0}.
+\]
+
+\subsection{Pôles, zéros, ordre et gain statique}
+
+Les racines du numérateur sont les \textbf{zéros}. Les racines du dénominateur sont les \textbf{pôles}. L'ordre du système est le degré du dénominateur après simplification des facteurs communs.
+
+Lorsque la limite existe :
+\[
+K=H(0)
+\]
+est le gain statique. Il représente le rapport sortie/entrée en régime permanent pour une entrée constante.
+
+\begin{SAattention}
+Une simplification algébrique entre un pôle et un zéro ne signifie pas nécessairement que la dynamique physique correspondante a disparu. Une compensation exacte est rarement robuste lorsque les paramètres sont incertains.
+\end{SAattention}
+
+\subsection{Théorèmes des valeurs initiale et finale}
+
+Sous leurs conditions d'application :
+\[
+\lim_{t\to0^+}f(t)=\lim_{p\to+\infty}pF(p),
+\]
+\[
+\lim_{t\to+\infty}f(t)=\lim_{p\to0}pF(p).
+\]
+
+Le théorème de la valeur finale nécessite notamment que les pôles de $pF(p)$ soient à partie réelle strictement négative, à l'exception éventuelle d'un pôle simple à l'origine.
+
+\section{Modèles canoniques}\label{sec:sa-modeles-canoniques}
+
+\subsection{Gain pur}
+
+Un gain pur est défini par :
+\[
+H(p)=K,\qquad s(t)=K e(t).
+\]
+Il ne possède aucune dynamique et représente une relation proportionnelle instantanée dans le domaine de validité du modèle.
+
+\subsection{Intégrateur}
+
+\[
+H(p)=\frac{K}{p}.
+\]
+Pour un échelon d'amplitude $E_0$, la sortie est une rampe :
+\[
+s(t)=K E_0 t.
+\]
+Un intégrateur accumule l'entrée et introduit une phase de $-90^\circ$ en régime sinusoïdal.
+
+\subsection{Premier ordre}
+
+La forme canonique est :
+\[
+\boxed{H(p)=\frac{K}{1+\tau p}},
+\]
+où $K$ est le gain statique et $\tau>0$ la constante de temps.
+
+L'équation différentielle associée est :
+\[
+\tau\dot{s}(t)+s(t)=K e(t).
+\]
+
+Pour un échelon d'amplitude $E_0$ et une sortie initialement nulle :
+\[
+\boxed{s(t)=K E_0\left(1-e^{-t/\tau}\right)}.
+\]
+
+\SAReponsePremierOrdre
+
+Valeurs caractéristiques :
+\[
+s(\tau)=0{,}632\,K E_0,\qquad
+t_{5\%}\simeq3\tau,
+\]
+\[
+t_{2\%}\simeq4\tau,\qquad
+\left.\frac{ds}{dt}\right|_{0^+}=\frac{K E_0}{\tau}.
+\]
+
+\begin{SAmethode}[title={Identifier un premier ordre sur une réponse indicielle}]
+\begin{enumerate}
+  \item Déterminer la variation finale $\Delta s_\infty$ et en déduire $K=\Delta s_\infty/\Delta e$.
+  \item Mesurer $\tau$ à l'instant où la réponse atteint $63{,}2\%$ de sa variation finale.
+  \item Vérifier la cohérence avec $t_{5\%}\simeq3\tau$ ou avec la tangente à l'origine.
+\end{enumerate}
+\end{SAmethode}
+
+\subsection{Second ordre}
+
+La forme canonique est :
+\[
+\boxed{H(p)=\frac{K\omega_0^2}{p^2+2\xi\omega_0p+\omega_0^2}}
+=\frac{K}{1+\dfrac{2\xi}{\omega_0}p+\dfrac{p^2}{\omega_0^2}}.
+\]
+
+$\omega_0$ est la pulsation propre non amortie et $\xi$ le coefficient d'amortissement.
+
+\begin{itemize}
+  \item $\xi>1$ : régime apériodique ;
+  \item $\xi=1$ : régime critique ;
+  \item $0<\xi<1$ : régime pseudo-périodique ;
+  \item $\xi=0$ : oscillations non amorties.
+\end{itemize}
+
+Pour $0<\xi<1$, la pulsation amortie est :
+\[
+\omega_a=\omega_0\sqrt{1-\xi^2},
+\]
+et la pseudo-période :
+\[
+T_a=\frac{2\pi}{\omega_a}.
+\]
+
+\SAReponseSecondOrdre
+
+Le premier dépassement relatif est :
+\[
+\boxed{D_1=100\exp\left(-\frac{\pi\xi}{\sqrt{1-\xi^2}}\right)}.
+\]
+
+Une approximation courante du temps de réponse à 5\% est :
+\[
+t_{5\%}\simeq\frac{3}{\xi\omega_0},
+\]
+à utiliser avec prudence lorsque $\xi$ est proche de 1.
+
+\begin{SAapplication}[title={Lecture physique des paramètres}]
+Une augmentation de $\omega_0$ accélère globalement la dynamique. Une augmentation de $\xi$ réduit les oscillations et le dépassement, mais un amortissement trop important peut ralentir la réponse. Le choix résulte donc d'un compromis.
+\end{SAapplication}
+
+\section{Modèles avec retard et réduction d'ordre}\label{sec:sa-retard-reduction}
+
+Un retard pur $T$ est représenté par :
+\[
+H_r(p)=e^{-Tp}.
+\]
+Il ne modifie pas le gain mais ajoute une phase $-\omega T$. Il est souvent approché par une fraction rationnelle de Padé :
+\[
+e^{-Tp}\simeq\frac{1-\dfrac{T}{2}p}{1+\dfrac{T}{2}p}.
+\]
+
+Lorsque plusieurs constantes de temps sont très différentes, les dynamiques rapides peuvent parfois être négligées devant la dynamique dominante. Une réduction d'ordre n'est acceptable que si le modèle réduit reste précis dans la bande de fréquence utile et pour les essais considérés.
