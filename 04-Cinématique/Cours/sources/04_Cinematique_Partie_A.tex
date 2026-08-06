@@ -1,0 +1,210 @@
+% ============================================================================
+% COURS 04 — CINÉMATIQUE — PARTIE A
+% Source : 5-Cinematique2022.docx
+% ============================================================================
+
+\section{Objectifs et mises en situation}
+\label{sec:cine-objectifs}
+
+\begin{TLCineMethod}{Objectifs du cours}
+Décrire et caractériser les mouvements de tous les points des solides
+d'un système : trajectoire, position, vitesse et accélération, sans
+étudier les causes mécaniques qui produisent ces mouvements.
+\end{TLCineMethod}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}p{2cm}X c}
+\toprule
+Je connais & Connaissances attendues & \\
+\midrule
+& Les définitions des vecteurs position, vitesse et accélération. & $\square$\\
+& Les relations de composition des vitesses, rotations et torseurs cinématiques. & $\square$\\
+& Le champ des vecteurs vitesse d'un solide indéformable. & $\square$\\
+& La loi de vitesse en trapèze. & $\square$\\
+\midrule
+Je sais & Nommer un mouvement et décrire une trajectoire. & $\square$\\
+& Dériver un vecteur dans un repère mobile. & $\square$\\
+& Déterminer une vitesse par dérivation ou composition. & $\square$\\
+& Déterminer une accélération par dérivation du vecteur vitesse. & $\square$\\
+& Passer d'un profil d'accélération à la vitesse et à la position. & $\square$\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Robot de chirurgie}
+
+La chirurgie robotique impose de maîtriser les vitesses et les
+trajectoires. Une mauvaise préparation ou un maniement hésitant peut
+allonger l'intervention. Le concepteur doit donc relier les ordres
+envoyés aux actionneurs à la cinématique réellement imposée aux
+effecteurs.
+
+\begin{center}
+\TLCineImage[.42\linewidth]{images/image5.jpeg}\hfill
+\TLCineImage[.48\linewidth]{images/image6.png}
+\end{center}
+
+\subsection{Prothèse transtibiale}
+
+Une prothèse doit reproduire les amplitudes, vitesses et accélérations
+d'un pied réel. La modélisation cinématique permet de vérifier les
+mouvements possibles et les niveaux d'accélération transmis à
+l'utilisateur.
+
+\TLCineImage[.48\linewidth]{images/image7.jpeg}
+
+\section{Introduction à la cinématique}
+\label{sec:cine-introduction}
+
+La cinématique est la partie de la mécanique qui décrit le mouvement,
+indépendamment des efforts qui le produisent. Les solides sont supposés
+\textbf{indéformables} : pour deux points $A$ et $B$ d'un même solide,
+\[
+\forall t,\qquad \|\overrightarrow{AB}\|=\mathrm{constante}.
+\]
+
+\subsection{Base, repère et référentiel}
+
+Une base orthonormée directe est notée
+$\mathcal B=(\vec x,\vec y,\vec z)$. Un repère d'espace associe cette
+base à une origine $O$ :
+\[
+\mathcal R=(O,\vec x,\vec y,\vec z).
+\]
+Un référentiel comprend un repère d'espace et un repère de temps. En
+SII, le temps est commun à tous les référentiels ; on parle donc souvent
+simplement de repère de référence.
+
+Dans la suite, un solide et le repère qui lui est lié sont souvent
+confondus dans les notations.
+
+\section{Produit vectoriel et produit mixte}
+\label{sec:cine-produit}
+
+\subsection{Produit vectoriel}
+
+Le produit vectoriel $\vec U\wedge\vec V$ est perpendiculaire au plan
+$(\vec U,\vec V)$, orienté de sorte que
+$(\vec U,\vec V,\vec U\wedge\vec V)$ soit direct, et de norme :
+\[
+\boxed{\|\vec U\wedge\vec V\|
+=\|\vec U\|\,\|\vec V\|\,|\sin(\vec U,\vec V)|.}
+\]
+
+Dans une base orthonormée directe :
+\[
+\vec x\wedge\vec y=\vec z,
+\quad
+\vec y\wedge\vec z=\vec x,
+\quad
+\vec z\wedge\vec x=\vec y.
+\]
+L'inversion de l'ordre change le signe.
+
+\begin{TLCineDef}{Propriétés}
+\[
+\vec U\wedge\vec V=-\vec V\wedge\vec U,
+\]
+\[
+\vec U\wedge(\vec V+\vec W)
+=\vec U\wedge\vec V+\vec U\wedge\vec W,
+\]
+\[
+(\lambda\vec U)\wedge(\mu\vec V)
+=\lambda\mu(\vec U\wedge\vec V).
+\]
+Le produit vectoriel est nul lorsque les deux vecteurs sont colinéaires
+ou lorsque l'un d'eux est nul.
+\end{TLCineDef}
+
+Dans une base orthonormée :
+\[
+\vec U\wedge\vec V=
+\begin{vmatrix}
+\vec x&\vec y&\vec z\\
+U_x&U_y&U_z\\
+V_x&V_y&V_z
+\end{vmatrix}.
+\]
+
+\begin{TLCineApp}{Calcul de produit vectoriel}
+Avec
+$\vec V_1=2\vec x+2\vec y-3\vec z$ et
+$\vec V_2=-\vec x+6\vec z$, calculer
+$\vec V_1\wedge\vec V_2$ puis vérifier son orthogonalité avec les deux
+vecteurs de départ.
+\end{TLCineApp}
+
+\subsection{Produit mixte}
+
+Le produit mixte de trois vecteurs est le réel :
+\[
+(\vec U,\vec V,\vec W)
+=(\vec U\wedge\vec V)\cdot\vec W.
+\]
+Sa valeur absolue représente le volume du parallélépipède construit sur
+les trois vecteurs. Il est invariant par permutation circulaire et
+change de signe lorsqu'on échange deux opérandes.
+
+\section{Torseur cinématique}
+\label{sec:cine-torseur}
+
+Le mouvement du solide 1 par rapport au solide 0 est décrit, au point
+$A$, par le torseur cinématique :
+\[
+\boxed{
+\left\{\mathcal V_{1/0}\right\}_A
+=\left\{\begin{array}{c}
+\vec\Omega_{1/0}\\
+\vec V(A\in1/0)
+\end{array}\right\}_A.}
+\]
+La résultante $\vec\Omega_{1/0}$ est indépendante du point d'expression.
+Le moment cinématique est la vitesse du point considéré.
+
+\begin{TLCineDef}{Inversion du mouvement}
+\[
+\boxed{\left\{\mathcal V_{2/1}\right\}
+=-\left\{\mathcal V_{1/2}\right\}.}
+\]
+Le point d'expression et la base doivent être précisés pour exploiter
+les composantes.
+\end{TLCineDef}
+
+\subsection{Changer le point d'expression}
+
+Pour un torseur de résultante $\vec R$ et de moment $\vec M_A$ :
+\[
+\boxed{\vec M_B=\vec M_A+\overrightarrow{BA}\wedge\vec R.}
+\]
+Pour le torseur cinématique :
+\[
+\boxed{\vec V(B\in1/0)=\vec V(A\in1/0)
++\overrightarrow{BA}\wedge\vec\Omega_{1/0}.}
+\]
+Cette relation constitue le \textbf{champ des vecteurs vitesse} d'un
+solide indéformable.
+
+\begin{TLCineApp}{Hélice d'avion}
+Une hélice tourne autour de l'axe $(K,\vec w)$ avec
+$\vec\Omega_{2/1}=-31\vec w\ \mathrm{rad\,s^{-1}}$. Le point $P$ est
+tel que $\overrightarrow{PK}=l\vec u$.
+Déterminer $\vec V(P\in2/1)$ en déplaçant le torseur de $K$ vers $P$.
+\end{TLCineApp}
+
+\subsection{Opérations sur les torseurs}
+
+Deux torseurs sont égaux si leurs résultantes sont égales et si leurs
+moments, exprimés au même point, sont égaux. Pour additionner des
+torseurs, il faut les réduire au même point et exprimer les composantes
+dans une base commune.
+
+Le comoment de deux torseurs est le réel :
+\[
+\left\{\mathcal T_1\right\}\otimes
+\left\{\mathcal T_2\right\}
+=\vec R_1\cdot\vec M_{2,A}
++\vec R_2\cdot\vec M_{1,A}.
+\]
+Il est indépendant du point de réduction.
