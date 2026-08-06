@@ -1,0 +1,141 @@
+% ==========================================================================
+% COURS 05 -- EXERCICES
+% ==========================================================================
+
+\section{Exercices du chapitre}\label{sec:sa-exercices}
+
+\begin{TLExercise}{Exercice 1 -- Étuve thermique}
+Une étuve est commandée par un gradateur. La température est mesurée par une sonde Pt100 et comparée à une consigne.
+\begin{enumerate}
+  \item Identifier la consigne, la sortie, la commande et deux perturbations possibles.
+  \item Proposer un schéma-blocs fonctionnel.
+  \item Expliquer pourquoi une commande en boucle ouverte serait insuffisante.
+  \item Préciser s'il s'agit principalement d'un asservissement ou d'une régulation.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 2 -- Fauteuil motorisé}
+Le dossier d'un fauteuil est déplacé par un motoréducteur. Un potentiomètre mesure l'angle réel.
+\begin{enumerate}
+  \item Compléter la chaîne : comparateur, correcteur, motoréducteur, mécanisme, capteur.
+  \item Donner les unités des signaux au niveau du comparateur.
+  \item Citer un défaut de capteur susceptible de créer une erreur permanente.
+  \item Expliquer l'effet d'une augmentation du gain du correcteur sur précision, rapidité et stabilité.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 3 -- Fonction de transfert d'un circuit RC}
+Un circuit vérifie :
+\[
+RC\frac{du_s(t)}{dt}+u_s(t)=u_e(t).
+\]
+\begin{enumerate}
+  \item Déterminer $H(p)=U_s(p)/U_e(p)$ pour des conditions initiales nulles.
+  \item Identifier le gain statique et la constante de temps.
+  \item Donner la réponse à un échelon d'amplitude $E_0$.
+  \item Calculer le temps de réponse à 5\%.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 4 -- Moteur à courant continu}
+On considère :
+\[
+u=Ri+L\dot{i}+K_e\omega,
+\qquad
+J\dot{\omega}+f\omega=K_t i,
+\]
+et un couple résistant nul.
+\begin{enumerate}
+  \item Transformer les équations dans le domaine de Laplace.
+  \item Éliminer $I(p)$ et déterminer $\Omega(p)/U(p)$.
+  \item Donner l'ordre du modèle et identifier ses paramètres physiques.
+  \item Proposer une approximation du premier ordre lorsque l'inductance est négligeable.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 5 -- Identification d'un premier ordre}
+Un essai indiciel de $2$ V produit une variation finale de sortie de $18$ mm. La sortie atteint $11{,}4$ mm après $0{,}42$ s.
+\begin{enumerate}
+  \item Identifier le gain statique $K$.
+  \item Identifier la constante de temps $\tau$.
+  \item Estimer le temps de réponse à 5\%.
+  \item Écrire la fonction de transfert et la réponse temporelle.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 6 -- Second ordre pseudo-périodique}
+La réponse à un échelon unitaire tend vers $2$. Le premier maximum vaut $2{,}5$ et deux maxima successifs sont séparés de $0{,}8$ s.
+\begin{enumerate}
+  \item Calculer le dépassement relatif.
+  \item En déduire le coefficient d'amortissement $\xi$.
+  \item Déterminer la pulsation amortie puis la pulsation propre $\omega_0$.
+  \item Écrire une fonction de transfert canonique compatible avec l'essai.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 7 -- Réduction d'un schéma-blocs}
+Une chaîne directe est constituée de trois blocs $K$, $1/(1+\tau p)$ et $1/p$ en série. Le retour est unitaire et négatif.
+\begin{enumerate}
+  \item Déterminer la FTBO.
+  \item Déterminer la FTBF.
+  \item Donner l'équation caractéristique.
+  \item Préciser la classe du système et son erreur statique pour une consigne échelon.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 8 -- Perturbation de couple}
+Un moteur est commandé par un correcteur $C(p)$ et un procédé $P(p)$. Une perturbation $Q(p)$ s'ajoute à l'entrée du procédé. Le retour est unitaire.
+\begin{enumerate}
+  \item Déterminer $S(p)/E(p)$ en annulant $Q(p)$.
+  \item Déterminer $S(p)/Q(p)$ en annulant $E(p)$.
+  \item Montrer comment un grand gain de boucle améliore le rejet de la perturbation.
+  \item Expliquer pourquoi ce gain ne peut pas être augmenté sans limite.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 9 -- Erreurs statiques}
+On considère un retour unitaire de boucle ouverte :
+\[
+L(p)=\frac{20}{p(1+0{,}2p)}.
+\]
+\begin{enumerate}
+  \item Déterminer la classe du système.
+  \item Calculer l'erreur statique pour un échelon d'amplitude 3.
+  \item Calculer l'erreur de traînage pour une rampe de pente $0{,}5$.
+  \item Conclure sur la précision du système.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 10 -- Diagramme de Bode}
+On considère :
+\[
+H(p)=\frac{50}{p(1+0{,}1p)(1+p)}.
+\]
+\begin{enumerate}
+  \item Mettre la fonction sous forme canonique et repérer les pulsations de cassure.
+  \item Tracer les asymptotes du gain.
+  \item Tracer l'évolution approchée de la phase.
+  \item Donner les pentes successives du gain en dB par décade.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 11 -- Marges de stabilité}
+Pour une boucle ouverte, la pulsation de coupure à 0 dB vaut $8$ rad/s et la phase correspondante vaut $-145^\circ$. À la pulsation où la phase vaut $-180^\circ$, le gain vaut $-9$ dB.
+\begin{enumerate}
+  \item Calculer la marge de phase.
+  \item Calculer la marge de gain.
+  \item Commenter la robustesse qualitative de la boucle.
+  \item Indiquer l'effet probable d'un retard supplémentaire.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 12 -- Synthèse complète}
+Un axe linéaire doit suivre une consigne de position. Le cahier des charges impose : erreur statique nulle sur un échelon, temps de réponse à 5\% inférieur à $0{,}8$ s et dépassement inférieur à $10\%$.
+\begin{enumerate}
+  \item Proposer le protocole d'essai permettant de mesurer ces trois performances.
+  \item Identifier les informations nécessaires pour construire un modèle.
+  \item Établir une démarche de calcul de la FTBF à partir du schéma-blocs.
+  \item Indiquer les grandeurs à lire dans les domaines temporel et fréquentiel.
+  \item Expliquer les compromis à respecter lors du choix du correcteur.
+\end{enumerate}
+\end{TLExercise}
