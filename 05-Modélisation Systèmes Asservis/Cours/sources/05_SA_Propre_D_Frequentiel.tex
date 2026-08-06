@@ -1,0 +1,198 @@
+% ==========================================================================
+% COURS 05 -- PARTIE D : COMPORTEMENT FRÉQUENTIEL ET STABILITÉ
+% ==========================================================================
+
+\section{Réponse fréquentielle}\label{sec:sa-frequentiel}
+
+Lorsqu'un SLCI stable est soumis à une entrée sinusoïdale de pulsation $\omega$, son régime permanent est sinusoïdal à la même pulsation. Seules l'amplitude et la phase sont modifiées.
+
+Pour :
+\[
+e(t)=E_0\sin(\omega t),
+\]
+on obtient en régime permanent :
+\[
+s(t)=S_0\sin(\omega t+\varphi).
+\]
+La réponse fréquentielle est donnée par :
+\[
+H(j\omega)=\frac{S_0}{E_0}e^{j\varphi}.
+\]
+
+\begin{SAdefinition}
+Le gain et la phase sont :
+\[
+G(\omega)=|H(j\omega)|,
+\qquad
+\varphi(\omega)=\arg H(j\omega).
+\]
+Le gain en décibels est :
+\[
+G_{dB}(\omega)=20\log_{10}|H(j\omega)|.
+\]
+\end{SAdefinition}
+
+\subsection{Décade, octave et décibel}
+
+Une décade correspond à un rapport de pulsations égal à 10. Une octave correspond à un rapport égal à 2.
+
+Les propriétés logarithmiques transforment les produits en sommes :
+\[
+20\log_{10}|H_1H_2|=20\log_{10}|H_1|+20\log_{10}|H_2|.
+\]
+Ainsi, les diagrammes de Bode d'un produit de fonctions élémentaires s'obtiennent par addition des gains et des phases.
+
+\section{Diagrammes de Bode élémentaires}\label{sec:sa-bode-elementaire}
+
+\subsection{Gain pur}
+
+Pour $H(p)=K$ :
+\[
+G_{dB}=20\log_{10}|K|,
+\]
+et la phase vaut $0^\circ$ si $K>0$, $-180^\circ$ ou $180^\circ$ si $K<0$.
+
+\subsection{Intégrateur}
+
+Pour $H(p)=K/p$ :
+\[
+G_{dB}=20\log_{10}|K|-20\log_{10}\omega,
+\qquad
+\varphi=-90^\circ.
+\]
+La pente du gain est $-20$ dB par décade.
+
+\TLBodeIntegrateur[1]
+
+\subsection{Premier ordre}
+
+Pour :
+\[
+H(p)=\frac{K}{1+\tau p},
+\]
+la pulsation de cassure est :
+\[
+\omega_c=\frac1\tau.
+\]
+
+Les asymptotes du gain sont :
+\[
+G_{dB}\simeq20\log_{10}|K|\quad\text{pour }\omega\ll\omega_c,
+\]
+\[
+G_{dB}\simeq20\log_{10}|K|-20\log_{10}\left(\frac{\omega}{\omega_c}\right)
+\quad\text{pour }\omega\gg\omega_c.
+\]
+À la cassure, le gain réel est inférieur de 3 dB à l'asymptote et la phase vaut $-45^\circ$.
+
+\TLBodePremierOrdre[1][1]
+
+\subsection{Second ordre}
+
+Pour :
+\[
+H(p)=\frac{K\omega_0^2}{p^2+2\xi\omega_0p+\omega_0^2},
+\]
+le gain présente une pente de $-40$ dB par décade à haute fréquence et la phase évolue de $0^\circ$ vers $-180^\circ$.
+
+Pour $\xi<1/\sqrt2$, un pic de résonance apparaît. Sa pulsation est :
+\[
+\omega_r=\omega_0\sqrt{1-2\xi^2}.
+\]
+
+\TLBodeSecondOrdre[1][0.7][1]
+
+\begin{SAmethode}[title={Tracer un diagramme de Bode asymptotique}]
+\begin{enumerate}
+  \item Mettre la fonction de transfert sous forme factorisée canonique.
+  \item Repérer le gain, les intégrateurs, les dérivateurs et les pulsations de cassure.
+  \item Tracer le gain initial puis modifier la pente à chaque cassure.
+  \item Additionner les contributions de phase.
+  \item Placer quelques points réels remarquables autour des cassures.
+\end{enumerate}
+\end{SAmethode}
+
+\section{Stabilité en boucle fermée}\label{sec:sa-stabilite}
+
+\subsection{Critère sur les pôles}
+
+Un SLCI continu est asymptotiquement stable si tous les pôles de sa fonction de transfert sont à partie réelle strictement négative.
+
+\begin{itemize}
+  \item Pôle réel négatif : mode exponentiel décroissant.
+  \item Paire complexe à partie réelle négative : oscillations amorties.
+  \item Pôle à partie réelle positive : divergence.
+  \item Pôle simple sur l'axe imaginaire : stabilité marginale selon le contexte.
+\end{itemize}
+
+\subsection{Point critique}
+
+Pour une rétroaction négative, l'équation caractéristique est :
+\[
+1+L(p)=0.
+\]
+La limite d'instabilité correspond donc au point :
+\[
+L(j\omega)=-1,
+\]
+soit un gain de $0$ dB et une phase de $-180^\circ$.
+
+\begin{SAdefinition}
+La \textbf{marge de phase} est la distance angulaire à $-180^\circ$ lorsque le gain de boucle vaut 0 dB :
+\[
+M_\varphi=180^\circ+\arg L(j\omega_{0dB}).
+\]
+La \textbf{marge de gain} est l'opposé du gain en dB lorsque la phase vaut $-180^\circ$ :
+\[
+M_G=-G_{dB}(\omega_{-180^\circ}).
+\]
+\end{SAdefinition}
+
+Des marges positives sont nécessaires à la stabilité, mais une marge trop faible rend le système fragile aux incertitudes et aux retards non modélisés.
+
+\begin{SAattention}
+La stabilité se juge sur la boucle ouverte $L(p)$, mais concerne les pôles de la boucle fermée. Il ne faut pas confondre la stabilité propre d'un bloc et la stabilité de l'asservissement complet.
+\end{SAattention}
+
+\subsection{Lien entre bande passante et rapidité}
+
+Une augmentation de la bande passante de la boucle fermée rend généralement la réponse plus rapide. Toutefois, une bande passante trop élevée augmente la sensibilité au bruit, aux dynamiques négligées et aux retards.
+
+Une approximation courante pour un comportement dominé par un premier ordre est :
+\[
+t_{5\%}\approx\frac{3}{\omega_B},
+\]
+où $\omega_B$ est une pulsation représentative de la bande passante. Cette relation reste indicative et dépend de la forme réelle de la réponse.
+
+\section{Bilan de la démarche d'étude}\label{sec:sa-demarche}
+
+\begin{SAmethode}[title={Étudier un système asservi}]
+\begin{enumerate}
+  \item \textbf{Définir le système :} consigne, sortie, commande, perturbations, capteurs et unités.
+  \item \textbf{Construire le modèle :} lois physiques ou identification expérimentale.
+  \item \textbf{Établir le schéma-blocs :} fonctions de transfert et signes des sommateurs.
+  \item \textbf{Calculer FTBO et FTBF :} simplifier sans perdre le sens physique.
+  \item \textbf{Vérifier la stabilité :} pôles ou marges fréquentielles.
+  \item \textbf{Évaluer les performances :} précision, rapidité, dépassement et rejet des perturbations.
+  \item \textbf{Comparer au cahier des charges :} conclure quantitativement.
+  \item \textbf{Valider le modèle :} confrontation aux mesures et analyse des écarts.
+\end{enumerate}
+\end{SAmethode}
+
+\begin{center}
+\begin{tabularx}{\linewidth}{>{\bfseries}p{.19\linewidth}X X}
+\toprule
+Performance & Domaine temporel & Domaine fréquentiel \\
+\midrule
+Stabilité & pôles, oscillations, divergence & marges de phase et de gain \\
+Rapidité & temps de réponse, temps de montée & bande passante, pulsation de coupure \\
+Précision & erreur statique, erreur de traînage & gain de boucle à basse fréquence \\
+Dépassement & maximum de la réponse indicielle & résonance, amortissement \\
+Robustesse & sensibilité aux paramètres & marges, sensibilité, bruit \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Sources}\label{sec:sa-sources}
+
+Ce chapitre reprend et réorganise les contenus des cours d'introduction et de modélisation des systèmes asservis. Les méthodes et notations sont harmonisées avec le framework SII du dépôt et avec les usages classiques de l'automatique continue en CPGE et en ATS.
