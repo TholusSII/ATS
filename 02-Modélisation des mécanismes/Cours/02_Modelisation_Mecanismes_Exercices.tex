@@ -1,131 +1,336 @@
 % ============================================================================
-% EXERCICES DU CHAPITRE
-% Le fichier historique contient l'intégralité de la conversion Word.
-% On n'exécute que la partie à partir de \section{Exercices du chapitre}.
+% COURS 02 — EXERCICES DU CHAPITRE
+% Recomposition structurée à partir de 2-ModelisationMecanismes2022.docx.
+% Les anciens tableaux Word, responsables de nombreuses pages presque vides,
+% sont remplacés par des mises en page LaTeX sécables.
 % ============================================================================
 
-\begingroup
-\small
-\sloppy
-\setlength{\tabcolsep}{3pt}
-\setlength{\LTleft}{0pt}
-\setlength{\LTright}{0pt}
-\setlength{\extrarowheight}{1pt}
+\section{EXERCICES DU CHAPITRE}\label{exercices-du-chapitre}\TLSectionLabel{8}
 
-% -----------------------------------------------------------------------------
-% Images de l'ancienne conversion Word
-% -----------------------------------------------------------------------------
-\NewCommandCopy\TLLegacyIncludeGraphics\includegraphics
-\newif\ifTLLegacyVectorGraphic
-
-\NewDocumentCommand{\TLLegacyRawGraphic}{s O{} m}{%
-  \ifstrempty{#2}{%
-    \IfBooleanTF{#1}
-      {\TLLegacyIncludeGraphics*[width=\linewidth,height=.82\textheight,keepaspectratio]{#3}}
-      {\TLLegacyIncludeGraphics[width=\linewidth,height=.82\textheight,keepaspectratio]{#3}}%
-  }{%
-    \IfBooleanTF{#1}
-      {\TLLegacyIncludeGraphics*[#2]{#3}}
-      {\TLLegacyIncludeGraphics[#2]{#3}}%
-  }%
+\newtcolorbox{TLExercise}[2][]{
+  enhanced,breakable,
+  colback=white,colframe=TLCoverBlue,
+  colbacktitle=TLCoverBlue,coltitle=white,
+  title={#2},fonttitle=\bfseries\large,
+  boxrule=.8pt,arc=2mm,
+  left=4mm,right=4mm,top=3mm,bottom=3mm,
+  before skip=1.2\baselineskip,after skip=1.2\baselineskip,
+  #1
 }
 
-\newcommand{\TLLegacyMissingGraphic}[1]{%
-  \begin{tikzpicture}[baseline=(current bounding box.center)]
-    \node[
-      draw=TLCoverBlue!55,
-      rounded corners=1mm,
-      fill=TLCoverBlue!4,
-      text=TLCoverBlue!80!black,
-      align=center,
-      font=\sffamily\scriptsize,
-      inner sep=2mm,
-      text width=24mm
-    ] {Illustration vectorielle\\non convertie\\\ttfamily #1};
-  \end{tikzpicture}%
-}
+\newcommand{\TLLevel}[1]{%
+  \hfill\tikz[baseline=-.5ex]\node[rounded corners=1mm,fill=TLSubsectionOrange!15,
+  draw=TLSubsectionOrange,text=TLSubsectionOrange!70!black,
+  inner xsep=2.2mm,inner ysep=.8mm,font=\bfseries\small]{Niveau #1};}
 
-\newcommand{\TLLegacyPlaceGraphic}[1]{%
-  \ifinner
-    \adjustbox{max width=.90\linewidth,max totalheight=.72\textheight}{#1}%
-    \hspace{0pt}\allowbreak
-  \else
-    \par\noindent
-    \makebox[\linewidth][c]{%
-      \adjustbox{max width=.96\linewidth,max totalheight=.82\textheight}{#1}%
-    }%
-    \par\noindent
-  \fi
-}
+\newcommand{\TLExerciseImage}[2][.78\linewidth]{%
+  \begin{center}
+    \includegraphics[width=#1,height=.30\textheight,keepaspectratio]{#2}
+  \end{center}}
 
-\makeatletter
-\RenewDocumentCommand{\includegraphics}{s O{} m}{%
-  \begingroup
-  \filename@parse{#3}%
-  \edef\TLLegacyGraphicExtension{\filename@ext}%
-  \edef\TLLegacyGraphicStem{\filename@area\filename@base}%
-  \edef\TLLegacyGraphicBase{\filename@base}%
+% ----------------------------------------------------------------------------
+\subsection{Applications : graphes de liaisons}
 
-  % \ifstrequal ne développe pas ses arguments : c'était la cause du passage
-  % résiduel des fichiers .emf vers graphicx. \ifdefstring compare bien le
-  % contenu développé de la macro d'extension.
-  \TLLegacyVectorGraphicfalse
-  \ifdefstring{\TLLegacyGraphicExtension}{emf}{\TLLegacyVectorGraphictrue}{}
-  \ifdefstring{\TLLegacyGraphicExtension}{EMF}{\TLLegacyVectorGraphictrue}{}
-  \ifdefstring{\TLLegacyGraphicExtension}{wmf}{\TLLegacyVectorGraphictrue}{}
-  \ifdefstring{\TLLegacyGraphicExtension}{WMF}{\TLLegacyVectorGraphictrue}{}
+\begin{TLExercise}{Bielle-manivelle, lève-personne et Spiralift \TLLevel{2}}
+Pour chacun des mécanismes représentés :
+\begin{enumerate}
+  \item identifier les classes d'équivalence cinématique et le bâti ;
+  \item repérer les contacts entre CEC ;
+  \item nommer et caractériser chaque liaison ;
+  \item tracer le graphe des liaisons en précisant les axes, centres ou normales.
+\end{enumerate}
 
-  \ifTLLegacyVectorGraphic
-    \IfFileExists{\TLLegacyGraphicStem.png}{%
-      \TLLegacyPlaceGraphic{\TLLegacyIncludeGraphics[width=.90\linewidth,height=.72\textheight,keepaspectratio]{\TLLegacyGraphicStem.png}}%
-    }{%
-      \IfFileExists{\TLLegacyGraphicStem.pdf}{%
-        \TLLegacyPlaceGraphic{\TLLegacyIncludeGraphics[width=.90\linewidth,height=.72\textheight,keepaspectratio]{\TLLegacyGraphicStem.pdf}}%
-      }{%
-        \IfFileExists{\TLLegacyGraphicStem.jpeg}{%
-          \TLLegacyPlaceGraphic{\TLLegacyIncludeGraphics[width=.90\linewidth,height=.72\textheight,keepaspectratio]{\TLLegacyGraphicStem.jpeg}}%
-        }{%
-          \IfFileExists{\TLLegacyGraphicStem.jpg}{%
-            \TLLegacyPlaceGraphic{\TLLegacyIncludeGraphics[width=.90\linewidth,height=.72\textheight,keepaspectratio]{\TLLegacyGraphicStem.jpg}}%
-          }{%
-            \TLLegacyPlaceGraphic{\TLLegacyMissingGraphic{\filename@base}}%
-          }%
-        }%
-      }%
-    }%
-  \else
-    % Les images 158 et 159 étaient exportées chacune à \linewidth sur une
-    % même ligne. Elles sont traitées explicitement pour éviter tout débordement.
-    \ifdefstring{\TLLegacyGraphicBase}{image158}{%
-      \TLLegacyIncludeGraphics[width=.46\linewidth,height=.32\textheight,keepaspectratio]{#3}\hfill
-    }{%
-      \ifdefstring{\TLLegacyGraphicBase}{image159}{%
-        \TLLegacyIncludeGraphics[width=.46\linewidth,height=.32\textheight,keepaspectratio]{#3}\par\noindent
-      }{%
-        \IfBooleanTF{#1}
-          {\TLLegacyPlaceGraphic{\TLLegacyRawGraphic*[#2]{#3}}}
-          {\TLLegacyPlaceGraphic{\TLLegacyRawGraphic[#2]{#3}}}%
-      }%
-    }%
-  \fi
-  \endgroup
-}
+\begin{center}
+\begin{minipage}[t]{.31\linewidth}\centering
+\includegraphics[width=\linewidth,height=.19\textheight,keepaspectratio]{images/image157.jpeg}\\
+\textbf{Bielle-manivelle}
+\end{minipage}\hfill
+\begin{minipage}[t]{.31\linewidth}\centering
+\includegraphics[width=\linewidth,height=.19\textheight,keepaspectratio]{images/image158.png}\\
+\textbf{Lève-personne}
+\end{minipage}\hfill
+\begin{minipage}[t]{.31\linewidth}\centering
+\includegraphics[width=\linewidth,height=.19\textheight,keepaspectratio]{images/image160.png}\\
+\textbf{Spiralift}
+\end{minipage}
+\end{center}
+\end{TLExercise}
 
-\CatchFileDef{\TLLegacyModelisationFile}
-  {02_ModelisationMecanismes_cours.tex}
-  {}
+\begin{TLExercise}{Dépose de bagages automatisée et robot manipulateur \TLLevel{2}}
+\begin{enumerate}
+  \item Identifier les CEC sur les représentations techniques.
+  \item Établir le graphe des liaisons de chaque système.
+  \item Indiquer si la chaîne de solides est ouverte, fermée ou complexe.
+  \item Proposer un schéma cinématique minimal cohérent avec les mouvements observés.
+\end{enumerate}
 
-% Parcours récursif des commandes section du fichier capturé.
-\long\def\TLExtractModelisationExercises#1\section#2#3\TLModelisationStop{%
-  \ifstrequal{#2}{Exercices du chapitre}{%
-    \section{#2}#3%
-  }{%
-    \expandafter\TLExtractModelisationExercises#3\TLModelisationStop
-  }%
-}
+\begin{center}
+\begin{minipage}[t]{.47\linewidth}\centering
+\includegraphics[width=\linewidth,height=.24\textheight,keepaspectratio]{images/image164.png}\\
+\textbf{Dépose de bagages}
+\end{minipage}\hfill
+\begin{minipage}[t]{.47\linewidth}\centering
+\includegraphics[width=.48\linewidth,height=.24\textheight,keepaspectratio]{images/image165.jpeg}\hfill
+\includegraphics[width=.48\linewidth,height=.24\textheight,keepaspectratio]{images/image166.png}\\
+\textbf{Robot manipulateur}
+\end{minipage}
+\end{center}
+\end{TLExercise}
 
-\expandafter\TLExtractModelisationExercises
-  \TLLegacyModelisationFile
-  \TLModelisationStop
-\makeatother
-\endgroup
+% ----------------------------------------------------------------------------
+\subsection{Élaboration d'un modèle cinématique}
+
+\begin{TLExercise}{Perforatrice \TLLevel{1}}
+\textbf{Objectif :} modéliser la perforatrice à partir de son dessin d'ensemble.
+
+\TLExerciseImage[.70\linewidth]{images/image167.png}
+
+\begin{enumerate}
+  \item Repérer les classes d'équivalence cinématique en utilisant une couleur par CEC.
+  \item Lister les pièces qui constituent chacune des classes.
+  \item Identifier le bâti et les pièces déformables à exclure.
+  \item Dessiner le graphe des liaisons en précisant les caractéristiques géométriques.
+  \item Proposer un schéma cinématique plan du mécanisme.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Portique de manipulation \TLLevel{3}}
+Le portique conçu par la société A.V.M. Automation transfère et retourne une
+pièce entre deux positions. Sa répétabilité est inférieure à
+\(0{,}05\ \mathrm{mm}\). Le manipulateur vertical, les manipulateurs
+horizontaux, le rotatif et la pince sont actionnés pneumatiquement.
+
+\begin{center}
+\includegraphics[width=.46\linewidth,height=.28\textheight,keepaspectratio]{images/image172.jpeg}\hfill
+\includegraphics[width=.46\linewidth,height=.28\textheight,keepaspectratio]{images/image173.jpeg}
+\end{center}
+
+\begin{enumerate}
+  \item À partir de l'éclaté du manipulateur de l'axe \(Y\), identifier les CEC.
+  \item Rechercher les liaisons réalisées par les guidages à billes.
+  \item Tracer le graphe des liaisons du manipulateur \(Y\).
+  \item Déterminer la liaison équivalente entre le chariot et le bâti.
+  \item En déduire les schémas cinématiques plan et spatial du portique complet.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Système d'orientation d'antenne \TLLevel{2}}
+Le système permet d'orienter une parabole à distance. Le vérin électrique
+utilise un mécanisme vis-écrou de pas \(p=2\ \mathrm{mm/tr}\). Le moteur
+tourne à vitesse constante lorsqu'il est alimenté.
+
+\begin{center}
+\begin{minipage}[t]{.42\linewidth}\centering
+\includegraphics[width=\linewidth,height=.25\textheight,keepaspectratio]{images/image120.png}
+\end{minipage}\hfill
+\begin{minipage}[t]{.53\linewidth}\centering
+\includegraphics[width=\linewidth,height=.25\textheight,keepaspectratio]{images/image175.png}
+\end{minipage}
+\end{center}
+
+\begin{enumerate}
+  \item Déterminer les classes d'équivalence cinématique.
+  \item Identifier la liaison entre la tige et le corps du vérin.
+  \item Établir le graphe des liaisons.
+  \item Justifier qu'une étude plane est suffisante et réaliser le schéma cinématique.
+  \item Paramétrer le système avec \(d(t)\), \(\alpha_1(t)\) et \(\alpha_2(t)\).
+  \item Établir la fermeture géométrique et en déduire la loi
+  \(d=f(\alpha_1)\).
+  \item Déterminer la durée d'alimentation nécessaire pour faire passer
+  l'antenne de \(58^\circ\) à \(82^\circ\), pour une vitesse moteur de
+  \(20\ \mathrm{tr\,s^{-1}}\).
+\end{enumerate}
+
+\TLExerciseImage[.65\linewidth]{images/image178.jpeg}
+\end{TLExercise}
+
+\begin{TLExercise}{Barrière Sinusmatic \TLLevel{3}}
+Le système Sinusmatic transforme la rotation uniforme de l'arbre de sortie
+d'un réducteur en rotation alternative de la barrière. Le plateau 7 possède
+deux ergots ; chaque demi-tour correspond à une position haute ou basse. Les
+pièces repérées 4 sont deux roulements combinés à aiguilles.
+
+\begin{center}
+\includegraphics[width=.38\linewidth,height=.22\textheight,keepaspectratio]{images/image180.jpeg}\hfill
+\includegraphics[width=.58\linewidth,height=.27\textheight,keepaspectratio]{images/image181.png}
+\end{center}
+
+\begin{enumerate}
+  \item Identifier et colorier les groupes cinématiques sur le document technique.
+  \item Modéliser les guidages réalisés par les roulements.
+  \item Réaliser le graphe des liaisons du système.
+  \item Rechercher les liaisons équivalentes permettant de simplifier le graphe.
+  \item Réaliser le schéma cinématique minimal, puis vérifier qu'il traduit la
+  transformation de mouvement attendue.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Scie sauteuse \TLLevel{2}}
+Le mécanisme transforme la rotation continue de l'arbre moteur en translation
+alternative du porte-lame. Il appartient à la famille des transmetteurs et
+adaptateurs de la chaîne d'énergie.
+
+\TLExerciseImage[.64\linewidth]{images/image182.png}
+
+\begin{enumerate}
+  \item Identifier les CEC et réaliser le graphe des liaisons.
+  \item Réaliser le schéma cinématique dans le plan \((O,\vec y,\vec z)\).
+  \item Réaliser le schéma cinématique spatial avec le même code couleur.
+  \item Identifier la chaîne fermée utile à l'établissement ultérieur de la loi
+  entrée-sortie.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Commande de soupape \TLLevel{3}}
+La came 1 agit sur le linguet 2, qui transmet l'action à la soupape 6 par
+l'intermédiaire de la tige 3, du culbuteur 4 et du poussoir réglable 5. Le
+ressort 7-8 assure le rappel. Les pièces et les actions possèdent un plan de
+symétrie commun.
+
+\begin{center}
+\includegraphics[width=.36\linewidth,height=.24\textheight,keepaspectratio]{images/image183.png}\hfill
+\includegraphics[width=.58\linewidth,height=.27\textheight,keepaspectratio]{images/image184.png}
+\end{center}
+
+\begin{enumerate}
+  \item Identifier les groupes cinématiques sur le dessin d'ensemble.
+  \item Préciser les pièces déformables exclues des CEC.
+  \item Réaliser le graphe des liaisons du mécanisme.
+  \item Justifier l'étude plane et construire le schéma cinématique dans le plan
+  de symétrie.
+  \item Identifier l'entrée, la sortie et les transformations de mouvement.
+\end{enumerate}
+\end{TLExercise}
+
+% ----------------------------------------------------------------------------
+\subsection{Applications complémentaires}
+
+\begin{TLExercise}{Capteur pneumatique de fin de course \TLLevel{2}}
+Lorsque la tige d'un vérin appuie sur le galet 5, le levier 2 pivote et
+déplace le tiroir 6. L'air comprimé passe alors de l'orifice d'entrée à
+l'orifice de sortie. Le ressort 8 assure le retour du tiroir.
+
+\begin{center}
+\includegraphics[width=.57\linewidth,height=.28\textheight,keepaspectratio]{images/image189.png}\hfill
+\includegraphics[width=.38\linewidth,height=.25\textheight,keepaspectratio]{images/image191.jpeg}
+\end{center}
+
+\begin{enumerate}
+  \item Reporter le repère des pièces sur la perspective éclatée.
+  \item Déterminer les CEC et le graphe des liaisons.
+  \item Réaliser le schéma cinématique 2D dans le plan proposé.
+  \item Réaliser le schéma cinématique 3D avec la même orientation que la perspective.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Pince de bras manipulateur \TLLevel{2}}
+Sous l'action de l'air comprimé, le piston 8 se déplace et fait pivoter les
+doigts 12 et 13 par l'intermédiaire des biellettes 11 et 14.
+
+\begin{center}
+\includegraphics[width=.40\linewidth,height=.24\textheight,keepaspectratio]{images/image192.png}\hfill
+\includegraphics[width=.54\linewidth,height=.27\textheight,keepaspectratio]{images/image195.png}
+\end{center}
+
+\begin{enumerate}
+  \item Identifier les CEC et les liaisons entre piston, biellettes, doigts et bâti.
+  \item Construire le graphe des liaisons.
+  \item Réaliser le schéma cinématique 2D dans le plan de symétrie.
+  \item Vérifier que le modèle traduit l'ouverture symétrique des deux doigts.
+\end{enumerate}
+\end{TLExercise}
+
+% ----------------------------------------------------------------------------
+\subsection{Reconnaissance des liaisons}
+
+\begin{TLExercise}{Contacts réels et modèles cinématiques}
+Pour chacun des contacts illustrés ci-dessous :
+\begin{enumerate}
+  \item préciser la géométrie du contact réel : ponctuel, linéique rectiligne,
+  linéique annulaire, surfacique plan, cylindrique ou sphérique ;
+  \item identifier les degrés de liberté ;
+  \item donner le nom et les caractéristiques géométriques de la liaison usuelle ;
+  \item écrire la forme générale du torseur cinématique et préciser les points où
+  cette forme est valable ;
+  \item tracer les symboles normalisés plan et spatial avec deux couleurs.
+\end{enumerate}
+
+\begin{center}
+\begin{tabular}{ccccc}
+\includegraphics[width=.17\linewidth,height=.12\textheight,keepaspectratio]{images/image207.jpeg}&
+\includegraphics[width=.17\linewidth,height=.12\textheight,keepaspectratio]{images/image208.jpeg}&
+\includegraphics[width=.17\linewidth,height=.12\textheight,keepaspectratio]{images/image209.jpeg}&
+\includegraphics[width=.17\linewidth,height=.12\textheight,keepaspectratio]{images/image210.jpeg}&
+\includegraphics[width=.17\linewidth,height=.12\textheight,keepaspectratio]{images/image211.jpeg}\\[3mm]
+\includegraphics[width=.17\linewidth,height=.12\textheight,keepaspectratio]{images/image212.jpeg}&
+\includegraphics[width=.17\linewidth,height=.12\textheight,keepaspectratio]{images/image213.jpeg}&
+\includegraphics[width=.17\linewidth,height=.12\textheight,keepaspectratio]{images/image214.jpeg}&
+\includegraphics[width=.17\linewidth,height=.12\textheight,keepaspectratio]{images/image39.jpeg}&
+\includegraphics[width=.17\linewidth,height=.12\textheight,keepaspectratio]{images/image38.jpeg}
+\end{tabular}
+\end{center}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.45}
+\begin{tabularx}{\linewidth}{|p{.17\linewidth}|X|p{.15\linewidth}|p{.19\linewidth}|}
+\hline
+\rowcolor{TLTableHeader}\textbf{Contact} & \textbf{Liaison et géométrie} &
+\textbf{Mobilités} & \textbf{Torseur cinématique}\\ \hline
+\rule{0pt}{13mm} & & & \\ \hline
+\rule{0pt}{13mm} & & & \\ \hline
+\rule{0pt}{13mm} & & & \\ \hline
+\rule{0pt}{13mm} & & & \\ \hline
+\end{tabularx}
+\end{center}
+\end{TLExercise}
+
+% ----------------------------------------------------------------------------
+\subsection{Liaisons équivalentes}
+
+\begin{TLExercise}{Associations de liaisons}
+Pour chaque montage, indiquer la liaison de gauche, la liaison de droite et la
+liaison équivalente. Les centres des deux liaisons élémentaires seront notés
+\(A\) et \(B\).
+
+\begin{center}
+\begin{tabular}{cccc}
+\includegraphics[width=.21\linewidth,height=.14\textheight,keepaspectratio]{images/image218.jpeg}&
+\includegraphics[width=.21\linewidth,height=.14\textheight,keepaspectratio]{images/image219.jpeg}&
+\includegraphics[width=.21\linewidth,height=.14\textheight,keepaspectratio]{images/image221.jpeg}&
+\includegraphics[width=.21\linewidth,height=.14\textheight,keepaspectratio]{images/image222.jpeg}\\[3mm]
+\includegraphics[width=.21\linewidth,height=.14\textheight,keepaspectratio]{images/image223.jpeg}&
+\includegraphics[width=.21\linewidth,height=.14\textheight,keepaspectratio]{images/image224.jpeg}&
+\includegraphics[width=.21\linewidth,height=.14\textheight,keepaspectratio]{images/image225.jpeg}&
+\includegraphics[width=.21\linewidth,height=.14\textheight,keepaspectratio]{images/image144.png}
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+  \item Résoudre d'abord intuitivement en comparant les mobilités autorisées.
+  \item Vérifier les associations en parallèle par égalité des torseurs cinématiques.
+  \item Vérifier les associations en série par composition des torseurs.
+  \item Préciser les conditions géométriques nécessaires : axes confondus,
+  parallèles, centres distincts ou confondus.
+\end{enumerate}
+\end{TLExercise}
+
+% ----------------------------------------------------------------------------
+\subsection{Questions de synthèse}
+
+\begin{TLExercise}{Auto-évaluation}
+\begin{enumerate}
+  \item Citer les trois familles de contacts directs entre deux solides.
+  \item Expliquer la différence entre une CEC et une pièce.
+  \item Donner les six mouvements élémentaires possibles entre deux solides.
+  \item Distinguer chaîne ouverte, chaîne fermée et chaîne complexe.
+  \item Expliquer pourquoi les éléments roulants et les ressorts sont exclus des CEC.
+  \item Donner le critère de choix entre une modélisation pivot et sphérique pour
+  un roulement.
+  \item Indiquer les mobilités d'une liaison appui-plan, sphère-plan,
+  cylindre-plan, sphérique et pivot glissant.
+  \item Écrire les torseurs cinématiques d'une pivot, d'une glissière et d'une
+  hélicoïdale d'axe \((O,\vec z)\).
+  \item Décrire la méthode complète d'élaboration d'un schéma cinématique.
+  \item Définir une liaison équivalente et distinguer associations en série et en parallèle.
+\end{enumerate}
+\end{TLExercise}
