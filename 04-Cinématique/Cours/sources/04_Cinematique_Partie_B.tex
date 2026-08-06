@@ -1,0 +1,218 @@
+% ============================================================================
+% COURS 04 — CINÉMATIQUE — PARTIE B
+% Source : 5-Cinematique2022.docx
+% ============================================================================
+
+\section{Mouvements et trajectoires}
+\label{sec:cine-mouvements}
+
+Un mouvement est le déplacement relatif d'un solide observé par rapport
+à un solide de référence au cours du temps. La notation $S/0$ désigne
+le mouvement du solide $S$ par rapport au solide 0.
+
+\begin{TLCineDef}{Trajectoire}
+La trajectoire $\mathcal T_{M\in S/0}$ est le lieu des positions
+successives occupées par le point $M$ appartenant au solide $S$, dans
+le repère lié au solide 0.
+\end{TLCineDef}
+
+Un point de l'espace peut être considéré comme appartenant à un solide
+même si aucune matière n'est présente à cet endroit, par exemple un
+point situé sur l'axe d'un cylindre creux.
+
+\subsection{Mouvement de translation}
+
+Un solide 2 est en translation par rapport à 1 si :
+\[
+\boxed{\vec\Omega_{2/1}=\vec0.}
+\]
+Tous ses points possèdent alors le même vecteur vitesse :
+\[
+\forall A,B\in2,\qquad
+\vec V(A\in2/1)=\vec V(B\in2/1).
+\]
+On distingue :
+\begin{itemize}
+  \item la translation rectiligne : trajectoires rectilignes parallèles ;
+  \item la translation circulaire : trajectoires circulaires de même rayon ;
+  \item la translation curviligne : trajectoires quelconques identiques par translation.
+\end{itemize}
+
+\subsection{Mouvement de rotation autour d'un axe fixe}
+
+Le solide 2 est en rotation autour de l'axe $\Delta=(C,\vec u)$ par
+rapport à 1 si :
+\[
+\left\{\mathcal V_{2/1}\right\}_C
+=\left\{\begin{array}{c}
+\omega\vec u\\\vec0
+\end{array}\right\}_C.
+\]
+Tous les points de l'axe ont une vitesse nulle. Tout point $M$ extérieur
+à l'axe décrit un cercle et :
+\[
+\boxed{\vec V(M\in2/1)=\overrightarrow{MC}\wedge\vec\Omega_{2/1}.}
+\]
+La norme vaut $V=R|\omega|$, où $R$ est la distance du point à l'axe.
+
+\subsection{Mouvement quelconque}
+
+Lorsqu'un mouvement n'est ni une translation ni une rotation autour d'un
+axe fixe, il est qualifié de quelconque. Il peut être analysé comme une
+composition de mouvements simples associés aux liaisons successives.
+
+\section{Vecteur rotation et composition}
+\label{sec:cine-rotation}
+
+Le vecteur rotation $\vec\Omega_{i/j}$ indique :
+\begin{itemize}
+  \item la direction de l'axe instantané de rotation ;
+  \item la vitesse angulaire en $\mathrm{rad\,s^{-1}}$ ;
+  \item le sens positif selon la règle du tire-bouchon.
+\end{itemize}
+
+Pour une rotation paramétrée par $\alpha$ autour de $\vec x_1=\vec x_2$ :
+\[
+\vec\Omega_{2/1}=\dot\alpha\vec x_1.
+\]
+
+La composition des rotations s'écrit :
+\[
+\boxed{\vec\Omega_{n/0}
+=\vec\Omega_{n/n-1}+\cdots+\vec\Omega_{2/1}+\vec\Omega_{1/0}.}
+\]
+
+\begin{TLCineApp}{Machine cinq axes}
+Les solides 1, 4 et 5 sont en translation. Le solide 2 tourne autour de
+$\vec x_2$ avec l'angle $\alpha$, et le solide 3 autour de $\vec z_2$
+avec l'angle $\beta$.
+\[
+\vec\Omega_{3/0}
+=\dot\beta\vec z_2+\dot\alpha\vec x_2.
+\]
+Identifier les bases égales et tracer les deux figures de changement de
+base.
+\end{TLCineApp}
+
+\section{Position, vitesse et accélération}
+\label{sec:cine-pva}
+
+\subsection{Vecteur position}
+
+Le vecteur position de $M$ dans le repère
+$\mathcal R_0=(O_0,\vec x_0,\vec y_0,\vec z_0)$ est :
+\[
+\overrightarrow{O_0M}
+=x(t)\vec x_0+y(t)\vec y_0+z(t)\vec z_0.
+\]
+Selon la géométrie, les coordonnées cylindriques ou sphériques peuvent
+être plus adaptées.
+
+En coordonnées cylindriques :
+\[
+\overrightarrow{OM}=r\vec u+z\vec z,
+\qquad
+\vec u=\cos\theta\vec x+\sin\theta\vec y.
+\]
+En coordonnées sphériques :
+\[
+\overrightarrow{OM}=r\vec n,
+\qquad
+\vec n=\cos\varphi\vec z+\sin\varphi\vec u.
+\]
+
+\subsection{Vecteur vitesse}
+
+Le vecteur vitesse est la dérivée du vecteur position dans le repère de
+référence :
+\[
+\boxed{\vec V(M\in S/0)
+=\left[\frac{\mathrm d\overrightarrow{O_0M}}{\mathrm dt}\right]_0.}
+\]
+Il est tangent à la trajectoire et s'exprime en
+$\mathrm{m\,s^{-1}}$.
+
+Plus généralement, pour un point fixe $Q$ dans le repère 0 :
+\[
+\vec V(M\in S/0)
+=\left[\frac{\mathrm d\overrightarrow{QM}}{\mathrm dt}\right]_0.
+\]
+
+\subsection{Vecteur accélération}
+
+Le vecteur accélération est la dérivée du vecteur vitesse dans le repère
+de référence :
+\[
+\boxed{\vec A(M\in S/0)
+=\left[\frac{\mathrm d\vec V(M\in S/0)}{\mathrm dt}\right]_0.}
+\]
+Il s'exprime en $\mathrm{m\,s^{-2}}$.
+
+\begin{TLCineApp}{Axes de translation d'une machine-outil}
+Pour l'extrémité d'outil $P$ :
+\[
+\overrightarrow{O_0P}
+=x(t)\vec x_0+e\vec y_0+(d-z(t)-f)\vec z_0.
+\]
+On obtient directement :
+\[
+\vec V(P\in5/0)=\dot x\vec x_0-\dot z\vec z_0,
+\]
+\[
+\vec A(P\in5/0)=\ddot x\vec x_0-\ddot z\vec z_0.
+\]
+La vitesse maximale vaut
+$\sqrt{\dot x_{\max}^2+\dot z_{\max}^2}$.
+\end{TLCineApp}
+
+\section{Dérivation vectorielle}
+\label{sec:cine-derivation}
+
+Lorsqu'un vecteur est exprimé dans une base mobile, il ne faut pas le
+projeter systématiquement dans la base fixe avant de dériver. On utilise
+la formule de dérivation vectorielle, dite formule de Boor :
+
+\begin{TLCineDef}{Formule de Boor}
+Pour un vecteur $\vec U$ exprimé dans le repère $i$ et dérivé dans le
+repère $j$ :
+\[
+\boxed{
+\left[\frac{\mathrm d\vec U}{\mathrm dt}\right]_j
+=\left[\frac{\mathrm d\vec U}{\mathrm dt}\right]_i
++\vec\Omega_{i/j}\wedge\vec U.}
+\]
+Si $\vec U$ est un vecteur unitaire fixe dans $i$ :
+\[
+\left[\frac{\mathrm d\vec U}{\mathrm dt}\right]_j
+=\vec\Omega_{i/j}\wedge\vec U.
+\]
+\end{TLCineDef}
+
+Pour un repère tournant autour de $\vec x$ avec l'angle $\alpha$ :
+\[
+\left[\frac{\mathrm d\vec y_2}{\mathrm dt}\right]_0
+=\dot\alpha\vec x_2\wedge\vec y_2
+=\dot\alpha\vec z_2,
+\]
+\[
+\left[\frac{\mathrm d\vec z_2}{\mathrm dt}\right]_0
+=\dot\alpha\vec x_2\wedge\vec z_2
+=-\dot\alpha\vec y_2.
+\]
+
+\begin{TLCineApp}{Point d'une pièce orientable}
+Si
+$\overrightarrow{O_0O_3}=y(t)\vec y_0+a\vec z_0+b\vec x_0+c\vec z_2$,
+alors :
+\[
+\vec V(O_3\in3/0)
+=\dot y\vec y_0-c\dot\alpha\vec y_2.
+\]
+En dérivant à nouveau :
+\[
+\vec A(O_3\in3/0)
+=\ddot y\vec y_0-c\ddot\alpha\vec y_2
+-c\dot\alpha^2\vec z_2.
+\]
+Le dernier terme est une accélération centripète.
+\end{TLCineApp}
