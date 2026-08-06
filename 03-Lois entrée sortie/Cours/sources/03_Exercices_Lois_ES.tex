@@ -1,0 +1,234 @@
+% ============================================================================
+% COURS 03 — EXERCICES DE LOIS ENTRÉE-SORTIE
+% Source : 3-LoiES20222.docx
+% ============================================================================
+
+\section{Exercices — lois entrée-sortie}
+\label{sec:ex-les}
+
+\subsection{Système d'orientation d'antenne}
+
+\textit{Source : Jérôme Letard — niveau 1.}
+
+Un vérin électrique à vis-écrou, de pas $p=2\ \mathrm{mm/tr}$, oriente
+une antenne parabolique. Le paramétrage utilise les points $A$, $B$ et
+$C$, la longueur $AB=l_1$, la distance fixe $AC=l_0$ et les angles
+$\alpha_1$ et $\alpha_2$.
+
+\TLThreeImage[.60\linewidth]{images/image40.png}
+
+\begin{enumerate}
+  \item Identifier le paramètre d'entrée et le paramètre de sortie.
+  \item Écrire la fermeture géométrique du triangle $ABC$.
+  \item Déterminer la loi entrée-sortie reliant la longueur du vérin à l'orientation de l'antenne.
+  \item Pour une variation angulaire imposée, calculer la variation de longueur puis le nombre de tours de la vis.
+  \item En déduire la durée d'alimentation du moteur pour sa vitesse nominale.
+\end{enumerate}
+
+\subsection{Plan horizontal réglable de l'Airbus A340}
+
+\textit{Source : CCP MP 2005 — niveau 2.}
+
+Le plan horizontal réglable est commandé par une vis de manœuvre. Dans
+le modèle simplifié, $O_4H=z$, $O_7H=a$ et :
+\[
+\overrightarrow{O_4O_7}=-a\vec x_b+b\vec z_b.
+\]
+Le PHR pivote d'un angle $\beta$ autour de $O_7$.
+
+\begin{center}
+\TLThreeImage[.43\linewidth]{images/image58.jpeg}\hfill
+\TLThreeImage[.50\linewidth]{images/image66.png}
+\end{center}
+
+\begin{enumerate}
+  \item Proposer une technologie limitant le jeu entre la vis et l'écrou.
+  \item Compléter le modèle cinématique simplifié.
+  \item Dessiner les figures de changement de base.
+  \item Établir la loi $z=f(\beta)$.
+  \item Tracer $\Delta z=z(\beta)-z(0)$ pour $-12^\circ\leq\beta\leq12^\circ$, avec $a=2\ \mathrm m$ et $b=0{,}5\ \mathrm m$.
+  \item Justifier une approximation linéaire $\beta=K_v\Delta z$ et identifier $K_v$.
+  \item Déterminer la longueur utile de la vis pour $-12^\circ\leq\beta\leq4^\circ$.
+\end{enumerate}
+
+\subsection{Échelle pivotante automatique EPAS}
+
+\textit{Source : Centrale-Supélec PSI 2007 — niveau 1.}
+
+Pendant le dressage, un vérin articulé en $B$ et $C$ fait pivoter le
+berceau autour de $A$. On donne :
+\[
+O_0A=a,\quad AC=c,\quad O_0B=b,\quad BC=r(t),
+\]
+avec $a=2\ \mathrm m$, $b=3\ \mathrm m$ et $c=2{,}6\ \mathrm m$.
+
+\TLEPASGeometry
+
+\begin{enumerate}
+  \item Écrire une fermeture géométrique adaptée.
+  \item Établir $r=f(\theta)$.
+  \item Calculer la course minimale entre $\theta=10^\circ$ et $\theta=50^\circ$.
+  \item Vérifier que le sens de variation de $r$ est cohérent avec le mouvement du vérin.
+\end{enumerate}
+
+\subsection{Stabilisateur cardiaque actif Cardiolock}
+
+\textit{Source : Centrale-Supélec TSI 2012 — niveau 3.}
+
+Le mécanisme emploie des pivots élastiques sans jeu et un actionneur
+piézoélectrique. Les petits déplacements permettent les approximations
+$\sin\alpha\simeq\alpha$ et $\cos\alpha\simeq1$.
+
+\begin{center}
+\TLThreeImage[.31\linewidth]{images/image83.png}\hfill
+\TLThreeImage[.31\linewidth]{images/image84.png}\hfill
+\TLThreeImage[.31\linewidth]{images/image85.png}
+\end{center}
+
+\begin{enumerate}
+  \item Écrire la fermeture de la chaîne $0-1-2-3-4-0$.
+  \item Projeter et linéariser les équations reliant $\lambda$, $\alpha$ et $\gamma$.
+  \item Déterminer $\lambda_0$ dans la configuration de repos, puis $x_A=\lambda-\lambda_0$.
+  \item Pour $x_{A\max}=-130\ \mathrm{\mu m}$, calculer $\alpha_{\max}$ et $\gamma_{\max}$.
+  \item Exprimer le déplacement vertical du point $C$, puis celui de l'extrémité $E$.
+  \item Conclure sur la capacité à compenser le déplacement résiduel du cœur.
+\end{enumerate}
+
+\subsection{Compacteur Caterpillar}
+
+\textit{Source : Centrale-Supélec 2004 — niveau 2.}
+
+Deux demi-bâtis sont articulés et orientés par un vérin hydraulique. Le
+cahier des charges impose un angle relatif compris entre $-32^\circ$ et
+$+32^\circ$.
+
+\TLThreeImage[.70\linewidth]{images/image90.png}
+
+\begin{enumerate}
+  \item Identifier les classes d'équivalence cinématique.
+  \item Construire le graphe des liaisons.
+  \item Choisir un paramétrage géométrique complet.
+  \item Écrire la fermeture géométrique et établir la loi entrée-sortie.
+  \item En déduire la course minimale du vérin.
+\end{enumerate}
+
+\subsection{Barrière Sinusmatic}
+
+\textit{Niveau 3.}
+
+Le dispositif transforme la rotation continue du plateau 7 en une
+rotation alternative d'un quart de tour de la barrière 2. Le croisillon
+3 impose une orthogonalité géométrique et un angle constant
+$\gamma=45^\circ$.
+
+\begin{center}
+\TLThreeImage[.44\linewidth]{images/image98.png}\hfill
+\TLThreeImage[.44\linewidth]{images/image100.png}
+\end{center}
+
+\begin{enumerate}
+  \item Identifier les paramètres d'entrée $\alpha$ et de sortie $\beta$.
+  \item Dessiner le graphe des liaisons.
+  \item Représenter les figures de changement de base.
+  \item Traduire l'orthogonalité $\vec y_3\perp\vec x_2$ par un produit scalaire.
+  \item Déterminer la loi entrée-sortie en position.
+  \item Vérifier l'amplitude de rotation et l'irréversibilité du mécanisme.
+\end{enumerate}
+
+\subsection{Mécanisme oscillant}
+
+\TLThreeImage[.66\linewidth]{images/image105.png}
+
+\begin{enumerate}
+  \item Identifier la chaîne fermée et les paramètres de position.
+  \item Écrire la fermeture géométrique.
+  \item Éliminer le paramètre intermédiaire et établir la loi de l'angle de sortie.
+  \item Déterminer les positions extrêmes et l'amplitude d'oscillation.
+\end{enumerate}
+
+\subsection{Mécanisme à came}
+
+\TLThreeImage[.58\linewidth]{images/image106.png}
+
+\begin{enumerate}
+  \item Identifier le mouvement d'entrée et le mouvement de sortie.
+  \item Définir la levée du poussoir en fonction de l'angle de came.
+  \item Déterminer les phases de montée, de maintien et de descente.
+  \item Déduire la vitesse du poussoir par dérivation de la loi de levée.
+\end{enumerate}
+
+\subsection{Bras de robot}
+
+\begin{center}
+\TLThreeImage[.46\linewidth]{images/image107.png}\hfill
+\TLThreeImage[.46\linewidth]{images/image108.png}
+\end{center}
+
+\begin{enumerate}
+  \item Identifier les coordonnées articulaires et opérationnelles.
+  \item Écrire le vecteur position de l'effecteur par Chasles.
+  \item Établir le modèle géométrique direct.
+  \item Rechercher les configurations permettant d'atteindre un point imposé.
+  \item Décrire les singularités et les limites de l'espace de travail.
+\end{enumerate}
+
+\subsection{Pompe oscillante}
+
+\begin{center}
+\TLThreeImage[.31\linewidth]{images/image109.png}\hfill
+\TLThreeImage[.31\linewidth]{images/image110.png}\hfill
+\TLThreeImage[.31\linewidth]{images/image111.png}
+\end{center}
+
+\begin{enumerate}
+  \item Repérer l'excentrique, la bielle et le solide oscillant.
+  \item Écrire la fermeture géométrique.
+  \item Déterminer la loi en position puis la loi en vitesse.
+  \item Identifier la course utile et les positions de point mort.
+\end{enumerate}
+
+\subsection{Banc d'épreuve hydraulique}
+
+\begin{center}
+\TLThreeImage[.22\linewidth]{images/image112.png}\hfill
+\TLThreeImage[.22\linewidth]{images/image113.png}\hfill
+\TLThreeImage[.22\linewidth]{images/image114.png}\hfill
+\TLThreeImage[.22\linewidth]{images/image115.png}
+\end{center}
+
+\begin{enumerate}
+  \item Construire le schéma cinématique à partir du dessin d'ensemble.
+  \item Identifier entrée, sortie et paramètres intermédiaires.
+  \item Établir la loi géométrique du mécanisme.
+  \item Déterminer la course de l'actionneur nécessaire à l'effort d'épreuve.
+\end{enumerate}
+
+\subsection{Agitateur de cellules pancréatiques}
+
+\textit{Source : CCP PSI 2010 — niveau 3.}
+
+La chaîne principale associe un excentrique 1, une bielle 2 et un bras 3.
+On donne :
+\[
+O_1O_2=e,\quad O_2B=b,\quad O_3B=L,
+\quad \overrightarrow{O_3O_1}=c\vec x-d\vec y,
+\quad \overrightarrow{O_3A}=q\vec x_3,
+\]
+avec $q=400\ \mathrm{mm}$.
+
+\TLThreeImage[.64\linewidth]{images/image117.png}
+
+\begin{enumerate}
+  \item Écrire la fermeture géométrique et les deux équations projetées liant $\theta_1$, $\theta_2$ et $\theta_3$.
+  \item Dériver les équations et déterminer la loi entrée-sortie en vitesse.
+  \item Exploiter :
+  \[
+  \frac{\dot\theta_3}{\dot\theta_1}
+  =\frac{e}{L}
+  \frac{L\sin(\theta_1-\theta_3)-c\sin\theta_1-d\cos\theta_1}
+  {e\sin(\theta_1-\theta_3)-d\cos\theta_3-c\sin\theta_3}.
+  \]
+  \item Qualifier la transformation de mouvement et discuter l'homocinétisme.
+  \item Déterminer la loi en position et le domaine de variation de $\theta_3$.
+  \item Exprimer la projection verticale de $\overrightarrow{O_3A}$ et vérifier la course annoncée de $100\ \mathrm{mm}$.
+\end{enumerate}
