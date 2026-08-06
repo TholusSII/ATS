@@ -1,0 +1,160 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{TLIngenierieSysteme}[2026/08/06 Figures et boîtes du cours 1]
+
+\RequirePackage{xparse}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{tikz}
+\RequirePackage{amsmath}
+\usetikzlibrary{arrows.meta,calc,positioning,fit,shapes.geometric}
+
+\providecolor{TLCoverBlue}{RGB}{0,82,155}
+\definecolor{ISGreen}{RGB}{47,132,91}
+\definecolor{ISOrange}{RGB}{218,112,24}
+\definecolor{ISRed}{RGB}{178,54,54}
+\definecolor{ISBlueBack}{RGB}{238,245,251}
+\definecolor{ISGreenBack}{RGB}{237,248,242}
+\definecolor{ISOrangeBack}{RGB}{255,246,232}
+\definecolor{ISRedBack}{RGB}{253,239,239}
+
+\newtcolorbox{ISdefinition}[1][]{
+ enhanced,breakable,colback=ISBlueBack,colframe=TLCoverBlue,boxrule=.8pt,arc=1.5mm,
+ left=4mm,right=4mm,top=3mm,bottom=3mm,title={Définition},fonttitle=\sffamily\bfseries,
+ colbacktitle=TLCoverBlue,coltitle=white,attach boxed title to top left={xshift=4mm,yshift*=-\tcboxedtitleheight/2},
+ boxed title style={boxrule=0pt,arc=1.5mm},before skip=8pt,after skip=8pt,#1}
+
+\newtcolorbox{ISmethode}[1][]{
+ enhanced,breakable,colback=ISGreenBack,colframe=ISGreen,boxrule=.8pt,arc=1.5mm,
+ left=4mm,right=4mm,top=3mm,bottom=3mm,title={Méthode},fonttitle=\sffamily\bfseries,
+ colbacktitle=ISGreen,coltitle=white,attach boxed title to top left={xshift=4mm,yshift*=-\tcboxedtitleheight/2},
+ boxed title style={boxrule=0pt,arc=1.5mm},before skip=8pt,after skip=8pt,#1}
+
+\newtcolorbox{ISattention}[1][]{
+ enhanced,breakable,colback=ISRedBack,colframe=ISRed,boxrule=.8pt,arc=1.5mm,
+ left=4mm,right=4mm,top=3mm,bottom=3mm,title={Point de vigilance},fonttitle=\sffamily\bfseries,
+ colbacktitle=ISRed,coltitle=white,attach boxed title to top left={xshift=4mm,yshift*=-\tcboxedtitleheight/2},
+ boxed title style={boxrule=0pt,arc=1.5mm},before skip=8pt,after skip=8pt,#1}
+
+\newtcolorbox{ISapplication}[1][]{
+ enhanced,breakable,colback=ISOrangeBack,colframe=ISOrange,boxrule=.8pt,arc=1.5mm,
+ left=4mm,right=4mm,top=3mm,bottom=3mm,title={Application},fonttitle=\sffamily\bfseries,
+ colbacktitle=ISOrange,coltitle=white,attach boxed title to top left={xshift=4mm,yshift*=-\tcboxedtitleheight/2},
+ boxed title style={boxrule=0pt,arc=1.5mm},before skip=8pt,after skip=8pt,#1}
+
+\tikzset{
+ ISbloc/.style={draw,rounded corners,fill=ISBlueBack,minimum width=30mm,minimum height=10mm,align=center,font=\small},
+ ISfonction/.style={draw,rounded corners,fill=ISGreenBack,minimum width=27mm,minimum height=10mm,align=center,font=\small},
+ ISexigence/.style={draw,rounded corners,fill=ISOrangeBack,minimum width=37mm,minimum height=13mm,align=center,font=\small},
+ ISlink/.style={->,thick,>=Latex}
+}
+
+\NewDocumentCommand{\ISSystemeBoiteNoire}{}{%
+\begin{center}
+\begin{tikzpicture}[>=Latex,font=\small]
+  \node[ISbloc,minimum width=55mm,minimum height=25mm] (sys) {\textbf{Système}\\transformer la matière d'œuvre};
+  \draw[ISlink] ($(sys.west)+(-2.3,0.45)$)--node[above]{matière d'œuvre entrante}(sys.west |- {0,0.45});
+  \draw[ISlink] (sys.east |- {0,0.45})--node[above]{matière d'œuvre sortante}($(sys.east)+(2.3,0.45)$);
+  \draw[ISlink] ($(sys.west)+(-2.3,-0.65)$)--node[below]{énergie, information}(sys.west |- {0,-0.65});
+  \draw[ISlink] (sys.east |- {0,-0.65})--node[below]{pertes, informations}($(sys.east)+(2.3,-0.65)$);
+\end{tikzpicture}
+\end{center}}
+
+\NewDocumentCommand{\ISTriangleSystemes}{}{%
+\begin{center}
+\begin{tikzpicture}[>=Latex,font=\small]
+  \node[ISbloc] (souh) at (0,2.5) {Système souhaité\\exigences};
+  \node[ISbloc] (sim) at (-3,-.2) {Système simulé\\modèle};
+  \node[ISbloc] (reel) at (3,-.2) {Système réel\\mesures};
+  \draw[<->,thick] (souh)--node[left]{écart 1}(sim);
+  \draw[<->,thick] (sim)--node[below]{écart 2}(reel);
+  \draw[<->,thick] (reel)--node[right]{écart 3}(souh);
+\end{tikzpicture}
+\end{center}}
+
+\NewDocumentCommand{\ISCycleEnV}{}{%
+\begin{center}
+\begin{tikzpicture}[>=Latex,font=\scriptsize,x=1.25cm,y=.9cm]
+  \node[ISbloc] (bes) at (0,4) {Besoin\\parties prenantes};
+  \node[ISbloc] (req) at (1,3) {Exigences\\système};
+  \node[ISbloc] (arch) at (2,2) {Architecture\\fonctionnelle};
+  \node[ISbloc] (conc) at (3,1) {Conception\\détaillée};
+  \node[ISbloc] (real) at (4,0) {Réalisation};
+  \node[ISbloc] (test) at (5,1) {Tests\\unitaires};
+  \node[ISbloc] (int) at (6,2) {Intégration\\et vérification};
+  \node[ISbloc] (val) at (7,3) {Validation\\système};
+  \node[ISbloc] (serv) at (8,4) {Mise en service\\et exploitation};
+  \draw[ISlink] (bes)--(req)--(arch)--(conc)--(real)--(test)--(int)--(val)--(serv);
+  \draw[dashed,->] (conc)--node[above,sloped]{vérifier}(test);
+  \draw[dashed,->] (arch)--node[above,sloped]{vérifier}(int);
+  \draw[dashed,->] (req)--node[above,sloped]{valider}(val);
+  \draw[dashed,->] (bes)--node[above,sloped]{satisfaire}(serv);
+\end{tikzpicture}
+\end{center}}
+
+\NewDocumentCommand{\ISDiagrammeExigences}{}{%
+\begin{center}
+\begin{tikzpicture}[>=Latex,font=\scriptsize,node distance=10mm and 15mm]
+  \node[ISexigence] (r0) {\textbf{REQ-0}\\Transporter une personne\\en sécurité};
+  \node[ISexigence,below left=of r0] (r1) {\textbf{REQ-1}\\Masse transportée\\$\geq100$ kg};
+  \node[ISexigence,below=of r0] (r2) {\textbf{REQ-2}\\Vitesse\\$\leq1{,}5$ m/s};
+  \node[ISexigence,below right=of r0] (r3) {\textbf{REQ-3}\\Arrêt d'urgence\\$<0{,}5$ s};
+  \draw[->,thick] (r1)--node[above,sloped]{«deriveReqt»}(r0);
+  \draw[->,thick] (r2)--node[right]{«deriveReqt»}(r0);
+  \draw[->,thick] (r3)--node[above,sloped]{«deriveReqt»}(r0);
+\end{tikzpicture}
+\end{center}}
+
+\NewDocumentCommand{\ISBDDIBD}{}{%
+\begin{center}
+\begin{minipage}[t]{.48\linewidth}
+\centering\textbf{BDD : composition}\par\medskip
+\begin{tikzpicture}[font=\scriptsize,node distance=7mm]
+  \node[ISbloc] (s) {Système};
+  \node[ISbloc,below left=of s] (pc) {Partie\\commande};
+  \node[ISbloc,below right=of s] (po) {Partie\\opérative};
+  \draw[thick] (s)--(pc);\draw[thick] (s)--(po);
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{.48\linewidth}
+\centering\textbf{IBD : échanges internes}\par\medskip
+\begin{tikzpicture}[font=\scriptsize,node distance=11mm]
+  \node[ISbloc] (c) {Commande};
+  \node[ISbloc,right=of c] (a) {Actionneur};
+  \node[ISbloc,below=of a] (cap) {Capteur};
+  \draw[ISlink] (c)--node[above]{ordre}(a);
+  \draw[ISlink] (a)--node[right]{grandeur}(cap);
+  \draw[ISlink] (cap)--node[below,sloped]{mesure}(c);
+\end{tikzpicture}
+\end{minipage}
+\end{center}}
+
+\NewDocumentCommand{\ISChaineFonctionnelle}{}{%
+\begin{center}
+\begin{tikzpicture}[>=Latex,font=\scriptsize,node distance=5mm]
+  \node[ISfonction] (acq) {Acquérir};
+  \node[ISfonction,right=of acq] (trait) {Traiter};
+  \node[ISfonction,right=of trait] (comm) {Communiquer};
+  \node[ISfonction,below=12mm of acq] (alim) {Alimenter};
+  \node[ISfonction,right=of alim] (dist) {Distribuer};
+  \node[ISfonction,right=of dist] (conv) {Convertir};
+  \node[ISfonction,right=of conv] (trans) {Transmettre};
+  \node[ISfonction,right=of trans] (agir) {Agir};
+  \draw[ISlink] (acq)--(trait)--(comm);
+  \draw[ISlink] (alim)--(dist)--(conv)--(trans)--(agir);
+  \draw[ISlink] (trait.south)--(dist.north);
+  \node[left=3mm of acq,font=\bfseries] {Information};
+  \node[left=3mm of alim,font=\bfseries] {Énergie};
+\end{tikzpicture}
+\end{center}}
+
+\NewDocumentCommand{\ISContexte}{}{%
+\begin{center}
+\begin{tikzpicture}[>=Latex,font=\small]
+  \node[ISbloc,minimum size=25mm] (sys) {Système\\étudié};
+  \foreach \a/\nom in {90/Utilisateur,18/Énergie,-54/Environnement,-126/Maintenance,162/Réglementation}{
+    \node[draw,ellipse,fill=white] (n\a) at (\a:3.2) {\nom};
+    \draw[<->,thick] (sys)--(n\a);
+  }
+\end{tikzpicture}
+\end{center}}
+
+\endinput
