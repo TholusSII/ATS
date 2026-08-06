@@ -1,0 +1,229 @@
+% ============================================================================
+% COURS 03 — EXERCICES DE TRANSMETTEURS
+% Source : 4-ModelisationTransmetteurs2022.docx
+% ============================================================================
+
+\section{Exercices — modélisation des transmetteurs}
+\label{sec:ex-trans}
+
+\subsection{Réducteurs épicycloïdaux ATV et Pellenc}
+
+\textit{Niveau 2.}
+
+Deux réducteurs compacts sont étudiés à partir de leurs schémas
+cinématiques.
+
+\begin{center}
+\TLFourImage[.45\linewidth]{image81.png}\hfill
+\TLFourImage[.45\linewidth]{image82.png}
+\end{center}
+
+Pour le réducteur ATV :
+\[
+Z_1=166,\quad Z_2=160,\quad Z_{2'}=164,\quad Z_3=170.
+\]
+Pour le sécateur Pellenc :
+\[
+Z_1=19,\quad Z_2=19,\quad Z_3=57.
+\]
+
+\begin{enumerate}
+  \item Identifier les planétaires, le porte-satellite et les satellites.
+  \item Déterminer la raison de base $\lambda$ de chaque train.
+  \item Écrire la formule de Willis.
+  \item Introduire l'élément bloqué et calculer le rapport de réduction.
+  \item Vérifier que le résultat correspond à un fort rapport dans un encombrement réduit.
+\end{enumerate}
+
+\subsection{Train d'engrenages simple}
+
+\textit{Niveau 1.}
+
+Un train d'engrenages à axes parallèles comporte :
+\[
+Z_1=65,\ Z_2=32,\ Z_3=24,\ Z_{3'}=48,\ Z_4=38,
+\]
+\[
+Z_{4'}=82,\ Z_5=26,\ Z_{5'}=54,\ Z_6=42,\ Z_7=30.
+\]
+
+\TLFourImage[.72\linewidth]{image83.png}
+
+\begin{enumerate}
+  \item Indiquer le sens de rotation de chaque roue.
+  \item Lister les roues menantes et les roues menées.
+  \item Donner l'expression du rapport global.
+  \item Faire l'application numérique et conclure : réducteur ou multiplicateur.
+  \item Identifier les roues folles et expliquer leur effet sur le rapport et le signe.
+\end{enumerate}
+
+\subsection{Monte-charge DEMAG}
+
+\textit{Niveau 2.}
+
+Un moteur tournant à $1500\ \mathrm{tr\,min^{-1}}$ entraîne un tambour
+par un réducteur. Les roues sont caractérisées par :
+
+\begin{center}
+\small
+\begin{tabular}{c|cccccc}
+Repère & 6 & 9a & 9b & 11a & 11b & 16\\ \hline
+Module & 1 & 1 & 1 & 1 & 1,25 & 1,25\\
+Dents & 16 & 46 & 19 & 59 & 17 & 85
+\end{tabular}
+\end{center}
+
+\begin{center}
+\TLFourImage[.42\linewidth]{image85.png}\hfill
+\TLFourImage[.50\linewidth]{image90.jpeg}
+\end{center}
+
+\begin{enumerate}
+  \item Identifier et colorier les classes d'équivalence cinématique.
+  \item Dessiner le schéma cinématique dans le plan de la coupe C--C.
+  \item Établir le rapport de réduction du train simple puis le calculer.
+  \item Déterminer la vitesse du tambour et la vitesse de levage.
+  \item Une vis sans fin à quatre filets doit fournir le même rapport. Déterminer le nombre de dents de la roue associée.
+\end{enumerate}
+
+\subsection{Portail automatisé}
+
+\textit{Niveau 2.}
+
+Le moteur 21 tourne à $3000\ \mathrm{tr\,min^{-1}}$ et entraîne le bras
+de commande par quatre engrènements : 19--5, 3--22, 23--17 et 16--11.
+Les modules sont respectivement $0{,}75$, $0{,}75$, $1$ et $1{,}5$.
+
+\begin{center}
+\TLFourImage[.31\linewidth]{image91.png}\hfill
+\TLFourImage[.31\linewidth]{image93.png}\hfill
+\TLFourImage[.31\linewidth]{image94.jpeg}
+\end{center}
+
+\begin{enumerate}
+  \item Déterminer le rapport global en fonction des diamètres primitifs.
+  \item Remplacer les diamètres par les nombres de dents lorsque les modules sont identiques dans un engrènement.
+  \item Calculer la vitesse de l'arbre 9.
+  \item En déduire le temps nécessaire pour parcourir $90^\circ$.
+  \item Conclure sur le respect du critère de temps d'ouverture.
+\end{enumerate}
+
+\subsection{Roue d'engin à deux trains épicycloïdaux}
+
+\textit{Niveau 4.}
+
+La pièce 7 est liée au châssis, l'arbre 1 est entraîné par un moteur
+hydraulique et la roue est fixée sur la pièce 12.
+
+\begin{center}
+\TLFourImage[.43\linewidth]{image97.jpeg}\hfill
+\TLFourImage[.43\linewidth]{image98.jpeg}
+\end{center}
+
+Données :
+\begin{itemize}
+  \item train 1 : $Z_1=21$, $Z_2=51$, $Z_{12a}=123$ ;
+  \item train 2 : $Z_4=23$, $Z_5=34$, $Z_{12b}=91$.
+\end{itemize}
+
+\begin{enumerate}
+  \item Établir la relation de Willis du premier train entre $\omega_{1/7}$, $\omega_{4/7}$ et $\omega_{12/7}$.
+  \item Établir la relation du second train entre $\omega_{4/7}$ et $\omega_{12/7}$.
+  \item Éliminer $\omega_{4/7}$ et déterminer $\omega_{12/7}/\omega_{1/7}$.
+  \item Vérifier le sens de rotation de la roue et l'ordre de grandeur de la réduction.
+\end{enumerate}
+
+\subsection{Poulie REDEX}
+
+\textit{Niveau 3.}
+
+\TLFourImage[.66\linewidth]{image99.png}
+
+\begin{enumerate}
+  \item Repérer les différents étages du réducteur.
+  \item Identifier les roues solidaires et les contacts intérieurs ou extérieurs.
+  \item Déterminer le rapport $\omega_{31/0}/\omega_{5/0}$.
+  \item Vérifier la cohérence du signe et du caractère réducteur.
+\end{enumerate}
+
+\subsection{Robot ERICC}
+
+\textit{Niveau 2.}
+
+La poulie motrice 18 est liée à la sortie du moto-réducteur. La poulie
+23 est fixe par rapport au bâti ; le socle chaise 10 tourne donc autour
+de l'axe de lacet.
+
+\begin{center}
+\TLFourImage[.31\linewidth]{image100.png}\hfill
+\TLFourImage[.31\linewidth]{image101.jpeg}\hfill
+\TLFourImage[.31\linewidth]{image102.png}
+\end{center}
+
+\begin{enumerate}
+  \item Écrire la condition de roulement sans glissement de la courroie par rapport au solide 10.
+  \item Déterminer $\omega_{23/10}/\omega_{18/10}$ en fonction des nombres de dents.
+  \item Utiliser la composition des vitesses avec $\omega_{23/0}=0$.
+  \item En déduire la vitesse de lacet du robot lorsque le moto-réducteur tourne à $50\ \mathrm{tr\,min^{-1}}$.
+\end{enumerate}
+
+\subsection{Dessileuse-pailleuse-distributrice}
+
+\textit{Niveau 2.}
+
+La boîte de vitesses réduit la fréquence de rotation afin d'augmenter le
+couple transmis à la turbine de distribution d'ensilage.
+
+\begin{center}
+\TLFourImage[.46\linewidth]{image103.jpeg}\hfill
+\TLFourImage[.46\linewidth]{image104.jpeg}
+\end{center}
+
+\begin{enumerate}
+  \item Expliquer la solution constructive de sélection de la petite vitesse.
+  \item Construire le schéma cinématique minimal dans cette configuration.
+  \item Décrire le guidage en rotation de l'arbre 7 et les arrêts axiaux.
+  \item Calculer le rapport $\omega_s/\omega_e$.
+  \item Qualifier la transmission et discuter son rendement.
+\end{enumerate}
+
+\subsection{Coffre motorisé de voiture}
+
+\textit{Niveau 2.}
+
+Un moteur de $150\ \mathrm W$ tournant à $3300\ \mathrm{tr\,min^{-1}}$
+entraîne le hayon par un réducteur puis un mécanisme à quatre barres. La
+manivelle 4 doit parcourir $68{,}4^\circ$ ; le temps d'ouverture imposé
+est compris entre $3$ et $5\ \mathrm s$.
+
+\begin{center}
+\TLFourImage[.30\linewidth]{image105.png}\hfill
+\TLFourImage[.30\linewidth]{image106.png}\hfill
+\TLFourImage[.34\linewidth]{image108.png}
+\end{center}
+
+\begin{enumerate}
+  \item Identifier l'étage roue-vis sans fin et les engrenages du réducteur.
+  \item Déterminer $i=\omega_{4/0}/\omega_{2/0}$.
+  \item Calculer la vitesse de la manivelle 4 puis le temps d'ouverture.
+  \item Conclure sur le cahier des charges.
+  \item Discuter l'intérêt de l'irréversibilité lorsque le moteur n'est plus alimenté.
+\end{enumerate}
+
+\subsection{Objectif photographique et résolution des codeurs}
+
+L'objectif comporte un codeur absolu linéaire 4 bits et un codeur
+incrémental monovoie délivrant 30 impulsions par tour de moteur.
+
+\begin{center}
+\TLFourImage[.29\linewidth]{image8.png}\hfill
+\TLFourImage[.29\linewidth]{image55.png}\hfill
+\TLFourImage[.36\linewidth]{image56.png}
+\end{center}
+
+\begin{enumerate}
+  \item Déterminer la relation entre le déplacement $d_l$ de la lentille et l'angle $\theta_{rc}$ du codeur incrémental.
+  \item En déduire le déplacement correspondant à une impulsion sur un front montant.
+  \item Comparer la résolution obtenue à celle du codeur absolu 4 bits sur la course totale.
+  \item Identifier les avantages respectifs des deux technologies pour la prise d'origine et la précision.
+\end{enumerate}
