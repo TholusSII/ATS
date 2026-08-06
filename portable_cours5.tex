@@ -1,0 +1,39 @@
+\documentclass[10pt,a4paper,openany]{book}
+\makeatletter
+\def\input@path{{Style/}}
+\makeatother
+\usepackage{TLPortableCours}
+
+\begin{document}
+\TLPortableTitlePage{5}{Introduction et modélisation des systèmes asservis}{Boucles, performances, modèles temporels et fréquentiels}{Version propre et modulaire issue des cours originaux}
+\tableofcontents
+\clearpage
+\chapter{Introduction et modélisation des systèmes asservis}
+\markboth{Systèmes asservis}{Systèmes asservis}
+
+\begin{savoirs}
+\begin{itemize}
+  \item structure d'un système automatisé en boucle ouverte ou fermée ;
+  \item critères de stabilité, rapidité, précision et dépassement ;
+  \item transformée de Laplace et fonction de transfert ;
+  \item modèles canoniques du premier et du second ordre ;
+  \item FTBO, FTBF, schémas-blocs, perturbations et réponse fréquentielle.
+\end{itemize}
+\end{savoirs}
+
+\begin{savoirfaire}
+\begin{itemize}
+  \item établir une fonction de transfert à partir d'équations physiques ;
+  \item réduire un schéma-blocs et calculer une FTBF ;
+  \item identifier un modèle à partir d'une réponse temporelle ;
+  \item déterminer erreur statique, temps de réponse et dépassement ;
+  \item tracer et exploiter un diagramme de Bode.
+\end{itemize}
+\end{savoirfaire}
+
+\input{"05-Modélisation Systèmes Asservis/Cours/sources/05_SA_Propre_A_Introduction.tex"}
+\input{"05-Modélisation Systèmes Asservis/Cours/sources/05_SA_Propre_B_Modelisation.tex"}
+\input{"05-Modélisation Systèmes Asservis/Cours/sources/05_SA_Propre_C_Blocs_Perturbations.tex"}
+\input{"05-Modélisation Systèmes Asservis/Cours/sources/05_SA_Propre_D_Frequentiel.tex"}
+\input{"05-Modélisation Systèmes Asservis/Cours/sources/05_SA_Propre_Exercices.tex"}
+\end{document}
