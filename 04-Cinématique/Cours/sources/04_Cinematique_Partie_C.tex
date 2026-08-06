@@ -1,0 +1,235 @@
+% ============================================================================
+% COURS 04 — CINÉMATIQUE — PARTIE C
+% Source : 5-Cinematique2022.docx
+% ============================================================================
+
+\section{Composition des mouvements}
+\label{sec:cine-composition}
+
+\subsection{Composition des vecteurs vitesse}
+
+Pour un point $P$ appartenant au solide 2, lui-même en mouvement par
+rapport au solide 1, en mouvement par rapport à 0 :
+\[
+\boxed{
+\vec V(P\in2/0)
+=\vec V(P\in2/1)+\vec V(P\in1/0).}
+\]
+Le premier terme est la \textbf{vitesse relative}; le second est la
+\textbf{vitesse d'entraînement}, c'est-à-dire la vitesse du point $P$
+considéré comme fixé au solide 1.
+
+Pour $n$ solides successifs :
+\[
+\vec V(P\in n/0)
+=\vec V(P\in n/n-1)+\cdots+\vec V(P\in1/0).
+\]
+Cette écriture est valable au même point géométrique $P$.
+
+\subsection{Composition des torseurs cinématiques}
+
+\[
+\boxed{
+\left\{\mathcal V_{n/0}\right\}_P
+=\left\{\mathcal V_{n/n-1}\right\}_P+
+\cdots+
+\left\{\mathcal V_{1/0}\right\}_P.}
+\]
+Tous les torseurs doivent impérativement être exprimés au même point et
+dans une base commune avant addition.
+
+\begin{TLCineMethod}{Déterminer une vitesse par composition}
+\begin{enumerate}
+  \item Choisir une chaîne de solides reliant le solide étudié au bâti.
+  \item Écrire la composition au point demandé.
+  \item Pour chaque mouvement simple, déplacer le torseur vers ce point.
+  \item Additionner les vecteurs rotation et les vecteurs vitesse.
+  \item Laisser si possible le résultat dans les bases naturelles des mouvements.
+  \item Vérifier les unités et la direction sur une position particulière.
+\end{enumerate}
+\end{TLCineMethod}
+
+\subsection{Champ des vecteurs vitesse}
+
+Pour deux points $A$ et $B$ d'un même solide 1 :
+\[
+\boxed{
+\vec V(B\in1/0)
+=\vec V(A\in1/0)+\overrightarrow{BA}\wedge\vec\Omega_{1/0}.}
+\]
+Cette relation ne doit jamais être utilisée entre deux points appartenant
+à des solides différents.
+
+\begin{TLCineApp}{Rotation autour d'un axe}
+Si $A$ appartient à l'axe de rotation, alors
+$\vec V(A\in1/0)=\vec0$ et :
+\[
+\vec V(B\in1/0)=\overrightarrow{BA}\wedge\vec\Omega_{1/0}.
+\]
+Le vecteur est tangent au cercle décrit par $B$, et sa norme est
+$AB\,\Omega$ lorsque $AB$ est perpendiculaire à l'axe.
+\end{TLCineApp}
+
+\subsection{Accélération d'un point d'un solide}
+
+La méthode recommandée consiste à dériver le vecteur vitesse dans le
+repère de référence. Pour deux points d'un même solide :
+\[
+\vec A(B\in1/0)=\vec A(A\in1/0)
++\overrightarrow{BA}\wedge\dot{\vec\Omega}_{1/0}
++(\vec\Omega_{1/0}\wedge\overrightarrow{BA})
+\wedge\vec\Omega_{1/0}.
+\]
+Le deuxième terme est tangentiel et le troisième centripète.
+
+Pour un point appartenant à un solide mobile 2 dans un repère mobile 1 :
+\[
+\boxed{
+\vec A(P\in2/0)=\vec A(P\in2/1)+\vec A(P\in1/0)
++2\vec\Omega_{1/0}\wedge\vec V(P\in2/1).}
+\]
+Le dernier terme est l'accélération de Coriolis.
+
+\section{Fermeture cinématique}
+\label{sec:cine-fermeture}
+
+Dans une boucle cinématique fermée :
+\[
+\boxed{
+\left\{\mathcal V_{1/0}\right\}
++\left\{\mathcal V_{2/1}\right\}
++\cdots+
+\left\{\mathcal V_{0/n}\right\}
+=\left\{0\right\}.}
+\]
+Après réduction au même point, les six composantes fournissent un
+système d'équations. Cette fermeture permet d'obtenir une loi
+entrée-sortie en vitesse, d'étudier les mobilités et d'évaluer le degré
+d'hyperstatisme.
+
+\begin{TLCineApp}{Vérin électrique}
+Une vis et un écrou sont liés par une liaison hélicoïdale et guidés par
+une pivot et une glissière par rapport au bâti. Écrire la fermeture :
+\[
+\left\{\mathcal V_{2/0}\right\}
+-\left\{\mathcal V_{1/0}\right\}
+-\left\{\mathcal V_{2/1}\right\}=\{0\}.
+\]
+Projeter les composantes utiles pour retrouver
+$v=(p/2\pi)\omega$ et identifier les équations supplémentaires
+traduisant les contraintes internes.
+\end{TLCineApp}
+
+\section{Cinématique du contact ponctuel}
+\label{sec:cine-contact}
+
+Lorsque deux solides 1 et 2 sont en contact au point géométrique $I$, il
+faut distinguer :
+\begin{itemize}
+  \item le point matériel $I_1$ appartenant au solide 1 ;
+  \item le point matériel $I_2$ appartenant au solide 2 ;
+  \item le point géométrique de contact $I$.
+\end{itemize}
+
+La vitesse de glissement de 2 par rapport à 1 est :
+\[
+\boxed{
+\vec V(I\in2/1)
+=\vec V(I\in2/0)-\vec V(I\in1/0).}
+\]
+Elle appartient au plan tangent commun aux deux solides.
+
+\begin{TLCineDef}{Roulement sans glissement}
+Il y a roulement sans glissement au point $I$ lorsque :
+\[
+\boxed{\vec V(I\in2/1)=\vec0.}
+\]
+Le point $I$ est alors un centre instantané de rotation pour un
+mouvement plan. Cette condition est utilisée pour les engrenages,
+roulements, roues sur le sol, poulies-courroies et pignons-chaînes.
+\end{TLCineDef}
+
+\begin{TLCineApp}{Roue sur un plateau}
+Une roue 2 entraînée par rapport au bras 3 roule sur un plateau 1,
+lui-même en rotation par rapport au bâti 0. Écrire :
+\[
+\vec V(I\in2/1)=\vec V(I\in2/0)-\vec V(I\in1/0)=\vec0.
+\]
+Décomposer ensuite chacune des vitesses par composition pour relier les
+trois vitesses de rotation.
+\end{TLCineApp}
+
+\section{Loi de vitesse en trapèze}
+\label{sec:cine-trapeze}
+
+Un actionneur ne peut pas passer instantanément d'une vitesse nulle à
+une vitesse non nulle. Une loi simple de commande comporte :
+\begin{enumerate}
+  \item une phase d'accélération constante ;
+  \item une phase à vitesse constante ;
+  \item une phase de décélération constante.
+\end{enumerate}
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,x=1.35cm,y=1.2cm]
+  \draw[->] (0,0)--(7.2,0) node[right]{$t$};
+  \draw[->] (0,0)--(0,3.2) node[above]{$v(t)$};
+  \draw[very thick,TLCineBlue]
+    (0,0)--(1.6,2.5)--(4.8,2.5)--(6.5,0);
+  \draw[dashed] (1.6,0)--(1.6,2.5);
+  \draw[dashed] (4.8,0)--(4.8,2.5);
+  \draw[dashed] (6.5,0)--(6.5,2.5);
+  \node[below] at (1.6,0) {$t_1$};
+  \node[below] at (4.8,0) {$t_2$};
+  \node[below] at (6.5,0) {$t_3$};
+  \node[left] at (0,2.5) {$V$};
+\end{tikzpicture}
+\end{center}
+
+Les relations fondamentales sont :
+\[
+v(t)=\dot x(t),
+\qquad
+a(t)=\dot v(t)=\ddot x(t),
+\]
+\[
+\boxed{x(t)-x(0)=\int_0^t v(T)\,\mathrm dT.}
+\]
+Le déplacement est donc l'aire algébrique sous la courbe de vitesse.
+L'accélération est la pente de cette courbe.
+
+Pour une vitesse maximale $V$, avec accélération de durée $t_a$, palier
+de durée $t_p$ et décélération de durée $t_d$, le déplacement total est :
+\[
+\boxed{
+\Delta x=\frac12Vt_a+Vt_p+\frac12Vt_d.}
+\]
+Si $t_a=t_d$ :
+\[
+\Delta x=V(t_p+t_a).
+\]
+
+\begin{TLCineMethod}{Exploiter un profil de vitesse}
+\begin{enumerate}
+  \item Lire les instants de changement de phase et les vitesses.
+  \item Calculer les accélérations avec $a=\Delta v/\Delta t$.
+  \item Déterminer les déplacements par les aires : triangles, rectangles et trapèzes.
+  \item Construire la courbe de position, continue et de pente égale à la vitesse.
+  \item Vérifier la continuité de la vitesse et de la position aux changements de phase.
+\end{enumerate}
+\end{TLCineMethod}
+
+\begin{TLCineApp}{Hayon électrique}
+Le hayon atteint $20^\circ\,\mathrm{s^{-1}}$ en $0{,}5\ \mathrm s$,
+conserve cette vitesse puis décélère symétriquement. Déterminer la durée
+du palier pour une ouverture totale de $90^\circ$, puis tracer
+$\gamma(t)$ et $\ddot\gamma(t)$.
+\end{TLCineApp}
+
+\section{Sources}
+\label{sec:cine-sources}
+
+Ce cours reprend le document original, les systèmes pédagogiques
+associés et des ressources de collègues de l'UPSTI. Les exercices sont
+issus de sujets de concours ou d'activités explicitement mentionnés dans
+le document source.
