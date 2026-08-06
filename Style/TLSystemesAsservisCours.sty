@@ -1,0 +1,127 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{TLSystemesAsservisCours}[2026/08/06 Présentation du cours 5]
+
+\RequirePackage{xparse}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{tikz}
+\RequirePackage{pgfplots}
+\RequirePackage{amsmath}
+\usetikzlibrary{arrows.meta,calc,positioning}
+\pgfplotsset{compat=1.18}
+
+\providecolor{TLCoverBlue}{RGB}{0,82,155}
+\definecolor{SAOrange}{RGB}{218,112,24}
+\definecolor{SAGreen}{RGB}{48,132,91}
+\definecolor{SARed}{RGB}{177,55,55}
+\definecolor{SABlueBack}{RGB}{238,245,251}
+\definecolor{SAOrangeBack}{RGB}{255,246,232}
+\definecolor{SAGreenBack}{RGB}{237,248,242}
+\definecolor{SARedBack}{RGB}{253,239,239}
+
+\newtcolorbox{SAdefinition}[1][]{
+  enhanced,breakable,colback=SABlueBack,colframe=TLCoverBlue,
+  boxrule=.8pt,arc=1.5mm,left=4mm,right=4mm,top=3mm,bottom=3mm,
+  title={Définition},fonttitle=\sffamily\bfseries,coltitle=white,
+  colbacktitle=TLCoverBlue,attach boxed title to top left={xshift=4mm,yshift*=-\tcboxedtitleheight/2},
+  boxed title style={boxrule=0pt,arc=1.5mm},before skip=8pt,after skip=8pt,#1}
+
+\newtcolorbox{SAmethode}[1][]{
+  enhanced,breakable,colback=SAGreenBack,colframe=SAGreen,
+  boxrule=.8pt,arc=1.5mm,left=4mm,right=4mm,top=3mm,bottom=3mm,
+  title={Méthode},fonttitle=\sffamily\bfseries,coltitle=white,
+  colbacktitle=SAGreen,attach boxed title to top left={xshift=4mm,yshift*=-\tcboxedtitleheight/2},
+  boxed title style={boxrule=0pt,arc=1.5mm},before skip=8pt,after skip=8pt,#1}
+
+\newtcolorbox{SAattention}[1][]{
+  enhanced,breakable,colback=SARedBack,colframe=SARed,
+  boxrule=.8pt,arc=1.5mm,left=4mm,right=4mm,top=3mm,bottom=3mm,
+  title={Point de vigilance},fonttitle=\sffamily\bfseries,coltitle=white,
+  colbacktitle=SARed,attach boxed title to top left={xshift=4mm,yshift*=-\tcboxedtitleheight/2},
+  boxed title style={boxrule=0pt,arc=1.5mm},before skip=8pt,after skip=8pt,#1}
+
+\newtcolorbox{SAapplication}[1][]{
+  enhanced,breakable,colback=SAOrangeBack,colframe=SAOrange,
+  boxrule=.8pt,arc=1.5mm,left=4mm,right=4mm,top=3mm,bottom=3mm,
+  title={Application},fonttitle=\sffamily\bfseries,coltitle=white,
+  colbacktitle=SAOrange,attach boxed title to top left={xshift=4mm,yshift*=-\tcboxedtitleheight/2},
+  boxed title style={boxrule=0pt,arc=1.5mm},before skip=8pt,after skip=8pt,#1}
+
+\NewDocumentCommand{\SAReperePerformances}{}{%
+\begin{center}
+\begin{tikzpicture}[>=Latex,font=\small]
+  \node[draw,rounded corners,fill=SABlueBack,minimum width=28mm,minimum height=11mm] (stab) at (0,1.7) {Stabilité};
+  \node[draw,rounded corners,fill=SAGreenBack,minimum width=28mm,minimum height=11mm] (rap) at (-2.6,-.3) {Rapidité};
+  \node[draw,rounded corners,fill=SAOrangeBack,minimum width=28mm,minimum height=11mm] (prec) at (2.6,-.3) {Précision};
+  \node[draw,circle,fill=white,minimum size=20mm,align=center] (sys) at (0,0) {Système\\asservi};
+  \draw[->,thick] (sys)--(stab);
+  \draw[->,thick] (sys)--(rap);
+  \draw[->,thick] (sys)--(prec);
+  \node[below=1.25cm of sys,draw,rounded corners,fill=SARedBack,minimum width=35mm,minimum height=10mm] (dep) {Dépassement};
+  \draw[->,thick] (sys)--(dep);
+\end{tikzpicture}
+\end{center}}
+
+\NewDocumentCommand{\SASignauxTests}{}{%
+\begin{center}
+\begin{tikzpicture}[x=1.05cm,y=.85cm,>=Latex,font=\scriptsize]
+  \foreach \x/\titre in {0/Échelon,4/Impulsion,8/Rampe}{
+    \draw[->] (\x,0)--++(3,0) node[right] {$t$};
+    \draw[->] (\x,0)--++(0,2.3);
+    \node[font=\bfseries] at (\x+1.5,2.65) {\titre};
+  }
+  \draw[very thick,TLCoverBlue] (0,0)--(.8,0)--(.8,1.7)--(2.8,1.7);
+  \draw[very thick,TLCoverBlue] (4,0)--(4.8,0)--(4.8,1.9)--(4.8,0)--(6.8,0);
+  \draw[very thick,TLCoverBlue] (8,0)--(8.7,0)--(10.8,1.8);
+\end{tikzpicture}
+\end{center}}
+
+\NewDocumentCommand{\SAReponsePremierOrdre}{}{%
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  width=.78\linewidth,height=6cm,axis lines=left,xlabel={$t/\tau$},ylabel={$s(t)/K$},
+  xmin=0,xmax=5,ymin=0,ymax=1.15,grid=major,legend style={draw=none,at={(.97,.35)},anchor=east}]
+  \addplot[very thick,TLCoverBlue,domain=0:5,samples=120]{1-exp(-x)};
+  \addplot[dashed,SARed,domain=0:5]{.95};
+  \addplot[dotted,SAOrange,domain=0:5]{1};
+  \draw[dashed] (axis cs:3,0)--(axis cs:3,.95);
+  \legend{$1-e^{-t/\tau}$,tube à 5\%,valeur finale}
+\end{axis}
+\end{tikzpicture}
+\end{center}}
+
+\NewDocumentCommand{\SAReponseSecondOrdre}{}{%
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  width=.78\linewidth,height=6cm,axis lines=left,xlabel={$\omega_0 t$},ylabel={$s(t)/K$},
+  xmin=0,xmax=12,ymin=0,ymax=1.65,grid=major]
+  \addplot[very thick,TLCoverBlue,domain=0:12,samples=240]
+    {1-exp(-.3*x)*(cos(deg(.9539*x))+.3145*sin(deg(.9539*x)))};
+  \addplot[dashed,SAOrange,domain=0:12]{1};
+  \addplot[dotted,SARed,domain=0:12]{1.05};
+  \addplot[dotted,SARed,domain=0:12]{.95};
+\end{axis}
+\end{tikzpicture}
+\end{center}}
+
+\NewDocumentCommand{\SACarteModelisation}{}{%
+\begin{center}
+\begin{tikzpicture}[>=Latex,node distance=9mm and 17mm,font=\small,
+  bloc/.style={draw,rounded corners,fill=SABlueBack,minimum width=34mm,minimum height=10mm,align=center}]
+  \node[bloc] (phys) {Système physique};
+  \node[bloc,right=of phys] (eq) {Équations\\différentielles};
+  \node[bloc,right=of eq] (lap) {Transformée\\de Laplace};
+  \node[bloc,below=of lap] (tf) {Fonction de transfert};
+  \node[bloc,left=of tf] (rep) {Réponses temporelle\\et fréquentielle};
+  \node[bloc,left=of rep] (val) {Validation /\\identification};
+  \draw[->,thick] (phys)--(eq);
+  \draw[->,thick] (eq)--(lap);
+  \draw[->,thick] (lap)--(tf);
+  \draw[->,thick] (tf)--(rep);
+  \draw[->,thick] (rep)--(val);
+  \draw[->,thick] (val)--(phys);
+\end{tikzpicture}
+\end{center}}
+
+\endinput
