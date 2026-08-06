@@ -1,0 +1,254 @@
+% ============================================================================
+% COURS 03 — MODÉLISATION DES TRANSMETTEURS — PARTIE A
+% Source : 4-ModelisationTransmetteurs2022.docx
+% ============================================================================
+
+\section{Modélisation des transmetteurs}
+\label{sec:trans-objectifs}
+
+\begin{TLThreeMethod}{Objectifs de la partie transmetteurs}
+Déterminer les lois entrée-sortie et les rapports de transmission des
+transmetteurs usuels, distinguer réduction et multiplication, prendre en
+compte les sens de rotation, la transformation de mouvement, le
+rendement et la réversibilité.
+\end{TLThreeMethod}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}p{2cm}X c}
+\toprule
+Je connais & Connaissances attendues & \\
+\midrule
+& Les symboles et les familles de transmetteurs usuels. & $\square$\\
+& Le rapport de transmission d'un engrenage, d'un train simple, d'un train épicycloïdal et d'une roue-vis sans fin. & $\square$\\
+& Les lois d'un pignon-crémaillère, d'une vis-écrou et d'un dispositif poulies-courroie ou pignons-chaîne. & $\square$\\
+\midrule
+Je sais & Identifier les roues menantes et menées et compter les contacts extérieurs. & $\square$\\
+& Déterminer un rapport global puis relier vitesse, couple et rendement. & $\square$\\
+& Écrire la formule de Willis et exploiter une configuration de train épicycloïdal. & $\square$\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Mise en situation : objectif photographique}
+
+L'autofocus déplace une lentille pour faire converger les rayons lumineux
+sur le capteur. Une machine à courant continu, plusieurs étages de
+transmission et un mécanisme vis-écrou réalisent ce déplacement.
+
+\begin{center}
+\TLFourImage[.31\linewidth]{image5.png}\hfill
+\TLFourImage[.31\linewidth]{image6.png}\hfill
+\TLFourImage[.31\linewidth]{image7.png}
+\end{center}
+
+Pour vérifier la résolution annoncée par le constructeur, il faut relier
+la rotation du moteur au déplacement de la lentille, puis tenir compte
+des codeurs installés dans la chaîne.
+
+\section{Grandeurs d'entrée et de sortie}
+\label{sec:trans-grandeurs}
+
+Pour un transmetteur, l'entrée et la sortie sont définies par la chaîne
+de puissance. Le mouvement d'entrée est souvent continu ; le mouvement
+de sortie peut être continu, alternatif ou intermittent.
+
+\begin{TLThreeDef}{Loi entrée-sortie d'un transmetteur}
+Une loi entrée-sortie est une relation imposée par la structure du
+transmetteur entre les grandeurs d'entrée et de sortie :
+\[
+\omega_s=f(\omega_e),
+\qquad
+v_s=f(\omega_e).
+\]
+Pour une transmission rotation--rotation linéaire :
+\[
+\boxed{r=\frac{\omega_s}{\omega_e}
+=\frac{\dot\theta_s}{\dot\theta_e}.}
+\]
+Pour une transformation rotation--translation :
+\[
+\boxed{k=\frac{v_s}{\omega_e}.}
+\]
+Le coefficient $r$ est sans dimension ; $k$ s'exprime en mètres.
+\end{TLThreeDef}
+
+Lorsque l'entrée et la sortie peuvent être permutées, le transmetteur est
+\textbf{réversible}. Dans le cas contraire, il est irréversible.
+
+\subsection{Vitesse, couple, puissance et rendement}
+
+Avec $P=C\omega$ :
+\[
+\eta=\frac{P_s}{P_e}
+=\frac{C_s\omega_s}{C_e\omega_e}
+=\frac{C_s}{C_e}\,r.
+\]
+Ainsi :
+\[
+\boxed{\frac{C_s}{C_e}=\frac{\eta}{r}.}
+\]
+Un réducteur de vitesse, $|r|<1$, multiplie généralement le couple. Un
+multiplicateur, $|r|>1$, réduit le couple disponible.
+
+Rappel de conversion :
+\[
+\boxed{\omega=\frac{2\pi N}{60}}
+\qquad
+(N\text{ en tr/min},\ \omega\text{ en rad/s}).
+\]
+
+\section{Classification des transmissions de puissance}
+\label{sec:trans-classification}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}p{3cm}p{3cm}X}
+\toprule
+Famille & Mouvements & Exemples \\
+\midrule
+Sans transformation & rotation $\rightarrow$ rotation & roues de friction, engrenages, trains simples, roue-vis sans fin, poulies-courroie, pignons-chaîne \\
+Avec transformation & rotation $\leftrightarrow$ translation & pignon-crémaillère, vis-écrou, cylindre roulant, courroie utilisée comme organe linéaire \\
+Mouvement alternatif & rotation continue $\rightarrow$ translation ou rotation alternative & bielle-manivelle, excentrique, came \\
+Mouvement intermittent & rotation continue $\rightarrow$ rotation discontinue & croix de Malte \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Une transformation de mouvement peut modifier la nature, la direction,
+le sens ou la vitesse du mouvement.
+
+\section{Transmetteurs sans transformation de mouvement}
+\label{sec:trans-sans}
+
+\subsection{Roues de friction}
+
+Deux roues cylindriques sont maintenues en contact par un effort presseur.
+L'adhérence doit être suffisante pour empêcher le glissement.
+
+\begin{center}\TLRouesFriction\end{center}
+
+Au point de contact $I$, le roulement sans glissement impose :
+\[
+\vec V(I,1/2)=\vec0.
+\]
+Pour deux roues en contact extérieur :
+\[
+\boxed{\frac{\omega_2}{\omega_1}=-\frac{R_1}{R_2}
+=-\frac{D_1}{D_2}.}
+\]
+Les roues tournent en sens opposés. La puissance transmissible est
+limitée par le coefficient d'adhérence et l'effort presseur. Ce principe
+est utilisé pour une dynamo de vélo, un home-trainer ou certains anciens
+tourne-disques.
+
+\subsection{Engrenage simple}
+
+Un engrenage associe deux roues dentées. La denture impose la même
+cinématique que deux roues de friction sur leurs cercles primitifs.
+
+\begin{center}\TLEngrenageSimple\end{center}
+
+\begin{TLThreeDef}{Géométrie de la denture}
+Pour une roue de $Z$ dents et de module $m$ :
+\[
+\boxed{d=mZ,}
+\qquad
+\boxed{p=\frac{\pi d}{Z}=\pi m.}
+\]
+Deux roues ne peuvent engrener que si elles possèdent le même module et
+le même pas primitif. L'angle de pression normalisé le plus courant vaut
+$20^\circ$.
+\end{TLThreeDef}
+
+Pour un engrenage extérieur :
+\[
+\boxed{\frac{\omega_2}{\omega_1}=-\frac{Z_1}{Z_2}.}
+\]
+Pour un engrenage intérieur, les deux roues tournent dans le même sens :
+\[
+\boxed{\frac{\omega_2}{\omega_1}=+\frac{Z_1}{Z_2}.}
+\]
+
+L'effort de denture se décompose en :
+\begin{itemize}
+  \item une composante tangentielle $F_t$, seule à transmettre la puissance ;
+  \item une composante radiale $F_r$, sollicitant les arbres en flexion ;
+  \item une composante axiale $F_a$ pour les dentures hélicoïdales ou coniques.
+\end{itemize}
+
+\subsection{Train d'engrenages simple}
+
+Dans un train simple, tous les axes de rotation sont fixes par rapport au
+bâti. Le rapport global est le produit des rapports élémentaires :
+\[
+\boxed{r=\frac{\omega_s}{\omega_e}
+=(-1)^n\frac{\prod Z_{\text{menantes}}}
+{\prod Z_{\text{menées}}}.}
+\]
+Le nombre $n$ est le nombre de contacts extérieurs. Le signe n'a de sens
+que si les axes d'entrée et de sortie sont parallèles.
+
+Une roue à la fois menée et menante est une \textbf{roue folle} : son
+nombre de dents se simplifie dans le rapport, mais elle peut modifier le
+sens de rotation.
+
+\begin{TLThreeMethod}{Calculer le rapport d'un train simple}
+\begin{enumerate}
+  \item Identifier l'entrée, la sortie et les roues solidaires d'un même arbre.
+  \item Pour chaque engrènement, repérer la roue menante et la roue menée.
+  \item Multiplier les nombres de dents des menantes et des menées.
+  \item Compter les contacts extérieurs pour déterminer le signe.
+  \item Vérifier que $|r|<1$ pour un réducteur et $|r|>1$ pour un multiplicateur.
+\end{enumerate}
+\end{TLThreeMethod}
+
+\begin{TLThreeApp}{Exemple de train simple}
+Pour un train à trois étages :
+\[
+r=\frac{\omega_4}{\omega_1}
+=(-1)^2\frac{Z_1Z_{2p}Z_{3p}}{Z_{2r}Z_{3r}Z_4}.
+\]
+Avec $Z_1=30$, $Z_{2p}=17$, $Z_{3p}=80$,
+$Z_{2r}=60$, $Z_{3r}=50$ et $Z_4=60$, on obtient
+$r\simeq0{,}23$ : la vitesse est divisée par environ quatre.
+\end{TLThreeApp}
+
+\subsection{Roue et vis sans fin}
+
+Une vis de $Z_v$ filets entraîne une roue de $Z_r$ dents. Les axes sont
+orthogonaux et le rapport vaut en valeur absolue :
+\[
+\boxed{\left|\frac{\omega_r}{\omega_v}\right|=\frac{Z_v}{Z_r}.}
+\]
+Un seul étage peut atteindre un rapport de réduction très élevé. En
+contrepartie, le rendement est souvent inférieur à $60\,\%$, la vis
+subit un effort axial important et l'irréversibilité n'est pas garantie
+par la seule géométrie. Pour un faible angle d'hélice, elle peut assurer
+une fonction anti-retour utile en levage.
+
+\begin{TLThreeApp}{Réducteur de webcam}
+La vis possède un filet et entraîne une roue de $30$ dents. Deux étages
+supplémentaires ont les rapports $9/43$ et $9/43$.
+\begin{enumerate}
+  \item Déterminer le rapport global.
+  \item En déduire la vitesse du moteur nécessaire pour obtenir une rotation de la webcam de $90^\circ\,\mathrm{s^{-1}}$.
+\end{enumerate}
+\end{TLThreeApp}
+
+\subsection{Poulies-courroie et pignons-chaîne}
+
+Ces transmetteurs relient efficacement deux axes parallèles éloignés.
+En l'absence de glissement, la vitesse linéaire du brin est la même sur
+les deux roues :
+\[
+R_1\omega_1=R_2\omega_2.
+\]
+Avec une courroie non croisée ou une chaîne :
+\[
+\boxed{\frac{\omega_2}{\omega_1}=+\frac{D_1}{D_2}}
+\qquad\text{ou}\qquad
+\boxed{\frac{\omega_2}{\omega_1}=+\frac{Z_1}{Z_2}.}
+\]
+Les roues tournent dans le même sens. Une courroie croisée inverse le
+sens de rotation.
