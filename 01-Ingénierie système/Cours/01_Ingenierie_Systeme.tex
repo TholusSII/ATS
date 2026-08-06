@@ -1,6 +1,5 @@
 % ============================================================================
-% DÉFINITION DU COURS : INGÉNIERIE SYSTÈME
-% Ce fichier configure la couverture puis charge le cours et ses ressources.
+% DÉFINITION DU COURS 01 : INGÉNIERIE SYSTÈME
 % ============================================================================
 
 \titlehead{Thomas Lusseau - SII en ATS}
@@ -11,17 +10,17 @@
 \TLCourseCoverSetup
   {\repStyle/FondPoly.png}
   {images/image3.png}
-  {Cycle 1 : Analyser, expérimenter et\\ communiquer sur les systèmes pluri-\\ technologies}
+  {Cycle 1 : Analyser, expérimenter et\\ communiquer sur les systèmes pluritechnologiques}
   {Introduction à l'ingénierie système}
   {Lycée Robert Doisneau - ATS}
   {Thomas Lusseau}
 
 \TLCourseCoverContents{%
-  \TLCourseContentsLine{1.1}{MISE EN SITUATION}{TL-course-section-1}
+  \TLCourseContentsLine{1.1}{Mise en situation}{TL-course-section-1}
   \TLCourseContentsLine{1.2}{Typologie des systèmes}{TL-course-section-2}
-  \TLCourseContentsLine{1.3}{L'approche Ingénierie Système}{TL-course-section-3}
-  \TLCourseContentsLine{1.4}{Le langage et les diagrammes SysML}{TL-course-section-4}
-  \TLCourseContentsLine{1.5}{Architecture fonctionnelle et chaînes fonctionnelles}{TL-course-section-5}
+  \TLCourseContentsLine{1.3}{Approche d'ingénierie système}{TL-course-section-3}
+  \TLCourseContentsLine{1.4}{Langage et diagrammes SysML}{TL-course-section-4}
+  \TLCourseContentsLine{1.5}{Architecture et chaînes fonctionnelles}{TL-course-section-5}
   \TLCourseContentsLine{1.6}{Sources}{TL-course-section-6}
   \TLCourseContentsLine{1.7}{Exercices du chapitre}{exercices-du-chapitre}
 }
@@ -32,13 +31,31 @@
 
 \AtBeginEnvironment{corrige}{\small}
 \livrettrue
-%\livretfalse
 \collefalse
 
-% Le fichier de cours historique contenait sa propre couverture. La commande
-% suivante ne conserve que son contenu pédagogique et étiquette les sections.
+\TLStartCourseChapter{1}{Introduction à l'ingénierie système}{chap:ingenierie-systeme}
+
+\begin{savoirs}
+\begin{itemize}
+  \item définition, typologie et cycle de vie d'un système ;
+  \item démarche d'ingénierie système et gestion des exigences ;
+  \item rôle des principaux diagrammes SysML ;
+  \item architecture fonctionnelle, chaîne d'information et chaîne d'énergie.
+\end{itemize}
+\end{savoirs}
+
+\begin{savoirfaire}
+\begin{itemize}
+  \item analyser un besoin et identifier les parties prenantes ;
+  \item lire et compléter un diagramme d'exigences, de contexte ou de blocs ;
+  \item relier les fonctions aux solutions techniques ;
+  \item comparer système souhaité, système simulé et système réel.
+\end{itemize}
+\end{savoirfaire}
+
+% Le fichier historique est conservé comme source fidèle au Word. Le moteur
+% neutralise sa couverture interne, sécurise les images et étiquette les sections.
 \TLInputCourseBody{01_Ingenierie_Systeme_Cours}{images/image3.png}
 
-% Ressources et exercices associés au chapitre.
 \input{01_Ingenierie_Systeme_Exercices_Images}
 \input{01_Ingenierie_Systeme_Exercices}
