@@ -1,0 +1,207 @@
+% ==========================================================================
+% COURS 01 -- PARTIE C : SYSML ET ARCHITECTURE FONCTIONNELLE
+% ==========================================================================
+
+\section{Le langage SysML}\label{sec:is-sysml}
+
+SysML est un langage graphique de modélisation destiné aux systèmes complexes. Il permet de représenter plusieurs vues complémentaires d'un même système sans prétendre remplacer les modèles de calcul propres à chaque discipline.
+
+\begin{ISdefinition}
+Un \textbf{modèle SysML} est un ensemble cohérent d'objets, de relations et de diagrammes décrivant les exigences, le comportement, la structure et les contraintes d'un système.
+\end{ISdefinition}
+
+Un diagramme est une vue partielle du modèle. Une information importante ne doit pas être dupliquée sans lien : elle doit être définie une fois puis réutilisée dans plusieurs vues.
+
+\subsection{Familles de diagrammes}
+
+Les diagrammes couramment utilisés en sciences industrielles sont :
+
+\begin{center}
+\begin{tabularx}{\linewidth}{>{\bfseries}p{.25\linewidth}p{.13\linewidth}X}
+\toprule
+Diagramme & Acronyme & Rôle principal \\
+\midrule
+Exigences & RD & hiérarchiser, dériver et tracer les exigences \\
+Cas d'utilisation & UCD & décrire les services attendus par les acteurs \\
+Séquence & SD & ordonner les échanges entre acteurs et composants \\
+États-transitions & SMD & décrire les états et événements d'un système \\
+Activités & AD & représenter un processus, des actions et des flux \\
+Définition de blocs & BDD & décrire la composition et la typologie des blocs \\
+Blocs internes & IBD & représenter les ports, connecteurs et flux internes \\
+Paramétrique & PD & relier des paramètres par des équations ou contraintes \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{ISattention}
+Un diagramme SysML n'est pas un dessin libre. Chaque symbole et chaque relation ont une signification. La lisibilité ne doit pas conduire à inventer une notation ambiguë.
+\end{ISattention}
+
+\section{Diagramme de contexte et cas d'utilisation}\label{sec:is-contexte-usecase}
+
+Le diagramme de contexte représente le système et les éléments extérieurs qui interagissent avec lui pendant une phase de vie donnée.
+
+\ISContexte
+
+Un cas d'utilisation exprime un service rendu à un acteur. Son nom est formulé avec un verbe à l'infinitif et un complément : « transporter une personne », « enregistrer une vidéo », « signaler un défaut ».
+
+Les acteurs principaux sont ceux qui bénéficient directement du service. Les acteurs secondaires fournissent une ressource, une information ou une contrainte.
+
+\begin{ISmethode}[title={Construire une vue de contexte}]
+\begin{enumerate}
+  \item Choisir une phase de vie et définir la frontière.
+  \item Placer le système au centre.
+  \item Recenser acteurs, milieux physiques, sources d'énergie et systèmes voisins.
+  \item Nommer les échanges de matière, d'énergie et d'information.
+  \item Déduire les services et contraintes associés.
+\end{enumerate}
+\end{ISmethode}
+
+\section{Diagramme d'exigences}\label{sec:is-rd}
+
+Le diagramme d'exigences rassemble des objets portant un identifiant et un texte. Les principales relations sont :
+\begin{description}
+  \item[Contenance :] une exigence en contient d'autres ;
+  \item[«deriveReqt» :] une exigence est dérivée d'une exigence plus globale ;
+  \item[«refine» :] un élément précise une exigence ;
+  \item[«satisfy» :] un bloc ou une solution satisfait une exigence ;
+  \item[«verify» :] un cas de test vérifie une exigence ;
+  \item[«trace» :] lien de traçabilité générique.
+\end{description}
+
+\ISDiagrammeExigences
+
+Le diagramme ne remplace pas la spécification textuelle complète. Il rend visibles la hiérarchie et les liens, tandis que les attributs détaillés restent associés aux objets du modèle.
+
+\section{Diagrammes de structure : BDD et IBD}\label{sec:is-bdd-ibd}
+
+\ISBDDIBD
+
+\subsection{Diagramme de définition de blocs}
+
+Le BDD décrit les types de blocs, leurs propriétés et leurs relations. Une composition signifie qu'un bloc est constitué de parties dont la durée de vie dépend du bloc parent.
+
+Il permet notamment de représenter :
+\begin{itemize}
+  \item la décomposition système, sous-systèmes, composants ;
+  \item les valeurs et paramètres ;
+  \item les associations et généralisations ;
+  \item les contraintes affectées à un type de bloc.
+\end{itemize}
+
+\subsection{Diagramme de blocs internes}
+
+L'IBD décrit l'intérieur d'une instance de bloc. Il montre les parties, les ports, les connecteurs et les flux échangés.
+
+Les ports précisent les interfaces. Les flux sont nommés et peuvent être typés : tension, couple, information numérique, débit, position ou température.
+
+\begin{ISapplication}[title={Chaîne d'un axe motorisé}]
+Dans un axe électrique, le contrôleur transmet une commande au variateur, le variateur alimente le moteur, le moteur fournit un couple au transmetteur, et un capteur renvoie une mesure de position. Le BDD décrit les composants ; l'IBD décrit leurs échanges.
+\end{ISapplication}
+
+\section{Diagrammes de comportement}\label{sec:is-comportement}
+
+\subsection{Diagramme de séquence}
+
+Le diagramme de séquence représente les échanges entre lignes de vie dans l'ordre chronologique. Il est adapté aux scénarios : démarrage, authentification, cycle nominal ou gestion d'un défaut.
+
+Un message synchrone bloque l'émetteur jusqu'au retour. Un message asynchrone permet à l'émetteur de poursuivre son activité.
+
+\subsection{Diagramme d'activités}
+
+Le diagramme d'activités décrit un enchaînement d'actions et de flux. Il comporte des nœuds de décision, de fusion, de parallélisation et de synchronisation.
+
+Il convient à la description d'un processus de fonctionnement ou d'une procédure de maintenance, sans nécessairement attribuer chaque action à un composant précis.
+
+\subsection{Diagramme d'états-transitions}
+
+Le diagramme d'états-transitions décrit les états successifs d'un bloc et les événements qui provoquent les transitions.
+
+Une transition peut comporter :
+\[
+\text{événement}\ [\text{garde}]\ /\ \text{effet}.
+\]
+
+Les activités \texttt{entry}, \texttt{do} et \texttt{exit} précisent les actions à l'entrée, pendant et à la sortie d'un état.
+
+\section{Architecture fonctionnelle}\label{sec:is-architecture-fonctionnelle}
+
+L'architecture fonctionnelle organise les fonctions nécessaires à la réalisation du service. Elle se place avant le choix détaillé des composants et facilite la recherche de solutions alternatives.
+
+\subsection{Fonction globale et fonctions techniques}
+
+La fonction globale décrit la transformation principale réalisée par le système. Elle est décomposée en fonctions techniques plus élémentaires jusqu'à un niveau permettant d'identifier des solutions.
+
+Une décomposition fonctionnelle doit être :
+\begin{itemize}
+  \item complète par rapport aux exigences ;
+  \item indépendante autant que possible des solutions ;
+  \item cohérente avec les flux entrants et sortants ;
+  \item traçable vers les composants qui réaliseront les fonctions.
+\end{itemize}
+
+\subsection{Chaîne d'information et chaîne d'énergie}
+
+\ISChaineFonctionnelle
+
+La chaîne d'information assure généralement :
+\begin{itemize}
+  \item \textbf{acquérir} les consignes et grandeurs physiques ;
+  \item \textbf{traiter} les informations et décider ;
+  \item \textbf{communiquer} vers l'utilisateur ou d'autres systèmes.
+\end{itemize}
+
+La chaîne d'énergie assure :
+\begin{itemize}
+  \item \textbf{alimenter} le système ;
+  \item \textbf{distribuer} ou moduler l'énergie ;
+  \item \textbf{convertir} l'énergie en énergie mécanique utile ;
+  \item \textbf{transmettre} et adapter le mouvement ou l'effort ;
+  \item \textbf{agir} sur la matière d'œuvre.
+\end{itemize}
+
+\begin{ISattention}
+Les deux chaînes ne sont pas indépendantes. Les ordres issus du traitement commandent la distribution d'énergie, et les capteurs observent la chaîne d'énergie ou l'effecteur.
+\end{ISattention}
+
+\subsection{Diagramme FAST}
+
+Le FAST organise les fonctions en répondant aux questions « pourquoi ? » vers la gauche et « comment ? » vers la droite. Les fonctions nécessaires simultanément sont placées verticalement.
+
+Il aide à distinguer la finalité, les fonctions de service et les fonctions techniques, puis à rechercher plusieurs principes de solution.
+
+\begin{ISmethode}[title={Passer du besoin à l'architecture}]
+\begin{enumerate}
+  \item Définir la mission, la frontière et les scénarios.
+  \item Formaliser les exigences mesurables.
+  \item Identifier les flux à transformer.
+  \item Décomposer la fonction globale.
+  \item Regrouper les fonctions en sous-systèmes cohérents.
+  \item Définir les interfaces et allouer les exigences.
+  \item Comparer plusieurs architectures avant de choisir les composants.
+\end{enumerate}
+\end{ISmethode}
+
+\section{Exploitation des modèles en SII}\label{sec:is-exploitation}
+
+Les diagrammes SysML servent de fil directeur aux études disciplinaires. Ils permettent de localiser le sous-système étudié, d'identifier ses entrées et sorties, de retrouver l'exigence à vérifier et de replacer un calcul dans l'architecture complète.
+
+Une étude de mécanique, d'automatique ou d'électronique doit donc se conclure par une comparaison quantitative avec l'exigence correspondante.
+
+\begin{center}
+\begin{tabularx}{\linewidth}{>{\bfseries}p{.23\linewidth}X X}
+\toprule
+Étape & Question & Support possible \\
+\midrule
+Analyser & quel service et quelles contraintes ? & contexte, UCD, RD \\
+Modéliser & quelles grandeurs et quelles relations ? & BDD, IBD, PD, modèles physiques \\
+Simuler & quelles performances prévues ? & modèle numérique et scénarios \\
+Expérimenter & quelles performances réelles ? & protocole, mesures et incertitudes \\
+Conclure & l'exigence est-elle satisfaite ? & matrice de traçabilité et rapport \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Sources}\label{sec:is-sources}
+
+Ce chapitre reprend les contenus du cours d'analyse fonctionnelle et d'introduction à l'ingénierie système, en harmonisant la démarche, les diagrammes SysML et l'architecture fonctionnelle avec le framework commun des cours de SII en ATS.
