@@ -1,46 +1,76 @@
 % ============================================================================
-% DÉFINITION DU COURS 04 : APPROCHE CINÉMATIQUE
+% DÉFINITION DU COURS 04 : CINÉMATIQUE
 % ============================================================================
 
 \titlehead{Thomas Lusseau - SII en ATS}
-\title[Approche cinématique]{Détermination des lois de mouvement -- Approche cinématique}
+\title[Cinématique]{Détermination des lois de mouvement — Cinématique}
 \author[TL]{Thomas Lusseau}
 \date{\today}
 
 \TLCourseCoverSetup
   {\repStyle/FondPoly.png}
-  {images/image3.png}
-  {Cycle 2 : Modéliser et déterminer les lois de\\ mouvement d'un mécanisme}
-  {Détermination des lois de mouvement\\ Approche cinématique}
+  {images/image5.jpeg}
+  {Cycle 2 : Modéliser et déterminer les lois de\\mouvement d'un mécanisme}
+  {Détermination des lois de mouvement\\Approche cinématique}
   {Lycée Robert Doisneau - ATS}
   {Thomas Lusseau}
 
 \TLCourseCoverContents{%
-  \TLCourseContentsLine{4.1}{Mise en situation}{mise-en-situation}
-  \TLCourseContentsLine{4.2}{Introduction cinématique}{introduction-cinematique}
-  \TLCourseContentsLine{4.3}{Dérivation et produit vectoriels}{derivation-vectorielle-et-produit-vectoriel}
-  \TLCourseContentsLine{4.4}{Vecteurs vitesse et accélération}{duxe9marche-de-duxe9termination-des-vecteurs-vitesse-et-accuxe9luxe9ration}
-  \TLCourseContentsLine{4.5}{Cinématique du contact ponctuel}{cinuxe9matique-du-contact-ponctuel}
-  \TLCourseContentsLine{4.6}{Loi de vitesse en trapèze}{la-loi-trapeze}
-  \TLCourseContentsLine{4.7}{Sources}{sources}
-  \TLCourseContentsLine{4.8}{Exercices du chapitre}{exercices-du-chapitre}
+  \TLCourseContentsLine{4.1}{Objectifs et introduction}{sec:cine-objectifs}
+  \TLCourseContentsLine{4.2}{Produit vectoriel et torseurs}{sec:cine-produit}
+  \TLCourseContentsLine{4.3}{Mouvements et trajectoires}{sec:cine-mouvements}
+  \TLCourseContentsLine{4.4}{Position, vitesse et accélération}{sec:cine-pva}
+  \TLCourseContentsLine{4.5}{Dérivation et composition}{sec:cine-derivation}
+  \TLCourseContentsLine{4.6}{Contact et roulement sans glissement}{sec:cine-contact}
+  \TLCourseContentsLine{4.7}{Loi de vitesse en trapèze}{sec:cine-trapeze}
+  \TLCourseContentsLine{4.8}{Exercices du chapitre}{sec:cine-exercices}
 }
 
 \TLCourseFooter
 \TLCourseCover
-\markboth{Approche cinématique}{Approche cinématique}
-\TLSetReflectionImage{images/image18.png}
+\markboth{Cinématique}{Cinématique}
 
-\AtBeginEnvironment{corrige}{\small}
 \livrettrue
 \collefalse
 
-\setcounter{chapter}{3}
-\chapter*{Approche cinématique}
-\addcontentsline{toc}{chapter}{Approche cinématique}
+\definecolor{TLCineBlue}{RGB}{0,84,127}
+\definecolor{TLCineGreen}{RGB}{72,145,77}
+\definecolor{TLCineOrange}{RGB}{214,125,25}
 
-\input{04_Cinematique_Cours}
+\newtcolorbox{TLCineMethod}[1]{
+  enhanced,breakable,colback=TLCineBlue!6,colframe=TLCineBlue,
+  colbacktitle=TLCineBlue,coltitle=white,title={Méthode — #1},
+  fonttitle=\bfseries,boxrule=.8pt,arc=1.5mm,
+  left=4mm,right=4mm,top=3mm,bottom=3mm,
+  before skip=.9\baselineskip,after skip=.9\baselineskip
+}
+\newtcolorbox{TLCineDef}[1]{
+  enhanced,breakable,colback=TLCineGreen!6,colframe=TLCineGreen!80!black,
+  colbacktitle=TLCineGreen!80!black,coltitle=white,title={Définition — #1},
+  fonttitle=\bfseries,boxrule=.8pt,arc=1.5mm,
+  left=4mm,right=4mm,top=3mm,bottom=3mm,
+  before skip=.9\baselineskip,after skip=.9\baselineskip
+}
+\newtcolorbox{TLCineApp}[1]{
+  enhanced,breakable,colback=TLCineOrange!7,colframe=TLCineOrange,
+  colbacktitle=TLCineOrange,coltitle=white,title={Application — #1},
+  fonttitle=\bfseries,boxrule=.8pt,arc=1.5mm,
+  left=4mm,right=4mm,top=3mm,bottom=3mm,
+  before skip=.9\baselineskip,after skip=.9\baselineskip
+}
+
+\newcommand{\TLCineImage}[2][.78\linewidth]{%
+  \IfFileExists{#2}{\includegraphics[width=#1,keepaspectratio]{#2}}{}%
+}
+
+\TLStartCourseChapter{4}{Détermination des lois de mouvement — Cinématique}{chap:cinematique}
+
+\input{sources/04_Cinematique_Partie_A}
+\input{sources/04_Cinematique_Partie_B}
+\input{sources/04_Cinematique_Partie_C}
 
 \clearpage
-\section{Exercices du chapitre}\label{exercices-du-chapitre}
-\input{04_Cinematique_Exercices}
+\input{sources/04_Cinematique_Exercices_A}
+\input{sources/04_Cinematique_Exercices_B}
+
+\printindex
