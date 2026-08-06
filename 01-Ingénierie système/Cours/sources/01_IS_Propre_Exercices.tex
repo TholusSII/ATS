@@ -1,0 +1,138 @@
+% ==========================================================================
+% COURS 01 -- EXERCICES
+% ==========================================================================
+
+\section{Exercices du chapitre}\label{sec:is-exercices}
+
+\begin{TLExercise}{Exercice 1 -- Repêchage d'un véhicule}
+Un camion-grue doit relever une voiture tombée dans un port. La première tentative provoque le basculement du camion ; un second véhicule équipé de stabilisateurs est nécessaire.
+\begin{enumerate}
+  \item Formuler le besoin sans imposer de solution technique.
+  \item Définir la frontière du système étudié.
+  \item Identifier au moins six éléments de l'environnement.
+  \item Proposer quatre exigences mesurables liées à la sécurité et à la performance.
+  \item Distinguer les causes relevant d'un composant et celles relevant de l'intégration du système.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 2 -- Compatibilité d'un train avec les quais}
+Une nouvelle rame est plus large afin d'améliorer le confort, mais certaines infrastructures anciennes ne respectent pas un gabarit uniforme.
+\begin{enumerate}
+  \item Identifier les parties prenantes et les interfaces critiques.
+  \item Écrire une exigence de compatibilité vérifiable.
+  \item Proposer une méthode de vérification avant la fabrication en série.
+  \item Expliquer la différence entre vérification de la rame et validation du service de transport.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 3 -- Drone de loisir}
+Un drone doit permettre à un utilisateur de filmer une scène en extérieur.
+\begin{enumerate}
+  \item Formuler la mission du système.
+  \item Construire la liste des acteurs d'un diagramme de contexte.
+  \item Proposer cinq cas d'utilisation formulés par un verbe et un complément.
+  \item Écrire six exigences dont deux contraintes réglementaires ou environnementales.
+  \item Associer à chaque exigence une méthode de preuve.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 4 -- Micro-ondes}
+On étudie un four à micro-ondes domestique pendant sa phase d'utilisation.
+\begin{enumerate}
+  \item Définir la matière d'œuvre entrante et sortante.
+  \item Énoncer la fonction globale.
+  \item Identifier les flux de matière, d'énergie et d'information.
+  \item Répartir les fonctions dans les chaînes d'information et d'énergie.
+  \item Citer trois autres phases de vie nécessitant un contexte différent.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 5 -- Diagramme d'exigences}
+La mission d'une plateforme élévatrice est de transporter une personne entre deux niveaux. Les exigences initiales sont : charge minimale de 120 kg, vitesse inférieure à 0,15 m/s, arrêt d'urgence en moins de 0,4 s et niveau sonore inférieur à 65 dB(A).
+\begin{enumerate}
+  \item Attribuer un identifiant à chaque exigence.
+  \item Distinguer exigences fonctionnelles et contraintes.
+  \item Proposer une exigence globale dont elles dérivent.
+  \item Associer à chacune un critère, un niveau, une tolérance et une méthode de vérification.
+  \item Représenter les relations «deriveReqt», «satisfy» et «verify».
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 6 -- BDD et IBD d'un axe motorisé}
+Un axe comprend un contrôleur, un variateur, un moteur, un réducteur, un chariot et un capteur de position.
+\begin{enumerate}
+  \item Proposer la décomposition du système dans un BDD.
+  \item Identifier les relations de composition.
+  \item Décrire les flux échangés dans un IBD.
+  \item Préciser la nature et l'unité de chaque flux.
+  \item Localiser les interfaces qui devraient faire l'objet d'une spécification détaillée.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 7 -- Scénario de démarrage}
+Un robot mobile reçoit un ordre de départ, vérifie la fermeture de son capot, initialise ses capteurs, libère son frein puis commence à se déplacer. En cas de défaut, il signale une alarme et reste immobile.
+\begin{enumerate}
+  \item Représenter le scénario sous forme de diagramme de séquence.
+  \item Proposer un diagramme d'activités avec décision et branche de défaut.
+  \item Définir les états principaux d'un diagramme d'états-transitions.
+  \item Écrire deux transitions sous la forme événement [garde] / effet.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 8 -- Système souhaité, simulé et réel}
+La simulation d'un vérin prévoit une course de 500 mm en 4,5 s. Le cahier des charges impose une course d'au moins 490 mm en moins de 5 s. Les mesures donnent 486 mm en 4,8 s.
+\begin{enumerate}
+  \item Identifier les données relevant des systèmes souhaité, simulé et réel.
+  \item Quantifier les trois écarts pertinents.
+  \item Conclure sur chaque exigence.
+  \item Proposer deux causes possibles de l'écart simulation-réel.
+  \item Indiquer si le modèle, le produit ou l'exigence doit être révisé.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 9 -- Cycle de vie et éco-conception}
+Deux solutions de carter sont comparées : aluminium recyclable plus lourd, ou composite plus léger mais difficile à séparer en fin de vie.
+\begin{enumerate}
+  \item Lister les étapes du cycle de vie à comparer.
+  \item Identifier les flux et impacts principaux de chaque solution.
+  \item Expliquer pourquoi la seule masse en phase d'usage ne suffit pas pour conclure.
+  \item Proposer des indicateurs environnementaux et économiques.
+  \item Définir les données supplémentaires nécessaires à la décision.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 10 -- Modification d'une batterie}
+La capacité de la batterie d'un robot est augmentée de 40\%. La nouvelle batterie est plus lourde, plus volumineuse et délivre une tension nominale différente.
+\begin{enumerate}
+  \item Identifier les exigences susceptibles d'être affectées.
+  \item Recenser les interfaces à vérifier.
+  \item Proposer une analyse des impacts sur structure, motorisation, autonomie, sécurité et logiciel.
+  \item Lister les documents et modèles à mettre à jour.
+  \item Définir les essais de non-régression nécessaires.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 11 -- Architecture fonctionnelle d'un portail automatique}
+Un portail doit détecter une demande, vérifier l'absence d'obstacle, déverrouiller, déplacer le vantail, ralentir en fin de course et informer l'utilisateur.
+\begin{enumerate}
+  \item Formuler la fonction globale.
+  \item Construire une décomposition fonctionnelle de type FAST.
+  \item Répartir les fonctions dans les chaînes d'information et d'énergie.
+  \item Associer à chaque fonction une ou plusieurs solutions techniques possibles.
+  \item Identifier les boucles d'information liées à la sécurité.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 12 -- Étude de synthèse : véhicule autonome}
+Un véhicule autonome urbain doit transporter quatre personnes sur un trajet prédéfini, respecter le code de la route et fonctionner par tous les temps raisonnables.
+\begin{enumerate}
+  \item Identifier les principales parties prenantes et construire le contexte d'utilisation.
+  \item Proposer les cas d'utilisation principaux et secondaires.
+  \item Rédiger dix exigences mesurables couvrant performance, sécurité, environnement et maintenance.
+  \item Définir une architecture fonctionnelle et les flux principaux.
+  \item Proposer une décomposition en sous-systèmes pour un BDD.
+  \item Décrire un scénario nominal et un scénario de défaillance.
+  \item Construire une matrice reliant exigences, sous-systèmes et méthodes de preuve.
+  \item Expliquer comment les systèmes souhaité, simulé et réel seront comparés.
+\end{enumerate}
+\end{TLExercise}
