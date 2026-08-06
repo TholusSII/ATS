@@ -1,0 +1,57 @@
+name: Compiler le cours 5 Systèmes asservis
+
+on:
+  push:
+    paths:
+      - '05-Modélisation Systèmes Asservis/Cours/**'
+      - 'Style/**'
+      - '.github/workflows/compile-course5.yml'
+  workflow_dispatch:
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Installer les outils de contrôle
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils
+
+      - name: Compiler le cours 5
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: 00_Systemes_Asservis.tex
+          working_directory: 05-Modélisation Systèmes Asservis/Cours
+          latexmk_use_xelatex: false
+          extra_system_packages: git
+          pre_compile: |
+            rm -rf /tmp/kaobook
+            git clone --depth 1 https://github.com/fmarotta/kaobook.git /tmp/kaobook
+        env:
+          TEXINPUTS: ".:/tmp/kaobook//:"
+
+      - name: Contrôler les pages peu remplies
+        working-directory: 05-Modélisation Systèmes Asservis/Cours
+        run: |
+          pdfinfo 00_Systemes_Asservis.pdf > controle_pdf.txt
+          mkdir -p pages_txt
+          n=$(pdfinfo 00_Systemes_Asservis.pdf | awk '/Pages:/ {print $2}')
+          echo "Pages contenant moins de 120 caractères :" >> controle_pdf.txt
+          for p in $(seq 1 "$n"); do
+            pdftotext -f "$p" -l "$p" -layout 00_Systemes_Asservis.pdf "pages_txt/page_${p}.txt"
+            c=$(tr -d '[:space:]' < "pages_txt/page_${p}.txt" | wc -c)
+            if [ "$c" -lt 120 ]; then
+              echo "page $p : $c caractères" >> controle_pdf.txt
+            fi
+          done
+          cat controle_pdf.txt
+
+      - name: Publier le PDF et le contrôle
+        uses: actions/upload-artifact@v4
+        with:
+          name: cours-5-systemes-asservis
+          path: |
+            05-Modélisation Systèmes Asservis/Cours/00_Systemes_Asservis.pdf
+            05-Modélisation Systèmes Asservis/Cours/controle_pdf.txt
