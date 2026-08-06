@@ -1,0 +1,239 @@
+% ============================================================================
+% COURS 03 — LOIS ENTRÉE-SORTIE — PARTIE A
+% Source : 3-LoiES20222.docx
+% ============================================================================
+
+\section{Lois entrée-sortie : objectifs et mises en situation}
+\label{sec:les-objectifs}
+
+\begin{TLThreeMethod}{Objectifs du cours}
+Donner les outils permettant de déterminer la loi entrée-sortie d'un
+mécanisme, en position puis en vitesse, à partir de son modèle
+cinématique.
+\end{TLThreeMethod}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\bfseries}p{2cm}X c}
+\toprule
+Je connais & Connaissances attendues & \\
+\midrule
+& La démarche de détermination d'une loi entrée-sortie. & $\square$\\
+& Les notions de modèle géométrique direct et inverse. & $\square$\\
+& Les coordonnées articulaires et opérationnelles. & $\square$\\
+& La relation de Chasles, les opérations vectorielles et le produit scalaire. & $\square$\\
+\midrule
+Je sais & Identifier les paramètres d'entrée, de sortie et les paramètres intermédiaires. & $\square$\\
+& Écrire et projeter une fermeture géométrique. & $\square$\\
+& Éliminer un angle ou une distance intermédiaire. & $\square$\\
+& Déduire une loi en vitesse d'une loi en position. & $\square$\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Cas n°1 : dimensionnement d'une course de vérin}
+
+Une E.P.A.S. est une échelle pivotante automatique à commande
+séquentielle montée sur un camion de pompiers. Le vérin de dressage doit
+faire passer l'échelle de la position basse, $\theta=10^\circ$, à la
+position haute, $\theta=50^\circ$.
+
+\begin{center}
+\begin{minipage}[c]{.44\linewidth}
+\TLThreeImage[\linewidth]{images/image5.png}
+\end{minipage}\hfill
+\begin{minipage}[c]{.52\linewidth}
+\TLEPASGeometry
+\end{minipage}
+\end{center}
+
+\begin{TLThreeApp}{Problème posé}
+Déterminer la relation $r=f(\theta)$ entre la longueur du vérin et
+l'angle de dressage, puis en déduire la course minimale du vérin entre
+les deux positions extrêmes.
+\end{TLThreeApp}
+
+\subsection{Cas n°2 : espace de travail d'un robot}
+
+Le robot porte-instrument aide le praticien à positionner une aiguille,
+une sonde ou un endoscope. Pour garantir la précision de l'intervention,
+il faut connaître son \textbf{espace de travail}, c'est-à-dire l'ensemble
+des positions atteignables par l'effecteur.
+
+\begin{center}
+\TLThreeImage[.36\linewidth]{images/image8.png}\hfill
+\TLThreeImage[.48\linewidth]{images/image9.png}
+\end{center}
+
+La question posée est différente de celle d'une chaîne fermée : les
+paramètres articulaires étant connus, il faut calculer les coordonnées
+de l'outil dans le repère du bâti.
+
+\subsection{Cas n°3 : cylindrée d'un micromoteur}
+
+Un micromoteur d'avion de modélisme transforme la rotation du vilebrequin
+en translation alternative du piston par un mécanisme bielle-manivelle.
+
+\begin{center}
+\TLThreeImage[.48\linewidth]{images/image10.png}\hfill
+\TLThreeImage[.44\linewidth]{images/image11.png}
+\end{center}
+
+\TLBielleManivelleGeometry
+
+Le moteur ENIA--32K-C possède un piston de diamètre $24\ \mathrm{mm}$ et
+une cylindrée annoncée de $10\ \mathrm{cm^3}$.
+
+\begin{TLThreeApp}{Questions de conception}
+\begin{enumerate}
+  \item Identifier le mouvement d'entrée et le mouvement de sortie.
+  \item Établir la loi reliant l'angle du vilebrequin à la position du piston.
+  \item Déterminer la course puis vérifier la cylindrée annoncée.
+\end{enumerate}
+\end{TLThreeApp}
+
+\section{Structures fermées et paramètres de mouvement}
+\label{sec:les-fermees}
+
+Un mécanisme peut transformer un mouvement et des efforts pour les
+adapter au besoin. Lorsqu'il comporte une chaîne cinématique fermée, la
+mise en mouvement d'une liaison entraîne tous les solides de la boucle.
+
+\begin{TLThreeDef}{Loi entrée-sortie en position}
+La loi entrée-sortie cinématique en position est la relation
+mathématique entre le paramètre de position de l'entrée et celui de la
+sortie :
+\[
+q_s=f(q_e).
+\]
+Elle ne doit plus contenir les paramètres associés aux liaisons
+intermédiaires.
+\end{TLThreeDef}
+
+Pour un bielle-manivelle utilisé comme compresseur, l'entrée est souvent
+l'angle $\alpha$ et la sortie la position $x$ du piston. Dans un moteur
+thermique, le sens du transfert de puissance est inversé et $x$ peut
+être considéré comme l'entrée.
+
+\begin{TLThreeDef}{Course, cylindrée et homocinétisme}
+\textbf{Course :} distance entre les deux positions extrêmes d'un
+coulisseau ou d'un piston.
+
+\textbf{Cylindrée :} volume balayé par le piston pendant sa course,
+multiplié par le nombre de cylindres :
+\[
+V_c=n\,\frac{\pi D^2}{4}\,C.
+\]
+
+\textbf{Mécanisme homocinétique :} mécanisme dont le rapport des vitesses
+est constant et égal à l'unité. Un cardan simple n'est pas
+homocinétique ; deux cardans correctement montés peuvent l'être.
+\end{TLThreeDef}
+
+\section{Structures ouvertes : coordonnées articulaires et opérationnelles}
+\label{sec:les-ouvertes}
+
+Dans une chaîne ouverte de type robot série :
+\begin{itemize}
+  \item les \textbf{coordonnées articulaires} sont les paramètres de
+  position des liaisons : angles de pivots et courses de glissières ;
+  \item les \textbf{coordonnées opérationnelles} décrivent la position
+  et éventuellement l'orientation de l'effecteur dans le repère de
+  référence.
+\end{itemize}
+
+Pour un robot plan à quatre degrés de liberté, on peut écrire :
+\[
+\mathbf q=(\alpha,\beta,\gamma,\delta),
+\qquad
+\mathbf X=(x_P,y_P,z_P).
+\]
+
+\begin{TLThreeDef}{Modèles direct et inverse}
+Le \textbf{modèle géométrique direct} calcule les coordonnées
+opérationnelles à partir des coordonnées articulaires :
+\[
+\mathbf X=F(\mathbf q).
+\]
+Le \textbf{modèle géométrique inverse} cherche les coordonnées
+articulaires permettant d'atteindre une position imposée :
+\[
+\mathbf q=F^{-1}(\mathbf X).
+\]
+Il peut posséder plusieurs solutions, une solution unique ou aucune
+solution.
+\end{TLThreeDef}
+
+\section{Rappels sur les vecteurs}
+\label{sec:les-vecteurs}
+
+\subsection{Composantes et norme}
+
+Dans une base orthonormée directe
+$\mathcal B=(\vec i,\vec j,\vec k)$ :
+\[
+\vec V=X\vec i+Y\vec j+Z\vec k
+\quad\Longleftrightarrow\quad
+[\vec V]_{\mathcal B}=\begin{pmatrix}X\\Y\\Z\end{pmatrix}.
+\]
+Sa norme vaut :
+\[
+\boxed{\|\vec V\|=\sqrt{X^2+Y^2+Z^2}.}
+\]
+
+\subsection{Addition, multiplication et relation de Chasles}
+
+\[
+\vec U+\vec V=
+(U_x+V_x)\vec i+(U_y+V_y)\vec j+(U_z+V_z)\vec k,
+\]
+\[
+\lambda\vec U=(\lambda U_x)\vec i+(\lambda U_y)\vec j+(\lambda U_z)\vec k.
+\]
+
+Pour trois points $A$, $B$ et $C$ :
+\[
+\boxed{\overrightarrow{AB}+\overrightarrow{BC}=\overrightarrow{AC}.}
+\]
+Dans une chaîne fermée $A_1A_2\ldots A_nA_1$ :
+\[
+\boxed{\overrightarrow{A_1A_2}+\overrightarrow{A_2A_3}+
+\cdots+\overrightarrow{A_nA_1}=\vec0.}
+\]
+
+\begin{TLThreeApp}{Vitesse d'un bateau}
+Une embarcation se déplace à $40\ \mathrm{km\,h^{-1}}$ par rapport à
+l'eau, tandis que le courant vaut $15\ \mathrm{km\,h^{-1}}$. La vitesse
+par rapport à la rive est la somme vectorielle des deux vitesses.
+Construire la somme et déterminer sa norme pour une direction du bateau
+faisant $50^\circ$ avec la rive.
+\end{TLThreeApp}
+
+\subsection{Produit scalaire}
+
+\begin{TLThreeDef}{Définition et expression analytique}
+\[
+\vec U\cdot\vec V=\|\vec U\|\,\|\vec V\|\cos(\vec U,\vec V).
+\]
+Dans une base orthonormée :
+\[
+\boxed{\vec U\cdot\vec V=U_xV_x+U_yV_y+U_zV_z.}
+\]
+Le produit scalaire est nul si l'un des vecteurs est nul ou si les deux
+vecteurs sont orthogonaux.
+\end{TLThreeDef}
+
+Les propriétés utiles sont la symétrie, la distributivité et la
+compatibilité avec la multiplication par un réel :
+\[
+\vec U\cdot\vec V=\vec V\cdot\vec U,
+\qquad
+\vec U\cdot(\vec V+\vec W)=\vec U\cdot\vec V+\vec U\cdot\vec W.
+\]
+
+\begin{TLThreeApp}{Calcul direct}
+Avec
+$\vec V_1=2\vec x+2\vec y-3\vec z$ et
+$\vec V_2=-\vec x+6\vec z$, calculer
+$\vec V_1\cdot\vec V_2$ puis l'angle entre les deux vecteurs.
+\end{TLThreeApp}
