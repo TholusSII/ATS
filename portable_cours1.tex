@@ -1,0 +1,40 @@
+\documentclass[10pt,a4paper,openany]{book}
+\makeatletter
+\def\input@path{{Style/}}
+\makeatother
+\usepackage{TLPortableCours}
+\usepackage{TLIngenierieSysteme}
+\graphicspath{{01-Ingénierie système/Cours/}}
+
+\begin{document}
+\TLPortableTitlePage{1}{Introduction à l'ingénierie système}{Analyser le besoin, les exigences, l'architecture et le cycle de vie}{Version propre et modulaire issue du cours original}
+\tableofcontents
+\clearpage
+\chapter{Introduction à l'ingénierie système}
+\markboth{Ingénierie système}{Ingénierie système}
+
+\begin{savoirs}
+\begin{itemize}
+  \item définition, typologie, frontière et cycle de vie d'un système ;
+  \item démarche d'ingénierie système et gestion des exigences ;
+  \item vérification, validation, traçabilité et gestion des interfaces ;
+  \item rôle des principaux diagrammes SysML ;
+  \item architecture fonctionnelle, chaîne d'information et chaîne d'énergie.
+\end{itemize}
+\end{savoirs}
+
+\begin{savoirfaire}
+\begin{itemize}
+  \item analyser un besoin et identifier les parties prenantes ;
+  \item formuler une exigence mesurable et définir sa méthode de preuve ;
+  \item lire et compléter un diagramme de contexte, d'exigences, BDD ou IBD ;
+  \item relier les fonctions aux solutions techniques et aux flux ;
+  \item comparer système souhaité, système simulé et système réel.
+\end{itemize}
+\end{savoirfaire}
+
+\input{"01-Ingénierie système/Cours/sources/01_IS_Propre_A_Systemes.tex"}
+\input{"01-Ingénierie système/Cours/sources/01_IS_Propre_B_Ingenierie_Exigences.tex"}
+\input{"01-Ingénierie système/Cours/sources/01_IS_Propre_C_SysML_Architecture.tex"}
+\input{"01-Ingénierie système/Cours/sources/01_IS_Propre_Exercices.tex"}
+\end{document}
