@@ -1,0 +1,180 @@
+% ==========================================================================
+% COURS 01 -- PARTIE B : INGÉNIERIE SYSTÈME ET EXIGENCES
+% ==========================================================================
+
+\section{L'approche d'ingénierie système}\label{sec:is-demarche}
+
+L'ingénierie système organise les activités nécessaires à la conception, à la réalisation et à l'exploitation de systèmes complexes. Elle vise à maîtriser simultanément les besoins, les exigences, les interfaces, les risques, les modèles et les preuves de conformité.
+
+\begin{ISdefinition}
+L'\textbf{ingénierie système} est une démarche interdisciplinaire qui transforme un besoin en une solution cohérente sur l'ensemble du cycle de vie, en assurant la traçabilité entre attentes, exigences, architecture, réalisation, vérification et validation.
+\end{ISdefinition}
+
+Elle ne remplace pas les disciplines techniques. Elle permet de les coordonner : mécanique, électronique, informatique, automatique, énergétique, ergonomie, sûreté, industrialisation et maintenance.
+
+\subsection{Parties prenantes}
+
+Une partie prenante est une personne, une organisation ou un système concerné par le produit. Elle peut exprimer un besoin, imposer une contrainte, utiliser, maintenir, financer, fabriquer ou contrôler le système.
+
+Exemples : utilisateur final, exploitant, mainteneur, fabricant, organisme de contrôle, riverain, assureur, autorité réglementaire ou système connecté.
+
+\begin{ISmethode}[title={Identifier les parties prenantes}]
+Pour chaque phase du cycle de vie, se demander :
+\begin{enumerate}
+  \item qui utilise ou subit les effets du système ;
+  \item qui fournit matière, énergie ou information ;
+  \item qui fabrique, transporte, installe, maintient ou recycle ;
+  \item qui autorise, contrôle ou finance ;
+  \item quels autres systèmes échangent avec lui.
+\end{enumerate}
+\end{ISmethode}
+
+\subsection{Démarche descendante et démarche ascendante}
+
+La démarche \textbf{descendante} part de la mission et des exigences pour définir les fonctions, puis les sous-systèmes et les composants. La démarche \textbf{ascendante} intègre les composants réalisés, vérifie les sous-systèmes puis valide le système complet.
+
+\ISCycleEnV
+
+Le cycle en V met en correspondance les activités de définition à gauche et les activités de preuve à droite :
+\begin{itemize}
+  \item les composants sont testés ;
+  \item les sous-systèmes sont intégrés et vérifiés ;
+  \item le système complet est validé vis-à-vis du besoin.
+\end{itemize}
+
+\begin{ISattention}
+Le cycle en V ne signifie pas que toutes les décisions sont figées dès le début. Les revues, prototypes et essais produisent des retours qui conduisent à corriger les exigences ou l'architecture. La traçabilité permet de maîtriser ces évolutions.
+\end{ISattention}
+
+\section{Exigences et cahier des charges}\label{sec:is-exigences}
+
+\begin{ISdefinition}
+Une \textbf{exigence} est une caractéristique ou une capacité que le système doit posséder pour satisfaire un besoin, respecter une règle ou permettre une vérification.
+\end{ISdefinition}
+
+Une exigence de qualité doit être :
+\begin{itemize}
+  \item nécessaire et justifiée ;
+  \item claire et non ambiguë ;
+  \item réalisable ;
+  \item mesurable ou vérifiable ;
+  \item cohérente avec les autres exigences ;
+  \item identifiée de manière unique ;
+  \item reliée à sa source et à une méthode de preuve.
+\end{itemize}
+
+\subsection{Attributs d'une exigence}
+
+Une exigence comporte généralement :
+\begin{description}
+  \item[Identifiant :] code unique et stable ;
+  \item[Texte :] formulation du résultat attendu ;
+  \item[Source :] partie prenante, norme ou décision à l'origine ;
+  \item[Critère et niveau :] grandeur mesurable et valeur attendue ;
+  \item[Flexibilité :] tolérance, priorité ou marge de négociation ;
+  \item[Méthode de vérification :] inspection, analyse, démonstration ou essai ;
+  \item[Statut :] proposée, approuvée, modifiée ou vérifiée.
+\end{description}
+
+\ISDiagrammeExigences
+
+\subsection{Hiérarchie et dérivation}
+
+Une exigence globale peut être décomposée en exigences plus précises. La dérivation doit conserver l'intention initiale et permettre de justifier chaque exigence de niveau inférieur.
+
+Exemple : l'exigence « transporter une personne en sécurité » peut être dérivée en masse admissible, vitesse maximale, distance d'arrêt, résistance mécanique, disponibilité de l'arrêt d'urgence et conformité réglementaire.
+
+\subsection{Traçabilité}
+
+La traçabilité relie :
+\[
+\text{besoin}\longrightarrow\text{exigence}\longrightarrow\text{fonction}
+\longrightarrow\text{solution}\longrightarrow\text{preuve}.
+\]
+
+Elle permet de répondre à quatre questions :
+\begin{itemize}
+  \item pourquoi cet élément existe-t-il ;
+  \item quelle exigence satisfait-il ;
+  \item quelles exigences seraient affectées par sa modification ;
+  \item où se trouve la preuve de conformité.
+\end{itemize}
+
+\begin{ISapplication}[title={Matrice de traçabilité simplifiée}]
+\begin{center}
+\begin{tabularx}{.92\linewidth}{>{\bfseries}p{.18\linewidth}X X}
+\toprule
+Exigence & Élément de solution & Preuve prévue \\
+\midrule
+REQ-1 Masse $\geq100$ kg & structure et actionneur & calcul puis essai de charge \\
+REQ-2 Vitesse $\leq1{,}5$ m/s & variateur et loi de commande & mesure chronométrique \\
+REQ-3 Arrêt $<0{,}5$ s & frein et arrêt d'urgence & essai instrumenté \\
+\bottomrule
+\end{tabularx}
+\end{center}
+\end{ISapplication}
+
+\section{Vérification et validation}\label{sec:is-verification-validation}
+
+\begin{ISdefinition}[title={Vérification}]
+La \textbf{vérification} répond à la question : « le système a-t-il été réalisé conformément à ses spécifications ? »
+\end{ISdefinition}
+
+\begin{ISdefinition}[title={Validation}]
+La \textbf{validation} répond à la question : « le système réalisé répond-il réellement au besoin des parties prenantes dans son contexte d'utilisation ? »
+\end{ISdefinition}
+
+Une exigence peut être vérifiée par :
+\begin{itemize}
+  \item \textbf{inspection} : examen visuel, dimension ou document ;
+  \item \textbf{analyse} : calcul ou simulation ;
+  \item \textbf{démonstration} : observation d'un fonctionnement ;
+  \item \textbf{essai} : mesure selon un protocole défini.
+\end{itemize}
+
+\begin{ISattention}
+Un produit peut être conforme à toutes ses spécifications et pourtant ne pas satisfaire l'utilisateur si le besoin a été mal compris. La vérification ne remplace donc pas la validation.
+\end{ISattention}
+
+\section{Architecture, interfaces et compromis}\label{sec:is-architecture}
+
+L'architecture répartit les fonctions et les exigences entre des sous-systèmes. Elle décrit leur organisation et leurs interfaces.
+
+Une interface peut transmettre :
+\begin{itemize}
+  \item de la matière : fluide, pièce, charge ;
+  \item de l'énergie : électrique, mécanique, hydraulique, thermique ;
+  \item de l'information : mesure, ordre, état ou donnée réseau.
+\end{itemize}
+
+Les interfaces sont souvent à l'origine des difficultés d'intégration. Elles doivent préciser les grandeurs échangées, les unités, les connecteurs, les protocoles, les tolérances et les responsabilités.
+
+\subsection{Compromis de conception}
+
+Les exigences peuvent être antagonistes :
+\begin{itemize}
+  \item diminuer la masse peut augmenter le coût ;
+  \item augmenter la vitesse peut réduire la sécurité ou l'autonomie ;
+  \item accroître la précision peut nécessiter des capteurs plus coûteux ;
+  \item rendre un produit démontable peut augmenter son encombrement.
+\end{itemize}
+
+Le choix d'une architecture résulte d'un compromis explicite, justifié par des critères pondérés et par les priorités du projet.
+
+\section{Risques, configuration et évolutions}\label{sec:is-risques}
+
+La gestion des risques identifie les événements susceptibles d'empêcher l'atteinte des objectifs. Un risque est souvent caractérisé par sa probabilité et sa gravité.
+
+Les actions possibles sont : éviter, réduire, transférer ou accepter le risque. Les risques critiques doivent être associés à des mesures de prévention, de détection et de réduction des conséquences.
+
+La gestion de configuration garantit que les documents, modèles, logiciels et composants utilisés correspondent à une version identifiée. Toute modification doit être analysée, approuvée et répercutée sur les éléments liés.
+
+\begin{ISmethode}[title={Analyser une modification}]
+\begin{enumerate}
+  \item Identifier la raison et la version concernée.
+  \item Rechercher les exigences et interfaces liées.
+  \item Évaluer les conséquences techniques, économiques et calendaires.
+  \item Mettre à jour modèles, plans, code, essais et documentation.
+  \item Vérifier puis valider à nouveau les éléments affectés.
+\end{enumerate}
+\end{ISmethode}
