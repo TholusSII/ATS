@@ -1,6 +1,9 @@
 name: Compile current ALL_EXOS with MiKTeX
 
 on:
+  push:
+    branches:
+      - 'ci-all-exos-current-*'
   pull_request:
   workflow_dispatch:
 
