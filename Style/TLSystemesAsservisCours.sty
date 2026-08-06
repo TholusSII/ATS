@@ -75,38 +75,41 @@
 \end{tikzpicture}
 \end{center}}
 
+% Les réponses temporelles sont tracées en TikZ pur. Cette écriture évite les
+% flux de coordonnées fragiles de pgfplots lors de l'expansion dans une macro.
 \NewDocumentCommand{\SAReponsePremierOrdre}{}{%
 \begin{center}
-\begin{tikzpicture}
-\begin{axis}[
-  width=.78\linewidth,height=6cm,axis lines=left,xlabel={$t/\tau$},ylabel={$s(t)/K$},
-  xmin=0,xmax=5,ymin=0,ymax=1.15,grid=major,legend style={draw=none,at={(.97,.35)},anchor=east}]
-  \addplot[very thick,TLCoverBlue,domain=0:5,samples=120]{1-exp(-x)};
-  \addplot[dashed,SARed,domain=0:5]{.95};
-  \addplot[dotted,SAOrange,domain=0:5]{1};
-  \draw[dashed] (axis cs:3,0)--(axis cs:3,.95);
-  \legend{$1-e^{-t/\tau}$,tube à 5\%,valeur finale}
-\end{axis}
+\begin{tikzpicture}[x=1.25cm,y=4.2cm,>=Latex,font=\scriptsize]
+  \draw[->] (0,0)--(5.25,0) node[right] {$t/\tau$};
+  \draw[->] (0,0)--(0,1.18) node[above] {$s(t)/K$};
+  \foreach \x in {1,2,3,4,5}{\draw (\x,.012)--(\x,-.012) node[below] {\x};}
+  \foreach \y/\lab in {.5/0,5,.95/0,95,1/1}{\draw (.035,\y)--(-.035,\y) node[left]{\lab};}
+  \draw[dotted,SAOrange,thick] (0,1)--(5.05,1) node[right]{valeur finale};
+  \draw[dashed,SARed,thick] (0,.95)--(5.05,.95) node[right]{tube à 5\%};
+  \draw[dashed] (3,0)--(3,.95);
+  \draw[very thick,TLCoverBlue,domain=0:5,samples=100,smooth,variable=\t]
+    plot ({\t},{1-exp(-\t)});
 \end{tikzpicture}
 \end{center}}
 
 \NewDocumentCommand{\SAReponseSecondOrdre}{}{%
 \begin{center}
-\begin{tikzpicture}
-\begin{axis}[
-  width=.78\linewidth,height=6cm,axis lines=left,xlabel={$\omega_0 t$},ylabel={$s(t)/K$},
-  xmin=0,xmax=12,ymin=0,ymax=1.65,grid=major]
-  \addplot[very thick,TLCoverBlue,domain=0:12,samples=240]
-    {1-exp(-.3*x)*(cos(deg(.9539*x))+.3145*sin(deg(.9539*x)))};
-  \addplot[dashed,SAOrange,domain=0:12]{1};
-  \addplot[dotted,SARed,domain=0:12]{1.05};
-  \addplot[dotted,SARed,domain=0:12]{.95};
-\end{axis}
+\begin{tikzpicture}[x=.62cm,y=3.2cm,>=Latex,font=\scriptsize]
+  \draw[->] (0,0)--(12.4,0) node[right] {$\omega_0t$};
+  \draw[->] (0,0)--(0,1.68) node[above] {$s(t)/K$};
+  \foreach \x in {2,4,6,8,10,12}{\draw (\x,.015)--(\x,-.015) node[below] {\x};}
+  \foreach \y/\lab in {.5/0,5,1/1,1.5/1,5}{\draw (.06,\y)--(-.06,\y) node[left]{\lab};}
+  \draw[dashed,SAOrange,thick] (0,1)--(12.1,1);
+  \draw[dotted,SARed,thick] (0,1.05)--(12.1,1.05);
+  \draw[dotted,SARed,thick] (0,.95)--(12.1,.95);
+  \draw[very thick,TLCoverBlue,domain=0:12,samples=220,smooth,variable=\t]
+    plot ({\t},{1-exp(-.3*\t)*(cos(54.654*\t)+.3145*sin(54.654*\t))});
 \end{tikzpicture}
 \end{center}}
 
 \NewDocumentCommand{\SACarteModelisation}{}{%
 \begin{center}
+\resizebox{.98\linewidth}{!}{%
 \begin{tikzpicture}[>=Latex,node distance=9mm and 17mm,font=\small,
   bloc/.style={draw,rounded corners,fill=SABlueBack,minimum width=34mm,minimum height=10mm,align=center}]
   \node[bloc] (phys) {Système physique};
@@ -121,7 +124,7 @@
   \draw[->,thick] (tf)--(rep);
   \draw[->,thick] (rep)--(val);
   \draw[->,thick] (val)--(phys);
-\end{tikzpicture}
+\end{tikzpicture}}
 \end{center}}
 
 \endinput
