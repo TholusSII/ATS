@@ -1,5 +1,6 @@
 name: Compile current ALL_EXOS with MiKTeX
 
+# Branche technique de validation stricte ALL_EXOS.
 on:
   pull_request:
     paths:
