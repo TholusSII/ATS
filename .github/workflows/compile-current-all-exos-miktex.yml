@@ -1,0 +1,72 @@
+name: Compile current ALL_EXOS with MiKTeX
+
+on:
+  push:
+    branches:
+      - 'ci-all-exos-current-*'
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: compile-current-all-exos-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compile-miktex:
+    runs-on: windows-2022
+    timeout-minutes: 120
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Install MiKTeX and Perl
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Continue'
+          choco install strawberryperl -y --no-progress
+          $installed = $false
+          for ($attempt = 1; $attempt -le 3; $attempt++) {
+            choco install miktex.install -y --no-progress --execution-timeout=0
+            $pdflatex = Get-ChildItem 'C:\Program Files\MiKTeX' -Recurse -Filter pdflatex.exe -ErrorAction SilentlyContinue | Select-Object -First 1
+            if ($pdflatex) { $installed = $true; break }
+            Remove-Item "$env:TEMP\chocolatey\MiKTeX-repository" -Recurse -Force -ErrorAction SilentlyContinue
+            Start-Sleep -Seconds 30
+          }
+          if (-not $installed) { throw 'pdflatex.exe was not found after three MiKTeX installation attempts.' }
+          (Split-Path $pdflatex.FullName) | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+      - name: Configure automatic package installation
+        shell: powershell
+        run: |
+          initexmf --admin --set-config-value=[MPM]AutoInstall=1
+          initexmf --set-config-value=[MPM]AutoInstall=1
+          initexmf --admin --update-fndb
+          pdflatex --version
+      - name: Compile ALL_EXOS
+        shell: powershell
+        working-directory: ALL_EXOS
+        run: |
+          $ErrorActionPreference = 'Continue'
+          function Run-TeX([string]$label, [string]$command) {
+            cmd /c "$command 2>&1" | Tee-Object -FilePath "$label.txt"
+            if ($LASTEXITCODE -ne 0) { Get-Content "$label.txt" -Tail 200; exit $LASTEXITCODE }
+          }
+          Run-TeX 'pdflatex-pass-1' 'pdflatex -interaction=nonstopmode -file-line-error -halt-on-error ALL_EXOS.tex'
+          if (Test-Path 'ALL_EXOS.idx') { Run-TeX 'makeindex' 'makeindex ALL_EXOS.idx' }
+          Run-TeX 'pdflatex-pass-2' 'pdflatex -interaction=nonstopmode -file-line-error -halt-on-error ALL_EXOS.tex'
+          Run-TeX 'pdflatex-pass-3' 'pdflatex -interaction=nonstopmode -file-line-error -halt-on-error ALL_EXOS.tex'
+      - name: Reject LaTeX warnings
+        shell: powershell
+        working-directory: ALL_EXOS
+        run: |
+          $patterns = @('LaTeX Warning:','Package .* Warning:','Class .* Warning:','pdfTeX warning','Overfull \\[hv]box','Underfull \\[hv]box','Missing character:','Reference .* undefined','Citation .* undefined','There were undefined references','Label\(s\) may have changed')
+          $matches = Select-String -Path 'ALL_EXOS.log' -Pattern $patterns
+          if ($matches) { $matches | ForEach-Object { Write-Host $_.Line }; exit 1 }
+      - name: Upload build logs and PDF
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: all-exos-current-miktex-build
+          if-no-files-found: warn
+          path: |
+            ALL_EXOS/ALL_EXOS.pdf
+            ALL_EXOS/ALL_EXOS.log
+            ALL_EXOS/*.txt
