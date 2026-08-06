@@ -1,0 +1,101 @@
+name: Compiler les cours 1 et 5 avec MiKTeX
+
+on:
+  push:
+    paths:
+      - '.github/workflows/compile-courses1-5-miktex.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: compile-courses1-5-miktex-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compile:
+    runs-on: windows-2022
+    timeout-minutes: 150
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Installer MiKTeX et Perl
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Continue'
+          choco install strawberryperl -y --no-progress
+          $installed = $false
+          for ($attempt = 1; $attempt -le 3; $attempt++) {
+            choco install miktex.install -y --no-progress --execution-timeout=0
+            $pdflatex = Get-ChildItem 'C:\Program Files\MiKTeX' -Recurse -Filter pdflatex.exe -ErrorAction SilentlyContinue | Select-Object -First 1
+            if ($pdflatex) { $installed = $true; break }
+            Remove-Item "$env:TEMP\chocolatey\MiKTeX-repository" -Recurse -Force -ErrorAction SilentlyContinue
+            Start-Sleep -Seconds 30
+          }
+          if (-not $installed) { throw 'pdflatex.exe introuvable après trois tentatives.' }
+          (Split-Path $pdflatex.FullName) | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+
+      - name: Configurer MiKTeX et kaobook
+        shell: powershell
+        run: |
+          initexmf --admin --set-config-value=[MPM]AutoInstall=1
+          initexmf --set-config-value=[MPM]AutoInstall=1
+          $kaobook = Join-Path $env:RUNNER_TEMP 'kaobook'
+          if (Test-Path $kaobook) { Remove-Item $kaobook -Recurse -Force }
+          git clone --depth 1 https://github.com/fmarotta/kaobook.git $kaobook
+          initexmf --admin --register-root=$kaobook
+          initexmf --register-root=$kaobook
+          initexmf --admin --update-fndb
+          initexmf --update-fndb
+          pdflatex --version
+
+      - name: Compiler les deux cours
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          function Compile-Course([string]$directory, [string]$root) {
+            Push-Location $directory
+            try {
+              cmd /c "pdflatex -interaction=nonstopmode -file-line-error -halt-on-error $root" | Tee-Object -FilePath 'pdflatex-pass-1.txt'
+              if ($LASTEXITCODE -ne 0) { Get-Content 'pdflatex-pass-1.txt' -Tail 250; throw "Échec de la première passe pour $root" }
+              $idx = [System.IO.Path]::ChangeExtension($root, '.idx')
+              if (Test-Path $idx) {
+                cmd /c "makeindex $idx" | Tee-Object -FilePath 'makeindex.txt'
+                if ($LASTEXITCODE -ne 0) { throw "Échec de makeindex pour $root" }
+              }
+              cmd /c "pdflatex -interaction=nonstopmode -file-line-error -halt-on-error $root" | Tee-Object -FilePath 'pdflatex-pass-2.txt'
+              if ($LASTEXITCODE -ne 0) { Get-Content 'pdflatex-pass-2.txt' -Tail 250; throw "Échec de la deuxième passe pour $root" }
+              cmd /c "pdflatex -interaction=nonstopmode -file-line-error -halt-on-error $root" | Tee-Object -FilePath 'pdflatex-pass-3.txt'
+              if ($LASTEXITCODE -ne 0) { Get-Content 'pdflatex-pass-3.txt' -Tail 250; throw "Échec de la troisième passe pour $root" }
+            }
+            finally { Pop-Location }
+          }
+          Compile-Course '01-Ingénierie système/Cours' '00_Ingenierie_Systeme.tex'
+          Compile-Course '05-Modélisation Systèmes Asservis/Cours' '00_Systemes_Asservis.tex'
+
+      - name: Contrôler les erreurs de mise en page
+        shell: powershell
+        run: |
+          $logs = @(
+            '01-Ingénierie système/Cours/00_Ingenierie_Systeme.log',
+            '05-Modélisation Systèmes Asservis/Cours/00_Systemes_Asservis.log'
+          )
+          $patterns = @('Overfull \\[hv]box','Missing character:','Reference .* undefined','There were undefined references')
+          $matches = Select-String -Path $logs -Pattern $patterns
+          if ($matches) {
+            $matches | ForEach-Object { Write-Host $_.Path ':' $_.Line }
+            exit 1
+          }
+
+      - name: Publier les PDF et journaux
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cours-1-et-5-miktex
+          if-no-files-found: warn
+          path: |
+            01-Ingénierie système/Cours/00_Ingenierie_Systeme.pdf
+            01-Ingénierie système/Cours/00_Ingenierie_Systeme.log
+            01-Ingénierie système/Cours/*.txt
+            05-Modélisation Systèmes Asservis/Cours/00_Systemes_Asservis.pdf
+            05-Modélisation Systèmes Asservis/Cours/00_Systemes_Asservis.log
+            05-Modélisation Systèmes Asservis/Cours/*.txt
