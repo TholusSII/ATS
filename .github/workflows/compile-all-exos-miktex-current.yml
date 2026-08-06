@@ -6,6 +6,12 @@ on:
     paths:
       - 'ALL_EXOS/**'
       - '.github/workflows/compile-all-exos-miktex-current.yml'
+  push:
+    branches:
+      - 'ci-all-exos-current-*'
+    paths:
+      - 'ALL_EXOS/**'
+      - '.github/workflows/compile-all-exos-miktex-current.yml'
   workflow_dispatch:
 
 concurrency:
