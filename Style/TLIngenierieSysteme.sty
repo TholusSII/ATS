@@ -4,6 +4,7 @@
 \RequirePackage{xparse}
 \RequirePackage[most]{tcolorbox}
 \RequirePackage{tikz}
+\RequirePackage{graphicx}
 \RequirePackage{amsmath}
 \usetikzlibrary{arrows.meta,calc,positioning,fit,shapes.geometric}
 
@@ -49,13 +50,18 @@
 
 \NewDocumentCommand{\ISSystemeBoiteNoire}{}{%
 \begin{center}
+\resizebox{.98\linewidth}{!}{%
 \begin{tikzpicture}[>=Latex,font=\small]
   \node[ISbloc,minimum width=55mm,minimum height=25mm] (sys) {\textbf{Système}\\transformer la matière d'œuvre};
-  \draw[ISlink] ($(sys.west)+(-2.3,0.45)$)--node[above]{matière d'œuvre entrante}(sys.west |- {0,0.45});
-  \draw[ISlink] (sys.east |- {0,0.45})--node[above]{matière d'œuvre sortante}($(sys.east)+(2.3,0.45)$);
-  \draw[ISlink] ($(sys.west)+(-2.3,-0.65)$)--node[below]{énergie, information}(sys.west |- {0,-0.65});
-  \draw[ISlink] (sys.east |- {0,-0.65})--node[below]{pertes, informations}($(sys.east)+(2.3,-0.65)$);
-\end{tikzpicture}
+  \coordinate (win1) at ($(sys.west)+(0,.45)$);
+  \coordinate (wout1) at ($(sys.east)+(0,.45)$);
+  \coordinate (win2) at ($(sys.west)+(0,-.65)$);
+  \coordinate (wout2) at ($(sys.east)+(0,-.65)$);
+  \draw[ISlink] ($(win1)+(-2.3,0)$)--node[above]{matière d'œuvre entrante}(win1);
+  \draw[ISlink] (wout1)--node[above]{matière d'œuvre sortante}($(wout1)+(2.3,0)$);
+  \draw[ISlink] ($(win2)+(-2.3,0)$)--node[below]{énergie, information}(win2);
+  \draw[ISlink] (wout2)--node[below]{pertes, informations}($(wout2)+(2.3,0)$);
+\end{tikzpicture}}
 \end{center}}
 
 \NewDocumentCommand{\ISTriangleSystemes}{}{%
@@ -72,7 +78,8 @@
 
 \NewDocumentCommand{\ISCycleEnV}{}{%
 \begin{center}
-\begin{tikzpicture}[>=Latex,font=\scriptsize,x=1.25cm,y=.9cm]
+\resizebox{.98\linewidth}{!}{%
+\begin{tikzpicture}[>=Latex,font=\scriptsize,x=2.3cm,y=1.25cm]
   \node[ISbloc] (bes) at (0,4) {Besoin\\parties prenantes};
   \node[ISbloc] (req) at (1,3) {Exigences\\système};
   \node[ISbloc] (arch) at (2,2) {Architecture\\fonctionnelle};
@@ -87,11 +94,12 @@
   \draw[dashed,->] (arch)--node[above,sloped]{vérifier}(int);
   \draw[dashed,->] (req)--node[above,sloped]{valider}(val);
   \draw[dashed,->] (bes)--node[above,sloped]{satisfaire}(serv);
-\end{tikzpicture}
+\end{tikzpicture}}
 \end{center}}
 
 \NewDocumentCommand{\ISDiagrammeExigences}{}{%
 \begin{center}
+\resizebox{.96\linewidth}{!}{%
 \begin{tikzpicture}[>=Latex,font=\scriptsize,node distance=10mm and 15mm]
   \node[ISexigence] (r0) {\textbf{REQ-0}\\Transporter une personne\\en sécurité};
   \node[ISexigence,below left=of r0] (r1) {\textbf{REQ-1}\\Masse transportée\\$\geq100$ kg};
@@ -100,22 +108,24 @@
   \draw[->,thick] (r1)--node[above,sloped]{«deriveReqt»}(r0);
   \draw[->,thick] (r2)--node[right]{«deriveReqt»}(r0);
   \draw[->,thick] (r3)--node[above,sloped]{«deriveReqt»}(r0);
-\end{tikzpicture}
+\end{tikzpicture}}
 \end{center}}
 
 \NewDocumentCommand{\ISBDDIBD}{}{%
 \begin{center}
 \begin{minipage}[t]{.48\linewidth}
 \centering\textbf{BDD : composition}\par\medskip
+\resizebox{\linewidth}{!}{%
 \begin{tikzpicture}[font=\scriptsize,node distance=7mm]
   \node[ISbloc] (s) {Système};
   \node[ISbloc,below left=of s] (pc) {Partie\\commande};
   \node[ISbloc,below right=of s] (po) {Partie\\opérative};
   \draw[thick] (s)--(pc);\draw[thick] (s)--(po);
-\end{tikzpicture}
+\end{tikzpicture}}
 \end{minipage}\hfill
 \begin{minipage}[t]{.48\linewidth}
 \centering\textbf{IBD : échanges internes}\par\medskip
+\resizebox{\linewidth}{!}{%
 \begin{tikzpicture}[font=\scriptsize,node distance=11mm]
   \node[ISbloc] (c) {Commande};
   \node[ISbloc,right=of c] (a) {Actionneur};
@@ -123,12 +133,13 @@
   \draw[ISlink] (c)--node[above]{ordre}(a);
   \draw[ISlink] (a)--node[right]{grandeur}(cap);
   \draw[ISlink] (cap)--node[below,sloped]{mesure}(c);
-\end{tikzpicture}
+\end{tikzpicture}}
 \end{minipage}
 \end{center}}
 
 \NewDocumentCommand{\ISChaineFonctionnelle}{}{%
 \begin{center}
+\resizebox{.98\linewidth}{!}{%
 \begin{tikzpicture}[>=Latex,font=\scriptsize,node distance=5mm]
   \node[ISfonction] (acq) {Acquérir};
   \node[ISfonction,right=of acq] (trait) {Traiter};
@@ -143,17 +154,19 @@
   \draw[ISlink] (trait.south)--(dist.north);
   \node[left=3mm of acq,font=\bfseries] {Information};
   \node[left=3mm of alim,font=\bfseries] {Énergie};
-\end{tikzpicture}
+\end{tikzpicture}}
 \end{center}}
 
 \NewDocumentCommand{\ISContexte}{}{%
 \begin{center}
 \begin{tikzpicture}[>=Latex,font=\small]
   \node[ISbloc,minimum size=25mm] (sys) {Système\\étudié};
-  \foreach \a/\nom in {90/Utilisateur,18/Énergie,-54/Environnement,-126/Maintenance,162/Réglementation}{
-    \node[draw,ellipse,fill=white] (n\a) at (\a:3.2) {\nom};
-    \draw[<->,thick] (sys)--(n\a);
-  }
+  \node[draw,ellipse,fill=white] (user) at (90:3.2) {Utilisateur};
+  \node[draw,ellipse,fill=white] (energy) at (18:3.2) {Énergie};
+  \node[draw,ellipse,fill=white] (env) at (-54:3.2) {Environnement};
+  \node[draw,ellipse,fill=white] (maint) at (-126:3.2) {Maintenance};
+  \node[draw,ellipse,fill=white] (reg) at (162:3.2) {Réglementation};
+  \foreach \n in {user,energy,env,maint,reg}{\draw[<->,thick] (sys)--(\n);}
 \end{tikzpicture}
 \end{center}}
 
