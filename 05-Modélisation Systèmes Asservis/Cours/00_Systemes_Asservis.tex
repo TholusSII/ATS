@@ -29,6 +29,43 @@
 \usepackage{siunitx}
 \sisetup{locale=FR,per-mode=symbol}
 
+% Variantes locales robustes : les libellés décimaux français ne sont pas
+% placés dans une liste \foreach afin que leurs virgules ne soient jamais
+% interprétées comme des séparateurs d'éléments.
+\renewcommand{\SAReponsePremierOrdre}{%
+\begin{center}
+\begin{tikzpicture}[x=1.25cm,y=4.2cm,>=Latex,font=\scriptsize]
+  \draw[->] (0,0)--(5.25,0) node[right] {$t/\tau$};
+  \draw[->] (0,0)--(0,1.18) node[above] {$s(t)/K$};
+  \foreach \x in {1,2,3,4,5}{\draw (\x,.012)--(\x,-.012) node[below] {\x};}
+  \draw (.035,.5)--(-.035,.5) node[left]{0,5};
+  \draw (.035,.95)--(-.035,.95) node[left]{0,95};
+  \draw (.035,1)--(-.035,1) node[left]{1};
+  \draw[dotted,SAOrange,thick] (0,1)--(5.05,1) node[right]{valeur finale};
+  \draw[dashed,SARed,thick] (0,.95)--(5.05,.95) node[right]{tube à 5\%};
+  \draw[dashed] (3,0)--(3,.95);
+  \draw[very thick,TLCoverBlue,domain=0:5,samples=100,smooth,variable=\t]
+    plot ({\t},{1-exp(-\t)});
+\end{tikzpicture}
+\end{center}}
+
+\renewcommand{\SAReponseSecondOrdre}{%
+\begin{center}
+\begin{tikzpicture}[x=.62cm,y=3.2cm,>=Latex,font=\scriptsize]
+  \draw[->] (0,0)--(12.4,0) node[right] {$\omega_0t$};
+  \draw[->] (0,0)--(0,1.68) node[above] {$s(t)/K$};
+  \foreach \x in {2,4,6,8,10,12}{\draw (\x,.015)--(\x,-.015) node[below] {\x};}
+  \draw (.06,.5)--(-.06,.5) node[left]{0,5};
+  \draw (.06,1)--(-.06,1) node[left]{1};
+  \draw (.06,1.5)--(-.06,1.5) node[left]{1,5};
+  \draw[dashed,SAOrange,thick] (0,1)--(12.1,1);
+  \draw[dotted,SARed,thick] (0,1.05)--(12.1,1.05);
+  \draw[dotted,SARed,thick] (0,.95)--(12.1,.95);
+  \draw[very thick,TLCoverBlue,domain=0:12,samples=220,smooth,variable=\t]
+    plot ({\t},{1-exp(-.3*\t)*(cos(54.654*\t)+.3145*sin(54.654*\t))});
+\end{tikzpicture}
+\end{center}}
+
 \raggedbottom
 \setlength{\parindent}{0pt}
 \setlength{\emergencystretch}{3em}
