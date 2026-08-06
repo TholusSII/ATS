@@ -16,13 +16,13 @@
   {Thomas Lusseau}
 
 \TLCourseCoverContents{%
-  \TLCourseContentsLine{1.1}{Mise en situation}{TL-course-section-1}
-  \TLCourseContentsLine{1.2}{Typologie des systèmes}{TL-course-section-2}
-  \TLCourseContentsLine{1.3}{Approche d'ingénierie système}{TL-course-section-3}
-  \TLCourseContentsLine{1.4}{Langage et diagrammes SysML}{TL-course-section-4}
-  \TLCourseContentsLine{1.5}{Architecture et chaînes fonctionnelles}{TL-course-section-5}
-  \TLCourseContentsLine{1.6}{Sources}{TL-course-section-6}
-  \TLCourseContentsLine{1.7}{Exercices du chapitre}{exercices-du-chapitre}
+  \TLCourseContentsLine{1.1}{Systèmes, besoin et cycle de vie}{sec:is-systeme}
+  \TLCourseContentsLine{1.2}{Système souhaité, simulé et réel}{sec:is-ecarts}
+  \TLCourseContentsLine{1.3}{Démarche d'ingénierie système}{sec:is-demarche}
+  \TLCourseContentsLine{1.4}{Exigences, vérification et validation}{sec:is-exigences}
+  \TLCourseContentsLine{1.5}{Langage et diagrammes SysML}{sec:is-sysml}
+  \TLCourseContentsLine{1.6}{Architecture fonctionnelle}{sec:is-architecture-fonctionnelle}
+  \TLCourseContentsLine{1.7}{Exercices du chapitre}{sec:is-exercices}
 }
 
 \TLCourseFooter
@@ -37,8 +37,9 @@
 
 \begin{savoirs}
 \begin{itemize}
-  \item définition, typologie et cycle de vie d'un système ;
+  \item définition, typologie, frontière et cycle de vie d'un système ;
   \item démarche d'ingénierie système et gestion des exigences ;
+  \item vérification, validation, traçabilité et gestion des interfaces ;
   \item rôle des principaux diagrammes SysML ;
   \item architecture fonctionnelle, chaîne d'information et chaîne d'énergie.
 \end{itemize}
@@ -47,15 +48,14 @@
 \begin{savoirfaire}
 \begin{itemize}
   \item analyser un besoin et identifier les parties prenantes ;
-  \item lire et compléter un diagramme d'exigences, de contexte ou de blocs ;
-  \item relier les fonctions aux solutions techniques ;
+  \item formuler une exigence mesurable et définir sa méthode de preuve ;
+  \item lire et compléter un diagramme de contexte, d'exigences, BDD ou IBD ;
+  \item relier les fonctions aux solutions techniques et aux flux ;
   \item comparer système souhaité, système simulé et système réel.
 \end{itemize}
 \end{savoirfaire}
 
-% Le fichier historique est conservé comme source fidèle au Word. Le moteur
-% neutralise sa couverture interne, sécurise les images et étiquette les sections.
-\TLInputCourseBody{01_Ingenierie_Systeme_Cours}{images/image3.png}
-
-\input{01_Ingenierie_Systeme_Exercices_Images}
-\input{01_Ingenierie_Systeme_Exercices}
+\input{sources/01_IS_Propre_A_Systemes}
+\input{sources/01_IS_Propre_B_Ingenierie_Exigences}
+\input{sources/01_IS_Propre_C_SysML_Architecture}
+\input{sources/01_IS_Propre_Exercices}
