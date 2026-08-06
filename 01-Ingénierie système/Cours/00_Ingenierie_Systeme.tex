@@ -1,37 +1,36 @@
 % ============================================================================
-% MOTEUR GÉNÉRIQUE DES POLYCOPIÉS DE COURS
-% Pour créer un nouveau poly, seule la ligne TLCourseDefinitionFile change.
-% Le fichier 01_... définit la couverture et charge toutes les ressources.
+% MOTEUR GÉNÉRIQUE -- COURS 01 : INGÉNIERIE SYSTÈME
 % ============================================================================
 \RequirePackage{silence}
 \WarningFilter{xcolor}{Package option `usenames' is obsolete}
-% Kaobook charge listings avant babel. Les deux paquets restent correctement
-% configurés malgré cet avertissement sans conséquence.
 \WarningFilter{french3.ldf}{Please load the "listings" package}
+\WarningFilter{french3.ldf}{footnotebackref package loaded}
 
 \documentclass[
   fontsize=10pt,
   twoside=true,
+  open=any,
 ]{kaobook}
 
 \usepackage[french]{babel}
-
-% Fichier de définition du cours à compiler.
 \newcommand{\TLCourseDefinitionFile}{01_Ingenierie_Systeme}
 
-% Le seul chemin local nécessaire : TLCours charge ensuite le framework,
-% les macros SI, les environnements, les boîtes TL et la couverture.
 \makeatletter
 \def\input@path{{../../Style/}}
 \makeatother
 \input{TLCours.sty}
 
-% -----------------------------------------------------------------------------
-% Mise en page commune à tous les cours
-% -----------------------------------------------------------------------------
+% Dépendances de la conversion Word historique.
+\usepackage{longtable,booktabs,array,calc,multirow,tabularx}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{siunitx}
+\sisetup{locale=FR,per-mode=symbol}
+\providecommand{\real}[1]{#1}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
 \raggedbottom
 \setlength{\parindent}{0pt}
-\setlength{\emergencystretch}{2em}
+\setlength{\emergencystretch}{3em}
 \setcounter{topnumber}{5}
 \setcounter{bottomnumber}{5}
 \setcounter{totalnumber}{8}
@@ -43,17 +42,13 @@
 \setlength{\textfloatsep}{10pt plus 2pt minus 2pt}
 \setlength{\intextsep}{8pt plus 2pt minus 2pt}
 
-\makeindex[columns=3, title=Index alphabétique, intoc]
+\makeindex[columns=3,title=Index alphabétique,intoc]
 
 \begin{document}
-
 \mainmatter
 \setchapterstyle{kao}
 \setcounter{margintocdepth}{\sectiontocdepth}
 \marginlayout
 \pagestyle{scrheadings}
-
-% Toute la configuration spécifique et toutes les ressources sont appelées ici.
 \input{\TLCourseDefinitionFile}
-
 \end{document}
