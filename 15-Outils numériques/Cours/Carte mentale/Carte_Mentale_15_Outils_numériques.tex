@@ -11,13 +11,13 @@
 \renewcommand{\familydefault}{\sfdefault}
 \begin{document}
 \begin{tikzpicture}
-\TLMapBase{Outils numériques}{Modèle continu $\rightarrow$ forme d'état $\rightarrow$ Euler $\rightarrow$ comparaison de pas $\rightarrow$ validation}
-\TLMapBranchTL{À connaître}{\textbullet\ problème de Cauchy : $\dot y=f(t,y)$, $y(t_0)=y_0$\\[1mm]\textbullet\ $t_k=t_0+kh$\\[1mm]\textbullet\ Euler explicite : $y_{k+1}=y_k+h f(t_k,y_k)$\\[1mm]\textbullet\ ordre 2 $\Rightarrow$ système d'ordre 1\\[1mm]\textbullet\ pas $h$ : précision / coût / stabilité\\[1mm]\textbullet\ validation par comparaison et cohérence physique}
-\TLMapBranchTR{Cas ordre 1}{1. Isoler $\dot y=f(t,y)$.\\[1mm]2. Fixer $t_0,y_0,h,n$.\\[1mm]3. Évaluer $f(t_k,y_k)$.\\[1mm]4. Calculer $y_{k+1}=y_k+h f(t_k,y_k)$.\\[1mm]5. Poser $t_{k+1}=t_k+h$.\\[1mm]6. Répéter et stocker.\\[1mm]Même méthode si $f$ est linéaire ou non linéaire.}
-\TLMapBranchML{Cas ordre deux}{\textbf{Ne pas discrétiser directement $\ddot y$.}\\[1mm]1. Introduire des variables d'état, par exemple $y_0=\theta$, $y_1=\dot\theta$.\\[1mm]2. Écrire $\dot y_0=y_1$ et $\dot y_1=f(t,y_0,y_1)$.\\[1mm]3. Appliquer Euler à chaque composante.\\[1mm]4. Utiliser uniquement les valeurs du pas $k$ pour calculer toutes les valeurs au pas $k+1$.}
-\TLMapBranchMR{Algorithme / Python}{\textbullet\ initialiser listes temps et états\\[1mm]\textbullet\ boucle sur le nombre de pas\\[1mm]\textbullet\ calculer la pente au début du pas\\[1mm]\textbullet\ calculer la nouvelle valeur puis le nouveau temps\\[1mm]\textbullet\ ajouter les résultats aux listes\\[1mm]\textbullet\ pour un système : état = vecteur et mise à jour composante par composante}
-\TLMapBranchBL{Choix du pas}{\textbullet\ $h$ petit : plus de calculs, généralement plus précis\\[1mm]\textbullet\ $h$ trop grand : approximation mauvaise, voire instabilité\\[1mm]\textbullet\ ne pas choisir $h$ uniquement pour obtenir une courbe lisse\\[1mm]\textbullet\ refaire systématiquement le calcul avec un pas plus petit pour tester la sensibilité}
-\TLMapBranchBR{Validation}{1. Vérifier unités et conditions initiales.\\[1mm]2. Comparer à une solution exacte si elle existe.\\[1mm]3. Diminuer $h$ et comparer les courbes / valeurs finales.\\[1mm]4. Contrôler signes, bornes et comportement physique.\\[1mm]5. Si le résultat change fortement avec $h$, ne pas conclure : raffiner le calcul.}
-\TLMapRibbon{Euler explicite = pente au début du pas. La première étape est toujours de transformer correctement le modèle en système du premier ordre.}
+\TLMapBase{Outils numériques}{Modèle continu $\rightarrow$ Discrétisation $\rightarrow$ Calcul numérique}
+\TLMapBranchTL{Savoirs}{\textbullet\ discrétiser le temps par $t_k=t_0+kh$ et approximer les dérivées par différences finies\\[1.2mm]\textbullet\ utiliser la méthode d'Euler explicite et comprendre la notion de schéma numérique\\[1.2mm]\textbullet\ transformer une équation d'ordre deux en système d'équations du premier ordre\\[1.2mm]\textbullet\ analyser erreur de discrétisation, convergence et influence du pas\\[1.2mm]\textbullet\ étudier stabilité numérique et valider par cohérence physique ou solution de référence}
+\TLMapBranchTR{Discrétisation}{\textbullet\ $t_k=t_0+kh$\\[1.2mm]\textbullet\ différences finies\\[1.2mm]\textbullet\ pas $h$}
+\TLMapBranchML{Euler}{\textbullet\ $y_{k+1}=y_k+h f_k$\\[1.2mm]\textbullet\ schéma explicite\\[1.2mm]\textbullet\ erreur locale}
+\TLMapBranchMR{Ordre deux}{\textbullet\ variables d'état\\[1.2mm]\textbullet\ position / vitesse\\[1.2mm]\textbullet\ système d'ordre 1}
+\TLMapBranchBL{Validation}{\textbullet\ convergence\\[1.2mm]\textbullet\ stabilité\\[1.2mm]\textbullet\ comparaison\\[1.2mm]\textbullet\ cohérence physique}
+\TLMapBranchBR{Méthode}{1. Écrire le modèle continu et identifier variables d'état et conditions initiales.\\[1.2mm]2. Choisir un pas compatible avec les constantes de temps.\\[1.2mm]3. Écrire le schéma numérique puis initialiser les variables.\\[1.2mm]4. Itérer le calcul en stockant temps et grandeurs utiles.\\[1.2mm]5. Tracer les résultats et tester plusieurs valeurs du pas.}
+\TLMapRibbon{Modéliser $\rightarrow$ Discrétiser $\rightarrow$ Calculer $\rightarrow$ Comparer $\rightarrow$ Raffiner $\rightarrow$ Valider}
 \end{tikzpicture}
 \end{document}

@@ -10,50 +10,50 @@
 \pagestyle{empty}
 \renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\TLPosterCourseHeader{15}{Outils numériques}{Résoudre une équation différentielle par Euler explicite}
+\TLPosterCourseHeader{15}{Outils numériques}{Discrétisation, intégration et validation des modèles}
 \vspace{2mm}
 \begin{minipage}[t]{0.61\linewidth}
 \begin{TLPosterSavoirs}
 \begin{itemize}
-  \item mettre un problème de Cauchy sous la forme $\dot y=f(t,y)$ avec condition initiale $y(t_0)=y_0$
-  \item discrétiser le temps : $t_k=t_0+kh$ et connaître le schéma d'Euler explicite $y_{k+1}=y_k+h f(t_k,y_k)$
-  \item transformer une équation différentielle d'ordre deux en système de deux équations du premier ordre
-  \item appliquer Euler à une équation linéaire, non linéaire ou à un vecteur d'état
-  \item comprendre que le pas $h$ agit sur précision, coût et stabilité et savoir valider numériquement une simulation
+  \item discrétiser le temps par $t_k=t_0+kh$ et approximer les dérivées par différences finies
+  \item utiliser la méthode d'Euler explicite et comprendre la notion de schéma numérique
+  \item transformer une équation d'ordre deux en système d'équations du premier ordre
+  \item analyser erreur de discrétisation, convergence et influence du pas
+  \item étudier stabilité numérique et valider par cohérence physique ou solution de référence
 \end{itemize}
 \end{TLPosterSavoirs}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.36\linewidth}
-\TLPosterKey{Euler explicite}{$\boxed{\mathbf y_{k+1}=\mathbf y_k+h\,\mathbf f(t_k,\mathbf y_k)}$}
+\TLPosterKey{Euler explicite}{$y_{k+1}=y_k+h\,f(t_k,y_k)$}
 \end{minipage}
 \vfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Cas ordre 1]{TLPosterBlue}
-1) Isoler la dérivée : $\dot y=f(t,y)$. 2) Identifier $t_0$, $y_0$, le pas $h$ et le nombre de pas. 3) Calculer $f(t_k,y_k)$. 4) Mettre à jour $y_{k+1}=y_k+h f(t_k,y_k)$ puis $t_{k+1}=t_k+h$. 5) Répéter et stocker les valeurs. La méthode est identique si $f$ est linéaire ou non linéaire.
+\begin{TLPosterBloc}[Discrétisation]{TLPosterBlue}
+Le temps continu est remplacé par des instants $t_k=t_0+kh$. Les dérivées sont approchées par des différences entre valeurs successives ; le pas $h$ règle précision et coût.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Cas ordre deux]{TLPosterPurple}
-Ne pas appliquer Euler directement à $\ddot y$. Introduire deux états, par exemple $y_0=\theta$ et $y_1=\dot\theta$, puis écrire un système du premier ordre. Appliquer ensuite Euler composante par composante : une relation de récurrence pour chaque variable d'état.
+\begin{TLPosterBloc}[Équations d'ordre deux]{TLPosterPurple}
+Une équation différentielle du second ordre est transformée en deux équations du premier ordre en introduisant une variable de vitesse ou d'état supplémentaire.
 \end{TLPosterBloc}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Implémentation]{TLPosterGreen}
-Initialiser les listes avec $(t_0,y_0)$. À chaque itération, calculer d'abord la nouvelle valeur avec les données du pas $k$, puis avancer le temps. Pour un système, remplacer $y$ par un vecteur. Conserver toutes les valeurs si l'on veut tracer l'évolution et comparer plusieurs pas.
+\begin{TLPosterBloc}[Euler explicite]{TLPosterGreen}
+La pente est évaluée au début du pas puis utilisée pour avancer : $y_{k+1}=y_k+h f(t_k,y_k)$. La méthode est simple mais son erreur et sa stabilité dépendent fortement de $h$.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Choix du pas et validation]{TLPosterTeal}
-Un pas plus petit améliore généralement l'approximation mais augmente le nombre de calculs. Une valeur trop grande peut rendre Euler imprécis ou instable. Valider par : unités et conditions initiales, comparaison à une solution exacte si disponible, nouveau calcul avec un pas plus petit, et contrôle du comportement physique.
+\begin{TLPosterBloc}[Validation]{TLPosterTeal}
+La diminution du pas doit conduire vers une solution stable. On compare à une solution analytique, une mesure ou des invariants physiques et on surveille les erreurs cumulées.
 \end{TLPosterBloc}
 \end{minipage}
 \vfill
 \begin{TLPosterMethode}
 \begin{enumerate}
-  \item \textbf{Mettre le modèle sous forme d'état :} $\dot{\mathbf y}=\mathbf f(t,\mathbf y)$ ; si ordre 2, introduire position et vitesse.
-  \item \textbf{Initialiser :} $t_0$, $\mathbf y_0$, pas $h$, durée ou nombre de pas.
-  \item \textbf{Itérer :} évaluer $\mathbf f$ au début du pas puis appliquer $\mathbf y_{k+1}=\mathbf y_k+h\mathbf f(t_k,\mathbf y_k)$.
-  \item \textbf{Stocker et représenter :} conserver $t_k$ et les états calculés pour tracer la solution.
-  \item \textbf{Valider :} recommencer avec un pas plus petit et vérifier que la solution converge vers un comportement cohérent.
-  \item \textbf{Conclure :} un calcul qui change fortement quand $h$ diminue n'est pas encore suffisamment validé.
+  \item Écrire le modèle continu et identifier variables d'état et conditions initiales.
+  \item Choisir un pas compatible avec les constantes de temps.
+  \item Écrire le schéma numérique puis initialiser les variables.
+  \item Itérer le calcul en stockant temps et grandeurs utiles.
+  \item Tracer les résultats et tester plusieurs valeurs du pas.
+  \item Valider convergence, stabilité numérique, unités et cohérence physique.
 \end{enumerate}
 \end{TLPosterMethode}
 \vfill
-\TLPosterRetenir{Euler explicite utilise la pente au début du pas ; avant tout calcul, il faut donc mettre correctement le modèle sous forme d'équations du premier ordre.}
+\TLPosterRetenir{un résultat numérique n'est fiable qu'après une étude du pas, de la convergence et de la cohérence physique.}
 \end{document}
