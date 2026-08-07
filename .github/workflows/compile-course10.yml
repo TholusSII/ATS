@@ -1,4 +1,4 @@
-name: Compiler le cours 10
+name: Compiler le cours 10 électronique de puissance
 
 on:
   push:
@@ -8,28 +8,27 @@ on:
       - '.github/workflows/compile-course10.yml'
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
   compile:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Compiler
-        uses: xu-cheng/latex-action@v3
+
+      - name: Compiler le cours 10
+        uses: xu-cheng/latex-action@v4
         with:
           root_file: 00_ElectroniquePuissance.tex
           working_directory: 10-Électronique de Puissance/Cours
           latexmk_use_xelatex: false
-          args: -pdf -interaction=nonstopmode -halt-on-error
+          extra_system_packages: git
+          pre_compile: |
+            rm -rf /tmp/kaobook
+            git clone --depth 1 https://github.com/fmarotta/kaobook.git /tmp/kaobook
+        env:
+          TEXINPUTS: ".:/tmp/kaobook//:"
+
       - name: Publier le PDF
-        shell: bash
-        run: |
-          cp '10-Électronique de Puissance/Cours/00_ElectroniquePuissance.pdf' \
-             '10-Électronique de Puissance/Cours/10_ElectroniquePuissance.pdf'
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add '10-Électronique de Puissance/Cours/10_ElectroniquePuissance.pdf'
-          git commit -m 'Compile le cours 10 électronique de puissance' || exit 0
-          git push
+        uses: actions/upload-artifact@v4
+        with:
+          name: cours-10-electronique-puissance
+          path: 10-Électronique de Puissance/Cours/00_ElectroniquePuissance.pdf
