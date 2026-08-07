@@ -10,50 +10,54 @@
 \pagestyle{empty}
 \renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\TLPosterCourseHeader{11}{Actions mécaniques}{Torseurs, équilibre, frottement et dynamique}
+\TLPosterCourseHeader{11}{Actions mécaniques}{Choisir entre statique, énergie et dynamique}
 \vspace{2mm}
 \begin{minipage}[t]{0.61\linewidth}
 \begin{TLPosterSavoirs}
 \begin{itemize}
-  \item modéliser force, moment, glisseur, couple et action mécanique par un torseur
-  \item représenter les actions transmissibles par les liaisons et appliquer les actions réciproques
-  \item isoler un système, dresser le BAME et appliquer le principe fondamental de la statique
-  \item traiter pression de contact, adhérence, glissement et lois de Coulomb
-  \item connaître centre d'inertie, opérateur d'inertie, PFD et théorème de l'énergie cinétique
+  \item savoir écrire et transporter un torseur $\{\mathcal T\}_A=\{\vec R;\vec M_A\}$ ; reconnaître glisseur et couple ; utiliser les actions réciproques
+  \item connaître les actions transmissibles par les liaisons dans leur base locale et les simplifications d'un problème plan
+  \item maîtriser l'isolement, le BAME, le PFS et les propriétés des solides soumis à deux actions ou trois glisseurs
+  \item connaître pression de contact, lois de Coulomb, adhérence, glissement et condition d'arc-boutement
+  \item connaître centre d'inertie, matrices d'inertie, Huygens, énergie cinétique, TEC et PFD
 \end{itemize}
 \end{TLPosterSavoirs}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.36\linewidth}
-\TLPosterKey{Principe fondamental de la statique}{$\displaystyle \sum \{\mathcal T_{\rm ext}\}=\{0\}$ pour un solide en équilibre}
+\TLPosterKey{Quel outil ?}{Équilibre $\Rightarrow$ PFS ; effort moteur / 1 ddl $\Rightarrow$ TEC ; mouvement + actions complètes $\Rightarrow$ PFD.}
 \end{minipage}
 \vfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Torseur d'action mécanique]{TLPosterBlue}
-Une action mécanique se représente par une résultante et un moment en un point. Le changement de point transporte le moment. Force seule et couple sont des cas particuliers.
+\begin{TLPosterBloc}[Isolement et statique]{TLPosterBlue}
+\textbf{Toujours commencer par :} graphe de structure $\rightarrow$ isolement $\rightarrow$ BAME. Choisir l'isolement qui fait apparaître l'inconnue cherchée et rend un maximum d'actions internes.\\
+\textbf{Raccourcis :} solide à 2 actions $\Rightarrow$ glisseurs colinéaires opposés ; solide à 3 glisseurs $\Rightarrow$ droites d'action concourantes (ou parallèles).
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Contacts et frottement]{TLPosterPurple}
-Une pression répartie peut être remplacée par une action résultante. Avec frottement sec, l'effort tangentiel reste dans le cône de frottement en adhérence et atteint la limite au glissement.
+\begin{TLPosterBloc}[Torseurs, contacts et frottement]{TLPosterPurple}
+Transport : $\vec M_B=\vec M_A+\overrightarrow{BA}\wedge\vec R$. Une liaison parfaite ne transmet pas d'effort dans ses mobilités.\\
+\textbf{Frottement :} en adhérence, $|T|\le fN$ ; à la limite ou en glissement, $|T|=fN$. Vérifier le sens de $\vec T$, opposé au glissement ou au glissement imminent.
 \end{TLPosterBloc}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Statique]{TLPosterGreen}
-Après isolement, le BAME recense les actions extérieures. Le PFS impose l'annulation de la résultante et du moment ; une projection adaptée permet de résoudre les inconnues utiles.
+\begin{TLPosterBloc}[Inertie et énergie]{TLPosterGreen}
+Centre d'inertie : barycentre des masses. Matrice d'inertie : exploiter d'abord les symétries, puis Huygens pour changer de point.\\
+\textbf{TEC :} calculer $E_c$, les puissances extérieures et les puissances intérieures non nulles. Très efficace pour couple moteur, accélération ou inertie équivalente d'un mécanisme à un ddl.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Dynamique et énergie]{TLPosterTeal}
-Le PFD relie torseur dynamique et actions extérieures. Selon le problème, le théorème de l'énergie cinétique fournit une relation scalaire efficace entre puissances, travail et variation d'énergie.
+\begin{TLPosterBloc}[Principe fondamental de la dynamique]{TLPosterTeal}
+Le PFD compare le torseur des actions extérieures au torseur dynamique. L'utiliser si l'on cherche plusieurs actions de liaison ou l'ensemble des équations du mouvement. Choisir le point de réduction pour annuler ou simplifier des moments ; projeter uniquement les équations utiles.
 \end{TLPosterBloc}
 \end{minipage}
 \vfill
 \begin{TLPosterMethode}
 \begin{enumerate}
-  \item Choisir le système à isoler et définir le repère d'étude.
-  \item Dresser le BAME et modéliser chaque action par un torseur.
-  \item Transporter les torseurs vers un point de réduction pertinent.
-  \item Appliquer PFS, PFD ou théorème de l'énergie selon l'objectif.
-  \item Projeter les équations pour éliminer les inconnues inutiles.
-  \item Vérifier signes, unités, conditions de frottement et cohérence physique.
+  \item \textbf{Identifier l'objectif :} équilibre ? effort moteur ? accélération ? réactions de liaison ?
+  \item \textbf{Choisir l'isolement :} commencer si possible par un solide à deux actions, puis un solide à trois glisseurs ; sinon isoler un sous-ensemble pertinent.
+  \item \textbf{Faire le BAME :} auteur, receveur, point, base, composantes connues/inconnues ; ajouter poids, ressort, vérin, moteur, contact, etc.
+  \item \textbf{Choisir l'outil :} PFS si équilibre ; TEC si une équation scalaire suffit ; PFD si les actions dynamiques complètes sont nécessaires.
+  \item \textbf{Cas frottement :} supposer adhérence ou glissement, écrire Coulomb, résoudre puis vérifier a posteriori la condition retenue.
+  \item \textbf{Cas inertie :} exploiter symétries $\rightarrow$ matrice au centre $G$ $\rightarrow$ changement de base éventuel $\rightarrow$ Huygens $\rightarrow$ somme/soustraction des solides.
+  \item \textbf{Vérifier :} nombre d'équations/inconnues, signes, unités, ordre de grandeur et compatibilité avec le mouvement réel.
 \end{enumerate}
 \end{TLPosterMethode}
 \vfill
-\TLPosterRetenir{une résolution mécanique efficace commence par un isolement pertinent et une modélisation correcte des actions extérieures.}
+\TLPosterRetenir{le choix de l'isolement et du principe de résolution fait l'essentiel du travail : ne pas écrire les équations avant d'avoir choisi le bon cas.}
 \end{document}
