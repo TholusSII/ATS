@@ -5,6 +5,12 @@ on:
     paths:
       - 'ALL_EXOS/**'
       - '.github/workflows/compile-all-exos-miktex-current.yml'
+  push:
+    branches:
+      - 'ci-all-exos-current-*'
+    paths:
+      - 'ALL_EXOS/**'
+      - '.github/workflows/compile-all-exos-miktex-current.yml'
   workflow_dispatch:
 
 concurrency:
@@ -24,20 +30,24 @@ jobs:
           $ErrorActionPreference = 'Continue'
           choco install strawberryperl -y --no-progress
           $installed = $false
-          for ($attempt = 1; $attempt -le 3; $attempt++) {
+          for ($attempt = 1; $attempt -le 5; $attempt++) {
             choco install miktex.install -y --no-progress --execution-timeout=0
             $pdflatex = Get-ChildItem 'C:\Program Files\MiKTeX' -Recurse -Filter pdflatex.exe -ErrorAction SilentlyContinue | Select-Object -First 1
             if ($pdflatex) { $installed = $true; break }
             Remove-Item "$env:TEMP\chocolatey\MiKTeX-repository" -Recurse -Force -ErrorAction SilentlyContinue
-            Start-Sleep -Seconds 30
+            choco source disable -n=chocolatey | Out-Null
+            choco source enable -n=chocolatey | Out-Null
+            Start-Sleep -Seconds 45
           }
-          if (-not $installed) { throw 'pdflatex.exe was not found after three MiKTeX installation attempts.' }
+          if (-not $installed) { throw 'pdflatex.exe was not found after five MiKTeX installation attempts.' }
           (Split-Path $pdflatex.FullName) | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
       - name: Configure automatic package installation
         shell: powershell
         run: |
           initexmf --admin --set-config-value=[MPM]AutoInstall=1
           initexmf --set-config-value=[MPM]AutoInstall=1
+          mpm --admin --install=babel-french
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           initexmf --admin --update-fndb
           pdflatex --version
       - name: Compile ALL_EXOS
@@ -70,3 +80,5 @@ jobs:
             ALL_EXOS/ALL_EXOS.pdf
             ALL_EXOS/ALL_EXOS.log
             ALL_EXOS/*.txt
+
+# Relance technique après correction du blocage T1 résiduel de l'exercice 079.
