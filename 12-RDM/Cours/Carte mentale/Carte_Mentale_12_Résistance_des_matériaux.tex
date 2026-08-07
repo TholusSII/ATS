@@ -11,13 +11,13 @@
 \renewcommand{\familydefault}{\sfdefault}
 \begin{document}
 \begin{tikzpicture}
-\TLMapBase{Résistance des matériaux}{Coupure $\rightarrow$ Cohésion $\rightarrow$ Contraintes $\rightarrow$ Déformations}
-\TLMapBranchTL{Savoirs}{\textbullet\ connaître hypothèses de poutre, Saint-Venant, Navier--Bernoulli, petites déformations et élasticité\\[1.2mm]\textbullet\ déterminer le torseur de cohésion et ses composantes $N$, $T$, $M_t$ et $M_f$\\[1.2mm]\textbullet\ identifier traction/compression, cisaillement, torsion et flexion\\[1.2mm]\textbullet\ relier efforts intérieurs, contraintes et déformations avec les lois de comportement\\[1.2mm]\textbullet\ dimensionner avec critères de résistance, coefficient de sécurité et limite de flèche}
-\TLMapBranchTR{Hypothèses}{\textbullet\ poutre\\[1.2mm]\textbullet\ Saint-Venant\\[1.2mm]\textbullet\ Navier--Bernoulli\\[1.2mm]\textbullet\ élasticité}
-\TLMapBranchML{Cohésion}{\textbullet\ $N,T,M_t,M_f$\\[1.2mm]\textbullet\ coupure\\[1.2mm]\textbullet\ diagrammes}
-\TLMapBranchMR{Sollicitations}{\textbullet\ traction / compression\\[1.2mm]\textbullet\ cisaillement\\[1.2mm]\textbullet\ torsion\\[1.2mm]\textbullet\ flexion}
-\TLMapBranchBL{Dimensionnement}{\textbullet\ Hooke\\[1.2mm]\textbullet\ sécurité\\[1.2mm]\textbullet\ résistance\\[1.2mm]\textbullet\ flèche}
-\TLMapBranchBR{Méthode}{1. Identifier la poutre, ses appuis, chargements et hypothèses de modèle.\\[1.2mm]2. Déterminer les réactions extérieures par équilibre.\\[1.2mm]3. Effectuer une coupure et calculer le torseur de cohésion.\\[1.2mm]4. Tracer les diagrammes des efforts intérieurs utiles.\\[1.2mm]5. Calculer contraintes et déformations dans les sections critiques.}
-\TLMapRibbon{Modéliser $\rightarrow$ Équilibrer $\rightarrow$ Couper $\rightarrow$ Contraintes $\rightarrow$ Déformations $\rightarrow$ Vérifier}
+\TLMapBase{Résistance des matériaux}{Charges $\rightarrow$ Cohésion $\rightarrow$ Sollicitation $\rightarrow$ Contraintes / déformée $\rightarrow$ Vérifier}
+\TLMapBranchTL{À connaître}{\textbullet\ poutre élancée, petites déformations, élasticité linéaire\\[1mm]\textbullet\ Saint-Venant et Navier--Bernoulli\\[1mm]\textbullet\ cohésion : $N,T_y,T_z,M_t,M_{fy},M_{fz}$\\[1mm]\textbullet\ traction : $\sigma=N/S$, $\sigma=E\varepsilon$\\[1mm]\textbullet\ flexion : $\sigma=-M_fy/I$, $EIy''=M_f$\\[1mm]\textbullet\ résistance ET rigidité}
+\TLMapBranchTR{Méthode cohésion}{1. Calculer les réactions d'appui.\\[1mm]2. Définir les intervalles.\\[1mm]3. Couper en $x$.\\[1mm]4. Isoler le côté avec le moins de charges.\\[1mm]5. Réduire les actions en $G$.\\[1mm]6. Appliquer le PFS et identifier $N,T,M_t,M_f$.\\[1mm]7. Tracer les diagrammes ; contrôler sauts et continuités.}
+\TLMapBranchML{Cas traction / compression}{\textbf{Reconnaître :} torseur réduit à $N$.\\[1mm]\textbf{Résistance :} $\sigma=N/S$ ; avec singularité $\sigma_{max}=K_t|N|/S_{nette}$ ; comparer à $R_e/s$.\\[1mm]\textbf{Déformation :} $\varepsilon=\sigma/E$ ; si constantes, $\Delta L=NL/(ES)$.\\[1mm]\textbf{Signe :} $N>0$ traction, $N<0$ compression.}
+\TLMapBranchMR{Cas flexion}{1. Déterminer $T(x)$ et $M_f(x)$.\\[1mm]2. Localiser $|M_f|_{max}$.\\[1mm]3. Résistance : $\sigma=-M_fy/I$ ou $|\sigma_{max}|=|M_f|/W$.\\[1mm]4. Rigidité : intégrer $EIy''=M_f(x)$.\\[1mm]5. Appliquer conditions aux limites / continuité.\\[1mm]6. Comparer $f_{max}$ à $f_{limite}$.}
+\TLMapBranchBL{Hypothèses / pièges}{\textbullet\ vérifier $L\gg$ dimension de section\\[1mm]\textbullet\ ne pas appliquer Saint-Venant près d'une charge locale ou d'un accident géométrique\\[1mm]\textbullet\ la superposition exige un comportement linéaire élastique\\[1mm]\textbullet\ une pièce peut résister mais être trop souple\\[1mm]\textbullet\ ne pas oublier les concentrations de contrainte}
+\TLMapBranchBR{Décision finale}{\textbf{Si $N$ :} traction/compression.\\[1mm]\textbf{Si $M_f$ :} flexion.\\[1mm]\textbf{Si plusieurs composantes :} partir du torseur, traiter les effets compatibles avec le modèle et superposer seulement si autorisé.\\[1mm]\textbf{Toujours :} sécurité $s$, résistance, rigidité, unités, ordre de grandeur.}
+\TLMapRibbon{Une formule de contrainte n'est valable qu'après identification de la sollicitation par le torseur de cohésion.}
 \end{tikzpicture}
 \end{document}
