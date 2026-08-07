@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   push:
     paths:
+      - 'tools/poster_carte_core.py'
       - 'tools/generate_posters_cartes_01_05.py'
       - 'tools/generate_posters_cartes_06_15.py'
       - 'Style/TLPosterCarteMentale.sty'
@@ -32,8 +33,12 @@ jobs:
           for n in $(seq -w 1 15); do
             d=$(find . -maxdepth 1 -type d -name "${n}-*" | head -n 1)
             test -n "$d"
-            find "$d/Cours/Poster" -maxdepth 1 -name '*.tex' | grep -q .
-            find "$d/Cours/Carte mentale" -maxdepth 1 -name '*.tex' | grep -q .
+            test "$(find "$d/Cours/Poster" -maxdepth 1 -name '*.tex' | wc -l)" -eq 1
+            test "$(find "$d/Cours/Carte mentale" -maxdepth 1 -name '*.tex' | wc -l)" -eq 1
+            grep -q 'TLPosterSavoirs' "$d"/Cours/Poster/*.tex
+            grep -q 'TLPosterMethode' "$d"/Cours/Poster/*.tex
+            grep -q 'TLMapBranchTL{Savoirs}' "$d"/Cours/'Carte mentale'/*.tex
+            grep -q 'TLMapBranchBR{Méthode}' "$d"/Cours/'Carte mentale'/*.tex
           done
       - name: Publier les sources générées
         run: |
