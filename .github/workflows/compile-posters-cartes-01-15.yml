@@ -23,7 +23,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
             texlive-latex-base texlive-latex-recommended texlive-latex-extra \
-            texlive-fonts-recommended texlive-lang-french latexmk poppler-utils
+            texlive-fonts-recommended texlive-lang-french lmodern latexmk poppler-utils
 
       - name: Compiler les 30 supports
         shell: bash
