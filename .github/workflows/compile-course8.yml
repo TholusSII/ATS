@@ -4,14 +4,9 @@ on:
   push:
     paths:
       - '08-Électromécanique/Cours/**'
-      - 'Style/TLElectromecanique.sty'
-      - 'Style/TLCours.sty'
-      - 'Style/Notations_Elec/**'
+      - 'Style/**'
       - '.github/workflows/compile-course8.yml'
   workflow_dispatch:
-
-permissions:
-  contents: write
 
 jobs:
   compile:
@@ -19,23 +14,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Installer LaTeX
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y latexmk texlive-latex-extra texlive-fonts-recommended texlive-lang-french texlive-pictures
+      - name: Compiler le cours 08
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: 00_Electromecanique.tex
+          working_directory: 08-Électromécanique/Cours
+          latexmk_use_xelatex: false
+          extra_system_packages: git
+          pre_compile: |
+            rm -rf /tmp/kaobook
+            git clone --depth 1 https://github.com/fmarotta/kaobook.git /tmp/kaobook
+        env:
+          TEXINPUTS: ".:/tmp/kaobook//:"
 
-      - name: Compiler
-        working-directory: '08-Électromécanique/Cours'
-        run: |
-          latexmk -pdf -interaction=nonstopmode -halt-on-error 00_Electromecanique.tex
-          cp 00_Electromecanique.pdf 08_Electromecanique.pdf
-
-      - name: Publier le PDF compilé
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add '08-Électromécanique/Cours/08_Electromecanique.pdf'
-          if ! git diff --cached --quiet; then
-            git commit -m 'Compile le cours 08 électromécanique [skip ci]'
-            git push
-          fi
+      - name: Publier le PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: cours-08-electromecanique
+          path: 08-Électromécanique/Cours/00_Electromecanique.pdf
