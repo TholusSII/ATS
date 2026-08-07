@@ -1,4 +1,4 @@
-name: Compile course 09 MCC
+name: Compiler le cours 09 MCC
 
 on:
   push:
@@ -11,21 +11,24 @@ on:
 jobs:
   compile:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
-      - uses: xu-cheng/latex-action@v3
+
+      - name: Compiler le cours 09
+        uses: xu-cheng/latex-action@v4
         with:
           root_file: 00_MCC.tex
           working_directory: 09-MCC/Cours
           latexmk_use_xelatex: false
-          args: -pdf -interaction=nonstopmode -halt-on-error -file-line-error
-      - name: Publish PDF
-        run: |
-          cp '09-MCC/Cours/00_MCC.pdf' '09-MCC/Cours/09_MCC.pdf'
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add '09-MCC/Cours/09_MCC.pdf'
-          git diff --cached --quiet || git commit -m 'Compile le cours 09 MCC [skip ci]'
-          git push
+          extra_system_packages: git
+          pre_compile: |
+            rm -rf /tmp/kaobook
+            git clone --depth 1 https://github.com/fmarotta/kaobook.git /tmp/kaobook
+        env:
+          TEXINPUTS: ".:/tmp/kaobook//:"
+
+      - name: Publier le PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: cours-09-mcc
+          path: 09-MCC/Cours/00_MCC.pdf
