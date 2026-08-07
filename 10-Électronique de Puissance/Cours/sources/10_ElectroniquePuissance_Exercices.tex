@@ -1,0 +1,99 @@
+% ============================================================================
+% COURS 10 — EXERCICES D'ÉLECTRONIQUE DE PUISSANCE
+% ============================================================================
+
+\section{Exercices du chapitre}\label{sec:ep-exercices}
+
+\begin{TLExercise}{Exercice 1 — Rapport cyclique et valeurs caractéristiques}
+Une tension hachée périodique vaut $E=48\,\mathrm V$ pendant $0<t<\alpha T$ et
+zéro pendant le reste de la période, avec $\alpha=0{,}35$.
+\begin{enumerate}
+  \item Tracer la tension sur deux périodes.
+  \item Calculer sa valeur moyenne.
+  \item Calculer sa valeur efficace.
+  \item Comparer les deux valeurs et interpréter physiquement leur différence.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 2 — Hacheur Buck}
+Un Buck idéal alimente une charge $L$--$E_c$ à partir d'une source
+$E=120\,\mathrm V$. On souhaite une tension moyenne de sortie de $72\,\mathrm V$.
+La fréquence de découpage vaut $20\,\mathrm{kHz}$ et $L=2{,}0\,\mathrm{mH}$.
+\begin{enumerate}
+  \item Déterminer le rapport cyclique.
+  \item Écrire $u_L$ pendant les deux séquences de conduction.
+  \item En supposant $E_c=72\,\mathrm V$, calculer l'ondulation crête à crête du courant.
+  \item Préciser les contraintes en tension de l'interrupteur et de la diode dans le modèle idéal.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 3 — Hacheur Boost}
+Un convertisseur Boost idéal élève une tension de batterie de $24\,\mathrm V$ vers
+un bus continu de $60\,\mathrm V$.
+\begin{enumerate}
+  \item Retrouver la relation $U_s=E/(1-\alpha)$ à partir de la valeur moyenne de $u_L$.
+  \item Calculer le rapport cyclique.
+  \item Pour une puissance de sortie de $300\,\mathrm W$, déterminer le courant moyen d'entrée idéal.
+  \item Expliquer pourquoi une inductance est indispensable au fonctionnement du montage.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 4 — Hacheur quatre quadrants et MCC}
+Une MCC est alimentée par un pont en H sous un bus continu $E=100\,\mathrm V$.
+La commande bipolaire applique $+E$ pendant $\alpha T$ puis $-E$ pendant
+$(1-\alpha)T$.
+\begin{enumerate}
+  \item Établir l'expression de $\langle u_s\rangle$.
+  \item Déterminer $\alpha$ pour obtenir $\langle u_s\rangle=40\,\mathrm V$.
+  \item Donner les signes possibles de $u_s$ et $i_s$ et en déduire les quatre quadrants électriques accessibles.
+  \item Relier ces quadrants aux quatre quadrants mécaniques d'une MCC réversible.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 5 — Pont de diodes monophasé}
+Un pont PD2 idéal est alimenté par le réseau
+$u_e(t)=\sqrt2\,230\sin(2\pi 50t)$ et alimente une charge résistive.
+\begin{enumerate}
+  \item Donner l'expression de la tension de sortie.
+  \item Calculer sa valeur moyenne.
+  \item Calculer sa valeur efficace.
+  \item Déterminer la puissance dissipée dans une résistance de $100\,\Omega$.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 6 — Facteur de puissance}
+Un convertisseur absorbe sur un réseau monophasé $230\,\mathrm V$ une puissance
+active de $1{,}50\,\mathrm{kW}$ pour un courant efficace de $8{,}0\,\mathrm A$.
+\begin{enumerate}
+  \item Calculer la puissance apparente et le facteur de puissance.
+  \item Le courant n'étant pas sinusoïdal, expliquer pourquoi on ne peut pas identifier systématiquement ce facteur à $\cos\varphi$.
+  \item Calculer le courant efficace qui serait absorbé à puissance active identique avec un facteur de puissance égal à 0,99.
+  \item Commenter l'intérêt d'un étage PFC.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 7 — Pertes de commutation}
+Un transistor commute à $40\,\mathrm{kHz}$. Les énergies dissipées à chaque
+commutation valent $E_{on}=0{,}35\,\mathrm{mJ}$ et
+$E_{off}=0{,}25\,\mathrm{mJ}$. Ses pertes de conduction moyennes valent $18\,\mathrm W$.
+\begin{enumerate}
+  \item Calculer les pertes de commutation.
+  \item Calculer les pertes totales du transistor.
+  \item Refaire le calcul pour $80\,\mathrm{kHz}$.
+  \item Expliquer le compromis entre fréquence de découpage, taille des filtres et rendement.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 8 — Choix d'une architecture de conversion}
+Pour chacune des applications suivantes, proposer la famille de convertisseur la
+plus adaptée et justifier : variation de vitesse d'une MCC depuis une batterie,
+alimentation d'un moteur alternatif depuis un bus DC, alimentation d'un bus DC
+à partir du secteur, adaptation $24\,\mathrm V\to48\,\mathrm V$, réglage de puissance
+d'une charge alternative.
+\begin{enumerate}
+  \item Identifier pour chaque cas la nature de la source et de la charge.
+  \item Préciser le sens de conversion AC/DC.
+  \item Indiquer si une réversibilité en puissance est nécessaire.
+  \item Citer les interrupteurs de puissance envisageables.
+\end{enumerate}
+\end{TLExercise}
