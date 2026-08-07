@@ -11,13 +11,13 @@
 \renewcommand{\familydefault}{\sfdefault}
 \begin{document}
 \begin{tikzpicture}
-\TLMapBase{Machines asynchrones et synchrones}{Triphasé $\rightarrow$ Onduleur $\rightarrow$ Champ tournant $\rightarrow$ Couple}
-\TLMapBranchTL{Savoirs}{\textbullet\ maîtriser tensions simples/composées, couplages étoile/triangle et puissances triphasées\\[1.2mm]\textbullet\ comprendre la génération triphasée par onduleur et la modulation de largeur d'impulsion\\[1.2mm]\textbullet\ définir vitesse synchrone, glissement, bilan de puissance et couple de la MAS\\[1.2mm]\textbullet\ comprendre commande à $V/f$ constant et influence de la fréquence\\[1.2mm]\textbullet\ modéliser la MS avec diagramme de Behn--Eschenburg, couple électromagnétique et autopilotage brushless}
-\TLMapBranchTR{Triphasé}{\textbullet\ tensions simples / composées\\[1.2mm]\textbullet\ étoile / triangle\\[1.2mm]\textbullet\ $P,Q,S$\\[1.2mm]\textbullet\ Boucherot}
-\TLMapBranchML{Onduleur}{\textbullet\ source continue\\[1.2mm]\textbullet\ MLI\\[1.2mm]\textbullet\ fréquence / amplitude}
-\TLMapBranchMR{MAS}{\textbullet\ synchronisme\\[1.2mm]\textbullet\ glissement\\[1.2mm]\textbullet\ bilan / couple\\[1.2mm]\textbullet\ $V/f$}
-\TLMapBranchBL{MS}{\textbullet\ Behn--Eschenburg\\[1.2mm]\textbullet\ couple\\[1.2mm]\textbullet\ autopilotage\\[1.2mm]\textbullet\ brushless}
-\TLMapBranchBR{Méthode}{1. Identifier couplage, tensions, courants et nombre de paires de pôles.\\[1.2mm]2. Calculer vitesse de synchronisme et, pour la MAS, le glissement.\\[1.2mm]3. Établir le bilan des puissances et le couple utile.\\[1.2mm]4. Exploiter le schéma ou diagramme vectoriel adapté à la machine.\\[1.2mm]5. Relier fréquence et amplitude de l'onduleur au point de fonctionnement.}
-\TLMapRibbon{Réseau $\rightarrow$ Couplage $\rightarrow$ Synchronisme $\rightarrow$ Bilan $\rightarrow$ Couple $\rightarrow$ Commande}
+\TLMapBase{Machines asynchrones et synchrones}{Réseau $\rightarrow$ synchronisme $\rightarrow$ choisir MAS ou MS $\rightarrow$ couple $\rightarrow$ commande}
+\TLMapBranchTL{À connaître}{\textbullet\ $U=\sqrt3V$ en triphasé équilibré\\[1mm]\textbullet\ étoile / triangle selon tension d'enroulement\\[1mm]\textbullet\ $P=\sqrt3UI\cos\varphi$, $Q=\sqrt3UI\sin\varphi$\\[1mm]\textbullet\ $\Omega_s=\omega/p$\\[1mm]\textbullet\ MAS : glissement $g$ non nul\\[1mm]\textbullet\ MS : $\Omega=\Omega_s$ en régime établi}
+\TLMapBranchTR{Triphasé / onduleur}{\textbf{Plaque :} identifier réseau, fréquence, tension d'un enroulement et couplage.\\[1mm]\textbf{Puissances :} calculer $P,Q,S$ et facteur de puissance.\\[1mm]\textbf{Onduleur :} trois bras, commandes complémentaires ; la MLI fixe fréquence et amplitude du fondamental et repousse les harmoniques.}
+\TLMapBranchML{Méthode MAS}{1. Calculer $\Omega_s$ et $g=(\Omega_s-\Omega)/\Omega_s$.\\[1mm]2. Identifier moteur / génératrice / démarrage.\\[1mm]3. Exploiter le schéma équivalent.\\[1mm]4. Faire le bilan : $P_{Jr}=gP_{tr}$, $P_{em}=(1-g)P_{tr}$.\\[1mm]5. Calculer $C_{em}=P_{tr}/\Omega_s$.\\[1mm]6. Croiser couple moteur et couple résistant.}
+\TLMapBranchMR{Méthode MS}{1. Calculer $\Omega_s=\omega/p$.\\[1mm]2. Écrire $\underline V=\underline E+(R_s+jX_s)\underline I$.\\[1mm]3. Construire Behn--Eschenburg : $I$, $R_sI$, $jX_sI$, fermeture du polygone.\\[1mm]4. Lire $\varphi,\psi,\delta$.\\[1mm]5. Calculer puissance et couple.\\[1mm]6. Vérifier la marge avant décrochage.}
+\TLMapBranchBL{Variation de vitesse}{\textbf{MAS :} modifier $f$ et garder $V/f$ constant sous la fréquence nominale ; à haute vitesse, tension limitée donc couple réduit.\\[1mm]\textbf{MS :} fréquence variable + position rotorique ; autopilotage des courants.\\[1mm]\textbf{MS à aimants :} $\psi=0$ donne le couple maximal par ampère.}
+\TLMapBranchBR{Vérifications}{\textbullet\ courant et tension compatibles avec la plaque\\[1mm]\textbullet\ rendement et pertes cohérents\\[1mm]\textbullet\ échauffement acceptable\\[1mm]\textbullet\ MAS : faible glissement au nominal et stabilité du point de fonctionnement\\[1mm]\textbullet\ MS : pas de décrochage\\[1mm]\textbullet\ chaîne réversible si freinage régénératif demandé}
+\TLMapRibbon{MAS : synchronisme $\rightarrow$ glissement $\rightarrow$ bilan $\rightarrow$ couple. MS : synchronisme $\rightarrow$ diagramme vectoriel $\rightarrow$ couple $\rightarrow$ stabilité.}
 \end{tikzpicture}
 \end{document}
