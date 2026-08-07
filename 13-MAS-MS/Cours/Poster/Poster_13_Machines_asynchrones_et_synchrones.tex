@@ -10,50 +10,49 @@
 \pagestyle{empty}
 \renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\TLPosterCourseHeader{13}{Machines asynchrones et synchrones}{Triphasé, onduleur et conversion électromécanique en alternatif}
+\TLPosterCourseHeader{13}{Machines asynchrones et synchrones}{Réseau triphasé, MAS, MS et variation de vitesse}
 \vspace{2mm}
 \begin{minipage}[t]{0.61\linewidth}
 \begin{TLPosterSavoirs}
 \begin{itemize}
-  \item maîtriser tensions simples/composées, couplages étoile/triangle et puissances triphasées
-  \item comprendre la génération triphasée par onduleur et la modulation de largeur d'impulsion
-  \item définir vitesse synchrone, glissement, bilan de puissance et couple de la MAS
-  \item comprendre commande à $V/f$ constant et influence de la fréquence
-  \item modéliser la MS avec diagramme de Behn--Eschenburg, couple électromagnétique et autopilotage brushless
+  \item connaître $U=\sqrt3V$, les couplages étoile/triangle et les puissances triphasées
+  \item connaître $\Omega_s=\omega/p$ et choisir le couplage à partir de la plaque signalétique
+  \item pour une MAS : glissement, bilan de puissance, couple et caractéristique couple--vitesse
+  \item pour une MS : synchronisme, modèle complexe et diagramme de Behn--Eschenburg
+  \item connaître la commande $V/f$ de la MAS, la MLI et l'autopilotage d'une MS brushless
 \end{itemize}
 \end{TLPosterSavoirs}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.36\linewidth}
-\TLPosterKey{Synchronisme}{$n_s=\dfrac{60f}{p}$\qquad $g=\dfrac{n_s-n}{n_s}$ pour la machine asynchrone}
+\TLPosterKey{Choisir le cas}{MAS : vitesse différente du synchronisme, donc glissement. MS : vitesse égale au synchronisme en régime établi.}
 \end{minipage}
 \vfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Système triphasé]{TLPosterBlue}
-Trois tensions sinusoïdales déphasées de 120° alimentent les phases. Les couplages étoile et triangle relient tensions simples et composées. Les puissances active, réactive et apparente caractérisent la charge.
+\begin{TLPosterBloc}[Triphasé, plaque et couplage]{TLPosterBlue}
+Identifier réseau, tension nominale d'un enroulement et fréquence. Choisir étoile ou triangle pour appliquer la bonne tension à chaque phase. Calculer ensuite les grandeurs de ligne, $P,Q,S$ et le facteur de puissance.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Machine asynchrone]{TLPosterPurple}
-Le champ statorique tourne à la vitesse de synchronisme. Le rotor présente un glissement nécessaire à l'induction des courants et au couple. Le bilan de puissance distingue pertes statoriques, rotorique et mécanique.
+\begin{TLPosterBloc}[Méthode MAS]{TLPosterPurple}
+1) Calculer $\Omega_s$ puis $g$. 2) Identifier moteur, génératrice ou démarrage. 3) Exploiter le schéma équivalent pour $P_{tr}$, pertes, rendement et couple. 4) Étudier $C(g)$ et le couple maximal. 5) Placer le point de fonctionnement par intersection couple moteur / couple résistant.
 \end{TLPosterBloc}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Onduleur triphasé]{TLPosterGreen}
-À partir d'une source continue, six interrupteurs synthétisent des tensions triphasées. La MLI commande fréquence et amplitude du fondamental et donc les conditions d'alimentation de la machine.
+\begin{TLPosterBloc}[Méthode MS]{TLPosterGreen}
+1) Calculer $\Omega_s=\omega/p$. 2) Choisir la référence de phase. 3) Placer $\underline I$, puis $R_s\underline I$ et $jX_s\underline I$. 4) Fermer le diagramme de Behn--Eschenburg. 5) Lire les angles et modules. 6) Calculer puissance et couple puis vérifier la marge avant décrochage.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Machine synchrone]{TLPosterTeal}
-Le rotor suit le champ tournant sans glissement en régime établi. Le diagramme de Behn--Eschenburg relie tension, courant et fcem. L'autopilotage synchronise la commande électronique avec la position rotorique.
+\begin{TLPosterBloc}[Variation de vitesse]{TLPosterTeal}
+MAS : faire varier $f$ avec un onduleur et maintenir $V/f$ constant sous la fréquence nominale. MS : utiliser une alimentation à fréquence variable synchronisée avec la position rotorique. La MLI commande fréquence et amplitude du fondamental tout en repoussant les harmoniques.
 \end{TLPosterBloc}
 \end{minipage}
 \vfill
 \begin{TLPosterMethode}
 \begin{enumerate}
-  \item Identifier couplage, tensions, courants et nombre de paires de pôles.
-  \item Calculer vitesse de synchronisme et, pour la MAS, le glissement.
-  \item Établir le bilan des puissances et le couple utile.
-  \item Exploiter le schéma ou diagramme vectoriel adapté à la machine.
-  \item Relier fréquence et amplitude de l'onduleur au point de fonctionnement.
-  \item Vérifier limites thermiques, couple, vitesse et rendement.
+  \item Lire la plaque, identifier réseau, couplage et nombre de paires de pôles.
+  \item Si MAS : synchronisme $\rightarrow$ glissement $\rightarrow$ bilan de puissance $\rightarrow$ couple $\rightarrow$ point de fonctionnement.
+  \item Si MS : synchronisme $\rightarrow$ loi complexe $\rightarrow$ diagramme vectoriel $\rightarrow$ puissance/couple $\rightarrow$ stabilité.
+  \item Si variation de vitesse : MAS $\Rightarrow V/f$ ; MS $\Rightarrow$ autopilotage lié à la position rotorique.
+  \item Vérifier courant, pertes, rendement, échauffement, couple disponible et domaine stable.
 \end{enumerate}
 \end{TLPosterMethode}
 \vfill
-\TLPosterRetenir{les machines alternatives se comprennent à partir du champ tournant, du synchronisme et du bilan de puissance.}
+\TLPosterRetenir{la MAS a besoin d'un glissement non nul pour produire du couple ; la MS reste verrouillée sur le champ tournant.}
 \end{document}
