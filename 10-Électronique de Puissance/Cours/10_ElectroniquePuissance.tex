@@ -41,26 +41,25 @@
 \TLStartCourseChapter{10}{Électronique de puissance et conversion statique de l'énergie}{chap:electronique-puissance}
 
 % Numérotation et ancres homogènes sans réécrire le texte issu du document
-% original. La première source contient une ancienne section synthétique
-% « Conversion indirecte » : elle est remplacée par la partie développée.
+% original. On utilise la copie basse-niveau de \section fournie par TL.sty,
+% ce qui évite toute récursion avec les wrappers de kaobook/TLCours.
 \newcounter{TLEPSectionLabel}
 \newif\ifTLEPStopAtConversion
 \TLEPStopAtConversiontrue
-\let\TLEPBaseSection\section
 \RenewDocumentCommand{\section}{s o m}{%
   \IfBooleanTF{#1}{%
-    \TLEPBaseSection*{#3}%
+    \TLBaseSection*{#3}%
   }{%
     \ifTLEPStopAtConversion
       \ifstrequal{#3}{Conversion indirecte}{%
         \endinput
       }{%
-        \IfNoValueTF{#2}{\TLEPBaseSection{#3}}{\TLEPBaseSection[#2]{#3}}%
+        \IfNoValueTF{#2}{\TLBaseSection{#3}}{\TLBaseSection[#2]{#3}}%
         \stepcounter{TLEPSectionLabel}%
         \label{sec:ep-\arabic{TLEPSectionLabel}}%
       }%
     \else
-      \IfNoValueTF{#2}{\TLEPBaseSection{#3}}{\TLEPBaseSection[#2]{#3}}%
+      \IfNoValueTF{#2}{\TLBaseSection{#3}}{\TLBaseSection[#2]{#3}}%
       \stepcounter{TLEPSectionLabel}%
       \label{sec:ep-\arabic{TLEPSectionLabel}}%
     \fi
