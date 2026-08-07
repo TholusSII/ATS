@@ -112,15 +112,18 @@
 \newcommand{\TLPosterAttention}[1]{\begin{tcolorbox}[enhanced,colback=TLPosterRed!6,colframe=TLPosterRed,title=Point de vigilance,fonttitle=\bfseries]#1\end{tcolorbox}}
 
 % -----------------------------------------------------------------------------
-% Carte mentale A3 paysage : composition fixe, robuste et lisible
+% Carte mentale A3 paysage : composition fixe, robuste et lisible.
 % Les branches Savoirs et Méthode sont obligatoires dans la série.
+% Pas d'ombre floue sur les nœuds TikZ : certains moteurs PDF les rendent sous
+% forme de grands rectangles noirs. Les aplats et contours suffisent à donner
+% le relief graphique tout en garantissant une compilation portable.
 % -----------------------------------------------------------------------------
 \tikzset{
   TLmaproot/.style={ellipse,draw=TLPosterNavy,line width=1.8pt,fill=white,
     minimum width=7.2cm,minimum height=3.0cm,align=center,
-    font=\sffamily\bfseries\fontsize{22}{25}\selectfont,text=TLPosterNavy,blur shadow},
+    font=\sffamily\bfseries\fontsize{22}{25}\selectfont,text=TLPosterNavy},
   TLmaphead/.style={rounded corners=4mm,minimum width=4.7cm,minimum height=1.15cm,
-    align=center,font=\sffamily\bfseries\Large,line width=1pt,blur shadow},
+    align=center,font=\sffamily\bfseries\Large,line width=1pt},
   TLmapcontent/.style={rounded corners=3mm,minimum width=6.1cm,minimum height=2.7cm,
     text width=5.5cm,align=left,font=\sffamily\small,line width=.8pt,inner sep=3mm},
   TLmapline/.style={line width=3.5pt,rounded corners=6mm},
