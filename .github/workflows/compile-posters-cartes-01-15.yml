@@ -1,0 +1,54 @@
+name: Compiler les posters et cartes mentales 01 à 15
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/compile-posters-cartes-01-15.yml'
+      - 'Style/TLPosterCarteMentale.sty'
+      - '0*/Cours/Poster/*.tex'
+      - '0*/Cours/Carte mentale/*.tex'
+      - '1*/Cours/Poster/*.tex'
+      - '1*/Cours/Carte mentale/*.tex'
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Installer LaTeX et les outils PDF
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            texlive-latex-base texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended texlive-lang-french latexmk poppler-utils
+
+      - name: Compiler les 30 supports
+        shell: bash
+        run: |
+          set -euo pipefail
+          count=0
+          while IFS= read -r -d '' tex; do
+            dir=$(dirname "$tex")
+            file=$(basename "$tex")
+            echo "=== $tex ==="
+            (cd "$dir" && latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error "$file")
+            pdf="${tex%.tex}.pdf"
+            pages=$(pdfinfo "$pdf" | awk '/^Pages:/ {print $2}')
+            test "$pages" = "1"
+            count=$((count+1))
+          done < <(find . -type f \( -path '*/Cours/Poster/*.tex' -o -path '*/Cours/Carte mentale/*.tex' \) -print0)
+          echo "Supports compilés : $count"
+          test "$count" -eq 30
+
+      - name: Publier les PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: posters-cartes-01-15
+          path: |
+            0*/Cours/Poster/*.pdf
+            0*/Cours/Carte mentale/*.pdf
+            1*/Cours/Poster/*.pdf
+            1*/Cours/Carte mentale/*.pdf
