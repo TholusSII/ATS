@@ -10,50 +10,52 @@
 \pagestyle{empty}
 \renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\TLPosterCourseHeader{14}{Logique et systèmes à événements discrets}{Combinatoire, séquentiel, codeurs et communication réseau}
+\TLPosterCourseHeader{14}{Logique et systèmes à événements discrets}{Combinatoire, états, codeurs et communication}
 \vspace{2mm}
 \begin{minipage}[t]{0.61\linewidth}
 \begin{TLPosterSavoirs}
 \begin{itemize}
-  \item utiliser variables booléennes, tables de vérité, opérateurs et algèbre de Boole
-  \item simplifier par formes canoniques ou Karnaugh et connaître mux, décodeur, comparateur et additionneur
-  \item modéliser systèmes séquentiels par états, transitions, événements, gardes et actions
-  \item exploiter diagrammes SysML d'états et de séquence et codeurs incrémentaux/absolus
-  \item comprendre réseaux, modèle OSI, supports, bus, protocoles, trames, parité et CRC
+  \item distinguer combinatoire (sorties = fonction des entrées présentes) et séquentiel (sorties = entrées + état mémorisé)
+  \item connaître NON, ET, OU, XOR, De Morgan, formes canoniques, Karnaugh et fonctions usuelles : multiplexeur, codeur, décodeur, comparateur, additionneur
+  \item lire et construire un diagramme d'état : état, transition, événement, garde, effet, entry/do/exit, choix, fork/join et historique
+  \item exploiter un codeur incrémental A/B/Z, le comptage en quadrature, un codeur absolu et le code Gray
+  \item connaître débit, délai, BER, OSI, parité, CRC, trame, topologie et modes simplex/duplex, série/synchrone/asynchrone
 \end{itemize}
 \end{TLPosterSavoirs}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.36\linewidth}
-\TLPosterKey{Du besoin à la logique}{Cahier des charges $\rightarrow$ variables $\rightarrow$ modèle $\rightarrow$ validation}
+\TLPosterKey{Choisir le modèle}{Pas de mémoire $\Rightarrow$ table de vérité. Mémoire / enchaînement d'événements $\Rightarrow$ graphe d'états.}
 \end{minipage}
 \vfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Logique combinatoire]{TLPosterBlue}
-Les sorties dépendent des entrées présentes. Une table de vérité conduit à une équation logique ; algèbre de Boole et Karnaugh permettent de simplifier la réalisation.
+\begin{TLPosterBloc}[Méthode combinatoire]{TLPosterBlue}
+1) Nommer entrées/sorties et leur état actif. 2) Construire la table de vérité, avec états indifférents si besoin. 3) Écrire une forme canonique à partir des lignes où la sortie vaut 1. 4) Simplifier par Boole ou Karnaugh : groupes de $1,2,4,8\ldots$, les plus grands possibles, bords opposés adjacents. 5) Réaliser le logigramme et vérifier toutes les combinaisons utiles.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Codeurs]{TLPosterPurple}
-Les codeurs incrémentaux produisent des voies A/B en quadrature et une référence Z ; les codeurs absolus fournissent directement un mot de position. La résolution dépend du nombre de points ou de bits.
+\begin{TLPosterBloc}[Méthode diagramme d'état]{TLPosterPurple}
+1) Recenser les situations stables. 2) Associer activités \texttt{entry/do/exit}. 3) Tracer les transitions sous la forme événement [garde] / effet. 4) Ajouter état initial, choix, parallélisme ou temporisations \texttt{after(T)} si nécessaire. 5) Vérifier : tous les cas couverts, gardes non contradictoires, priorités de sécurité explicites et absence d'état inaccessible.
 \end{TLPosterBloc}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Systèmes séquentiels]{TLPosterGreen}
-Les sorties dépendent aussi d'un état mémorisé. États, transitions, événements, gardes et effets décrivent le comportement ; les diagrammes d'états et de séquence représentent les évolutions temporelles.
+\begin{TLPosterBloc}[Méthode codeur]{TLPosterGreen}
+\textbf{Incrémental :} $N$ périodes/tour ; sur 4 fronts, $N_c=4N$ et $\Delta\theta=2\pi/N_c$. A en avance sur B $\Rightarrow$ un sens ; B en avance sur A $\Rightarrow$ sens inverse. Position par comptage ; vitesse par nombre d'impulsions sur une fenêtre à haute vitesse, ou période entre fronts à basse vitesse.\\
+\textbf{Absolu :} $n$ pistes $\Rightarrow 2^n$ positions ; utiliser Gray pour éviter plusieurs changements de bits simultanés.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Réseaux et bus]{TLPosterTeal}
-Un réseau transporte des données selon architecture, support et protocole. Le modèle OSI sépare les fonctions ; trames, adressage, parité ou CRC assurent échange et contrôle des erreurs.
+\begin{TLPosterBloc}[Méthode trame / réseau]{TLPosterTeal}
+\textbf{Parité :} compter les bits à 1 et vérifier la règle paire/impaire.\\
+\textbf{CRC :} données $\rightarrow$ ajouter $r$ zéros $\rightarrow$ division modulo 2 par $G(X)$ $\rightarrow$ remplacer par le reste $\rightarrow$ vérifier reste nul à la réception.\\
+\textbf{Réseau :} identifier débit utile, délai/déterminisme, support, topologie, mode d'échange et mécanisme de détection/retransmission avant de juger une solution.
 \end{TLPosterBloc}
 \end{minipage}
 \vfill
 \begin{TLPosterMethode}
 \begin{enumerate}
-  \item Traduire le cahier des charges en entrées, sorties et comportements attendus.
-  \item Pour le combinatoire, construire la table de vérité puis les équations.
-  \item Simplifier les fonctions et choisir les blocs logiques adaptés.
-  \item Pour le séquentiel, définir états, transitions, gardes et actions puis tester tous les scénarios.
-  \item Pour un codeur, décoder les voies et calculer résolution ou position.
-  \item Pour un réseau, identifier trame, champs, codage et contrôle d'erreur.
+  \item \textbf{Si fonction logique sans mémoire :} cahier des charges $\rightarrow$ table de vérité $\rightarrow$ équation $\rightarrow$ simplification $\rightarrow$ implantation $\rightarrow$ test.
+  \item \textbf{Si comportement séquentiel :} états stables $\rightarrow$ transitions $\rightarrow$ événements/gardes/effets $\rightarrow$ temporisations/parallélisme $\rightarrow$ vérification de complétude.
+  \item \textbf{Si codeur :} identifier incrémental ou absolu, calculer la résolution, puis choisir la méthode de position/vitesse adaptée.
+  \item \textbf{Si communication :} lire la trame dans l'ordre, séparer données et contrôle, vérifier parité/CRC puis raisonner sur débit, délai, fiabilité et déterminisme.
+  \item \textbf{Toujours :} traiter explicitement les états impossibles, défauts, priorités et transitions invalides.
 \end{enumerate}
 \end{TLPosterMethode}
 \vfill
-\TLPosterRetenir{choisir le formalisme selon que le comportement dépend des entrées, d'un état mémorisé ou d'un échange réseau.}
+\TLPosterRetenir{commencer par décider si le problème est combinatoire, séquentiel, de mesure numérique ou de communication : chaque cas a sa méthode propre.}
 \end{document}
