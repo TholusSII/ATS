@@ -46,6 +46,8 @@ jobs:
         run: |
           initexmf --admin --set-config-value=[MPM]AutoInstall=1
           initexmf --set-config-value=[MPM]AutoInstall=1
+          mpm --admin --install=babel-french
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           initexmf --admin --update-fndb
           pdflatex --version
       - name: Compile ALL_EXOS
@@ -79,4 +81,4 @@ jobs:
             ALL_EXOS/ALL_EXOS.log
             ALL_EXOS/*.txt
 
-# Relance technique après correction du blocage T1 ligne 18 de l'exercice 079.
+# Relance technique après installation explicite du support babel-french requis par MiKTeX 2026.
