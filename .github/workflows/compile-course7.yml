@@ -4,14 +4,9 @@ on:
   push:
     paths:
       - '07-Électronique/Cours/**'
-      - 'Style/TLElectronique.sty'
-      - 'Style/TLCours.sty'
-      - 'Style/Notations_Elec/**'
+      - 'Style/**'
       - '.github/workflows/compile-course7.yml'
   workflow_dispatch:
-
-permissions:
-  contents: write
 
 jobs:
   compile:
@@ -19,21 +14,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Installer LaTeX
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y latexmk texlive-latex-extra texlive-lang-french texlive-science texlive-pictures
-
-      - name: Compiler
-        working-directory: '07-Électronique/Cours'
-        run: |
-          latexmk -pdf -interaction=nonstopmode -halt-on-error 00_Electronique.tex
+      - name: Compiler le cours 07
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: 00_Electronique.tex
+          working_directory: 07-Électronique/Cours
+          latexmk_use_xelatex: false
+          extra_system_packages: git
+          pre_compile: |
+            rm -rf /tmp/kaobook
+            git clone --depth 1 https://github.com/fmarotta/kaobook.git /tmp/kaobook
+        env:
+          TEXINPUTS: ".:/tmp/kaobook//:"
 
       - name: Publier le PDF
-        run: |
-          cp '07-Électronique/Cours/00_Electronique.pdf' '07-Électronique/Cours/07_Electronique.pdf'
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add '07-Électronique/Cours/07_Electronique.pdf'
-          git diff --cached --quiet || git commit -m 'Met à jour le PDF du cours 07 [skip ci]'
-          git push
+        uses: actions/upload-artifact@v4
+        with:
+          name: cours-07-electronique
+          path: 07-Électronique/Cours/00_Electronique.pdf
