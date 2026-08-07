@@ -14,22 +14,13 @@
 ]{kaobook}
 
 \usepackage[french]{babel}
-
 \newcommand{\TLCourseDefinitionFile}{08_Electromecanique}
 
-% Les extensions de notations se chargent parfois mutuellement avec
-% \RequirePackage. Chaque sous-dossier reste présent dans input@path.
 \makeatletter
-\def\input@path{{../../Style/}{../../Style/Notations_Elec/}{../../Style/Notations_Energetique/}{../../Style/Notations_Maths/}}
+\def\input@path{{../../Style/}}
 \makeatother
 
 \input{TLCours.sty}
-
-% Chargement explicite avant Notations_Energetique : l'ancienne commande
-% \RequirePackage{Notations_Maths} ne retrouve pas toujours le sous-dossier
-% avec certaines versions de MiKTeX.
-\input{../../Style/Notations_Maths/Notations_Maths.sty}
-\input{Notations_Elec/Notations_Elec.sty}
 \input{TLElectromecanique.sty}
 
 \usepackage{amsmath,amssymb,mathtools}
