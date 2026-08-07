@@ -1,20 +1,75 @@
-% Définition du cours 10
-\newcommand{\TLcourseTitle}{Électronique de puissance}
-\newcommand{\TLcourseSubtitle}{Conversion statique de l'énergie électrique}
-\newcommand{\TLcourseNumber}{10}
+% ============================================================================
+% DÉFINITION DU COURS 10 : ÉLECTRONIQUE DE PUISSANCE
+% ============================================================================
 
-\TLStartCourseChapter{10}{Électronique de puissance}{chap:electronique-puissance}
+\titlehead{Thomas Lusseau - SII en ATS}
+\title[Électronique de puissance]{Électronique de puissance et conversion statique de l'énergie}
+\author[TL]{Thomas Lusseau}
+\date{\today}
 
-% Le premier fichier contient désormais les parties 1 à 7. Lorsqu'il atteint
-% l'ancienne section synthétique « Conversion indirecte », on arrête sa lecture
-% et l'on poursuit avec la reprise développée des parties 8 à 11.
-\let\TLSectionOriginale\section
-\renewcommand{\section}[1]{%
-  \ifstrequal{#1}{Conversion indirecte}
-    {\endinput}
-    {\TLSectionOriginale{#1}}%
+\TLCourseCoverSetup
+  {\repStyle/FondPoly.png}
+  {pandoc/media/image15.jpeg}
+  {Cycle 5 : Distribuer, convertir et adapter l'énergie électrique}
+  {Électronique de puissance\\et conversion statique de l'énergie}
+  {Lycée Robert Doisneau - ATS}
+  {Thomas Lusseau}
+
+\TLCourseCoverContents{%
+  \TLCourseContentsLine{10.1}{Généralités sur l'électronique de puissance}{sec:ep-1}
+  \TLCourseContentsLine{10.2}{Composants de puissance}{sec:ep-2}
+  \TLCourseContentsLine{10.3}{Méthode d'étude des convertisseurs DC--DC}{sec:ep-3}
+  \TLCourseContentsLine{10.4}{Hacheur Buck}{sec:ep-4}
+  \TLCourseContentsLine{10.5}{Hacheur Boost}{sec:ep-5}
+  \TLCourseContentsLine{10.6}{Hacheur deux quadrants}{sec:ep-6}
+  \TLCourseContentsLine{10.7}{Hacheur quatre quadrants}{sec:ep-7}
+  \TLCourseContentsLine{10.8}{Conversion indirecte}{sec:ep-8}
+  \TLCourseContentsLine{10.9}{Convertisseurs AC--DC}{sec:ep-9}
+  \TLCourseContentsLine{10.10}{Redressement monophasé}{sec:ep-10}
+  \TLCourseContentsLine{10.11}{Puissances en régime périodique}{sec:ep-11}
+  \TLCourseContentsLine{10.12}{Absorption sinusoïdale}{sec:ep-12}
+  \TLCourseContentsLine{10.13}{Synthèse}{sec:ep-13}
+  \TLCourseContentsLine{10.14}{Exercices du chapitre}{sec:ep-exercices}
 }
-\input{sources/10_ElectroniquePuissance_Cours_Propre.tex}
-\let\section\TLSectionOriginale
 
+\TLCourseFooter
+\TLCourseCover
+\markboth{Électronique de puissance}{Électronique de puissance}
+
+\livrettrue
+\collefalse
+\TLStartCourseChapter{10}{Électronique de puissance et conversion statique de l'énergie}{chap:electronique-puissance}
+
+% Numérotation et ancres homogènes sans réécrire le texte issu du document
+% original. La première source contient une ancienne section synthétique
+% « Conversion indirecte » : elle est remplacée par la partie développée.
+\newcounter{TLEPSectionLabel}
+\newif\ifTLEPStopAtConversion
+\TLEPStopAtConversiontrue
+\let\TLEPBaseSection\section
+\RenewDocumentCommand{\section}{s o m}{%
+  \IfBooleanTF{#1}{%
+    \TLEPBaseSection*{#3}%
+  }{%
+    \ifTLEPStopAtConversion
+      \ifstrequal{#3}{Conversion indirecte}{%
+        \endinput
+      }{%
+        \IfNoValueTF{#2}{\TLEPBaseSection{#3}}{\TLEPBaseSection[#2]{#3}}%
+        \stepcounter{TLEPSectionLabel}%
+        \label{sec:ep-\arabic{TLEPSectionLabel}}%
+      }%
+    \else
+      \IfNoValueTF{#2}{\TLEPBaseSection{#3}}{\TLEPBaseSection[#2]{#3}}%
+      \stepcounter{TLEPSectionLabel}%
+      \label{sec:ep-\arabic{TLEPSectionLabel}}%
+    \fi
+  }%
+}
+
+\input{sources/10_ElectroniquePuissance_Cours_Propre.tex}
+\TLEPStopAtConversionfalse
 \input{sources/10_ElectroniquePuissance_Parties_8_11.tex}
+\input{sources/10_ElectroniquePuissance_Exercices.tex}
+
+\printindex
