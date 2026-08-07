@@ -1,0 +1,34 @@
+name: Compiler le cours 06 correction des systèmes asservis
+
+on:
+  push:
+    paths:
+      - '06-Correction des Systèmes asservis/Cours/**'
+      - 'Style/**'
+      - '.github/workflows/compile-course6.yml'
+  workflow_dispatch:
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compiler le cours 06
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: 00_Correction_Systemes_Asservis.tex
+          working_directory: 06-Correction des Systèmes asservis/Cours
+          latexmk_use_xelatex: false
+          extra_system_packages: git
+          pre_compile: |
+            rm -rf /tmp/kaobook
+            git clone --depth 1 https://github.com/fmarotta/kaobook.git /tmp/kaobook
+        env:
+          TEXINPUTS: ".:/tmp/kaobook//:"
+
+      - name: Publier le PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: cours-06-correction-systemes-asservis
+          path: 06-Correction des Systèmes asservis/Cours/00_Correction_Systemes_Asservis.pdf
