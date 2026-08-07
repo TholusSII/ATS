@@ -11,13 +11,13 @@
 \renewcommand{\familydefault}{\sfdefault}
 \begin{document}
 \begin{tikzpicture}
-\TLMapBase{Électronique de puissance}{Source $\rightarrow$ Convertisseur $\rightarrow$ Charge}
-\TLMapBranchTL{Savoirs}{\textbullet\ classer les convertisseurs DC--DC, AC--DC, DC--AC et AC--AC\\[1.2mm]\textbullet\ connaître diode, MOSFET, IGBT et thyristor et leurs états passant/bloqué\\[1.2mm]\textbullet\ utiliser rapport cyclique, valeurs moyenne et efficace, fréquence de découpage et ondulation\\[1.2mm]\textbullet\ analyser hacheurs Buck, Boost, deux quadrants et quatre quadrants\\[1.2mm]\textbullet\ analyser redressement, pont de diodes, harmoniques, facteur de puissance et principe du PFC}
-\TLMapBranchTR{Interrupteurs}{\textbullet\ diode\\[1.2mm]\textbullet\ MOSFET / IGBT\\[1.2mm]\textbullet\ passant / bloqué\\[1.2mm]\textbullet\ sources}
-\TLMapBranchML{Hacheurs}{\textbullet\ Buck\\[1.2mm]\textbullet\ Boost\\[1.2mm]\textbullet\ 2 quadrants\\[1.2mm]\textbullet\ 4 quadrants}
-\TLMapBranchMR{Conversion AC}{\textbullet\ redressement\\[1.2mm]\textbullet\ pont de diodes\\[1.2mm]\textbullet\ onduleur\\[1.2mm]\textbullet\ PFC / harmoniques}
-\TLMapBranchBL{Grandeurs}{\textbullet\ rapport cyclique\\[1.2mm]\textbullet\ moyenne / efficace\\[1.2mm]\textbullet\ ondulation\\[1.2mm]\textbullet\ puissance}
-\TLMapBranchBR{Méthode}{1. Identifier nature de la source, de la charge et les réversibilités demandées.\\[1.2mm]2. Choisir la structure de convertisseur et les interrupteurs compatibles.\\[1.2mm]3. Découper une période en séquences de conduction.\\[1.2mm]4. Tracer tensions et courants dans chaque séquence.\\[1.2mm]5. Calculer valeurs moyennes, efficaces et ondulations.}
-\TLMapRibbon{Identifier $\rightarrow$ Séquencer $\rightarrow$ Tracer $\rightarrow$ Calculer $\rightarrow$ Dimensionner $\rightarrow$ Vérifier}
+\TLMapBase{Électronique de puissance}{Choisir le cas $\rightarrow$ séquencer $\rightarrow$ tracer $\rightarrow$ calculer $\rightarrow$ vérifier}
+\TLMapBranchTL{À connaître}{\textbullet\ source tension : ne jamais court-circuiter ; source courant : ne jamais ouvrir\\[1mm]\textbullet\ $L$ impose continuité du courant ; $C$ impose continuité de la tension\\[1mm]\textbullet\ passant : $u_K=0$ ; bloqué : $i_K=0$\\[1mm]\textbullet\ $\alpha=t_{on}/T$, $\langle u_L\rangle=0$ en régime périodique\\[1mm]\textbullet\ $P=\langle ui\rangle$, $S=UI$, $\lambda=P/S$}
+\TLMapBranchTR{Choisir le convertisseur}{\textbf{Buck :} $U_s<U_e$\\[1mm]\textbf{Boost :} $U_s>U_e$\\[1mm]\textbf{2 quadrants :} une réversibilité\\[1mm]\textbf{4 quadrants :} tension et courant réversibles\\[1mm]\textbf{PD2 :} AC $\rightarrow$ DC non commandé\\[1mm]\textbf{PFC :} courant réseau sinusoïdal et en phase}
+\TLMapBranchML{Méthode hacheur}{1. Repérer $T$ et les intervalles.\\[1mm]2. Identifier passants/bloqués.\\[1mm]3. Remplacer par CC/CO et redessiner.\\[1mm]4. Écrire les lois, surtout $u_L=L\,di/dt$.\\[1mm]5. Tracer les chronogrammes.\\[1mm]6. Utiliser $\langle u_L\rangle=0$.\\[1mm]7. Calculer ondulation et contraintes.}
+\TLMapBranchMR{Méthode AC / puissance}{\textbf{PD2 :} choisir la diagonale conductrice sur chaque alternance ; $u_s=|u_e|$ ; charge inductive $\Rightarrow$ courant continu.\\[1mm]\textbf{Puissance :} partir de $p(t)=ui$ ; $P=UI\cos\varphi$ seulement en sinusoïdal.\\[1mm]\textbf{PFC :} $i_{ref}\propto|u_e|$ ; boucle courant rapide, boucle tension lente.}
+\TLMapBranchBL{Composants / pertes}{\textbullet\ diode : commutation spontanée\\[1mm]\textbullet\ MOSFET / IGBT : amorçage et blocage commandés\\[1mm]\textbullet\ transistor + diode antiparallèle : réversible en courant\\[1mm]\textbullet\ $P_{com}=f_s(E_{on}+E_{off})$\\[1mm]\textbullet\ vérifier $U_{max}$, $I_{max}$, $I_{eff}$, pertes, $T_j$}
+\TLMapBranchBR{Vérifications}{\textbullet\ associations de sources autorisées ?\\[1mm]\textbullet\ jamais deux interrupteurs d'un bras passants simultanément\\[1mm]\textbullet\ continuité de $i_L$ et de $u_C$ respectée ?\\[1mm]\textbullet\ signes et réversibilités cohérents ?\\[1mm]\textbullet\ moyenne, efficace, ondulation, rendement plausibles ?\\[1mm]\textbullet\ régime déformé : $S^2=P^2+Q^2+D^2$}
+\TLMapRibbon{Identifier le cas avant de calculer : la méthode n'est pas la même pour un hacheur, un redresseur ou une étude de qualité d'énergie.}
 \end{tikzpicture}
 \end{document}
