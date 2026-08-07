@@ -10,50 +10,54 @@
 \pagestyle{empty}
 \renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\TLPosterCourseHeader{10}{Électronique de puissance}{Conversion statique de l'énergie}
+\TLPosterCourseHeader{10}{Électronique de puissance}{Choisir, analyser et dimensionner un convertisseur statique}
 \vspace{2mm}
 \begin{minipage}[t]{0.61\linewidth}
 \begin{TLPosterSavoirs}
 \begin{itemize}
-  \item classer les convertisseurs DC--DC, AC--DC, DC--AC et AC--AC
-  \item connaître diode, MOSFET, IGBT et thyristor et leurs états passant/bloqué
-  \item utiliser rapport cyclique, valeurs moyenne et efficace, fréquence de découpage et ondulation
-  \item analyser hacheurs Buck, Boost, deux quadrants et quatre quadrants
-  \item analyser redressement, pont de diodes, harmoniques, facteur de puissance et principe du PFC
+  \item distinguer source de tension et source de courant ; connaître les associations interdites et le rôle de $L$ et $C$ pendant les commutations
+  \item connaître l'interrupteur idéal : passant $u_K=0$, bloqué $i_K=0$ ; diode spontanée, MOSFET/IGBT commandés, transistor + diode antiparallèle réversible en courant
+  \item connaître $\alpha=t_{\rm on}/T$, valeur moyenne, valeur efficace et la propriété $\langle u_L\rangle=0$ en régime périodique établi
+  \item reconnaître Buck, Boost, hacheur 2 quadrants, pont 4 quadrants, pont de diodes PD2 et structure PFC à Boost
+  \item connaître $P=\langle ui\rangle$, $S=UI$, $\lambda=P/S$ et, en régime déformé, $S^2=P^2+Q^2+D^2$
 \end{itemize}
 \end{TLPosterSavoirs}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.36\linewidth}
-\TLPosterKey{Principe}{Interrupteurs commandés + stockage d'énergie $\rightarrow$ conversion avec pertes limitées}
+\TLPosterKey{Réflexe n°1}{Identifier la nature des sources et les réversibilités avant d'étudier les interrupteurs.}
 \end{minipage}
 \vfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Interrupteurs de puissance]{TLPosterBlue}
-Diode et semi-conducteurs commandés réalisent des commutations entre états passant et bloqué. Le choix dépend de la tension, du courant, de la fréquence et du besoin de réversibilité.
+\begin{TLPosterBloc}[Choisir la structure]{TLPosterBlue}
+\textbf{DC $\rightarrow$ DC :} Buck si $U_s<U_e$, Boost si $U_s>U_e$.\\
+\textbf{Réversibilité :} 2 quadrants si une grandeur change de signe ; pont 4 quadrants si tension et courant doivent être réversibles.\\
+\textbf{AC $\rightarrow$ DC :} pont de diodes pour redressement non commandé ; PFC si l'on veut un courant réseau quasi sinusoïdal et en phase.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Redressement et onduleur]{TLPosterPurple}
-Un pont de diodes transforme l'alternatif en continu ; l'onduleur réalise la conversion inverse. La commande de commutation façonne la valeur moyenne, la fréquence et le spectre de sortie.
+\begin{TLPosterBloc}[Méthode hacheur DC--DC]{TLPosterGreen}
+Pour chaque intervalle : 1) indiquer passants/bloqués ; 2) remplacer les interrupteurs par court-circuit/circuit ouvert ; 3) redessiner le schéma équivalent ; 4) écrire $u_L=L\,di/dt$ ; 5) déduire les pentes et tracer les chronogrammes ; 6) imposer $\langle u_L\rangle=0$ pour relier entrée, sortie et $\alpha$ ; 7) calculer l'ondulation.
 \end{TLPosterBloc}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Hacheurs DC--DC]{TLPosterGreen}
-Buck abaisse la tension moyenne, Boost l'élève. Les structures deux ou quatre quadrants rendent courant et/ou tension réversibles. Les inductances et condensateurs limitent les ondulations.
+\begin{TLPosterBloc}[Méthode redressement / puissance]{TLPosterPurple}
+\textbf{PD2 :} repérer la diagonale conductrice sur chaque alternance, écrire $u_s(t)=|u_e(t)|$, puis calculer moyenne/efficace et contraintes des diodes. Pour une charge inductive, respecter la continuité du courant.\\
+\textbf{Puissances :} partir de $p(t)=u(t)i(t)$ ; utiliser $P=UI\cos\varphi$ seulement si tension et courant sont sinusoïdaux.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Grandeurs et qualité d'énergie]{TLPosterTeal}
-Rapport cyclique, fréquence de découpage et séquences de conduction permettent de calculer valeurs moyennes et ondulations. Harmoniques et facteur de puissance motivent filtrage et correction PFC.
+\begin{TLPosterBloc}[PFC, pertes et dimensionnement]{TLPosterTeal}
+\textbf{PFC :} pont de diodes $\rightarrow$ Boost commandé $\rightarrow$ bus continu ; imposer $i_{\rm ref}(t)\propto|u_e(t)|$.\\
+\textbf{Composants :} vérifier tension bloquée max, courant max/efficace, pertes de conduction et $P_{\rm com}=f_s(E_{\rm on}+E_{\rm off})$, puis température de jonction. Une fréquence plus élevée réduit les passifs mais augmente les pertes de commutation.
 \end{TLPosterBloc}
 \end{minipage}
 \vfill
 \begin{TLPosterMethode}
 \begin{enumerate}
-  \item Identifier nature de la source, de la charge et les réversibilités demandées.
-  \item Choisir la structure de convertisseur et les interrupteurs compatibles.
-  \item Découper une période en séquences de conduction.
-  \item Tracer tensions et courants dans chaque séquence.
-  \item Calculer valeurs moyennes, efficaces et ondulations.
-  \item Vérifier puissance, contraintes des composants et qualité d'énergie.
+  \item \textbf{Identifier le cas :} DC/DC, AC/DC, conversion indirecte ; nature des sources, charge et réversibilités.
+  \item \textbf{Si hacheur :} séquencer une période, établir les schémas équivalents, tracer $u$ et $i$, puis utiliser $\langle u_L\rangle=0$.
+  \item \textbf{Si redresseur :} déterminer les diodes conductrices à chaque alternance, construire $u_s(t)$ et tenir compte de la continuité du courant si la charge est inductive.
+  \item \textbf{Si étude de puissance :} calculer d'abord $P=\langle ui\rangle$ ; n'utiliser $P=UI\cos\varphi$ que dans le cas sinusoïdal.
+  \item \textbf{Si qualité réseau :} calculer $\lambda=P/(UI)$, identifier harmoniques/distorsion et vérifier l'intérêt d'un PFC.
+  \item \textbf{Toujours finir par :} ondulations, contraintes électriques, pertes, rendement, température et cohérence des signes.
 \end{enumerate}
 \end{TLPosterMethode}
 \vfill
-\TLPosterRetenir{l'analyse d'un convertisseur part toujours des états des interrupteurs et des séquences de fonctionnement.}
+\TLPosterRetenir{le bon convertisseur se choisit d'abord avec les sources et les réversibilités ; son analyse se fait ensuite séquence par séquence.}
 \end{document}
