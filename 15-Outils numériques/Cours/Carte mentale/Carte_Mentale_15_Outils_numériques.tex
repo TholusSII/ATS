@@ -1,18 +1,23 @@
-\documentclass[a3paper,landscape,10pt]{article}
-\usepackage[margin=8mm]{geometry}
+\documentclass[10pt,a3paper,landscape]{article}
+\usepackage[margin=6mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
-\usepackage{amsmath,amssymb}
-\makeatletter
-\def\input@path{{../../../Style/}}
-\makeatother
+\usepackage{lmodern}
+\usepackage{microtype}
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{{TLOutilsNumeriques.sty}}{{\input{{TLOutilsNumeriques.sty}}}}{{}}
 \pagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\begin{TLCarteMentale}{{Outils numériques}}
-\TLBranche{Discrétisation}{t_k = t_0 + kh et approximation numérique des dérivées.}
-\TLBranche{Euler explicite}{y_{k+1} = y_k + h f(t_k,y_k).}
-\TLBranche{Ordre deux}{Transformer l'équation en système de deux équations du premier ordre.}
-\TLBranche{Validation}{Étudier convergence, stabilité, influence du pas et cohérence physique.}
-\end{TLCarteMentale}
+\begin{tikzpicture}
+\TLMapBase{Outils numériques}{Modèle continu $\rightarrow$ Discrétisation $\rightarrow$ Calcul numérique}
+\TLMapBranchTL{Savoirs}{\textbullet\ discrétiser le temps par $t_k=t_0+kh$ et approximer les dérivées par différences finies\\[1.2mm]\textbullet\ utiliser la méthode d'Euler explicite et comprendre la notion de schéma numérique\\[1.2mm]\textbullet\ transformer une équation d'ordre deux en système d'équations du premier ordre\\[1.2mm]\textbullet\ analyser erreur de discrétisation, convergence et influence du pas\\[1.2mm]\textbullet\ étudier stabilité numérique et valider par cohérence physique ou solution de référence}
+\TLMapBranchTR{Discrétisation}{\textbullet\ $t_k=t_0+kh$\\[1.2mm]\textbullet\ différences finies\\[1.2mm]\textbullet\ pas $h$}
+\TLMapBranchML{Euler}{\textbullet\ $y_{k+1}=y_k+h f_k$\\[1.2mm]\textbullet\ schéma explicite\\[1.2mm]\textbullet\ erreur locale}
+\TLMapBranchMR{Ordre deux}{\textbullet\ variables d'état\\[1.2mm]\textbullet\ position / vitesse\\[1.2mm]\textbullet\ système d'ordre 1}
+\TLMapBranchBL{Validation}{\textbullet\ convergence\\[1.2mm]\textbullet\ stabilité\\[1.2mm]\textbullet\ comparaison\\[1.2mm]\textbullet\ cohérence physique}
+\TLMapBranchBR{Méthode}{1. Écrire le modèle continu et identifier variables d'état et conditions initiales.\\[1.2mm]2. Choisir un pas compatible avec les constantes de temps.\\[1.2mm]3. Écrire le schéma numérique puis initialiser les variables.\\[1.2mm]4. Itérer le calcul en stockant temps et grandeurs utiles.\\[1.2mm]5. Tracer les résultats et tester plusieurs valeurs du pas.}
+\TLMapRibbon{Modéliser $\rightarrow$ Discrétiser $\rightarrow$ Calculer $\rightarrow$ Comparer $\rightarrow$ Raffiner $\rightarrow$ Valider}
+\end{tikzpicture}
 \end{document}

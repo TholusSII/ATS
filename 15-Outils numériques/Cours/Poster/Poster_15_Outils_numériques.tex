@@ -1,30 +1,59 @@
-\documentclass[a3paper,landscape,10pt]{article}
+\documentclass[10pt,a3paper]{article}
 \usepackage[margin=10mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
-\usepackage{amsmath,amssymb}
-\makeatletter
-\def\input@path{{../../../Style/}}
-\makeatother
+\usepackage{lmodern}
+\usepackage{microtype}
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{{TLOutilsNumeriques.sty}}{{\input{{TLOutilsNumeriques.sty}}}}{{}}
 \pagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\TLPosterTitre{{Outils numériques}}{{Fiche résumé éditable}}
-\begin{multicols}{2}
-\begin{TLPosterBloc}{Discrétisation}
-t_k = t_0 + kh et approximation numérique des dérivées.
+\TLPosterCourseHeader{15}{Outils numériques}{Discrétisation, intégration et validation des modèles}
+\vspace{2mm}
+\begin{minipage}[t]{0.61\linewidth}
+\begin{TLPosterSavoirs}
+\begin{itemize}
+  \item discrétiser le temps par $t_k=t_0+kh$ et approximer les dérivées par différences finies
+  \item utiliser la méthode d'Euler explicite et comprendre la notion de schéma numérique
+  \item transformer une équation d'ordre deux en système d'équations du premier ordre
+  \item analyser erreur de discrétisation, convergence et influence du pas
+  \item étudier stabilité numérique et valider par cohérence physique ou solution de référence
+\end{itemize}
+\end{TLPosterSavoirs}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.36\linewidth}
+\TLPosterKey{Euler explicite}{$y_{k+1}=y_k+h\,f(t_k,y_k)$}
+\end{minipage}
+\vfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{TLPosterBloc}[Discrétisation]{TLPosterBlue}
+Le temps continu est remplacé par des instants $t_k=t_0+kh$. Les dérivées sont approchées par des différences entre valeurs successives ; le pas $h$ règle précision et coût.
 \end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Euler explicite}
-y_{k+1} = y_k + h f(t_k,y_k).
+\begin{TLPosterBloc}[Équations d'ordre deux]{TLPosterPurple}
+Une équation différentielle du second ordre est transformée en deux équations du premier ordre en introduisant une variable de vitesse ou d'état supplémentaire.
 \end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Ordre deux}
-Transformer l'équation en système de deux équations du premier ordre.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{TLPosterBloc}[Euler explicite]{TLPosterGreen}
+La pente est évaluée au début du pas puis utilisée pour avancer : $y_{k+1}=y_k+h f(t_k,y_k)$. La méthode est simple mais son erreur et sa stabilité dépendent fortement de $h$.
 \end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Validation}
-Étudier convergence, stabilité, influence du pas et cohérence physique.
+\begin{TLPosterBloc}[Validation]{TLPosterTeal}
+La diminution du pas doit conduire vers une solution stable. On compare à une solution analytique, une mesure ou des invariants physiques et on surveille les erreurs cumulées.
 \end{TLPosterBloc}
-\end{multicols}
+\end{minipage}
+\vfill
+\begin{TLPosterMethode}
+\begin{enumerate}
+  \item Écrire le modèle continu et identifier variables d'état et conditions initiales.
+  \item Choisir un pas compatible avec les constantes de temps.
+  \item Écrire le schéma numérique puis initialiser les variables.
+  \item Itérer le calcul en stockant temps et grandeurs utiles.
+  \item Tracer les résultats et tester plusieurs valeurs du pas.
+  \item Valider convergence, stabilité numérique, unités et cohérence physique.
+\end{enumerate}
+\end{TLPosterMethode}
+\vfill
+\TLPosterRetenir{un résultat numérique n'est fiable qu'après une étude du pas, de la convergence et de la cohérence physique.}
 \end{document}

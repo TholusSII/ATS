@@ -1,277 +1,59 @@
-\documentclass[11pt]{article}
-\usepackage[a3paper,portrait,margin=10mm]{geometry}
+\documentclass[10pt,a3paper]{article}
+\usepackage[margin=10mm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
 \usepackage{lmodern}
 \usepackage{microtype}
-\usepackage{amsmath,amssymb}
-\usepackage[most]{tcolorbox}
-\usepackage{tikz}
-\usepackage{enumitem}
-\usepackage{ragged2e}
-\usetikzlibrary{arrows.meta,positioning,calc,shapes.geometric,shadows.blur,backgrounds,fit}
-
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
+\input{TLPosterCarteMentale.sty}
 \pagestyle{empty}
-\setlength{\parindent}{0pt}
 \renewcommand{\familydefault}{\sfdefault}
-\setlist[enumerate]{leftmargin=8mm,itemsep=1.1mm,topsep=0mm}
-
-% ----------------------------------------------------------------------------
-% Palette
-% ----------------------------------------------------------------------------
-\definecolor{SAblue}{HTML}{0B3B78}
-\definecolor{SAblue2}{HTML}{1769AA}
-\definecolor{SAsky}{HTML}{EAF4FB}
-\definecolor{SAgreen}{HTML}{5A9D4B}
-\definecolor{SAgreenlight}{HTML}{EEF7EA}
-\definecolor{SAorange}{HTML}{D88A22}
-\definecolor{SAorangelight}{HTML}{FFF4E3}
-\definecolor{SApurple}{HTML}{7251A8}
-\definecolor{SApurplelight}{HTML}{F3EEFA}
-\definecolor{SAred}{HTML}{C94747}
-\definecolor{SAgray}{HTML}{4B5563}
-
-\newtcolorbox{SApanel}[2][]{
-  enhanced,breakable,
-  colback=white,colframe=#2,
-  colbacktitle=#2,coltitle=white,
-  title={#1},fonttitle=\bfseries\Large,
-  boxrule=1pt,arc=3mm,
-  left=4mm,right=4mm,top=3mm,bottom=3mm,
-  attach boxed title to top left={xshift=4mm,yshift*=-\tcboxedtitleheight/2},
-  boxed title style={arc=2mm,boxrule=0pt,left=4mm,right=4mm},
-  drop fuzzy shadow
-}
-
-\newtcolorbox{SAcard}[2][]{
-  enhanced,
-  colback=#2!7,colframe=#2,
-  boxrule=1pt,arc=3mm,
-  left=4mm,right=4mm,top=2.5mm,bottom=2.5mm,
-  drop fuzzy shadow,
-  #1
-}
-
-\newcommand{\SApill}[2]{%
-  \tikz[baseline=-0.55ex]\node[
-    rounded corners=2mm,fill=#1!12,draw=#1,
-    text=#1!80!black,inner xsep=3mm,inner ysep=1.2mm,
-    font=\bfseries,align=center] {#2};%
-}
-
 \begin{document}
-
-% ----------------------------------------------------------------------------
-% Bandeau supérieur
-% ----------------------------------------------------------------------------
-\begin{tikzpicture}[remember picture,overlay]
-  \fill[SAblue] (current page.north west) rectangle ([yshift=-40mm]current page.north east);
-  \fill[SAblue2] ([xshift=-25mm,yshift=-40mm]current page.north east) circle[radius=39mm];
-  \fill[white,opacity=.08] ([xshift=-5mm,yshift=-8mm]current page.north west) circle[radius=22mm];
-  \draw[white,opacity=.25,line width=1.4pt] ([xshift=20mm,yshift=-14mm]current page.north west) circle[radius=7mm];
-  \draw[white,opacity=.25,line width=1.4pt] ([xshift=31mm,yshift=-24mm]current page.north west) circle[radius=4mm];
-\end{tikzpicture}
-
-\vspace*{1mm}
-\begin{minipage}[c]{0.75\textwidth}
-  {\color{white}\fontsize{31}{34}\selectfont\bfseries Systèmes asservis}\par
-  \vspace{1mm}
-  {\color{white!88}\fontsize{15}{18}\selectfont
-  De la consigne à la performance par la boucle fermée}
-\end{minipage}\hfill
-\begin{minipage}[c]{0.20\textwidth}
-\begin{center}
-\begin{tikzpicture}[scale=.82,>=Latex]
-  \draw[white,line width=1.8pt] (0,0) circle (1.55);
-  \draw[white,line width=1.2pt] (0,0) circle (.85);
-  \draw[white,line width=1.2pt] (-2,0)--(2,0);
-  \draw[white,line width=1.2pt] (0,-2)--(0,2);
-  \draw[white,line width=2pt,-{Stealth[length=4mm]}] (-1.55,-1.15)--(-.3,-.15);
-  \fill[white] (0,0) circle (2.2pt);
-\end{tikzpicture}
-\end{center}
-\end{minipage}
-
-\vspace{9mm}
-
-% ----------------------------------------------------------------------------
-% Définition et erreur
-% ----------------------------------------------------------------------------
-\begin{minipage}[t]{0.59\textwidth}
-\begin{SApanel}[1. Définition]{SAblue2}
-\justifying
-Un \textbf{système asservi} élabore automatiquement son action à partir d'une
-\textbf{consigne} et d'une \textbf{mesure} de la sortie. Il cherche à réduire
-leur écart tout en restant performant malgré les perturbations et les
-incertitudes du procédé.
-\end{SApanel}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.38\textwidth}
-\begin{SAcard}[height=43mm,halign=center,valign=center]{SAblue2}
-{\color{SAblue}\Large\bfseries Relation fondamentale}\par\vspace{3mm}
-{\fontsize{21}{24}\selectfont\bfseries\(e(t)=r(t)-m(t)\)}\par\vspace{2mm}
-{\color{SAgray}erreur = consigne $-$ mesure}
-\end{SAcard}
-\end{minipage}
-
-\vspace{3mm}
-
-% ----------------------------------------------------------------------------
-% Boucle fermée
-% ----------------------------------------------------------------------------
-\begin{SApanel}[2. Structure d'une boucle fermée]{SAblue}
-\begin{center}
-\begin{tikzpicture}[
-  >=Latex,
-  block/.style={draw,rounded corners=2mm,minimum height=13mm,minimum width=35mm,
-    align=center,font=\bfseries,blur shadow},
-  signal/.style={-{Stealth[length=3.2mm]},line width=1.15pt,draw=SAgray},
-  lab/.style={font=\bfseries\small,text=SAblue,align=center},
-  sum/.style={circle,draw=SAblue,line width=1.2pt,minimum size=12mm,fill=SAsky}
-]
-  \node[lab] (r) at (-9.3,0) {Consigne\\$r(t)$};
-  \node[sum] (s) at (-7.1,0) {};
-  \node[block,fill=SAgreenlight,draw=SAgreen] (c) at (-3.8,0) {Correcteur\\$C(p)$};
-  \node[block,fill=SAorangelight,draw=SAorange,minimum width=43mm] (g) at (1.0,0)
-    {Actionneur + procédé\\$G(p)$};
-  \node[lab] (y) at (6.0,0) {Sortie\\$y(t)$};
-  \node[block,fill=SAsky,draw=SAblue2] (h) at (-1.1,-2.4) {Capteur\\$H(p)$};
-  \node[lab,text=SAred] (d) at (1.0,1.8) {Perturbation\\$d(t)$};
-
-  \draw[signal] (r.east)--(s.west);
-  \draw[signal] (s.east)--node[above,font=\bfseries]{$e(t)$}(c.west);
-  \draw[signal] (c.east)--node[above,font=\small]{commande}(g.west);
-  \draw[signal] (g.east)--coordinate (pick)(y.west);
-  \draw[signal,draw=SAred] (d.south)--(g.north);
-  \draw[signal] (pick) |- (h.east);
-  \draw[signal] (h.west) -| node[pos=.17,below,font=\small\bfseries,text=SAblue2]
-    {mesure $m(t)$} (s.south);
-
-  \node at ($(s.center)+(-.25,.26)$) {\bfseries +};
-  \node at ($(s.center)+(-.23,-.28)$) {\bfseries --};
-
-  \node[draw=SAblue2,dashed,rounded corners=2mm,fit=(s)(c)(g)(h),
-    inner xsep=5mm,inner ysep=3mm,
-    label={[text=SAblue2,font=\bfseries]below:la mesure referme la boucle}] {};
-\end{tikzpicture}
-\end{center}
-
-\vspace{-1mm}
-\begin{center}
-\SApill{SAblue2}{Comparer}\quad
-\SApill{SAgreen}{Corriger}\quad
-\SApill{SAorange}{Agir}\quad
-\SApill{SAblue}{Mesurer}\quad
-\SApill{SAred}{Rejeter les perturbations}
-\end{center}
-\end{SApanel}
-
-\vspace{3mm}
-
-% ----------------------------------------------------------------------------
-% Performances
-% ----------------------------------------------------------------------------
-\begin{center}
-{\color{SAblue}\LARGE\bfseries 3. Les trois performances fondamentales}
-\end{center}
-\vspace{1mm}
-
-\begin{minipage}[t]{0.32\textwidth}
-\begin{SAcard}[height=51mm]{SAgreen}
-\begin{center}
-\begin{tikzpicture}[scale=.82]
-  \draw[SAgreen,line width=1.6pt,rounded corners=1mm]
-    (-.8,-.9)--(-.8,.75)--(0,1.1)--(.8,.75)--(.8,-.9);
-  \draw[SAgreen,line width=1.6pt] (-.5,.05)--(-.1,-.35)--(.55,.45);
-\end{tikzpicture}\par
-{\color{SAgreen!70!black}\Large\bfseries Stabilité}\par\vspace{1mm}
-Le système reste borné et rejoint un régime permanent.
-\end{center}
-\end{SAcard}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.32\textwidth}
-\begin{SAcard}[height=51mm]{SAblue2}
-\begin{center}
-\begin{tikzpicture}[scale=.82]
-  \draw[SAblue2,line width=1.6pt] (0,0) circle (1);
-  \draw[SAblue2,line width=1.6pt] (0,0) circle (.58);
-  \draw[SAblue2,line width=1.6pt] (0,0) circle (.18);
-  \draw[SAblue2,line width=1.6pt,-{Stealth[length=3mm]}] (-1.2,-1.0)--(-.1,-.1);
-\end{tikzpicture}\par
-{\color{SAblue2}\Large\bfseries Précision}\par\vspace{1mm}
-La sortie atteint la consigne avec une erreur faible.
-\end{center}
-\end{SAcard}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.32\textwidth}
-\begin{SAcard}[height=51mm]{SApurple}
-\begin{center}
-\begin{tikzpicture}[scale=.82]
-  \draw[SApurple,line width=1.6pt] (0,0) circle (.95);
-  \draw[SApurple,line width=1.6pt] (0,.95)--(0,1.25);
-  \draw[SApurple,line width=1.6pt] (-.25,1.25)--(.25,1.25);
-  \draw[SApurple,line width=1.6pt,-{Stealth[length=2.5mm]}] (0,0)--(.45,.48);
-  \draw[SApurple,line width=1.4pt] (0,0)--(0,-.55);
-\end{tikzpicture}\par
-{\color{SApurple}\Large\bfseries Rapidité}\par\vspace{1mm}
-Le temps de réponse reste compatible avec le besoin.
-\end{center}
-\end{SAcard}
-\end{minipage}
-
-\vspace{3mm}
-
-% ----------------------------------------------------------------------------
-% Modèles et démarche
-% ----------------------------------------------------------------------------
-\begin{minipage}[t]{0.49\textwidth}
-\begin{SApanel}[4. Modèles essentiels]{SApurple}
-\small
-\begin{tabular}{@{}p{.34\linewidth}p{.60\linewidth}@{}}
-\textbf{Fonction de transfert} & $H(p)=\dfrac{S(p)}{E(p)}$\\[2mm]
-\textbf{Boucle fermée} & $H_{BF}(p)=\dfrac{G(p)}{1+G(p)H(p)}$\\[2mm]
-\textbf{Premier ordre} & $H(p)=\dfrac{K}{1+\tau p}$\\[2mm]
-\textbf{Second ordre} & $H(p)=\dfrac{K\omega_0^2}{p^2+2\xi\omega_0p+\omega_0^2}$
-\end{tabular}
-\end{SApanel}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.49\textwidth}
-\begin{SApanel}[5. Démarche d'étude]{SAorange}
-\small
-\begin{enumerate}
-  \item Identifier consigne, sortie, perturbations et capteur.
-  \item Construire le schéma-bloc et déterminer la FTBO.
-  \item Calculer la FTBF et repérer pôles et zéros.
-  \item Étudier les réponses temporelle et fréquentielle.
-  \item Conclure sur stabilité, précision, rapidité et robustesse.
-\end{enumerate}
-\end{SApanel}
-\end{minipage}
-
-\vspace{3mm}
-
-% ----------------------------------------------------------------------------
-% Bandeau final compact
-% ----------------------------------------------------------------------------
-\begin{tcolorbox}[
-  enhanced,colback=SAgreenlight,colframe=SAgreen,arc=3mm,boxrule=1pt,
-  left=4mm,right=4mm,top=2.5mm,bottom=2.5mm]
-\begin{center}
-{\color{SAgreen!65!black}\bfseries Exemples :}
-\quad régulateur de vitesse \quad $\bullet$ \quad thermostat
-\quad $\bullet$ \quad servo-positionnement d'un axe
-\end{center}
-\end{tcolorbox}
+\TLPosterCourseHeader{5}{Systèmes asservis}{Boucles, performances, modèles temporels et fréquentiels}
 \vspace{2mm}
-\begin{tcolorbox}[
-  enhanced,colback=SAblue,colframe=SAblue,arc=3mm,boxrule=0pt,
-  left=6mm,right=6mm,top=3mm,bottom=3mm]
-\begin{center}
-{\color{white}\Large\bfseries À retenir : atteindre la consigne avec le meilleur compromis}
-\quad
-{\color{white!90}\large stabilité -- précision -- rapidité}
-\end{center}
-\end{tcolorbox}
-
+\begin{minipage}[t]{0.61\linewidth}
+\begin{TLPosterSavoirs}
+\begin{itemize}
+  \item distinguer boucle ouverte, boucle fermée, asservissement et régulation
+  \item identifier consigne, erreur, sortie, mesure et perturbation
+  \item caractériser stabilité, rapidité, précision, dépassement et robustesse
+  \item utiliser transformée de Laplace, SLCI et fonctions de transfert
+  \item connaître premier et second ordre, FTBO, FTBF, schémas-blocs et diagrammes de Bode
+\end{itemize}
+\end{TLPosterSavoirs}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.36\linewidth}
+\TLPosterKey{Relation fondamentale}{$e(t)=r(t)-m(t)$\\[1mm] erreur = consigne $-$ mesure}
+\end{minipage}
+\vfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{TLPosterBloc}[Structure]{TLPosterBlue}
+Le comparateur forme l'erreur entre consigne et mesure. Le correcteur élabore la commande, le procédé agit sur la sortie et le capteur referme la boucle. Une perturbation peut agir sur le procédé.
+\end{TLPosterBloc}
+\begin{TLPosterBloc}[Performances]{TLPosterPurple}
+Stabilité, rapidité et précision sont les critères fondamentaux ; dépassement et robustesse complètent l'analyse. Toute correction recherche un compromis entre ces performances.
+\end{TLPosterBloc}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{TLPosterBloc}[Modèles]{TLPosterGreen}
+La transformée de Laplace conduit à la fonction de transfert $H(p)=S(p)/E(p)$. Les modèles du premier ordre $K/(1+\tau p)$ et du second ordre décrivent de nombreux comportements.
+\end{TLPosterBloc}
+\begin{TLPosterBloc}[Représentations]{TLPosterTeal}
+Schémas-blocs, réponses temporelles, pôles et zéros et diagrammes de Bode donnent des points de vue complémentaires. FTBO et FTBF relient structure et comportement.
+\end{TLPosterBloc}
+\end{minipage}
+\vfill
+\begin{TLPosterMethode}
+\begin{enumerate}
+  \item Identifier consigne, sortie, mesure et perturbations.
+  \item Construire le schéma-bloc et identifier les fonctions de transfert.
+  \item Réduire le schéma et déterminer FTBO puis FTBF.
+  \item Reconnaître ou identifier le modèle dominant.
+  \item Étudier les réponses temporelle et fréquentielle.
+  \item Conclure sur stabilité, précision, rapidité, dépassement et robustesse.
+\end{enumerate}
+\end{TLPosterMethode}
+\vfill
+\TLPosterRetenir{comparer, corriger, agir et mesurer pour atteindre la consigne avec le meilleur compromis de performances.}
 \end{document}

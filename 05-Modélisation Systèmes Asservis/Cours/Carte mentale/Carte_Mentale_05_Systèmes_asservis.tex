@@ -1,151 +1,23 @@
-\documentclass[10pt]{article}
-\usepackage[a3paper,landscape,margin=6mm]{geometry}
+\documentclass[10pt,a3paper,landscape]{article}
+\usepackage[margin=6mm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
 \usepackage{lmodern}
 \usepackage{microtype}
-\usepackage{amsmath,amssymb}
-\usepackage{tikz}
-\usetikzlibrary{arrows.meta,positioning,calc,shapes.geometric,backgrounds,fit}
-
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
+\input{TLPosterCarteMentale.sty}
 \pagestyle{empty}
-\setlength{\parindent}{0pt}
 \renewcommand{\familydefault}{\sfdefault}
-
-\definecolor{CMblue}{HTML}{0B3B78}
-\definecolor{CMblue2}{HTML}{2B78C5}
-\definecolor{CMblueLight}{HTML}{EAF3FC}
-\definecolor{CMgreen}{HTML}{4A9B3E}
-\definecolor{CMgreenLight}{HTML}{EEF8EB}
-\definecolor{CMpurple}{HTML}{7651A8}
-\definecolor{CMpurpleLight}{HTML}{F3EEFA}
-\definecolor{CMorange}{HTML}{E48A18}
-\definecolor{CMorangeLight}{HTML}{FFF4E3}
-\definecolor{CMteal}{HTML}{16969A}
-\definecolor{CMtealLight}{HTML}{E9F8F8}
-\definecolor{CMyellow}{HTML}{D9A20B}
-\definecolor{CMyellowLight}{HTML}{FFF8DA}
-\definecolor{CMgray}{HTML}{4B5563}
-
 \begin{document}
-
-\begin{tikzpicture}[
-  x=1cm,y=1cm,
-  main/.style={rounded corners=5mm,minimum width=5.2cm,minimum height=1.45cm,
-    align=center,font=\bfseries\Large,line width=1pt},
-  sub/.style={rounded corners=3mm,minimum width=4.5cm,minimum height=.95cm,
-    align=center,font=\bfseries\normalsize,inner xsep=3mm,line width=.8pt},
-  center/.style={ellipse,minimum width=7.4cm,minimum height=3.6cm,
-    align=center,font=\bfseries\fontsize{25}{28}\selectfont,
-    draw=CMblue,line width=2.2pt,fill=white},
-  branch/.style={line width=4.5pt,rounded corners=6mm},
-  twig/.style={line width=1.8pt,rounded corners=5mm},
-  dot/.style={circle,inner sep=2.2pt,draw=white,line width=.7pt}
-]
-  \path[use as bounding box] (-19.4,-12.2) rectangle (19.4,12.2);
-
-  \begin{scope}[on background layer]
-    \fill[CMblue!3] (-19.4,-12.2) rectangle (19.4,12.2);
-    \fill[CMblue!5] (-18.2,10.7) circle (1.2);
-    \fill[CMgreen!6] (17.8,10.4) circle (1.7);
-    \fill[CMorange!7] (17.4,-10.3) circle (1.5);
-    \fill[CMteal!6] (-17.6,-10.3) circle (1.6);
-  \end{scope}
-
-  \node[center] (C) at (0,0) {Systèmes\\asservis};
-  \node[rounded corners=2mm,fill=CMblue,text=white,font=\bfseries\small,
-    inner xsep=4mm,inner ysep=1.5mm] at (0,-2.45) {$e(t)=r(t)-m(t)$};
-  \node[font=\small,text=CMgray,align=center] at (0,-3.25)
-    {Comparer la consigne à la mesure\\pour agir sur le procédé};
-
-  % Structure
-  \node[main,draw=CMblue2,fill=CMblueLight,text=CMblue] (S) at (-8.6,6.6) {Structure};
-  \draw[branch,draw=CMblue2] (C.north west) to[out=145,in=-25] (S.south east);
-  \node[dot,fill=CMblue2] at ($(S.south east)+(.04,-.02)$) {};
-  \node[sub,draw=CMblue2,fill=white,text=CMblue] (s1) at (-15.5,9.0) {Boucle ouverte};
-  \node[sub,draw=CMblue2,fill=white,text=CMblue] (s2) at (-15.5,7.7) {Boucle fermée};
-  \node[sub,draw=CMblue2,fill=white,text=CMblue] (s3) at (-15.5,6.4) {Comparateur};
-  \node[sub,draw=CMblue2,fill=white,text=CMblue] (s4) at (-15.5,5.1) {Correcteur};
-  \node[sub,draw=CMblue2,fill=white,text=CMblue] (s5) at (-15.5,3.8) {Capteur et procédé};
-  \foreach \n in {s1,s2,s3,s4,s5}{
-    \draw[twig,draw=CMblue2] (S.west) to[out=180,in=0] (\n.east);
-    \node[dot,fill=CMblue2] at (\n.east) {};
-  }
-
-  % Grandeurs
-  \node[main,draw=CMgreen,fill=CMgreenLight,text=CMgreen!70!black] (G) at (8.6,6.6) {Grandeurs};
-  \draw[branch,draw=CMgreen] (C.north east) to[out=35,in=205] (G.south west);
-  \node[dot,fill=CMgreen] at ($(G.south west)+(-.04,-.02)$) {};
-  \node[sub,draw=CMgreen,fill=white,text=CMgreen!70!black] (g1) at (15.5,9.0) {Consigne $r(t)$};
-  \node[sub,draw=CMgreen,fill=white,text=CMgreen!70!black] (g2) at (15.5,7.7) {Erreur $e(t)$};
-  \node[sub,draw=CMgreen,fill=white,text=CMgreen!70!black] (g3) at (15.5,6.4) {Sortie $y(t)$};
-  \node[sub,draw=CMgreen,fill=white,text=CMgreen!70!black] (g4) at (15.5,5.1) {Mesure $m(t)$};
-  \node[sub,draw=CMgreen,fill=white,text=CMgreen!70!black] (g5) at (15.5,3.8) {Perturbation $d(t)$};
-  \foreach \n in {g1,g2,g3,g4,g5}{
-    \draw[twig,draw=CMgreen] (G.east) to[out=0,in=180] (\n.west);
-    \node[dot,fill=CMgreen] at (\n.west) {};
-  }
-
-  % Exemples
-  \node[main,draw=CMyellow,fill=CMyellowLight,text=CMyellow!65!black] (E) at (-9.6,0.0) {Exemples};
-  \draw[branch,draw=CMyellow] (C.west) to[out=180,in=0] (E.east);
-  \node[dot,fill=CMyellow] at (E.east) {};
-  \node[sub,draw=CMyellow,fill=white,text=CMyellow!65!black] (e1) at (-16.0,1.7) {Régulateur de vitesse};
-  \node[sub,draw=CMyellow,fill=white,text=CMyellow!65!black] (e2) at (-16.0,0.0) {Thermostat};
-  \node[sub,draw=CMyellow,fill=white,text=CMyellow!65!black] (e3) at (-16.0,-1.7) {Servo-positionnement};
-  \foreach \n in {e1,e2,e3}{
-    \draw[twig,draw=CMyellow] (E.west) to[out=180,in=0] (\n.east);
-    \node[dot,fill=CMyellow] at (\n.east) {};
-  }
-
-  % Performances
-  \node[main,draw=CMpurple,fill=CMpurpleLight,text=CMpurple] (P) at (9.6,0.0) {Performances};
-  \draw[branch,draw=CMpurple] (C.east) to[out=0,in=180] (P.west);
-  \node[dot,fill=CMpurple] at (P.west) {};
-  \node[sub,draw=CMpurple,fill=white,text=CMpurple] (p1) at (16.0,1.7) {Stabilité};
-  \node[sub,draw=CMpurple,fill=white,text=CMpurple] (p2) at (16.0,0.0) {Précision};
-  \node[sub,draw=CMpurple,fill=white,text=CMpurple] (p3) at (16.0,-1.7) {Rapidité};
-  \foreach \n in {p1,p2,p3}{
-    \draw[twig,draw=CMpurple] (P.east) to[out=0,in=180] (\n.west);
-    \node[dot,fill=CMpurple] at (\n.west) {};
-  }
-
-  % Représentations
-  \node[main,draw=CMteal,fill=CMtealLight,text=CMteal!75!black] (R) at (-8.6,-6.6) {Représentations};
-  \draw[branch,draw=CMteal] (C.south west) to[out=215,in=25] (R.north east);
-  \node[dot,fill=CMteal] at ($(R.north east)+(.04,.02)$) {};
-  \node[sub,draw=CMteal,fill=white,text=CMteal!75!black] (r1) at (-15.5,-4.2) {Schéma-bloc};
-  \node[sub,draw=CMteal,fill=white,text=CMteal!75!black] (r2) at (-15.5,-5.8) {Réponse temporelle};
-  \node[sub,draw=CMteal,fill=white,text=CMteal!75!black] (r3) at (-15.5,-7.4) {Diagrammes de Bode};
-  \node[sub,draw=CMteal,fill=white,text=CMteal!75!black] (r4) at (-15.5,-9.0) {Pôles et zéros};
-  \foreach \n in {r1,r2,r3,r4}{
-    \draw[twig,draw=CMteal] (R.west) to[out=180,in=0] (\n.east);
-    \node[dot,fill=CMteal] at (\n.east) {};
-  }
-
-  % Correcteurs
-  \node[main,draw=CMorange,fill=CMorangeLight,text=CMorange!75!black] (K) at (8.6,-6.6) {Correcteurs};
-  \draw[branch,draw=CMorange] (C.south east) to[out=325,in=155] (K.north west);
-  \node[dot,fill=CMorange] at ($(K.north west)+(-.04,.02)$) {};
-  \node[sub,draw=CMorange,fill=white,text=CMorange!75!black] (k1) at (15.5,-4.2) {Proportionnel P};
-  \node[sub,draw=CMorange,fill=white,text=CMorange!75!black] (k2) at (15.5,-5.8) {Proportionnel intégral PI};
-  \node[sub,draw=CMorange,fill=white,text=CMorange!75!black] (k3) at (15.5,-7.4) {Proportionnel dérivé PD};
-  \node[sub,draw=CMorange,fill=white,text=CMorange!75!black] (k4) at (15.5,-9.0) {PID};
-  \foreach \n in {k1,k2,k3,k4}{
-    \draw[twig,draw=CMorange] (K.east) to[out=0,in=180] (\n.west);
-    \node[dot,fill=CMorange] at (\n.west) {};
-  }
-
-  \node[rounded corners=4mm,draw=CMblue,line width=1.2pt,fill=white,
-    minimum width=12.7cm,minimum height=1.55cm,align=center,
-    font=\bfseries\normalsize,text=CMblue] at (0,-9.7)
-    {Identifier $\rightarrow$ modéliser $\rightarrow$ réduire $\rightarrow$
-     calculer $\rightarrow$ analyser $\rightarrow$ conclure};
-
-  \foreach \a in {20,70,110,160,200,250,290,340}{
-    \draw[CMblue,line width=1.6pt] (\a:4.35)--(\a:4.75);
-  }
+\begin{tikzpicture}
+\TLMapBase{Systèmes asservis}{$e(t)=r(t)-m(t)$}
+\TLMapBranchTL{Savoirs}{\textbullet\ distinguer boucle ouverte, boucle fermée, asservissement et régulation\\[1.2mm]\textbullet\ identifier consigne, erreur, sortie, mesure et perturbation\\[1.2mm]\textbullet\ caractériser stabilité, rapidité, précision, dépassement et robustesse\\[1.2mm]\textbullet\ utiliser transformée de Laplace, SLCI et fonctions de transfert\\[1.2mm]\textbullet\ connaître premier et second ordre, FTBO, FTBF, schémas-blocs et diagrammes de Bode}
+\TLMapBranchTR{Structure et grandeurs}{\textbullet\ boucle ouverte / fermée\\[1.2mm]\textbullet\ comparateur / capteur\\[1.2mm]\textbullet\ consigne / erreur / mesure\\[1.2mm]\textbullet\ perturbation}
+\TLMapBranchML{Modélisation}{\textbullet\ SLCI\\[1.2mm]\textbullet\ Laplace\\[1.2mm]\textbullet\ fonction de transfert\\[1.2mm]\textbullet\ 1er / 2e ordre}
+\TLMapBranchMR{Performances}{\textbullet\ stabilité\\[1.2mm]\textbullet\ précision\\[1.2mm]\textbullet\ rapidité\\[1.2mm]\textbullet\ dépassement / robustesse}
+\TLMapBranchBL{Représentations}{\textbullet\ schéma-bloc\\[1.2mm]\textbullet\ réponse temporelle\\[1.2mm]\textbullet\ Bode\\[1.2mm]\textbullet\ pôles et zéros}
+\TLMapBranchBR{Méthode}{1. Identifier consigne, sortie, mesure et perturbations.\\[1.2mm]2. Construire le schéma-bloc et identifier les fonctions de transfert.\\[1.2mm]3. Réduire le schéma et déterminer FTBO puis FTBF.\\[1.2mm]4. Reconnaître ou identifier le modèle dominant.\\[1.2mm]5. Étudier les réponses temporelle et fréquentielle.}
+\TLMapRibbon{Identifier $\rightarrow$ Modéliser $\rightarrow$ Réduire $\rightarrow$ Calculer $\rightarrow$ Analyser $\rightarrow$ Conclure}
 \end{tikzpicture}
-
 \end{document}

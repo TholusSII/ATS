@@ -1,18 +1,23 @@
-\documentclass[a3paper,landscape,10pt]{article}
-\usepackage[margin=8mm]{geometry}
+\documentclass[10pt,a3paper,landscape]{article}
+\usepackage[margin=6mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
-\usepackage{amsmath,amssymb}
-\makeatletter
-\def\input@path{{../../../Style/}}
-\makeatother
+\usepackage{lmodern}
+\usepackage{microtype}
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{{TLCorrectionSystemesAsservis.sty}}{{\input{{TLCorrectionSystemesAsservis.sty}}}}{{}}
 \pagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\begin{TLCarteMentale}{{Correction des systèmes asservis}}
-\TLBranche{Objectifs}{Précision, rapidité, stabilité et rejet des perturbations.}
-\TLBranche{Correcteurs}{P : gain ; PI : annulation de l'erreur statique ; PD : anticipation ; PID : compromis global.}
-\TLBranche{Méthode}{Identifier le besoin, choisir la structure, régler les paramètres, vérifier les marges et les performances.}
-\TLBranche{Points clés}{Effet du gain, pôles dominants, marges de gain et de phase, saturation et robustesse.}
-\end{TLCarteMentale}
+\begin{tikzpicture}
+\TLMapBase{Correction des systèmes asservis}{Erreur $\rightarrow$ Correcteur $\rightarrow$ Boucle corrigée $\rightarrow$ Validation}
+\TLMapBranchTL{Savoirs}{\textbullet\ relier précision, rapidité, stabilité, dépassement et robustesse au cahier des charges\\[1.2mm]\textbullet\ connaître l'effet du gain proportionnel et des actions intégrale et dérivée\\[1.2mm]\textbullet\ utiliser correcteurs P, PI, PD et PID\\[1.2mm]\textbullet\ comprendre retard de phase, avance de phase et pôles dominants\\[1.2mm]\textbullet\ exploiter diagrammes de Bode, marges de gain et de phase, saturation et rejet des perturbations}
+\TLMapBranchTR{Performances}{\textbullet\ stabilité\\[1.2mm]\textbullet\ rapidité\\[1.2mm]\textbullet\ précision\\[1.2mm]\textbullet\ dépassement / robustesse}
+\TLMapBranchML{Correcteurs}{\textbullet\ P\\[1.2mm]\textbullet\ I / PI\\[1.2mm]\textbullet\ PD\\[1.2mm]\textbullet\ PID}
+\TLMapBranchMR{Correction fréquentielle}{\textbullet\ retard de phase\\[1.2mm]\textbullet\ avance de phase\\[1.2mm]\textbullet\ pôles dominants}
+\TLMapBranchBL{Validation}{\textbullet\ Bode\\[1.2mm]\textbullet\ marges gain / phase\\[1.2mm]\textbullet\ réponse temporelle\\[1.2mm]\textbullet\ saturation}
+\TLMapBranchBR{Méthode}{1. Traduire le cahier des charges en critères mesurables.\\[1.2mm]2. Analyser la FTBO non corrigée et repérer ses pôles dominants.\\[1.2mm]3. Choisir la structure du correcteur adaptée au défaut principal.\\[1.2mm]4. Régler les paramètres à partir des critères temporels et fréquentiels.\\[1.2mm]5. Vérifier marges de stabilité, saturation et rejet des perturbations.}
+\TLMapRibbon{Diagnostiquer $\rightarrow$ Choisir $\rightarrow$ Régler $\rightarrow$ Vérifier $\rightarrow$ Ajuster $\rightarrow$ Valider}
+\end{tikzpicture}
 \end{document}

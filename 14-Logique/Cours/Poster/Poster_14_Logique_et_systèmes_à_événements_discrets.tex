@@ -1,0 +1,59 @@
+\documentclass[10pt,a3paper]{article}
+\usepackage[margin=10mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
+\input{TLPosterCarteMentale.sty}
+\pagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
+\begin{document}
+\TLPosterCourseHeader{14}{Logique et systèmes à événements discrets}{Combinatoire, séquentiel, codeurs et communication réseau}
+\vspace{2mm}
+\begin{minipage}[t]{0.61\linewidth}
+\begin{TLPosterSavoirs}
+\begin{itemize}
+  \item utiliser variables booléennes, tables de vérité, opérateurs et algèbre de Boole
+  \item simplifier par formes canoniques ou Karnaugh et connaître mux, décodeur, comparateur et additionneur
+  \item modéliser systèmes séquentiels par états, transitions, événements, gardes et actions
+  \item exploiter diagrammes SysML d'états et de séquence et codeurs incrémentaux/absolus
+  \item comprendre réseaux, modèle OSI, supports, bus, protocoles, trames, parité et CRC
+\end{itemize}
+\end{TLPosterSavoirs}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.36\linewidth}
+\TLPosterKey{Du besoin à la logique}{Cahier des charges $\rightarrow$ variables $\rightarrow$ modèle $\rightarrow$ validation}
+\end{minipage}
+\vfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{TLPosterBloc}[Logique combinatoire]{TLPosterBlue}
+Les sorties dépendent des entrées présentes. Une table de vérité conduit à une équation logique ; algèbre de Boole et Karnaugh permettent de simplifier la réalisation.
+\end{TLPosterBloc}
+\begin{TLPosterBloc}[Codeurs]{TLPosterPurple}
+Les codeurs incrémentaux produisent des voies A/B en quadrature et une référence Z ; les codeurs absolus fournissent directement un mot de position. La résolution dépend du nombre de points ou de bits.
+\end{TLPosterBloc}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{TLPosterBloc}[Systèmes séquentiels]{TLPosterGreen}
+Les sorties dépendent aussi d'un état mémorisé. États, transitions, événements, gardes et effets décrivent le comportement ; les diagrammes d'états et de séquence représentent les évolutions temporelles.
+\end{TLPosterBloc}
+\begin{TLPosterBloc}[Réseaux et bus]{TLPosterTeal}
+Un réseau transporte des données selon architecture, support et protocole. Le modèle OSI sépare les fonctions ; trames, adressage, parité ou CRC assurent échange et contrôle des erreurs.
+\end{TLPosterBloc}
+\end{minipage}
+\vfill
+\begin{TLPosterMethode}
+\begin{enumerate}
+  \item Traduire le cahier des charges en entrées, sorties et comportements attendus.
+  \item Pour le combinatoire, construire la table de vérité puis les équations.
+  \item Simplifier les fonctions et choisir les blocs logiques adaptés.
+  \item Pour le séquentiel, définir états, transitions, gardes et actions puis tester tous les scénarios.
+  \item Pour un codeur, décoder les voies et calculer résolution ou position.
+  \item Pour un réseau, identifier trame, champs, codage et contrôle d'erreur.
+\end{enumerate}
+\end{TLPosterMethode}
+\vfill
+\TLPosterRetenir{choisir le formalisme selon que le comportement dépend des entrées, d'un état mémorisé ou d'un échange réseau.}
+\end{document}

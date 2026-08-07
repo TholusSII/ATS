@@ -1,0 +1,23 @@
+\documentclass[10pt,a3paper,landscape]{article}
+\usepackage[margin=6mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
+\input{TLPosterCarteMentale.sty}
+\pagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
+\begin{document}
+\begin{tikzpicture}
+\TLMapBase{Cinématique}{Position $\rightarrow$ Vitesse $\rightarrow$ Accélération}
+\TLMapBranchTL{Savoirs}{\textbullet\ maîtriser produit vectoriel, produit mixte et repérage spatial\\[1.2mm]\textbullet\ définir un torseur cinématique et effectuer un changement de point\\[1.2mm]\textbullet\ caractériser translation, rotation, mouvement plan et trajectoires\\[1.2mm]\textbullet\ relier position, vitesse, accélération et dérivation vectorielle\\[1.2mm]\textbullet\ composer les mouvements et traiter contact, roulement sans glissement et profil trapézoïdal}
+\TLMapBranchTR{Outils}{\textbullet\ produit vectoriel\\[1.2mm]\textbullet\ produit mixte\\[1.2mm]\textbullet\ repères}
+\TLMapBranchML{Torseur cinématique}{\textbullet\ rotation\\[1.2mm]\textbullet\ vitesse en un point\\[1.2mm]\textbullet\ changement de point}
+\TLMapBranchMR{Grandeurs}{\textbullet\ position\\[1.2mm]\textbullet\ vitesse\\[1.2mm]\textbullet\ accélération\\[1.2mm]\textbullet\ dérivation vectorielle}
+\TLMapBranchBL{Applications}{\textbullet\ composition\\[1.2mm]\textbullet\ roulement sans glissement\\[1.2mm]\textbullet\ loi trapézoïdale}
+\TLMapBranchBR{Méthode}{1. Choisir solides, repères, points et paramètres adaptés.\\[1.2mm]2. Écrire les vecteurs position et les relations géométriques utiles.\\[1.2mm]3. Dériver dans le bon repère pour obtenir vitesse puis accélération.\\[1.2mm]4. Transporter les vitesses au point pertinent et composer les mouvements.\\[1.2mm]5. Appliquer les conditions de contact ou de roulement sans glissement.}
+\TLMapRibbon{Repérer $\rightarrow$ Exprimer $\rightarrow$ Dériver $\rightarrow$ Composer $\rightarrow$ Interpréter}
+\end{tikzpicture}
+\end{document}

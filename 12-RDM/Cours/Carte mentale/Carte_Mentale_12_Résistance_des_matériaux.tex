@@ -1,18 +1,23 @@
-\documentclass[a3paper,landscape,10pt]{article}
-\usepackage[margin=8mm]{geometry}
+\documentclass[10pt,a3paper,landscape]{article}
+\usepackage[margin=6mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
-\usepackage{amsmath,amssymb}
-\makeatletter
-\def\input@path{{../../../Style/}}
-\makeatother
+\usepackage{lmodern}
+\usepackage{microtype}
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{{TLRDM.sty}}{{\input{{TLRDM.sty}}}}{{}}
 \pagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\begin{TLCarteMentale}{{Résistance des matériaux}}
-\TLBranche{Hypothèses}{Poutres droites, petites déformations, Saint-Venant et Navier-Bernoulli.}
-\TLBranche{Cohésion}{La coupure fait apparaître le torseur des efforts intérieurs.}
-\TLBranche{Traction}{sigma = N/S et allongement gouverné par la loi de Hooke.}
-\TLBranche{Flexion}{sigma = -M_f y/I et courbure liée à M_f/(EI).}
-\end{TLCarteMentale}
+\begin{tikzpicture}
+\TLMapBase{Résistance des matériaux}{Coupure $\rightarrow$ Cohésion $\rightarrow$ Contraintes $\rightarrow$ Déformations}
+\TLMapBranchTL{Savoirs}{\textbullet\ connaître hypothèses de poutre, Saint-Venant, Navier--Bernoulli, petites déformations et élasticité\\[1.2mm]\textbullet\ déterminer le torseur de cohésion et ses composantes $N$, $T$, $M_t$ et $M_f$\\[1.2mm]\textbullet\ identifier traction/compression, cisaillement, torsion et flexion\\[1.2mm]\textbullet\ relier efforts intérieurs, contraintes et déformations avec les lois de comportement\\[1.2mm]\textbullet\ dimensionner avec critères de résistance, coefficient de sécurité et limite de flèche}
+\TLMapBranchTR{Hypothèses}{\textbullet\ poutre\\[1.2mm]\textbullet\ Saint-Venant\\[1.2mm]\textbullet\ Navier--Bernoulli\\[1.2mm]\textbullet\ élasticité}
+\TLMapBranchML{Cohésion}{\textbullet\ $N,T,M_t,M_f$\\[1.2mm]\textbullet\ coupure\\[1.2mm]\textbullet\ diagrammes}
+\TLMapBranchMR{Sollicitations}{\textbullet\ traction / compression\\[1.2mm]\textbullet\ cisaillement\\[1.2mm]\textbullet\ torsion\\[1.2mm]\textbullet\ flexion}
+\TLMapBranchBL{Dimensionnement}{\textbullet\ Hooke\\[1.2mm]\textbullet\ sécurité\\[1.2mm]\textbullet\ résistance\\[1.2mm]\textbullet\ flèche}
+\TLMapBranchBR{Méthode}{1. Identifier la poutre, ses appuis, chargements et hypothèses de modèle.\\[1.2mm]2. Déterminer les réactions extérieures par équilibre.\\[1.2mm]3. Effectuer une coupure et calculer le torseur de cohésion.\\[1.2mm]4. Tracer les diagrammes des efforts intérieurs utiles.\\[1.2mm]5. Calculer contraintes et déformations dans les sections critiques.}
+\TLMapRibbon{Modéliser $\rightarrow$ Équilibrer $\rightarrow$ Couper $\rightarrow$ Contraintes $\rightarrow$ Déformations $\rightarrow$ Vérifier}
+\end{tikzpicture}
 \end{document}

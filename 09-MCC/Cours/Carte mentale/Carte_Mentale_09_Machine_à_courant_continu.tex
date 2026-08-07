@@ -1,18 +1,23 @@
-\documentclass[a3paper,landscape,10pt]{article}
-\usepackage[margin=8mm]{geometry}
+\documentclass[10pt,a3paper,landscape]{article}
+\usepackage[margin=6mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
-\usepackage{amsmath,amssymb}
-\makeatletter
-\def\input@path{{../../../Style/}}
-\makeatother
+\usepackage{lmodern}
+\usepackage{microtype}
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{{TLMCC.sty}}{{\input{{TLMCC.sty}}}}{{}}
 \pagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\begin{TLCarteMentale}{{Machine à courant continu}}
-\TLBranche{Modèle}{u = Ri + L di/dt + e, avec e = K_e omega.}
-\TLBranche{Couple}{C_em = K_t i ; à flux constant K_e = K_t en unités SI.}
-\TLBranche{Bilan}{Puissance électrique, pertes Joule, puissance électromagnétique et puissance utile.}
-\TLBranche{Commande}{Variation de vitesse par la tension d'induit et fonctionnement dans les quatre quadrants.}
-\end{TLCarteMentale}
+\begin{tikzpicture}
+\TLMapBase{Machine à courant continu}{$u=Ri+L\,di/dt+e$ ; $e=K_e\omega$ ; $C=K_ti$}
+\TLMapBranchTL{Savoirs}{\textbullet\ connaître constitution, inducteur, induit, collecteur, balais et flux magnétique\\[1.2mm]\textbullet\ établir l'équation électrique de l'induit et les relations de fcem et de couple\\[1.2mm]\textbullet\ réaliser le bilan des puissances et identifier pertes Joule, électromagnétiques et mécaniques\\[1.2mm]\textbullet\ distinguer fonctionnement moteur, génératrice, démarrage et régimes transitoires\\[1.2mm]\textbullet\ analyser la variation de vitesse par la tension d'induit et identifier les paramètres du modèle}
+\TLMapBranchTR{Constitution}{\textbullet\ inducteur / induit\\[1.2mm]\textbullet\ collecteur / balais\\[1.2mm]\textbullet\ flux}
+\TLMapBranchML{Modèle}{\textbullet\ $u=Ri+L\,di/dt+e$\\[1.2mm]\textbullet\ $e=K_e\omega$\\[1.2mm]\textbullet\ $C=K_t i$}
+\TLMapBranchMR{Bilan}{\textbullet\ puissances\\[1.2mm]\textbullet\ pertes Joule\\[1.2mm]\textbullet\ rendement\\[1.2mm]\textbullet\ moteur / génératrice}
+\TLMapBranchBL{Commande}{\textbullet\ démarrage\\[1.2mm]\textbullet\ variation de tension\\[1.2mm]\textbullet\ régime variable\\[1.2mm]\textbullet\ identification}
+\TLMapBranchBR{Méthode}{1. Choisir les conventions moteur/génératrice et orienter tension, courant, couple et vitesse.\\[1.2mm]2. Écrire l'équation électrique de l'induit.\\[1.2mm]3. Utiliser les relations fcem--vitesse et couple--courant.\\[1.2mm]4. Écrire l'équation mécanique avec charge et inertie si nécessaire.\\[1.2mm]5. Établir le bilan de puissance et le rendement.}
+\TLMapRibbon{Orienter $\rightarrow$ Équation électrique $\rightarrow$ Couple $\rightarrow$ Mécanique $\rightarrow$ Bilan $\rightarrow$ Valider}
+\end{tikzpicture}
 \end{document}

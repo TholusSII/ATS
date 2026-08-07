@@ -1,0 +1,23 @@
+\documentclass[10pt,a3paper,landscape]{article}
+\usepackage[margin=6mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
+\input{TLPosterCarteMentale.sty}
+\pagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
+\begin{document}
+\begin{tikzpicture}
+\TLMapBase{Logique et systèmes à événements discrets}{Spécification $\rightarrow$ Logique / états $\rightarrow$ Réalisation $\rightarrow$ Validation}
+\TLMapBranchTL{Savoirs}{\textbullet\ utiliser variables booléennes, tables de vérité, opérateurs et algèbre de Boole\\[1.2mm]\textbullet\ simplifier par formes canoniques ou Karnaugh et connaître mux, décodeur, comparateur et additionneur\\[1.2mm]\textbullet\ modéliser systèmes séquentiels par états, transitions, événements, gardes et actions\\[1.2mm]\textbullet\ exploiter diagrammes SysML d'états et de séquence et codeurs incrémentaux/absolus\\[1.2mm]\textbullet\ comprendre réseaux, modèle OSI, supports, bus, protocoles, trames, parité et CRC}
+\TLMapBranchTR{Combinatoire}{\textbullet\ tables de vérité\\[1.2mm]\textbullet\ Boole\\[1.2mm]\textbullet\ Karnaugh\\[1.2mm]\textbullet\ mux / décodeurs}
+\TLMapBranchML{Séquentiel}{\textbullet\ états\\[1.2mm]\textbullet\ transitions\\[1.2mm]\textbullet\ gardes\\[1.2mm]\textbullet\ séquence SysML}
+\TLMapBranchMR{Codeurs}{\textbullet\ incrémental A/B/Z\\[1.2mm]\textbullet\ absolu\\[1.2mm]\textbullet\ résolution}
+\TLMapBranchBL{Communication}{\textbullet\ OSI\\[1.2mm]\textbullet\ supports / bus\\[1.2mm]\textbullet\ trames\\[1.2mm]\textbullet\ parité / CRC}
+\TLMapBranchBR{Méthode}{1. Traduire le cahier des charges en entrées, sorties et comportements attendus.\\[1.2mm]2. Pour le combinatoire, construire la table de vérité puis les équations.\\[1.2mm]3. Simplifier les fonctions et choisir les blocs logiques adaptés.\\[1.2mm]4. Pour le séquentiel, définir états, transitions, gardes et actions puis tester tous les scénarios.\\[1.2mm]5. Pour un codeur, décoder les voies et calculer résolution ou position.}
+\TLMapRibbon{Spécifier $\rightarrow$ Modéliser $\rightarrow$ Simplifier / séquencer $\rightarrow$ Réaliser $\rightarrow$ Tester $\rightarrow$ Valider}
+\end{tikzpicture}
+\end{document}

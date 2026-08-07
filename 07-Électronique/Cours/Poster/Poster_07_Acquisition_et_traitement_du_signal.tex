@@ -1,0 +1,59 @@
+\documentclass[10pt,a3paper]{article}
+\usepackage[margin=10mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
+\input{TLPosterCarteMentale.sty}
+\pagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
+\begin{document}
+\TLPosterCourseHeader{7}{Acquisition et traitement du signal}{Capteurs, conditionnement, filtrage, échantillonnage et numérisation}
+\vspace{2mm}
+\begin{minipage}[t]{0.61\linewidth}
+\begin{TLPosterSavoirs}
+\begin{itemize}
+  \item décrire une chaîne d'acquisition et les caractéristiques d'un capteur : sensibilité, étendue, précision, résolution
+  \item utiliser lois d'électrocinétique, impédances complexes et montages à amplificateur opérationnel
+  \item caractériser filtres passe-bas, passe-haut, gain, phase, bande passante et fréquence de coupure
+  \item interpréter spectres temporels et fréquentiels et appliquer Shannon--Nyquist
+  \item comprendre anti-repliement, échantillonnage, CAN/CNA, quantification et codage binaire
+\end{itemize}
+\end{TLPosterSavoirs}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.36\linewidth}
+\TLPosterKey{Chaîne d'acquisition}{Grandeur physique $\rightarrow$ Capteur $\rightarrow$ Conditionnement $\rightarrow$ CAN $\rightarrow$ Traitement}
+\end{minipage}
+\vfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{TLPosterBloc}[Capteurs et conditionnement]{TLPosterBlue}
+Le capteur convertit une grandeur physique en signal exploitable. Sensibilité, étendue de mesure, justesse, précision et résolution caractérisent la mesure. Le conditionnement adapte amplitude, offset et impédance.
+\end{TLPosterBloc}
+\begin{TLPosterBloc}[Filtrage]{TLPosterPurple}
+Un filtre sélectionne des bandes de fréquences. Le diagramme de Bode donne gain et phase ; fréquence de coupure et pente asymptotique caractérisent les filtres du premier ou second ordre.
+\end{TLPosterBloc}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{TLPosterBloc}[Électrocinétique et AOP]{TLPosterGreen}
+Les lois de Kirchhoff et les impédances de R, L et C permettent d'établir les fonctions de transfert. L'AOP idéal sert à amplifier, sommer, soustraire ou filtrer un signal.
+\end{TLPosterBloc}
+\begin{TLPosterBloc}[Échantillonnage et conversion]{TLPosterTeal}
+Pour éviter le repliement spectral, la fréquence d'échantillonnage respecte le critère de Shannon et un filtre anti-repliement limite le spectre. Le CAN quantifie et code ; le CNA réalise l'opération inverse.
+\end{TLPosterBloc}
+\end{minipage}
+\vfill
+\begin{TLPosterMethode}
+\begin{enumerate}
+  \item Identifier la grandeur à mesurer et choisir le capteur adapté.
+  \item Établir le schéma de conditionnement et sa fonction de transfert.
+  \item Analyser le spectre utile et définir le filtrage nécessaire.
+  \item Choisir la fréquence d'échantillonnage avec une marge suffisante.
+  \item Déterminer résolution, pas de quantification et plage du convertisseur.
+  \item Vérifier que la chaîne complète respecte précision, dynamique et bande passante.
+\end{enumerate}
+\end{TLPosterMethode}
+\vfill
+\TLPosterRetenir{une mesure fiable exige une chaîne cohérente du capteur jusqu'au traitement numérique, sans saturation ni repliement spectral.}
+\end{document}

@@ -1,0 +1,59 @@
+\documentclass[10pt,a3paper]{article}
+\usepackage[margin=10mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
+\input{TLPosterCarteMentale.sty}
+\pagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
+\begin{document}
+\TLPosterCourseHeader{1}{Ingénierie système}{Besoin, exigences, SysML et architecture fonctionnelle}
+\vspace{2mm}
+\begin{minipage}[t]{0.61\linewidth}
+\begin{TLPosterSavoirs}
+\begin{itemize}
+  \item définir un système, sa frontière, son environnement et ses interactions
+  \item identifier le besoin, les fonctions de service, contraintes, critères et niveaux
+  \item distinguer système souhaité, simulé et réel et situer le cycle de vie
+  \item connaître parties prenantes, cycle en V, exigences, traçabilité, vérification et validation
+  \item exploiter les principaux diagrammes SysML et les chaînes fonctionnelles
+\end{itemize}
+\end{TLPosterSavoirs}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.36\linewidth}
+\TLPosterKey{Fil conducteur}{Besoin $\rightarrow$ Exigences $\rightarrow$ Architecture $\rightarrow$ Vérification $\rightarrow$ Validation}
+\end{minipage}
+\vfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{TLPosterBloc}[Système et besoin]{TLPosterBlue}
+Un système naturel ou artificiel réalise une finalité. Sa frontière le sépare de l'environnement. Les échanges concernent matière, énergie et information. Le besoin conduit aux fonctions de service puis aux solutions.
+\end{TLPosterBloc}
+\begin{TLPosterBloc}[Exigences et preuves]{TLPosterPurple}
+Une exigence doit être claire, nécessaire, mesurable, vérifiable et traçable. Vérifier consiste à montrer que la conception répond aux exigences ; valider à montrer que le système répond au besoin.
+\end{TLPosterBloc}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{TLPosterBloc}[Cycle de vie et ingénierie système]{TLPosterGreen}
+Conception, industrialisation, utilisation, maintenance et fin de vie doivent rester cohérentes. La démarche descendante décompose le besoin ; la démarche ascendante intègre et vérifie les sous-systèmes.
+\end{TLPosterBloc}
+\begin{TLPosterBloc}[SysML et architecture]{TLPosterTeal}
+Contexte, exigences, BDD/IBD, séquence, activités et états décrivent des points de vue complémentaires. L'architecture fonctionnelle relie fonctions, chaîne d'information, chaîne d'énergie et solutions.
+\end{TLPosterBloc}
+\end{minipage}
+\vfill
+\begin{TLPosterMethode}
+\begin{enumerate}
+  \item Identifier le besoin, le contexte et les parties prenantes.
+  \item Formuler les fonctions et des exigences mesurables.
+  \item Décomposer le système et choisir les diagrammes SysML utiles.
+  \item Construire l'architecture fonctionnelle et les interfaces.
+  \item Définir les moyens de vérification associés aux exigences.
+  \item Valider le système vis-à-vis du besoin initial.
+\end{enumerate}
+\end{TLPosterMethode}
+\vfill
+\TLPosterRetenir{partir du besoin, tracer les exigences jusqu'aux solutions, puis vérifier et valider.}
+\end{document}

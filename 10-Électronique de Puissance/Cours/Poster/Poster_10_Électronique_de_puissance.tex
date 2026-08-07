@@ -1,30 +1,59 @@
-\documentclass[a3paper,landscape,10pt]{article}
+\documentclass[10pt,a3paper]{article}
 \usepackage[margin=10mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
-\usepackage{amsmath,amssymb}
-\makeatletter
-\def\input@path{{../../../Style/}}
-\makeatother
+\usepackage{lmodern}
+\usepackage{microtype}
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{{TLElectroniquePuissance.sty}}{{\input{{TLElectroniquePuissance.sty}}}}{{}}
 \pagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\TLPosterTitre{{Électronique de puissance}}{{Fiche résumé éditable}}
-\begin{multicols}{2}
-\begin{TLPosterBloc}{Convertisseurs}
-DC-DC, AC-DC, DC-AC et AC-AC.
+\TLPosterCourseHeader{10}{Électronique de puissance}{Conversion statique de l'énergie}
+\vspace{2mm}
+\begin{minipage}[t]{0.61\linewidth}
+\begin{TLPosterSavoirs}
+\begin{itemize}
+  \item classer les convertisseurs DC--DC, AC--DC, DC--AC et AC--AC
+  \item connaître diode, MOSFET, IGBT et thyristor et leurs états passant/bloqué
+  \item utiliser rapport cyclique, valeurs moyenne et efficace, fréquence de découpage et ondulation
+  \item analyser hacheurs Buck, Boost, deux quadrants et quatre quadrants
+  \item analyser redressement, pont de diodes, harmoniques, facteur de puissance et principe du PFC
+\end{itemize}
+\end{TLPosterSavoirs}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.36\linewidth}
+\TLPosterKey{Principe}{Interrupteurs commandés + stockage d'énergie $\rightarrow$ conversion avec pertes limitées}
+\end{minipage}
+\vfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{TLPosterBloc}[Interrupteurs de puissance]{TLPosterBlue}
+Diode et semi-conducteurs commandés réalisent des commutations entre états passant et bloqué. Le choix dépend de la tension, du courant, de la fréquence et du besoin de réversibilité.
 \end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Interrupteurs}
-Diode, MOSFET, IGBT et thyristor ; états passant et bloqué.
+\begin{TLPosterBloc}[Redressement et onduleur]{TLPosterPurple}
+Un pont de diodes transforme l'alternatif en continu ; l'onduleur réalise la conversion inverse. La commande de commutation façonne la valeur moyenne, la fréquence et le spectre de sortie.
 \end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Hacheurs}
-Buck, Boost, deux quadrants et quatre quadrants.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{TLPosterBloc}[Hacheurs DC--DC]{TLPosterGreen}
+Buck abaisse la tension moyenne, Boost l'élève. Les structures deux ou quatre quadrants rendent courant et/ou tension réversibles. Les inductances et condensateurs limitent les ondulations.
 \end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Méthode}
-Identifier les séquences, tracer les grandeurs puis calculer valeurs moyennes et ondulations.
+\begin{TLPosterBloc}[Grandeurs et qualité d'énergie]{TLPosterTeal}
+Rapport cyclique, fréquence de découpage et séquences de conduction permettent de calculer valeurs moyennes et ondulations. Harmoniques et facteur de puissance motivent filtrage et correction PFC.
 \end{TLPosterBloc}
-\end{multicols}
+\end{minipage}
+\vfill
+\begin{TLPosterMethode}
+\begin{enumerate}
+  \item Identifier nature de la source, de la charge et les réversibilités demandées.
+  \item Choisir la structure de convertisseur et les interrupteurs compatibles.
+  \item Découper une période en séquences de conduction.
+  \item Tracer tensions et courants dans chaque séquence.
+  \item Calculer valeurs moyennes, efficaces et ondulations.
+  \item Vérifier puissance, contraintes des composants et qualité d'énergie.
+\end{enumerate}
+\end{TLPosterMethode}
+\vfill
+\TLPosterRetenir{l'analyse d'un convertisseur part toujours des états des interrupteurs et des séquences de fonctionnement.}
 \end{document}

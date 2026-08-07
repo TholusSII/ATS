@@ -1,0 +1,23 @@
+\documentclass[10pt,a3paper,landscape]{article}
+\usepackage[margin=6mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
+\input{TLPosterCarteMentale.sty}
+\pagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
+\begin{document}
+\begin{tikzpicture}
+\TLMapBase{Lois entrée-sortie et transmetteurs}{Boucles $\rightarrow$ Loi en position $\rightarrow$ Loi en vitesse $\rightarrow$ Transmission}
+\TLMapBranchTL{Savoirs}{\textbullet\ distinguer structures cinématiques ouvertes et fermées\\[1.2mm]\textbullet\ définir coordonnées articulaires et coordonnées opérationnelles\\[1.2mm]\textbullet\ établir une fermeture géométrique et une loi entrée-sortie en position\\[1.2mm]\textbullet\ établir une fermeture cinématique, dériver et projeter les relations\\[1.2mm]\textbullet\ connaître transmetteurs, rapports, rendement, couple, puissance et formule de Willis}
+\TLMapBranchTR{Structures}{\textbullet\ ouverte / fermée\\[1.2mm]\textbullet\ coordonnées articulaires\\[1.2mm]\textbullet\ coordonnées opérationnelles}
+\TLMapBranchML{Fermeture géométrique}{\textbullet\ boucle vectorielle\\[1.2mm]\textbullet\ projection\\[1.2mm]\textbullet\ loi en position}
+\TLMapBranchMR{Vitesse}{\textbullet\ dérivation\\[1.2mm]\textbullet\ torseurs\\[1.2mm]\textbullet\ loi en vitesse}
+\TLMapBranchBL{Transmetteurs et rapports}{\textbullet\ friction / courroies / chaînes\\[1.2mm]\textbullet\ engrenages / vis--écrou\\[1.2mm]\textbullet\ Willis / rendement / puissance}
+\TLMapBranchBR{Méthode}{1. Choisir les paramètres d'entrée et de sortie et poser les repères.\\[1.2mm]2. Écrire une fermeture géométrique ou une contrainte adaptée.\\[1.2mm]3. Projeter et résoudre la loi en position.\\[1.2mm]4. Dériver ou composer les torseurs pour obtenir la loi en vitesse.\\[1.2mm]5. Établir le rapport de transmission avec la convention de signe.}
+\TLMapRibbon{Modéliser $\rightarrow$ Écrire $\rightarrow$ Projeter $\rightarrow$ Résoudre $\rightarrow$ Dériver $\rightarrow$ Interpréter}
+\end{tikzpicture}
+\end{document}

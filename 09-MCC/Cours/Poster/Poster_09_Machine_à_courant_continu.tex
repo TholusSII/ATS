@@ -1,30 +1,59 @@
-\documentclass[a3paper,landscape,10pt]{article}
+\documentclass[10pt,a3paper]{article}
 \usepackage[margin=10mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
-\usepackage{amsmath,amssymb}
-\makeatletter
-\def\input@path{{../../../Style/}}
-\makeatother
+\usepackage{lmodern}
+\usepackage{microtype}
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{{TLMCC.sty}}{{\input{{TLMCC.sty}}}}{{}}
 \pagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\TLPosterTitre{{Machine à courant continu}}{{Fiche résumé éditable}}
-\begin{multicols}{2}
-\begin{TLPosterBloc}{Modèle}
-u = Ri + L di/dt + e, avec e = K_e omega.
+\TLPosterCourseHeader{9}{Machine à courant continu}{Modèle électromécanique, bilan de puissance et variation de vitesse}
+\vspace{2mm}
+\begin{minipage}[t]{0.61\linewidth}
+\begin{TLPosterSavoirs}
+\begin{itemize}
+  \item connaître constitution, inducteur, induit, collecteur, balais et flux magnétique
+  \item établir l'équation électrique de l'induit et les relations de fcem et de couple
+  \item réaliser le bilan des puissances et identifier pertes Joule, électromagnétiques et mécaniques
+  \item distinguer fonctionnement moteur, génératrice, démarrage et régimes transitoires
+  \item analyser la variation de vitesse par la tension d'induit et identifier les paramètres du modèle
+\end{itemize}
+\end{TLPosterSavoirs}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.36\linewidth}
+\TLPosterKey{Relations fondamentales}{$u=Ri+L\,\dfrac{di}{dt}+e$\qquad $e=K_e\omega$\qquad $C_{em}=K_t i$}
+\end{minipage}
+\vfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{TLPosterBloc}[Constitution et principe]{TLPosterBlue}
+Le stator crée le flux inducteur et le rotor porte l'induit. Le collecteur et les balais assurent la commutation. La fcem est proportionnelle à la vitesse et le couple électromagnétique au courant d'induit.
 \end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Couple}
-C_em = K_t i ; à flux constant K_e = K_t en unités SI.
+\begin{TLPosterBloc}[Bilan de puissance]{TLPosterPurple}
+La puissance électrique absorbée se répartit entre pertes Joule, puissance électromagnétique, pertes mécaniques et puissance utile. En génératrice, le sens du flux de puissance s'inverse.
 \end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Bilan}
-Puissance électrique, pertes Joule, puissance électromagnétique et puissance utile.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{TLPosterBloc}[Modèle électrique et mécanique]{TLPosterGreen}
+L'induit vérifie $u=Ri+L\,di/dt+e$, avec $e=K_e\omega$. Le couple vérifie $C_{em}=K_t i$. En unités SI et à flux constant, les constantes sont liées.
 \end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Commande}
-Variation de vitesse par la tension d'induit et fonctionnement dans les quatre quadrants.
+\begin{TLPosterBloc}[Commande et régimes]{TLPosterTeal}
+Au démarrage la fcem est faible et le courant doit être limité. La vitesse se règle principalement par la tension d'induit à flux constant. Le modèle dynamique couple équations électrique et mécanique.
 \end{TLPosterBloc}
-\end{multicols}
+\end{minipage}
+\vfill
+\begin{TLPosterMethode}
+\begin{enumerate}
+  \item Choisir les conventions moteur/génératrice et orienter tension, courant, couple et vitesse.
+  \item Écrire l'équation électrique de l'induit.
+  \item Utiliser les relations fcem--vitesse et couple--courant.
+  \item Écrire l'équation mécanique avec charge et inertie si nécessaire.
+  \item Établir le bilan de puissance et le rendement.
+  \item Vérifier courant de démarrage, vitesse, couple et limites nominales.
+\end{enumerate}
+\end{TLPosterMethode}
+\vfill
+\TLPosterRetenir{la MCC relie directement courant et couple, ainsi que vitesse et force contre-électromotrice.}
 \end{document}

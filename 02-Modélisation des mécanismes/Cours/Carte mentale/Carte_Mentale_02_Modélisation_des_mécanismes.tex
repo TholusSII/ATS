@@ -1,16 +1,23 @@
-\documentclass[a3paper,landscape,10pt]{article}
-\usepackage[margin=8mm]{geometry}
+\documentclass[10pt,a3paper,landscape]{article}
+\usepackage[margin=6mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
-\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{microtype}
 \makeatletter\def\input@path{{../../../Style/}}\makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{TLCinematique.sty}{\input{TLCinematique.sty}}{}
 \pagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\begin{TLCarteMentale}{Modélisation des mécanismes}
-\TLBranche{Solides et liaisons}{Définir les classes d'équivalence cinématique et les liaisons entre solides.}
-\TLBranche{Représentations}{Construire graphe de liaisons, schéma cinématique et paramétrage géométrique.}
-\TLBranche{Mobilité}{Analyser les degrés de liberté, les chaînes fermées et les mouvements possibles.}
-\TLBranche{Méthode}{Isoler les solides, identifier les contacts puis choisir une modélisation adaptée.}
-\end{TLCarteMentale}
+\begin{tikzpicture}
+\TLMapBase{Modélisation des mécanismes}{Solides $\rightarrow$ Liaisons $\rightarrow$ Graphe $\rightarrow$ Schéma $\rightarrow$ Paramétrage}
+\TLMapBranchTL{Savoirs}{\textbullet\ définir les classes d'équivalence cinématique et la notion de solide indéformable\\[1.2mm]\textbullet\ connaître les liaisons usuelles, leurs surfaces de contact et degrés de liberté\\[1.2mm]\textbullet\ construire un graphe des liaisons et un schéma cinématique\\[1.2mm]\textbullet\ définir repères, paramètres géométriques et coordonnées d'entrée et de sortie\\[1.2mm]\textbullet\ analyser la mobilité et déterminer une liaison équivalente}
+\TLMapBranchTR{Solides et liaisons}{\textbullet\ classes d'équivalence\\[1.2mm]\textbullet\ pivot / glissière\\[1.2mm]\textbullet\ rotule / hélicoïdale\\[1.2mm]\textbullet\ ddl et contacts}
+\TLMapBranchML{Représentations}{\textbullet\ graphe des liaisons\\[1.2mm]\textbullet\ schéma cinématique\\[1.2mm]\textbullet\ symboles normalisés}
+\TLMapBranchMR{Paramétrage}{\textbullet\ repères\\[1.2mm]\textbullet\ paramètres géométriques\\[1.2mm]\textbullet\ entrée / sortie}
+\TLMapBranchBL{Exploitation}{\textbullet\ mobilité\\[1.2mm]\textbullet\ liaison équivalente\\[1.2mm]\textbullet\ préparation des lois de mouvement}
+\TLMapBranchBR{Méthode}{1. Identifier le bâti et les classes d'équivalence cinématique.\\[1.2mm]2. Repérer les contacts et choisir les liaisons normalisées.\\[1.2mm]3. Construire le graphe des liaisons.\\[1.2mm]4. Établir le schéma cinématique en respectant axes et directions.\\[1.2mm]5. Paramétrer solides, liaisons et variables utiles.}
+\TLMapRibbon{Identifier $\rightarrow$ Simplifier $\rightarrow$ Modéliser $\rightarrow$ Paramétrer $\rightarrow$ Vérifier}
+\end{tikzpicture}
 \end{document}

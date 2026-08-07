@@ -1,30 +1,59 @@
-\documentclass[a3paper,landscape,10pt]{article}
+\documentclass[10pt,a3paper]{article}
 \usepackage[margin=10mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
-\usepackage{amsmath,amssymb}
-\makeatletter
-\def\input@path{{../../../Style/}}
-\makeatother
+\usepackage{lmodern}
+\usepackage{microtype}
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{{TLRDM.sty}}{{\input{{TLRDM.sty}}}}{{}}
 \pagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\TLPosterTitre{{Résistance des matériaux}}{{Fiche résumé éditable}}
-\begin{multicols}{2}
-\begin{TLPosterBloc}{Hypothèses}
-Poutres droites, petites déformations, Saint-Venant et Navier-Bernoulli.
+\TLPosterCourseHeader{12}{Résistance des matériaux}{Efforts intérieurs, contraintes, déformations et dimensionnement}
+\vspace{2mm}
+\begin{minipage}[t]{0.61\linewidth}
+\begin{TLPosterSavoirs}
+\begin{itemize}
+  \item connaître hypothèses de poutre, Saint-Venant, Navier--Bernoulli, petites déformations et élasticité
+  \item déterminer le torseur de cohésion et ses composantes $N$, $T$, $M_t$ et $M_f$
+  \item identifier traction/compression, cisaillement, torsion et flexion
+  \item relier efforts intérieurs, contraintes et déformations avec les lois de comportement
+  \item dimensionner avec critères de résistance, coefficient de sécurité et limite de flèche
+\end{itemize}
+\end{TLPosterSavoirs}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.36\linewidth}
+\TLPosterKey{Dimensionnement}{Sollicitations $\rightarrow$ contraintes $\rightarrow$ déformations $\rightarrow$ critères de résistance et rigidité}
+\end{minipage}
+\vfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{TLPosterBloc}[Hypothèses et coupure]{TLPosterBlue}
+La RDM remplace une structure élancée par sa ligne moyenne et sa section. Une coupure fait apparaître le torseur de cohésion, action de la partie supprimée sur la partie conservée.
 \end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Cohésion}
-La coupure fait apparaître le torseur des efforts intérieurs.
+\begin{TLPosterBloc}[Contraintes et déformations]{TLPosterPurple}
+En traction, $\sigma=N/S$. En flexion, la contrainte normale varie avec la distance à la fibre neutre. La loi de Hooke relie contrainte et déformation dans le domaine élastique.
 \end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Traction}
-sigma = N/S et allongement gouverné par la loi de Hooke.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{TLPosterBloc}[Sollicitations]{TLPosterGreen}
+Les composantes $N$, $T$, $M_t$ et $M_f$ correspondent aux sollicitations élémentaires. Les diagrammes le long de la poutre localisent les sections les plus sollicitées.
 \end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Flexion}
-sigma = -M_f y/I et courbure liée à M_f/(EI).
+\begin{TLPosterBloc}[Dimensionnement]{TLPosterTeal}
+Le critère de résistance compare la contrainte calculée à une valeur admissible ; le critère de rigidité limite déplacement, rotation ou flèche. Le coefficient de sécurité tient compte des incertitudes.
 \end{TLPosterBloc}
-\end{multicols}
+\end{minipage}
+\vfill
+\begin{TLPosterMethode}
+\begin{enumerate}
+  \item Identifier la poutre, ses appuis, chargements et hypothèses de modèle.
+  \item Déterminer les réactions extérieures par équilibre.
+  \item Effectuer une coupure et calculer le torseur de cohésion.
+  \item Tracer les diagrammes des efforts intérieurs utiles.
+  \item Calculer contraintes et déformations dans les sections critiques.
+  \item Vérifier résistance, rigidité et coefficient de sécurité.
+\end{enumerate}
+\end{TLPosterMethode}
+\vfill
+\TLPosterRetenir{le torseur de cohésion relie les actions extérieures aux contraintes et déformations qui servent au dimensionnement.}
 \end{document}

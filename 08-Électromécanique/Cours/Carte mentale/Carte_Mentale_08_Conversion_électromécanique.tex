@@ -1,0 +1,23 @@
+\documentclass[10pt,a3paper,landscape]{article}
+\usepackage[margin=6mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
+\input{TLPosterCarteMentale.sty}
+\pagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
+\begin{document}
+\begin{tikzpicture}
+\TLMapBase{Conversion électromécanique}{Énergie électrique $\leftrightarrow$ Énergie mécanique}
+\TLMapBranchTL{Savoirs}{\textbullet\ décrire la conversion réversible entre énergie électrique et énergie mécanique\\[1.2mm]\textbullet\ relier couple, vitesse, puissance, rendement et pertes\\[1.2mm]\textbullet\ interpréter caractéristiques mécaniques d'une machine et d'une charge\\[1.2mm]\textbullet\ déterminer le point de fonctionnement machine--charge et les quadrants\\[1.2mm]\textbullet\ exploiter essais à vide, en charge et données nominales pour identifier un modèle}
+\TLMapBranchTR{Conversion}{\textbullet\ moteur\\[1.2mm]\textbullet\ génératrice\\[1.2mm]\textbullet\ réversibilité}
+\TLMapBranchML{Grandeurs}{\textbullet\ couple\\[1.2mm]\textbullet\ vitesse\\[1.2mm]\textbullet\ puissance\\[1.2mm]\textbullet\ rendement}
+\TLMapBranchMR{Machine--charge}{\textbullet\ caractéristiques\\[1.2mm]\textbullet\ point de fonctionnement\\[1.2mm]\textbullet\ quadrants}
+\TLMapBranchBL{Essais}{\textbullet\ à vide\\[1.2mm]\textbullet\ en charge\\[1.2mm]\textbullet\ identification\\[1.2mm]\textbullet\ nominal}
+\TLMapBranchBR{Méthode}{1. Identifier le sens des flux d'énergie et le mode moteur ou générateur.\\[1.2mm]2. Recenser les grandeurs électriques et mécaniques disponibles.\\[1.2mm]3. Établir le bilan des puissances et localiser les pertes.\\[1.2mm]4. Tracer ou exploiter les caractéristiques machine et charge.\\[1.2mm]5. Déterminer le point de fonctionnement et le rendement.}
+\TLMapRibbon{Identifier $\rightarrow$ Bilan $\rightarrow$ Caractéristiques $\rightarrow$ Point de fonctionnement $\rightarrow$ Rendement}
+\end{tikzpicture}
+\end{document}

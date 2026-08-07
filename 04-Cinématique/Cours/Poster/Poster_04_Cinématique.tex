@@ -1,0 +1,59 @@
+\documentclass[10pt,a3paper]{article}
+\usepackage[margin=10mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
+\input{TLPosterCarteMentale.sty}
+\pagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
+\begin{document}
+\TLPosterCourseHeader{4}{Cinématique}{Détermination des lois de mouvement}
+\vspace{2mm}
+\begin{minipage}[t]{0.61\linewidth}
+\begin{TLPosterSavoirs}
+\begin{itemize}
+  \item maîtriser produit vectoriel, produit mixte et repérage spatial
+  \item définir un torseur cinématique et effectuer un changement de point
+  \item caractériser translation, rotation, mouvement plan et trajectoires
+  \item relier position, vitesse, accélération et dérivation vectorielle
+  \item composer les mouvements et traiter contact, roulement sans glissement et profil trapézoïdal
+\end{itemize}
+\end{TLPosterSavoirs}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.36\linewidth}
+\TLPosterKey{Transport des vitesses}{$\vec V_Q=\vec V_P+\vec\Omega\wedge\overrightarrow{PQ}$}
+\end{minipage}
+\vfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{TLPosterBloc}[Outils vectoriels]{TLPosterBlue}
+Le produit vectoriel décrit directions normales et moments ; le produit mixte facilite certaines projections. Un paramétrage cohérent fixe points, bases et sens positifs.
+\end{TLPosterBloc}
+\begin{TLPosterBloc}[Dérivation et composition]{TLPosterPurple}
+Position, vitesse et accélération sont liées par dérivation. Dans un repère mobile, la dérivation vectorielle ajoute le terme de transport. Vitesses et rotations se composent entre repères.
+\end{TLPosterBloc}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{TLPosterBloc}[Torseur et mouvements]{TLPosterGreen}
+Le torseur cinématique regroupe vecteur rotation et vitesse d'un point. Translation, rotation autour d'un axe et mouvement plan conduisent à des champs de vitesses caractéristiques.
+\end{TLPosterBloc}
+\begin{TLPosterBloc}[Contact et lois de mouvement]{TLPosterTeal}
+Le roulement sans glissement impose une vitesse relative nulle au point de contact. Une loi de vitesse trapézoïdale enchaîne accélération, vitesse constante et décélération.
+\end{TLPosterBloc}
+\end{minipage}
+\vfill
+\begin{TLPosterMethode}
+\begin{enumerate}
+  \item Choisir solides, repères, points et paramètres adaptés.
+  \item Écrire les vecteurs position et les relations géométriques utiles.
+  \item Dériver dans le bon repère pour obtenir vitesse puis accélération.
+  \item Transporter les vitesses au point pertinent et composer les mouvements.
+  \item Appliquer les conditions de contact ou de roulement sans glissement.
+  \item Contrôler dimensions, signes et cohérence avec le mouvement réel.
+\end{enumerate}
+\end{TLPosterMethode}
+\vfill
+\TLPosterRetenir{position, vitesse et accélération se déduisent d'un modèle cinématique cohérent et d'un repérage maîtrisé.}
+\end{document}

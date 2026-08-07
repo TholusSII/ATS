@@ -1,18 +1,23 @@
-\documentclass[a3paper,landscape,10pt]{article}
-\usepackage[margin=8mm]{geometry}
+\documentclass[10pt,a3paper,landscape]{article}
+\usepackage[margin=6mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
-\usepackage{amsmath,amssymb}
-\makeatletter
-\def\input@path{{../../../Style/}}
-\makeatother
+\usepackage{lmodern}
+\usepackage{microtype}
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{{TLActionsMecaniques.sty}}{{\input{{TLActionsMecaniques.sty}}}}{{}}
 \pagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\begin{TLCarteMentale}{{Actions mécaniques}}
-\TLBranche{Modélisation}{Une action mécanique est représentée par un torseur.}
-\TLBranche{Statique}{Isoler, dresser le BAME puis appliquer le principe fondamental de la statique.}
-\TLBranche{Dynamique}{Utiliser le PFD ou le théorème de l'énergie cinétique selon le problème.}
-\TLBranche{Points clés}{Frottement, moment d'une force, centre d'inertie et opérateur d'inertie.}
-\end{TLCarteMentale}
+\begin{tikzpicture}
+\TLMapBase{Actions mécaniques}{Isoler $\rightarrow$ BAME $\rightarrow$ Torseurs $\rightarrow$ Équations}
+\TLMapBranchTL{Savoirs}{\textbullet\ modéliser force, moment, glisseur, couple et action mécanique par un torseur\\[1.2mm]\textbullet\ représenter les actions transmissibles par les liaisons et appliquer les actions réciproques\\[1.2mm]\textbullet\ isoler un système, dresser le BAME et appliquer le principe fondamental de la statique\\[1.2mm]\textbullet\ traiter pression de contact, adhérence, glissement et lois de Coulomb\\[1.2mm]\textbullet\ connaître centre d'inertie, opérateur d'inertie, PFD et théorème de l'énergie cinétique}
+\TLMapBranchTR{Modélisation}{\textbullet\ force / moment\\[1.2mm]\textbullet\ torseur\\[1.2mm]\textbullet\ glisseur / couple\\[1.2mm]\textbullet\ liaisons}
+\TLMapBranchML{Statique}{\textbullet\ isolement\\[1.2mm]\textbullet\ BAME\\[1.2mm]\textbullet\ PFS\\[1.2mm]\textbullet\ actions réciproques}
+\TLMapBranchMR{Frottement}{\textbullet\ pressions\\[1.2mm]\textbullet\ Coulomb\\[1.2mm]\textbullet\ adhérence / glissement\\[1.2mm]\textbullet\ arc-boutement}
+\TLMapBranchBL{Dynamique}{\textbullet\ centre d'inertie\\[1.2mm]\textbullet\ inertie\\[1.2mm]\textbullet\ PFD\\[1.2mm]\textbullet\ énergie cinétique}
+\TLMapBranchBR{Méthode}{1. Choisir le système à isoler et définir le repère d'étude.\\[1.2mm]2. Dresser le BAME et modéliser chaque action par un torseur.\\[1.2mm]3. Transporter les torseurs vers un point de réduction pertinent.\\[1.2mm]4. Appliquer PFS, PFD ou théorème de l'énergie selon l'objectif.\\[1.2mm]5. Projeter les équations pour éliminer les inconnues inutiles.}
+\TLMapRibbon{Isoler $\rightarrow$ Modéliser $\rightarrow$ Réduire $\rightarrow$ Équilibrer $\rightarrow$ Résoudre $\rightarrow$ Vérifier}
+\end{tikzpicture}
 \end{document}

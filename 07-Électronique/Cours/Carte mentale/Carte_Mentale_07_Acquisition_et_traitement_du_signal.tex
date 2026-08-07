@@ -1,0 +1,23 @@
+\documentclass[10pt,a3paper,landscape]{article}
+\usepackage[margin=6mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
+\input{TLPosterCarteMentale.sty}
+\pagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
+\begin{document}
+\begin{tikzpicture}
+\TLMapBase{Acquisition et traitement du signal}{Mesurer $\rightarrow$ Conditionner $\rightarrow$ Filtrer $\rightarrow$ Échantillonner $\rightarrow$ Numériser}
+\TLMapBranchTL{Savoirs}{\textbullet\ décrire une chaîne d'acquisition et les caractéristiques d'un capteur : sensibilité, étendue, précision, résolution\\[1.2mm]\textbullet\ utiliser lois d'électrocinétique, impédances complexes et montages à amplificateur opérationnel\\[1.2mm]\textbullet\ caractériser filtres passe-bas, passe-haut, gain, phase, bande passante et fréquence de coupure\\[1.2mm]\textbullet\ interpréter spectres temporels et fréquentiels et appliquer Shannon--Nyquist\\[1.2mm]\textbullet\ comprendre anti-repliement, échantillonnage, CAN/CNA, quantification et codage binaire}
+\TLMapBranchTR{Capteurs}{\textbullet\ sensibilité\\[1.2mm]\textbullet\ étendue\\[1.2mm]\textbullet\ précision\\[1.2mm]\textbullet\ résolution}
+\TLMapBranchML{Conditionnement}{\textbullet\ électrocinétique\\[1.2mm]\textbullet\ impédances\\[1.2mm]\textbullet\ AOP\\[1.2mm]\textbullet\ adaptation}
+\TLMapBranchMR{Filtrage}{\textbullet\ spectre\\[1.2mm]\textbullet\ passe-bas / passe-haut\\[1.2mm]\textbullet\ Bode\\[1.2mm]\textbullet\ fréquence de coupure}
+\TLMapBranchBL{Numérisation}{\textbullet\ Shannon\\[1.2mm]\textbullet\ anti-repliement\\[1.2mm]\textbullet\ CAN / CNA\\[1.2mm]\textbullet\ codage binaire}
+\TLMapBranchBR{Méthode}{1. Identifier la grandeur à mesurer et choisir le capteur adapté.\\[1.2mm]2. Établir le schéma de conditionnement et sa fonction de transfert.\\[1.2mm]3. Analyser le spectre utile et définir le filtrage nécessaire.\\[1.2mm]4. Choisir la fréquence d'échantillonnage avec une marge suffisante.\\[1.2mm]5. Déterminer résolution, pas de quantification et plage du convertisseur.}
+\TLMapRibbon{Mesurer $\rightarrow$ Adapter $\rightarrow$ Filtrer $\rightarrow$ Échantillonner $\rightarrow$ Convertir $\rightarrow$ Vérifier}
+\end{tikzpicture}
+\end{document}

@@ -1,30 +1,59 @@
-\documentclass[a3paper,landscape,10pt]{article}
+\documentclass[10pt,a3paper]{article}
 \usepackage[margin=10mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
-\usepackage{amsmath,amssymb}
-\makeatletter
-\def\input@path{{../../../Style/}}
-\makeatother
+\usepackage{lmodern}
+\usepackage{microtype}
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{{TLCorrectionSystemesAsservis.sty}}{{\input{{TLCorrectionSystemesAsservis.sty}}}}{{}}
 \pagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\TLPosterTitre{{Correction des systèmes asservis}}{{Fiche résumé éditable}}
-\begin{multicols}{2}
-\begin{TLPosterBloc}{Objectifs}
-Précision, rapidité, stabilité et rejet des perturbations.
+\TLPosterCourseHeader{6}{Correction des systèmes asservis}{Régler la commande pour satisfaire le cahier des charges}
+\vspace{2mm}
+\begin{minipage}[t]{0.61\linewidth}
+\begin{TLPosterSavoirs}
+\begin{itemize}
+  \item relier précision, rapidité, stabilité, dépassement et robustesse au cahier des charges
+  \item connaître l'effet du gain proportionnel et des actions intégrale et dérivée
+  \item utiliser correcteurs P, PI, PD et PID
+  \item comprendre retard de phase, avance de phase et pôles dominants
+  \item exploiter diagrammes de Bode, marges de gain et de phase, saturation et rejet des perturbations
+\end{itemize}
+\end{TLPosterSavoirs}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.36\linewidth}
+\TLPosterKey{Principe}{Corriger la boucle sans dégrader le compromis stabilité--rapidité--précision}
+\end{minipage}
+\vfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{TLPosterBloc}[Effet du gain]{TLPosterBlue}
+Augmenter le gain réduit souvent l'erreur et accélère la réponse, mais diminue les marges de stabilité et peut accroître le dépassement ou provoquer la saturation.
 \end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Correcteurs}
-P : gain ; PI : annulation de l'erreur statique ; PD : anticipation ; PID : compromis global.
+\begin{TLPosterBloc}[Correction fréquentielle]{TLPosterPurple}
+Un retard de phase peut améliorer la précision aux basses fréquences ; une avance de phase augmente la marge de phase et la rapidité. Le choix dépend de la FTBO initiale.
 \end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Méthode}
-Identifier le besoin, choisir la structure, régler les paramètres, vérifier les marges et les performances.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{TLPosterBloc}[Correcteurs usuels]{TLPosterGreen}
+L'action P règle le gain, I améliore la précision statique, D anticipe les variations. PI, PD et PID combinent ces effets pour satisfaire plusieurs critères simultanément.
 \end{TLPosterBloc}
-
-\begin{TLPosterBloc}{Points clés}
-Effet du gain, pôles dominants, marges de gain et de phase, saturation et robustesse.
+\begin{TLPosterBloc}[Validation]{TLPosterTeal}
+Le réglage final se contrôle sur les réponses temporelle et fréquentielle : erreur, temps de réponse, dépassement, marges, robustesse, effort de commande et saturation.
 \end{TLPosterBloc}
-\end{multicols}
+\end{minipage}
+\vfill
+\begin{TLPosterMethode}
+\begin{enumerate}
+  \item Traduire le cahier des charges en critères mesurables.
+  \item Analyser la FTBO non corrigée et repérer ses pôles dominants.
+  \item Choisir la structure du correcteur adaptée au défaut principal.
+  \item Régler les paramètres à partir des critères temporels et fréquentiels.
+  \item Vérifier marges de stabilité, saturation et rejet des perturbations.
+  \item Valider le compromis global sur la FTBF.
+\end{enumerate}
+\end{TLPosterMethode}
+\vfill
+\TLPosterRetenir{un correcteur se choisit et se règle à partir d'un défaut identifié, puis se valide sur l'ensemble des performances.}
 \end{document}

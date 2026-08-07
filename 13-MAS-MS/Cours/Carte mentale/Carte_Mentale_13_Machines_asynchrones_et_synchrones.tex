@@ -1,18 +1,23 @@
-\documentclass[a3paper,landscape,10pt]{article}
-\usepackage[margin=8mm]{geometry}
+\documentclass[10pt,a3paper,landscape]{article}
+\usepackage[margin=6mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
-\usepackage{amsmath,amssymb}
-\makeatletter
-\def\input@path{{../../../Style/}}
-\makeatother
+\usepackage{lmodern}
+\usepackage{microtype}
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
 \input{TLPosterCarteMentale.sty}
-\IfFileExists{{TLMachinesAlternatives.sty}}{{\input{{TLMachinesAlternatives.sty}}}}{{}}
 \pagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\begin{TLCarteMentale}{{Machines asynchrones et synchrones}}
-\TLBranche{Triphasé}{Tensions simples et composées, couplages étoile/triangle et puissances.}
-\TLBranche{MAS}{Glissement, schéma équivalent, bilan de puissance et commande V/f constante.}
-\TLBranche{MS}{Vitesse synchrone, diagramme de Behn-Eschenburg et couple électromagnétique.}
-\TLBranche{Commande}{Onduleur triphasé et autopilotage des moteurs brushless.}
-\end{TLCarteMentale}
+\begin{tikzpicture}
+\TLMapBase{Machines asynchrones et synchrones}{Triphasé $\rightarrow$ Onduleur $\rightarrow$ Champ tournant $\rightarrow$ Couple}
+\TLMapBranchTL{Savoirs}{\textbullet\ maîtriser tensions simples/composées, couplages étoile/triangle et puissances triphasées\\[1.2mm]\textbullet\ comprendre la génération triphasée par onduleur et la modulation de largeur d'impulsion\\[1.2mm]\textbullet\ définir vitesse synchrone, glissement, bilan de puissance et couple de la MAS\\[1.2mm]\textbullet\ comprendre commande à $V/f$ constant et influence de la fréquence\\[1.2mm]\textbullet\ modéliser la MS avec diagramme de Behn--Eschenburg, couple électromagnétique et autopilotage brushless}
+\TLMapBranchTR{Triphasé}{\textbullet\ tensions simples / composées\\[1.2mm]\textbullet\ étoile / triangle\\[1.2mm]\textbullet\ $P,Q,S$\\[1.2mm]\textbullet\ Boucherot}
+\TLMapBranchML{Onduleur}{\textbullet\ source continue\\[1.2mm]\textbullet\ MLI\\[1.2mm]\textbullet\ fréquence / amplitude}
+\TLMapBranchMR{MAS}{\textbullet\ synchronisme\\[1.2mm]\textbullet\ glissement\\[1.2mm]\textbullet\ bilan / couple\\[1.2mm]\textbullet\ $V/f$}
+\TLMapBranchBL{MS}{\textbullet\ Behn--Eschenburg\\[1.2mm]\textbullet\ couple\\[1.2mm]\textbullet\ autopilotage\\[1.2mm]\textbullet\ brushless}
+\TLMapBranchBR{Méthode}{1. Identifier couplage, tensions, courants et nombre de paires de pôles.\\[1.2mm]2. Calculer vitesse de synchronisme et, pour la MAS, le glissement.\\[1.2mm]3. Établir le bilan des puissances et le couple utile.\\[1.2mm]4. Exploiter le schéma ou diagramme vectoriel adapté à la machine.\\[1.2mm]5. Relier fréquence et amplitude de l'onduleur au point de fonctionnement.}
+\TLMapRibbon{Réseau $\rightarrow$ Couplage $\rightarrow$ Synchronisme $\rightarrow$ Bilan $\rightarrow$ Couple $\rightarrow$ Commande}
+\end{tikzpicture}
 \end{document}

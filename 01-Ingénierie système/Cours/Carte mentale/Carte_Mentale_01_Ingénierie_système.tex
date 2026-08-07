@@ -1,0 +1,23 @@
+\documentclass[10pt,a3paper,landscape]{article}
+\usepackage[margin=6mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\makeatletter\def\input@path{{../../../Style/}}\makeatother
+\input{TLPosterCarteMentale.sty}
+\pagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
+\begin{document}
+\begin{tikzpicture}
+\TLMapBase{Ingénierie système}{Besoin $\rightarrow$ Exigences $\rightarrow$ Architecture $\rightarrow$ Validation}
+\TLMapBranchTL{Savoirs}{\textbullet\ définir un système, sa frontière, son environnement et ses interactions\\[1.2mm]\textbullet\ identifier le besoin, les fonctions de service, contraintes, critères et niveaux\\[1.2mm]\textbullet\ distinguer système souhaité, simulé et réel et situer le cycle de vie\\[1.2mm]\textbullet\ connaître parties prenantes, cycle en V, exigences, traçabilité, vérification et validation\\[1.2mm]\textbullet\ exploiter les principaux diagrammes SysML et les chaînes fonctionnelles}
+\TLMapBranchTR{Besoin et cycle de vie}{\textbullet\ besoin utilisateur\\[1.2mm]\textbullet\ fonctions de service\\[1.2mm]\textbullet\ contraintes et critères\\[1.2mm]\textbullet\ souhaité / simulé / réel}
+\TLMapBranchML{Exigences}{\textbullet\ cahier des charges\\[1.2mm]\textbullet\ attributs\\[1.2mm]\textbullet\ traçabilité\\[1.2mm]\textbullet\ vérification / validation}
+\TLMapBranchMR{SysML}{\textbullet\ contexte\\[1.2mm]\textbullet\ exigences\\[1.2mm]\textbullet\ BDD / IBD\\[1.2mm]\textbullet\ séquence / états}
+\TLMapBranchBL{Architecture}{\textbullet\ parties prenantes\\[1.2mm]\textbullet\ cycle en V\\[1.2mm]\textbullet\ chaîne d'information\\[1.2mm]\textbullet\ chaîne d'énergie}
+\TLMapBranchBR{Méthode}{1. Identifier le besoin, le contexte et les parties prenantes.\\[1.2mm]2. Formuler les fonctions et des exigences mesurables.\\[1.2mm]3. Décomposer le système et choisir les diagrammes SysML utiles.\\[1.2mm]4. Construire l'architecture fonctionnelle et les interfaces.\\[1.2mm]5. Définir les moyens de vérification associés aux exigences.}
+\TLMapRibbon{Analyser $\rightarrow$ Exprimer le besoin $\rightarrow$ Décomposer $\rightarrow$ Modéliser $\rightarrow$ Vérifier $\rightarrow$ Valider}
+\end{tikzpicture}
+\end{document}
