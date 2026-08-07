@@ -1,9 +1,17 @@
 name: Compile current ALL_EXOS with MiKTeX
 
 on:
+  push:
+    branches:
+      - 'ci-all-exos-current-*'
+    paths:
+      - 'ALL_EXOS/**'
+      - '02-Modélisation des mécanismes/TD/Geometrie/076_Geometrie/**'
+      - '.github/workflows/compile-all-exos-miktex-current.yml'
   pull_request:
     paths:
       - 'ALL_EXOS/**'
+      - '02-Modélisation des mécanismes/TD/Geometrie/076_Geometrie/**'
       - '.github/workflows/compile-all-exos-miktex-current.yml'
   workflow_dispatch:
 
