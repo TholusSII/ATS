@@ -10,50 +10,53 @@
 \pagestyle{empty}
 \renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\TLPosterCourseHeader{12}{Résistance des matériaux}{Efforts intérieurs, contraintes, déformations et dimensionnement}
+\TLPosterCourseHeader{12}{Résistance des matériaux}{Identifier la sollicitation puis appliquer le modèle adapté}
 \vspace{2mm}
 \begin{minipage}[t]{0.61\linewidth}
 \begin{TLPosterSavoirs}
 \begin{itemize}
-  \item connaître hypothèses de poutre, Saint-Venant, Navier--Bernoulli, petites déformations et élasticité
-  \item déterminer le torseur de cohésion et ses composantes $N$, $T$, $M_t$ et $M_f$
-  \item identifier traction/compression, cisaillement, torsion et flexion
-  \item relier efforts intérieurs, contraintes et déformations avec les lois de comportement
-  \item dimensionner avec critères de résistance, coefficient de sécurité et limite de flèche
+  \item connaître les hypothèses : poutre élancée, petites déformations, matériau homogène/isotrope/élastique linéaire, Saint-Venant, Navier--Bernoulli et superposition
+  \item déterminer le torseur de cohésion $\{N,T_y,T_z;M_t,M_{fy},M_{fz}\}$ par une coupure et identifier la sollicitation associée
+  \item en traction/compression : $\sigma=N/S$, $\sigma=E\varepsilon$, $\Delta L=NL/(ES)$
+  \item en flexion : $\sigma_{xx}(y)=-M_fy/I$, $|\sigma_{\max}|=|M_f|/W$ et $EI\,y''(x)=M_f(x)$
+  \item distinguer critère de résistance $\sigma_{\max}\le R_e/s$ et critère de rigidité $|f_{\max}|\le f_{\rm limite}$ ; tenir compte des concentrations de contrainte
 \end{itemize}
 \end{TLPosterSavoirs}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.36\linewidth}
-\TLPosterKey{Dimensionnement}{Sollicitations $\rightarrow$ contraintes $\rightarrow$ déformations $\rightarrow$ critères de résistance et rigidité}
+\TLPosterKey{Chaîne de résolution}{Charges $\rightarrow$ réactions $\rightarrow$ cohésion $\rightarrow$ sollicitation $\rightarrow$ contraintes/déformée $\rightarrow$ critères}
 \end{minipage}
 \vfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Hypothèses et coupure]{TLPosterBlue}
-La RDM remplace une structure élancée par sa ligne moyenne et sa section. Une coupure fait apparaître le torseur de cohésion, action de la partie supprimée sur la partie conservée.
+\begin{TLPosterBloc}[Méthode : torseur de cohésion]{TLPosterBlue}
+1) Calculer les réactions d'appui par l'équilibre global. 2) Définir les intervalles séparés par les changements de chargement. 3) Couper à l'abscisse $x$ et isoler le tronçon qui contient le moins de charges. 4) Transporter les actions au barycentre $G$ de la section. 5) Appliquer le PFS. 6) Identifier $N,T,M_t,M_f$ et tracer les diagrammes ; vérifier continuités et sauts.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Contraintes et déformations]{TLPosterPurple}
-En traction, $\sigma=N/S$. En flexion, la contrainte normale varie avec la distance à la fibre neutre. La loi de Hooke relie contrainte et déformation dans le domaine élastique.
+\begin{TLPosterBloc}[Cas traction / compression]{TLPosterGreen}
+Le torseur se réduit à $N$.\\
+\textbf{Résistance :} $\sigma=N/S$ ; avec accident géométrique, $\sigma_{\max}=K_t|N|/S_{\rm nette}$ puis comparer à $R_e/s$.\\
+\textbf{Déformation :} $\varepsilon=\sigma/E$ et, si $N,E,S$ constants, $\Delta L=NL/(ES)$. Vérifier le signe : $N>0$ traction, $N<0$ compression.
 \end{TLPosterBloc}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Sollicitations]{TLPosterGreen}
-Les composantes $N$, $T$, $M_t$ et $M_f$ correspondent aux sollicitations élémentaires. Les diagrammes le long de la poutre localisent les sections les plus sollicitées.
+\begin{TLPosterBloc}[Cas flexion]{TLPosterPurple}
+1) Obtenir $T_y(x)$ et $M_f(x)$ sur chaque intervalle. 2) Localiser $|M_f|_{\max}$. 3) Vérifier la résistance avec $\sigma=-M_fy/I$ ou $|\sigma_{\max}|=|M_f|/W$. 4) Pour la rigidité, intégrer $EI\,y''=M_f(x)$ deux fois. 5) Déterminer les constantes avec les conditions d'appui et de continuité. 6) Comparer $f_{\max}$ à la flèche admissible.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Dimensionnement]{TLPosterTeal}
-Le critère de résistance compare la contrainte calculée à une valeur admissible ; le critère de rigidité limite déplacement, rotation ou flèche. Le coefficient de sécurité tient compte des incertitudes.
+\begin{TLPosterBloc}[Décider et vérifier]{TLPosterTeal}
+Une même poutre peut présenter plusieurs composantes du torseur : identifier celles réellement utiles avant d'appliquer une formule. La superposition n'est valable que dans le domaine élastique linéaire. Toujours vérifier les hypothèses de poutre et éviter d'utiliser Saint-Venant au voisinage immédiat d'une charge ou d'un accident géométrique.
 \end{TLPosterBloc}
 \end{minipage}
 \vfill
 \begin{TLPosterMethode}
 \begin{enumerate}
-  \item Identifier la poutre, ses appuis, chargements et hypothèses de modèle.
-  \item Déterminer les réactions extérieures par équilibre.
-  \item Effectuer une coupure et calculer le torseur de cohésion.
-  \item Tracer les diagrammes des efforts intérieurs utiles.
-  \item Calculer contraintes et déformations dans les sections critiques.
-  \item Vérifier résistance, rigidité et coefficient de sécurité.
+  \item \textbf{Valider le modèle :} géométrie de poutre, matériau, petites déformations, zone suffisamment éloignée des singularités.
+  \item \textbf{Équilibre global :} remplacer les appuis par leurs réactions puis appliquer le PFS.
+  \item \textbf{Cohésion :} découper en intervalles, effectuer une coupure, choisir le côté le plus simple et déterminer $N,T,M_t,M_f$.
+  \item \textbf{Si $N$ domine :} appliquer la méthode traction/compression, puis contrôler résistance et allongement.
+  \item \textbf{Si $M_f$ domine :} appliquer la méthode flexion, puis contrôler contrainte maximale et flèche.
+  \item \textbf{Si plusieurs sollicitations existent :} les traiter à partir du torseur de cohésion et exploiter la superposition seulement si les hypothèses linéaires sont vérifiées.
+  \item \textbf{Conclure :} coefficient de sécurité, concentration de contrainte, rigidité et cohérence des unités/ordres de grandeur.
 \end{enumerate}
 \end{TLPosterMethode}
 \vfill
-\TLPosterRetenir{le torseur de cohésion relie les actions extérieures aux contraintes et déformations qui servent au dimensionnement.}
+\TLPosterRetenir{ne jamais choisir une formule de contrainte avant d'avoir déterminé le torseur de cohésion et identifié la sollicitation dans la section étudiée.}
 \end{document}
