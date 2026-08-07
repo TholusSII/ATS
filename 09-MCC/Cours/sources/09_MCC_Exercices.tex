@@ -1,0 +1,76 @@
+% ============================================================================
+% COURS 09 — EXERCICES MACHINE À COURANT CONTINU
+% ============================================================================
+
+\section{Exercices du chapitre}\label{sec:mcc-exercices}
+
+\begin{TLExercise}{Exercice 1 — Point nominal d'une MCC}
+Une machine à courant continu à aimants permanents fonctionne sous
+$U=48\,\mathrm V$. Sa résistance d'induit vaut $R=0{,}40\,\Omega$, le courant
+$I=8{,}0\,\mathrm A$ et la vitesse $\Omega=180\,\mathrm{rad\,s^{-1}}$.
+\begin{enumerate}
+  \item Calculer la force électromotrice $E$.
+  \item En déduire la constante $K_e$.
+  \item Donner la valeur numérique de $K_c$ en unités SI.
+  \item Calculer le couple électromagnétique et la puissance électromagnétique.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 2 — Bilan de puissance}
+La MCC de l'exercice précédent possède un couple de pertes
+$C_p=0{,}18\,\mathrm{N\,m}$.
+\begin{enumerate}
+  \item Calculer les pertes Joule d'induit.
+  \item Calculer le couple utile et la puissance utile.
+  \item Déterminer le rendement de la machine.
+  \item Vérifier le bilan des puissances.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 3 — Démarrage sous tension nominale}
+Une MCC possède $U_n=120\,\mathrm V$ et $R=0{,}60\,\Omega$.
+Son courant nominal est $I_n=20\,\mathrm A$.
+\begin{enumerate}
+  \item Calculer le courant de démarrage si la tension nominale est appliquée directement.
+  \item Comparer ce courant au courant nominal.
+  \item Déterminer la tension maximale à appliquer au démarrage pour limiter le courant à $1{,}5I_n$.
+  \item Expliquer comment un hacheur permet de réaliser cette limitation sans ajouter une forte résistance série.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 4 — Identification rotor bloqué}
+Rotor bloqué, on applique un échelon de $12\,\mathrm V$. Le courant tend vers
+$6{,}0\,\mathrm A$ et atteint $63\,\%$ de sa valeur finale après $8{,}0\,\mathrm{ms}$.
+\begin{enumerate}
+  \item Déterminer la résistance $R$ de l'induit.
+  \item Déterminer la constante de temps électrique $\tau_e$.
+  \item En déduire l'inductance $L$.
+  \item Écrire l'expression de $i(t)$ après l'application de l'échelon.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 5 — Génératrice et freinage récupératif}
+Une MCC tourne à $150\,\mathrm{rad\,s^{-1}}$ avec $K_e=0{,}32$. Elle est raccordée,
+par un convertisseur réversible, à un bus continu de $42\,\mathrm V$. On néglige
+l'inductance et on prend $R=0{,}30\,\Omega$.
+\begin{enumerate}
+  \item Calculer $E$.
+  \item Déterminer le courant lorsque la machine renvoie de l'énergie vers le bus.
+  \item Calculer la puissance électrique transférée au bus avec une convention de signe clairement définie.
+  \item Identifier le quadrant si $\Omega>0$ et le couple électromagnétique est négatif.
+\end{enumerate}
+\end{TLExercise}
+
+\begin{TLExercise}{Exercice 6 — Modèle dynamique et schéma-blocs}
+On considère une MCC avec $R$, $L$, $K_e=K_c=K$, $J$ et un frottement visqueux $f$.
+Le couple résistant $C_r$ est une perturbation.
+\begin{enumerate}
+  \item Écrire les équations électrique et mécanique dans le domaine de Laplace.
+  \item Retrouver les blocs $1/(Lp+R)$ et $1/(Jp+f)$ du schéma fonctionnel.
+  \item Montrer que, pour $C_r=0$, la fonction de transfert $\Omega(p)/U(p)$ vaut
+  \[
+    \frac{K}{(Lp+R)(Jp+f)+K^2}.
+  \]
+  \item Commenter l'influence de la force contre-électromotrice sur la dynamique.
+\end{enumerate}
+\end{TLExercise}
