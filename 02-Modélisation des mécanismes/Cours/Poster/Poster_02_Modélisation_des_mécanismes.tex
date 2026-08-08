@@ -10,50 +10,50 @@
 \pagestyle{empty}
 \renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\TLPosterCourseHeader{2}{Modélisation des mécanismes}{Solides, liaisons, schéma cinématique et paramétrage}
+\TLPosterCourseHeader{2}{Modélisation des mécanismes}{CEC, liaisons, graphe et schéma cinématique}
 \vspace{2mm}
 \begin{minipage}[t]{0.61\linewidth}
 \begin{TLPosterSavoirs}
 \begin{itemize}
-  \item définir les classes d'équivalence cinématique et la notion de solide indéformable
-  \item connaître les liaisons usuelles, leurs surfaces de contact et degrés de liberté
-  \item construire un graphe des liaisons et un schéma cinématique
-  \item définir repères, paramètres géométriques et coordonnées d'entrée et de sortie
-  \item analyser la mobilité et déterminer une liaison équivalente
+  \item connaître les dix liaisons usuelles, leurs symboles 2D/3D, leurs degrés de liberté et leurs torseurs cinématiques
+  \item définir une Classe d'Équivalence Cinématique (CEC) et l'hypothèse de solide indéformable
+  \item reconnaître la géométrie du contact et les mouvements relatifs autorisés entre deux CEC
+  \item construire un graphe des liaisons puis un schéma cinématique exploitable
+  \item modéliser les guidages par roulements et déterminer une liaison équivalente en série ou en parallèle
 \end{itemize}
 \end{TLPosterSavoirs}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.36\linewidth}
-\TLPosterKey{Objectif}{Construire un modèle cinématique simple, pertinent et exploitable.}
+\TLPosterKey{Quel outil ?}{Repérer les solides : CEC\\ Comprendre la structure : graphe\\ Calculer les mouvements : schéma cinématique + torseurs\\ Simplifier : liaison équivalente}
 \end{minipage}
 \vfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Solides et liaisons]{TLPosterBlue}
-Une classe d'équivalence regroupe les pièces sans mouvement relatif. Une liaison modélise les mouvements autorisés entre deux solides : pivot, glissière, pivot glissant, hélicoïdale, rotule, appui plan, liaisons linéaires et ponctuelle.
+\begin{TLPosterBloc}[Identifier les CEC]{TLPosterBlue}
+Regrouper les pièces ayant exactement le même mouvement. Exclure les éléments déformables et, dans un roulement, les éléments roulants. Choisir le bâti comme solide de référence. Une CEC doit pouvoir être repérée clairement sur le dessin d'ensemble.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Paramétrage et mobilité]{TLPosterPurple}
-On associe un repère à chaque solide puis on définit longueurs, distances et angles. Les coordonnées articulaires décrivent les mobilités ; les coordonnées opérationnelles décrivent la réponse.
+\begin{TLPosterBloc}[Identifier une liaison]{TLPosterPurple}
+Étudier uniquement le mouvement relatif des deux CEC concernées : nature et géométrie du contact, axe ou direction, rotations et translations autorisées. \textbf{Ne pas tenir compte du reste du mécanisme} pour nommer la liaison.
 \end{TLPosterBloc}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Représentations]{TLPosterGreen}
-Le graphe des liaisons montre les solides et leurs connexions. Le schéma cinématique remplace le réel par des symboles normalisés en conservant axes, directions et géométries utiles.
+\begin{TLPosterBloc}[Cas des roulements]{TLPosterGreen}
+Le comportement dépend du rotulage et des arrêts axiaux des bagues. Sans rotulage notable : pivot si les deux bagues sont arrêtées axialement, pivot glissant si une translation axiale reste possible. Avec rotulage : sphérique ou sphère--cylindre selon l'arrêt axial.
 \end{TLPosterBloc}
 \begin{TLPosterBloc}[Liaison équivalente]{TLPosterTeal}
-Des liaisons en série ou en parallèle peuvent être remplacées par une liaison équivalente lorsqu'elle autorise le même mouvement relatif global.
+En \textbf{série}, le mouvement global résulte de la composition des mouvements successifs. En \textbf{parallèle}, le mouvement relatif doit satisfaire simultanément toutes les liaisons. Le modèle équivalent doit conserver exactement les mobilités utiles.
 \end{TLPosterBloc}
 \end{minipage}
 \vfill
 \begin{TLPosterMethode}
 \begin{enumerate}
-  \item Identifier le bâti et les classes d'équivalence cinématique.
-  \item Repérer les contacts et choisir les liaisons normalisées.
-  \item Construire le graphe des liaisons.
-  \item Établir le schéma cinématique en respectant axes et directions.
-  \item Paramétrer solides, liaisons et variables utiles.
-  \item Vérifier que le modèle conserve les mobilités nécessaires.
+  \item Colorier ou lister les CEC et identifier le bâti.
+  \item Pour chaque paire de CEC en contact, relever surface, axe/direction et degrés de liberté autorisés.
+  \item Nommer la liaison et préciser ses caractéristiques géométriques.
+  \item Construire le graphe : CEC = sommets, liaisons = arêtes.
+  \item Tracer le schéma cinématique en conservant positions relatives, axes et directions utiles.
+  \item Contrôler le modèle : mêmes mobilités que le réel, pas de liaison oubliée, pas de détail technologique inutile.
 \end{enumerate}
 \end{TLPosterMethode}
 \vfill
-\TLPosterRetenir{un bon modèle conserve l'essentiel du comportement mécanique sans recopier inutilement le réel.}
+\TLPosterRetenir{on modélise un comportement cinématique, pas une solution technologique : CEC d'abord, liaisons ensuite, graphe puis schéma.}
 \end{document}
