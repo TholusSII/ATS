@@ -10,50 +10,58 @@
 \pagestyle{empty}
 \renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\TLPosterCourseHeader{4}{Cinématique}{Détermination des lois de mouvement}
+\TLPosterCourseHeader{4}{Cinématique}{Position, vitesse, accélération et composition des mouvements}
 \vspace{2mm}
 \begin{minipage}[t]{0.61\linewidth}
 \begin{TLPosterSavoirs}
 \begin{itemize}
-  \item maîtriser produit vectoriel, produit mixte et repérage spatial
-  \item définir un torseur cinématique et effectuer un changement de point
-  \item caractériser translation, rotation, mouvement plan et trajectoires
-  \item relier position, vitesse, accélération et dérivation vectorielle
-  \item composer les mouvements et traiter contact, roulement sans glissement et profil trapézoïdal
+  \item définir trajectoire, vecteur position, vitesse et accélération dans un référentiel donné
+  \item maîtriser produit vectoriel, vecteur rotation et dérivation d'un vecteur dans une base mobile
+  \item utiliser le torseur cinématique et le champ des vitesses d'un solide indéformable
+  \item composer vecteurs rotation, vecteurs vitesse et torseurs cinématiques entre repères
+  \item connaître translation, rotation autour d'un axe, roulement sans glissement et loi de vitesse trapézoïdale
 \end{itemize}
 \end{TLPosterSavoirs}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.36\linewidth}
-\TLPosterKey{Transport des vitesses}{$\vec V_Q=\vec V_P+\vec\Omega\wedge\overrightarrow{PQ}$}
+\TLPosterKey{Deux méthodes pour $\vec V$}{1. Dériver le vecteur position dans le bon repère\\[1mm]2. Composer les mouvements puis utiliser\\$\vec V_Q=\vec V_P+\vec\Omega\wedge\overrightarrow{PQ}$}
 \end{minipage}
 \vfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Outils vectoriels]{TLPosterBlue}
-Le produit vectoriel décrit directions normales et moments ; le produit mixte facilite certaines projections. Un paramétrage cohérent fixe points, bases et sens positifs.
+\begin{TLPosterBloc}[Méthode 1 : dériver une position]{TLPosterBlue}
+Écrire $\overrightarrow{OP}$ dans une base adaptée puis calculer
+\[
+\vec V_{P/0}=\left.\frac{d\overrightarrow{OP}}{dt}\right|_0.
+\]
+Si la base tourne, dériver aussi ses vecteurs : la dérivation dans un repère mobile ajoute le terme de transport lié à $\vec\Omega$.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Dérivation et composition]{TLPosterPurple}
-Position, vitesse et accélération sont liées par dérivation. Dans un repère mobile, la dérivation vectorielle ajoute le terme de transport. Vitesses et rotations se composent entre repères.
+\begin{TLPosterBloc}[Accélération]{TLPosterPurple}
+Le cours privilégie la méthode robuste : une fois la vitesse obtenue,
+\[
+\vec a_{P/0}=\left.\frac{d\vec V_{P/0}}{dt}\right|_0.
+\]
+Exprimer d'abord tous les termes dans une base cohérente, puis dériver les scalaires \textbf{et} les vecteurs de base mobiles.
 \end{TLPosterBloc}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Torseur et mouvements]{TLPosterGreen}
-Le torseur cinématique regroupe vecteur rotation et vitesse d'un point. Translation, rotation autour d'un axe et mouvement plan conduisent à des champs de vitesses caractéristiques.
+\begin{TLPosterBloc}[Méthode 2 : torseur et composition]{TLPosterGreen}
+Identifier une chaîne de mouvements simple. Composer d'abord les rotations puis les vitesses au \textbf{même point}. Transporter ensuite la vitesse avec le champ des vitesses. Cette méthode est particulièrement efficace lorsqu'un point de liaison possède une vitesse connue ou nulle.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Contact et lois de mouvement]{TLPosterTeal}
-Le roulement sans glissement impose une vitesse relative nulle au point de contact. Une loi de vitesse trapézoïdale enchaîne accélération, vitesse constante et décélération.
+\begin{TLPosterBloc}[Cas particuliers utiles]{TLPosterTeal}
+Translation : $\vec\Omega=\vec0$, tous les points ont la même vitesse. Rotation autour d'un axe fixe : choisir un point de l'axe, de vitesse nulle. Roulement sans glissement : la vitesse relative au point de contact est nulle. Loi trapézoïdale : pente de $v(t)$ = accélération et aire sous $v(t)$ = déplacement.
 \end{TLPosterBloc}
 \end{minipage}
 \vfill
 \begin{TLPosterMethode}
 \begin{enumerate}
-  \item Choisir solides, repères, points et paramètres adaptés.
-  \item Écrire les vecteurs position et les relations géométriques utiles.
-  \item Dériver dans le bon repère pour obtenir vitesse puis accélération.
-  \item Transporter les vitesses au point pertinent et composer les mouvements.
-  \item Appliquer les conditions de contact ou de roulement sans glissement.
-  \item Contrôler dimensions, signes et cohérence avec le mouvement réel.
+  \item Nommer précisément le mouvement étudié : solide / référentiel et point concerné.
+  \item Choisir le repère et la méthode la plus courte : dérivation directe ou composition + champ des vitesses.
+  \item Si nécessaire, déterminer le vecteur rotation à partir du paramétrage angulaire.
+  \item Calculer la vitesse en évitant de transporter plusieurs fois inutilement le torseur.
+  \item Pour l'accélération, dériver la vitesse dans le référentiel demandé.
+  \item Vérifier direction, unité, cas particuliers ($\dot q=0$, point sur axe, contact sans glissement) et cohérence du mouvement réel.
 \end{enumerate}
 \end{TLPosterMethode}
 \vfill
-\TLPosterRetenir{position, vitesse et accélération se déduisent d'un modèle cinématique cohérent et d'un repérage maîtrisé.}
+\TLPosterRetenir{choisir d'abord le point et le référentiel ; pour la vitesse, dérivation ou champ des vitesses ; pour l'accélération, dériver la vitesse.}
 \end{document}
