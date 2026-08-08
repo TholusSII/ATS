@@ -15,45 +15,45 @@
 \begin{minipage}[t]{0.61\linewidth}
 \begin{TLPosterSavoirs}
 \begin{itemize}
-  \item définir un système, sa frontière, son environnement et ses interactions
-  \item identifier le besoin, les fonctions de service, contraintes, critères et niveaux
-  \item distinguer système souhaité, simulé et réel et situer le cycle de vie
-  \item connaître parties prenantes, cycle en V, exigences, traçabilité, vérification et validation
-  \item exploiter les principaux diagrammes SysML et les chaînes fonctionnelles
+  \item définir système, frontière, environnement, parties prenantes et phases du cycle de vie
+  \item distinguer système souhaité, simulé et réel et interpréter les écarts de performances
+  \item exprimer le besoin par les services attendus et le contexte d'utilisation
+  \item formuler une exigence \textbf{MUST} : mesurable, utile, simple et traçable/testable
+  \item choisir le diagramme SysML adapté : Use Case, req, BDD, IBD, séquence, activité ou états
 \end{itemize}
 \end{TLPosterSavoirs}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.36\linewidth}
-\TLPosterKey{Fil conducteur}{Besoin $\rightarrow$ Exigences $\rightarrow$ Architecture $\rightarrow$ Vérification $\rightarrow$ Validation}
+\TLPosterKey{Quel diagramme ?}{Besoin : Use Case / contexte\\ Exigences : req\\ Composition : BDD\\ Interfaces et flux : IBD\\ Scénario : séquence\\ Modes : états}
 \end{minipage}
 \vfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Système et besoin]{TLPosterBlue}
-Un système naturel ou artificiel réalise une finalité. Sa frontière le sépare de l'environnement. Les échanges concernent matière, énergie et information. Le besoin conduit aux fonctions de service puis aux solutions.
+\begin{TLPosterBloc}[Si on demande le besoin ou le contexte]{TLPosterBlue}
+Identifier la \textbf{phase de vie}, les \textbf{parties prenantes} et les éléments extérieurs en interaction. Le Use Case exprime les services rendus ; le BDD de contexte fixe la frontière et les interacteurs. Ne pas proposer de solution technique à ce stade.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Exigences et preuves]{TLPosterPurple}
-Une exigence doit être claire, nécessaire, mesurable, vérifiable et traçable. Vérifier consiste à montrer que la conception répond aux exigences ; valider à montrer que le système répond au besoin.
+\begin{TLPosterBloc}[Si on demande les exigences]{TLPosterPurple}
+Transformer le besoin en exigences vérifiables. Pour chaque exigence préciser au minimum une grandeur/critère, un niveau attendu et, si possible, le moyen de vérification. Le diagramme \textbf{req} assure la hiérarchie et la traçabilité jusqu'aux éléments qui satisfont ou vérifient l'exigence.
 \end{TLPosterBloc}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Cycle de vie et ingénierie système]{TLPosterGreen}
-Conception, industrialisation, utilisation, maintenance et fin de vie doivent rester cohérentes. La démarche descendante décompose le besoin ; la démarche ascendante intègre et vérifie les sous-systèmes.
+\begin{TLPosterBloc}[Si on demande l'architecture]{TLPosterGreen}
+Utiliser le \textbf{BDD} pour répondre à « de quoi le système est-il constitué ? ». Utiliser l'\textbf{IBD} pour répondre à « qui échange quoi avec qui ? » : matière, énergie ou information. Relier ensuite fonctions, chaîne d'information, chaîne de puissance et solutions.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[SysML et architecture]{TLPosterTeal}
-Contexte, exigences, BDD/IBD, séquence, activités et états décrivent des points de vue complémentaires. L'architecture fonctionnelle relie fonctions, chaîne d'information, chaîne d'énergie et solutions.
+\begin{TLPosterBloc}[Si on demande le fonctionnement]{TLPosterTeal}
+Séquence : échanges ordonnés dans le temps. Activité : enchaînement d'actions et flux. États : modes, événements, gardes et transitions. Toujours choisir le diagramme selon la question posée plutôt que de représenter tout le système.
 \end{TLPosterBloc}
 \end{minipage}
 \vfill
 \begin{TLPosterMethode}
 \begin{enumerate}
-  \item Identifier le besoin, le contexte et les parties prenantes.
-  \item Formuler les fonctions et des exigences mesurables.
-  \item Décomposer le système et choisir les diagrammes SysML utiles.
-  \item Construire l'architecture fonctionnelle et les interfaces.
-  \item Définir les moyens de vérification associés aux exigences.
-  \item Valider le système vis-à-vis du besoin initial.
+  \item Lire la question et identifier le \textbf{point de vue demandé} : besoin, exigence, structure ou comportement.
+  \item Fixer la frontière du système et la phase du cycle de vie étudiée.
+  \item Relever parties prenantes, interacteurs, flux et services sans inventer de solution.
+  \item Choisir le diagramme SysML qui répond directement à la question.
+  \item Vérifier la cohérence : chaque exigence doit être mesurable et reliée à un élément du modèle.
+  \item Comparer souhaité, simulé et réel pour conclure sur vérification puis validation du besoin.
 \end{enumerate}
 \end{TLPosterMethode}
 \vfill
-\TLPosterRetenir{partir du besoin, tracer les exigences jusqu'aux solutions, puis vérifier et valider.}
+\TLPosterRetenir{partir du besoin, choisir le bon point de vue SysML, tracer les exigences jusqu'aux solutions puis vérifier et valider.}
 \end{document}
