@@ -106,3 +106,5 @@ jobs:
             ALL_EXOS/ALL_EXOS.pdf
             ALL_EXOS/ALL_EXOS.log
             ALL_EXOS/*.txt
+
+# Reprise 150 : branche technique reconstruite depuis le main courant pour valider babel-french puis ALL_EXOS.
