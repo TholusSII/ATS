@@ -10,50 +10,59 @@
 \pagestyle{empty}
 \renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\TLPosterCourseHeader{5}{Systèmes asservis}{Boucles, performances, modèles temporels et fréquentiels}
+\TLPosterCourseHeader{5}{Systèmes asservis}{Modéliser, réduire et analyser les performances d'une boucle}
 \vspace{2mm}
 \begin{minipage}[t]{0.61\linewidth}
 \begin{TLPosterSavoirs}
 \begin{itemize}
-  \item distinguer boucle ouverte, boucle fermée, asservissement et régulation
-  \item identifier consigne, erreur, sortie, mesure et perturbation
-  \item caractériser stabilité, rapidité, précision, dépassement et robustesse
-  \item utiliser transformée de Laplace, SLCI et fonctions de transfert
-  \item connaître premier et second ordre, FTBO, FTBF, schémas-blocs et diagrammes de Bode
+  \item distinguer boucle ouverte, boucle fermée, asservissement et régulation ; identifier consigne, erreur, mesure et perturbation
+  \item passer d'équations différentielles à une fonction de transfert par transformée de Laplace
+  \item connaître gain pur, intégrateur, premier ordre $K/(1+\tau p)$ et second ordre $(K,\xi,\omega_0)$
+  \item réduire un schéma-blocs et déterminer FTBO et FTBF
+  \item caractériser stabilité, précision, rapidité, dépassement et robustesse dans les domaines temporel et fréquentiel
 \end{itemize}
 \end{TLPosterSavoirs}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.36\linewidth}
-\TLPosterKey{Relation fondamentale}{$e(t)=r(t)-m(t)$\\[1mm] erreur = consigne $-$ mesure}
+\TLPosterKey{Quel outil ?}{Équations : Laplace $\rightarrow H(p)$\\ Schéma : réduction $\rightarrow$ FTBO/FTBF\\ Courbe temporelle : performances/identification\\ Bode : gain, phase, marges, rapidité}
 \end{minipage}
 \vfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Structure]{TLPosterBlue}
-Le comparateur forme l'erreur entre consigne et mesure. Le correcteur élabore la commande, le procédé agit sur la sortie et le capteur referme la boucle. Une perturbation peut agir sur le procédé.
+\begin{TLPosterBloc}[Des équations à la fonction de transfert]{TLPosterBlue}
+Écrire les lois physiques, séparer entrée et sortie et préciser les conditions initiales. Pour des conditions initiales nulles, remplacer chaque dérivée d'ordre $n$ par $p^n$ puis former
+\[
+H(p)=\frac{S(p)}{E(p)}.
+\]
+Mettre ensuite $H(p)$ sous forme canonique pour identifier gain, pôles, zéros et paramètres dynamiques.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Performances]{TLPosterPurple}
-Stabilité, rapidité et précision sont les critères fondamentaux ; dépassement et robustesse complètent l'analyse. Toute correction recherche un compromis entre ces performances.
+\begin{TLPosterBloc}[Réduire un schéma-blocs]{TLPosterPurple}
+Réduire d'abord les \textbf{boucles internes}, puis les blocs en série/parallèle. En rétroaction négative,
+\[
+H_{BF}(p)=\frac{D(p)}{1+D(p)R(p)},\qquad L(p)=D(p)R(p).
+\]
+Pour une perturbation, appliquer la superposition : annuler les autres entrées et calculer séparément chaque transfert vers la sortie.
 \end{TLPosterBloc}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Modèles]{TLPosterGreen}
-La transformée de Laplace conduit à la fonction de transfert $H(p)=S(p)/E(p)$. Les modèles du premier ordre $K/(1+\tau p)$ et du second ordre décrivent de nombreux comportements.
+\begin{TLPosterBloc}[Exploiter une réponse temporelle]{TLPosterGreen}
+Toujours vérifier la \textbf{stabilité en premier}. Sur un échelon : erreur statique en régime permanent, temps de réponse à 5\%, dépassement. Premier ordre : $K=\Delta s_\infty/\Delta e$, $\tau$ à 63,2\%, $t_{5\%}\simeq3\tau$. Un dépassement oscillatoire oriente vers un second ordre.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Représentations]{TLPosterTeal}
-Schémas-blocs, réponses temporelles, pôles et zéros et diagrammes de Bode donnent des points de vue complémentaires. FTBO et FTBF relient structure et comportement.
+\begin{TLPosterBloc}[Tracer / exploiter un Bode]{TLPosterTeal}
+Factoriser la FT, repérer gain, intégrateurs et pulsations de cassure puis additionner gains en dB et phases. La stabilité de la boucle fermée se juge sur la \textbf{boucle ouverte} $L(j\omega)$ : point critique $0$ dB / $-180^\circ$, marges de phase et de gain positives. La bande passante renseigne sur la rapidité.
 \end{TLPosterBloc}
 \end{minipage}
 \vfill
 \begin{TLPosterMethode}
 \begin{enumerate}
-  \item Identifier consigne, sortie, mesure et perturbations.
-  \item Construire le schéma-bloc et identifier les fonctions de transfert.
-  \item Réduire le schéma et déterminer FTBO puis FTBF.
-  \item Reconnaître ou identifier le modèle dominant.
-  \item Étudier les réponses temporelle et fréquentielle.
-  \item Conclure sur stabilité, précision, rapidité, dépassement et robustesse.
+  \item Identifier consigne, sortie, commande, mesure, perturbations et unités.
+  \item Choisir le modèle : lois physiques ou identification expérimentale.
+  \item Établir les fonctions de transfert et le schéma-blocs avec les bons signes.
+  \item Réduire le schéma et déterminer la FTBO $L(p)$ puis la FTBF.
+  \item Vérifier la \textbf{stabilité} : pôles ou marges fréquentielles.
+  \item Évaluer ensuite précision, rapidité, dépassement et rejet des perturbations.
+  \item Comparer quantitativement au cahier des charges et valider le modèle sur des mesures.
 \end{enumerate}
 \end{TLPosterMethode}
 \vfill
-\TLPosterRetenir{comparer, corriger, agir et mesurer pour atteindre la consigne avec le meilleur compromis de performances.}
+\TLPosterRetenir{la bonne démarche est toujours : identifier $\rightarrow$ modéliser $\rightarrow$ réduire $\rightarrow$ vérifier la stabilité $\rightarrow$ évaluer les performances.}
 \end{document}
