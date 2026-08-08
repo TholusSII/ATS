@@ -10,50 +10,65 @@
 \pagestyle{empty}
 \renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\TLPosterCourseHeader{8}{Conversion électromécanique}{Machines électriques, caractéristiques machine--charge et essais}
+\TLPosterCourseHeader{8}{Conversion électromécanique}{Ramener la charge au moteur et identifier le régime de fonctionnement}
 \vspace{2mm}
-\begin{minipage}[t]{0.61\linewidth}
+\begin{minipage}[t]{0.60\linewidth}
 \begin{TLPosterSavoirs}
 \begin{itemize}
-  \item décrire la conversion réversible entre énergie électrique et énergie mécanique
-  \item relier couple, vitesse, puissance, rendement et pertes
-  \item interpréter caractéristiques mécaniques d'une machine et d'une charge
-  \item déterminer le point de fonctionnement machine--charge et les quadrants
-  \item exploiter essais à vide, en charge et données nominales pour identifier un modèle
+  \item utiliser $P=C\Omega$, rendements et rapports cinématiques pour ramener une charge à l'arbre moteur
+  \item distinguer charge résistante et entraînante et étudier la réversibilité de toute la chaîne
+  \item reconnaître les lois de charge : constante, $k\Omega$, $k/\Omega$ ou $k\Omega^2$
+  \item déterminer point de fonctionnement, accélération, freinage et quadrants
+  \item exploiter essais à vide, en charge et rotor bloqué selon le paramètre recherché
 \end{itemize}
 \end{TLPosterSavoirs}
 \end{minipage}\hfill
-\begin{minipage}[t]{0.36\linewidth}
-\TLPosterKey{Bilan de puissance}{$P_{\rm elec}\leftrightarrow P_{\rm em}\leftrightarrow P_{\rm mec}$ avec pertes et rendement}
+\begin{minipage}[t]{0.37\linewidth}
+\TLPosterKey{Quel calcul ?}{Régime établi $\rightarrow C_u=C_r$\\Accélération $\rightarrow J_{eq}\dot\Omega=C_u-C_r$\\Charge à ramener $\rightarrow$ rapport + bilan de puissance\\Mode moteur/génératrice $\rightarrow$ signe de $C\Omega$}
 \end{minipage}
 \vfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Conversion]{TLPosterBlue}
-Une machine électrique peut fonctionner en moteur ou en génératrice. La conversion est réversible ; les pertes électriques, magnétiques et mécaniques expliquent que le rendement reste inférieur à un.
+\begin{TLPosterBloc}[Ramener la charge à l'arbre moteur]{TLPosterBlue}
+Traiter chaque transmission comme un adaptateur. Pour $k=\Omega_s/\Omega_e$ :
+\[
+\Omega_s=k\Omega_e,\qquad C_s\Omega_s=\eta C_e\Omega_e.
+\]
+Les vitesses se ramènent avec les rapports ; les couples avec le \textbf{bilan de puissance et les rendements}. Pour plusieurs étages : $\eta_{glob}=\prod\eta_i$. Toujours vérifier si les frottements sont déjà inclus dans $C_r$.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Machine et charge]{TLPosterPurple}
-Le point de fonctionnement est l'intersection des caractéristiques machine et charge. Les signes de couple et vitesse permettent d'identifier les quadrants moteur ou générateur.
+\begin{TLPosterBloc}[Point de fonctionnement et stabilité]{TLPosterPurple}
+En régime établi :
+\[
+C_u(\Omega)=C_r(\Omega).
+\]
+Le point de fonctionnement est l'intersection machine--charge. Si la vitesse augmente légèrement, le couple résultant $C_u-C_r$ doit devenir négatif pour ramener le système vers l'équilibre : c'est le test de stabilité du point.
 \end{TLPosterBloc}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Grandeurs mécaniques]{TLPosterGreen}
-La puissance mécanique en rotation vérifie $P=C\omega$. Une caractéristique couple--vitesse décrit la machine ; la charge impose sa propre caractéristique.
+\begin{TLPosterBloc}[Transitoire, quadrants et freinage]{TLPosterGreen}
+Avec inertie équivalente :
+\[
+J_{eq}\dot\Omega=C_u-C_r\quad(\text{ou }C_u-C_r-f\Omega).
+\]
+Accélération : $C_u>C_r$ ; régime établi : égalité ; décélération : $C_u<C_r$. Le signe de $P_m=C\Omega$ donne le mode : $P_m>0$ moteur, $P_m<0$ génératrice/frein. Une récupération d'énergie exige une chaîne \textbf{entièrement réversible}.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Essais et identification]{TLPosterTeal}
-Les essais à vide, en charge ou au point nominal fournissent tensions, courants, vitesses, couples et puissances. Ils permettent de calculer pertes, rendement et paramètres utiles au modèle.
+\begin{TLPosterBloc}[Quel essai utiliser ?]{TLPosterTeal}
+\textbf{À vide :} $C_r=0$ $\Rightarrow$ estimation du couple de pertes et des pertes fer.\\
+\textbf{En charge :} rendement, puissances et pertes proches du fonctionnement réel.\\
+\textbf{Rotor bloqué :} $\Omega=0$ sous tension réduite $\Rightarrow$ identification de paramètres électromagnétiques.\\[1mm]
+Comparer ensuite le point trouvé aux valeurs nominales de la plaque.
 \end{TLPosterBloc}
 \end{minipage}
 \vfill
 \begin{TLPosterMethode}
 \begin{enumerate}
-  \item Identifier le sens des flux d'énergie et le mode moteur ou générateur.
-  \item Recenser les grandeurs électriques et mécaniques disponibles.
-  \item Établir le bilan des puissances et localiser les pertes.
-  \item Tracer ou exploiter les caractéristiques machine et charge.
-  \item Déterminer le point de fonctionnement et le rendement.
-  \item Comparer le résultat aux limites nominales de la machine.
+  \item Identifier la charge, le sens du mouvement et le sens possible du flux d'énergie.
+  \item Ramener vitesse, couple et éventuellement inertie à l'arbre moteur ; inclure les rendements.
+  \item Choisir le régime : établi $\Rightarrow C_u=C_r$ ; transitoire $\Rightarrow$ PFD sur l'arbre moteur.
+  \item Déterminer le point de fonctionnement ou le couple nécessaire sur chaque phase du profil de vitesse.
+  \item Utiliser le signe de $C\Omega$ pour identifier le quadrant et le besoin de freinage dissipatif ou récupératif.
+  \item Calculer puissances et rendement, puis vérifier courant, couple, vitesse et fonctionnement nominal.
 \end{enumerate}
 \end{TLPosterMethode}
 \vfill
-\TLPosterRetenir{la conversion électromécanique se comprend par les flux de puissance et le point de fonctionnement imposé par la machine et sa charge.}
+\TLPosterRetenir{avant de choisir une machine, tout ramener à son arbre : vitesse, couple, inertie et puissance ; puis étudier chaque phase du cycle et chaque quadrant demandé.}
 \end{document}
