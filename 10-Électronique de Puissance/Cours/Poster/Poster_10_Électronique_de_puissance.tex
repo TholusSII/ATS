@@ -10,50 +10,64 @@
 \pagestyle{empty}
 \renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\TLPosterCourseHeader{10}{Électronique de puissance}{Conversion statique de l'énergie}
+\TLPosterCourseHeader{10}{Électronique de puissance}{Choisir la structure puis analyser chaque séquence de commutation}
 \vspace{2mm}
-\begin{minipage}[t]{0.61\linewidth}
+\begin{minipage}[t]{0.60\linewidth}
 \begin{TLPosterSavoirs}
 \begin{itemize}
-  \item classer les convertisseurs DC--DC, AC--DC, DC--AC et AC--AC
-  \item connaître diode, MOSFET, IGBT et thyristor et leurs états passant/bloqué
-  \item utiliser rapport cyclique, valeurs moyenne et efficace, fréquence de découpage et ondulation
-  \item analyser hacheurs Buck, Boost, deux quadrants et quatre quadrants
-  \item analyser redressement, pont de diodes, harmoniques, facteur de puissance et principe du PFC
+  \item distinguer source de tension et source de courant et connaître les associations interdites
+  \item connaître diode, MOSFET, IGBT et association transistor--diode antiparallèle
+  \item utiliser rapport cyclique, valeurs moyenne/efficace et continuité de $i_L$ et $u_C$
+  \item analyser Buck, Boost, deux quadrants et quatre quadrants par séquences
+  \item traiter redressement, onduleur, harmoniques, facteur de puissance, pertes et dimensionnement
 \end{itemize}
 \end{TLPosterSavoirs}
 \end{minipage}\hfill
-\begin{minipage}[t]{0.36\linewidth}
-\TLPosterKey{Principe}{Interrupteurs commandés + stockage d'énergie $\rightarrow$ conversion avec pertes limitées}
+\begin{minipage}[t]{0.37\linewidth}
+\TLPosterKey{Quel convertisseur ?}{DC $\rightarrow$ DC plus faible : Buck\\DC $\rightarrow$ DC plus élevée : Boost\\Réversibilité courant/tension : 2Q / 4Q\\AC $\rightarrow$ DC : redresseur / PFC\\DC $\rightarrow$ AC : onduleur}
 \end{minipage}
 \vfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Interrupteurs de puissance]{TLPosterBlue}
-Diode et semi-conducteurs commandés réalisent des commutations entre états passant et bloqué. Le choix dépend de la tension, du courant, de la fréquence et du besoin de réversibilité.
+\begin{TLPosterBloc}[Sources et interrupteurs : règles à vérifier]{TLPosterBlue}
+Une \textbf{source de tension ne doit jamais être court-circuitée} ; une \textbf{source de courant ne doit jamais être ouverte}. L'inductance impose la continuité du courant $i_L$ ; le condensateur impose la continuité de sa tension $u_C$.\\[1mm]
+Diode : commutation spontanée. MOSFET/IGBT : amorçage et blocage commandés. Transistor + diode antiparallèle : interrupteur réversible en courant.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Redressement et onduleur]{TLPosterPurple}
-Un pont de diodes transforme l'alternatif en continu ; l'onduleur réalise la conversion inverse. La commande de commutation façonne la valeur moyenne, la fréquence et le spectre de sortie.
+\begin{TLPosterBloc}[Hacheur : méthode obligatoire]{TLPosterPurple}
+Sur une période $T$ : \textbf{1.} repérer $0\!\to\!\alpha T$ et $\alpha T\!\to\!T$ ; \textbf{2.} dire quels composants conduisent ; \textbf{3.} remplacer passant par court-circuit et bloqué par circuit ouvert ; \textbf{4.} redessiner chaque schéma ; \textbf{5.} écrire $u_L=L\,di/dt$ ; \textbf{6.} tracer les chronogrammes. En régime périodique :
+\[
+\boxed{\langle u_L\rangle=0}.
+\]
+C'est la relation clé pour obtenir la loi entrée--sortie.
 \end{TLPosterBloc}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Hacheurs DC--DC]{TLPosterGreen}
-Buck abaisse la tension moyenne, Boost l'élève. Les structures deux ou quatre quadrants rendent courant et/ou tension réversibles. Les inductances et condensateurs limitent les ondulations.
+\begin{TLPosterBloc}[Buck, Boost et ondulation]{TLPosterGreen}
+Rapport cyclique : $\alpha=t_{on}/T$. Pour les modèles idéaux en conduction continue :
+\[
+\text{Buck : }U_s=\alpha E,\qquad
+\text{Boost : }U_s=\frac{E}{1-\alpha}.
+\]
+Pour l'ondulation, calculer séparément les pentes $di/dt$ dans chaque séquence puis multiplier par la durée correspondante. Vérifier que le courant retrouve la même valeur après une période.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Grandeurs et qualité d'énergie]{TLPosterTeal}
-Rapport cyclique, fréquence de découpage et séquences de conduction permettent de calculer valeurs moyennes et ondulations. Harmoniques et facteur de puissance motivent filtrage et correction PFC.
+\begin{TLPosterBloc}[AC, puissance et dimensionnement]{TLPosterTeal}
+Pour un pont de diodes, identifier à chaque alternance la diagonale conductrice ; avec charge inductive, respecter la continuité du courant. Pour une forme non sinusoïdale, partir de
+\[
+P=\langle u(t)i(t)\rangle,\qquad \lambda=\frac{P}{UI}.
+\]
+Le PFC cherche à rapprocher le courant du réseau d'une sinusoïde en phase avec la tension. Dimensionner enfin $U_{max}$, $I_{max}$, $I_{eff}$, pertes de conduction et pertes de commutation $P_{com}=f_s(E_{on}+E_{off})$.
 \end{TLPosterBloc}
 \end{minipage}
 \vfill
 \begin{TLPosterMethode}
 \begin{enumerate}
-  \item Identifier nature de la source, de la charge et les réversibilités demandées.
-  \item Choisir la structure de convertisseur et les interrupteurs compatibles.
-  \item Découper une période en séquences de conduction.
-  \item Tracer tensions et courants dans chaque séquence.
-  \item Calculer valeurs moyennes, efficaces et ondulations.
-  \item Vérifier puissance, contraintes des composants et qualité d'énergie.
+  \item Identifier nature de la source, nature de la charge et réversibilités en tension et en courant.
+  \item Choisir la topologie avec l'arbre de décision ; vérifier immédiatement les associations de sources interdites.
+  \item Découper la période en séquences et établir le schéma équivalent de chaque séquence.
+  \item Écrire les lois électriques, déterminer signes et pentes, puis tracer tensions et courants.
+  \item Utiliser les valeurs moyennes et $\langle u_L\rangle=0$ pour la loi de conversion ; calculer ensuite ondulations et valeurs efficaces.
+  \item Vérifier contraintes des composants, pertes, température, puissance transférée et qualité du courant absorbé.
 \end{enumerate}
 \end{TLPosterMethode}
 \vfill
-\TLPosterRetenir{l'analyse d'un convertisseur part toujours des états des interrupteurs et des séquences de fonctionnement.}
+\TLPosterRetenir{ne jamais commencer par une formule de hacheur : identifier les sources, établir les séquences, puis seulement utiliser les moyennes et les ondulations.}
 \end{document}
