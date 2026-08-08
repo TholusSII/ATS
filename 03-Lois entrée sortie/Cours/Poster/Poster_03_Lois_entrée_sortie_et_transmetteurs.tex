@@ -10,50 +10,54 @@
 \pagestyle{empty}
 \renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\TLPosterCourseHeader{3}{Lois entrée-sortie et transmetteurs}{Fermetures géométriques, lois en vitesse et rapports de transmission}
+\TLPosterCourseHeader{3}{Lois entrée-sortie et transmetteurs}{Relier les paramètres d'entrée et de sortie d'un mécanisme}
 \vspace{2mm}
 \begin{minipage}[t]{0.61\linewidth}
 \begin{TLPosterSavoirs}
 \begin{itemize}
-  \item distinguer structures cinématiques ouvertes et fermées
-  \item définir coordonnées articulaires et coordonnées opérationnelles
-  \item établir une fermeture géométrique et une loi entrée-sortie en position
-  \item établir une fermeture cinématique, dériver et projeter les relations
-  \item connaître transmetteurs, rapports, rendement, couple, puissance et formule de Willis
+  \item distinguer coordonnées \textbf{articulaires} et coordonnées \textbf{opérationnelles}, modèle géométrique direct et inverse
+  \item utiliser relation de Chasles, projections, norme et produit scalaire
+  \item établir une fermeture géométrique pour une chaîne cinématique fermée
+  \item obtenir une loi entrée-sortie en vitesse par dérivation des équations de position
+  \item connaître les relations des transmetteurs usuels : engrenages, poulie--courroie, pignon--crémaillère, vis--écrou et trains épicycloïdaux
 \end{itemize}
 \end{TLPosterSavoirs}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.36\linewidth}
-\TLPosterKey{Relations clés}{$\displaystyle \sum \overrightarrow{A_iA_{i+1}}=\vec 0$\qquad $i=\dfrac{\omega_s}{\omega_e}$}
+\TLPosterKey{Quelle méthode ?}{Chaîne fermée : fermeture géométrique\\ Chaîne ouverte : modèle direct\\ Position imposée : modèle inverse\\ Vitesse : dériver la loi de position\\ Transmetteur : rapport cinématique}
 \end{minipage}
 \vfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Fermeture géométrique]{TLPosterBlue}
-Dans une chaîne fermée, une boucle vectorielle traduit la géométrie. Projections, normes, orthogonalité ou loi des cosinus permettent d'obtenir les équations scalaires reliant entrée et sortie.
+\begin{TLPosterBloc}[Chaîne fermée : loi en position]{TLPosterBlue}
+Choisir les paramètres d'entrée/sortie puis écrire une boucle :
+\[
+\overrightarrow{AB}+\overrightarrow{BC}+\cdots+\overrightarrow{DA}=\vec 0.
+\]
+Projeter dans une base judicieuse et éliminer les paramètres intermédiaires. Une autre voie consiste à isoler un vecteur puis écrire sa \textbf{norme au carré} pour exploiter les produits scalaires.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Transmetteurs]{TLPosterPurple}
-Roues de friction, poulies--courroies, chaînes, engrenages, pignon--crémaillère, vis--écrou, roue et vis sans fin et trains épicycloïdaux transmettent ou transforment le mouvement.
+\begin{TLPosterBloc}[Chaîne ouverte : direct / inverse]{TLPosterPurple}
+Le \textbf{modèle géométrique direct} donne la position de l'effecteur à partir des coordonnées articulaires. Pour imposer une position de l'effecteur, il faut résoudre le problème inverse : analytiquement lorsque c'est possible, sinon numériquement.
 \end{TLPosterBloc}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Loi en vitesse]{TLPosterGreen}
-La dérivation de la loi géométrique ou la fermeture des torseurs cinématiques donne la relation entre vitesses. Les projections judicieuses éliminent les inconnues inutiles.
+\begin{TLPosterBloc}[Passer à la loi en vitesse]{TLPosterGreen}
+Si la loi en position est connue, \textbf{dériver les équations scalaires} par rapport au temps : c'est souvent la méthode la plus rapide. Ne dériver qu'après avoir obtenu une relation géométrique correcte et conserver les variables intermédiaires tant qu'elles sont utiles.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Rapports et énergie]{TLPosterTeal}
-Le signe du rapport traduit le sens relatif des mouvements. Le rendement relie les puissances d'entrée et de sortie. La formule de Willis relie les vitesses des éléments d'un train épicycloïdal.
+\begin{TLPosterBloc}[Transmetteurs : ne pas refaire une fermeture]{TLPosterTeal}
+Pour un transmetteur usuel, utiliser directement sa relation cinématique et la convention de signe. Pour des engrenages extérieurs, le contact inverse le sens ; les rapports se multiplient dans une chaîne. Pour un train épicycloïdal, appliquer la relation de Willis. Vérifier ensuite vitesses, couple, puissance et rendement.
 \end{TLPosterBloc}
 \end{minipage}
 \vfill
 \begin{TLPosterMethode}
 \begin{enumerate}
-  \item Choisir les paramètres d'entrée et de sortie et poser les repères.
-  \item Écrire une fermeture géométrique ou une contrainte adaptée.
-  \item Projeter et résoudre la loi en position.
-  \item Dériver ou composer les torseurs pour obtenir la loi en vitesse.
-  \item Établir le rapport de transmission avec la convention de signe.
-  \item Vérifier sens, rendement, puissances et cohérence physique.
+  \item Identifier clairement le \textbf{paramètre d'entrée} et le \textbf{paramètre de sortie} demandés.
+  \item Reconnaître le cas : chaîne fermée, chaîne ouverte ou transmetteur usuel.
+  \item Choisir la relation la plus courte : fermeture vectorielle, modèle direct ou rapport de transmission.
+  \item Projeter ou utiliser une norme au carré pour éliminer les inconnues intermédiaires.
+  \item Pour une loi en vitesse, dériver les équations de position obtenues.
+  \item Tester la loi aux positions particulières et vérifier unités, signes, sens de mouvement et domaine géométrique.
 \end{enumerate}
 \end{TLPosterMethode}
 \vfill
-\TLPosterRetenir{relier l'entrée à la sortie en choisissant la représentation et la relation les plus efficaces.}
+\TLPosterRetenir{ne pas calculer avant d'avoir identifié le type de mécanisme : fermeture, modèle direct/inverse et rapport de transmission répondent à des cas différents.}
 \end{document}
