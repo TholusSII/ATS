@@ -10,50 +10,56 @@
 \pagestyle{empty}
 \renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\TLPosterCourseHeader{6}{Correction des systèmes asservis}{Régler la commande pour satisfaire le cahier des charges}
+\TLPosterCourseHeader{6}{Correction des systèmes asservis}{Choisir et régler un correcteur à partir du défaut observé}
 \vspace{2mm}
-\begin{minipage}[t]{0.61\linewidth}
+\begin{minipage}[t]{0.60\linewidth}
 \begin{TLPosterSavoirs}
 \begin{itemize}
-  \item relier précision, rapidité, stabilité, dépassement et robustesse au cahier des charges
-  \item connaître l'effet du gain proportionnel et des actions intégrale et dérivée
-  \item utiliser correcteurs P, PI, PD et PID
-  \item comprendre retard de phase, avance de phase et pôles dominants
-  \item exploiter diagrammes de Bode, marges de gain et de phase, saturation et rejet des perturbations
+  \item relier stabilité, précision, rapidité, dépassement et robustesse au cahier des charges
+  \item connaître l'effet des actions P, I et D sur gain, classe, phase et bande passante
+  \item savoir quand utiliser P, PI, retard de phase, avance de phase ou PID
+  \item exploiter FTBO, pulsation de coupure, marges de phase et de gain
+  \item vérifier saturation, bruit, incertitudes et boucles imbriquées
 \end{itemize}
 \end{TLPosterSavoirs}
 \end{minipage}\hfill
-\begin{minipage}[t]{0.36\linewidth}
-\TLPosterKey{Principe}{Corriger la boucle sans dégrader le compromis stabilité--rapidité--précision}
+\begin{minipage}[t]{0.37\linewidth}
+\TLPosterKey{Quel correcteur ?}{Erreur statique $\rightarrow$ PI / retard\\[1mm]Marge ou rapidité insuffisante $\rightarrow$ avance\\[1mm]Réglage simple du niveau $\rightarrow$ P\\[1mm]Plusieurs défauts $\rightarrow$ PID filtré}
 \end{minipage}
 \vfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Effet du gain]{TLPosterBlue}
-Augmenter le gain réduit souvent l'erreur et accélère la réponse, mais diminue les marges de stabilité et peut accroître le dépassement ou provoquer la saturation.
+\begin{TLPosterBloc}[Diagnostiquer avant de corriger]{TLPosterBlue}
+On travaille d'abord sur la boucle ouverte
+\[
+H_{BO}(p)=C(p)G(p)H(p).
+\]
+\textbf{Stabilité prioritaire :} relever la coupure à $0$ dB et la phase associée. Un gain faible en basse fréquence explique souvent une erreur importante ; une marge de phase faible annonce dépassement, oscillations et faible robustesse.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Correction fréquentielle]{TLPosterPurple}
-Un retard de phase peut améliorer la précision aux basses fréquences ; une avance de phase augmente la marge de phase et la rapidité. Le choix dépend de la FTBO initiale.
+\begin{TLPosterBloc}[P et PI : gain et précision]{TLPosterPurple}
+\textbf{P :} $C(p)=K$. Il translate le gain de $20\log K$ sans changer la phase : précision et rapidité augmentent, mais les marges diminuent.\\[1mm]
+\textbf{PI :} $C(p)=K\dfrac{1+T_i p}{T_i p}$. Il augmente la classe et peut annuler l'erreur statique. Pour peu dégrader la marge, placer en général $\omega_i=1/T_i\lesssim\omega_c/10$.
 \end{TLPosterBloc}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Correcteurs usuels]{TLPosterGreen}
-L'action P règle le gain, I améliore la précision statique, D anticipe les variations. PI, PD et PID combinent ces effets pour satisfaire plusieurs critères simultanément.
+\begin{TLPosterBloc}[Retard ou avance de phase ?]{TLPosterGreen}
+\textbf{Retard :} augmente surtout le gain aux basses fréquences $\Rightarrow$ meilleure précision, mais rapidité souvent réduite.\\[1mm]
+\textbf{Avance :} apporte de la phase positive autour de la nouvelle coupure $\Rightarrow$ marge de phase et bande passante augmentent. On l'utilise quand le système est trop lent ou insuffisamment robuste.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Validation]{TLPosterTeal}
-Le réglage final se contrôle sur les réponses temporelle et fréquentielle : erreur, temps de réponse, dépassement, marges, robustesse, effort de commande et saturation.
+\begin{TLPosterBloc}[PID et validation réelle]{TLPosterTeal}
+Le PID combine précision de I et anticipation de D. La dérivée doit être \textbf{filtrée} car elle amplifie le bruit. Toujours contrôler l'effort de commande, les saturations et l'anti-windup. Pour des boucles imbriquées, régler d'abord la boucle interne ; sa bande passante doit être environ $5$ à $10$ fois plus grande.
 \end{TLPosterBloc}
 \end{minipage}
 \vfill
 \begin{TLPosterMethode}
 \begin{enumerate}
-  \item Traduire le cahier des charges en critères mesurables.
-  \item Analyser la FTBO non corrigée et repérer ses pôles dominants.
-  \item Choisir la structure du correcteur adaptée au défaut principal.
-  \item Régler les paramètres à partir des critères temporels et fréquentiels.
-  \item Vérifier marges de stabilité, saturation et rejet des perturbations.
-  \item Valider le compromis global sur la FTBF.
+  \item Traduire le cahier des charges en valeurs : erreur, $t_{5\%}$, dépassement, $M_\varphi$, $M_G$.
+  \item Tracer ou exploiter la FTBO \textbf{non corrigée} et identifier le défaut dominant.
+  \item Choisir le correcteur avec l'arbre de décision ci-dessus ; ne pas choisir un PID par défaut.
+  \item Placer ses cassures et régler $K$ pour obtenir la coupure et la marge de phase recherchées.
+  \item Recalculer la FTBO corrigée puis vérifier marges, précision et bande passante.
+  \item Vérifier en FTBF la réponse temporelle, le rejet des perturbations, la saturation et la robustesse ; ajuster si nécessaire.
 \end{enumerate}
 \end{TLPosterMethode}
 \vfill
-\TLPosterRetenir{un correcteur se choisit et se règle à partir d'un défaut identifié, puis se valide sur l'ensemble des performances.}
+\TLPosterRetenir{on ne « met pas un correcteur » : on diagnostique un défaut, on choisit l'action qui le traite, puis on vérifie que les autres performances restent acceptables.}
 \end{document}
