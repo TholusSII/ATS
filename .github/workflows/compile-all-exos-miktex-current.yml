@@ -48,6 +48,8 @@ jobs:
           initexmf --set-config-value=[MPM]AutoInstall=1
           mpm --admin --install=babel-french
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          mpm --admin --install=scalefnt
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           initexmf --admin --update-fndb
           pdflatex --version
       - name: Compile ALL_EXOS
@@ -81,4 +83,4 @@ jobs:
             ALL_EXOS/ALL_EXOS.log
             ALL_EXOS/*.txt
 
-# Relance technique après remplacement ciblé des marginfigure de l'exercice 01_T.
+# Relance technique après installation explicite de scalefnt, dépendance de lmodern sous MiKTeX.
