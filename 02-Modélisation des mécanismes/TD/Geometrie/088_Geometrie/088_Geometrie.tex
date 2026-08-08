@@ -23,26 +23,26 @@ possible et en toute securite.
 Le systeme est represente, dans la situation particuliere alpha = 0, sous forme de schema cinematique ci-contre.
 Ce systeme est constitue de quatre solides, listes ci-dessous avec leur repere associe :
 \begin{itemize}
-\item chassis 0, $\mathcal{R}_0=(O,\vec{x}_0,\vec{y}_0,\vec{z}_0)$;
-\item tourelle 1, $\mathcal{R}_1=(A,\vec{x}_1,\vec{y}_1,\vec{z}_1)$ tel que $\vec{y}_1=\vec{y}_0$;
-\item berceau 2, $\mathcal{R}_2=(A,\vec{x}_2,\vec{y}_2,\vec{z}_2)$ tel que $\vec{z}_2=\vec{z}_1$;
-\item echelle 3, $\mathcal{R}_3=(D,\vec{x}_3,\vec{y}_3,\vec{z}_3)$ tel que $\mathcal{B}_3=\mathcal{B}_2$;
-\item plate-forme 6, $\mathcal{R}_6=(E,\vec{x}_6,\vec{y}_6,\vec{z}_6)$ tel que $\vec{z}_6=\vec{z}_2$.
+\item chassis 0, R0 = (O, x0, y0, z0) ;
+\item tourelle 1, R1 = (A, x1, y1, z1), avec y1 = y0 ;
+\item berceau 2, R2 = (A, x2, y2, z2), avec z2 = z1 ;
+\item echelle 3, R3 = (D, x3, y3, z3), avec B3 = B2 ;
+\item plate-forme 6, R6 = (E, x6, y6, z6), avec z6 = z2.
 \end{itemize}
 
 On donne les parametres de mouvement :
-$\alpha = (\vec{x}_0,\vec{x}_1)$, $\theta = (\vec{x}_1,\vec{x}_2)$, $\beta = (\vec{x}_2,\vec{x}_6)$, $\overrightarrow{CD}=\lambda\vec{x}_2$.
+alpha = (x0, x1), theta = (x1, x2), beta = (x2, x6), CD = lambda x2.
 
-On donne les dimensions caracteristiques : $\overrightarrow{OA}=a\vec{x}_1+b\vec{y}_1$, $\overrightarrow{AC}=c\vec{x}_2$, $\overrightarrow{DE}=e\vec{x}_6$.
+On donne les dimensions caracteristiques : OA = a x1 + b y1, AC = c x2, DE = e x6.
 
-L'etude se fait pendant la phase de dressage. Pendant cette phase, la tourelle 1 est fixe par rapport au chassis 0 ($\alpha$ = cte) et le berceau 2 s'incline de plus en plus alors que l'echelle 3 se deploie. On suppose que le chassis 0 est ancre sur le sol
+L'etude se fait pendant la phase de dressage. Pendant cette phase, la tourelle 1 est fixe par rapport au chassis 0 (alpha = cte) et le berceau 2 s'incline de plus en plus alors que l'echelle 3 se deploie. On suppose que le chassis 0 est ancre sur le sol
 parfaitement horizontal grace aux bras de stabilisation.
 
 On donne ci-dessous un extrait du cahier des charges :
 \begin{itemize}
 \item exigence 1 : pendant la phase de dressage, la plate-forme 6 doit rester en permanence horizontale afin d'assurer la
 securite des personnes qui sont embarquees.
-\item exigence 2 : lors d'une intervention, le point $E$ a l'extremite de la plate-forme 6 doit se deplacer verticalement le long de la facade d'un immeuble (L= cte et $y$ variable au cours du temps).
+\item exigence 2 : lors d'une intervention, le point E a l'extremite de la plate-forme 6 doit se deplacer verticalement le long de la facade d'un immeuble (L = cte et y variable au cours du temps).
 \end{itemize}
 
 \begin{obj}
@@ -72,7 +72,7 @@ eventuelles egalites de base.}
 \else
 \fi
 
-\question{Preciser en le justifiant, le mouvement de 6/1, afin de respecter l'exigence Ex1 du cahier des charges. Que peut-on dire de la base $\mathcal{B}_6=(\vec{x}_6,\vec{y}_6,\vec{z}_6)$ ? Donner la relation entre $\beta$ et $\gamma$ afin de garantir ce mouvement ?}
+\question{Preciser en le justifiant, le mouvement de 6/1, afin de respecter l'exigence Ex1 du cahier des charges. Que peut-on dire de la base B6 = (x6, y6, z6) ? Donner la relation entre beta et gamma afin de garantir ce mouvement ?}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -80,14 +80,14 @@ eventuelles egalites de base.}
 \fi
 
 \question{Donner, en fonction des parametres de mouvements et des dimensions caracteristiques du mecanisme,
-l'expression du vecteur position $\overrightarrow{AE}$ du point $E$ dans le repere 1.}
+l'expression du vecteur position AE du point E dans le repere 1.}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
 
-\question{Donner, en fonction de $L$ et $y$, une autre expression de ce vecteur lorsque l'exigence Ex2 est respectee.}
+\question{Donner, en fonction de L et y, une autre expression de ce vecteur lorsque l'exigence Ex2 est respectee.}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -102,7 +102,7 @@ parametres de mouvement, les dimensions caracteristiques, L et y.}
 \else
 \fi
 
-\question{Donner alors les lois de commande en position $\lambda=f(y)$ puis $\theta=f(y)$. Conclure.}
+\question{Donner alors les lois de commande en position lambda = f(y) puis theta = f(y). Conclure.}
 \ifprof
 \begin{corrige}
 \end{corrige}
