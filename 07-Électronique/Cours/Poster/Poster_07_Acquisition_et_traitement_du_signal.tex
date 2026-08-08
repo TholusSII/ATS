@@ -10,50 +10,63 @@
 \pagestyle{empty}
 \renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\TLPosterCourseHeader{7}{Acquisition et traitement du signal}{Capteurs, conditionnement, filtrage, échantillonnage et numérisation}
+\TLPosterCourseHeader{7}{Acquisition et traitement du signal}{Choisir les outils de mesure, de filtrage et de numérisation}
 \vspace{2mm}
-\begin{minipage}[t]{0.61\linewidth}
+\begin{minipage}[t]{0.60\linewidth}
 \begin{TLPosterSavoirs}
 \begin{itemize}
-  \item décrire une chaîne d'acquisition et les caractéristiques d'un capteur : sensibilité, étendue, précision, résolution
-  \item utiliser lois d'électrocinétique, impédances complexes et montages à amplificateur opérationnel
-  \item caractériser filtres passe-bas, passe-haut, gain, phase, bande passante et fréquence de coupure
-  \item interpréter spectres temporels et fréquentiels et appliquer Shannon--Nyquist
-  \item comprendre anti-repliement, échantillonnage, CAN/CNA, quantification et codage binaire
+  \item choisir un capteur avec étendue, sensibilité, précision, résolution, rapidité et bande passante
+  \item utiliser Kirchhoff, diviseurs, Millman, superposition et AOP pour conditionner un signal
+  \item reconnaître un filtre par ses comportements basse et haute fréquence et exploiter son Bode
+  \item passer du signal temporel au spectre et prévoir l'action d'un filtre sur chaque raie
+  \item appliquer Shannon--Nyquist, anti-repliement, CAN/CNA, quantum et codages binaire/hexadécimal
 \end{itemize}
 \end{TLPosterSavoirs}
 \end{minipage}\hfill
-\begin{minipage}[t]{0.36\linewidth}
-\TLPosterKey{Chaîne d'acquisition}{Grandeur physique $\rightarrow$ Capteur $\rightarrow$ Conditionnement $\rightarrow$ CAN $\rightarrow$ Traitement}
+\begin{minipage}[t]{0.37\linewidth}
+\TLPosterKey{Quel outil pour le circuit ?}{Série $\rightarrow$ diviseur de tension\\Parallèle $\rightarrow$ diviseur de courant\\Plusieurs sources vers un nœud $\rightarrow$ Millman\\Plusieurs sources indépendantes $\rightarrow$ superposition\\Réseau général $\rightarrow$ Kirchhoff / Kennelly}
 \end{minipage}
 \vfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Capteurs et conditionnement]{TLPosterBlue}
-Le capteur convertit une grandeur physique en signal exploitable. Sensibilité, étendue de mesure, justesse, précision et résolution caractérisent la mesure. Le conditionnement adapte amplitude, offset et impédance.
+\begin{TLPosterBloc}[Capteur et conditionnement]{TLPosterBlue}
+\textbf{1.} Définir mesurande et plage utile. \textbf{2.} Vérifier étendue, précision, résolution et bande passante. \textbf{3.} Adapter le signal au convertisseur : gain, offset, impédance et filtrage.\\[1mm]
+AOP idéal en régime linéaire avec contre-réaction :
+\[
+i_+=i_-=0,\qquad u_+=u_-.
+\]
+Inverseur : $u_s/u_e=-R_2/R_1$ ; non-inverseur : $1+R_2/R_1$.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Filtrage]{TLPosterPurple}
-Un filtre sélectionne des bandes de fréquences. Le diagramme de Bode donne gain et phase ; fréquence de coupure et pente asymptotique caractérisent les filtres du premier ou second ordre.
+\begin{TLPosterBloc}[Filtre : comment l'identifier ?]{TLPosterPurple}
+Remplacer mentalement les condensateurs : \textbf{BF} $\rightarrow$ ouverts ; \textbf{HF} $\rightarrow$ courts-circuits. En déduire passe-bas, passe-haut, passe-bande ou coupe-bande. Puis établir $H(p)$, repérer $f_c$ et la pente. Un ordre $n$ donne environ $20n$ dB/décade. Le gabarit fixe bande passante, transition et atténuation minimale.
 \end{TLPosterBloc}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Électrocinétique et AOP]{TLPosterGreen}
-Les lois de Kirchhoff et les impédances de R, L et C permettent d'établir les fonctions de transfert. L'AOP idéal sert à amplifier, sommer, soustraire ou filtrer un signal.
+\begin{TLPosterBloc}[Spectre, filtrage et échantillonnage]{TLPosterGreen}
+Une raie à $nf_0$ est une harmonique ; la raie à $0$ est la valeur moyenne. À chaque fréquence :
+\[
+A_s(f)=|H(j2\pi f)|\,A_e(f).
+\]
+Avant le CAN, limiter le spectre avec un \textbf{passe-bas anti-repliement}. Shannon impose $f_e>2f_{\max}$ ; en pratique choisir une marge pour rendre la transition du filtre réalisable.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Échantillonnage et conversion]{TLPosterTeal}
-Pour éviter le repliement spectral, la fréquence d'échantillonnage respecte le critère de Shannon et un filtre anti-repliement limite le spectre. Le CAN quantifie et code ; le CNA réalise l'opération inverse.
+\begin{TLPosterBloc}[CAN / CNA : dimensionner]{TLPosterTeal}
+Pour un CAN sur $N$ bits et une plage $[U_{min},U_{max}]$ :
+\[
+q=\frac{U_{max}-U_{min}}{2^N}.
+\]
+Si un quantum maximal est imposé, résoudre cette relation pour trouver $N$. Le conditionneur doit exploiter la plage sans saturation. Vérifier aussi $t_{conv}<T_e=1/f_e$. Pour une valeur signée, connaître le complément à deux ; les conversions base 2--10--16 doivent être maîtrisées.
 \end{TLPosterBloc}
 \end{minipage}
 \vfill
 \begin{TLPosterMethode}
 \begin{enumerate}
-  \item Identifier la grandeur à mesurer et choisir le capteur adapté.
-  \item Établir le schéma de conditionnement et sa fonction de transfert.
-  \item Analyser le spectre utile et définir le filtrage nécessaire.
-  \item Choisir la fréquence d'échantillonnage avec une marge suffisante.
-  \item Déterminer résolution, pas de quantification et plage du convertisseur.
-  \item Vérifier que la chaîne complète respecte précision, dynamique et bande passante.
+  \item Partir du cahier des charges : grandeur, plage, précision, fréquence maximale et dynamique attendue.
+  \item Choisir le capteur puis calculer le conditionnement avec l'outil de circuit le plus direct.
+  \item Si un filtre est demandé : identifier son type par BF/HF, établir $H(p)$ puis vérifier le gabarit.
+  \item Si un spectre est fourni : traiter les raies une par une avec le module du filtre.
+  \item Choisir $f_e$ après le filtre anti-repliement, avec $f_e>2f_{\max}$ et une marge réaliste.
+  \item Dimensionner $N$, le quantum et le gain du conditionneur ; vérifier absence de saturation, repliement et perte de résolution.
 \end{enumerate}
 \end{TLPosterMethode}
 \vfill
-\TLPosterRetenir{une mesure fiable exige une chaîne cohérente du capteur jusqu'au traitement numérique, sans saturation ni repliement spectral.}
+\TLPosterRetenir{une chaîne d'acquisition se dimensionne de la grandeur physique vers le numérique : capteur $\rightarrow$ adaptation $\rightarrow$ filtre $\rightarrow$ échantillonnage $\rightarrow$ quantification.}
 \end{document}
