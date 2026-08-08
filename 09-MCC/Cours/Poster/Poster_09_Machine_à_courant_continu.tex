@@ -10,50 +10,71 @@
 \pagestyle{empty}
 \renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-\TLPosterCourseHeader{9}{Machine à courant continu}{Modèle électromécanique, bilan de puissance et variation de vitesse}
+\TLPosterCourseHeader{9}{Machine à courant continu}{Choisir le bon modèle : permanent, transitoire, démarrage ou génératrice}
 \vspace{2mm}
-\begin{minipage}[t]{0.61\linewidth}
+\begin{minipage}[t]{0.60\linewidth}
 \begin{TLPosterSavoirs}
 \begin{itemize}
-  \item connaître constitution, inducteur, induit, collecteur, balais et flux magnétique
-  \item établir l'équation électrique de l'induit et les relations de fcem et de couple
-  \item réaliser le bilan des puissances et identifier pertes Joule, électromagnétiques et mécaniques
-  \item distinguer fonctionnement moteur, génératrice, démarrage et régimes transitoires
-  \item analyser la variation de vitesse par la tension d'induit et identifier les paramètres du modèle
+  \item connaître inducteur, induit, balais--collecteur et rôle du flux magnétique
+  \item utiliser $E=K_e\Omega$ et $C_{em}=K_cI$ à flux constant
+  \item choisir entre modèle établi et modèle dynamique de l'induit
+  \item analyser démarrage, variation de vitesse, défluxage, moteur et génératrice
+  \item identifier $K_e$, $R$ et $L$ à partir d'essais adaptés
 \end{itemize}
 \end{TLPosterSavoirs}
 \end{minipage}\hfill
-\begin{minipage}[t]{0.36\linewidth}
-\TLPosterKey{Relations fondamentales}{$u=Ri+L\,\dfrac{di}{dt}+e$\qquad $e=K_e\omega$\qquad $C_{em}=K_t i$}
+\begin{minipage}[t]{0.37\linewidth}
+\TLPosterKey{Quel modèle ?}{Régime établi moteur $\rightarrow U=E+RI$\\Transitoire $\rightarrow U=RI+L\dot I+E$ et PFD\\Démarrage $\rightarrow E=0$\\Génératrice $\rightarrow$ sens de puissance inversé\\Identification $\rightarrow$ vide / rotor bloqué}
 \end{minipage}
 \vfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Constitution et principe]{TLPosterBlue}
-Le stator crée le flux inducteur et le rotor porte l'induit. Le collecteur et les balais assurent la commutation. La fcem est proportionnelle à la vitesse et le couple électromagnétique au courant d'induit.
+\begin{TLPosterBloc}[Relations fondamentales]{TLPosterBlue}
+À flux constant :
+\[
+E=K_e\Omega,\qquad C_{em}=K_cI,\qquad K_e=K_c\;\text{numériquement en SI}.
+\]
+Le \textbf{courant pilote directement le couple}. En régime établi moteur :
+\[
+U=E+RI,\qquad \Omega=\frac{U-RI}{K_e}.
+\]
+Le couple utile vaut $C_u=C_{em}-C_p$.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Bilan de puissance]{TLPosterPurple}
-La puissance électrique absorbée se répartit entre pertes Joule, puissance électromagnétique, pertes mécaniques et puissance utile. En génératrice, le sens du flux de puissance s'inverse.
+\begin{TLPosterBloc}[Régime variable : coupler électrique et mécanique]{TLPosterPurple}
+Si le courant ou la vitesse évolue, conserver les dynamiques :
+\[
+U=RI+L\frac{dI}{dt}+K_e\Omega,
+\]
+\[
+J\frac{d\Omega}{dt}=K_cI-C_r-f\Omega.
+\]
+Le couple résistant est une perturbation mécanique. Ces équations servent à construire le schéma-blocs ou la fonction de transfert du moteur.
 \end{TLPosterBloc}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{TLPosterBloc}[Modèle électrique et mécanique]{TLPosterGreen}
-L'induit vérifie $u=Ri+L\,di/dt+e$, avec $e=K_e\omega$. Le couple vérifie $C_{em}=K_t i$. En unités SI et à flux constant, les constantes sont liées.
+\begin{TLPosterBloc}[Démarrage et variation de vitesse]{TLPosterGreen}
+Au démarrage, $\Omega=0\Rightarrow E=0$ :
+\[
+I_d=\frac{U}{R},\qquad C_d=K_cI_d.
+\]
+Le courant doit donc être limité. À flux constant, la vitesse se règle surtout par $U$. Ajouter une résistance série est dissipatif. Au-dessus de la vitesse nominale, le \textbf{défluxage} permet d'augmenter $\Omega$ mais réduit le couple disponible.
 \end{TLPosterBloc}
-\begin{TLPosterBloc}[Commande et régimes]{TLPosterTeal}
-Au démarrage la fcem est faible et le courant doit être limité. La vitesse se règle principalement par la tension d'induit à flux constant. Le modèle dynamique couple équations électrique et mécanique.
+\begin{TLPosterBloc}[Bilan, génératrice et identification]{TLPosterTeal}
+Moteur : $UI\rightarrow EI\rightarrow C_{em}\Omega\rightarrow C_u\Omega$ avec pertes Joule $RI^2$ et pertes mécaniques. Génératrice : le flux de puissance s'inverse ; la récupération exige variateur et source réversibles.\\[1mm]
+\textbf{À vide :} $U\simeq K_e\Omega$ $\Rightarrow K_e$.\\
+\textbf{Rotor bloqué :} $E=0$, réponse RL $\Rightarrow R$ par la valeur finale et $L=R\tau$.
 \end{TLPosterBloc}
 \end{minipage}
 \vfill
 \begin{TLPosterMethode}
 \begin{enumerate}
-  \item Choisir les conventions moteur/génératrice et orienter tension, courant, couple et vitesse.
-  \item Écrire l'équation électrique de l'induit.
-  \item Utiliser les relations fcem--vitesse et couple--courant.
-  \item Écrire l'équation mécanique avec charge et inertie si nécessaire.
-  \item Établir le bilan de puissance et le rendement.
-  \item Vérifier courant de démarrage, vitesse, couple et limites nominales.
+  \item Identifier le mode demandé : moteur/génératrice, établi/transitoire, démarrage ou essai d'identification.
+  \item Orienter $U$, $I$, $C$ et $\Omega$ puis écrire l'équation électrique adaptée au régime.
+  \item Introduire $E=K_e\Omega$ et $C_{em}=K_cI$ ; ne garder $L\dot I$ que si le transitoire l'exige.
+  \item Si la vitesse évolue, ajouter l'équation mécanique avec inertie, charge et frottements.
+  \item Pour une vitesse imposée, utiliser $\Omega=(U-RI)/K_e$ ; pour un couple imposé, commencer par $I=C_{em}/K_c$.
+  \item Terminer par le bilan de puissance et vérifier courant de démarrage, limites nominales, quadrant et réversibilité.
 \end{enumerate}
 \end{TLPosterMethode}
 \vfill
-\TLPosterRetenir{la MCC relie directement courant et couple, ainsi que vitesse et force contre-électromotrice.}
+\TLPosterRetenir{MCC à flux constant : le courant fixe le couple et la tension fixe principalement la vitesse ; la première décision consiste donc à choisir le modèle correspondant au régime étudié.}
 \end{document}
